@@ -20,7 +20,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ar.edu.huergo.ipineda.restaurante.repository.security.UsuarioRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 
 @Configuration
 @EnableMethodSecurity
@@ -42,16 +42,6 @@ public class SecurityConfig {
 
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
-
-                .requestMatchers("/ingrediente/**").hasRole("ADMIN")
-
-                .requestMatchers(HttpMethod.GET, "/plato/**").hasAnyRole("ADMIN", "CLIENTE")
-                .requestMatchers(HttpMethod.POST, "/plato/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/plato/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/plato/**").hasRole("ADMIN")
-
-                .requestMatchers(HttpMethod.GET, "/pedido/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/pedido/**").hasAnyRole("ADMIN", "CLIENTE")
 
                 .anyRequest().authenticated())
 

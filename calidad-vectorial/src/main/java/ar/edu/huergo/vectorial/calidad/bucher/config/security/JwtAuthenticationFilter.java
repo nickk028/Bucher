@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
-import ar.edu.huergo.vectorial.calidad.bucher.service.security;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
 
 @Component
 @RequiredArgsConstructor
