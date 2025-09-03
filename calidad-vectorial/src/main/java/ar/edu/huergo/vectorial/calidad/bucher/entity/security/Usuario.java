@@ -33,7 +33,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idUsuario;
 
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El username es obligatorio.")
