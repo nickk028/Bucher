@@ -35,7 +35,7 @@ public class Libro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idLibro;
 
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El libro es obligatorio.")
