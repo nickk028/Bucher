@@ -19,9 +19,10 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.security.UsuarioMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 
-@RestController
-@RequiredArgsConstructor
+@RestController // Marca la clase como un controlador REST
+@RequiredArgsConstructor // Genera un constructor con los campos finales
 @RequestMapping("/usuario")
+// Controlador REST para la gestión de usuarios
 public class UsuarioController {
 
     private final UsuarioService usuarioService;

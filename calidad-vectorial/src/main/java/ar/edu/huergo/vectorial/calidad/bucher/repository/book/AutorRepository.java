@@ -4,5 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 
+// Repositorio JPA para la entidad Autor
 public interface AutorRepository extends JpaRepository<Autor, Long>{
 }

@@ -22,8 +22,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 
-@Configuration
-@EnableMethodSecurity
+@Configuration // Marca esta clase como una clase de configuración de Spring
+@EnableMethodSecurity // Habilita la seguridad a nivel de método con anotaciones
+// Clase de configuración de seguridad de Spring Security
 public class SecurityConfig {
 
     @Bean
