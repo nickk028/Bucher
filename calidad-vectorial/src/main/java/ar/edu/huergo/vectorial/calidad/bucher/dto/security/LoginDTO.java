@@ -5,11 +5,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+// DTO para la solicitud de login
 public record LoginDTO(
+
+    // Nombre de usuario 
     @NotBlank(message = "El username es obligatorio")
     @Email(message = "El nombre debe ser un mail con un formato valido")
     String username,
 
+    // Contraseña del usuario
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 16, max = 60, message = "La contraseña debe tener entre 16 y 60 digitos")
     @Pattern(

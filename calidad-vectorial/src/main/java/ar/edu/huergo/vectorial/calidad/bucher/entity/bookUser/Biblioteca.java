@@ -14,17 +14,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity // Marca la clase como una entidad de JPA
+@Data // Genera getters, setters, toString, equals y hashCode
+@NoArgsConstructor // Genera un constructor sin argumentos
+@AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "bibliotecas")
 public class Biblioteca {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Id principal de la entidad
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
     private Long id;
 
+    // Usuario Dueño de la biblioteca 
     // Relación 1 a 1 con Usuario
     @OneToOne
     @JoinTable(
@@ -34,6 +35,7 @@ public class Biblioteca {
     )
     private Usuario usuario;
 
+    // Lista de libros del usuario con sus datos agregados
     // Relación 1 a muchos con LibroUsuario 
     @OneToMany(mappedBy = "biblioteca")
     @JoinTable(

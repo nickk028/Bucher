@@ -20,9 +20,10 @@ import lombok.RequiredArgsConstructor;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.LoginDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
 
-@RestController
-@RequestMapping("/auth")
-@RequiredArgsConstructor
+@RestController // Marca la clase como un controlador REST
+@RequestMapping("/auth") // Mapea las solicitudes a /auth
+@RequiredArgsConstructor // Genera un constructor con los campos finales
+// Controlador REST para la autenticación y generación de tokens JWT
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
