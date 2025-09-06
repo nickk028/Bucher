@@ -3,6 +3,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 import java.time.LocalDate;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
@@ -33,13 +35,15 @@ public class Publicacion {
 
     @Id // Id principal de la entidad
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
-    private Long idPrestamo;
+    private Long idPublicacion;
 
     // Usuario que creó la publicación
-    @Column(nullable = false, length = 100)
-    @NotBlank(message = "El usuario creador es obligatorio.")
-    @Size(min = 2, max = 100, message = "El usuario creador debe tener entre 2 y 100 caracteres.")
-    private String usuarioCreador;
+    // Relacion 1 a Muchos con la tabla usuario
+    @OneToMany
+    @JoinTable(name = "publicaciones_usuarios",
+    joinColumns = @JoinColumn(name = "publicacion_id"),
+    inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+    private Usuario usuarioCreador;
 
     // Fecha de creación de la publicación
     @Column(nullable = false)
