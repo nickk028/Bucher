@@ -2,9 +2,10 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 
 import java.time.LocalDate;
 
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,6 +22,9 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 
 @Entity
 @Data
@@ -61,7 +65,8 @@ public class Publicacion {
     @Column(nullable = false, length = 50)
     @NotBlank(message = "El estado de la publicación es obligatorio.")
     @Size(min = 2, max = 50, message = "El estado de la publicación debe tener entre 2 y 50 caracteres.")
-    private String estadoPublicacion;
+    @Enumerated(EnumType.STRING)
+    private Estado estadoPublicacion;
 
     @OneToOne
     @JoinTable(name = "publicaciones_libros",

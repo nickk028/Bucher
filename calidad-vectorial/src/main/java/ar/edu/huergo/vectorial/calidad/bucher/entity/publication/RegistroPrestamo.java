@@ -36,7 +36,7 @@ public class RegistroPrestamo {
     private LocalDate fechaDevolucion;
 
     @OneToOne
-    @JoinTable(name = "registroPrestamos_publicaciones",
+    @JoinTable(name = "registroPrestamo_publicaciones",
     joinColumns = @JoinColumn(name = "registroPrestamo_id"),
     inverseJoinColumns = @JoinColumn(name = "publicacion_id"))
     private Publicacion publicacion;
