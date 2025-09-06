@@ -25,7 +25,7 @@ public class RegistroPrestamo {
 
     @Id // Id principal de la entidad
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
-    private Long id;
+    private Long idPrestamo;
 
     // Fecha de inicio del préstamo
     @Column(nullable = false) 

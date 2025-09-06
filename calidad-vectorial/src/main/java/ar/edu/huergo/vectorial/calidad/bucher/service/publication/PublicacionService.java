@@ -29,18 +29,18 @@ public class PublicacionService {
     private UsuarioService usuarioService;
 
     @Autowired
-    private LibroService libroservice;
+    private LibroService libroService;
 
     public Set<Publicacion> obtenerTodosPublicaciones() {
         return new HashSet<>(publicacionRepository.findAll());
     }
 
     public Publicacion crearPublicacion(Publicacion publicacion, String titulo, String username) {
-        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(username);
-        Libro libroIngresado = libroservice.obtenerLibroPorTitulo(titulo);
+        Usuario usuarioIngresado = usuarioService.obtenerUsuarioPorNombre(username);
+        Libro libroIngresado = libroService.obtenerLibroPorTitulo(titulo);
         LocalDate fechaActual = LocalDate.now();
 
-        publicacion.setUsuarioCreador(usuario);
+        publicacion.setUsuarioCreador(usuarioIngresado);
         publicacion.setFechaCreacion(fechaActual);
         publicacion.setEstadoPublicacion(Estado.Disponible);
         publicacion.setLibro(libroIngresado);
