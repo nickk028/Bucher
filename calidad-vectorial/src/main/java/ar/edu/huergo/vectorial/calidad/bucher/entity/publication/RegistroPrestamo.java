@@ -16,25 +16,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity // Marca la clase como una entidad de JPA
+@Data // Genera getters, setters, toString, equals y hashCode
+@NoArgsConstructor // Genera un constructor sin argumentos
+@AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "registro_prestamos")
 public class RegistroPrestamo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Id principal de la entidad
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
     private Long id;
 
-    @Column(nullable = false)
+    // Fecha de inicio del préstamo
+    @Column(nullable = false) 
     @NotNull(message = "La fecha de préstamo es obligatoria.")
     private LocalDate fechaPrestamo;
 
-    @Column(nullable = false)
-    @NotNull(message = "La fecha de devolución es obligatoria.")
+    // Fecha de devolución del préstamo
+    @Column(nullable = true)
     private LocalDate fechaDevolucion;
 
+    // Relación 1 a 1 con Publicacion
     @OneToOne
     @JoinTable(name = "registroPrestamo_publicaciones",
     joinColumns = @JoinColumn(name = "registroPrestamo_id"),

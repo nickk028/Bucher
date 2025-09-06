@@ -26,37 +26,42 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity // Marca la clase como una entidad de JPA
+@Data // Genera getters, setters, toString, equals y hashCode
+@NoArgsConstructor // Genera un constructor sin argumentos
+@AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "libros")
 public class Libro {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id // Id principal de la entidad
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
+    private Long idLibro;
 
+    // Título del libro
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El libro es obligatorio.")
     @Size(min = 2, max = 100, message = "El libro debe tener entre 2 y 100 digitos.")
     private String titulo;
 
+    // Descripción del libro
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "La descripción es obligatorio.")
     @Size(min = 2, max = 255, message = "La libro debe tener entre 2 y 255 digitos.")
     private String descripcion;
 
+    // Cantidad de páginas del libro
     @Column(nullable = false)
     @NotBlank(message = "Las páginas es obligatorio.")
     @Positive(message = "La cantidad de páginas debe ser mayor a 0.")
     private int paginas;
 
+    // Edición del libro
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "La edicion es obligatoria.")
     @Size(min = 2, max = 100, message = "La edición debe tener entre 2 y 100 digitos.")
     private String edicion;
 
+    // Calificación del libro
     @Column(nullable = false)
     @NotBlank(message = "La calificación es obligatorio.")
     @Positive(message = "La calificación debe ser mayor a 0.")
@@ -64,18 +69,22 @@ public class Libro {
     @Max(100)
     private int calificacion;
 
+    // Fecha de publicación del libro
     @Column(nullable = false)
     @NotBlank(message = "La fecha de publicación es obligatoria.")
     private LocalDate fechaPublicacion;
 
+    // URL de la foto del libro
     @Column(nullable = true)
     private String urlFoto;
 
+    // Precio del libro
     @Column(nullable = false)
     @NotBlank(message = "El precio es obligatorio.")
     @Positive(message = "El precio debe ser mayor a 0.")
     private double precio;
 
+    // Categoría del libro
     @Column(nullable = false)
     @NotNull(message = "El precio es obligatorio.")
     @NotEmpty(message = "El precio es obligatorio.")
@@ -83,6 +92,8 @@ public class Libro {
     @Enumerated(EnumType.STRING)
     private Set<Categoria> categoria;
 
+    // Editorial del libro
+    @Column(nullable = false)
     @NotBlank(message = "La editorial es obligatoria.")
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -92,6 +103,8 @@ public class Libro {
     )
     private Editorial editorial;
 
+    // Autor del libro
+    @Column(nullable = false)
     @NotBlank(message = "El autor es obligatoria.")
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

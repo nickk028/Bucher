@@ -39,7 +39,13 @@ public class JwtTokenService {
 
     // @Value es una anotación que permite inyectar valores desde el archivo de application.properties.
 
-    // Aquí convertimos el secreto String a SecretKey HMAC.
+    /*
+     * Constructor que inicializa la clave secreta y el tiempo de expiración desde
+     * @Value inyectados.
+     * @param secret La clave secreta para firmar los tokens JWT.
+     * @param expirationMillis El tiempo de expiración del token en milisegundos.
+     * @throws IllegalArgumentException si la clave secreta es demasiado corta.
+     */
     public JwtTokenService(@Value("${security.jwt.secret}") String secret,
         @Value("${security.jwt.expiration-ms}") long expirationMillis) {
             this.signingKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
@@ -49,6 +55,9 @@ public class JwtTokenService {
     /**
      * Genera un JWT para el usuario autenticado. - subject: username - iat/exp: fechas de emisión y
      * expiración - claims personalizados: set de roles
+     * @param userDetails Los detalles del usuario autenticado.
+     * @param roles El set de roles del usuario.
+     * @return El token JWT generado como String.
      */
     public String generarToken(UserDetails userDetails, Set<String> roles) {
         Instant now = Instant.now();
@@ -66,6 +75,8 @@ public class JwtTokenService {
     /**
      * Extrae el nombre de usuario (subject) del token. Dispara una excepción si la firma no es
      * válida o el token es malformado.
+     * @param token El token JWT del cual extraer el username.
+     * @return El nombre de usuario (subject) contenido en el token.
      */
     public String extraerUsername(String token) {
         return Jwts.parser()
@@ -82,6 +93,9 @@ public class JwtTokenService {
      * - La firma del token (para garantizar integridad)
      * - Que el subject coincida con el usuario
      * - Que no esté expirado
+     * @param token El token JWT a validar.
+     * @param userDetails Los detalles del usuario contra el cual validar el token.
+     * @return true si el token es válido, false en caso contrario.
      */
     public boolean esTokenValido(String token, UserDetails userDetails) {
         try {

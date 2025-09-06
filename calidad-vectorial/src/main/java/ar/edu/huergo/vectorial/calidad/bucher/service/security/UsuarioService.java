@@ -16,16 +16,29 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioReposit
 
 @Service
 @RequiredArgsConstructor
+// Servicio para gestionar operaciones para la entidad usuario
 public class UsuarioService {
 
+    // Repositorios de Usuario y Rol
     private final UsuarioRepository usuarioRepository;
+    // Codificador de contraseñas
     private final PasswordEncoder passwordEncoder;
+    // Repositorio de Rol
     private final RolRepository rolRepository;
 
+    // Método para obtener todos los usuarios
     public Set<Usuario> obtenerTodosUsuarios() {
         return new HashSet<>(usuarioRepository.findAll());
     }
 
+    /*
+        * Registra un nuevo usuario con la contraseña codificada y asigna el rol "LECTOR" por defecto.
+        * @param usuario El usuario a registrar
+        * @param password La contraseña en texto plano
+        * @param verificacionPassword La verificación de la contraseña en texto plano
+        * @return El usuario registrado
+        * @throws IllegalArgumentException si las contraseñas no coinciden o el nombre de usuario ya está en uso
+    */
     public Usuario registrar(Usuario usuario, String password, String verificacionPassword) {
         if (!password.equals(verificacionPassword)) {
             throw new IllegalArgumentException("Las contraseñas no coinciden");
@@ -35,11 +48,17 @@ public class UsuarioService {
         }
 
         usuario.setPassword(passwordEncoder.encode(password));
-        Rol rolCliente = rolRepository.findByNombre("CLIENTE").orElseThrow(() -> new IllegalArgumentException("Rol 'CLIENTE' no encontrado"));
+        Rol rolCliente = rolRepository.findByNombre("LECTOR").orElseThrow(() -> new IllegalArgumentException("Rol 'CLIENTE' no encontrado"));
         usuario.setRoles(Set.of(rolCliente));
         return usuarioRepository.save(usuario);
     }
 
+    /*
+        * Obtiene un usuario por su nombre de usuario.
+        * @param username El nombre de usuario del usuario a obtener
+        * @return El usuario correspondiente
+        * @throws EntityNotFoundException si no se encuentra el usuario
+    */
     public Usuario obtenerUsuarioPorNombre(String username) throws EntityNotFoundException {
         return usuarioRepository.findByUsername(username)
             .orElseThrow(() -> new EntityNotFoundException("Plato no encontrado"));
