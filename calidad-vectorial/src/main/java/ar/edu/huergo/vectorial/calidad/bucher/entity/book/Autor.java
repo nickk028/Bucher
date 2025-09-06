@@ -12,21 +12,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity // Marca la clase como una entidad de JPA
+@Data // Genera getters, setters, toString, equals y hashCode
+@NoArgsConstructor // Genera un constructor sin argumentos
+@AllArgsConstructor // Genera un constructor con todos los argumentos
 public class Autor {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Id principal de la entidad
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
     private Long id;
 
+    // Nombre del autor
     @Column(nullable = false, unique = false, length = 100)
     @NotBlank(message = "El nombre es obligatorio.")
     @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 digitos")
     private String nombre;
 
+    // URL de la pagina de Wikipedia del autor
     @Column(nullable = true)
     private String urlWikipedia;
 }

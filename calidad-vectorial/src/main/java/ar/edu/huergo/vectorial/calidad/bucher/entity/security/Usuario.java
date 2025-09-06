@@ -24,16 +24,16 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity // Marca la clase como una entidad de JPA
+@Data // Genera getters, setters, toString, equals y hashCode
+@NoArgsConstructor // Genera un constructor sin argumentos
+@AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "usuarios")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idUsuario;
 
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El username es obligatorio.")
