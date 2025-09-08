@@ -36,15 +36,17 @@ import lombok.AllArgsConstructor;
 @Table(name = "usuarios")
 public class Usuario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Id principal de la entidad
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automaticamente
     private Long id;
 
+    // Nombre de a cuenta del usuario
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El username es obligatorio.")
     @Email(message = "El nombre debe ser un mail con un formato válido.")
     private String username;
 
+    //Contraseña del usuario
     @Column(nullable = false)
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 16, max = 60, message = "La contraseña debe tener entre 16 y 60 digitos")
@@ -53,6 +55,8 @@ public class Usuario {
         message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial")
     private String password;
 
+    // Set de roles del usuario 
+    // Relacion Muchos a Muchos con Roles
     @NotNull(message = "Los roles son obligatorios")
     @NotEmpty(message = "Los roles son obligatorios")
     @ManyToMany(fetch = FetchType.EAGER)
@@ -63,12 +67,15 @@ public class Usuario {
     )
     private Set<Rol> roles = new HashSet<>();
 
+    // Relacion 1 a Muchos con Pubicaciones
     @OneToMany(mappedBy = "usuario")
     private List<Publicacion> publicaciones = new ArrayList<>();
 
+    // Reacion 1 a Muchos con Prestamos
     @OneToMany(mappedBy = "usuario")
     private List<RegistroPrestamo> prestamos = new ArrayList<>();
 
+    // Constructor
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;

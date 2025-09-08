@@ -38,9 +38,11 @@ public class Autor {
     @Column(nullable = true)
     private String urlWikipedia;
 
+    // Relacion 1 a Muchos con Libros
     @OneToMany(mappedBy = "autor")
     private List<Libro> libros = new ArrayList<>();
 
+    // Constructor
     public Autor(String nombre, String urlWikipedia) {
         this.nombre = nombre;
         this.urlWikipedia = urlWikipedia;

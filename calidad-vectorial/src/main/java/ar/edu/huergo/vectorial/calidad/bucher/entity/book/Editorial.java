@@ -37,9 +37,11 @@ public class Editorial {
     @Column(nullable = true)
     private String urlWikipedia;
 
+    // Relacion 1 a muchos con Libros
     @OneToMany(mappedBy = "editorial")
     private List<Libro> libros = new ArrayList<>();
 
+    // Constructor
     public Editorial(String nombre, String urlWikipedia) {
         this.nombre = nombre;
         this.urlWikipedia = urlWikipedia;

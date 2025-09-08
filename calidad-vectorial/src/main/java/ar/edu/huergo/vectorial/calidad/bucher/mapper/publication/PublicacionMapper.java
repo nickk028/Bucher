@@ -12,9 +12,15 @@ import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateD
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 
-@Component
+@Component // Marca la clase como un componente de Spring
+// Mapper de la entidad Publicacion utiizada para pasar de entidad a DTO y de DTO a entidad
 public class PublicacionMapper {
 
+    /**
+     * Pasa de PubicacionCreateDTO a entidad Publicacion
+     * @param PubicacionCreateDTO El DTO a transformar en entidad
+     * @return Pubicacion como entidad
+     */
     public Publicacion toEntity(PublicacionCreateDTO publicacionCreateDTO) {
         Publicacion publicacion = new Publicacion();
         publicacion.setDescripcion(publicacionCreateDTO.getDescripcion());
@@ -23,6 +29,11 @@ public class PublicacionMapper {
         return publicacion;
     }
 
+    /**
+     * Pasa de Pubicacion a entidad PublicacionResponseDTO
+     * @param Pubicacion a pasar a DTO
+     * @return Pubicacion como ResponseDTO
+     */
     public PublicacionResponseDTO toDTO(Publicacion publicacion) {
         if (publicacion == null) {
             return null;
@@ -39,6 +50,11 @@ public class PublicacionMapper {
         return publicacionResponseDTO;
     }
 
+    /**
+     * Pasa de una lista de Publicaciones a una lista de PublicacionesResponseDTO
+     * @param PubicacionesResponseDTO La lista de Publicaciones a transformar en ResponseDTO
+     * @return PublicacionesResponseDTO como DTO
+     */
     public List<PublicacionResponseDTO> toDTOList(Set<Publicacion> publicaciones) {
         if (publicaciones == null) {
             return new ArrayList<>();

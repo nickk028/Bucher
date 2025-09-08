@@ -37,14 +37,15 @@ public class DataInitializer {
             LibroRepository libroRepository) {
         return args -> {
 
-            // ----------------------
+            // ----------------------------------
             // Inicialización de roles y usuarios
-            // ----------------------
+            // ----------------------------------
             Rol admin = rolRepository.findByNombre("ADMIN")
                     .orElseGet(() -> rolRepository.save(new Rol("ADMIN")));
             Rol cliente = rolRepository.findByNombre("LECTOR")
                     .orElseGet(() -> rolRepository.save(new Rol("LECTOR")));
 
+            // Usuario Admin    
             if (usuarioRepository.findByUsername("admin@gmail.com").isEmpty()) {
                 String adminPassword = "AdminSuperSegura@123";
                 PasswordValidator.validate(adminPassword);
@@ -53,6 +54,7 @@ public class DataInitializer {
                 usuarioRepository.save(u);
             }
 
+			// Usuario Lector
             if (usuarioRepository.findByUsername("lector@gmail.com").isEmpty()) {
                 String clientePassword = "LectorSuperSegura@123";
                 PasswordValidator.validate(clientePassword);
@@ -61,25 +63,25 @@ public class DataInitializer {
                 usuarioRepository.save(u);
             }
 
-            // ----------------------
+            // -----------------------------
             // Inicialización de Editoriales
-            // ----------------------
+            // -----------------------------
             Editorial editorialHP = editorialRepository.findByNombre("Bloomsbury")
                     .orElseGet(() -> editorialRepository.save(
                             new Editorial("Bloomsbury", "https://es.wikipedia.org/wiki/Bloomsbury_Publishing")
                     ));
 
-            // ----------------------
+            // -------------------------
             // Inicialización de Autores
-            // ----------------------
+            // -------------------------
             Autor autorJK = autorRepository.findByNombre("J.K. Rowling")
                     .orElseGet(() -> autorRepository.save(
                             new Autor("J.K. Rowling", "https://es.wikipedia.org/wiki/J._K._Rowling")
                     ));
 
-            // ----------------------
+            // ------------------------
             // Inicialización de Libros
-            // ----------------------
+            // ------------------------
             if (libroRepository.findByTitulo("Harry Potter y la piedra filosofal").isEmpty()) {
                 Libro harryPotter = new Libro();
                 harryPotter.setTitulo("Harry Potter y la piedra filosofal");
