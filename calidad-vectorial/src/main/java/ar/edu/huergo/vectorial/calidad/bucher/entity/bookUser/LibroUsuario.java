@@ -1,4 +1,4 @@
-package ar.edu.huergo.vectorial.calidad.bucher.entity.bookUser;
+package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

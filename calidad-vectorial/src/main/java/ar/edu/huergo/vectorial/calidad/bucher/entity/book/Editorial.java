@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -15,7 +16,7 @@ import lombok.AllArgsConstructor;
 @Data // Genera getters, setters, toString, equals y hashCode
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
-@Table(name = "editoriales") 
+@Table(name = "editoriales")
 public class Editorial {
 
     @Id // Id principal de la entidad

@@ -1,12 +1,14 @@
-package ar.edu.huergo.vectorial.calidad.bucher.entity.bookUser;
+package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
 
 import java.util.List;
-import jakarta.persistence.CascadeType;
+
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -25,7 +27,7 @@ public class Biblioteca {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
     private Long id;
 
-    // Usuario Dueño de la biblioteca 
+    // Usuario Dueño de la biblioteca
     // Relación 1 a 1 con Usuario
     @OneToOne
     @JoinTable(
