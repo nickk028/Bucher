@@ -108,6 +108,7 @@ public class Libro {
     @NotNull(message = "El autor es obligatoria.")
     private Autor autor;
 
+    //Reacion 1 a muchos con Pubicaciones
     @OneToMany(mappedBy = "libro")
     private List<Publicacion> publicaciones = new ArrayList<>();
 }

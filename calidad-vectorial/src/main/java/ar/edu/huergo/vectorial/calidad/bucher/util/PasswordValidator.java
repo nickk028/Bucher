@@ -17,7 +17,6 @@ public class PasswordValidator {
     
     /**
      * Valida si una contraseña cumple con los requisitos de seguridad.
-     *
      * @param password la contraseña a validar
      * @return true si la contraseña es válida, false en caso contrario
      */
@@ -27,7 +26,6 @@ public class PasswordValidator {
     
     /**
      * Valida una contraseña y lanza una excepción si no es válida.
-     *
      * @param password la contraseña a validar
      * @throws IllegalArgumentException si la contraseña no es válida
      */
@@ -39,7 +37,6 @@ public class PasswordValidator {
     
     /**
      * Obtiene el mensaje de validación de la contraseña.
-     *
      * @return el mensaje de validación
      */
     public static String getValidationMessage() {
