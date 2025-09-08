@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -15,8 +17,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -67,7 +67,6 @@ public class Libro {
 
     // Calificación del libro
     @Column(nullable = false)
-    @NotBlank(message = "La calificación es obligatorio.")
     @Positive(message = "La calificación debe ser mayor a 0.")
     @Min(0)
     @Max(100)
@@ -75,7 +74,7 @@ public class Libro {
 
     // Fecha de publicación del libro
     @Column(nullable = false)
-    @NotBlank(message = "La fecha de publicación es obligatoria.")
+    @NotNull(message = "La fecha de publicación es obligatoria.")
     private LocalDate fechaPublicacion;
 
     // URL de la foto del libro
@@ -84,7 +83,6 @@ public class Libro {
 
     // Precio del libro
     @Column(nullable = false)
-    @NotBlank(message = "El precio es obligatorio.")
     @Positive(message = "El precio debe ser mayor a 0.")
     private double precio;
 
@@ -92,6 +90,9 @@ public class Libro {
     @NotNull(message = "La categoria es obligatoria.")
     @NotEmpty(message = "La categoria es obligatoria.")
     @Size(min = 2, max = 100, message = "La categoría debe tener entre 2 y 100 digitos.")
+    @ElementCollection(targetClass = Categoria.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "libro_categorias", joinColumns = @JoinColumn(name = "libro_id"))
+    @Column(name = "categoria")
     @Enumerated(EnumType.STRING)
     private Set<Categoria> categoria;
 
