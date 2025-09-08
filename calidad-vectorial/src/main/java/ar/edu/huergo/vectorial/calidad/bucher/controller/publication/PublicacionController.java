@@ -20,6 +20,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionRespons
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.PublicacionMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/publicacion")
@@ -29,8 +31,14 @@ public class PublicacionController {
 
     @Autowired PublicacionMapper publicacionMapper;
 
+    @GetMapping
+    public ResponseEntity<List<PublicacionResponseDTO>> obtenerTodasLasPublicaciones() {
+        return ResponseEntity.ok(
+            publicacionMapper.toDTOList(publicacionService.obtenerTodasLasPublicaciones()));
+    }
+
     @PostMapping
-    public ResponseEntity<PublicacionResponseDTO> crearPublicacion(@RequestBody PublicacionCreateDTO publicacionCreateDTO,
+    public ResponseEntity<PublicacionResponseDTO> crearPublicacion(@Valid @RequestBody PublicacionCreateDTO publicacionCreateDTO,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
         Publicacion publicacionNueva = publicacionMapper.toEntity(publicacionCreateDTO);

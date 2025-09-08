@@ -68,8 +68,6 @@ public class Publicacion {
     // Estado de la publicación (Ej: "Disponible", "Prestado", etc.)
     @Column(nullable = false, length = 50)
     @NotNull(message = "El estado de la publicación es obligatorio.")
-    @NotBlank(message = "El estado de la publicación es obligatorio.")
-    @Size(min = 2, max = 50, message = "El estado de la publicación debe tener entre 2 y 50 caracteres.")
     @Enumerated(EnumType.STRING)
     private Estado estadoPublicacion;
 

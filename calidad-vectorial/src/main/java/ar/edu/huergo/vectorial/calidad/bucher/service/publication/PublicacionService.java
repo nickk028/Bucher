@@ -31,7 +31,7 @@ public class PublicacionService {
     @Autowired
     private LibroService libroService;
 
-    public Set<Publicacion> obtenerTodosPublicaciones() {
+    public Set<Publicacion> obtenerTodasLasPublicaciones() {
         return new HashSet<>(publicacionRepository.findAll());
     }
 
@@ -43,8 +43,9 @@ public class PublicacionService {
         publicacion.setUsuario(usuarioIngresado);
         publicacion.setFechaCreacion(fechaActual);
         publicacion.setEstadoPublicacion(Estado.Disponible);
+        publicacion.setDetallesEstadoLibro("Desconocido");
         publicacion.setLibro(libroIngresado);
 
-        return publicacion;
+        return publicacionRepository.save(publicacion);
     }
 }
