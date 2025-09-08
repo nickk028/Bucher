@@ -1,8 +1,12 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.security;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -33,7 +38,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;
+    private Long id;
 
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El username es obligatorio.")
@@ -57,6 +62,12 @@ public class Usuario {
         inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
     private Set<Rol> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Publicacion> publicaciones = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario")
+    private List<RegistroPrestamo> prestamos = new ArrayList<>();
 
     public Usuario(String username, String password) {
         this.username = username;

@@ -1,8 +1,11 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,6 +17,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -35,7 +40,7 @@ public class Libro {
 
     @Id // Id principal de la entidad
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
-    private Long idLibro;
+    private Long id;
 
     // Título del libro
     @Column(nullable = false, unique = true, length = 100)
@@ -51,7 +56,6 @@ public class Libro {
 
     // Cantidad de páginas del libro
     @Column(nullable = false)
-    @NotBlank(message = "Las páginas es obligatorio.")
     @Positive(message = "La cantidad de páginas debe ser mayor a 0.")
     private int paginas;
 
@@ -85,32 +89,24 @@ public class Libro {
     private double precio;
 
     // Categoría del libro
-    @Column(nullable = false)
-    @NotNull(message = "El precio es obligatorio.")
-    @NotEmpty(message = "El precio es obligatorio.")
+    @NotNull(message = "La categoria es obligatoria.")
+    @NotEmpty(message = "La categoria es obligatoria.")
     @Size(min = 2, max = 100, message = "La categoría debe tener entre 2 y 100 digitos.")
     @Enumerated(EnumType.STRING)
     private Set<Categoria> categoria;
 
     // Editorial del libro
-    @Column(nullable = false)
-    @NotBlank(message = "La editorial es obligatoria.")
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "libros_editoriales",
-        joinColumns = @JoinColumn(name = "libro_id"),
-        inverseJoinColumns = @JoinColumn(name = "editorial_id")
-    )
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "editorial_id", nullable = false)
+    @NotNull(message = "La editorial es obligatoria.")
     private Editorial editorial;
 
     // Autor del libro
-    @Column(nullable = false)
-    @NotBlank(message = "El autor es obligatoria.")
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "libros_autores",
-        joinColumns = @JoinColumn(name = "libro_id"),
-        inverseJoinColumns = @JoinColumn(name = "autor_id")
-    )
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "autor_id", nullable = false)
+    @NotNull(message = "El autor es obligatoria.")
     private Autor autor;
+
+    @OneToMany(mappedBy = "libro")
+    private List<Publicacion> publicaciones = new ArrayList<>();
 }

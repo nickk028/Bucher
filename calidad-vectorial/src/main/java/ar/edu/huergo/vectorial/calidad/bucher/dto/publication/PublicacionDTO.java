@@ -29,5 +29,4 @@ public abstract class PublicacionDTO {
     @Min(1)
     @Max(365)
     private int limiteDias;
-
 }

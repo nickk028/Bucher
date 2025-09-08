@@ -40,7 +40,7 @@ public class PublicacionService {
         Libro libroIngresado = libroService.obtenerLibroPorTitulo(titulo);
         LocalDate fechaActual = LocalDate.now();
 
-        publicacion.setUsuarioCreador(usuarioIngresado);
+        publicacion.setUsuario(usuarioIngresado);
         publicacion.setFechaCreacion(fechaActual);
         publicacion.setEstadoPublicacion(Estado.Disponible);
         publicacion.setLibro(libroIngresado);

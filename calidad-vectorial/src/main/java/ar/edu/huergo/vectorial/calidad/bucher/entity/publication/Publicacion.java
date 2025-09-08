@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -35,15 +36,13 @@ public class Publicacion {
 
     @Id // Id principal de la entidad
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
-    private Long idPublicacion;
+    private Long id;
 
     // Usuario que creó la publicación
     // Relacion 1 a Muchos con la tabla usuario
-    @OneToMany
-    @JoinTable(name = "publicaciones_usuarios",
-    joinColumns = @JoinColumn(name = "publicacion_id"),
-    inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-    private Usuario usuarioCreador;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
 
     // Fecha de creación de la publicación
     @Column(nullable = false)
@@ -77,9 +76,7 @@ public class Publicacion {
     private Estado estadoPublicacion;
 
     // Relación 1 a 1 con Libro
-    @OneToOne
-    @JoinTable(name = "publicaciones_libros",
-    joinColumns = @JoinColumn(name = "publicacion_id"),
-    inverseJoinColumns = @JoinColumn(name = "libro_id"))
+    @ManyToOne
+    @JoinColumn(name = "libro_id", nullable = false)
     private Libro libro;
 }
