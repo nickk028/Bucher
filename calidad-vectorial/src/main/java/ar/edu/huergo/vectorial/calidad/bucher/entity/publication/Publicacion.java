@@ -12,10 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -70,6 +67,7 @@ public class Publicacion {
 
     // Estado de la publicación (Ej: "Disponible", "Prestado", etc.)
     @Column(nullable = false, length = 50)
+    @NotNull(message = "El estado de la publicación es obligatorio.")
     @NotBlank(message = "El estado de la publicación es obligatorio.")
     @Size(min = 2, max = 50, message = "El estado de la publicación debe tener entre 2 y 50 caracteres.")
     @Enumerated(EnumType.STRING)

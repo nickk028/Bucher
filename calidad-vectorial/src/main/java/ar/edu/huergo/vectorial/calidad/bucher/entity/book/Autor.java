@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
 import jakarta.validation.constraints.Size;
@@ -20,6 +21,7 @@ import lombok.AllArgsConstructor;
 @Data // Genera getters, setters, toString, equals y hashCode
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
+@Table(name = "autores")
 public class Autor {
 
     @Id // Id principal de la entidad
@@ -38,4 +40,9 @@ public class Autor {
 
     @OneToMany(mappedBy = "autor")
     private List<Libro> libros = new ArrayList<>();
+
+    public Autor(String nombre, String urlWikipedia) {
+        this.nombre = nombre;
+        this.urlWikipedia = urlWikipedia;
+    }
 }

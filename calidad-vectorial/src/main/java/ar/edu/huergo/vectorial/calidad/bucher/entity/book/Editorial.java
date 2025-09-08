@@ -39,4 +39,9 @@ public class Editorial {
 
     @OneToMany(mappedBy = "editorial")
     private List<Libro> libros = new ArrayList<>();
+
+    public Editorial(String nombre, String urlWikipedia) {
+        this.nombre = nombre;
+        this.urlWikipedia = urlWikipedia;
+    }
 }
