@@ -2,6 +2,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.mapper.publication;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,15 @@ public class PublicacionMapper {
         publicacionResponseDTO.setEstadoPublicacion(publicacion.getEstadoPublicacion());
 
         return publicacionResponseDTO;
+    }
+
+    public List<PublicacionResponseDTO> toDTOList(Set<Publicacion> publicaciones) {
+        if (publicaciones == null) {
+            return new ArrayList<>();
+        }
+        return publicaciones
+            .stream()
+            .map(this::toDTO)
+            .collect(Collectors.toList());
     }
 }
