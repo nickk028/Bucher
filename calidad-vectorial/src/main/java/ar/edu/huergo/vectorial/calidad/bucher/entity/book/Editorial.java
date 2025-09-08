@@ -1,10 +1,14 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -32,4 +36,7 @@ public class Editorial {
     // URL de la pagina de Wikipedia de la editorial
     @Column(nullable = true)
     private String urlWikipedia;
+
+    @OneToMany(mappedBy = "editorial")
+    private List<Libro> libros = new ArrayList<>();
 }

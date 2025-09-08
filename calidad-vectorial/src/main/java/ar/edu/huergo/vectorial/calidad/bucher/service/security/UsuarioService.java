@@ -48,7 +48,7 @@ public class UsuarioService {
         }
 
         usuario.setPassword(passwordEncoder.encode(password));
-        Rol rolCliente = rolRepository.findByNombre("LECTOR").orElseThrow(() -> new IllegalArgumentException("Rol 'CLIENTE' no encontrado"));
+        Rol rolCliente = rolRepository.findByNombre("LECTOR").orElseThrow(() -> new IllegalArgumentException("Rol 'LECTOR' no encontrado"));
         usuario.setRoles(Set.of(rolCliente));
         return usuarioRepository.save(usuario);
     }

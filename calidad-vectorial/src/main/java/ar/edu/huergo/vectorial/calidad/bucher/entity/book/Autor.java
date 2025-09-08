@@ -1,10 +1,14 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 
 import jakarta.validation.constraints.Size;
@@ -31,4 +35,7 @@ public class Autor {
     // URL de la pagina de Wikipedia del autor
     @Column(nullable = true)
     private String urlWikipedia;
+
+    @OneToMany(mappedBy = "autor")
+    private List<Libro> libros = new ArrayList<>();
 }

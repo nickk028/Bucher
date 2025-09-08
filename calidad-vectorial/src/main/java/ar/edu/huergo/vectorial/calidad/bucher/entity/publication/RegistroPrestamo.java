@@ -2,6 +2,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 
 import java.time.LocalDate;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -25,10 +27,10 @@ public class RegistroPrestamo {
 
     @Id // Id principal de la entidad
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
-    private Long idPrestamo;
+    private Long id;
 
     // Fecha de inicio del préstamo
-    @Column(nullable = false) 
+    @Column(nullable = false)
     @NotNull(message = "La fecha de préstamo es obligatoria.")
     private LocalDate fechaPrestamo;
 
@@ -37,9 +39,11 @@ public class RegistroPrestamo {
     private LocalDate fechaDevolucion;
 
     // Relación 1 a 1 con Publicacion
-    @OneToOne
-    @JoinTable(name = "registroPrestamo_publicaciones",
-    joinColumns = @JoinColumn(name = "registroPrestamo_id"),
-    inverseJoinColumns = @JoinColumn(name = "publicacion_id"))
+    @ManyToOne
+    @JoinColumn(name = "publicacion_id")
     private Publicacion publicacion;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 }

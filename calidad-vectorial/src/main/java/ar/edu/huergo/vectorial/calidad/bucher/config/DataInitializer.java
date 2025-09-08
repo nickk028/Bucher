@@ -21,7 +21,7 @@ public class DataInitializer {
     CommandLineRunner initData(RolRepository rolRepository, UsuarioRepository usuarioRepository, PasswordEncoder encoder) {
         return args -> {
             Rol admin = rolRepository.findByNombre("ADMIN").orElseGet(() -> rolRepository.save(new Rol("ADMIN")));
-            Rol cliente = rolRepository.findByNombre("LECTOR").orElseGet(() -> rolRepository.save(new Rol("CLIENTE")));
+            Rol cliente = rolRepository.findByNombre("LECTOR").orElseGet(() -> rolRepository.save(new Rol("LECTOR")));
 
             if (usuarioRepository.findByUsername("admin@gmail.com").isEmpty()) {
                 String adminPassword = "AdminSuperSegura@123";

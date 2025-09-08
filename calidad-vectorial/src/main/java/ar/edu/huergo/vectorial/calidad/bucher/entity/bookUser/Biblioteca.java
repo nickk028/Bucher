@@ -1,14 +1,17 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -29,21 +32,12 @@ public class Biblioteca {
 
     // Usuario Dueño de la biblioteca
     // Relación 1 a 1 con Usuario
-    @OneToOne
-    @JoinTable(
-        name = "bibliotecas_usuario",
-        joinColumns = @JoinColumn(name = "bibliotecas_id"),
-        inverseJoinColumns = @JoinColumn(name = "usuarios_id")
-    )
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     // Lista de libros del usuario con sus datos agregados
-    // Relación 1 a muchos con LibroUsuario 
-    @OneToMany(mappedBy = "biblioteca")
-    @JoinTable(
-        name = "bibliotecas_libro_usuario",
-        joinColumns = @JoinColumn(name = "bibliotecas_id"),
-        inverseJoinColumns = @JoinColumn(name = "libro_usuario_id")
-    )
-    private List<LibroUsuario> librosUsuario;
+    // Relación 1 a muchos con LibroUsuario
+    @OneToMany(mappedBy = "biblioteca", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LibroUsuario> librosUsuario = new ArrayList<>();
 }

@@ -35,6 +35,4 @@ public class PublicacionResponseDTO extends PublicacionDTO {
     @Size(min = 2, max = 50, message = "El estado de la publicación debe tener entre 2 y 50 caracteres.")
     @Enumerated(EnumType.STRING)
     private Estado estadoPublicacion;
-
-
 }

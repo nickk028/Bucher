@@ -49,19 +49,16 @@ public class LibroUsuario {
 
     // Relación muchos a uno con Libro
     @ManyToOne
-    @JoinTable(
-        name = "libro_usuario_libro",
-        joinColumns = @JoinColumn(name = "libro_usuario_id"),
-        inverseJoinColumns = @JoinColumn(name = "libros_id")
-    )
+    @JoinColumn(name = "libro_id")
     private Libro libro;
 
     // Relación muchos a uno con Usuario
     @ManyToOne
-    @JoinTable(
-        name = "libro_usuario_usuario",
-        joinColumns = @JoinColumn(name = "libro_usuario_id"),
-        inverseJoinColumns = @JoinColumn(name = "usuarios_id")
-    )
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
+
+    // Relación muchos a uno con Biblioteca
+    @ManyToOne
+    @JoinColumn(name = "biblioteca_id")
+    private Biblioteca biblioteca;
 }
