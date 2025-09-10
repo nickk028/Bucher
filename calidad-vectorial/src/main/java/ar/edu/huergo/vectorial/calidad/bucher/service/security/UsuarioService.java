@@ -1,5 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.security;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -61,6 +62,17 @@ public class UsuarioService {
     */
     public Usuario obtenerUsuarioPorNombre(String username) throws EntityNotFoundException {
         return usuarioRepository.findByUsername(username)
-            .orElseThrow(() -> new EntityNotFoundException("Plato no encontrado"));
+            .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
+    }
+
+    public static boolean hasRol(Usuario usuario, String rolIngresado) {
+        ArrayList<Rol> roles = new ArrayList<>(usuario.getRoles());
+        for (Rol rolUsuario : roles) {
+            String nombreRol = rolUsuario.getNombre();
+            if (nombreRol.equals(rolIngresado)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

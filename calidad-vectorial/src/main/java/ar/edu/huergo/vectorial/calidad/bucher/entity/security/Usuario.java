@@ -3,6 +3,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.security;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
@@ -80,5 +81,18 @@ public class Usuario {
         this.username = username;
         this.password = password;
         this.roles = new HashSet<>();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false; 
+        if (getClass() != obj.getClass())
+            return false;
+
+        Usuario other = (Usuario)obj;
+        return Objects.equals(id,other.id);
     }
 }

@@ -35,6 +35,20 @@ public class PublicacionService {
         return new HashSet<>(publicacionRepository.findAll());
     }
 
+    public Publicacion obtenerPublciacionPorId(Long id) throws EntityNotFoundException {
+        return publicacionRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Publicacion no encontrada"));
+    }
+
+    public boolean verificarPublicacionUsuario(Usuario usario, Long id) {
+        Publicacion publicacion = obtenerPublciacionPorId(id);
+        return (usario.equals(publicacion.getUsuario())); 
+    }
+
+    public Set<Publicacion> obtenerPublicacionesPorUsuario(Usuario usuario) {
+        return new HashSet<>(publicacionRepository.findAllByUsuario(usuario));
+    }
+
     public Publicacion crearPublicacion(Publicacion publicacion, String titulo, String username) {
         Usuario usuarioIngresado = usuarioService.obtenerUsuarioPorNombre(username);
         Libro libroIngresado = libroService.obtenerLibroPorTitulo(titulo);
@@ -47,5 +61,10 @@ public class PublicacionService {
         publicacion.setLibro(libroIngresado);
 
         return publicacionRepository.save(publicacion);
+    }
+
+    public void eliminarPublicacion(Long id) {
+        Publicacion publicacion = obtenerPublciacionPorId(id);
+        publicacionRepository.delete(publicacion);
     }
 }
