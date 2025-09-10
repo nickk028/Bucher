@@ -67,4 +67,24 @@ public class PublicacionService {
         Publicacion publicacion = obtenerPublciacionPorId(id);
         publicacionRepository.delete(publicacion);
     }
+
+    // Completar con ifs de validacion
+    public Publicacion modificarPublicacionAdmin(Long id, Publicacion publicacion) {
+        Publicacion publicacionExistente = obtenerPublciacionPorId(id);
+        publicacionExistente.setLimiteDias(publicacion.getLimiteDias());
+        publicacionExistente.setDescripcion(publicacion.getDescripcion());
+        publicacionExistente.setDetallesEstadoLibro(publicacion.getDetallesEstadoLibro());
+        publicacionExistente.setEstadoPublicacion(publicacion.getEstadoPublicacion());
+
+        return publicacionRepository.save(publicacionExistente);
+    }
+
+    //Completar con ifs de validacion
+    public Publicacion modificarPublicacionUsuario(Long id, Publicacion publicacion) {
+        Publicacion publicacionExistente = obtenerPublciacionPorId(id);
+        publicacionExistente.setLimiteDias(publicacion.getLimiteDias());
+        publicacionExistente.setDescripcion(publicacion.getDescripcion());
+
+        return publicacionRepository.save(publicacionExistente);
+    }
 }
