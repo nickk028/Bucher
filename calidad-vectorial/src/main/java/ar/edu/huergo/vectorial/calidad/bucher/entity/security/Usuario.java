@@ -3,7 +3,6 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.security;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
@@ -56,7 +55,7 @@ public class Usuario {
         message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial")
     private String password;
 
-    // Set de roles del usuario 
+    // Set de roles del usuario
     // Relacion Muchos a Muchos con Roles
     @NotNull(message = "Los roles son obligatorios")
     @NotEmpty(message = "Los roles son obligatorios")
@@ -83,16 +82,17 @@ public class Usuario {
         this.roles = new HashSet<>();
     }
 
-    @Override
+    // Funcion equals generada por @Data
+    /*@Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
-            return false; 
+            return false;
         if (getClass() != obj.getClass())
             return false;
 
         Usuario other = (Usuario)obj;
         return Objects.equals(id,other.id);
-    }
+    }*/
 }

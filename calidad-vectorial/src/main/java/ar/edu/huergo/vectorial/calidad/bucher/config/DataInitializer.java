@@ -45,7 +45,7 @@ public class DataInitializer {
             Rol cliente = rolRepository.findByNombre("LECTOR")
                     .orElseGet(() -> rolRepository.save(new Rol("LECTOR")));
 
-            // Usuario Admin    
+            // Usuario Admin
             if (usuarioRepository.findByUsername("admin@gmail.com").isEmpty()) {
                 String adminPassword = "AdminSuperSegura@123";
                 PasswordValidator.validate(adminPassword);

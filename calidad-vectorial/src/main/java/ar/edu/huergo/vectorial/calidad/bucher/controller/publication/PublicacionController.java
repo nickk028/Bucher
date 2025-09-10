@@ -64,7 +64,7 @@ public class PublicacionController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<String> eliminarPublicacion(@PathVariable("{id}") Long id,
+    public ResponseEntity<String> eliminarPublicacion(@PathVariable("id") Long id,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
