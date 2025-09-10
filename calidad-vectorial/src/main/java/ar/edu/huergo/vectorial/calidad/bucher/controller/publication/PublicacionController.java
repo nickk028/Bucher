@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +21,11 @@ import jakarta.validation.Valid;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.PublicacionMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -29,6 +35,8 @@ public class PublicacionController {
 
     @Autowired PublicacionService publicacionService;
 
+    @Autowired UsuarioService usuarioService;
+
     @Autowired PublicacionMapper publicacionMapper;
 
     @GetMapping
@@ -37,7 +45,15 @@ public class PublicacionController {
             publicacionMapper.toDTOList(publicacionService.obtenerTodasLasPublicaciones()));
     }
 
-    @PostMapping
+    @GetMapping("/propias")
+    public ResponseEntity<List<PublicacionResponseDTO>> obtenerPublicacionesPorUsuario(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+
+        return ResponseEntity.ok(
+            publicacionMapper.toDTOList(publicacionService.obtenerPublicacionesPorUsuario(usuario)));
+    }
+
+    @PostMapping("/crear")
     public ResponseEntity<PublicacionResponseDTO> crearPublicacion(@Valid @RequestBody PublicacionCreateDTO publicacionCreateDTO,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
@@ -45,5 +61,21 @@ public class PublicacionController {
         Publicacion publicacionCreada = publicacionService.crearPublicacion(publicacionNueva, publicacionCreateDTO.getTitulo(), usuarioAutenticado.getUsername());
 
         return ResponseEntity.ok(publicacionMapper.toDTO(publicacionCreada));
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<String> eliminarPublicacion(@PathVariable("{id}") Long id,
+    @AuthenticationPrincipal UserDetails usuarioAutenticado) {
+
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+        if (UsuarioService.hasRol(usuario, "ADMIN")) {
+            publicacionService.eliminarPublicacion(id);
+            return ResponseEntity.ok().body("Eliminado correctamente");
+        }
+        if (publicacionService.verificarPublicacionUsuario(usuario,id)) {
+            publicacionService.eliminarPublicacion(id);
+            return ResponseEntity.ok().body("Eliminado correctamente");
+        }
+        return ResponseEntity.notFound().build();
     }
 }
