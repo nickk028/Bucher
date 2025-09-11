@@ -27,19 +27,22 @@ public class UsuarioService {
     // Repositorio de Rol
     private final RolRepository rolRepository;
 
-    // Método para obtener todos los usuarios
+    /**
+     * Método para obtener todos los usuarios
+     * @return Un HashSet de todos los usuarios
+     */
     public Set<Usuario> obtenerTodosUsuarios() {
         return new HashSet<>(usuarioRepository.findAll());
     }
 
-    /*
-        * Registra un nuevo usuario con la contraseña codificada y asigna el rol "LECTOR" por defecto.
-        * @param usuario El usuario a registrar
-        * @param password La contraseña en texto plano
-        * @param verificacionPassword La verificación de la contraseña en texto plano
-        * @return El usuario registrado
-        * @throws IllegalArgumentException si las contraseñas no coinciden o el nombre de usuario ya está en uso
-    */
+    /**
+     * Registra un nuevo usuario con la contraseña codificada y asigna el rol "LECTOR" por defecto.
+     * @param usuario El usuario a registrar
+     * @param password password La contraseña en texto plano
+     * @param verificacionPassword La verificación de la contraseña en texto plano
+     * @return El usuario registrado
+     * @throws IllegalArgumentException Si no existe el rol LECTOR al momento de asignarselo al usuario
+     */
     public Usuario registrar(Usuario usuario, String password, String verificacionPassword) {
         if (!password.equals(verificacionPassword)) {
             throw new IllegalArgumentException("Las contraseñas no coinciden");
@@ -54,11 +57,11 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    /*
-        * Obtiene un usuario por su nombre de usuario.
-        * @param username El nombre de usuario del usuario a obtener
-        * @return El usuario correspondiente
-        * @throws EntityNotFoundException si no se encuentra el usuario
+    /**
+    * Obtiene un usuario por su nombre de usuario.
+    * @param username El nombre de usuario del usuario a obtener
+    * @return El usuario correspondiente
+    * @throws EntityNotFoundException si no se encuentra el usuario
     */
     public Usuario obtenerUsuarioPorNombre(String username) throws EntityNotFoundException {
         return usuarioRepository.findByUsername(username)

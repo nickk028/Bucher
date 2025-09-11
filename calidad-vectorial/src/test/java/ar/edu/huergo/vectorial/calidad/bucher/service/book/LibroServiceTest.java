@@ -61,7 +61,7 @@ public class LibroServiceTest {
 
     @Test
     @DisplayName("Debería buscar libro por título (case insensitive)")
-    void deberiaBuscarLibroPortitulo() {
+    void deberiaBuscarLibroPorTitulo() {
         // Given
         String tituloBusqueda = "Cien Años de Soledad";
         Optional<Libro> libroEncontrado = Optional.of(libroEjemplo);
