@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,10 +16,8 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @DisplayName("Tests de Validación - Entidad Libro")
-public class LibroValidationTest {
+class LibroValidationTest {
 
     private Validator validator;
     private Autor autorEjemplo;
@@ -53,13 +53,7 @@ public class LibroValidationTest {
     void deberiaValidarLibroCorrectoSinErrores() {
         Libro libro = crearLibroValido();
         Set<ConstraintViolation<Libro>> violaciones = validator.validate(libro);
-        // Imprimir todas las violaciones para diagnóstico
-    for (ConstraintViolation<Libro> violacion : violaciones) {
-        System.out.println("Propiedad con error: " + violacion.getPropertyPath());
-        System.out.println("Mensaje de error: " + violacion.getMessage());
-    }
-    
-    assertTrue(violaciones.isEmpty());
+        assertTrue(violaciones.isEmpty());
     }
 
     // -------título-------
