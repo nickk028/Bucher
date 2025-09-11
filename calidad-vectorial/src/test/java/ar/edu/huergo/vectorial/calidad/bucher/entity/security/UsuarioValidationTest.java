@@ -261,11 +261,9 @@ public class UsuarioValidationTest {
                 .anyMatch(v -> v.getMessage().contains("La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial.")));
     }
 
-    // -------roles-------
-
     @Test
     @DisplayName("Debería fallar validación con contraseña null")
-    void deberiaFallarValidacionConPasswordNullOVacia() {
+    void deberiaFallarValidacionConPasswordNullYVacia() {
         // Given
         Usuario usuario1 = new Usuario();
         usuario1.setUsername("usuario@gmail.com");
@@ -285,6 +283,8 @@ public class UsuarioValidationTest {
         assertFalse(violaciones1.isEmpty());
         assertFalse(violaciones2.isEmpty());
     }
+
+    // -------roles-------
 
     @Test
     @DisplayName("Debería fallar validación con roles null")
@@ -324,9 +324,11 @@ public class UsuarioValidationTest {
         assertTrue(violaciones.stream().anyMatch(v -> v.getMessage().contains("obligatorios")));
     }
 
+    // -------múltiples errores-------
+
     @Test
     @DisplayName("Debería validar múltiples errores simultáneamente")
-    void deberiaValidarMultiplesErroresSimultaneamente() {
+    void deberiaValidarMultiplesErroresEnUsuario() {
         // Given - Usuario con múltiples errores
         Usuario usuarioInvalido = new Usuario();
         usuarioInvalido.setUsername(""); // Nombre vacío
