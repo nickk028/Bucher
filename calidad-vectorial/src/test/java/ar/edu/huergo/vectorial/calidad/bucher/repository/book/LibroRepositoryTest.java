@@ -1,4 +1,4 @@
-package ar.edu.huergo.vectorial.calidad.bucher.repository;
+package ar.edu.huergo.vectorial.calidad.bucher.repository.book;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -22,7 +22,6 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
-import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
 
 @DataJpaTest
 @DisplayName("Tests de Integración - LibroRepository")
