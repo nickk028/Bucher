@@ -89,7 +89,6 @@ public class Libro {
     // Categoría del libro
     @NotNull(message = "La categoria es obligatoria.")
     @NotEmpty(message = "La categoria es obligatoria.")
-    @Size(min = 2, max = 100, message = "La categoría debe tener entre 2 y 100 digitos.")
     @ElementCollection(targetClass = Categoria.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "libro_categorias", joinColumns = @JoinColumn(name = "libro_id"))
     @Column(name = "categoria")
