@@ -19,7 +19,7 @@ import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 
 @DisplayName("Tests de Validación - Entidad Usuario")
-public class UsuarioValidationTest {
+class UsuarioValidationTest {
     private Validator validator;
     private Rol rolEjemplo;
 

@@ -38,6 +38,7 @@ public class Publicacion {
     // Usuario que creó la publicación
     // Relacion 1 a Muchos con la tabla usuario
     @ManyToOne
+    @NotNull(message = "El usuario es obligatorio.")
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
@@ -54,6 +55,7 @@ public class Publicacion {
 
     // Límite de días para la devolucion del préstamo
     @Column(nullable = false)
+    @NotNull(message = "El mímite de días es obligatorio.")
     @Positive(message = "El límite de días debe ser mayor a 0.")
     @Min(1)
     @Max(365)
@@ -61,7 +63,6 @@ public class Publicacion {
 
     // Detalles del estado del libro (Ej: "Nuevo", "Usado - Buen estado", "Dañado", etc.)
     @Column(nullable = false, length = 100)
-    @NotBlank(message = "Los detalles del estado del libro son obligatorios.")
     @Size(min = 2, max = 100, message = "Los detalles deben tener entre 2 y 100 caracteres.")
     private String detallesEstadoLibro;
 
@@ -74,5 +75,6 @@ public class Publicacion {
     // Relación 1 a 1 con Libro
     @ManyToOne
     @JoinColumn(name = "libro_id", nullable = false)
+    @NotNull(message = "El libro es obligatorio.")
     private Libro libro;
 }
