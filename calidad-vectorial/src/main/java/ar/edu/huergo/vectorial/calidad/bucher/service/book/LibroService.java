@@ -17,4 +17,4 @@ public class LibroService {
         return libroRepository.findByTituloIgnoringCase(titulo)
             .orElseThrow(() -> new EntityNotFoundException("Libro no encontrado"));
     }
-}  
+}
