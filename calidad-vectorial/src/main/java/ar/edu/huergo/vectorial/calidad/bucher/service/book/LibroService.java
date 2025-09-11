@@ -14,7 +14,7 @@ public class LibroService {
     LibroRepository libroRepository;
 
     public Libro obtenerLibroPorTitulo(String titulo) throws EntityNotFoundException {
-        return libroRepository.findByTitulo(titulo)
+        return libroRepository.findByTituloIgnoringCase(titulo)
             .orElseThrow(() -> new EntityNotFoundException("Libro no encontrado"));
     }
-}
+}  
