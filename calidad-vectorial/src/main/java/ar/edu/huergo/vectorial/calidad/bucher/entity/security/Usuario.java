@@ -43,16 +43,17 @@ public class Usuario {
     // Nombre de a cuenta del usuario
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El username es obligatorio.")
+    @Size(min = 3, max = 100, message = "El username debe tener entre 2 y 100 digitos.")
     @Email(message = "El nombre debe ser un mail con un formato válido.")
     private String username;
 
     //Contraseña del usuario
     @Column(nullable = false)
     @NotBlank(message = "La contraseña es obligatoria")
-    @Size(min = 16, max = 60, message = "La contraseña debe tener entre 16 y 60 digitos")
+    @Size(min = 16, max = 60, message = "La contraseña debe tener entre 16 y 60 digitos.")
     @Pattern(
         regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*]).*$",
-        message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial")
+        message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial.")
     private String password;
 
     // Set de roles del usuario
