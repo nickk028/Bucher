@@ -30,7 +30,7 @@ public class LibroUsuario {
     private Long id;
 
     // Pagina actual de libro que está leyendo el usuario
-    @Column(nullable = false) 
+    @Column(nullable = false)
     @NotNull(message = "La página actual es obligatoria.")
     @PositiveOrZero(message = "La página actual debe ser 0 o mayor.")
     private int paginaActual;

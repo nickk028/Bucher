@@ -8,5 +8,5 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 
 // Repositorio JPA para la entidad Editorial
 public interface EditorialRepository extends JpaRepository<Editorial, Long>{
-    Optional<Editorial> findByNombre(String nombre);
+    Optional<Editorial> findByNombreIgnoringCase(String nombre);
 }

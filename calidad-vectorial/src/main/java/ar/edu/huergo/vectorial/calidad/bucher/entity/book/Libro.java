@@ -43,13 +43,13 @@ public class Libro {
     private Long id;
 
     // Título del libro
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, length = 100)
     @NotBlank(message = "El libro es obligatorio.")
     @Size(min = 2, max = 100, message = "El libro debe tener entre 2 y 100 digitos.")
     private String titulo;
 
     // Descripción del libro
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, length = 100)
     @NotBlank(message = "La descripción es obligatorio.")
     @Size(min = 2, max = 255, message = "La libro debe tener entre 2 y 255 digitos.")
     private String descripcion;
@@ -60,7 +60,7 @@ public class Libro {
     private int paginas;
 
     // Edición del libro
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, length = 100)
     @NotBlank(message = "La edicion es obligatoria.")
     @Size(min = 2, max = 100, message = "La edición debe tener entre 2 y 100 digitos.")
     private String edicion;

@@ -66,7 +66,7 @@ public class DataInitializer {
             // -----------------------------
             // Inicialización de Editoriales
             // -----------------------------
-            Editorial editorialHP = editorialRepository.findByNombre("Bloomsbury")
+            Editorial editorialHP = editorialRepository.findByNombreIgnoringCase("Bloomsbury")
                     .orElseGet(() -> editorialRepository.save(
                             new Editorial("Bloomsbury", "https://es.wikipedia.org/wiki/Bloomsbury_Publishing")
                     ));
@@ -74,7 +74,7 @@ public class DataInitializer {
             // -------------------------
             // Inicialización de Autores
             // -------------------------
-            Autor autorJK = autorRepository.findByNombre("J.K. Rowling")
+            Autor autorJK = autorRepository.findByNombreIgnoringCase("J.K. Rowling")
                     .orElseGet(() -> autorRepository.save(
                             new Autor("J.K. Rowling", "https://es.wikipedia.org/wiki/J._K._Rowling")
                     ));
@@ -82,7 +82,7 @@ public class DataInitializer {
             // ------------------------
             // Inicialización de Libros
             // ------------------------
-            if (libroRepository.findByTitulo("Harry Potter y la piedra filosofal").isEmpty()) {
+            if (libroRepository.findByTituloIgnoringCase("Harry Potter y la piedra filosofal").isEmpty()) {
                 Libro harryPotter = new Libro();
                 harryPotter.setTitulo("Harry Potter y la piedra filosofal");
                 harryPotter.setDescripcion("Primer libro de la saga de Harry Potter.");

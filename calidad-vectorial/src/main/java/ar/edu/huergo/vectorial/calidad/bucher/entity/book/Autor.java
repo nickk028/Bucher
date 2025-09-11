@@ -29,7 +29,7 @@ public class Autor {
     private Long id;
 
     // Nombre del autor
-    @Column(nullable = false, unique = false, length = 100)
+    @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El nombre es obligatorio.")
     @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 digitos")
     private String nombre;
