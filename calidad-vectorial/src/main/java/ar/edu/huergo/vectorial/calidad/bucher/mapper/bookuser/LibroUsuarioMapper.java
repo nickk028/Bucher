@@ -43,6 +43,11 @@ public class LibroUsuarioMapper {
         return libroUsuario;
     }
 
+    /**
+     * Pasa de entidad libroUsuario a LibroUsuarioResponseDTO 
+     * @param libroUsuario La entidad a transformar en DTO
+     * @return LibroUsuarioResponseDTO como entidad
+     */
     public LibroUsuarioResponseDTO toDTO(LibroUsuario libroUsuario) {
         if (libroUsuario == null) {
             return null;
@@ -56,6 +61,11 @@ public class LibroUsuarioMapper {
         return libroUsuarioResponseDTO;
     }
 
+    /**
+     * Pasa de una lista de entidades LibroUsuario a una lista de LibroUsuarioResponseDTO
+     * @param librosUsuario La lista de entidades a transformar en DTOs
+     * @return Lista de LibroUsuarioResponseDTO
+     */
     public List<LibroUsuarioResponseDTO> toDTOList(List<LibroUsuario> librosUsuario) {
         if (librosUsuario == null) {
             return null;

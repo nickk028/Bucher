@@ -36,12 +36,21 @@ public class PublicacionController {
 
     @Autowired PublicacionMapper publicacionMapper;
 
+    /**
+     * Obtiene todas las publicaciones
+     * @return Un conjunto de todas las publicaciones
+     */
     @GetMapping
     public ResponseEntity<List<PublicacionResponseDTO>> obtenerTodasLasPublicaciones() {
         return ResponseEntity.ok(
             publicacionMapper.toDTOList(publicacionService.obtenerTodasLasPublicaciones()));
     }
 
+    /**
+     * Obtiene las publicaciones del usuario autenticado
+     * @param usuarioAutenticado El usuario autenticado
+     * @return Las publicaciones del usuario autenticado
+     */
     @GetMapping("/propias")
     public ResponseEntity<List<PublicacionResponseDTO>> obtenerPublicacionesPorUsuario(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
@@ -50,6 +59,12 @@ public class PublicacionController {
             publicacionMapper.toDTOList(publicacionService.obtenerPublicacionesPorUsuario(usuario)));
     }
 
+    /**
+    * Crea una nueva publicación
+    * @param publicacionCreateDTO El DTO con los datos de la publicación a crear
+    * @param usuarioAutenticado El usuario autenticado
+    * @return La publicación creada
+    */
     @PostMapping("/crear")
     public ResponseEntity<PublicacionResponseDTO> crearPublicacion(@Valid @RequestBody PublicacionCreateDTO publicacionCreateDTO,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
@@ -60,6 +75,12 @@ public class PublicacionController {
         return ResponseEntity.ok(publicacionMapper.toDTO(publicacionCreada));
     }
 
+    /**
+     * Elimina una publicación por su ID (solo el usuario que la creo o un admin)
+     * @param id El ID de la publicación a eliminar
+     * @param usuarioAutenticado El usuario autenticado
+     * @return OK (200) si se eliminó correctamente, Not Found (404) si no se encontró o no tiene permisos
+     */
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarPublicacion(@PathVariable("id") Long id,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
@@ -76,6 +97,13 @@ public class PublicacionController {
         return ResponseEntity.notFound().build();
     }
 
+    /**
+     * Modifica una publicación (solo el usuario que la creo o un admin)
+     * @param id El ID de la publicación a modificar
+     * @param publicacionDTO El DTO con los datos a modificar
+     * @param usuarioAutenticado El usuario autenticado
+     * @return La publicación modificada
+     */
     @PutMapping("/actualizar/{id}")
     public ResponseEntity<PublicacionResponseDTO> actualizarPublicacion(@PathVariable("id") Long id,
     @Valid @RequestBody PublicacionUpdateDTO publicacionDTO,
