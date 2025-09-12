@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.RequiredArgsConstructor;
 import jakarta.validation.Valid;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
@@ -25,9 +24,6 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.PublicacionMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
-
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @RequestMapping("/publicacion")
