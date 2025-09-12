@@ -47,4 +47,9 @@ public class BibliotecaService {
     public Biblioteca actualizarLibroUsuario(Biblioteca bibliotecaUsuario) {
         return bibliotecaRepository.save(bibliotecaUsuario);
     }
+
+    public void eliminarLibroUsuarioDeBiblioteca(Biblioteca biblioteca, int posicion) {
+        biblioteca.getLibrosUsuario().remove(posicion - 1);
+        bibliotecaRepository.save(biblioteca);
+    }
 }
