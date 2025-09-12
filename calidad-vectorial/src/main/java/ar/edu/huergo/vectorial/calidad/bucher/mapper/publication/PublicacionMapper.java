@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionUpdateDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 
 @Component // Marca la clase como un componente de Spring
@@ -34,11 +35,30 @@ public class PublicacionMapper {
      * @param PubicacionUpdateDTO El DTO a transformar en entidad
      * @return Pubicacion como entidad
      */
-    public Publicacion toEntityUpdate(PublicacionUpdateDTO publicacionUpdateDTO) {
-        Publicacion publicacion = new Publicacion();
+    public Publicacion toEntity(PublicacionUpdateDTO publicacionUpdateDTO) {
+    Publicacion publicacion = new Publicacion();
+
+    if (publicacionUpdateDTO.getDescripcion() == null || publicacionUpdateDTO.getDescripcion().isEmpty()) {
+        publicacion.setDescripcion("nada");
+    } else {
         publicacion.setDescripcion(publicacionUpdateDTO.getDescripcion());
-        publicacion.setLimiteDias(publicacionUpdateDTO.getLimiteDias());
-        return publicacion;
+    }
+
+    publicacion.setLimiteDias(publicacionUpdateDTO.getLimiteDias());
+
+    if (publicacionUpdateDTO.getDetallesEstadoLibro() == null || publicacionUpdateDTO.getDetallesEstadoLibro().isEmpty()) {
+        publicacion.setDetallesEstadoLibro("nada");
+    } else {
+        publicacion.setDetallesEstadoLibro(publicacionUpdateDTO.getDetallesEstadoLibro());
+    }
+
+    if (publicacionUpdateDTO.getEstadoPublicacion() == null) {
+        publicacion.setEstadoPublicacion(Estado.Indefinido);
+    } else {
+        publicacion.setEstadoPublicacion(publicacionUpdateDTO.getEstadoPublicacion());
+    }
+
+    return publicacion;
     }
 
     /**

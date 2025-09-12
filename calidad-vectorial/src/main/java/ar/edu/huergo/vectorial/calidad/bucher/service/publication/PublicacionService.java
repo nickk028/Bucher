@@ -106,10 +106,19 @@ public class PublicacionService {
     public Publicacion modificarPublicacionAdmin(Long id, Publicacion publicacion) {
         Publicacion publicacionExistente = obtenerPublciacionPorId(id);
 
-        publicacionExistente.setLimiteDias(publicacion.getLimiteDias());
-        publicacionExistente.setDescripcion(publicacion.getDescripcion());
-        publicacionExistente.setDetallesEstadoLibro(publicacion.getDetallesEstadoLibro());
-        publicacionExistente.setEstadoPublicacion(publicacion.getEstadoPublicacion());
+        if (!publicacion.getDescripcion().equals("nada")) {
+            publicacionExistente.setDescripcion(publicacion.getDescripcion());
+        }
+        if (!publicacion.getDetallesEstadoLibro().equals("nada")) {
+            publicacionExistente.setDetallesEstadoLibro(publicacion.getDetallesEstadoLibro());
+        }
+        if (publicacion.getLimiteDias() != 0) {
+            publicacionExistente.setLimiteDias(publicacion.getLimiteDias());
+        }
+
+        if (publicacion.getEstadoPublicacion() != Estado.Indefinido) {
+            publicacionExistente.setEstadoPublicacion(publicacion.getEstadoPublicacion());
+        }
 
         return publicacionRepository.save(publicacionExistente);
     }
@@ -129,8 +138,14 @@ public class PublicacionService {
             throw new EntityNotFoundException("Publicación no encontrada.");
         }
 
-        publicacionExistente.setLimiteDias(publicacion.getLimiteDias());
-        publicacionExistente.setDescripcion(publicacion.getDescripcion());
+        if (!publicacion.getDescripcion().equals("nada")) {
+            publicacionExistente.setDescripcion(publicacion.getDescripcion());
+        }
+
+        if (publicacion.getLimiteDias() != 0) {
+            publicacionExistente.setLimiteDias(publicacion.getLimiteDias());
+        }
+        
 
         return publicacionRepository.save(publicacionExistente);
     }
