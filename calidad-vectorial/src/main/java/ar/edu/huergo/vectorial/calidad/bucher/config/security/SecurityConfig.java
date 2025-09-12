@@ -43,6 +43,7 @@ public class SecurityConfig {
 
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
+                .requestMatchers(HttpMethod.GET, "/usuario").hasRole("ADMIN")
 
                 .requestMatchers(HttpMethod.GET, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
                 .requestMatchers(HttpMethod.POST, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
