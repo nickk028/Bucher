@@ -28,10 +28,6 @@ public class LibroUsuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
     private Long id;
 
-    // El id local de su biblioteca
-    @Column(name = "numero_local", nullable = false)
-    private int idLocal;
-
     // Pagina actual de libro que está leyendo el usuario
     @Column(nullable = false)
     @NotNull(message = "La página actual es obligatoria.")

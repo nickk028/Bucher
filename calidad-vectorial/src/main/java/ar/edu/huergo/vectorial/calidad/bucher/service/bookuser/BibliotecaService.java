@@ -1,5 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.bookuser;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,6 @@ public class BibliotecaService {
     public Biblioteca subirLibroUsuario(Long idUsuario, LibroUsuario libroUsuarioIngresado, String titulo) {
         Biblioteca bibliotecaUsuario = obtenerBiblioteca(idUsuario);
 
-        libroUsuarioIngresado.setIdLocal(obtenerCantidadLibros(bibliotecaUsuario) + 1);
         libroUsuarioIngresado.setLibro(libroService.obtenerLibroPorTitulo(titulo));
         libroUsuarioIngresado.setBiblioteca(bibliotecaUsuario);
         bibliotecaUsuario.getLibrosUsuario().add(libroUsuarioIngresado);
@@ -35,7 +36,11 @@ public class BibliotecaService {
         return bibliotecaRepository.save(bibliotecaUsuario);
     }
 
-    public int obtenerCantidadLibros(Biblioteca biblioteca) {
-        return biblioteca.getLibrosUsuario().size();
+    public LibroUsuario obtenerLibroUsuarioPorIdLocal(int posicion, Biblioteca biblioteca) throws EntityNotFoundException {
+        List<LibroUsuario> librosUsuario = biblioteca.getLibrosUsuario();
+        if (posicion <= 0 || posicion >= librosUsuario.size() + 1) {
+            throw new EntityNotFoundException("Libro usuario no encontrado");
+        }
+        return biblioteca.getLibrosUsuario().get(posicion - 1);
     }
 }
