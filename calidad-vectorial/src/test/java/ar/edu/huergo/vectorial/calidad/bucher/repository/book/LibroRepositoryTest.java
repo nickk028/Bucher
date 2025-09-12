@@ -161,8 +161,8 @@ public class LibroRepositoryTest {
 
         // Then
         assertFalse(libroRepository.existsById(libroId));
-        Optional<Libro> ingredienteEliminado = libroRepository.findById(libroId);
-        assertFalse(ingredienteEliminado.isPresent());
+        Optional<Libro> libroEliminado = libroRepository.findById(libroId);
+        assertFalse(libroEliminado.isPresent());
     }
 
     @Test
@@ -174,7 +174,7 @@ public class LibroRepositoryTest {
         // Then
         assertEquals(3, cantidadLibros);
 
-        // Agregar un ingrediente más y verificar
+        // Agregar un libro más y verificar
         Libro nuevoLibro = new Libro();
         nuevoLibro.setTitulo("Título de un libro nuevo");
         nuevoLibro.setDescripcion("Descripción");
@@ -196,7 +196,7 @@ public class LibroRepositoryTest {
     @Test
     @DisplayName("Debería validar restricciones de la entidad")
     void deberiaValidarRestricciones() {
-        // Given - Crear ingrediente con nombre vacío
+        // Given - Crear libro con nombre vacío
         Libro nuevoLibro = new Libro();
         nuevoLibro.setTitulo(""); // No cumple el @NotBlank
         nuevoLibro.setDescripcion("Descripción");

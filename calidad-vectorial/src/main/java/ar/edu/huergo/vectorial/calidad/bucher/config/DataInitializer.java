@@ -82,7 +82,7 @@ public class DataInitializer {
             // ------------------------
             // Inicialización de Libros
             // ------------------------
-            if (libroRepository.findByTituloIgnoringCase("Harry Potter y la piedra filosofal").isEmpty()) {
+            if (libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial("Harry Potter y la piedra filosofal", "Primera edición", autorJK, editorialHP).isEmpty()) {
                 Libro harryPotter = new Libro();
                 harryPotter.setTitulo("Harry Potter y la piedra filosofal");
                 harryPotter.setDescripcion("Primer libro de la saga de Harry Potter.");

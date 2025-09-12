@@ -9,5 +9,4 @@ class CalidadVectorialApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
