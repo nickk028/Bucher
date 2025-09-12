@@ -19,6 +19,7 @@ import jakarta.validation.Valid;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
@@ -47,15 +48,15 @@ public class BibliotecaController {
             libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaService.obtenerBiblioteca(usuario.getId()))));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<LibroUsuarioResponseDTO> obtenerLibroUsuario(@PathVariable("id") int posicion,
+    @GetMapping("/{posicion}")
+    public ResponseEntity<LibroUsuarioResponseDTO> obtenerLibroUsuario(@PathVariable("posicion") int posicion,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
         Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
 
         return ResponseEntity.ok(
-            libroUsuarioMapper.toDTO(bibliotecaService.obtenerLibroUsuarioPorIdLocal(posicion, bibliotecaUsuario)));
+            libroUsuarioMapper.toDTO(bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaUsuario)));
     }
 
     @PostMapping
@@ -69,5 +70,22 @@ public class BibliotecaController {
 
         return ResponseEntity.ok(
             libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaActualizada)));
+    }
+
+    @PutMapping("/{posicion}")
+    public ResponseEntity<LibroUsuarioResponseDTO> modificarLibroUsuario(@PathVariable("posicion") int posicion, @Valid @RequestBody LibroUsuarioUpdateDTO libroUsuarioUpdateDTO,
+    @AuthenticationPrincipal UserDetails usuarioAutenticado) {
+
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
+
+        LibroUsuario libroUsuarioIngresado = libroUsuarioMapper.toEntity(libroUsuarioUpdateDTO);
+        LibroUsuario libroUsuarioAModificar = bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaUsuario);
+        libroUsuarioService.modificarLibroUsuario(libroUsuarioAModificar, libroUsuarioIngresado);
+
+        Biblioteca bibliotecaActualizada = bibliotecaService.actualizarLibroUsuario(bibliotecaUsuario);
+
+        return ResponseEntity.ok(
+            libroUsuarioMapper.toDTO(bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaActualizada)));
     }
 }

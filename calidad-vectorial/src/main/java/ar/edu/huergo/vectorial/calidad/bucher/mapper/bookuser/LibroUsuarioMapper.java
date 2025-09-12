@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 
 @Component
@@ -15,7 +16,7 @@ public class LibroUsuarioMapper {
 
     /**
      * Pasa de LibroUsuarioResponseDTO a entidad LibroUsuario
-     * @param PubicacionCreateDTO El DTO a transformar en entidad
+     * @param libroUsuarioCreateDTO El DTO a transformar en entidad
      * @return LibroUsuario como entidad
      */
     public LibroUsuario toEntity(LibroUsuarioCreateDTO libroUsuarioCreateDTO) {
@@ -23,6 +24,21 @@ public class LibroUsuarioMapper {
         libroUsuario.setEstadoLectura(libroUsuarioCreateDTO.getEstadoLectura());
         libroUsuario.setPaginaActual(libroUsuarioCreateDTO.getPaginaActual());
         libroUsuario.setPuntuacion(libroUsuarioCreateDTO.getPuntuacion());
+
+        return libroUsuario;
+    }
+
+    /**
+     * Pasa de LibroUsuarioUpdateDTO a entidad LibroUsuario
+     * @param libroUsuarioUpdateDTO El DTO a transformar en entidad
+     * @return LibroUsuario como entidad
+     */
+    public LibroUsuario toEntity(LibroUsuarioUpdateDTO libroUsuarioUpdateDTO) {
+        LibroUsuario libroUsuario = new LibroUsuario();
+
+        libroUsuario.setEstadoLectura(libroUsuarioUpdateDTO.getEstadoLectura());
+        libroUsuario.setPaginaActual(libroUsuarioUpdateDTO.getPaginaActual());
+        libroUsuario.setPuntuacion(libroUsuarioUpdateDTO.getPuntuacion());
 
         return libroUsuario;
     }

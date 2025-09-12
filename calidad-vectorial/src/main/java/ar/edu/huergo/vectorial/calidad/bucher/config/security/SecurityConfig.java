@@ -50,6 +50,7 @@ public class SecurityConfig {
 
                 .requestMatchers(HttpMethod.GET, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
                 .requestMatchers(HttpMethod.POST, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
+                .requestMatchers(HttpMethod.PUT, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
 
                 .anyRequest().authenticated())
 
