@@ -36,11 +36,15 @@ public class BibliotecaService {
         return bibliotecaRepository.save(bibliotecaUsuario);
     }
 
-    public LibroUsuario obtenerLibroUsuarioPorIdLocal(int posicion, Biblioteca biblioteca) throws EntityNotFoundException {
+    public LibroUsuario obtenerLibroUsuarioPorPosicion(int posicion, Biblioteca biblioteca) throws EntityNotFoundException {
         List<LibroUsuario> librosUsuario = biblioteca.getLibrosUsuario();
         if (posicion <= 0 || posicion >= librosUsuario.size() + 1) {
             throw new EntityNotFoundException("Libro usuario no encontrado");
         }
         return biblioteca.getLibrosUsuario().get(posicion - 1);
+    }
+
+    public Biblioteca actualizarLibroUsuario(Biblioteca bibliotecaUsuario) {
+        return bibliotecaRepository.save(bibliotecaUsuario);
     }
 }
