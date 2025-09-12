@@ -28,12 +28,21 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
     private final UsuarioMapper usuarioMapper;
 
+    /**
+     * Obtiene todos los usuarios
+     * @return Una lista de todos los usuarios
+     */
     @GetMapping
     public ResponseEntity<List<UsuarioResponseDTO>> obtenerTodosUsuarios() {
         return ResponseEntity.ok(
             usuarioMapper.toDTOList(usuarioService.obtenerTodosUsuarios()));
     }
 
+    /**
+     * Registra un nuevo usuario
+     * @param registrarDTO El DTO con los datos del usuario a registrar
+     * @return El usuario registrado
+     */
     @PostMapping("/registrar")
     public ResponseEntity<UsuarioResponseDTO> registrarCliente(@Valid @RequestBody RegistrarDTO registrarDTO) {
         Usuario usuario = usuarioMapper.toEntity(registrarDTO);

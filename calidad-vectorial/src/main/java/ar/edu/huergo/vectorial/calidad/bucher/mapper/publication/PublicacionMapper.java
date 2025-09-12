@@ -28,14 +28,18 @@ public class PublicacionMapper {
 
         return publicacion;
     }
-
+    
+    /**
+     * Pasa de PubicacionUpdateDTO a entidad Publicacion
+     * @param PubicacionUpdateDTO El DTO a transformar en entidad
+     * @return Pubicacion como entidad
+     */
     public Publicacion toEntityUpdate(PublicacionUpdateDTO publicacionUpdateDTO) {
         Publicacion publicacion = new Publicacion();
         publicacion.setDescripcion(publicacionUpdateDTO.getDescripcion());
         publicacion.setLimiteDias(publicacionUpdateDTO.getLimiteDias());
         return publicacion;
     }
-
 
     /**
      * Pasa de Pubicacion a entidad PublicacionResponseDTO

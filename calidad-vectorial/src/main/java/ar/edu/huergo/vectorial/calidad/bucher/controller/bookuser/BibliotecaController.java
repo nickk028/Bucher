@@ -40,6 +40,11 @@ public class BibliotecaController {
 
     @Autowired UsuarioService usuarioService;
 
+    /**
+     * Obtiene la biblioteca del usuario autenticado
+     * @param usuarioAutenticado El usuario autenticado
+     * @return La biblioteca del usuario autenticado
+     */
     @GetMapping
     public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerBibliotecaPropia(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
@@ -48,6 +53,12 @@ public class BibliotecaController {
             libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaService.obtenerBiblioteca(usuario.getId()))));
     }
 
+    /**
+    * Obtiene un libroUsuario de la biblioteca del usuario autenticado por su posición
+    * @param posicion La posición del libroUsuario en la biblioteca
+    * @param usuarioAutenticado El usuario autenticado
+    * @return El libroUsuario en la posición indicada
+    */
     @GetMapping("/{posicion}")
     public ResponseEntity<LibroUsuarioResponseDTO> obtenerLibroUsuario(@PathVariable("posicion") int posicion,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
@@ -59,6 +70,12 @@ public class BibliotecaController {
             libroUsuarioMapper.toDTO(bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaUsuario)));
     }
 
+    /**
+    * Sube un libroUsuario a la biblioteca del usuario autenticado
+    * @param libroUsuarioCreateDTO El libroUsuario a subir
+    * @param usuarioAutenticado El usuario autenticado
+    * @return La biblioteca actualizada del usuario autenticado
+    */
     @PostMapping
     public ResponseEntity<List<LibroUsuarioResponseDTO>> subirLibroUsuario(@Valid @RequestBody LibroUsuarioCreateDTO libroUsuarioCreateDTO,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
@@ -73,6 +90,13 @@ public class BibliotecaController {
             libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaActualizada)));
     }
 
+    /**
+     * Modifica un libroUsuario de la biblioteca del usuario autenticado por su posición
+     * @param posicion La posición del libroUsuario en la biblioteca
+     * @param libroUsuarioUpdateDTO El libroUsuario con los datos a modificar
+     * @param usuarioAutenticado El usuario autenticado
+     * @return El libroUsuario modificado
+     */
     @PutMapping("/{posicion}")
     public ResponseEntity<LibroUsuarioResponseDTO> modificarLibroUsuario(@PathVariable("posicion") int posicion, @Valid @RequestBody LibroUsuarioUpdateDTO libroUsuarioUpdateDTO,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
@@ -90,6 +114,12 @@ public class BibliotecaController {
             libroUsuarioMapper.toDTO(bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaActualizada)));
     }
 
+    /**
+     * Elimina un libroUsuario de la biblioteca del usuario autenticado por su posición
+     * @param posicion La posición del libroUsuario en la biblioteca
+     * @param usuarioAutenticado El usuario autenticado
+     * @return OK (200)
+     */
     @DeleteMapping("/{posicion}")
     public ResponseEntity<String> eliminarLibroUsuario(@PathVariable("posicion") int posicion,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
