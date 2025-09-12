@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Size;
 // DTO para la solicitud de login
 public record LoginDTO(
 
-    // Nombre de usuario 
+    // Nombre de usuario
     @NotBlank(message = "El username es obligatorio")
     @Email(message = "El nombre debe ser un mail con un formato valido")
     String username,
