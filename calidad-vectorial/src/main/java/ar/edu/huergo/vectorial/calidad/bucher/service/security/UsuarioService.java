@@ -53,8 +53,10 @@ public class UsuarioService {
 
         usuario.setPassword(passwordEncoder.encode(password));
         Rol rolCliente = rolRepository.findByNombre("LECTOR").orElseThrow(() -> new IllegalArgumentException("Rol 'LECTOR' no encontrado"));
+        Biblioteca biblioteca = new Biblioteca();
         usuario.setRoles(Set.of(rolCliente));
-        usuario.setBiblioteca(new Biblioteca());
+        usuario.setBiblioteca(biblioteca);
+        biblioteca.setUsuario(usuario);
         return usuarioRepository.save(usuario);
     }
 

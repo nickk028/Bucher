@@ -1,14 +1,8 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.publication;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
