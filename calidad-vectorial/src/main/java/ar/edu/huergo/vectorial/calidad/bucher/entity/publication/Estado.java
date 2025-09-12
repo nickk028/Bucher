@@ -3,5 +3,6 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 public enum Estado {
     Disponible,
     Prestado,
-    No_disponible
+    No_disponible,
+    Indefinido
 }

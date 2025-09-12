@@ -1,8 +1,13 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.publication;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -15,13 +20,18 @@ import lombok.NoArgsConstructor;
 public class PublicacionUpdateDTO {
 
     // Descripción de la publicación
-    @NotBlank(message = "La descripción es obligatoria.")
     @Size(min = 5, max = 255)
     private String descripcion;
 
     // Límite de días para prestar el libro
-    @Positive(message = "El límite de días debe ser mayor a 0.")
-    @Min(1)
+    @Min(0)
     @Max(365)
     private int limiteDias;
+
+    // Detalles del estado del libro (Ej: "Nuevo", "Usado - Buen estado", "Dañado", etc.)
+    @Size(min = 2, max = 100, message = "Los detalles deben tener entre 2 y 100 caracteres.")
+    private String detallesEstadoLibro;
+
+    // Estado de la publicación (Ej: "Disponible", "Prestado", etc.)
+    private Estado estadoPublicacion;
 }

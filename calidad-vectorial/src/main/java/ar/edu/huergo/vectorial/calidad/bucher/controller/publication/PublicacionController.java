@@ -110,7 +110,7 @@ public class PublicacionController {
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
-        Publicacion publicacion = publicacionMapper.toEntityUpdate(publicacionDTO);
+        Publicacion publicacion = publicacionMapper.toEntity(publicacionDTO);
         Publicacion actualizada;
 
         if (UsuarioService.hasRol(usuario,"ADMIN")) {
@@ -120,6 +120,5 @@ public class PublicacionController {
         }
 
         return ResponseEntity.ok(publicacionMapper.toDTO(actualizada));
-        }
-
+    }
 }
