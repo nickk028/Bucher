@@ -19,6 +19,7 @@ import jakarta.validation.Valid;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.PublicacionMapper;
@@ -74,4 +75,23 @@ public class PublicacionController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<PublicacionResponseDTO> actualizarPublicacion(@PathVariable("id") Long id,
+    @Valid @RequestBody PublicacionUpdateDTO publicacionDTO,
+    @AuthenticationPrincipal UserDetails usuarioAutenticado) {
+
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+        Publicacion publicacion = publicacionMapper.toEntityUpdate(publicacionDTO);
+        Publicacion actualizada;
+
+        if (UsuarioService.hasRol(usuario,"ADMIN")) {
+            actualizada = publicacionService.modificarPublicacionAdmin(id,publicacion);
+        } else {
+            actualizada = publicacionService.modificarPublicacionUsuario(id, publicacion, usuario);
+        }
+
+        return ResponseEntity.ok(publicacionMapper.toDTO(actualizada));
+        }
+
 }

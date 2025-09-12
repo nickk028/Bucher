@@ -1,13 +1,11 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import jakarta.persistence.EntityNotFoundException;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
@@ -16,6 +14,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class PublicacionService {
@@ -69,6 +68,7 @@ public class PublicacionService {
     // Completar con ifs de validacion
     public Publicacion modificarPublicacionAdmin(Long id, Publicacion publicacion) {
         Publicacion publicacionExistente = obtenerPublciacionPorId(id);
+
         publicacionExistente.setLimiteDias(publicacion.getLimiteDias());
         publicacionExistente.setDescripcion(publicacion.getDescripcion());
         publicacionExistente.setDetallesEstadoLibro(publicacion.getDetallesEstadoLibro());
@@ -78,8 +78,13 @@ public class PublicacionService {
     }
 
     //Completar con ifs de validacion
-    public Publicacion modificarPublicacionUsuario(Long id, Publicacion publicacion) {
+    public Publicacion modificarPublicacionUsuario(Long id, Publicacion publicacion, Usuario usuario) {
         Publicacion publicacionExistente = obtenerPublciacionPorId(id);
+
+        if (!publicacionExistente.getUsuario().getId().equals(usuario.getId())){
+            throw new EntityNotFoundException("Publicación no encontrada.");
+        }
+
         publicacionExistente.setLimiteDias(publicacion.getLimiteDias());
         publicacionExistente.setDescripcion(publicacion.getDescripcion());
 

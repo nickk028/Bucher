@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 
 @Component // Marca la clase como un componente de Spring
@@ -27,6 +28,14 @@ public class PublicacionMapper {
 
         return publicacion;
     }
+
+    public Publicacion toEntityUpdate(PublicacionUpdateDTO publicacionUpdateDTO) {
+        Publicacion publicacion = new Publicacion();
+        publicacion.setDescripcion(publicacionUpdateDTO.getDescripcion());
+        publicacion.setLimiteDias(publicacionUpdateDTO.getLimiteDias());
+        return publicacion;
+    }
+
 
     /**
      * Pasa de Pubicacion a entidad PublicacionResponseDTO
