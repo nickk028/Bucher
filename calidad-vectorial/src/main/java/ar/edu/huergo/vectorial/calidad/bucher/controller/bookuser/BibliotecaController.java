@@ -20,7 +20,6 @@ import jakarta.validation.Valid;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioUpdateDTO;
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
@@ -65,9 +64,10 @@ public class BibliotecaController {
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
 
         LibroUsuario libroUsuarioIngresado = libroUsuarioMapper.toEntity(libroUsuarioCreateDTO);
-        Biblioteca bibliotecaActualizada = bibliotecaService.subirLibroUsuario(usuario.getId(), libroUsuarioIngresado, libroUsuarioCreateDTO.getTitulo());
+        Biblioteca bibliotecaActualizada = bibliotecaService.subirLibroUsuario(bibliotecaUsuario, libroUsuarioIngresado, libroUsuarioCreateDTO.getTitulo());
 
         return ResponseEntity.ok(
             libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaActualizada)));
@@ -84,7 +84,7 @@ public class BibliotecaController {
         LibroUsuario libroUsuarioAModificar = bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaUsuario);
         libroUsuarioService.modificarLibroUsuario(libroUsuarioAModificar, libroUsuarioIngresado);
 
-        Biblioteca bibliotecaActualizada = bibliotecaService.actualizarLibroUsuario(bibliotecaUsuario);
+        Biblioteca bibliotecaActualizada = bibliotecaService.actualizarBiblioteca(bibliotecaUsuario);
 
         return ResponseEntity.ok(
             libroUsuarioMapper.toDTO(bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaActualizada)));
