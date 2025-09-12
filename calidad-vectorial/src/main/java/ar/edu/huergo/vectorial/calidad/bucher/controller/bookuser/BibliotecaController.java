@@ -27,8 +27,6 @@ import ar.edu.huergo.vectorial.calidad.bucher.service.bookuser.BibliotecaService
 import ar.edu.huergo.vectorial.calidad.bucher.service.bookuser.LibroUsuarioService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 
-
-
 @RestController
 @RequestMapping("/biblioteca")
 public class BibliotecaController {
@@ -47,6 +45,17 @@ public class BibliotecaController {
 
         return ResponseEntity.ok(
             libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaService.obtenerBiblioteca(usuario.getId()))));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<LibroUsuarioResponseDTO> obtenerLibroUsuario(@PathVariable("id") int posicion,
+    @AuthenticationPrincipal UserDetails usuarioAutenticado) {
+
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
+
+        return ResponseEntity.ok(
+            libroUsuarioMapper.toDTO(bibliotecaService.obtenerLibroUsuarioPorIdLocal(posicion, bibliotecaUsuario)));
     }
 
     @PostMapping
