@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,12 +31,13 @@ public class Biblioteca {
 
     // Usuario Dueño de la biblioteca
     // Relación 1 a 1 con Usuario
-    @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "usuario_id", nullable = false, unique = true)
     private Usuario usuario;
 
     // Lista de libros del usuario con sus datos agregados
     // Relación 1 a muchos con LibroUsuario
-    @OneToMany(mappedBy = "biblioteca", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany
+    @JoinColumn(name = "libro_usuario_id", nullable = true, unique = true)
     private List<LibroUsuario> librosUsuario = new ArrayList<>();
 }

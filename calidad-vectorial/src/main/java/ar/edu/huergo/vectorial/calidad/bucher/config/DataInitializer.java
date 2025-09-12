@@ -12,12 +12,14 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.AutorRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.EditorialRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.BibliotecaRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 
@@ -32,6 +34,7 @@ public class DataInitializer {
             RolRepository rolRepository,
             UsuarioRepository usuarioRepository,
             PasswordEncoder encoder,
+            BibliotecaRepository bibliotecaRepository,
             EditorialRepository editorialRepository,
             AutorRepository autorRepository,
             LibroRepository libroRepository) {
@@ -49,18 +52,26 @@ public class DataInitializer {
             if (usuarioRepository.findByUsername("admin@gmail.com").isEmpty()) {
                 String adminPassword = "AdminSuperSegura@123";
                 PasswordValidator.validate(adminPassword);
+                Biblioteca biblioteca = new Biblioteca();
                 Usuario u = new Usuario("admin@gmail.com", encoder.encode(adminPassword));
                 u.setRoles(Set.of(admin));
+                u.setBiblioteca(biblioteca);
+                biblioteca.setUsuario(u);
                 usuarioRepository.save(u);
+                bibliotecaRepository.save(biblioteca);
             }
 
 			// Usuario Lector
             if (usuarioRepository.findByUsername("lector@gmail.com").isEmpty()) {
                 String clientePassword = "LectorSuperSegura@123";
                 PasswordValidator.validate(clientePassword);
+                Biblioteca biblioteca = new Biblioteca();
                 Usuario u = new Usuario("lector@gmail.com", encoder.encode(clientePassword));
                 u.setRoles(Set.of(cliente));
+                u.setBiblioteca(biblioteca);
+                biblioteca.setUsuario(u);
                 usuarioRepository.save(u);
+                bibliotecaRepository.save(biblioteca);
             }
 
             // -----------------------------

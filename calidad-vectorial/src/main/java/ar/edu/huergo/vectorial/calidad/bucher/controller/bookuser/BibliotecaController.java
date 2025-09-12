@@ -1,0 +1,64 @@
+package ar.edu.huergo.vectorial.calidad.bucher.controller.bookuser;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.validation.Valid;
+
+import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.BibliotecaResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioCreateDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
+import ar.edu.huergo.vectorial.calidad.bucher.mapper.bookuser.BibliotecaMapper;
+import ar.edu.huergo.vectorial.calidad.bucher.mapper.bookuser.LibroUsuarioMapper;
+import ar.edu.huergo.vectorial.calidad.bucher.service.bookuser.BibliotecaService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+
+
+
+@RestController
+@RequestMapping("/biblioteca")
+public class BibliotecaController {
+
+    @Autowired BibliotecaService bibliotecaService;
+
+    @Autowired BibliotecaMapper bibliotecaMapper;
+
+    @Autowired LibroUsuarioMapper libroUsuarioMapper;
+
+    @Autowired UsuarioService usuarioService;
+
+    @GetMapping
+    public ResponseEntity<BibliotecaResponseDTO> obtenerBibliotecaPropia(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+
+        return ResponseEntity.ok(
+            bibliotecaMapper.toDTO(bibliotecaService.obtenerBiblioteca(usuario.getId())));
+    }
+
+    @PostMapping
+    public ResponseEntity<BibliotecaResponseDTO> subirLibroUsuario(@Valid @RequestBody LibroUsuarioCreateDTO libroUsuarioCreateDTO,
+    @AuthenticationPrincipal UserDetails usuarioAutenticado) {
+
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+
+        LibroUsuario libroUsuarioIngresado = libroUsuarioMapper.toEntity(libroUsuarioCreateDTO);
+        Biblioteca bibliotecaActualizada = bibliotecaService.subirLibroUsuario(usuario.getId(), libroUsuarioIngresado, libroUsuarioCreateDTO.getTitulo());
+
+        return ResponseEntity.ok(
+            bibliotecaMapper.toDTO(bibliotecaActualizada));
+    }
+}
