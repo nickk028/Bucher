@@ -42,7 +42,7 @@ public class PublicacionService {
 
     public boolean verificarPublicacionUsuario(Usuario usario, Long id) {
         Publicacion publicacion = obtenerPublciacionPorId(id);
-        return (usario.equals(publicacion.getUsuario())); 
+        return (usario.equals(publicacion.getUsuario()));
     }
 
     public Set<Publicacion> obtenerPublicacionesPorUsuario(Usuario usuario) {

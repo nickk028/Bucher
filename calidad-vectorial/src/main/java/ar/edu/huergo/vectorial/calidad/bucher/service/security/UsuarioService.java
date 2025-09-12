@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
@@ -54,6 +54,7 @@ public class UsuarioService {
         usuario.setPassword(passwordEncoder.encode(password));
         Rol rolCliente = rolRepository.findByNombre("LECTOR").orElseThrow(() -> new IllegalArgumentException("Rol 'LECTOR' no encontrado"));
         usuario.setRoles(Set.of(rolCliente));
+        usuario.setBiblioteca(new Biblioteca());
         return usuarioRepository.save(usuario);
     }
 

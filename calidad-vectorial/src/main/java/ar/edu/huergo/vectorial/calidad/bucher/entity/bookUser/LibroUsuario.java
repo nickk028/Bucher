@@ -16,7 +16,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
-import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 
 @Entity // Marca la clase como una entidad de JPA
 @Data // Genera getters, setters, toString, equals y hashCode
@@ -28,6 +27,10 @@ public class LibroUsuario {
     @Id // Id principal de la entidad
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
     private Long id;
+
+    // El id local de su biblioteca
+    @Column(name = "numero_local", nullable = false)
+    private int idLocal;
 
     // Pagina actual de libro que está leyendo el usuario
     @Column(nullable = false)
@@ -50,11 +53,6 @@ public class LibroUsuario {
     @ManyToOne
     @JoinColumn(name = "libro_id")
     private Libro libro;
-
-    // Relación muchos a uno con Usuario
-    @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
 
     // Relación muchos a uno con Biblioteca
     @ManyToOne
