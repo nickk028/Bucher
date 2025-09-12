@@ -37,7 +37,6 @@ public class Biblioteca {
 
     // Lista de libros del usuario con sus datos agregados
     // Relación 1 a muchos con LibroUsuario
-    @OneToMany
-    @JoinColumn(name = "libro_usuario_id", nullable = true, unique = true)
+    @OneToMany(mappedBy = "biblioteca", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LibroUsuario> librosUsuario = new ArrayList<>();
 }

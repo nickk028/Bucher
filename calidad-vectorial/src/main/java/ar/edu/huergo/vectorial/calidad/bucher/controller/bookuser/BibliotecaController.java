@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 
-import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.BibliotecaResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioCreateDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
-import ar.edu.huergo.vectorial.calidad.bucher.mapper.bookuser.BibliotecaMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.bookuser.LibroUsuarioMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.bookuser.BibliotecaService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.bookuser.LibroUsuarioService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 
 
@@ -35,22 +35,22 @@ public class BibliotecaController {
 
     @Autowired BibliotecaService bibliotecaService;
 
-    @Autowired BibliotecaMapper bibliotecaMapper;
+    @Autowired LibroUsuarioService libroUsuarioService;
 
     @Autowired LibroUsuarioMapper libroUsuarioMapper;
 
     @Autowired UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<BibliotecaResponseDTO> obtenerBibliotecaPropia(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
+    public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerBibliotecaPropia(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
 
         return ResponseEntity.ok(
-            bibliotecaMapper.toDTO(bibliotecaService.obtenerBiblioteca(usuario.getId())));
+            libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaService.obtenerBiblioteca(usuario.getId()))));
     }
 
     @PostMapping
-    public ResponseEntity<BibliotecaResponseDTO> subirLibroUsuario(@Valid @RequestBody LibroUsuarioCreateDTO libroUsuarioCreateDTO,
+    public ResponseEntity<List<LibroUsuarioResponseDTO>> subirLibroUsuario(@Valid @RequestBody LibroUsuarioCreateDTO libroUsuarioCreateDTO,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
@@ -59,6 +59,6 @@ public class BibliotecaController {
         Biblioteca bibliotecaActualizada = bibliotecaService.subirLibroUsuario(usuario.getId(), libroUsuarioIngresado, libroUsuarioCreateDTO.getTitulo());
 
         return ResponseEntity.ok(
-            bibliotecaMapper.toDTO(bibliotecaActualizada));
+            libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaActualizada)));
     }
 }

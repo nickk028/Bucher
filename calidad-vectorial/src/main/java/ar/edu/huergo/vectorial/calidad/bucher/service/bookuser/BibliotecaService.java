@@ -17,9 +17,6 @@ public class BibliotecaService {
     private BibliotecaRepository bibliotecaRepository;
 
     @Autowired
-    private LibroUsuarioService libroUsuarioService;
-
-    @Autowired
     private LibroService libroService;
 
     public Biblioteca obtenerBiblioteca(Long idUsuario) throws EntityNotFoundException {
@@ -33,7 +30,7 @@ public class BibliotecaService {
         libroUsuarioIngresado.setIdLocal(obtenerCantidadLibros(bibliotecaUsuario) + 1);
         libroUsuarioIngresado.setLibro(libroService.obtenerLibroPorTitulo(titulo));
         libroUsuarioIngresado.setBiblioteca(bibliotecaUsuario);
-        bibliotecaUsuario.getLibrosUsuario().add(libroUsuarioService.crearLibroUsuario(libroUsuarioIngresado));
+        bibliotecaUsuario.getLibrosUsuario().add(libroUsuarioIngresado);
 
         return bibliotecaRepository.save(bibliotecaUsuario);
     }

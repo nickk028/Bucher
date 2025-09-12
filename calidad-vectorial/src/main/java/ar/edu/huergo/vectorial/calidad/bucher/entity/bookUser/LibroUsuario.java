@@ -56,6 +56,6 @@ public class LibroUsuario {
 
     // Relación muchos a uno con Biblioteca
     @ManyToOne
-    @JoinColumn(name = "biblioteca_id")
+    @JoinColumn(name = "biblioteca_id", nullable = false)
     private Biblioteca biblioteca;
 }
