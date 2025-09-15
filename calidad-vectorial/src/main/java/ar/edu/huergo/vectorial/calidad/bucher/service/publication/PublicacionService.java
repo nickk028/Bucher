@@ -42,7 +42,7 @@ public class PublicacionService {
      * @return La publicación correspondiente al ID
      * @throws EntityNotFoundException Si no se encuentra la publicación
      */
-    public Publicacion obtenerPublciacionPorId(Long id) throws EntityNotFoundException {
+    public Publicacion obtenerPublicacionPorId(Long id) throws EntityNotFoundException {
         return publicacionRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Publicacion no encontrada"));
     }
@@ -54,7 +54,7 @@ public class PublicacionService {
      * @return boolean 
      */
     public boolean verificarPublicacionUsuario(Usuario usario, Long id) {
-        Publicacion publicacion = obtenerPublciacionPorId(id);
+        Publicacion publicacion = obtenerPublicacionPorId(id);
         return (usario.equals(publicacion.getUsuario()));
     }
 
@@ -93,7 +93,7 @@ public class PublicacionService {
      * @param id El ID de la publicación a eliminar
      */
     public void eliminarPublicacion(Long id) {
-        Publicacion publicacion = obtenerPublciacionPorId(id);
+        Publicacion publicacion = obtenerPublicacionPorId(id);
         publicacionRepository.delete(publicacion);
     }
 
@@ -104,7 +104,7 @@ public class PublicacionService {
      * @return La publicación modificada
      */
     public Publicacion modificarPublicacionAdmin(Long id, Publicacion publicacion) {
-        Publicacion publicacionExistente = obtenerPublciacionPorId(id);
+        Publicacion publicacionExistente = obtenerPublicacionPorId(id);
 
         if (!publicacion.getDescripcion().equals("nada")) {
             publicacionExistente.setDescripcion(publicacion.getDescripcion());
@@ -132,8 +132,7 @@ public class PublicacionService {
      * @throws EntityNotFoundException (404) Si la publicación no pertenece al usuario
      */
     public Publicacion modificarPublicacionUsuario(Long id, Publicacion publicacion, Usuario usuario) {
-        Publicacion publicacionExistente = obtenerPublciacionPorId(id);
-
+        Publicacion publicacionExistente = obtenerPublicacionPorId(id);
         if (!publicacionExistente.getUsuario().getId().equals(usuario.getId())){
             throw new EntityNotFoundException("Publicación no encontrada.");
         }
@@ -145,8 +144,11 @@ public class PublicacionService {
         if (publicacion.getLimiteDias() != 0) {
             publicacionExistente.setLimiteDias(publicacion.getLimiteDias());
         }
-        
-
         return publicacionRepository.save(publicacionExistente);
+    }
+
+    public Publicacion modificarEstadoPublicacion(Publicacion publicacion, Estado estado) {
+        publicacion.setEstadoPublicacion(estado);
+        return publicacionRepository.save(publicacion);
     }
 }
