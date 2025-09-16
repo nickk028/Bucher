@@ -15,12 +15,14 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity // Marca la clase como una entidad de JPA
 @Data // Genera getters, setters, toString, equals y hashCode
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
+@EqualsAndHashCode(exclude = {"librosUsuario"})
 @Table(name = "bibliotecas")
 public class Biblioteca {
 
