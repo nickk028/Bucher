@@ -147,6 +147,12 @@ public class PublicacionService {
         return publicacionRepository.save(publicacionExistente);
     }
 
+    /**
+     * Modifica el estado de una publicación
+     * @param publicacion La publicación a modificar
+     * @param estado El nuevo estado de la publicación
+     * @return La publicación con el estado modificado
+     */
     public Publicacion modificarEstadoPublicacion(Publicacion publicacion, Estado estado) {
         publicacion.setEstadoPublicacion(estado);
         return publicacionRepository.save(publicacion);
