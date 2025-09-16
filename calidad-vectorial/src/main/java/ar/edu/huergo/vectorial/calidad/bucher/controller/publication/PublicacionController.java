@@ -122,7 +122,7 @@ public class PublicacionController {
         return ResponseEntity.ok(publicacionMapper.toDTO(actualizada));
     }
 
-    @PutMapping("/prestamo/{id}")
+    @PostMapping("/prestamo/{id}")
     public ResponseEntity<String> pedirPrestadoPublicacion(@PathVariable("id") Long id,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());

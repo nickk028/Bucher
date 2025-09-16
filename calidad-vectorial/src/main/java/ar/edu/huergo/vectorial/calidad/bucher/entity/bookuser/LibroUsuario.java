@@ -1,6 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
 
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Biblioteca;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
