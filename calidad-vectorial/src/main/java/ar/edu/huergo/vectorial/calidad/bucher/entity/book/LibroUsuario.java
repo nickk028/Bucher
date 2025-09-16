@@ -1,4 +1,4 @@
-package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
+package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +16,6 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 
 @Entity // Marca la clase como una entidad de JPA
 @Data // Genera getters, setters, toString, equals y hashCode

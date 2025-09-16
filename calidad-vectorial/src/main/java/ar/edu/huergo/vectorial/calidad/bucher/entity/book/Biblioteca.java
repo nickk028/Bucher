@@ -1,4 +1,4 @@
-package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
+package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 
 import java.util.ArrayList;
 import java.util.List;
