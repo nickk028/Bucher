@@ -28,6 +28,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
@@ -36,6 +37,7 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "libros")
+@EqualsAndHashCode(exclude = {"publicaciones","autor","editorial"})
 public class Libro {
 
     @Id // Id principal de la entidad

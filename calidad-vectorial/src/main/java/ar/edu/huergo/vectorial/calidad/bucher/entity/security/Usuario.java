@@ -28,6 +28,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
@@ -37,6 +38,7 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "usuarios")
+@EqualsAndHashCode(exclude = {"publicaciones", "prestamos", "biblioteca"})
 public class Usuario {
 
     @Id // Id principal de la entidad
@@ -90,18 +92,4 @@ public class Usuario {
         this.password = password;
         this.roles = new HashSet<>();
     }
-
-    // Funcion equals generada por @Data
-    /*@Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-
-        Usuario other = (Usuario)obj;
-        return Objects.equals(id,other.id);
-    }*/
 }

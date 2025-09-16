@@ -1,7 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +27,6 @@ public class RegistroPrestamoService {
         registro.setPublicacion(publicacion);
         registro.setUsuario(usuario);
         registro.setFechaDevolucion(null);
-        registro.setFechaPrestamo(LocalDate.now());
         return registro;
     }
 }

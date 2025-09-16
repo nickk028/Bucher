@@ -1,6 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -77,10 +76,8 @@ public class PublicacionService {
     public Publicacion crearPublicacion(Publicacion publicacion, String titulo, String username) {
         Usuario usuarioIngresado = usuarioService.obtenerUsuarioPorNombre(username);
         Libro libroIngresado = libroService.obtenerLibroPorTitulo(titulo);
-        LocalDate fechaActual = LocalDate.now();
 
         publicacion.setUsuario(usuarioIngresado);
-        publicacion.setFechaCreacion(fechaActual);
         publicacion.setEstadoPublicacion(Estado.Disponible);
         publicacion.setDetallesEstadoLibro("Desconocido");
         publicacion.setLibro(libroIngresado);

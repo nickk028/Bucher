@@ -2,6 +2,9 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.CurrentTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,6 +33,7 @@ public class RegistroPrestamo {
     // Fecha de inicio del préstamo
     @Column(nullable = false)
     @NotNull(message = "La fecha de préstamo es obligatoria.")
+    @CurrentTimestamp
     private LocalDate fechaPrestamo;
 
     // Fecha de devolución del préstamo

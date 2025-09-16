@@ -2,6 +2,8 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.CurrentTimestamp;
+
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.Column;
@@ -45,6 +47,7 @@ public class Publicacion {
     // Fecha de creación de la publicación
     @Column(nullable = false)
     @NotNull(message = "La fecha de creación es obligatoria.")
+    @CurrentTimestamp
     private LocalDate fechaCreacion;
 
     // Descripción de la publicación
