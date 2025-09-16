@@ -1,9 +1,8 @@
-package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
+package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
