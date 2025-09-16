@@ -23,6 +23,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.PublicacionMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 import jakarta.validation.Valid;
 
@@ -35,6 +36,8 @@ public class PublicacionController {
     @Autowired UsuarioService usuarioService;
 
     @Autowired PublicacionMapper publicacionMapper;
+
+    @Autowired RegistroPrestamoService registroPrestamoService;
 
     /**
      * Obtiene todas las publicaciones
@@ -136,6 +139,7 @@ public class PublicacionController {
         }
 
         publicacionService.modificarEstadoPublicacion(publicacion, Estado.No_disponible);
+        registroPrestamoService.crearRegistro(usuario, publicacion);
         return ResponseEntity.ok().body("Prestamo creado");
     }
 }
