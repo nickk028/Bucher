@@ -125,6 +125,12 @@ public class PublicacionController {
         return ResponseEntity.ok(publicacionMapper.toDTO(actualizada));
     }
 
+    /**
+     * Permite a un usuario pedir prestada una publicación
+     * @param id El ID de la publicación a pedir prestada
+     * @param usuarioAutenticado El usuario autenticado
+     * @return OK (200) o Unprocessable Entity (422) 
+     */
     @PostMapping("/prestamo/{id}")
     public ResponseEntity<String> pedirPrestadoPublicacion(@PathVariable("id") Long id,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {

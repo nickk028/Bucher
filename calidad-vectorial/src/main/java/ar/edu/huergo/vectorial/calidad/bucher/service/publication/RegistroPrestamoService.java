@@ -22,6 +22,12 @@ public class RegistroPrestamoService {
     @Autowired
     private LibroService libroService;
 
+    /**
+     * Crea un nuevo registro de préstamo
+     * @param usuario El usuario que realiza el préstamo
+     * @param publicacion La publicación que se presta
+     * @return El registro de préstamo creado
+     */
     public RegistroPrestamo crearRegistro(Usuario usuario, Publicacion publicacion) {
         RegistroPrestamo registro = new RegistroPrestamo();
         registro.setPublicacion(publicacion);
