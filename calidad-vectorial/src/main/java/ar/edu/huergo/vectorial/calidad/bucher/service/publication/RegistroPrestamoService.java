@@ -35,7 +35,6 @@ public class RegistroPrestamoService {
         registro.setPublicacion(publicacion);
         registro.setUsuario(usuario);
         registro.setFechaDevolucion(null);
-        registro.setFechaPrestamo(LocalDate.now());
         return registroPrestamoRepository.save(registro);
     }
 
@@ -45,7 +44,6 @@ public class RegistroPrestamoService {
      * @return El registro de préstamo actualizado
      */
     public RegistroPrestamo marcarRegistroDevolucion(RegistroPrestamo registro) {
-        registro.setFechaDevolucion(LocalDate.now());
         return registroPrestamoRepository.save(registro);
     }
 
