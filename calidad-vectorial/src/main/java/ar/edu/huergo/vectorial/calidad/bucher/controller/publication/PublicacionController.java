@@ -32,13 +32,17 @@ import jakarta.validation.Valid;
 @RequestMapping("/publicacion")
 public class PublicacionController {
 
-    @Autowired PublicacionService publicacionService;
+    @Autowired
+    private PublicacionService publicacionService;
 
-    @Autowired UsuarioService usuarioService;
+    @Autowired
+    private UsuarioService usuarioService;
 
-    @Autowired PublicacionMapper publicacionMapper;
+    @Autowired
+    private PublicacionMapper publicacionMapper;
 
-    @Autowired RegistroPrestamoService registroPrestamoService;
+    @Autowired
+    private RegistroPrestamoService registroPrestamoService;
 
     /**
      * Obtiene todas las publicaciones
@@ -130,7 +134,7 @@ public class PublicacionController {
      * Permite a un usuario pedir prestada una publicación
      * @param id El ID de la publicación a pedir prestada
      * @param usuarioAutenticado El usuario autenticado
-     * @return OK (200) o Unprocessable Entity (422) 
+     * @return OK (200) o Unprocessable Entity (422)
      */
     @PostMapping("/prestamo/{id}")
     public ResponseEntity<String> pedirPrestadoPublicacion(@PathVariable("id") Long id,
@@ -139,32 +143,32 @@ public class PublicacionController {
         Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);
 
         if (publicacion.getUsuario().equals(usuario)) {
-            return ResponseEntity.unprocessableEntity().body("No se puede pedir un prestamo de una publicacion propia");
+            return ResponseEntity.unprocessableEntity().body("No se puede pedir un préstamo de una publicación propia");
         }
         if (!publicacion.getEstadoPublicacion().equals(Estado.Disponible)   ) {
-            return ResponseEntity.unprocessableEntity().body("La publicacion no esta disponible");
+            return ResponseEntity.unprocessableEntity().body("La publicación no esta disponible");
         }
 
         publicacionService.modificarEstadoPublicacion(publicacion, Estado.Prestado);
         registroPrestamoService.crearRegistroUsuario(usuario, publicacion);
-        return ResponseEntity.ok().body("Prestamo creado");
+        return ResponseEntity.ok().body("Préstamo creado");
     }
 
     /**
      * Permite a un usuario devolver una publicación
      * @param id El ID de la publicación a devolver
-     * @return OK (200) o Unprocessable Entity (422) 
+     * @return OK (200) o Unprocessable Entity (422)
      */
     @PostMapping("/devolucion/{id}")
     public ResponseEntity<String> devolverPublicacion(@PathVariable("id") Long id) {
         Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);
         
         if (publicacion.getEstadoPublicacion() != Estado.Prestado) {
-            return ResponseEntity.unprocessableEntity().body("La publicacion no esta prestada");
+            return ResponseEntity.unprocessableEntity().body("La publicación no está prestada");
         }
-        RegistroPrestamo registro = registroPrestamoService.obtenerRegistroPrestamo(publicacion.getUsuario(), publicacion);
+        RegistroPrestamo registro = registroPrestamoService.obtenerRegistroPrestamo(publicacion);
         publicacionService.modificarEstadoPublicacion(publicacion, Estado.Disponible);
         registroPrestamoService.marcarRegistroDevolucion(registro);
-        return ResponseEntity.ok().body("Devolucion realizada");
+        return ResponseEntity.ok().body("Devolución realizada");
     }
 }

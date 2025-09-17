@@ -50,7 +50,7 @@ public class PublicacionService {
      * Verifica si una publicación pertenece a un usuario especifico
      * @param usario El usuario a verificar
      * @param id El ID de la publicación
-     * @return boolean 
+     * @return boolean
      */
     public boolean verificarPublicacionUsuario(Usuario usario, Long id) {
         Publicacion publicacion = obtenerPublicacionPorId(id);

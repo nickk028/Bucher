@@ -44,7 +44,7 @@ public class RegistroPrestamo {
     @JoinColumn(name = "publicacion_id")
     private Publicacion publicacion;
 
-    // Relacion Muchos a 1 con Usuario 
+    // Relacion Muchos a 1 con Usuario
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
