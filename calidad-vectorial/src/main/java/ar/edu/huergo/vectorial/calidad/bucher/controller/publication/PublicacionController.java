@@ -20,6 +20,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionRespons
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.PublicacionMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionService;
@@ -144,8 +145,26 @@ public class PublicacionController {
             return ResponseEntity.unprocessableEntity().body("La publicacion no esta disponible");
         }
 
-        publicacionService.modificarEstadoPublicacion(publicacion, Estado.No_disponible);
-        registroPrestamoService.crearRegistro(usuario, publicacion);
+        publicacionService.modificarEstadoPublicacion(publicacion, Estado.Prestado);
+        registroPrestamoService.crearRegistroUsuario(usuario, publicacion);
         return ResponseEntity.ok().body("Prestamo creado");
+    }
+
+    /**
+     * Permite a un usuario devolver una publicación
+     * @param id El ID de la publicación a devolver
+     * @return OK (200) o Unprocessable Entity (422) 
+     */
+    @PostMapping("/devolucion/{id}")
+    public ResponseEntity<String> devolverPublicacion(@PathVariable("id") Long id) {
+        Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);
+        
+        if (publicacion.getEstadoPublicacion() != Estado.Prestado) {
+            return ResponseEntity.unprocessableEntity().body("La publicacion no esta prestada");
+        }
+        RegistroPrestamo registro = registroPrestamoService.obtenerRegistroPrestamo(publicacion.getUsuario(), publicacion);
+        publicacionService.modificarEstadoPublicacion(publicacion, Estado.Disponible);
+        registroPrestamoService.marcarRegistroDevolucion(registro);
+        return ResponseEntity.ok().body("Devolucion realizada");
     }
 }

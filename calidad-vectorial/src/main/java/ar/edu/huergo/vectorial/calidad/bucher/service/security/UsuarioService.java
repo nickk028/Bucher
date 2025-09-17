@@ -71,6 +71,12 @@ public class UsuarioService {
             .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
     }
 
+    /**
+     * Verifica si un usuario tiene un rol específico
+     * @param usuario El usuario a verificar
+     * @param rolIngresado El rol a verificar
+     * @return true si el usuario tiene el rol, false en caso contrario
+     */
     public static boolean hasRol(Usuario usuario, String rolIngresado) {
         ArrayList<Rol> roles = new ArrayList<>(usuario.getRoles());
         for (Rol rolUsuario : roles) {
@@ -81,4 +87,6 @@ public class UsuarioService {
         }
         return false;
     }
+
+    
 }

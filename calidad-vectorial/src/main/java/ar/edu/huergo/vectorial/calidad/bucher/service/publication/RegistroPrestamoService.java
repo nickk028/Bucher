@@ -9,6 +9,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.RegistroPrestamoRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 
@@ -16,7 +18,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 public class RegistroPrestamoService {
 
     @Autowired
-    private PublicacionRepository registroPrestamoRepository;
+    private RegistroPrestamoRepository registroPrestamoRepository;
 
     @Autowired
     private UsuarioService usuarioService;
@@ -30,12 +32,34 @@ public class RegistroPrestamoService {
      * @param publicacion La publicación que se presta
      * @return El registro de préstamo creado
      */
-    public RegistroPrestamo crearRegistro(Usuario usuario, Publicacion publicacion) {
+    public RegistroPrestamo crearRegistroUsuario(Usuario usuario, Publicacion publicacion) {
         RegistroPrestamo registro = new RegistroPrestamo();
         registro.setPublicacion(publicacion);
         registro.setUsuario(usuario);
         registro.setFechaDevolucion(null);
         registro.setFechaPrestamo(LocalDate.now());
-        return registro;
+        return registroPrestamoRepository.save(registro);
+    }
+
+    /**
+     * Marca un registro de préstamo como devuelto
+     * @param registro El registro de préstamo a marcar como devuelto
+     * @return El registro de préstamo actualizado
+     */
+    public RegistroPrestamo marcarRegistroDevolucion(RegistroPrestamo registro) {
+        registro.setFechaDevolucion(LocalDate.now());
+        return registroPrestamoRepository.save(registro);
+    }
+
+    /**
+     * Obtiene el ultimo registro de préstamo activo para un usuario y publicación específicos
+     * @param usuario El usuario del registro de préstamo
+     * @param publicacion La publicación del registro de préstamo
+     * @return El registro de préstamo activo
+     * @throws IllegalArgumentException Si no existe un registro de préstamo activo para el usuario y publicación dados
+     */
+    public RegistroPrestamo obtenerRegistroPrestamo(Usuario usuario, Publicacion publicacion) {
+        return registroPrestamoRepository.findByUsuarioAndPublicacionAndFechaDevolucionIsNull(usuario, publicacion)
+            .orElseThrow(() -> new IllegalArgumentException("No existe un registro de préstamo activo para este usuario y publicación"));
     }
 }
