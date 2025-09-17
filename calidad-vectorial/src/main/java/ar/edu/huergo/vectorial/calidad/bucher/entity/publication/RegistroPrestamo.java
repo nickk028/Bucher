@@ -32,7 +32,6 @@ public class RegistroPrestamo {
 
     // Fecha de inicio del préstamo
     @Column(nullable = false)
-    @NotNull(message = "La fecha de préstamo es obligatoria.")
     @CurrentTimestamp
     private LocalDate fechaPrestamo;
 

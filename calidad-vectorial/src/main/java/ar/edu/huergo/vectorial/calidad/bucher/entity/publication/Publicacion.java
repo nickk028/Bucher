@@ -46,7 +46,6 @@ public class Publicacion {
 
     // Fecha de creación de la publicación
     @Column(nullable = false)
-    @NotNull(message = "La fecha de creación es obligatoria.")
     @CurrentTimestamp
     private LocalDate fechaCreacion;
 
