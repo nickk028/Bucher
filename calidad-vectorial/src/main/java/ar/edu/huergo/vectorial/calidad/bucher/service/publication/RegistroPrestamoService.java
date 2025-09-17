@@ -1,6 +1,10 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
@@ -18,12 +22,6 @@ public class RegistroPrestamoService {
     @Autowired
     private RegistroPrestamoRepository registroPrestamoRepository;
 
-    @Autowired
-    private UsuarioService usuarioService;
-
-    @Autowired
-    private LibroService libroService;
-
     /**
      * Crea un nuevo registro de préstamo
      * @param usuario El usuario que realiza el préstamo
@@ -35,6 +33,8 @@ public class RegistroPrestamoService {
         registro.setPublicacion(publicacion);
         registro.setUsuario(usuario);
         registro.setFechaDevolucion(null);
+
+        usuario.getPrestamos().add(registro);
         return registroPrestamoRepository.save(registro);
     }
 
@@ -44,6 +44,7 @@ public class RegistroPrestamoService {
      * @return El registro de préstamo actualizado
      */
     public RegistroPrestamo marcarRegistroDevolucion(RegistroPrestamo registro) {
+        registro.setFechaDevolucion(LocalDate.now());
         return registroPrestamoRepository.save(registro);
     }
 
@@ -54,8 +55,17 @@ public class RegistroPrestamoService {
      * @return El registro de préstamo activo
      * @throws IllegalArgumentException Si no existe un registro de préstamo activo para el usuario y publicación dados
      */
-    public RegistroPrestamo obtenerRegistroPrestamo(Usuario usuario, Publicacion publicacion) {
-        return registroPrestamoRepository.findByUsuarioAndPublicacionAndFechaDevolucionIsNull(usuario, publicacion)
+    public RegistroPrestamo obtenerRegistroPrestamo(Publicacion publicacion) throws IllegalArgumentException {
+        return registroPrestamoRepository.findByPublicacionAndFechaDevolucionIsNull(publicacion)
             .orElseThrow(() -> new IllegalArgumentException("No existe un registro de préstamo activo para este usuario y publicación"));
+    }
+
+    /**
+     * Obtiene la List de registros de prestamo de un usuario
+     * @param usuario El usuario de los registros de préstamo
+     * @return La List de los registros de préstamo
+     */
+    public List<RegistroPrestamo> obtenerRegistrosPrestamoPorUsuario(Usuario usuario) {
+        return registroPrestamoRepository.findAllByUsuario(usuario);
     }
 }
