@@ -4,5 +4,6 @@ public enum EstadoLectura {
     Leyendo,
     Abandonado,
     Pendiente,
-    Leído
+    Leído,
+    Indefinido
 }
