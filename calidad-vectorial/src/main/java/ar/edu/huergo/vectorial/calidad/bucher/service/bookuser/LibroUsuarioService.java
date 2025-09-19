@@ -31,10 +31,16 @@ public class LibroUsuarioService {
      * @return El LibroUsuario modificado
      */
     public LibroUsuario modificarLibroUsuario(LibroUsuario libroUsuarioAModificar, LibroUsuario libroUsuarioNuevo) {
-        libroUsuarioAModificar.setEstadoLectura(libroUsuarioNuevo.getEstadoLectura());
-        libroUsuarioAModificar.setPaginaActual(libroUsuarioNuevo.getPaginaActual());
-        libroUsuarioAModificar.setPuntuacion(libroUsuarioNuevo.getPuntuacion());
-
+        if (!libroUsuarioAModificar.equals("nada")) {
+            libroUsuarioAModificar.setEstadoLectura(libroUsuarioNuevo.getEstadoLectura());
+        }
+        if (libroUsuarioAModificar.getPaginaActual() != 0) {
+            libroUsuarioAModificar.setPaginaActual(libroUsuarioNuevo.getPaginaActual());
+        }
+        if (libroUsuarioAModificar.getPuntuacion() != 0) {
+            libroUsuarioAModificar.setPuntuacion(libroUsuarioNuevo.getPuntuacion());
+        }
+        
         return libroUsuarioAModificar;
     }
 }
