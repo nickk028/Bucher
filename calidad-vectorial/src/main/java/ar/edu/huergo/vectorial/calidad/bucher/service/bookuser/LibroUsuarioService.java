@@ -31,7 +31,7 @@ public class LibroUsuarioService {
      * @return El LibroUsuario modificado
      */
     public LibroUsuario modificarLibroUsuario(LibroUsuario libroUsuarioAModificar, LibroUsuario libroUsuarioNuevo) {
-        if (!libroUsuarioAModificar.equals("nada")) {
+        if (!libroUsuarioAModificar.getEstadoLectura().equals("nada")) {
             libroUsuarioAModificar.setEstadoLectura(libroUsuarioNuevo.getEstadoLectura());
         }
         if (libroUsuarioAModificar.getPaginaActual() != 0) {
@@ -40,7 +40,7 @@ public class LibroUsuarioService {
         if (libroUsuarioAModificar.getPuntuacion() != 0) {
             libroUsuarioAModificar.setPuntuacion(libroUsuarioNuevo.getPuntuacion());
         }
-        
+
         return libroUsuarioAModificar;
     }
 }
