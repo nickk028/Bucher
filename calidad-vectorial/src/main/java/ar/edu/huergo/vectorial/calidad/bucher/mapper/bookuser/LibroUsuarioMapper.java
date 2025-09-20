@@ -42,7 +42,7 @@ public class LibroUsuarioMapper {
         else {
             libroUsuario.setEstadoLectura(libroUsuarioUpdateDTO.getEstadoLectura());
         }
-        libroUsuario.setPaginaActual(libroUsuarioUpdateDTO.getPaginaActual()); 
+        libroUsuario.setPaginaActual(libroUsuarioUpdateDTO.getPaginaActual());
         libroUsuario.setPuntuacion(libroUsuarioUpdateDTO.getPuntuacion());
 
         return libroUsuario;
