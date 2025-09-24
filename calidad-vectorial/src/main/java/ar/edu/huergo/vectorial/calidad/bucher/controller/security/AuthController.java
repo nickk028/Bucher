@@ -31,6 +31,12 @@ public class AuthController {
     private final JwtTokenService jwtTokenService;
     private final UserDetailsService userDetailsService;
 
+    /**
+     * Muestra la interfaz de login al usuario
+     * @param model El modelo de Spring MVC para pasar datos a la vista Thymeleaf
+     * @param error Indica si hubo un error en el login anterior
+     * @return El nombre de la vista Thymeleaf "login" que se renderizará
+     */
     @GetMapping("/login")
     public String mostrarLogin(Model model, @RequestParam(value = "error", required = false) String error) {
         if (error != null) {
@@ -39,9 +45,20 @@ public class AuthController {
         return "login";
     }
 
+    /**
+     * Procesa el form de login y autentica al usuario
+     * @param username El nombre de usuario enviado desde el HTML
+     * @param password La contraseña enviada desde el HTML
+     * @param response Permite construir la respuesta HTTP para el navegador
+     * @param redirectAttributes Para pasar atributos entre redirecciones HTTP
+     * @return Redirección al index
+     * @throws BadCredentialsException Si las credenciales son inválidas
+     */
     @PostMapping("/login")
     public String procesarLogin(@RequestParam String username, @RequestParam String password,
-        HttpServletResponse response, RedirectAttributes redirectAttributes) { // response para poder crear y agregar cookes --- redirectAttributes para pasar mensajes entre redireccioens
+        HttpServletResponse response, // Permite crear la respuesta para el navegador -> en este caso se le envía una cookie
+        RedirectAttributes redirectAttributes) { // Permite pasar variables entre direcciones y se inyecta como parámetro
+
         try {
             // 1) Autenticar credenciales username/password
             authenticationManager.authenticate(
@@ -59,9 +76,9 @@ public class AuthController {
             Cookie jwtCookie = new Cookie("JWT_TOKEN", token);
             jwtCookie.setHttpOnly(true); // Previene acceso desde JavaScript (XSS)
             jwtCookie.setSecure(false); // Para http y no https
-            jwtCookie.setPath("/"); // La cookie estará disponible en toda la aplicación
-            jwtCookie.setMaxAge(3600); // 3600 segundos (lo que dura el token)
-            
+            jwtCookie.setPath("/"); // La cookie estará disponible en todo el sitio
+            jwtCookie.setMaxAge(3600); // Duración de la cookie de 3600 segundos (lo que dura el token)
+
             response.addCookie(jwtCookie);
 
             // 5) Redirigir a la página principal después del login exitoso
@@ -77,6 +94,12 @@ public class AuthController {
         }
     }
 
+    /**
+     * Cierra la sesión del usuario
+     * @param response Permite construir la respuesta HTTP para el navegador
+     * @param redirectAttributes Para pasar atributos entre redirecciones HTTP
+     * @return Redirección al login
+     */
     @PostMapping("/logout")
     public String logout(HttpServletResponse response, RedirectAttributes redirectAttributes) {
         // Eliminar la cookie JWT
