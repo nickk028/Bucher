@@ -26,7 +26,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioReposit
 @EnableMethodSecurity // Habilita la seguridad a nivel de método con anotaciones
 // Clase de configuración de seguridad de Spring Security
 public class SecurityConfig {
-
+/*
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http,
         JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
@@ -65,7 +65,7 @@ public class SecurityConfig {
                         .authenticationEntryPoint(authenticationEntryPoint()))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
-    }
+    }*/
 
     @Bean
     PasswordEncoder passwordEncoder() {
