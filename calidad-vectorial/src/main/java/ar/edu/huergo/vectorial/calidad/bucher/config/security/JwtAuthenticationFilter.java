@@ -45,7 +45,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
         }
-        
+
         // 2) Si no hay token en el header, buscar en las cookies
         if (token == null) {
             Cookie[] cookies = request.getCookies();
