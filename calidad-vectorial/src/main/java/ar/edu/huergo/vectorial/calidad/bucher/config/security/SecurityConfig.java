@@ -26,7 +26,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioReposit
 @EnableMethodSecurity // Habilita la seguridad a nivel de método con anotaciones
 // Clase de configuración de seguridad de Spring Security
 public class SecurityConfig {
-/*
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http,
         JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
@@ -41,22 +41,37 @@ public class SecurityConfig {
                 session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
 
+                // Permite recursos estáticos (CSS, JS, imágenes) públicos
+                .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+                .requestMatchers("/favicon.ico").permitAll()
+
+                // Login y Registro
+                .requestMatchers(HttpMethod.GET, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/auth/logout").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
+
+                // Usuario
                 .requestMatchers(HttpMethod.GET, "/usuario").hasRole("ADMIN")
 
+                // Publicacion
                 .requestMatchers(HttpMethod.GET, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
                 .requestMatchers(HttpMethod.POST, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
                 .requestMatchers(HttpMethod.POST, "/publicacion/devolucion/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
                 .requestMatchers(HttpMethod.DELETE, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
 
+                // Registro
                 .requestMatchers(HttpMethod.GET, "/registro").hasAnyRole("ADMIN", "LECTOR")
 
+                // Biblioteca
                 .requestMatchers(HttpMethod.GET, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
                 .requestMatchers(HttpMethod.POST, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
                 .requestMatchers(HttpMethod.PUT, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
                 .requestMatchers(HttpMethod.DELETE, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
+
+                // Index
+                .requestMatchers(HttpMethod.GET, "/index").hasAnyRole("ADMIN", "LECTOR")
 
                 .anyRequest().authenticated())
 
@@ -65,7 +80,7 @@ public class SecurityConfig {
                         .authenticationEntryPoint(authenticationEntryPoint()))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
-    }*/
+    }
 
     @Bean
     PasswordEncoder passwordEncoder() {
