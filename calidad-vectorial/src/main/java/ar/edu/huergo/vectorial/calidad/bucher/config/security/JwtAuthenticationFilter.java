@@ -11,6 +11,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -36,26 +37,37 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
         FilterChain filterChain) throws ServletException, IOException {
 
-        String authHeader = request.getHeader("Authorization"); //Obtiene el header Authorization
+        String token = null;
+        String username = null;
 
-        // Verifica si el header no es nulo y comienza con "Bearer "
-        // (es el formato estándar para tokens JWT).
+        // 1) Primero intentar obtener el token del header Authorization (para compatibilidad con API)
+        String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            String token = authHeader.substring(7);
-            String username = null;
-            // Intenta extraer el username del token usando JwtTokenService.
-            // Si falla, username se queda como null.
+            token = authHeader.substring(7);
+        }
+        
+        // 2) Si no hay token en el header, buscar en las cookies
+        if (token == null) {
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if ("JWT_TOKEN".equals(cookie.getName())) {
+                        token = cookie.getValue();
+                        break;
+                    }
+                }
+            }
+        }
+
+        // 3) Si encontramos un token (ya sea en header o cookie), procesarlo
+        if (token != null && !token.isEmpty()) {
             try {
                 username = jwtTokenService.extraerUsername(token);
             } catch (Exception ignored) {
+                // Token inválido, username se queda como null
             }
 
-            // Si hay un username y no hay autenticación previa en el contexto,
-            // carga los detalles del usuario desde el UserDetailsService.
-            // Si el token es válido, crea un UsernamePasswordAuthenticationToken
-            // con las autoridades del usuario y lo coloca en el SecurityContext.
-            // Esto permite que el usuario esté autenticado para el resto del request.
-            // Si el token no es válido, no se hace nada y el request sigue sin autenticación.
+            // 4) Si hay un username y no hay autenticación previa, autenticar al usuario
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 if (jwtTokenService.esTokenValido(token, userDetails)) {
