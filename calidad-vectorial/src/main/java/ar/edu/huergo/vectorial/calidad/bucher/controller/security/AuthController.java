@@ -1,26 +1,24 @@
 package ar.edu.huergo.vectorial.calidad.bucher.controller.security;
 
-import java.util.Set;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.Set;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.LoginDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
-@RestController // Marca la clase como un controlador REST
+@Controller // Marca la clase como un controlador REST
 @RequestMapping("/auth") // Mapea las solicitudes a /auth
 @RequiredArgsConstructor // Genera un constructor con los campos finales
 // Controlador REST para la autenticación y generación de tokens JWT
@@ -31,7 +29,7 @@ public class AuthController {
     private final UserDetailsService userDetailsService;
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginDTO request) {
+    public String login(@RequestBody @Valid LoginDTO request) {
         // 1) Autenticar credenciales username/password (lanza excepción si no son válidas)
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.username(), request.password()));
@@ -45,6 +43,11 @@ public class AuthController {
         String token = jwtTokenService.generarToken(userDetails, roles);
 
         // 4) Responder con el token (el cliente deberá enviarlo en el header Authorization)
-        return ResponseEntity.ok(Map.of("token", token));
+        return "token";
+    }
+
+    @GetMapping("/login")
+    public String mostrarLogin() {
+        return "login";
     }
 }
