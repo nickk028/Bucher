@@ -8,30 +8,30 @@ function Login({ onLogin }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8080/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+        const res = await fetch("http://localhost:8080/auth/login", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ username, password }),
+        });
 
-      if (res.ok) {
-        onLogin(); // actualiza estado en App
-        setMessage("Login exitoso");
-      } else {
-        const text = await res.text();
-        setMessage(text);
+        if (res.ok) {
+			onLogin(); // actualiza estado en App
+			setMessage("Login exitoso");
+        } else {
+			const text = await res.text();
+			setMessage(text);
+        }
+      	} catch (err) {
+        	setMessage("Error de conexión");
       }
-    } catch (err) {
-      setMessage("Error de conexión");
-    }
   };
 
   return (
     <form onSubmit={handleLogin}>
-      <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuario" />
-      <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Contraseña" />
-      <button type="submit">Ingresar</button>
-      {message && <p>{message}</p>}
+		<input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuario" />
+		<input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Contraseña" />
+		<button type="submit">Ingresar</button>
+		{message && <p>{message}</p>}
     </form>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Login from "./Login";
+import Login from "./components/Login";
 import UserList from "./components/UserList"; // ejemplo de endpoint protegido
 
 function App() {
@@ -7,9 +7,10 @@ function App() {
 
   return (
     <div>
-      {loggedIn ? <UserList /> : <Login onLogin={() => setLoggedIn(true)} />}
-    </div>
-  );
+  <Login onLogin={() => setLoggedIn(true)} />
+    {/* {loggedIn ? <UserList /> : <Login onLogin={() => setLoggedIn(true)} />} */}
+  </div>
+    );
 }
 
 export default App;
