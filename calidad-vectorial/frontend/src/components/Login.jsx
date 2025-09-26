@@ -16,14 +16,15 @@ function Login({ onLogin }) {
 
         if (res.ok) {
 			onLogin(); // actualiza estado en App
-			setMessage("Login exitoso");
+			const text = await res.text();
+			setMessage(text);
         } else {
 			const text = await res.text();
 			setMessage(text);
         }
-      	} catch (err) {
-        	setMessage("Error de conexión");
-      }
+	} catch (err) {
+		setMessage("Error de conexión");
+    }
   };
 
   return (
