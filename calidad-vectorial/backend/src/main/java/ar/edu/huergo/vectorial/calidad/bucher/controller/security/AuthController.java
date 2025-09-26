@@ -1,0 +1,50 @@
+package ar.edu.huergo.vectorial.calidad.bucher.controller.security;
+
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
+import ar.edu.huergo.vectorial.calidad.bucher.dto.security.LoginDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
+
+@RestController // Marca la clase como un controlador REST
+@RequestMapping("/auth") // Mapea las solicitudes a /auth
+@RequiredArgsConstructor // Genera un constructor con los campos finales
+// Controlador REST para la autenticación y generación de tokens JWT
+public class AuthController {
+
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenService jwtTokenService;
+    private final UserDetailsService userDetailsService;
+
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginDTO request) {
+        // 1) Autenticar credenciales username/password (lanza excepción si no son válidas)
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(request.username(), request.password()));
+
+        // 2) Cargar UserDetails y derivar roles/authorities
+        UserDetails userDetails = userDetailsService.loadUserByUsername(request.username());
+        Set<String> roles = new HashSet<>(
+            userDetails.getAuthorities().stream().map(a -> a.getAuthority()).toList());
+
+        // 3) Generar token JWT firmado con el username como subject y los roles como claims
+        String token = jwtTokenService.generarToken(userDetails, roles);
+
+        // 4) Responder con el token (el cliente deberá enviarlo en el header Authorization)
+        return ResponseEntity.ok(Map.of("token", token));
+    }
+}
