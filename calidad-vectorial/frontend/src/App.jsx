@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Login from "./components/Login";
-import UserList from "./components/UserList"; // ejemplo de endpoint protegido
+import Login from "./components/pages/login/Login";
+import UserList from "./components/pages/templates/UserList"; // ejemplo de endpoint protegido
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
