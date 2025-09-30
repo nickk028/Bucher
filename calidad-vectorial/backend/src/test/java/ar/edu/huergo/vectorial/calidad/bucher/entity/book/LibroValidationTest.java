@@ -42,7 +42,7 @@ class LibroValidationTest {
         libro.setFechaPublicacion(LocalDate.of(1967, 5, 30));
         libro.setUrlFoto("http://imagen.com/portada.jpg");
         libro.setPrecio(1500.00);
-        libro.setCategoria(Set.of(Categoria.Realismo_Mágico));
+        libro.setCategoria(Set.of(Categoria.realismomagico));
         libro.setAutor(autorEjemplo);
         libro.setEditorial(editorialEjemplo);
         return libro;
