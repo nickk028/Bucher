@@ -54,7 +54,7 @@ public class LibroServiceTest {
             libroEjemplo.setFechaPublicacion(LocalDate.of(1967, 5, 30));
             libroEjemplo.setUrlFoto("http://imagen.com/portada.jpg");
             libroEjemplo.setPrecio(1500.00);
-            libroEjemplo.setCategoria(Set.of(Categoria.Realismo_Mágico));
+            libroEjemplo.setCategoria(Set.of(Categoria.realismomagico));
             libroEjemplo.setAutor(autorEjemplo);
             libroEjemplo.setEditorial(editorialEjemplo);
         }
