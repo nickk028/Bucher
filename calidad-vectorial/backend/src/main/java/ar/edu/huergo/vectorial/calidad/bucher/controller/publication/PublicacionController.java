@@ -81,11 +81,6 @@ public class PublicacionController {
             publicacionMapper.toDTOList(publicacionService.obtenerPublicacionesPorUsuario(usuario)));
     }
 
-    @GetMapping("/{}")
-    public String getMethodName(@RequestParam String param) {
-        return new String();
-    }
-    
 
     /**
     * Crea una nueva publicación
