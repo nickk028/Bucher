@@ -1,15 +1,32 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/pages/login/Login";
-import UserList from "./components/pages/templates/UserList"; // ejemplo de endpoint protegido
+import { SobreNosotros } from "./components/pages/aboutus/SobreNosotros";
+import { Index } from "./components/pages/index/Index";
+import { Publicacion } from "./components/pages/publication/Publicacion";
+import { Biblioteca } from "./components/pages/user/bookshelf/Biblioteca";
+import { LibroUsuario } from "./components/pages/user/bookshelf/bookuser/LibroUsuario";
+import { PublicacionUsuario } from "./components/pages/user/userpublication/userpublication";
+import { Register } from "./components/pages/register/Register";
+import { CrearPublicacion } from "./components/pages/publication/CrearPublicacion";
 
-function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+const App = () => {
+	const [loggedIn, setLoggedIn] = useState(false);
 
-  return (
-    <div>
-  <Login onLogin={() => setLoggedIn(true)} />
-    {/* {loggedIn ? <UserList /> : <Login onLogin={() => setLoggedIn(true)} />} */}
-  </div>
+	return (
+		<Router>
+			<Routes>
+				<Route path="/" element={<SobreNosotros/>}/>
+				<Route path="/index" element={<Index/>}/>
+				<Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>}/>
+				<Route path="/publicacion/${id}" element={<Publicacion/>}/>
+				<Route path="/biblioteca" element={<Biblioteca/>}/>
+				<Route path="/biblioteca/${id}" element={<LibroUsuario/>}/>
+				<Route path="/publicacion/propias" element={<PublicacionUsuario/>}/>
+				<Route path="/register" element={<Register/>}/>
+				<Route path="/crear-publicacion" element={<CrearPublicacion/>}/>
+			</Routes>
+		</Router>
     );
 }
 
