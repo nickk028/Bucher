@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Login({ onLogin }) {
 	const [username, setUsername] = useState("");
@@ -15,7 +16,7 @@ function Login({ onLogin }) {
 				credentials: "include"
 			});
 
-			if (res.ok) {
+			if (respond.ok) {
 				onLogin(); // actualiza estado en App
 				const text = await res.text();
 				setMessage(text);
@@ -29,12 +30,19 @@ function Login({ onLogin }) {
 	};
 
 	return (
-		<form onSubmit={handleLogin}>
-			<input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuario" />
-			<input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Contraseña" />
-			<button type="submit">Ingresar</button>
-			{message && <p>{message}</p>}
-		</form>
+		<div>
+			<form onSubmit={handleLogin}>
+				<input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuario" />
+				<input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Contraseña" />
+				<button type="submit">Ingresar</button>
+				
+				{message && <p>{message}</p>}
+			</form>
+			<Link to="/register">
+				No tenes una cuenta? Registrate
+			</Link>
+			
+		</div>
 	);
 }
 
