@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionUpdateDTO;
@@ -82,6 +83,26 @@ public class PublicacionMapper {
         return publicacionResponseDTO;
     }
 
+        /**
+     * Pasa de Pubicacion a entidad PublicacionBasicDTO
+     * @param Pubicacion a pasar a DTO
+     * @return Pubicacion como BasicDTO
+     */
+    public PublicacionBasicDTO toBasicDTO(Publicacion publicacion) {
+        if (publicacion == null) {
+            return null;
+        }
+        PublicacionBasicDTO publicacionBasicDTO = new PublicacionBasicDTO();
+
+        publicacionBasicDTO.setTitulo(publicacion.getLibro().getTitulo());
+        publicacionBasicDTO.setUsuarioNickname(publicacion.getUsuario().getNickname());
+        publicacionBasicDTO.setEstadoPublicacion(publicacion.getEstadoPublicacion());
+        publicacionBasicDTO.setUrlFoto(publicacion.getLibro().getUrlFoto());
+        publicacionBasicDTO.setLimiteDias(publicacion.getLimiteDias());
+
+        return publicacionBasicDTO;
+    }
+
     /**
      * Pasa de una lista de Publicaciones a una lista de PublicacionesResponseDTO
      * @param PubicacionesResponseDTO La lista de Publicaciones a transformar en ResponseDTO
@@ -94,6 +115,21 @@ public class PublicacionMapper {
         return publicaciones
             .stream()
             .map(this::toDTO)
+            .collect(Collectors.toList());
+    }
+
+    /**
+     * Pasa de una lista de Publicaciones a una lista de PublicacionesBasicDTO
+     * @param PubicacionesBasicDTO La lista de Publicaciones a transformar en BasicDTO
+     * @return PublicacionesBasicDTO como DTO
+     */
+    public List<PublicacionBasicDTO> toBasicDTOList(Set<Publicacion> publicaciones) {
+        if (publicaciones == null) {
+            return new ArrayList<>();
+        }
+        return publicaciones
+            .stream()
+            .map(this::toBasicDTO)
             .collect(Collectors.toList());
     }
 }

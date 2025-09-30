@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
@@ -153,5 +154,14 @@ public class PublicacionService {
     public Publicacion modificarEstadoPublicacion(Publicacion publicacion, Estado estado) {
         publicacion.setEstadoPublicacion(estado);
         return publicacionRepository.save(publicacion);
+    }
+
+    /**
+     * Obtiene las publicaciones de una categoría
+     * @param categoría La categoría que se filtra
+     * @return Las publicaciones filtradas por la categoría
+     */
+    public Set<Publicacion> obtenerPublicacionPorCategoria(String categoria) {
+        return new HashSet<>(publicacionRepository.findAllByCategoria(categoria));
     }
 }

@@ -9,4 +9,5 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 
 public interface PublicacionRepository extends JpaRepository<Publicacion, Long> {
     List<Publicacion> findAllByUsuario(Usuario usuario);
+    List<Publicacion> findAllByCategoria(String categoria);
 }

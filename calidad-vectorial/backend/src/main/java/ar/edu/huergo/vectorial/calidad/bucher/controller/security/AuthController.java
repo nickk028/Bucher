@@ -13,9 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -34,7 +32,6 @@ public class AuthController {
     private final JwtTokenService jwtTokenService;
     private final UserDetailsService userDetailsService;
 
-
     /**
      * Procesa el form de login y autentica al usuario
      * @param username El nombre de usuario enviado desde el HTML
@@ -48,8 +45,6 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginDTO request,
         HttpServletResponse response) {  // Permite crear la respuesta para el navegador -> en este caso se le envía una cookie
 
-
-            
         // 1) Autenticar credenciales username/password
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.username(), request.password()));

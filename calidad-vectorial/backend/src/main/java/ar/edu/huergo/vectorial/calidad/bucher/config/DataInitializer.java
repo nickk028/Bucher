@@ -52,6 +52,7 @@ public class DataInitializer {
                 PasswordValidator.validate(adminPassword);
                 Biblioteca biblioteca = new Biblioteca();
                 Usuario u = new Usuario("admin@gmail.com", encoder.encode(adminPassword));
+                u.setNickname("admin@gmail.com");
                 u.setRoles(Set.of(admin));
                 u.setBiblioteca(biblioteca);
                 biblioteca.setUsuario(u);
@@ -65,6 +66,7 @@ public class DataInitializer {
                 PasswordValidator.validate(clientePassword);
                 Biblioteca biblioteca = new Biblioteca();
                 Usuario u = new Usuario("lector@gmail.com", encoder.encode(clientePassword));
+                u.setNickname("lector@gmail.com");
                 u.setRoles(Set.of(cliente));
                 u.setBiblioteca(biblioteca);
                 biblioteca.setUsuario(u);
@@ -155,7 +157,7 @@ public class DataInitializer {
                 harryPotter.setFechaPublicacion(LocalDate.of(1997, 6, 26));
                 harryPotter.setUrlFoto("https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg");
                 harryPotter.setPrecio(29.99);
-                harryPotter.setCategoria(Set.of(Categoria.Fantástico, Categoria.Aventura));
+                harryPotter.setCategoria(Set.of(Categoria.fantastico, Categoria.aventura));
                 harryPotter.setEditorial(editorialHP);
                 harryPotter.setAutor(autorJK);
 
@@ -171,7 +173,7 @@ public class DataInitializer {
                 dune.setFechaPublicacion(LocalDate.of(1965, 8, 1));
                 dune.setUrlFoto("https://upload.wikimedia.org/wikipedia/commons/8/88/Map_of_Arrakis_from_Dune_first_edition_dust_jacket.jpg");
                 dune.setPrecio(39.99);
-                dune.setCategoria(Set.of(Categoria.Ciencia_Ficción));
+                dune.setCategoria(Set.of(Categoria.cienciaficcion));
                 dune.setEditorial(editorialChilton);
                 dune.setAutor(autorHerbert);
                 libroRepository.save(dune);
@@ -187,7 +189,7 @@ public class DataInitializer {
                 codigo.setFechaPublicacion(LocalDate.of(2003, 3, 18));
                 codigo.setUrlFoto("https://upload.wikimedia.org/wikipedia/en/6/6b/DaVinciCode.jpg");
                 codigo.setPrecio(25.99);
-                codigo.setCategoria(Set.of(Categoria.Suspenso));
+                codigo.setCategoria(Set.of(Categoria.suspenso));
                 codigo.setEditorial(editorialDoubleday);
                 codigo.setAutor(autorBrown);
                 libroRepository.save(codigo);
@@ -203,7 +205,7 @@ public class DataInitializer {
                 orientExpress.setFechaPublicacion(LocalDate.of(1934, 1, 1));
                 orientExpress.setUrlFoto("https://upload.wikimedia.org/wikipedia/en/c/c0/Murder_on_the_Orient_Express_First_Edition_Cover_1934.jpg");
                 orientExpress.setPrecio(19.99);
-                orientExpress.setCategoria(Set.of(Categoria.Policial));
+                orientExpress.setCategoria(Set.of(Categoria.policial));
                 orientExpress.setEditorial(editorialPlaneta);
                 orientExpress.setAutor(autorChristie);
                 libroRepository.save(orientExpress);
@@ -219,7 +221,7 @@ public class DataInitializer {
                 soledad.setFechaPublicacion(LocalDate.of(1967, 5, 30));
                 soledad.setUrlFoto("https://upload.wikimedia.org/wikipedia/commons/a/a1/Cien_a%C3%B1os_de_soledad.png");
                 soledad.setPrecio(34.99);
-                soledad.setCategoria(Set.of(Categoria.Realismo_Mágico));
+                soledad.setCategoria(Set.of(Categoria.realismomagico));
                 soledad.setEditorial(editorialPlaneta);
                 soledad.setAutor(autorGarciaMarquez);
                 libroRepository.save(soledad);
@@ -235,7 +237,7 @@ public class DataInitializer {
                 orgullo.setFechaPublicacion(LocalDate.of(1813, 1, 28));
                 orgullo.setUrlFoto("https://upload.wikimedia.org/wikipedia/commons/1/17/PrideAndPrejudiceTitlePage.jpg");
                 orgullo.setPrecio(22.99);
-                orgullo.setCategoria(Set.of(Categoria.Romance));
+                orgullo.setCategoria(Set.of(Categoria.romance));
                 orgullo.setEditorial(editorialChapman);
                 orgullo.setAutor(autorAusten);
                 libroRepository.save(orgullo);
@@ -251,7 +253,7 @@ public class DataInitializer {
                 it.setFechaPublicacion(LocalDate.of(1986, 9, 15));
                 it.setUrlFoto("https://upload.wikimedia.org/wikipedia/commons/1/1a/It_%281986%29_front_cover%2C_first_edition.jpg");
                 it.setPrecio(29.99);
-                it.setCategoria(Set.of(Categoria.Terror));
+                it.setCategoria(Set.of(Categoria.terror));
                 it.setEditorial(editorialViking);
                 it.setAutor(autorKing);
                 libroRepository.save(it);

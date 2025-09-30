@@ -3,6 +3,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.dto.publication;
 import java.time.LocalDate;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
+import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
@@ -35,4 +36,13 @@ public class PublicacionResponseDTO extends PublicacionDTO {
     @Size(min = 2, max = 50, message = "El estado de la publicación debe tener entre 2 y 50 caracteres.")
     @Enumerated(EnumType.STRING)
     private Estado estadoPublicacion;
+
+    // Descripción de la publicación
+    @Column(nullable = false, length = 255)
+    @NotBlank(message = "La descripción es obligatoria.")
+    @Size(min = 5, max = 255, message = "La descripción debe tener entre 5 y 255 caracteres.")
+    private String descripcion;
+
+    // Desripción del usuario
+    private String descripcionUsuario;
 }
