@@ -1,31 +1,24 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { loginRequest } from "./Utils";
 
 function Login({ onLogin }) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [message, setMessage] = useState("");
+	const navigate = useNavigate();
 
-	const handleLogin = async (e) => {
-		e.preventDefault();
-		try {
-			const respond = await fetch("http://localhost:8080/auth/login", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ username, password }),
-				credentials: "include"
-			});
+	const handleLogin = async (evento) => {
+		evento.preventDefault();		
+		const respond = loginRequest(username, password);
 
-			if (respond.ok) {
-				onLogin(); // actualiza estado en App
-				const text = await res.text();
-				setMessage(text);
-			} else {
-				const text = await res.text();
-				setMessage(text);
-			}
-		} catch (err) {
-			setMessage("Error de conexión");
+		if (respond.ok) {
+			onLogin(); // actualiza estado en App
+			navigate("/index");
+		} else {
+			const text = await respond.text();
+			setMessage(text);
 		}
 	};
 
@@ -40,8 +33,7 @@ function Login({ onLogin }) {
 			</form>
 			<Link to="/register">
 				No tenes una cuenta? Registrate
-			</Link>
-			
+			</Link>	
 		</div>
 	);
 }
