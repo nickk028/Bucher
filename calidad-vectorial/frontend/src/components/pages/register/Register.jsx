@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export const Register = () => {
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -17,6 +20,7 @@ export const Register = () => {
                 credentials: "include"
             });
             if (respond.ok) {
+                navigate("/index");
                 const text = await respond.text();
                 setMessage(text);
             } else {
@@ -29,6 +33,19 @@ export const Register = () => {
     } 
 
   return (
-    <div>Register</div>
+    <div>
+        <form onSubmit={handleRegister}>
+            <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuario" />
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Contraseña" />
+            <input type="password" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)} placeholder="Confirmar Contraseña" />
+            <button type="submit">Registrarse</button>
+
+            {message && <p>{message}</p>}
+        </form>
+        <Link to="/login">
+            Tenes una cuenta? Inicia sesión
+        </Link>
+        
+    </div>
   )
 }
