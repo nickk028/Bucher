@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const BookShelf = () => {
+export const Biblioteca = () => {
     const handleBookshelf = async (evento) => {
         evento.preventDefault();
         try {

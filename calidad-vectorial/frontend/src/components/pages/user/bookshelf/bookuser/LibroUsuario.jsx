@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const BookUser = () => {
+export const LibroUsuario = () => {
     const handleBookUser = async (evento) => {
         evento.preventDefault();
         try {

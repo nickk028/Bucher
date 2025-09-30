@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const Publication = () => {
-    const handlePublication = async (evento) => {
+export const Publicacion = () => {
+    const handlePublicacion = async (evento) => {
         evento.preventDefault();
         try {
             const respond = await fetch("http://localhost:8080/publicacion/${id}", {
