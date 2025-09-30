@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { loginRequest } from "./../login/Utils";
 
 
 export const Register = () => {
@@ -20,9 +21,9 @@ export const Register = () => {
                 credentials: "include"
             });
             if (respond.ok) {
-                navigate("/index");
-                const text = await respond.text();
-                setMessage(text);
+                await loginRequest(username, password); 
+                // Login automatico sin guardar respond      
+                navigate("/login");
             } else {
                 const text = await respond.text();
                 setMessage(text);
