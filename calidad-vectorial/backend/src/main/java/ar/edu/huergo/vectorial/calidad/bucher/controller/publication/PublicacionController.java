@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionUpdateDTO;
@@ -27,6 +28,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionSer
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/publicacion")
@@ -49,9 +52,20 @@ public class PublicacionController {
      * @return Un conjunto de todas las publicaciones
      */
     @GetMapping
-    public ResponseEntity<List<PublicacionResponseDTO>> obtenerTodasLasPublicaciones() {
+    public ResponseEntity<List<PublicacionBasicDTO>> obtenerTodasLasPublicaciones() {
         return ResponseEntity.ok(
-            publicacionMapper.toDTOList(publicacionService.obtenerTodasLasPublicaciones()));
+            publicacionMapper.toBasicDTOList(publicacionService.obtenerTodasLasPublicaciones()));
+    }
+
+    /**
+     * Obtiene una publicacion por id 
+     * @param El id de la publiacion
+     * @return La publiacion buscada
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<PublicacionResponseDTO> obtenerPublicacion(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(
+            publicacionMapper.toDTO(publicacionService.obtenerPublicacionPorId(id)));
     }
 
     /**
@@ -66,6 +80,12 @@ public class PublicacionController {
         return ResponseEntity.ok(
             publicacionMapper.toDTOList(publicacionService.obtenerPublicacionesPorUsuario(usuario)));
     }
+
+    @GetMapping("/{}")
+    public String getMethodName(@RequestParam String param) {
+        return new String();
+    }
+    
 
     /**
     * Crea una nueva publicación

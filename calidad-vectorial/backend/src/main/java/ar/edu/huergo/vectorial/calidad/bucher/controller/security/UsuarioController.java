@@ -3,6 +3,8 @@ package ar.edu.huergo.vectorial.calidad.bucher.controller.security;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,6 +40,13 @@ public class UsuarioController {
             usuarioMapper.toDTOList(usuarioService.obtenerTodosUsuarios()));
     }
 
+    @GetMapping("/propio")
+    public ResponseEntity<UsuarioResponseDTO> obtenerUsuario(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+        return ResponseEntity.ok(
+            usuarioMapper.toDTO(usuario));
+    }
+
     /**
      * Registra un nuevo usuario
      * @param registrarDTO El DTO con los datos del usuario a registrar
@@ -46,6 +55,7 @@ public class UsuarioController {
     @PostMapping("/registrar")
     public ResponseEntity<UsuarioResponseDTO> registrarCliente(@Valid @RequestBody RegistrarDTO registrarDTO) {
         Usuario usuario = usuarioMapper.toEntity(registrarDTO);
+        usuario.setNickname(usuario.getUsername());
         Usuario nuevoUsuario = usuarioService.registrar(usuario, registrarDTO.password(), registrarDTO.verificationPassword());
         UsuarioResponseDTO nuevoUsuarioDTO = usuarioMapper.toDTO(nuevoUsuario);
         return ResponseEntity.ok(nuevoUsuarioDTO);

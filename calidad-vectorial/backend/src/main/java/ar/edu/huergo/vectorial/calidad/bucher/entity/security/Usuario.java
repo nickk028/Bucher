@@ -41,11 +41,11 @@ import lombok.AllArgsConstructor;
 @EqualsAndHashCode(exclude = {"publicaciones", "prestamos", "biblioteca"})
 public class Usuario {
 
-    @Id // Id principal de la entidad
+    @Id //Id principal de la entidad
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automaticamente
     private Long id;
 
-    // Nombre de a cuenta del usuario
+    // Nombre de la cuenta del usuario
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El username es obligatorio.")
     @NotNull(message = "El username es obligatorio.")
@@ -53,7 +53,14 @@ public class Usuario {
     @Email(message = "El nombre debe ser un mail con un formato válido.")
     private String username;
 
-    //Contraseña del usuario
+    // Nick name de la cuenta del usuario
+    @Column(nullable = false, unique = true, length = 100)
+    @NotBlank(message = "El nickname es obligatorio.")
+    @NotNull(message = "El nickname es obligatorio.")
+    @Size(min = 3, max = 100, message = "El nickname debe tener entre 2 y 100 digitos.")
+    private String nickname;
+
+    // Contraseña del usuario
     @Column(nullable = false)
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 16, max = 60, message = "La contraseña debe tener entre 16 y 60 digitos.")
@@ -61,6 +68,14 @@ public class Usuario {
         regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*]).*$",
         message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial.")
     private String password;
+
+    // Pronombres
+    @Column(nullable = true)
+    private Set<String> pronombres;
+
+    //Descripcion
+    @Column(nullable = true)
+    private String descripcion;
 
     // Set de roles del usuario
     // Relacion Muchos a Muchos con Roles
