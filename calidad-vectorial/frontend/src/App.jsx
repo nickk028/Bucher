@@ -11,14 +11,12 @@ import { Register } from "./components/pages/register/Register";
 import { CrearPublicacion } from "./components/pages/publication/CrearPublicacion";
 
 const App = () => {
-	const [loggedIn, setLoggedIn] = useState(false);
-
 	return (
 		<Router>
 			<Routes>
 				<Route path="/" element={<SobreNosotros/>}/>
 				<Route path="/index" element={<Index/>}/>
-				<Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>}/>
+				<Route path="/login" element={<Login/>}/>
 				<Route path="/publicacion/${id}" element={<Publicacion/>}/>
 				<Route path="/biblioteca" element={<Biblioteca/>}/>
 				<Route path="/biblioteca/${id}" element={<LibroUsuario/>}/>
