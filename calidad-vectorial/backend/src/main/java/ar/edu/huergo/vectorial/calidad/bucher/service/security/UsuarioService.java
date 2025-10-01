@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +35,18 @@ public class UsuarioService {
      */
     public Set<Usuario> obtenerTodosUsuarios() {
         return new HashSet<>(usuarioRepository.findAll());
+    }
+
+    /**
+     * Obtiene los detalles del usuario actualmente autenticado.
+     * @return Los detalles del usuario autenticado o null si no hay ninguno.
+     */
+    public UserDetails getUserDetailsActual() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails userDetails) {
+            return userDetails;
+        }
+        return null;
     }
 
     /**

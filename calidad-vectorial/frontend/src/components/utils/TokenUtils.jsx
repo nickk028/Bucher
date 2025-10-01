@@ -1,19 +1,46 @@
-import jwt_decode from 'jwt-decode';
-import Cookies from 'js-cookie';
-import { Route, useNavigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
-const isTokenValid = () => {
-    const token = Cookies.get('JWT_TOKEN'); // JWT_TOKEN nombre de la cookie
-    // Obtiene el token de las cookies 
-
-    if (!token) {
-        return false; // Valida si existe el token
-    };
+const isTokenValid = async () => {
     try {
-        const decoded = jwt_decode(token); // Decodifica el token
-        const currentTime = Date.now() / 1000; // Tiempo actual en segundos
-        return decoded.exp > currentTime; // Comprueba la expiracion del token
+        const respond = await fetch('http://localhost:8080/auth/validar-token', {
+            method: 'GET',
+            credentials: 'include',
+            cache: 'no-store'
+        });
+        if (respond.ok) {
+            return true;
+        } else {
+            console.log("Token inválido");
+            return false;
+        }
     } catch (error) {
-        return false; 
-    };
+        console.log("Error al validar token");
+        return false;
+    }
 };
+
+export const ProtectedRoute = () => {
+    const [valid, setValid] = useState(null);
+
+    useEffect(() => {
+        const checkToken = async () => {
+            const result = await isTokenValid();
+            setValid(result);
+        };
+        checkToken();
+    }, []);
+
+    if (valid === null) {
+        return <div style={{textAlign: 'center', marginTop: '2rem'}}>Verificando autenticación...</div>;
+    }
+    if (valid) {
+        return <Outlet />;
+    } else {
+        return <>
+            <Navigate to="/login" replace />
+            <div style={{textAlign: 'center', marginTop: '2rem', color: 'red'}}>Redirigiendo a login...</div>
+        </>;
+    }
+};
+
