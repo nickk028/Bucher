@@ -3,7 +3,6 @@ package ar.edu.huergo.vectorial.calidad.bucher.controller.security;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,15 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.RequiredArgsConstructor;
-import jakarta.validation.Valid;
-
-import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.RegistrarDTO;
-
+import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.security.UsuarioMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController // Marca la clase como un controlador REST
 @RequiredArgsConstructor // Genera un constructor con los campos finales
@@ -41,10 +38,13 @@ public class UsuarioController {
     }
 
     @GetMapping("/propio")
-    public ResponseEntity<UsuarioResponseDTO> obtenerUsuario(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
+    public ResponseEntity<UsuarioResponseDTO> obtenerUsuario() {
+        UserDetails usuarioAutenticado = usuarioService.getUserDetailsActual();
+        if (usuarioAutenticado == null) {
+            return ResponseEntity.notFound().build();
+        }
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
-        return ResponseEntity.ok(
-            usuarioMapper.toDTO(usuario));
+        return ResponseEntity.ok(usuarioMapper.toDTO(usuario));
     }
 
     /**
