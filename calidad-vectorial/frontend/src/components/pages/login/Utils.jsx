@@ -6,7 +6,7 @@ export async function loginRequest(username, password) {
             body: JSON.stringify({ username, password }),
             credentials: "include"
         });
-        return respond ;
+        return respond;
     } catch (error) {
         return { ok: false, message: "Error de conexión" };
     }
