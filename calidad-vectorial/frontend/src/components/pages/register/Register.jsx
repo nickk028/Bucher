@@ -8,7 +8,7 @@ export const Register = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [verificationPassword, setVerificationPassword] = useState("");
     const [message, setMessage] = useState("");
     
     const handleRegister = async (evento) => {
@@ -17,13 +17,13 @@ export const Register = () => {
             const respond = await fetch("http://localhost:8080/usuario/registrar", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password, passwordConfirmation }),
+                body: JSON.stringify({ username, password, verificationPassword }),
                 credentials: "include"
             });
             if (respond.ok) {
                 await loginRequest(username, password); 
                 // Login automatico sin guardar respond      
-                navigate("/login");
+                navigate("/index");
             } else {
                 const text = await respond.text();
                 setMessage(text);
@@ -31,14 +31,14 @@ export const Register = () => {
         } catch (error) {
             setMessage("Error de conexión");
         }
-    } 
+    }
 
   return (
     <div>
         <form onSubmit={handleRegister}>
             <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuario" />
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Contraseña" />
-            <input type="password" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)} placeholder="Confirmar Contraseña" />
+            <input type="password" value={verificationPassword} onChange={e => setVerificationPassword(e.target.value)} placeholder="Confirmar Contraseña" />
             <button type="submit">Registrarse</button>
 
             {message && <p>{message}</p>}
