@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { loginRequest } from "./Utils";
+import { loginRequest } from "../../utils/LoginUtils";
 
 function Login() {
 	const [username, setUsername] = useState("");
@@ -16,8 +16,12 @@ function Login() {
 		if (respond.ok) {
 			navigate("/index");
 		} else {
-			const text = await respond.text();
-			setMessage(text);
+			try {
+				const text = await respond.text();
+				setMessage(text);
+			} catch (error) {
+				setMessage("Error de conexion");
+			}
 		}
 	};
 
