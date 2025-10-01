@@ -1,0 +1,82 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    display: flex;
+    width: 96%;
+    min-height: 300px;
+    margin: 2%;
+    height: max(200px, 80vh);
+
+    background-color: #f2f2f2;
+    position: relative;
+
+    animation: aparecer--hero 600ms ease-in-out both;
+}
+
+.hero__content {
+    width: 100%;
+    background-color: #dce9df;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: clamp(6vw, 80%, 40px);
+}
+
+.hero__title {
+    font-family: "Handelson Three", cursive;
+    font-size: clamp(10vw, 8rem, 18vw);
+    font-weight: 500;
+    color: #0E675F;
+    margin-top: 40px;
+
+    transform: translateY(-100px);
+    animation: aparecer 1s ease-in-out both 200ms;
+}
+
+.hero__subtitle {
+    font-family: "Sans Serif";
+    font-size: clamp(1.5vw, 1.5rem, 2.7vw);
+    color: #08413C;
+    margin-bottom: 120px;
+
+    transform: translateY(100px);
+    animation: aparecer 1s ease-in-out both 200ms;
+}
+
+.hero__image {
+    width: 60%;
+    height: 100%;
+    background-image: url("../../../assets/estanteria.jpg");
+    background-size: cover;
+    background-position: center;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);
+
+    position: absolute;
+    right: 0;
+}
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes aparecer--hero {
+    0% {
+        scale: .6;
+        opacity: 1;
+    }
+
+    100% {
+        scale: 1;
+        opacity: 1;
+    }
+}

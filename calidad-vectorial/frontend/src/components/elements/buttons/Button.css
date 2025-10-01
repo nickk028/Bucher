@@ -1,0 +1,38 @@
+.btn {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+}
+
+.btn--claro {
+    background-color: #C9DACD;
+    color: #0E675F;
+}
+
+.btn--oscuro {
+    background-color: #0E675F;
+    color: #C9DACD;
+}
+
+.btn--solapa {
+    height: 45px;
+    min-width: 200px;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.btn-group .btn {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-group .btn + .btn {
+    margin-left: -25px;
+}
