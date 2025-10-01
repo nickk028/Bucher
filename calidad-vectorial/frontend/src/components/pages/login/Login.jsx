@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "./Utils";
+import './Login.css';
+import { AuthBox } from "../../elements/authbok/AuthBox";
+import { Button } from "../../elements/buttons/Button";
 
 function Login() {
 	const [username, setUsername] = useState("");
@@ -10,7 +13,7 @@ function Login() {
 	const navigate = useNavigate();
 
 	const handleLogin = async (evento) => {
-		evento.preventDefault();		
+		evento.preventDefault();
 		const respond = await loginRequest(username, password);
 
 		if (respond.ok) {
@@ -22,6 +25,13 @@ function Login() {
 	};
 
 	return (
+		<div className="body-login">
+			<AuthBox title="Iniciar sesión">
+				
+			</AuthBox>
+		</div>
+
+		/*
 		<div>
 			<form onSubmit={handleLogin}>
 				<input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuario" />
@@ -32,8 +42,8 @@ function Login() {
 			</form>
 			<Link to="/register">
 				No tenes una cuenta? Registrate
-			</Link>	
-		</div>
+			</Link>
+		</div>*/
 	);
 }
 
