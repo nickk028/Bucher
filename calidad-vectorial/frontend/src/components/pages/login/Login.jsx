@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "./Utils";
 
-function Login({ onLogin }) {
+function Login() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [message, setMessage] = useState("");
@@ -11,10 +11,9 @@ function Login({ onLogin }) {
 
 	const handleLogin = async (evento) => {
 		evento.preventDefault();		
-		const respond = loginRequest(username, password);
+		const respond = await loginRequest(username, password);
 
 		if (respond.ok) {
-			onLogin(); // actualiza estado en App
 			navigate("/index");
 		} else {
 			const text = await respond.text();
