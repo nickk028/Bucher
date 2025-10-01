@@ -9,21 +9,24 @@ import { LibroUsuario } from "./components/pages/user/bookshelf/bookuser/LibroUs
 import { PublicacionUsuario } from "./components/pages/user/userpublication/userpublication";
 import { Register } from "./components/pages/register/Register";
 import { CrearPublicacion } from "./components/pages/publication/CrearPublicacion";
+import { ProtectedRoute } from './components/utils/TokenUtils';
 
 const App = () => {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/" element={<SobreNosotros/>}/>
-				<Route path="/index" element={<Index/>}/>
-				<Route path="/login" element={<Login/>}/>
-				<Route path="/publicacion/${id}" element={<Publicacion/>}/>
-				<Route path="/biblioteca" element={<Biblioteca/>}/>
-				<Route path="/biblioteca/${id}" element={<LibroUsuario/>}/>
-				<Route path="/publicacion/propias" element={<PublicacionUsuario/>}/>
-				<Route path="/register" element={<Register/>}/>
-				<Route path="/crear-publicacion" element={<CrearPublicacion/>}/>
-			</Routes>
+                <Route path="/" element={<SobreNosotros/>}/>            
+                <Route path="/login" element={<Login/>}/>             
+                <Route path="/register" element={<Register/>}/>
+                <Route element={<ProtectedRoute/>}>
+                    <Route path="/index" element={<Index/>}/>
+                    <Route path="/publicacion/:id" element={<Publicacion/>}/>
+                    <Route path="/biblioteca" element={<Biblioteca/>}/>
+                    <Route path="/biblioteca/:id" element={<LibroUsuario/>}/>
+                    <Route path="/publicacion/propias" element={<PublicacionUsuario/>}/>
+                    <Route path="/crear-publicacion" element={<CrearPublicacion/>}/>
+                </Route>
+            </Routes>
 		</Router>
     );
 }
