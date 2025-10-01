@@ -1,0 +1,44 @@
+.hero {
+    display: flex;
+    width: 96%;
+    margin: 2%;
+    height: max(200px, 80vh);
+
+    background-color: #f2f2f2;
+    position: relative;
+}
+
+.hero__content {
+    width: 100%;
+    background-color: #dce9df;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: clamp(6vw, 80%, 40px);
+}
+
+.hero__title {
+    font-family: "Handelson Three", cursive;
+    font-size: clamp(10vw, 8rem, 18vw);
+    font-weight: 500;
+    color: #0E675F;
+}
+
+.hero__subtitle {
+    font-family: "Sans Serif";
+    font-size: clamp(1.5vw, 1.5rem, 2.7vw);
+    color: #08413C;
+    margin-bottom: 120px;
+}
+
+.hero__image {
+    width: 60%;
+    height: 100%;
+    background-image: url("../../../assets/estanteria.jpg");
+    background-size: cover;
+    background-position: center;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);
+
+    position: absolute;
+    right: 0;
+}
