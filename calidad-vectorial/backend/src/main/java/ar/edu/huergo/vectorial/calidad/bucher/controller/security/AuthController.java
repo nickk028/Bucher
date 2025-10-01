@@ -1,8 +1,8 @@
 package ar.edu.huergo.vectorial.calidad.bucher.controller.security;
 
-import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,17 +10,20 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.edu.huergo.vectorial.calidad.bucher.dto.security.LoginDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import ar.edu.huergo.vectorial.calidad.bucher.dto.security.LoginDTO;
-import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
 
 @RestController // Marca la clase como un controlador REST
 @RequestMapping("/auth") // Mapea las solicitudes a /auth
@@ -31,6 +34,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenService jwtTokenService;
     private final UserDetailsService userDetailsService;
+    private final UsuarioService usuarioService;
 
     /**
      * Procesa el form de login y autentica al usuario
@@ -68,5 +72,35 @@ public class AuthController {
 
         // 5) Redirigir a la página principal después del login exitoso
         return ResponseEntity.ok(Map.of("token", token));
+    }
+
+    /**
+     * Valida el token JWT presente en la cookie HTTP-only.
+     * @param request El request HTTP para acceder a las cookies.
+     * @return 200 si el token es válido, 401 si no.
+     */
+    @GetMapping("/validar-token")
+    public ResponseEntity<String> validateToken(HttpServletRequest request) {
+        String token = null;
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if ("JWT_TOKEN".equals(cookie.getName())) {
+                    token = cookie.getValue();
+                    break;
+                }
+            }
+        }
+
+        if (token == null) {
+            return ResponseEntity.status(401).header("Cache-Control", "no-store").body("Token inválido");
+        }
+        try {
+            if (jwtTokenService.esTokenValido(token, usuarioService.getUserDetailsActual())) {
+                return ResponseEntity.ok().header("Cache-Control", "no-store").body("Token válido");
+            }
+            return ResponseEntity.status(401).header("Cache-Control", "no-store").body("Token inválido");
+        } catch (Exception e) {
+            return ResponseEntity.status(401).header("Cache-Control", "no-store").body("Token inválido");
+        }
     }
 }

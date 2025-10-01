@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { loginRequest } from "../../utils/LoginUtils";
 import { loginRequest } from "./Utils";
 import './Login.css';
 import { AuthBox } from "../../elements/authbok/AuthBox";
@@ -19,8 +20,12 @@ function Login() {
 		if (respond.ok) {
 			navigate("/index");
 		} else {
-			const text = await respond.text();
-			setMessage(text);
+			try {
+				const text = await respond.text();
+				setMessage(text);
+			} catch (error) {
+				setMessage("Error de conexion");
+			}
 		}
 	};
 
