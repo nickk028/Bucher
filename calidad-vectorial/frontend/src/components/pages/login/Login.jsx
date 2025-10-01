@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
-import { loginRequest } from "./Utils";
 import './Login.css';
 import { AuthBox } from "../../elements/authbok/AuthBox";
 import { Button } from "../../elements/buttons/Button";
