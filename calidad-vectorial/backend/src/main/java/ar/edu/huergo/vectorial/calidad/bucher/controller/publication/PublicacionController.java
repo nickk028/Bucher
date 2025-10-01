@@ -19,6 +19,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionBasicDT
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionUpdateDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
@@ -81,6 +82,15 @@ public class PublicacionController {
             publicacionMapper.toDTOList(publicacionService.obtenerPublicacionesPorUsuario(usuario)));
     }
 
+    /**
+     * Obtiene las publicaciones de una categoria
+     * @param categoria Categoria buscada
+     * @return Las publicaciones de una categoria
+     */
+    @GetMapping("/categoria/{categoria}")
+    public ResponseEntity<List<PublicacionBasicDTO>> obtenerPublicacionesPorCategoria(@PathVariable("categoria") Categoria categoria) {
+        return ResponseEntity.ok(publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionPorCategoria(categoria)));
+    }
 
     /**
     * Crea una nueva publicación
