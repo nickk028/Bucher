@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
+import './Register.css';
+import { AuthBox } from "../../elements/authbok/AuthBox";
+import { Input } from "../../elements/input/Input";
 
 
 export const Register = () => {
@@ -21,8 +24,8 @@ export const Register = () => {
                 credentials: "include"
             });
             if (respond.ok) {
-                await loginRequest(username, password); 
-                // Login automatico sin guardar respond      
+                await loginRequest(username, password);
+                // Login automatico sin guardar respond
                 navigate("/index");
             } else {
                 const text = await respond.text();
@@ -31,22 +34,18 @@ export const Register = () => {
         } catch (error) {
             setMessage("Error de conexión");
         }
-    }
+    };
 
-  return (
-    <div>
-        <form onSubmit={handleRegister}>
-            <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuario" />
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Contraseña" />
-            <input type="password" value={verificationPassword} onChange={e => setVerificationPassword(e.target.value)} placeholder="Confirmar Contraseña" />
-            <button type="submit">Registrarse</button>
-
-            {message && <p>{message}</p>}
-        </form>
-        <Link to="/login">
-            Tenes una cuenta? Inicia sesión
-        </Link>
-        
-    </div>
-  )
+    return (
+        <div className="body-register">
+			<AuthBox titulo="Registrarse" onSubmit={handleRegister}
+                linkExtra={
+                    <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
+                }>
+				<Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}>Nombre de usuario</Input>
+				<Input type="password" value={password} name="password" onChange={e => setPassword(e.target.value)}>Contraseña</Input>
+                <Input type="password" value={verificationPassword} name="verificationPassword" onChange={e => setVerificationPassword(e.target.value)}>Confirmar contraseña</Input>
+			</AuthBox>
+		</div>
+    );
 }

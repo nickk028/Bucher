@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
-import './Login.css';
 import { Link } from "react-router-dom";
+import './Login.css';
 import { AuthBox } from "../../elements/authbok/AuthBox";
 import { Input } from "../../elements/input/Input";
 
@@ -30,13 +30,14 @@ function Login() {
 
 	return (
 		<div className="body-login">
-			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin}>
+			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin}
+				linkExtra={
+						<Link to="/register">¿No tienes una cuenta? ¡Crea una!</Link>
+					}>
 				<Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}>Nombre de usuario</Input>
 				<Input type="password" value={password} name="password" onChange={e => setPassword(e.target.value)}>Contraseña</Input>
 			</AuthBox>
-			{message && <p>{message}</p>}
 		</div>
 	);
 }
-
 export default Login;

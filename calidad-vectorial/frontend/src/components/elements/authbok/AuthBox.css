@@ -1,7 +1,8 @@
 .auth-box {
     width: 50vw;
+    min-width: 300px;
     height: 94vh;
-    min-height: 500px;
+    min-height: 550px;
 
     position: absolute;
     right: 0;
@@ -41,6 +42,21 @@
     margin-top: 20px;
     display: flex;
     justify-content: flex-end;
+}
+
+.auth-box__link-extra {
+    font-family: "Sans Serif";
+    font-size: min(3.5vw, 1.3rem);
+    text-decoration: underline;
+    text-align: center;
+    color: #0E675F;
+    position: absolute;
+    bottom: clamp(50px, 15%, 25vh);
+    left: clamp(2%, 4%, 30px);
+}
+
+.auth-box__link-extra:hover {
+    color: #117c4c;
 }
 
 .auth-box__footer {
