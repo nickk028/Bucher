@@ -8,7 +8,7 @@ import './SobreNosotros.css';
 
 export const SobreNosotros = () => {
     return (
-        <main>
+        <div className='body-sobre-nosotros'>
             <section className="hero">
                 <div className="hero__content">
                     <h1 className="hero__title">Bücher</h1>
@@ -25,14 +25,6 @@ export const SobreNosotros = () => {
         </ButtonGroup>
 
         <Footer></Footer>
-    </main>
-    
-    /*
-    <div>
-        aboutus
-        <Link to="/login">
-            <button>Ir al Login</button>
-        </Link>
-    </div>*/
+    </div>
     )
 }
