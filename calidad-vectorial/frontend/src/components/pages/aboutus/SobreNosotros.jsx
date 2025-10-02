@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from "react-router-dom";
 import { Button } from '../../elements/buttons/Button';
 import { ButtonGroup } from '../../elements/buttons/ButtonGroup';
 import { Footer } from '../../elements/footer/Footer';
-import '../../elements/global.css'
+import '../../elements/global.css';
 import './SobreNosotros.css';
 
 export const SobreNosotros = () => {
@@ -20,8 +19,8 @@ export const SobreNosotros = () => {
                 <div className="hero__image"></div>
         </section>
         <ButtonGroup>
-            <Button variant='solapa' color='claro'><Link to="/login">Iniciar Sesión</Link></Button>
-            <Button variant='solapa' color='oscuro'><Link to="/register">Registrarse</Link></Button>
+            <Button variant='solapa' color='claro' to="/login">Iniciar Sesión</Button>
+            <Button variant='solapa' color='oscuro' to='/register'>Registrarse</Button>
         </ButtonGroup>
 
         <Footer></Footer>
