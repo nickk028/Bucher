@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
 import './Login.css';
 import { AuthBox } from "../../elements/authbok/AuthBox";
-import { Button } from "../../elements/buttons/Button";
+import { Input } from "../../elements/input/Input";
 
 function Login() {
 	const [username, setUsername] = useState("");
@@ -31,7 +30,10 @@ function Login() {
 	return (
 		<div className="body-login">
 			<AuthBox title="Iniciar sesión">
-				
+				<form className="body-login__form" onSubmit={handleLogin}>
+					<Input type="text" name="username">Nombre de usuario</Input>
+					<Input type="password" name="password">Contraseña</Input>
+				</form>
 			</AuthBox>
 		</div>
 

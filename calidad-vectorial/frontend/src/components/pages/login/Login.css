@@ -5,3 +5,7 @@
 
     position: relative;
 }
+
+.body-login__form {
+    width: 100%;
+}
