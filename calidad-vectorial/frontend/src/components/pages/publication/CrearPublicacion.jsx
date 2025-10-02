@@ -1,9 +1,11 @@
 import React from 'react'
+import { useState } from "react";
 
 export const CrearPublicacion = () => {
     const [titulo, setTitulo] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [limiteDias, setLimiteDias] = useState("");
+	const [message, setMessage] = useState("");
 
     const handleCrearPublicacion = async (e) => {
 		e.preventDefault();
@@ -15,19 +17,28 @@ export const CrearPublicacion = () => {
 				credentials: "include"
 			});
 
-			if (res.ok) {
-				onLogin(); // actualiza estado en App
-				const text = await res.text();
+			if (respond.ok) {
+				const text = await respond.text();
 				setMessage(text);
 			} else {
-				const text = await res.text();
+				const text = await respond.text();
 				setMessage(text);
 			}
-		} catch (err) {
+		} catch (error) {
 			setMessage("Error de conexión");
 		}
 	};
-  return (
-    <div>CrearPublicacion</div>
-  )
+	return (
+		<div>
+			<h1>Crear Publicacion</h1>
+			<form onSubmit={handleCrearPublicacion}>
+				<input type="text" value={titulo} onChange={e => setTitulo(e.target.value)} placeholder="Título" />
+				<input type="text" value={descripcion} onChange={e => setDescripcion(e.target.value)} placeholder="Descripción" />
+				<input type="number" value={limiteDias} onChange={e => setLimiteDias(e.target.value)} placeholder="Límite de Días" />
+				<button type="submit">Crear Publicación</button>
+
+				{message && <p>{message}</p>}
+			</form>
+		</div>
+	)
 }
