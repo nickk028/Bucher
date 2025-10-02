@@ -7,8 +7,13 @@ export const AuthBox = ({ children, title="Título del cuadro" }) => {
         <section className='auth-box'>
             <h1 className='auth-box__title'>{title}</h1>
             <div className='auth-box__content'>
-                {children}
-                <Button variant="default" color="oscuro">Aceptar</Button>
+                <div className='auth-box__content__inputs'>
+                    {children}
+                </div>
+
+                <div className='auth-box__content__button'>
+                    <Button variant="default" color="oscuro">Aceptar</Button>
+                </div>
             </div>
             <h1 className='auth-box__footer'>Bücher</h1>
         </section>
