@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
 import './Login.css';
+import { Link } from "react-router-dom";
 import { AuthBox } from "../../elements/authbok/AuthBox";
 import { Input } from "../../elements/input/Input";
 
@@ -29,27 +30,12 @@ function Login() {
 
 	return (
 		<div className="body-login">
-			<AuthBox title="Iniciar sesión">
-				<form className="body-login__form" onSubmit={handleLogin}>
-					<Input type="text" name="username">Nombre de usuario</Input>
-					<Input type="password" name="password">Contraseña</Input>
-				</form>
+			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin}>
+				<Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}>Nombre de usuario</Input>
+				<Input type="password" value={password} name="password" onChange={e => setPassword(e.target.value)}>Contraseña</Input>
 			</AuthBox>
+			{message && <p>{message}</p>}
 		</div>
-
-		/*
-		<div>
-			<form onSubmit={handleLogin}>
-				<input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Usuario" />
-				<input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Contraseña" />
-				<button type="submit">Ingresar</button>
-				
-				{message && <p>{message}</p>}
-			</form>
-			<Link to="/register">
-				No tenes una cuenta? Registrate
-			</Link>
-		</div>*/
 	);
 }
 
