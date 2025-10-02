@@ -1,0 +1,40 @@
+.auth-box {
+    width: 50vw;
+    height: 95vh;
+    min-height: 400px;
+    background-color: #f2f2f2;
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 1%;
+    border-radius: 10px;
+}
+
+.auth-box__title {
+    font-family: "Sans Serif";
+    font-size: 2.5rem;
+    color: #08413C;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.auth-box__content {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auth-box__footer {
+    font-family: "Handelson Three", cursive;
+    font-size: 5rem;
+    font-weight: 500;
+    color: #0E675F;
+
+    position: absolute;
+    bottom: 0;
+}
