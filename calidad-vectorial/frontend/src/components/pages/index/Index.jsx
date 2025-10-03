@@ -14,6 +14,10 @@ export const Index = () => {
             const text = await respond.text();
             setMessage(text);
         } catch (error) {
+            if (error.name === 'AbortError') {
+                console.log("Solicitud cancelada (" + error.message + ")");
+                return;
+            } 
             setMessage("Hubo un error: " + error.message);
         }
     }
