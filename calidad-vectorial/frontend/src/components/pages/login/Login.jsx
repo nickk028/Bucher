@@ -10,6 +10,7 @@ function Login() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [message, setMessage] = useState("");
+	let [isDisabled, setIsDisabled] = useState(false);
 	const navigate = useNavigate();
 
 	// Referencia al controller de la request activa
@@ -35,6 +36,8 @@ function Login() {
 		const controller = new AbortController();
 		controllerRef.current = controller; // guarda el controller en la referencia
 
+		setMessage("");
+		setIsDisabled(true);
 		// Realiza la petición de login
 		const respond = await loginRequest(username, password, controller.signal);
 
@@ -52,13 +55,14 @@ function Login() {
 			} finally {
 				// limpia la referencia si sigue apuntando al controller actual
 				if (controllerRef.current === controller) controllerRef.current = null;
+				setIsDisabled(false);
 			}
 		}
 	};
 
 	return (
 		<div className="body-login">
-			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin}
+			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin} isDisabled={isDisabled}
 				linkExtra={
 						<Link to="/register">¿No tienes una cuenta? ¡Crea una!</Link>
 					}>
