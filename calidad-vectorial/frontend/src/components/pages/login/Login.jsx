@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
 import { Link } from "react-router-dom";
@@ -12,9 +12,31 @@ function Login() {
 	const [message, setMessage] = useState("");
 	const navigate = useNavigate();
 
+	// Referencia al controller de la request activa
+	const controllerRef = useRef(null);
+
+	// cleanup: abort request activo si el componente se desmonta
+	useEffect(() => {
+		return () => {
+			if (controllerRef.current) { 
+				controllerRef.current.abort()
+			} 
+		};
+	}, []);
+
 	const handleLogin = async (evento) => {
 		evento.preventDefault();
-		const respond = await loginRequest(username, password);
+		// Aborta la request previa si existe
+		if (controllerRef.current) {
+			controllerRef.current.abort();
+			controllerRef.current = null;
+		}
+		// Nuevo controller para la nueva request
+		const controller = new AbortController();
+		controllerRef.current = controller; // guarda el controller en la referencia
+
+		// Realiza la petición de login
+		const respond = await loginRequest(username, password, controller.signal);
 
 		if (respond.ok) {
 			navigate("/index");
@@ -23,7 +45,13 @@ function Login() {
 				const text = await respond.text();
 				setMessage(text);
 			} catch (error) {
-				setMessage("Error de conexion");
+				// Si el fetch fue abortado no se muestra el error
+				if (error.name !== "AbortError") {
+					setMessage("Error de conexion: " + error.message);
+				}
+			} finally {
+				// limpia la referencia si sigue apuntando al controller actual
+				if (controllerRef.current === controller) controllerRef.current = null;
 			}
 		}
 	};
