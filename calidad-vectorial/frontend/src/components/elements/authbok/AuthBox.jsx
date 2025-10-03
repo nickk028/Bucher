@@ -2,7 +2,7 @@ import React from 'react'
 import './AuthBox.css';
 import { Button } from "../buttons/Button";
 
-export const AuthBox = ({ children, titulo="Título del cuadro", onSubmit, linkExtra }) => {
+export const AuthBox = ({ children, titulo="Título del cuadro", onSubmit, linkExtra, isDisabled }) => {
     return (
         <section className='auth-box'>
             <h1 className='auth-box__title'>{titulo}</h1>
@@ -11,7 +11,7 @@ export const AuthBox = ({ children, titulo="Título del cuadro", onSubmit, linkE
                     {children}
                 </div>
                 <div className='auth-box__content__button'>
-                    <Button variant="default" color="oscuro">Aceptar</Button>
+                    <Button variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
                 </div>
             </form>
             {linkExtra && (
@@ -20,6 +20,7 @@ export const AuthBox = ({ children, titulo="Título del cuadro", onSubmit, linkE
                 </div>
             )}
             <h1 className='auth-box__footer'>Bücher</h1>
+            <div className='auth-box__background-image'></div>
         </section>
     )
 }

@@ -1,5 +1,5 @@
 .auth-box {
-    width: 50vw;
+    width: 45vw;
     min-width: 300px;
     height: 94vh;
     min-height: 550px;
@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #f2f2f2d3;
+    background: #f2f2f2; /*f2f2f2d3*/
 
     margin-top: 3vh;
     margin-bottom: 3vh;
@@ -17,10 +17,27 @@
     box-sizing: border-box;
     border-radius: 30px;
     border: 5px solid #08413C;
+    z-index: 0;
+}
+
+.auth-box__background-image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    opacity: .07;
+
+    background-size: cover;
+    background-position: center;
+    background-image: url("../../../assets/img/logo.png");
+    z-index: -1;
 }
 
 .auth-box__title {
-    font-family: "Sans Serif";
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 2.7rem;
     text-align: center;
     color: #08413C;
@@ -45,23 +62,26 @@
 }
 
 .auth-box__link-extra {
-    font-family: "Sans Serif";
+    font-family: Arial, Helvetica, sans-serif;
     font-size: min(3.5vw, 1.3rem);
-    text-decoration: underline;
     text-align: center;
-    color: #0E675F;
+    color: #1a1a1a;
     position: absolute;
+    left: 0;
+    right: 0;
+    bottom: clamp(50px, 18%, 25vh);
+    /*
     bottom: clamp(50px, 15%, 25vh);
-    left: clamp(2%, 4%, 30px);
+    left: clamp(2%, 4%, 30px);*/
 }
 
-.auth-box__link-extra:hover {
+.auth-box__link-extra a:hover {
     color: #117c4c;
 }
 
 .auth-box__footer {
     font-family: "Handelson Three", cursive;
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 500;
     color: #0E675F;
 
