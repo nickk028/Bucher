@@ -38,7 +38,7 @@ export const Register = () => {
 
     return (
         <div className="body-register">
-			<AuthBox titulo="Registrarse" onSubmit={handleRegister}
+			<AuthBox titulo="Registrarse" onSubmit={handleRegister} isDisabled={true}
                 linkExtra={
                     <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
                 }>
