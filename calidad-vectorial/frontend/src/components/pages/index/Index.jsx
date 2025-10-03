@@ -17,7 +17,6 @@ export const Index = () => {
             if (error.name !== 'AbortError') {
                 setMessage("Hubo un error: " + error.message);
             } 
-            
         }
     }
 
