@@ -1,31 +1,33 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
 
 export const Index = () => {
-    const handleIndex = async (evento) => {
-        evento.preventDefault();
+    const [message, setMessage] = useState("");
+
+    const fetchPublicacion = async (signal) => {
         try {
             const respond = await fetch("http://localhost:8080/publicacion", {
                 method: "GET",
-                credentials: "include"
+                credentials: "include",
+                signal,
             });
-            if (respond.ok) {
-                const text = await respond.text();
-                setMessage(text);
-            } else {
-                const text = await respond.text();
-                setMessage(text);
-            }
+            const text = await respond.text();
+            setMessage(text);
         } catch (error) {
-            setMessage("Error de conexión");
+            setMessage("Hubo un error: " + error.message);
         }
-    } 
-    const ControlClickLibro = (id) => {
-        window.location.href = `http://localhost:8080/publicacion/${id}`;
     }
+
+    useEffect(() => {
+        const controller = new AbortController();
+        fetchPublicacion(controller.signal);
+        return () => controller.abort();
+    }, []);
+
   return (
     <div>
         <h1>Index</h1>
+        <p>{message}</p>
         <Link to="/crear-publicacion">Crear Nueva Publicación</Link>
     </div>
   )
