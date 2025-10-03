@@ -13,7 +13,7 @@ export const Register = () => {
     const [password, setPassword] = useState("");
     const [verificationPassword, setVerificationPassword] = useState("");
     const [message, setMessage] = useState("");
-    
+
     const handleRegister = async (evento) => {
         evento.preventDefault();
         try {
@@ -36,16 +36,41 @@ export const Register = () => {
         }
     };
 
+    let step = 3;
+
     return (
         <div className="body-register">
-			<AuthBox titulo="Registrarse" onSubmit={handleRegister} isDisabled={true}
+            {step === 1 && (
+                <AuthBox titulo="Registrarse" onSubmit={handleRegister} isDisabled={false}
                 linkExtra={
                     <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
                 }>
-				<Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}>Nombre de usuario</Input>
-				<Input type="password" value={password} name="password" onChange={e => setPassword(e.target.value)}>Contraseña</Input>
-                <Input type="password" value={verificationPassword} name="verificationPassword" onChange={e => setVerificationPassword(e.target.value)}>Confirmar contraseña</Input>
-			</AuthBox>
+                    <Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}>Email</Input>
+                    <Input type="password" value={password} name="password" onChange={e => setPassword(e.target.value)}>Contraseña</Input>
+                    <Input type="password" value={verificationPassword} name="verificationPassword" onChange={e => setVerificationPassword(e.target.value)}>Confirmar contraseña</Input>
+                </AuthBox>
+            )}
+
+            {step === 2 && (
+                <AuthBox titulo="Ya casi..." onSubmit={handleRegister} isDisabled={false}
+                linkExtra={
+                    <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
+                }>
+                    <Input type="text" value={username} name="nickname" onChange={e => setUsername(e.target.value)}>Nombre de usuario</Input>
+                    <Input type="text" value={password} name="fechaNacimiento" onChange={e => setPassword(e.target.value)}>Fecha de nacimiento</Input>
+                </AuthBox>
+            )}
+
+            {step === 3 && (
+                <AuthBox titulo="Lo último..." onSubmit={handleRegister} isDisabled={false}
+                linkExtra={
+                    <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
+                }>
+                    <Input type="text" value={username} name="direccion" onChange={e => setUsername(e.target.value)}>Dirección</Input>
+                    <Input type="text" value={password} name="piso" onChange={e => setPassword(e.target.value)}>Piso / Departamento</Input>
+                    <Input type="text" value={password} name="codigoPostal" onChange={e => setPassword(e.target.value)}>Código postal </Input>
+                </AuthBox>
+            )}
 		</div>
     );
 }

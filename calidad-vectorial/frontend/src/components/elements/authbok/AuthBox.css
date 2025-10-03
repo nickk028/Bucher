@@ -4,15 +4,13 @@
     height: 94vh;
     min-height: 550px;
 
-    position: absolute;
+    position: relative;
     right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: #f2f2f2; /*f2f2f2d3*/
 
-    margin-top: 3vh;
-    margin-bottom: 3vh;
     margin-right: 3vh;
     box-sizing: border-box;
     border-radius: 30px;
@@ -20,20 +18,22 @@
     z-index: 0;
 }
 
-.auth-box__background-image {
-    position: absolute;
-    height: 100%;
+.auth-box__background {
     width: 100%;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: .07;
-
-    background-size: cover;
-    background-position: center;
-    background-image: url("../../../assets/img/logo.png");
     z-index: -1;
+}
+
+.auth-box__background__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
 }
 
 .auth-box__title {
