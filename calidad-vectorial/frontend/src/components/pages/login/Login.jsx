@@ -40,7 +40,7 @@ function Login() {
 		setMessage("");
 		setIsDisabled(true);
 		// Realiza la petición de login
-		const respond = await loginRequest(username, password, controller.signal);
+		const respond = await loginRequest({username, password}, controller.signal);
 
 		if (respond.ok) {
 			navigate("/index");
@@ -65,7 +65,7 @@ function Login() {
 		<div className="body-login">
 			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin}
 				botonDer={
-					<Button variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
+					<Button type="submit" variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
 					}
 				linkExtra={
 						<Link to="/register">¿No tienes una cuenta? ¡Crea una!</Link>
