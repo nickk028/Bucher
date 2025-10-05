@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
@@ -19,10 +19,43 @@ export const Register = () => {
     const [codigoPostal, setcodigoPostal] = useState("");
 
     const [message, setMessage] = useState("");
-
     const [paso, setPaso] = useState(1);
+    const [isDisabled, setIsDisabled] = useState(true);
 
-    let isDisabled = false;
+    useEffect(() => {
+        switch (paso) {
+            case 1:
+                setIsDisabled(
+                    !username.trim() ||
+                    !password.trim() ||
+                    !verificationPassword.trim()
+                );
+                break;
+            case 2:
+                setIsDisabled(
+                    !nickname.trim() ||
+                    !fechaNacimiento.trim()
+                );
+                break;
+            case 3:
+                setIsDisabled(
+                    !direccion.trim() ||
+                    !codigoPostal.trim()
+                );
+                break;
+            default:
+                setIsDisabled(true);
+        }
+    }, [
+        paso,
+        username,
+        password,
+        verificationPassword,
+        nickname,
+        fechaNacimiento,
+        direccion,
+        codigoPostal
+    ]);
 
     const handleRegister = async (evento) => {
         evento.preventDefault();
@@ -39,6 +72,7 @@ export const Register = () => {
                 navigate("/index");
             } else {
                 const text = await respond.text();
+                setPaso(1);
                 setMessage(text);
             }
         } catch (error) {
@@ -68,10 +102,7 @@ export const Register = () => {
                     <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => setPaso(paso + 1)}>Siguiente</Button>
                 }
                 botonIzq={
-                    <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => setPaso(paso - 1)}>Atrás</Button>
-                }
-                linkExtra={
-                    <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
+                    <Button variant="default" color="oscuro" onClick={() => setPaso(paso - 1)}>Atrás</Button>
                 }>
                     <Input type="text" value={nickname} name="nickname" onChange={e => setNickname(e.target.value)}>Nombre de usuario</Input>
                     <Input type="text" value={fechaNacimiento} name="fechaNacimiento" onChange={e => setfechaNacimiento(e.target.value)}>Fecha de nacimiento</Input>
@@ -84,17 +115,13 @@ export const Register = () => {
                     <Button type='submit' variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
                 }
                 botonIzq={
-                    <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => setPaso(paso - 1)}>Atrás</Button>
-                }
-                linkExtra={
-                    <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
+                    <Button variant="default" color="oscuro" onClick={() => setPaso(paso - 1)}>Atrás</Button>
                 }>
                     <Input type="text" value={direccion} name="direccion" onChange={e => setDireccion(e.target.value)}>Dirección</Input>
                     <Input type="text" value={pisoDept} name="pisoDept" onChange={e => setPisoDept(e.target.value)}>Piso / Departamento</Input>
                     <Input type="text" value={codigoPostal} name="codigoPostal" onChange={e => setcodigoPostal(e.target.value)}>Código postal </Input>
                 </AuthBox>
             )}
-            {message && {message}}
 		</div>
     );
 }
