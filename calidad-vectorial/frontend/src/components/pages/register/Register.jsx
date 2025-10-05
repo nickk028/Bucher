@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
@@ -6,9 +6,11 @@ import './Register.css';
 import { AuthBox } from "../../elements/authbok/AuthBox";
 import { Button } from "../../elements/buttons/Button";
 import { Input } from "../../elements/input/Input";
+import { postData } from '../../utils/FetchUtils';
 
 export const Register = () => {
     const navigate = useNavigate();
+    const controllerRef = useRef(null);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [verificationPassword, setVerificationPassword] = useState("");
@@ -55,17 +57,35 @@ export const Register = () => {
         fechaNacimiento,
         direccion,
         codigoPostal
-    ]);
+    ]
+    );
+
+    // cleanup on unmount: abort any in-flight request
+    useEffect(() => {
+        return () => {
+            if (controllerRef.current) {
+                controllerRef.current.abort();
+            }
+        };
+    }, []);
 
     const handleRegister = async (evento) => {
         evento.preventDefault();
+        if (controllerRef.current) {
+			controllerRef.current.abort();
+			controllerRef.current = null;
+		}
+		// Nuevo controller para la nueva request
+		const controller = new AbortController();
+		controllerRef.current = controller; // guarda el controller en la referencia
+        setMessage("");
+
         try {
-            const respond = await fetch("http://localhost:8080/usuario/registrar", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password, verificationPassword }),
-                credentials: "include"
-            });
+            const respond = await postData("register", {
+                username, password, verificationPassword }, 
+                controller.signal
+            );
+
             if (respond.ok) {
                 await loginRequest(username, password);
                 // Login automatico sin guardar respond

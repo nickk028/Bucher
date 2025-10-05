@@ -1,16 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import { getData } from '../../utils/FetchUtils';
 
 export const Index = () => {
     const [message, setMessage] = useState("");
 
     const fetchPublicacion = async (signal) => {
         try {
-            const respond = await fetch("http://localhost:8080/publicacion", {
-                method: "GET",
-                credentials: "include",
-                signal,
-            });
+            const respond = await getData("publicacion", signal);
             const text = await respond.text();
             setMessage(text);
         } catch (error) {
