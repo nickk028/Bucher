@@ -14,6 +14,6 @@ export const postData = async (url, data, signal) => {
         body: JSON.stringify(data),
         credentials: "include",
         signal: signal
-    });          
+    });
     return respond;
 }
