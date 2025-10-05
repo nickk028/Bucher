@@ -1,17 +1,19 @@
-export const fetchData = async (url, metodos, data) => {
-    if (metodos == "GET" || metodos == "DELETE") {
+export const getData = async (url, signal) => {
     const respond = await fetch("http://localhost:8080/" + url, {
-        method: metodos,
+        method: "GET",
         credentials: "include",
-        signal: controller.signal
+        signal: signal
     });
-    } else if (metodos == "POST" || metodos == "PUT") {
+    return respond;
+}
+
+export const postData = async (url, data, signal) => {
     const respond = await fetch("http://localhost:8080/" + url, {
-        method: metodos,
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
         credentials: "include",
-        signal: controller.signal
-    });        
-    }
+        signal: signal
+    });          
+    return respond;
 }
