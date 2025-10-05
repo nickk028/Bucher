@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import '../global.css';
 import './Button.css';
 
-export const Button = ({ children, variant='solapa', color='claro', to, isDisabled }) => {
+export const Button = ({ children, type="button", variant='solapa', color='claro', to, isDisabled, onClick }) => {
     if (to) {
     return (
         <Link to={to} className={`btn btn--${variant} btn--${color}`}>{children}</Link>
         );
     }
     return (
-        <button type='submit' className={`btn btn--${variant} btn--${color}`} disabled={isDisabled}>{children}</button>
+        <button type={type} className={`btn btn--${variant} btn--${color}`} disabled={isDisabled} onClick={onClick}>{children}</button>
     )
 }
