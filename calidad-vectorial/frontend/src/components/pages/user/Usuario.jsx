@@ -1,25 +1,29 @@
-import React from 'react'
+import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef} from "react";
+import { getData } from '../../utils/FetchUtils';
 
-export const Usuario = () => {
-	const handleUsuario = async (evento) => {
-        evento.preventDefault();
+export const Usuario= () => {
+    const [message, setMessage] = useState("");
+
+    const fetchUsuario = async (signal) => {
         try {
-            const respond = await fetch("http://localhost:8080/usuario/propio", {
-                method: "GET",
-                credentials: "include"
-            });
-            if (respond.ok) {
-                const text = await respond.text();
-                setMessage(text);
-            } else {
-                const text = await respond.text();
-                setMessage(text);
-            }
+            const respond = await getData("usuario", signal);
+            const text = await respond.text();
+            setMessage(text);
         } catch (error) {
-            setMessage("Error de conexión");
+            if (error.name !== 'AbortError') {
+                setMessage("Hubo un error: " + error.message);
+            } 
         }
-    } 
-	return (
-		<div>user</div>
-	)
+    }
+
+    useEffect(() => {
+        const controller = new AbortController();
+        fetchUsuario(controller.signal);
+        return () => controller.abort();
+    }, []);
+
+  return (
+    <div>{message}</div>
+  );
 }
