@@ -1,6 +1,6 @@
 .auth-box {
     width: 45vw;
-    min-width: 300px;
+    min-width: 400px;
     height: 94vh;
     min-height: 550px;
 
@@ -58,7 +58,14 @@
 .auth-box__content__button {
     margin-top: 20px;
     display: flex;
+}
+
+.auth-box__content__button.uno {
     justify-content: flex-end;
+}
+
+.auth-box__content__button.dos {
+    justify-content: space-between;
 }
 
 .auth-box__link-extra {

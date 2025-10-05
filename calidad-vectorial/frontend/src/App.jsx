@@ -15,8 +15,8 @@ const App = () => {
 	return (
 		<Router>
 			<Routes>
-                <Route path="/" element={<SobreNosotros/>}/>            
-                <Route path="/login" element={<Login/>}/>             
+                <Route path="/" element={<SobreNosotros/>}/>
+                <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route element={<ProtectedRoute/>}>
                     <Route path="/index" element={<Index/>}/>
@@ -30,5 +30,4 @@ const App = () => {
 		</Router>
     );
 }
-
 export default App;

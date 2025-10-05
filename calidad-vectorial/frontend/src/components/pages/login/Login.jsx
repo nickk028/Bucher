@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import './Login.css';
 import { AuthBox } from "../../elements/authbok/AuthBox";
 import { Input } from "../../elements/input/Input";
+import { Button } from "../../elements/buttons/Button";
 
 function Login() {
 	const [username, setUsername] = useState("");
@@ -19,9 +20,9 @@ function Login() {
 	// cleanup: abort request activo si el componente se desmonta
 	useEffect(() => {
 		return () => {
-			if (controllerRef.current) { 
+			if (controllerRef.current) {
 				controllerRef.current.abort()
-			} 
+			}
 		};
 	}, []);
 
@@ -62,7 +63,10 @@ function Login() {
 
 	return (
 		<div className="body-login">
-			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin} isDisabled={isDisabled}
+			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin}
+				botonDer={
+					<Button variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
+					}
 				linkExtra={
 						<Link to="/register">¿No tienes una cuenta? ¡Crea una!</Link>
 					}>

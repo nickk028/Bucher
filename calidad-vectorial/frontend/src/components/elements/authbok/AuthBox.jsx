@@ -1,9 +1,9 @@
 import React from 'react'
 import './AuthBox.css';
-import { Button } from "../buttons/Button";
 import logo from "../../../assets/img/logo.png"
 
-export const AuthBox = ({ children, titulo="Título del cuadro", onSubmit, linkExtra, isDisabled }) => {
+export const AuthBox = ({ children, titulo="Título del cuadro", onSubmit, botonDer, botonIzq, linkExtra }) => {
+    const botones = botonIzq ? 'dos' : 'uno';
     return (
         <section className='auth-box'>
             <div className='auth-box__background'>
@@ -14,8 +14,9 @@ export const AuthBox = ({ children, titulo="Título del cuadro", onSubmit, linkE
                 <div className='auth-box__content__inputs'>
                     {children}
                 </div>
-                <div className='auth-box__content__button'>
-                    <Button variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
+                <div className={`auth-box__content__button ${botones}`}>
+                    {botonIzq}
+                    {botonDer}
                 </div>
             </form>
             {linkExtra && (

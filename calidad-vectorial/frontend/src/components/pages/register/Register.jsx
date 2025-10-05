@@ -4,15 +4,25 @@ import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
 import './Register.css';
 import { AuthBox } from "../../elements/authbok/AuthBox";
+import { Button } from "../../elements/buttons/Button";
 import { Input } from "../../elements/input/Input";
-
 
 export const Register = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [verificationPassword, setVerificationPassword] = useState("");
+    const [nickname, setNickname] = useState("");
+    const [fechaNacimiento, setfechaNacimiento] = useState("");
+    const [direccion, setDireccion] = useState("");
+    const [pisoDept, setPisoDept] = useState("");
+    const [codigoPostal, setcodigoPostal] = useState("");
+
     const [message, setMessage] = useState("");
+
+    const [paso, setPaso] = useState(1);
+
+    let isDisabled = false;
 
     const handleRegister = async (evento) => {
         evento.preventDefault();
@@ -36,12 +46,13 @@ export const Register = () => {
         }
     };
 
-    let step = 3;
-
     return (
         <div className="body-register">
-            {step === 1 && (
-                <AuthBox titulo="Registrarse" onSubmit={handleRegister} isDisabled={false}
+            {paso == 1 && (
+                <AuthBox titulo="Registrarse"
+                botonDer={
+                    <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => setPaso(paso + 1)}>Siguiente</Button>
+                }
                 linkExtra={
                     <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
                 }>
@@ -51,26 +62,39 @@ export const Register = () => {
                 </AuthBox>
             )}
 
-            {step === 2 && (
-                <AuthBox titulo="Ya casi..." onSubmit={handleRegister} isDisabled={false}
+            {paso == 2 && (
+                <AuthBox titulo="Ya casi..."
+                botonDer={
+                    <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => setPaso(paso + 1)}>Siguiente</Button>
+                }
+                botonIzq={
+                    <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => setPaso(paso - 1)}>Atrás</Button>
+                }
                 linkExtra={
                     <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
                 }>
-                    <Input type="text" value={username} name="nickname" onChange={e => setUsername(e.target.value)}>Nombre de usuario</Input>
-                    <Input type="text" value={password} name="fechaNacimiento" onChange={e => setPassword(e.target.value)}>Fecha de nacimiento</Input>
+                    <Input type="text" value={nickname} name="nickname" onChange={e => setNickname(e.target.value)}>Nombre de usuario</Input>
+                    <Input type="text" value={fechaNacimiento} name="fechaNacimiento" onChange={e => setfechaNacimiento(e.target.value)}>Fecha de nacimiento</Input>
                 </AuthBox>
             )}
 
-            {step === 3 && (
-                <AuthBox titulo="Lo último..." onSubmit={handleRegister} isDisabled={false}
+            {paso == 3 && (
+                <AuthBox titulo="Lo último..." onSubmit={handleRegister}
+                botonDer={
+                    <Button type='submit' variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
+                }
+                botonIzq={
+                    <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => setPaso(paso - 1)}>Atrás</Button>
+                }
                 linkExtra={
                     <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
                 }>
-                    <Input type="text" value={username} name="direccion" onChange={e => setUsername(e.target.value)}>Dirección</Input>
-                    <Input type="text" value={password} name="piso" onChange={e => setPassword(e.target.value)}>Piso / Departamento</Input>
-                    <Input type="text" value={password} name="codigoPostal" onChange={e => setPassword(e.target.value)}>Código postal </Input>
+                    <Input type="text" value={direccion} name="direccion" onChange={e => setDireccion(e.target.value)}>Dirección</Input>
+                    <Input type="text" value={pisoDept} name="pisoDept" onChange={e => setPisoDept(e.target.value)}>Piso / Departamento</Input>
+                    <Input type="text" value={codigoPostal} name="codigoPostal" onChange={e => setcodigoPostal(e.target.value)}>Código postal </Input>
                 </AuthBox>
             )}
+            {message && {message}}
 		</div>
     );
 }
