@@ -1,10 +1,10 @@
-//import "./FetchUtils";
-//import { fetchData } from "./FetchUtils";
+import { postData } from "./FetchUtils";
 
-export async function loginRequest(username, password, signal) {
+export async function loginRequest({ username, password }, signal) {
     try {
-        fetchData()
-        
+        const response = await postData("auth/login", { username, password }, signal);
+        return response;
+
     } catch (error) {
         return { ok: false, message: "Error de conexión" };
     }
