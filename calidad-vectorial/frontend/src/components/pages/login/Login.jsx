@@ -45,6 +45,9 @@ function Login() {
 
 		if (respond.ok) {
 			navigate("/index");
+		} 
+		else if (respond.message == "Error de conexión") {
+			setMessage("Error de conexión");
 		} else {
 			try {
 				const text = await respond.text();
@@ -52,7 +55,7 @@ function Login() {
 			} catch (error) {
 				// Si el fetch fue abortado no se muestra el error
 				if (error.name !== "AbortError") {
-					setMessage("Error de conexion: " + error.message);
+					setMessage("Error: " + error.message);
 				}
 			} finally {
 				// limpia la referencia si sigue apuntando al controller actual
@@ -64,9 +67,10 @@ function Login() {
 
 	return (
 		<div className="body-login">
-			<OjosAnimados />
+			<OjosAnimados mensajeError={message} />
 
 			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin}
+			
 				botonDer={
 					<Button type="submit" variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
 					}

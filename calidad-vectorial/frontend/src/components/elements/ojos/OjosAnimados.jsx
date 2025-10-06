@@ -3,7 +3,7 @@ import "./OjosAnimados.css";
 
 // Componente que renderiza tres rostros con ojos animados que siguen el cursor,
 // parpadean automáticamente y se cierran al interactuar con el campo de contraseña.
-export function OjosAnimados() {
+export function OjosAnimados({ mensajeError }) {
     const rostrosRef = useRef([]); // Referencias a los elementos DOM de los rostros
     const ojosInfoRef = useRef([]); // Información de posición de cada ojo
 
@@ -114,16 +114,26 @@ export function OjosAnimados() {
     }, []);
 
     // Renderiza los tres rostros con sus respectivos ojos
-    return (
-        <div className="rostros">
-            {[1, 2, 3].map((i, index) => (
-                <div key={i} className={`rostro rostro-${i}`} ref={el => rostrosRef.current[index] = el}>
-                    <div className="ojos">
-                        <div className="ojo"><div className="pupila"></div></div>
-                        <div className="ojo"><div className="pupila"></div></div>
-                    </div>
-                </div>
-            ))}
+    
+  return (
+    <div className="rostros">
+      {[1, 2, 3].map((i, index) => (
+        <div key={i} className={`rostro rostro-${i}`} ref={el => rostrosRef.current[index] = el}>
+            <div className="ojos">
+                <div className="ojo"><div className="pupila"></div></div>
+                <div className="ojo"><div className="pupila"></div></div>
+            </div>
+          
+            {/* Globo de texto si hay error */}  
+            {mensajeError && index === 1 && (
+            <div className="globo-error">
+                {mensajeError}
+            </div>
+            )}
+
+
         </div>
-    );
+      ))}
+    </div>
+  );
 }
