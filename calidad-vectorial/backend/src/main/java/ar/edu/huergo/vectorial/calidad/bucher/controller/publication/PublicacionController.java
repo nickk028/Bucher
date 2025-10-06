@@ -29,7 +29,6 @@ import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionSer
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController

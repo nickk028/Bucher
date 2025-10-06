@@ -3,6 +3,8 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,7 +15,6 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,9 +38,8 @@ public class LibroUsuario {
 
     // Estado de lectura del libro (Ej: "Leyendo", "Terminado", "Pendiente", etc.)
     @Column(nullable = false, length = 50)
-    @NotNull(message = "El estado es obligatorio.")
-    @Size(min = 2, max = 100, message = "La edición debe tener entre 2 y 100 digitos.")
-    private String estadoLectura;
+    @Enumerated(EnumType.STRING)
+    private EstadoLectura estadoLectura;
 
     // Puntuación que el usuario le da al libro (0 a 100)
     @Column(nullable = false)
