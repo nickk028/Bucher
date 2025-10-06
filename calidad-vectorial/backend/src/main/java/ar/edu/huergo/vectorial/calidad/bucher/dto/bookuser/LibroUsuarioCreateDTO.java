@@ -1,5 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -23,8 +24,7 @@ public class LibroUsuarioCreateDTO {
     private int paginaActual;
 
     // Estado de lectura del libro (Ej: "Leyendo", "Terminado", "Pendiente", etc.)
-    @Size(min = 2, max = 100, message = "El estado de lectura debe tener entre 2 y 100 digitos.")
-    private String estadoLectura;
+    private EstadoLectura estadoLectura;
 
     // Puntuación que el usuario le da al libro (0 a 100)
     @Min(value = 0, message = "La puntuacion no pueden ser negativas.")

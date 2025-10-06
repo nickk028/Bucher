@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.validation.Valid;
-
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.bookuser.LibroUsuarioMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.bookuser.BibliotecaService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.bookuser.LibroUsuarioService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/biblioteca")
@@ -68,6 +68,21 @@ public class BibliotecaController {
 
         return ResponseEntity.ok(
             libroUsuarioMapper.toDTO(bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaUsuario)));
+    }
+
+    /**
+     * Obtiene una lista de libroUsuario de la biblioteca del usuario autenticado por su estadoLectura
+     * @param estado El estadoLectura de los libroUsuario a obtener
+     * @param usuarioAutenticado El usuario autenticado
+     * @return La lista de libroUsuario del estadoLectura indicado
+     */
+    @GetMapping("/estado/{estadoLectura}")
+    public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerLibroUsuarioPorEstado(@PathVariable("estadoLectura") EstadoLectura estadoLectura,
+    @AuthenticationPrincipal UserDetails usuarioAutenticado) {
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
+
+        return ResponseEntity.ok(libroUsuarioMapper.toDTOList(bibliotecaService.obtenerLibrosPorEstado(bibliotecaUsuario, estadoLectura)));
     }
 
     /**

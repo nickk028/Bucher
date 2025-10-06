@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.persistence.EntityNotFoundException;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.BibliotecaRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.LibroUsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
+import jakarta.persistence.EntityNotFoundException;
 
 /**
  * Clase que maneja la lógica de Biblioteca
@@ -19,6 +21,9 @@ public class BibliotecaService {
 
     @Autowired
     private BibliotecaRepository bibliotecaRepository;
+
+    @Autowired
+    private LibroUsuarioRepository libroUsuarioRepository;
 
     @Autowired
     private LibroService libroService;
@@ -53,7 +58,7 @@ public class BibliotecaService {
      * Obtiene el LibroUsuario según su posición en la Biblioteca
      * @param posicion La posición del LibroUsuario
      * @param biblioteca La Biblioteca ingresada
-     * @return EL LibroUsuario encontrado
+     * @return El LibroUsuario encontrado
      * @throws EntityNotFoundException No encuentra el LibroUsuario
      */
     public LibroUsuario obtenerLibroUsuarioPorPosicion(int posicion, Biblioteca biblioteca) throws EntityNotFoundException {
@@ -62,6 +67,16 @@ public class BibliotecaService {
             throw new EntityNotFoundException("Libro usuario no encontrado");
         }
         return biblioteca.getLibrosUsuario().get(posicion - 1);
+    }
+
+    /**
+     * Obtiene una lista de LibroUsuario filtrado por EstadoLectura
+     * @param biblioteca La Biblioteca ingresada
+     * @param estado El EstadoLectura ingresado
+     * @return La lista de LibroUsuario de un EstadoLectura
+     */
+    public List<LibroUsuario> obtenerLibrosPorEstado(Biblioteca biblioteca, EstadoLectura estado) {
+        return libroUsuarioRepository.findByBibliotecaAndEstadoLectura(biblioteca, estado);
     }
 
     /**

@@ -1,5 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -23,7 +24,7 @@ public class LibroUsuarioResponseDTO {
     private int paginaActual;
 
     // Estado de lectura del libro (Ej: "Leyendo", "Terminado", "Pendiente", etc.)
-    private String estadoLectura;
+    private EstadoLectura estadoLectura;
 
     // Puntuación que el usuario le da al libro (0 a 100)
     private int puntuacion;

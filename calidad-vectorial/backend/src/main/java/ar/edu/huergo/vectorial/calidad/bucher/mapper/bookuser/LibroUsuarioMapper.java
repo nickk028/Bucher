@@ -35,13 +35,7 @@ public class LibroUsuarioMapper {
      */
     public LibroUsuario toEntity(LibroUsuarioUpdateDTO libroUsuarioUpdateDTO) {
         LibroUsuario libroUsuario = new LibroUsuario();
-
-        if (libroUsuarioUpdateDTO.getEstadoLectura() == null || libroUsuarioUpdateDTO.getEstadoLectura().isEmpty()) {
-            libroUsuario.setEstadoLectura("nada");
-        }
-        else {
-            libroUsuario.setEstadoLectura(libroUsuarioUpdateDTO.getEstadoLectura());
-        }
+        libroUsuario.setEstadoLectura(libroUsuarioUpdateDTO.getEstadoLectura());
         libroUsuario.setPaginaActual(libroUsuarioUpdateDTO.getPaginaActual());
         libroUsuario.setPuntuacion(libroUsuarioUpdateDTO.getPuntuacion());
 
