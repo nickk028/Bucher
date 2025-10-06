@@ -1,14 +1,14 @@
 .rostro {
     background: #fffaf2;
     border-radius: 5px 1.5rem 1.5rem 5px;
-    /*
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);*/
+    /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);*/
     box-shadow: 4px 2px 1px;
 
     width: clamp(140px, 16vw, 200px);
     height: auto;
     box-sizing: border-box;
 
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -111,6 +111,7 @@
 .rostro__content {
     height: 50%;
     display: flex;
+    justify-content: center;
     align-items: flex-end;
 }
 
@@ -119,4 +120,43 @@
     font-size: 5rem;
     font-weight: 500;
     color: currentColor;
+}
+
+.rostro__globo {
+    position: absolute;
+    top: -50%;
+    left: 0;
+    right: 0;
+    background: #f2f2f2;
+    border: 2px solid #1a1a1a;
+    border-radius: 1rem;
+    padding: 10px;
+    animation: globo-aparecer 450ms ease-out;
+}
+
+@keyframes globo-aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(25%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.rostro__globo__texto {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8rem;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+.rostro__globo__punta {
+    position: absolute;
+    justify-self: center;
+    bottom: -13%;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 14px solid #1a1a1a;
 }
