@@ -6,7 +6,7 @@ import './Login.css';
 import { AuthBox } from "../../elements/authbok/AuthBox";
 import { Input } from "../../elements/input/Input";
 import { Button } from "../../elements/buttons/Button";
-import { OjosAnimados } from "../../elements/Ojos/OjosAnimados";
+import { OjosAnimados } from "../../elements/OjosAnimados";
 
 function Login() {
 	const [username, setUsername] = useState("");
