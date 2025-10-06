@@ -111,7 +111,8 @@ export const LibroAnimado = ({ children, variant = "medio", color, mensaje, most
         const manejarEspiarPassword = () => {
             //Bloquea el parpadeo
             parpadeoBloqueadoRef.current = true;
-
+            ojo1.classList.add("rostro__ojo--cerrado");
+            ojo2.classList.add("rostro__ojo--cerrado");
             // Probabilidad de chusmear (50% de probabilidad)
             const probChusmear = Math.random();
             // Probabilidad de abrir cada ojo (50% de probabilidad)
