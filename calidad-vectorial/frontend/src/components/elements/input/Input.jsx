@@ -17,21 +17,23 @@ export const Input = ({ children, type, name, value, onChange, onFocus, onBlur }
             inputRef.current.focus(); 
         }
 
-        if (inputType == "password") {
-            // Chusmea la contraseña 
-            window.dispatchEvent(new Event("passwordPeek"));
-        } 
-        if (inputType == "text") {
-            // Cierra los ojos
-            window.dispatchEvent(new Event("passwordFocus"));
-        } 
+            if (inputType === "password") {
+                // Chusmea la contraseña 
+                window.dispatchEvent(new Event("passwordPeek"));
+            } 
+            if (inputType === "text") {
+                // Cierra los ojos
+                window.dispatchEvent(new Event("passwordFocus"));
+            }
     };
 
     const inputType = type == "password" && showPassword ? "text" : type;
     return (
         <div className='input-group'>
             <input className={`input-group__input input-group__input--${type}`} onChange={onChange} ref={inputRef}
-            onFocus={() => {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} else {window.dispatchEvent(new Event("passwordFocus"));}}}
+            onFocus={() => {
+                if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} else {window.dispatchEvent(new Event("passwordFocus"))};}
+            }}
             onBlur={onBlur} name={name} id={name} type={inputType} value={value} required />
             
             <label className='input-group__label' htmlFor={name}> {children} </label>
