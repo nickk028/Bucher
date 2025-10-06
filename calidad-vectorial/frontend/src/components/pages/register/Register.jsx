@@ -81,13 +81,13 @@ export const Register = () => {
         setMessage("");
 
         try {
-            const respond = await postData("register", {
-                username, password, verificationPassword }, 
+            const respond = await postData("usuario/registrar", {
+                username, password, verificationPassword },
                 controller.signal
             );
 
             if (respond.ok) {
-                await loginRequest(username, password);
+                await loginRequest({username, password});
                 // Login automatico sin guardar respond
                 navigate("/index");
             } else {
