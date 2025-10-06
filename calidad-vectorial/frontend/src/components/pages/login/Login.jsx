@@ -109,7 +109,7 @@ function Login() {
 						<Link to="/register">¿No tienes una cuenta? ¡Crea una!</Link>
 					}>
 				<Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}>Nombre de usuario</Input>
-				<Input type="password" value={password} name="password" onChange={(e) => setPassword(e.target.value)} onFocus={() => window.dispatchEvent(new Event("passwordFocus"))} onBlur={() => window.dispatchEvent(new Event("passwordBlur"))}>Contraseña</Input>
+				<Input type="password" value={password} name="password" onChange={(e) => setPassword(e.target.value)}>Contraseña</Input>
 			</AuthBox>
 		</div>
 	);

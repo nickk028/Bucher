@@ -7,6 +7,7 @@ import { AuthBox } from "../../elements/authbok/AuthBox";
 import { Button } from "../../elements/buttons/Button";
 import { Input } from "../../elements/input/Input";
 import { postData } from '../../utils/FetchUtils';
+import { LibroAnimado } from '../../elements/ojos/LibroAnimado';
 
 export const Register = () => {
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ export const Register = () => {
     const [message, setMessage] = useState("");
     const [paso, setPaso] = useState(1);
     const [isDisabled, setIsDisabled] = useState(true);
+    const [ojoQueHabla, setOjoQueHabla] = useState(null);
 
     useEffect(() => {
         switch (paso) {
@@ -94,14 +96,28 @@ export const Register = () => {
                 const text = await respond.text();
                 setPaso(1);
                 setMessage(text);
+                setOjoQueHabla(Math.floor(Math.random() * 3));
             }
+            setOjoQueHabla(Math.floor(Math.random() * 3));
         } catch (error) {
             setMessage("Error de conexión");
+            setOjoQueHabla(Math.floor(Math.random() * 3));
         }
     };
 
     return (
         <div className="body-register">
+            <div className="body-login__grupo-ojos">
+                <LibroAnimado variant="grande" color="rojo" mensaje={message} mostrarMensaje={ojoQueHabla === 0}>
+                    Bü
+                </LibroAnimado>
+                <LibroAnimado variant="chico" color="azul" mensaje={message} mostrarMensaje={ojoQueHabla === 1}>
+                    ch
+                </LibroAnimado>
+                <LibroAnimado variant="medio" color="amarillo" mensaje={message} mostrarMensaje={ojoQueHabla === 2}>
+                    er
+                </LibroAnimado>
+            </div>
             {paso == 1 && (
                 <AuthBox titulo="Registrarse"
                 botonDer={
