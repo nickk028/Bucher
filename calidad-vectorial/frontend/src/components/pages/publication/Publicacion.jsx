@@ -1,25 +1,56 @@
-import React from 'react'
+import { Link, useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { getData } from '../../utils/FetchUtils';
 
 export const Publicacion = () => {
-    const handlePublicacion = async (evento) => {
-        evento.preventDefault();
+    const [error, setError] = useState("");
+    const { id } = useParams();
+    const [publicacion, setPublicacion] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const fetchPublicacion = async (signal, id) => {
         try {
-            const respond = await fetch("http://localhost:8080/publicacion/${id}", {
-                method: "GET",
-                credentials: "include"
-            });
+            setLoading(true);
+            const respond = await getData("publicacion/" + id, signal);
             if (respond.ok) {
-                const text = await respond.text();
-                setMessage(text);
+                const data = await respond.json();
+                setPublicacion(data);
+                
             } else {
-                const text = await respond.text();
-                setMessage(text);
+                setError("Error al obtener la publicación");
             }
-        } catch (error) {
-            setMessage("Error de conexión");
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                setError("Hubo un error: " + err.message);
+            } 
+        } finally {
+            setLoading(false);
         }
-    } 
+    }
+
+    useEffect(() => {
+        if (!id) {
+            setError("ID no proporcionado");
+            setLoading(false);
+            return;
+        }
+        const controller = new AbortController();
+        fetchPublicacion(controller.signal, id);
+        return () => controller.abort();
+    }, [id]);
+
   return (
-    <div>publication</div>
+    <div>
+        <h1>Publicacion</h1>
+        {loading && <p>Cargando...</p>}
+        {publicacion && !loading && (
+            <div>
+                <h2>{publicacion.titulo}</h2>
+                <p>{publicacion.descripcion}</p>
+                <p>{error}</p>
+            </div>
+        )}
+        <Link to="/index">Index</Link>
+    </div>
   )
 }
