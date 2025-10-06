@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import "./OjoAnimado.css";
+import "./OjosAnimado.css";
 
-export const OjoAnimado = ({ children, variant="medio", color }) => {
+export const OjosAnimado = ({ children, variant="medio", color, mensaje, mostrarMensaje }) => {
     const ojoRef = useRef(null);
     const pupilaRef = useRef(null);
     const ojoRef2 = useRef(null);
@@ -95,6 +95,12 @@ export const OjoAnimado = ({ children, variant="medio", color }) => {
 
     return (
         <div className={`rostro rostro--${variant} rostro--${color}`}>
+            {mostrarMensaje && mensaje && (
+                <div className="rostro__globo">
+                    <p className="rostro__globo__texto">{mensaje}</p>
+                    <div className="rostro__globo__punta"></div>
+                </div>
+            )}
             <div className="rostro__ojos">
                 <div className="rostro__ojo rostro__ojo--izquierdo" ref={ojoRef}>
                     <div className="rostro__pupila" ref={pupilaRef}></div>
