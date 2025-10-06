@@ -34,7 +34,9 @@ export const Input = ({ children, type, name, value, onChange, onFocus, onBlur }
             onFocus={() => {
                 if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} else {window.dispatchEvent(new Event("passwordFocus"))};}
             }}
-            onBlur={onBlur} name={name} id={name} type={inputType} value={value} required />
+            onBlur={ () => {
+                if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}}} 
+            name={name} id={name} type={inputType} value={value} required />
             
             <label className='input-group__label' htmlFor={name}> {children} </label>
 
