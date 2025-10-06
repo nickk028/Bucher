@@ -6,7 +6,7 @@ import './Login.css';
 import { AuthBox } from "../../elements/authbok/AuthBox";
 import { Input } from "../../elements/input/Input";
 import { Button } from "../../elements/buttons/Button";
-import { OjosAnimado } from "../../elements/ojos/OjosAnimado";
+import { LibroAnimado } from "../../elements/ojos/LibroAnimado";
 
 function Login() {
 	const [username, setUsername] = useState("");
@@ -90,15 +90,15 @@ function Login() {
 	return (
 		<div className="body-login">
 			<div className="body-login__grupo-ojos">
-				<OjosAnimado variant="grande" color="rojo" mensaje={message} mostrarMensaje={ojoQueHabla === 0}>
+				<LibroAnimado variant="grande" color="rojo" mensaje={message} mostrarMensaje={ojoQueHabla === 0}>
 					Bü
-				</OjosAnimado>
-				<OjosAnimado variant="chico" color="azul" mensaje={message} mostrarMensaje={ojoQueHabla === 1}>
+				</LibroAnimado>
+				<LibroAnimado variant="chico" color="azul" mensaje={message} mostrarMensaje={ojoQueHabla === 1}>
 					ch
-				</OjosAnimado>
-				<OjosAnimado variant="medio" color="amarillo" mensaje={message}	mostrarMensaje={ojoQueHabla === 2}>
+				</LibroAnimado>
+				<LibroAnimado variant="medio" color="amarillo" mensaje={message} mostrarMensaje={ojoQueHabla === 2}>
 					er
-				</OjosAnimado>
+				</LibroAnimado>
 			</div>
 
 			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin}
