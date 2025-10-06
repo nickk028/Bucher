@@ -6,6 +6,7 @@ import './Login.css';
 import { AuthBox } from "../../elements/authbok/AuthBox";
 import { Input } from "../../elements/input/Input";
 import { Button } from "../../elements/buttons/Button";
+import { OjosAnimados } from "../../elements/Ojos/OjosAnimados";
 
 function Login() {
 	const [username, setUsername] = useState("");
@@ -63,6 +64,8 @@ function Login() {
 
 	return (
 		<div className="body-login">
+			<OjosAnimados />
+
 			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin}
 				botonDer={
 					<Button variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
@@ -71,7 +74,8 @@ function Login() {
 						<Link to="/register">¿No tienes una cuenta? ¡Crea una!</Link>
 					}>
 				<Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}>Nombre de usuario</Input>
-				<Input type="password" value={password} name="password" onChange={e => setPassword(e.target.value)}>Contraseña</Input>
+				<Input type="password" value={password} name="password" onChange={(e) => setPassword(e.target.value)} onFocus={() => window.dispatchEvent(new Event("passwordFocus"))} onBlur={() => window.dispatchEvent(new Event("passwordBlur"))}>Contraseña</Input>
+
 			</AuthBox>
 		</div>
 	);

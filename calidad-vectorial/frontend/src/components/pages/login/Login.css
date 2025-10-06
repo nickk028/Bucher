@@ -2,10 +2,10 @@
     width: 100%;
     height: 100vh;
     min-height: calc(500px + 3vh);
-    background-image: url("../../../assets/img/principito.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: flex-end;
+    gap: 20rem;
     align-items: center;
 }
