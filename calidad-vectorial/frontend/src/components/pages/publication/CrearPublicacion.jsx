@@ -1,5 +1,5 @@
-import React from 'react'
 import { useState, useEffect, useRef } from "react";
+import { postData } from "../../utils/FetchUtils";
 
 export const CrearPublicacion = () => {
     const [titulo, setTitulo] = useState("");
@@ -33,14 +33,9 @@ export const CrearPublicacion = () => {
 		setMessage("");
 		setIsDisabled(true);
 		try {
-			const respond = await fetch("http://localhost:8080/publicacion/crear", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ titulo, descripcion, limiteDias }),
-				credentials: "include"
-				,signal: controller.signal
-			});
-
+			const respond = await postData("publicacion", 
+				{ titulo, descripcion, limiteDias: parseInt(limiteDias) }, 
+				controller.signal);
 			if (respond.ok) {
 				const text = await respond.text();
 				setMessage(text);
