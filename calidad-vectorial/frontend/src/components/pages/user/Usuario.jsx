@@ -7,7 +7,7 @@ export const Usuario= () => {
 
     const fetchUsuario = async (signal) => {
         try {
-            const respond = await getData("usuario", signal);
+            const respond = await getData("usuario/propio", signal);
             const text = await respond.text();
             setMessage(text);
         } catch (error) {
