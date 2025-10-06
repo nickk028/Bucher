@@ -111,10 +111,21 @@ export const LibroAnimado = ({ children, variant = "medio", color, mensaje, most
         const manejarEspiarPassword = () => {
             //Bloquea el parpadeo
             parpadeoBloqueadoRef.current = true;
-            
-            // Abre solo el ojo izquierdo
-            ojo1.classList.remove("rostro__ojo--cerrado");
-            ojo2.classList.add("rostro__ojo--cerrado");
+
+            // Probabilidad de chusmear (50% de probabilidad)
+            const probChusmear = Math.random();
+            // Probabilidad de abrir cada ojo (50% de probabilidad)
+            const probOjo = Math.random();
+
+            if (probChusmear  < 0.5) {
+                if (probOjo < 0.5) {
+                    ojo1.classList.remove("rostro__ojo--cerrado");
+                    ojo2.classList.add("rostro__ojo--cerrado");
+                } else {
+                    ojo1.classList.add("rostro__ojo--cerrado");
+                    ojo2.classList.remove("rostro__ojo--cerrado");
+                }
+            }
         };
 
 
