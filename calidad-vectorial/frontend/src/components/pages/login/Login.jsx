@@ -7,6 +7,7 @@ import { AuthBox } from "../../elements/authbok/AuthBox";
 import { Input } from "../../elements/input/Input";
 import { Button } from "../../elements/buttons/Button";
 import { OjosAnimados } from "../../elements/ojos/OjosAnimados";
+import { OjoAnimado } from "../../elements/ojos/OjoAnimado";
 
 function Login() {
 	const [username, setUsername] = useState("");
@@ -67,7 +68,11 @@ function Login() {
 
 	return (
 		<div className="body-login">
-			<OjosAnimados mensajeError={message} />
+			<div className="body-login__grupo-ojos">
+				<OjoAnimado variant="grande" color="rojo">Bü</OjoAnimado>
+				<OjoAnimado variant="chico" color="azul">ch</OjoAnimado>
+				<OjoAnimado variant="medio" color="amarillo">er</OjoAnimado>
+			</div>
 
 			<AuthBox titulo="Iniciar sesión" onSubmit={handleLogin}
 			
