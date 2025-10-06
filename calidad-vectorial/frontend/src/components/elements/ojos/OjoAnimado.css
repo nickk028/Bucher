@@ -1,0 +1,122 @@
+.rostro {
+    background: #fffaf2;
+    border-radius: 5px 1.5rem 1.5rem 5px;
+    /*
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);*/
+    box-shadow: 4px 2px 1px;
+
+    width: clamp(140px, 16vw, 200px);
+    height: auto;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    animation: rostro-flotar 4s ease-in-out infinite;
+}
+
+@keyframes rostro-flotar {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.rostro--rojo {
+    background: #db1515;
+    color: #a40f0f;
+}
+
+.rostro--rojo .rostro__parpado {
+    background: #a40f0f;
+}
+
+.rostro--amarillo {
+    background: #f3f346;
+    color: #9f9f2e;
+}
+
+.rostro--amarillo .rostro__parpado {
+    background: #9f9f2e;
+}
+
+.rostro--azul {
+    background: #5b6df6;
+    color: #3c49a6;
+}
+
+.rostro--azul .rostro__parpado {
+    background: #3c49a6;
+}
+
+.rostro--grande {
+    aspect-ratio: 2/3;
+}
+
+.rostro--medio {
+    aspect-ratio: 4/5;
+}
+
+.rostro--chico {
+    aspect-ratio: 1;
+}
+
+.rostro__ojos {
+    height: 50%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.rostro__ojo {
+    width: 40px;
+    height: 40px;
+    background: #f2f2f2;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.rostro__pupila {
+    width: 14px;
+    height: 14px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    transition: all 0.1s ease;
+}
+
+.rostro__parpado {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border-radius: 50%;
+    transition: height 0.15s ease;
+    pointer-events: none;
+}
+
+.rostro__ojo--cerrado .rostro__parpado {
+    height: 100%;
+}
+
+.rostro__content {
+    height: 50%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.rostro__content__text {
+    font-family: "Handelson Three", cursive;;
+    font-size: 5rem;
+    font-weight: 500;
+    color: currentColor;
+}
