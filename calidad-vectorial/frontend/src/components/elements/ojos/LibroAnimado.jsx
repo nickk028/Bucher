@@ -11,6 +11,7 @@ export const LibroAnimado = ({ children, variant = "medio", color, mensaje, most
     const pupilaRef = useRef(null);
     const ojoRef2 = useRef(null);
     const pupilaRef2 = useRef(null);
+    const estaParpadeandoRef = useRef(false);
 
     // Estado para controlar si los ojos están cerrados
     const ojosCerradosRef = useRef(false);
@@ -77,8 +78,12 @@ export const LibroAnimado = ({ children, variant = "medio", color, mensaje, most
             ojo1.classList.add("rostro__ojo--cerrado");
             ojo2.classList.add("rostro__ojo--cerrado");
             setTimeout(() => {
-                ojo1.classList.remove("rostro__ojo--cerrado");
-                ojo2.classList.remove("rostro__ojo--cerrado");
+                // Chequea si los ojos deben permanecer cerrados
+                estaParpadeandoRef.current = false;
+                if (!ojosCerradosRef.current) {
+                    ojo1.classList.remove("rostro__ojo--cerrado");
+                    ojo2.classList.remove("rostro__ojo--cerrado");
+                }
             }, 150);
         };
 
@@ -94,9 +99,11 @@ export const LibroAnimado = ({ children, variant = "medio", color, mensaje, most
 
         // Abre los ojos al perder el foco del campo de contraseña
         const manejarBlurPassword = () => {
-            ojosCerradosRef.current = false;
-            ojo1.classList.remove("rostro__ojo--cerrado");
-            ojo2.classList.remove("rostro__ojo--cerrado");
+            if (!estaParpadeandoRef.current) {
+                ojosCerradosRef.current = false;
+                ojo1.classList.remove("rostro__ojo--cerrado");
+                ojo2.classList.remove("rostro__ojo--cerrado");
+            }
         };
 
         // Listeners para movimiento del mouse y eventos personalizados
