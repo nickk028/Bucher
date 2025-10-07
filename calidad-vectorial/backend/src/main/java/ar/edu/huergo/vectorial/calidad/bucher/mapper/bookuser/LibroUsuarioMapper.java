@@ -35,6 +35,8 @@ public class LibroUsuarioMapper {
      */
     public LibroUsuario toEntity(LibroUsuarioUpdateDTO libroUsuarioUpdateDTO) {
         LibroUsuario libroUsuario = new LibroUsuario();
+
+        libroUsuario.setId(libroUsuarioUpdateDTO.getId());
         libroUsuario.setEstadoLectura(libroUsuarioUpdateDTO.getEstadoLectura());
         libroUsuario.setPaginaActual(libroUsuarioUpdateDTO.getPaginaActual());
         libroUsuario.setPuntuacion(libroUsuarioUpdateDTO.getPuntuacion());
@@ -52,6 +54,7 @@ public class LibroUsuarioMapper {
             return null;
         }
         LibroUsuarioResponseDTO libroUsuarioResponseDTO = new LibroUsuarioResponseDTO();
+        libroUsuarioResponseDTO.setId(libroUsuario.getId());
         libroUsuarioResponseDTO.setTitulo(libroUsuario.getLibro().getTitulo());
         libroUsuarioResponseDTO.setEstadoLectura(libroUsuario.getEstadoLectura());
         libroUsuarioResponseDTO.setPaginaActual(libroUsuario.getPaginaActual());

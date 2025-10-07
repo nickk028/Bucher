@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.publication;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
@@ -12,6 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 public class PublicacionUpdateDTO {
+    // Id
+    @Id
+    private Long id;
 
     // Descripción de la publicación
     @Size(min = 5, max = 255)

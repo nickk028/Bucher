@@ -3,6 +3,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.dto.publication;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -12,6 +13,10 @@ import lombok.Data;
 
 @Data
 public class PublicacionBasicDTO {
+    // Id
+    @Id
+    private Long id;
+
     // Título del libro
     @NotBlank(message = "El libro es obligatorio.")
     @Size(min = 2, max = 100, message = "El libro debe tener entre 2 y 100 digitos.")
