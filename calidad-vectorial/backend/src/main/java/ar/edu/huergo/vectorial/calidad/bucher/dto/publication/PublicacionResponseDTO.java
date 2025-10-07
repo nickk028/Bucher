@@ -6,6 +6,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,6 +22,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 @EqualsAndHashCode(callSuper = true)
 public class PublicacionResponseDTO extends PublicacionDTO {
+    // Id
+    @Id
+    private Long id;
     
     // Nombre del usuario
     @NotBlank(message = "El username es obligatorio.")

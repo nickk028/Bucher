@@ -1,0 +1,41 @@
+.card {
+    width: 400px;
+    height: 250px;
+    background: #ffffff;
+
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px #969696;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.card__image {
+    width: 40%;
+    height: auto;
+}
+
+.card__list {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card__list__item {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__list__item__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0E675F;
+}
+
+.card__list__item__subtitle {
+    color: #929292;
+    text-shadow: 1px 1px 2px #d1d1d1;
+}

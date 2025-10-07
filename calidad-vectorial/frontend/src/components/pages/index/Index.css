@@ -1,0 +1,19 @@
+.body-index {
+    display: flex;
+}
+
+.body-index__content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.body-index__content__pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.body-index__content__pub-list__item {
+    width: fit-content;
+}

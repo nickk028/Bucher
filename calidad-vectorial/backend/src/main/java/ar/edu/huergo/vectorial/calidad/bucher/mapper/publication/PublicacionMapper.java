@@ -73,6 +73,7 @@ public class PublicacionMapper {
         }
         PublicacionResponseDTO publicacionResponseDTO = new PublicacionResponseDTO();
 
+        publicacionResponseDTO.setId(publicacion.getId());
         publicacionResponseDTO.setTitulo(publicacion.getLibro().getTitulo());
         publicacionResponseDTO.setDescripcion(publicacion.getDescripcion());
         publicacionResponseDTO.setLimiteDias(publicacion.getLimiteDias());
@@ -94,6 +95,7 @@ public class PublicacionMapper {
         }
         PublicacionBasicDTO publicacionBasicDTO = new PublicacionBasicDTO();
 
+        publicacionBasicDTO.setId(publicacion.getId());
         publicacionBasicDTO.setTitulo(publicacion.getLibro().getTitulo());
         publicacionBasicDTO.setUsuarioNickname(publicacion.getUsuario().getNickname());
         publicacionBasicDTO.setEstadoPublicacion(publicacion.getEstadoPublicacion());
