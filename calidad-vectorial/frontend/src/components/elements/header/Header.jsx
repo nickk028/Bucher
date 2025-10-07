@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from '../../../assets/img/logo.png';
-import logoBucher from '../../../assets/img/logos/logoBucher.png';
 import logoTendencias from '../../../assets/img/logos/logoTendencias.png';
 import logoCrear from '../../../assets/img/logos/logoCrear.png';
 import logoLibro from '../../../assets/img/logos/logoLibro.png';
@@ -12,7 +10,7 @@ const Header = () => {
         <header className="header">
             <div className="header__space"></div>
             <nav className="header__nav">
-                <Link to="/index"><img src={logoBucher} alt="Logo de Bücher" className="nav__img" /></Link>
+                <Link to="/index"><div alt="Logo de Bücher" className="nav__bucher" /></Link>
                 <Link><img src={logoTendencias} alt="Logo de Tendencias" className="nav__img" /></Link>
                 <Link to="/crear-publicacion"><img src={logoCrear} alt="Logo de Crear" className="nav__img" /></Link>
                 <Link to="/biblioteca"><img src={logoLibro} alt="Logo de Libro" className="nav__img" /></Link>

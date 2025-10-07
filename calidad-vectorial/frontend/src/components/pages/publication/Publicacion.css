@@ -9,22 +9,37 @@
 
 .body-pub__content__nav {
     width: calc(100vw - 140px);
-    height: 50px;
+    height: 60px;
     background-color: #f2f2f2;
 }
 
 .body-pub__content__publicacion {
     display: flex;
-    height: 72vh;
-    padding: 4vh;
+    height: 65vh;
+    padding: 25px;
     gap: 2vw;
 }
 
 .body-pub__content__publicacion__img {
-    width: 340px;
-    height: auto;
+    height: 100%;
+    min-height: 400px;
+    width: auto;
+    aspect-ratio: 70/100;
 }
 
 .body-pub__content__publicacion__text {
+    font-family: "Klee One", cursive;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #1a1a1a;
 
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.body-pub__content__publicacion__text__title {
+    font-size: 2rem;
 }
