@@ -1,4 +1,5 @@
 import './PublicacionCard.css';
+import '../../elements/global.css';
 
 const PublicacionCard = ({ urlFoto, titulo, usuarioNickname, estadoPublicacion, limiteDias }) => {
     return (
@@ -6,7 +7,7 @@ const PublicacionCard = ({ urlFoto, titulo, usuarioNickname, estadoPublicacion, 
             <img className='card__image' src={urlFoto} alt="Foto del libro" />
             <ul className='card__list'>
                 <li className='card__list__item'>
-                    <span className='card__list__item__title'>{titulo}</span>
+                    <h1 className='card__list__item__title'>{titulo}</h1>
                 </li>
                 <li>
                     <span className='card__list__item__subtitle'>Usuario: </span>
