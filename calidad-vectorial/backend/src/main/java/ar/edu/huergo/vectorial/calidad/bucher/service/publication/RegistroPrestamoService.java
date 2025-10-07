@@ -1,7 +1,9 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
 import java.time.LocalDate;
+//import java.util.HashMap;
 import java.util.List;
+//import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,4 +65,27 @@ public class RegistroPrestamoService {
     public List<RegistroPrestamo> obtenerRegistrosPrestamoPorUsuario(Usuario usuario) {
         return registroPrestamoRepository.findAllByUsuario(usuario);
     }
+
+    /**
+     * Obtiene una lista de los registros de prestamos de la ultima semana
+     * @return La lista de los registros de prestamo
+     
+    public List<RegistroPrestamo> obtenerRegistrosPrestamosDeLaSemana() {
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate fechaInicioSemana = LocalDate.now().minusDays(7);
+        return registroPrestamoRepository.findByFechaPrestamo(fechaActual, fechaInicioSemana);
+    }*/
+
+    /*public List<String> obtenerRegistrosPrestamosPodio() {
+        List<RegistroPrestamo> registrosSemanales = obtenerRegistrosPrestamosDeLaSemana();
+        Map<String, Integer> conteoPrestamos = new HashMap();
+
+        for (RegistroPrestamo prestamo: registrosSemanales) {
+            String titulo = prestamo.getPublicacion().getLibro().getTitulo();
+            conteoPrestamos.put(titulo, conteoPrestamos.getOrDefault(titulo, 0) + 1);
+        }
+
+        List<String> podioRegistro = 
+        return 
+    }*/
 }
