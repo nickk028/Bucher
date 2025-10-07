@@ -5,7 +5,7 @@ import { getData } from '../../utils/FetchUtils';
 export const Index = () => {
     const [error, setError] = useState("");  
     const [loading, setLoading] = useState(false);
-    const [publicaciones, setPublicaciones] = useState(null);
+    const [publicaciones, setPublicaciones] = useState([]);
 
     const fetchPublicaciones = async (signal) => {
         try {  
@@ -29,7 +29,6 @@ export const Index = () => {
 
     useEffect(() => {
         const controller = new AbortController();
-        setLoading(true);
         fetchPublicaciones(controller.signal);
         return () => controller.abort();
     }, []);
@@ -38,23 +37,18 @@ export const Index = () => {
     <div>
         <h1>Index</h1>
         <p>{error}</p>
-        {loading && <p>Cargando...</p>}
         {loading ? (
-        <p>Cargando...</p>
-        ) : (
-            <>
-            {publicaciones.length > 0 ? (
-                <ul>
+            <p>Cargando...</p>
+        ) : publicaciones.length > 0 ? (
+            <ul>
                 {publicaciones.map(pub => (
                     <li key={pub.id}>
                         <Link to={`/publicacion/${pub.id}`}>{pub.titulo || `Publicación ${pub.id}`}</Link>
                     </li>
                 ))}
-                </ul>
-            ) : (
-                <p>No hay publicaciones.</p>
-            )}
-            </>
+            </ul>
+        ) : (
+            <p>{error ? 'No fue posible obtener publicaciones.' : 'No hay publicaciones.'}</p>
         )}
         <Link to="/crear-publicacion">Crear Nueva Publicación</Link>
     </div>
