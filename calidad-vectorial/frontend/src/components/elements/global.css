@@ -14,3 +14,19 @@
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: "Klee One";
+    src: url("../../assets/fonts/klee-one/KleeOne-Regular.ttf") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Klee One";
+    src: url("../../assets/fonts/klee-one/KleeOne-SemiBold.ttf") format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
