@@ -6,17 +6,18 @@ export const CrearPublicacion = () => {
     const [descripcion, setDescripcion] = useState("");
     const [limiteDias, setLimiteDias] = useState("");
 	const [message, setMessage] = useState("");
+	const [error, setError] = useState("");
 	let [isDisabled, setIsDisabled] = useState(false);
 	// Referencia al controller de la request activa
 	const controllerRef = useRef(null);
 
 	// cleanup: abort request activo si el componente se desmonta
 	useEffect(() => {
-			return () => {
-				if (controllerRef.current) { 
-					controllerRef.current.abort()
-				} 
-			};
+		return () => {
+			if (controllerRef.current) { 
+				controllerRef.current.abort()
+			} 
+		};
 	}, []);
 
     const handleCrearPublicacion = async (evento) => {
@@ -31,9 +32,10 @@ export const CrearPublicacion = () => {
 		controllerRef.current = controller; // guarda el controller en la referencia
 
 		setMessage("");
+		setError("");
 		setIsDisabled(true);
 		try {
-			const respond = await postData("publicacion", 
+			const respond = await postData("publicacion/crear", 
 				{ titulo, descripcion, limiteDias: parseInt(limiteDias) }, 
 				controller.signal);
 			if (respond.ok) {
@@ -41,10 +43,12 @@ export const CrearPublicacion = () => {
 				setMessage(text);
 			} else {
 				const text = await respond.text();
-				setMessage(text);
+				setError(text);
 			}
-		} catch (error) {
-			setMessage("Error de conexión");
+		} catch (err) {
+			if (err.name !== 'AbortError') {
+				setError("Error de conexión: " + err.message);
+			}	
 		} finally {
 			setIsDisabled(false);
 		}
@@ -59,6 +63,7 @@ export const CrearPublicacion = () => {
 				<button type="submit" disabled={isDisabled}>Crear Publicación</button>
 
 				{message && <p>{message}</p>}
+				{error && <p>{error}</p>}
 			</form>
 		</div>
 	)

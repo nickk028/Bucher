@@ -21,7 +21,7 @@ export const Register = () => {
     const [pisoDept, setPisoDept] = useState("");
     const [codigoPostal, setcodigoPostal] = useState("");
 
-    const [message, setMessage] = useState("");
+    const [error, setError] = useState("");
     const [paso, setPaso] = useState(1);
     const [isDisabled, setIsDisabled] = useState(true);
     const [ojoQueHabla, setOjoQueHabla] = useState(null);
@@ -80,7 +80,7 @@ export const Register = () => {
 		// Nuevo controller para la nueva request
 		const controller = new AbortController();
 		controllerRef.current = controller; // guarda el controller en la referencia
-        setMessage("");
+        setError("");
 
         try {
             const respond = await postData("usuario/registrar", {
@@ -95,12 +95,12 @@ export const Register = () => {
             } else {
                 const text = await respond.text();
                 setPaso(1);
-                setMessage(text);
+                setError(text);
                 setOjoQueHabla(Math.floor(Math.random() * 3));
             }
             setOjoQueHabla(Math.floor(Math.random() * 3));
         } catch (error) {
-            setMessage("Error de conexión");
+            setError("Error de conexión");
             setOjoQueHabla(Math.floor(Math.random() * 3));
         }
     };
@@ -108,13 +108,13 @@ export const Register = () => {
     return (
         <div className="body-register">
             <div className="body-login__grupo-ojos">
-                <LibroAnimado variant="grande" color="rojo" mensaje={message} mostrarMensaje={ojoQueHabla === 0}>
+                <LibroAnimado variant="grande" color="rojo" mensaje={error} mostrarMensaje={ojoQueHabla === 0}>
                     Bü
                 </LibroAnimado>
-                <LibroAnimado variant="chico" color="azul" mensaje={message} mostrarMensaje={ojoQueHabla === 1}>
+                <LibroAnimado variant="chico" color="azul" mensaje={error} mostrarMensaje={ojoQueHabla === 1}>
                     ch
                 </LibroAnimado>
-                <LibroAnimado variant="medio" color="amarillo" mensaje={message} mostrarMensaje={ojoQueHabla === 2}>
+                <LibroAnimado variant="medio" color="amarillo" mensaje={error} mostrarMensaje={ojoQueHabla === 2}>
                     er
                 </LibroAnimado>
             </div>
