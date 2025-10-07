@@ -39,18 +39,18 @@ export const Publicacion = () => {
         return () => controller.abort();
     }, [id]);
 
-  return (
-    <div>
-        <h1>Publicacion</h1>
-        {loading && <p>Cargando...</p>}
-        {publicacion && !loading && (
-            <div>
-                <h2>{publicacion.titulo}</h2>
-                <p>{publicacion.descripcion}</p>
-                <p>{error}</p>
-            </div>
-        )}
-        <Link to="/index">Index</Link>
-    </div>
-  )
+    return (
+        <div>
+            <h1>Publicacion</h1>
+            {loading && <p>Cargando...</p>}
+            {publicacion && !loading && (
+                <div>
+                    <h2>{publicacion.titulo}</h2>
+                    <p>{publicacion.descripcion}</p>
+                    <p>{error}</p>
+                </div>
+            )}
+            <Link to="/index">Index</Link>
+        </div>
+    )
 }

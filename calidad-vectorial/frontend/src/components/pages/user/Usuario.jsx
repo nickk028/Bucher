@@ -5,14 +5,18 @@ import { getData } from '../../utils/FetchUtils';
 export const Usuario= () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
-    const [loading, setLoading] = useRef(false);
+    const [loading, setLoading] = useState(false);
 
     const fetchUsuario = async (signal) => {
         try {
             setLoading(true);
             const respond = await getData("usuario/propio", signal);
-            const text = await respond.text();
-            setMessage(text);
+            if (respond.ok) {
+                const text = await respond.json();
+                setMessage(text);
+            } else {
+                setError("Error al obtener el usuario");
+            }
         } catch (err) {
             if (err.name !== 'AbortError') {
                 setError("Hubo un error: " + err.message);
@@ -28,12 +32,12 @@ export const Usuario= () => {
         return () => controller.abort();
     }, []);
 
-  return (
-    <div>
-        <p>{message}</p>
-        <p>{loading && "Cargando..."}</p>
-        <p>{error}</p>
-        <Link to="/index">Index</Link>
-    </div>
-  );
+    return (
+        <div>
+            <p>{message}</p>
+            <p>{loading && "Cargando..."}</p>
+            <p>{error}</p>
+            <Link to="/index">Index</Link>
+        </div>
+    );
 }
