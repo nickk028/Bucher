@@ -1,0 +1,9 @@
+.body-index {
+    padding-left: 140px;
+}
+
+.body-index__content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
