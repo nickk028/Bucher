@@ -39,14 +39,14 @@ export const Index = () => {
 
     return (
         <div className='body-index'>
-            <Header></Header>
+            <Header />
             <main className='body-index__content'>
                 {loading ? (
                     <p>Cargando...</p>
                 ) : publicaciones.length > 0 ? (
                     <ul className='body-index__content__pub-list'>
                         {publicaciones.map(pub => (
-                            <Link to={`/publicacion/${pub.id}`}><li className='body-index__content__pub-list__item' key={pub.id}>
+                            <li className='body-index__content__pub-list__item' key={pub.id}><Link to={`/publicacion/${pub.id}`}>
                                 <PublicacionCard
                                     urlFoto={pub.urlFoto}
                                     titulo={pub.titulo}
@@ -54,7 +54,7 @@ export const Index = () => {
                                     estadoPublicacion={pub.estadoPublicacion}
                                     limiteDias={pub.limiteDias}>
                                 </PublicacionCard>
-                            </li></Link>
+                            </Link></li>
                         ))}
                     </ul>
                 ) : (
