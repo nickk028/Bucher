@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { getData } from '../../utils/FetchUtils';
+import Header from '../../elements/header/Header';
+import PublicacionCard from '../../elements/publication/PublicacionCard';
 
 export const Index = () => {
     const [error, setError] = useState("");  
@@ -43,7 +45,18 @@ export const Index = () => {
             <ul>
                 {publicaciones.map(pub => (
                     <li key={pub.id}>
-                        <Link to={`/publicacion/${pub.id}`}>{pub.titulo || `Publicación ${pub.id}`}</Link>
+                        <div className='body-index'>
+                            <Header></Header>
+                            <div className='body-index__content'>
+                                <PublicacionCard
+                                    urlFoto="https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg"
+                                    titulo="Harry Potter y la piedra filosofal"
+                                    usuarioNickname="lector@gmail.com"
+                                    estadoPublicacion="Disponible"
+                                    limiteDias="10">
+                                </PublicacionCard>
+                            </div>
+                        </div>
                     </li>
                 ))}
             </ul>
