@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -12,6 +13,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 public class LibroUsuarioUpdateDTO {
+    // Id
+    @Id
+    private Long id;
+    
     // Pagina actual de libro que está leyendo el usuario
     @PositiveOrZero(message = "La página actual debe ser 0 o mayor.")
     private int paginaActual;

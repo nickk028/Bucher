@@ -3,6 +3,7 @@
     padding: 0;
     text-decoration: none;
     color: currentColor;
+    list-style-type: none;
 }
 
 @font-face {
@@ -10,6 +11,22 @@
     src: url("../../assets/fonts/handelson-w00-three/Handelson-W00-Three.woff2") format("woff2"),
         url("../../assets/fonts/handelson-w00-three/Handelson-W00-Three.woff")  format("woff");
     font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Klee One";
+    src: url("../../assets/fonts/klee-one/KleeOne-Regular.ttf") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Klee One";
+    src: url("../../assets/fonts/klee-one/KleeOne-SemiBold.ttf") format('truetype');
+    font-weight: 600;
     font-style: normal;
     font-display: swap;
 }

@@ -15,6 +15,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.RegistroPrestam
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 
+
 @RestController
 @RequestMapping("/registro")
 public class RegistroPrestamoController {
@@ -38,4 +39,10 @@ public class RegistroPrestamoController {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
         return registroPrestamoMapper.toDTOList(registroPrestamoService.obtenerRegistrosPrestamoPorUsuario(usuario));
     }
+
+    @GetMapping("/podio")
+    public List<String> obtenerPodioDeRegistros() {
+        return registroPrestamoService.obtenerRegistrosPrestamosPodio();
+    }
+    
 }
