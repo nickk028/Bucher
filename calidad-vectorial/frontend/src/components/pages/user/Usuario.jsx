@@ -4,16 +4,21 @@ import { getData } from '../../utils/FetchUtils';
 
 export const Usuario= () => {
     const [message, setMessage] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useRef(false);
 
     const fetchUsuario = async (signal) => {
         try {
-            const respond = await getData("usuario", signal);
+            setLoading(true);
+            const respond = await getData("usuario/propio", signal);
             const text = await respond.text();
             setMessage(text);
-        } catch (error) {
-            if (error.name !== 'AbortError') {
-                setMessage("Hubo un error: " + error.message);
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                setError("Hubo un error: " + err.message);
             } 
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -24,6 +29,11 @@ export const Usuario= () => {
     }, []);
 
   return (
-    <div>{message}</div>
+    <div>
+        <p>{message}</p>
+        <p>{loading && "Cargando..."}</p>
+        <p>{error}</p>
+        <Link to="/index">Index</Link>
+    </div>
   );
 }

@@ -11,7 +11,7 @@ import { LibroAnimado } from "../../elements/ojos/LibroAnimado";
 function Login() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [message, setMessage] = useState("");
+	const [error, setError] = useState("");
 	const [ojoQueHabla, setOjoQueHabla] = useState(null);
 	let [isDisabled, setIsDisabled] = useState(false);
 	const navigate = useNavigate();
@@ -39,7 +39,7 @@ function Login() {
 		const controller = new AbortController();
 		controllerRef.current = controller;
 
-		setMessage("");
+		setError("");
 		setOjoQueHabla(null);
 		setIsDisabled(true);
 		// Realiza la petición de login
@@ -49,7 +49,7 @@ function Login() {
 			navigate("/index");
 		}
 		else if (respond.message == "Error de conexión") {
-			setMessage("Error de conexión");
+			setError("Error de conexión");
 			setOjoQueHabla(Math.floor(Math.random() * 3));
 		} else {
 			try {
@@ -57,26 +57,26 @@ function Login() {
 
 				if (jsonResponse.errores) {
 					const mensajesError = Object.values(jsonResponse.errores).join(". ");
-					setMessage(mensajesError);
+					setError(mensajesError);
 				}
 				// Opción 2: Mostrar el título o detail
 				else if (jsonResponse.title) {
-					setMessage(jsonResponse.title);
+					setError(jsonResponse.title);
 				}
 				// Opción 3: Mostrar el detail
 				else if (jsonResponse.detail) {
-					setMessage(jsonResponse.detail);
+					setError(jsonResponse.detail);
 				}
 				// Fallback: mostrar todo el JSON como string
 				else {
-					setMessage(JSON.stringify(jsonResponse));
+					setError(JSON.stringify(jsonResponse));
 				}
 
 				setOjoQueHabla(Math.floor(Math.random() * 3));
-			} catch (error) {
+			} catch (err) {
 				// Si el fetch fue abortado no se muestra el error
-				if (error.name !== "AbortError") {
-					setMessage("Error: " + error.message);
+				if (err.name !== "AbortError") {
+					setError("Error: " + err.message);
 					setOjoQueHabla(Math.floor(Math.random() * 3));
 				}
 			} finally {
@@ -90,13 +90,13 @@ function Login() {
 	return (
 		<div className="body-login">
 			<div className="body-login__grupo-ojos">
-				<LibroAnimado variant="grande" color="rojo" mensaje={message} mostrarMensaje={ojoQueHabla === 0}>
+				<LibroAnimado variant="grande" color="rojo" mensaje={error} mostrarMensaje={ojoQueHabla === 0}>
 					Bü
 				</LibroAnimado>
-				<LibroAnimado variant="chico" color="azul" mensaje={message} mostrarMensaje={ojoQueHabla === 1}>
+				<LibroAnimado variant="chico" color="azul" mensaje={error} mostrarMensaje={ojoQueHabla === 1}>
 					ch
 				</LibroAnimado>
-				<LibroAnimado variant="medio" color="amarillo" mensaje={message} mostrarMensaje={ojoQueHabla === 2}>
+				<LibroAnimado variant="medio" color="amarillo" mensaje={error} mostrarMensaje={ojoQueHabla === 2}>
 					er
 				</LibroAnimado>
 			</div>
@@ -109,7 +109,7 @@ function Login() {
 						<Link to="/register">¿No tienes una cuenta? ¡Crea una!</Link>
 					}>
 				<Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}>Nombre de usuario</Input>
-				<Input type="password" value={password} name="password" onChange={(e) => setPassword(e.target.value)} onFocus={() => window.dispatchEvent(new Event("passwordFocus"))} onBlur={() => window.dispatchEvent(new Event("passwordBlur"))}>Contraseña</Input>
+				<Input type="password" value={password} name="password" onChange={(e) => setPassword(e.target.value)}>Contraseña</Input>
 			</AuthBox>
 		</div>
 	);

@@ -67,7 +67,7 @@
 .rostro__ojos {
     height: 50%;
     display: flex;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
     align-items: center;
 }
