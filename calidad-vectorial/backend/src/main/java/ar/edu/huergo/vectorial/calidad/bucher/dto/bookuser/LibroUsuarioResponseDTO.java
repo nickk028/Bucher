@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -13,6 +14,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 public class LibroUsuarioResponseDTO {
+    // Id
+    @Id
+    private Long id;
+    
     // Título del libro
     @NotBlank(message = "El libro es obligatorio.")
     @Size(min = 2, max = 100, message = "El libro debe tener entre 2 y 100 digitos.")
