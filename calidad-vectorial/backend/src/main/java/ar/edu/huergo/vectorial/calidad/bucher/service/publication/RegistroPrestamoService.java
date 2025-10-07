@@ -1,9 +1,9 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
 import java.time.LocalDate;
-//import java.util.HashMap;
 import java.util.List;
-//import java.util.Map;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,23 +69,20 @@ public class RegistroPrestamoService {
     /**
      * Obtiene una lista de los registros de prestamos de la ultima semana
      * @return La lista de los registros de prestamo
-     
+    */
     public List<RegistroPrestamo> obtenerRegistrosPrestamosDeLaSemana() {
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaInicioSemana = LocalDate.now().minusDays(7);
-        return registroPrestamoRepository.findByFechaPrestamo(fechaActual, fechaInicioSemana);
-    }*/
+        return registroPrestamoRepository.findByFechaPrestamoBetween(fechaActual, fechaInicioSemana);
+    }
 
-    /*public List<String> obtenerRegistrosPrestamosPodio() {
+    public List<String> obtenerRegistrosPrestamosPodio() {
         List<RegistroPrestamo> registrosSemanales = obtenerRegistrosPrestamosDeLaSemana();
-        Map<String, Integer> conteoPrestamos = new HashMap();
-
-        for (RegistroPrestamo prestamo: registrosSemanales) {
-            String titulo = prestamo.getPublicacion().getLibro().getTitulo();
-            conteoPrestamos.put(titulo, conteoPrestamos.getOrDefault(titulo, 0) + 1);
-        }
-
-        List<String> podioRegistro = 
-        return 
-    }*/
+        Map<String, Long> conteoPrestamos = registrosSemanales.stream().collect(Collectors.groupingBy(
+            rp -> rp.getPublicacion().getLibro().getTitulo(), Collectors.counting()));
+        List<String> podioRegistro =  conteoPrestamos.entrySet().stream().sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+            .limit(10).map(Map.Entry::getKey).toList();
+        
+        return podioRegistro; 
+    }
 }
