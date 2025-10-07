@@ -1,34 +1,29 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect, useRef} from "react";
-import { getData } from '../../utils/FetchUtils';
 
-export const Usuario= () => {
+import { useState, useEffect } from "react";
+
+import { fetchUsuario } from '../../utils/UserUtils';
+
+export const Usuario = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const fetchUsuario = async (signal) => {
-        try {
-            setLoading(true);
-            const respond = await getData("usuario/propio", signal);
-            if (respond.ok) {
-                const text = await respond.json();
-                setMessage(text);
-            } else {
-                setError("Error al obtener el usuario");
-            }
-        } catch (err) {
-            if (err.name !== 'AbortError') {
-                setError("Hubo un error: " + err.message);
-            } 
-        } finally {
+    const cargarUsuario = async () => {
+        setLoading(true);
+        const response = await fetchUsuario(controller.signal);
+        if (response.error === 'aborted') {
             setLoading(false);
+            return;
         }
+        setError(data.error || "");
+        setMessage(data.message || "");
+        setLoading(false);
     }
 
     useEffect(() => {
         const controller = new AbortController();
-        fetchUsuario(controller.signal);
+        cargarUsuario();
         return () => controller.abort();
     }, []);
 
