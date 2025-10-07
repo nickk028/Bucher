@@ -1,5 +1,5 @@
 .body-index {
-    padding-left: 140px;
+    display: flex;
 }
 
 .body-index__content {

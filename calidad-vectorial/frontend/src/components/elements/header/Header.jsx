@@ -10,11 +10,14 @@ import './Header.css';
 const Header = () => {
     return (
         <header className="header">
-            <Link to="/index"><img src={logoBucher} alt="Logo de Bücher" className="header__img" /></Link>
-            <Link><img src={logoTendencias} alt="Logo de Tendencias" className="header__img" /></Link>
-            <Link to="/crear-publicacion"><img src={logoCrear} alt="Logo de Crear" className="header__img" /></Link>
-            <Link to="/biblioteca"><img src={logoLibro} alt="Logo de Libro" className="header__img" /></Link>
-            <Link><img src={logoUsuario} alt="Logo de Usuario" className="header__img" /></Link>
+            <div className="header__space"></div>
+            <nav className="header__nav">
+                <Link to="/index"><img src={logoBucher} alt="Logo de Bücher" className="nav__img" /></Link>
+                <Link><img src={logoTendencias} alt="Logo de Tendencias" className="nav__img" /></Link>
+                <Link to="/crear-publicacion"><img src={logoCrear} alt="Logo de Crear" className="nav__img" /></Link>
+                <Link to="/biblioteca"><img src={logoLibro} alt="Logo de Libro" className="nav__img" /></Link>
+                <Link><img src={logoUsuario} alt="Logo de Usuario" className="nav__img" /></Link>
+            </nav>
         </header>
     )
 }

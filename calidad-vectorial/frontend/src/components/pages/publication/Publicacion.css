@@ -1,0 +1,30 @@
+.body-pub {
+    display: flex;
+}
+
+.body-pub__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.body-pub__content__nav {
+    width: calc(100vw - 140px);
+    height: 50px;
+    background-color: #f2f2f2;
+}
+
+.body-pub__content__publicacion {
+    display: flex;
+    height: 72vh;
+    padding: 4vh;
+    gap: 2vw;
+}
+
+.body-pub__content__publicacion__img {
+    width: 340px;
+    height: auto;
+}
+
+.body-pub__content__publicacion__text {
+
+}
