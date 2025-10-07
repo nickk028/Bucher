@@ -40,13 +40,13 @@ export const Index = () => {
     return (
         <div className='body-index'>
             <Header></Header>
-            <div className='body-index__content'>
+            <main className='body-index__content'>
                 {loading ? (
                     <p>Cargando...</p>
                 ) : publicaciones.length > 0 ? (
-                    <ul>
+                    <ul className='body-index__content__pub-list'>
                         {publicaciones.map(pub => (
-                            <li key={pub.id}>
+                            <Link to={`/publicacion/${pub.id}`}><li className='body-index__content__pub-list__item' key={pub.id}>
                                 <PublicacionCard
                                     urlFoto={pub.urlFoto}
                                     titulo={pub.titulo}
@@ -54,14 +54,14 @@ export const Index = () => {
                                     estadoPublicacion={pub.estadoPublicacion}
                                     limiteDias={pub.limiteDias}>
                                 </PublicacionCard>
-                            </li>
+                            </li></Link>
                         ))}
                     </ul>
                 ) : (
                     <p>{error ? 'No fue posible obtener publicaciones.' : 'No hay publicaciones.'}</p>
                 )}
                 <Link to="/crear-publicacion">Crear Nueva Publicación</Link>
-            </div>
+            </main>
         </div>
     )
 }
