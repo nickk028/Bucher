@@ -73,9 +73,14 @@ public class RegistroPrestamoService {
     public List<RegistroPrestamo> obtenerRegistrosPrestamosDeLaSemana() {
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaInicioSemana = LocalDate.now().minusDays(7);
-        return registroPrestamoRepository.findByFechaPrestamoBetween(fechaActual, fechaInicioSemana);
+        System.err.println("Las fechas son" + fechaActual + "-" + fechaInicioSemana);
+        return registroPrestamoRepository.findByFechaPrestamoBetween(fechaInicioSemana, fechaActual);
     }
 
+    /**
+     * Obtiene una lista con los nombres de los 10 libros más prestados de la semana
+     * @return La lista de los libros más prestados
+     */
     public List<String> obtenerRegistrosPrestamosPodio() {
         List<RegistroPrestamo> registrosSemanales = obtenerRegistrosPrestamosDeLaSemana();
         Map<String, Long> conteoPrestamos = registrosSemanales.stream().collect(Collectors.groupingBy(

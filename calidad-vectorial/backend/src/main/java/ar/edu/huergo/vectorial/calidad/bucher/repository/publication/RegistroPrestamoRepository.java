@@ -13,5 +13,5 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 public interface RegistroPrestamoRepository extends JpaRepository<RegistroPrestamo, Long> {
     List<RegistroPrestamo> findAllByUsuario(Usuario usuario);
     Optional<RegistroPrestamo> findByPublicacionAndFechaDevolucionIsNull(Publicacion publicacion);
-    List<RegistroPrestamo> findByFechaPrestamoBetween(LocalDate fechaActual, LocalDate fechaInicioSemana);
+    List<RegistroPrestamo> findByFechaPrestamoBetween(LocalDate fechaInicioSemana, LocalDate fechaActual);
 }
