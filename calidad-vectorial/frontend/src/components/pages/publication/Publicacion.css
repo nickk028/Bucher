@@ -16,7 +16,7 @@
 .body-pub__content__publicacion {
     display: flex;
     height: 65vh;
-    padding: 25px;
+    padding-left: 25px;
     gap: 2vw;
 }
 

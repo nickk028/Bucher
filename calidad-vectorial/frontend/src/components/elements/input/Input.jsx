@@ -4,7 +4,7 @@ import './Input.css';
 import ver from '../../../assets/img/ver.png';
 import esconder from '../../../assets/img/esconder.png';
 
-export const Input = ({ children, type, name, value, onChange, onFocus, onBlur }) => {
+export const Input = ({ children, type, name, value, placeholder, variant, title,onChange, onFocus, onBlur }) => {
     const [showPassword, setShowPassword] = useState(false);
     const inputRef = useRef(null);
 
@@ -30,7 +30,7 @@ export const Input = ({ children, type, name, value, onChange, onFocus, onBlur }
     const inputType = type == "password" && showPassword ? "text" : type;
     return (
         <div className='input-group'>
-            <input className={`input-group__input input-group__input--${type}`} onChange={onChange} ref={inputRef}
+            <input className={`input-group__input input-group__input--${type} input-group__input--${variant}`} placeholder={placeholder} title={title} onChange={onChange} ref={inputRef}
             onFocus={() => {
                 if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} else {window.dispatchEvent(new Event("passwordFocus"))};}
             }}
