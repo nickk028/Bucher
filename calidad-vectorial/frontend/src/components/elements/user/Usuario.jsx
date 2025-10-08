@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
-
 import { useState, useEffect } from "react";
-
 import { fetchUsuario } from '../../utils/UserUtils';
 
 export const Usuario = () => {

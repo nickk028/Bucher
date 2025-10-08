@@ -1,32 +1,46 @@
-import React from 'react'
+import { Link } from 'react-router-dom';
+import { Usuario } from '../../../elements/user/Usuario';
+import { useState, useEffect } from "react";
+import { getData } from '../../../utils/FetchUtils';
 
 export const Biblioteca = () => {
-    const handleBookshelf = async (evento) => {
-        evento.preventDefault();
+    const [message, setMessage] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const fetchBiblioteca = async (signal) => {
         try {
-            const respond = await fetch("http://localhost:8080/biblioteca/", {
-                method: "GET",
-                credentials: "include"
-            });
+            setLoading(true);
+            const respond = await getData("biblioteca", signal);
             if (respond.ok) {
-                const text = await respond.text();
-                setMessage(text);
+                const data = await respond.json();
+                setMessage(data);
             } else {
-                const text = await respond.text();
-                setMessage(text);
+                setError("Error al obtener las publicaciones");
             }
-        } catch (error) {
-            setMessage("Error de conexión");
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                setError("Hubo un error: " + err.message);
+            }
         }
-    };  
-    const ControlClickLibro = (id) => {
-        window.location.href = `http://localhost:8080/biblioteca/${id}`;
+        finally {
+            setLoading(false);
+        }
     }
-    const ControlClickGenero = (id) => {
-        window.location.href = `http://localhost:8080/biblioteca/${genero}`;
-    }
-    
-  return (
-    <div>bookshelf</div>
-  )
+
+    useEffect(() => {
+        const controller = new AbortController();
+        fetchBiblioteca(controller.signal);
+        return () => controller.abort();
+    }, []);
+
+    return (
+        <div>
+            <Usuario/>
+            <p>{message}</p>
+            <p>{loading && "Cargando..."}</p>
+            <p>{error}</p>
+            <Link to="/index">Index</Link>
+        </div>
+    );
 }
