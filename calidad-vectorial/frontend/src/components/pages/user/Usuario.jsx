@@ -9,21 +9,19 @@ export const Usuario = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const cargarUsuario = async () => {
+    const cargarUsuario = async (signal) => {
         setLoading(true);
-        const response = await fetchUsuario(controller.signal);
-        if (response.error === 'aborted') {
-            setLoading(false);
-            return;
+        const response = await fetchUsuario(signal);
+        if (response.error !== "abortado") {
+            setError(response.error || "");
+            setMessage(typeof response.message === "object" ? JSON.stringify(response.message, null, 2) : response.message || "");
         }
-        setError(data.error || "");
-        setMessage(data.message || "");
         setLoading(false);
     }
 
     useEffect(() => {
         const controller = new AbortController();
-        cargarUsuario();
+        cargarUsuario(controller.signal);
         return () => controller.abort();
     }, []);
 
