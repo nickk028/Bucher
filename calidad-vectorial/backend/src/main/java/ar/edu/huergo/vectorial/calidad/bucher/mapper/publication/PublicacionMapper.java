@@ -80,6 +80,8 @@ public class PublicacionMapper {
         publicacionResponseDTO.setUsuarioCreador(publicacion.getUsuario().getUsername());
         publicacionResponseDTO.setFechaCreacion(publicacion.getFechaCreacion());
         publicacionResponseDTO.setEstadoPublicacion(publicacion.getEstadoPublicacion());
+        publicacionResponseDTO.setNombre(publicacion.getLibro().getAutor().getNombre());
+        publicacionResponseDTO.setUrlFoto(publicacion.getLibro().getUrlFoto());
 
         return publicacionResponseDTO;
     }

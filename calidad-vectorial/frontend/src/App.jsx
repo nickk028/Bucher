@@ -10,7 +10,6 @@ import { PublicacionUsuario } from "./components/pages/user/userpublication/user
 import { Register } from "./components/pages/register/Register";
 import { CrearPublicacion } from "./components/pages/publication/CrearPublicacion";
 import { ProtectedRoute } from './components/utils/TokenUtils';
-import { Usuario } from "./components/pages/user/Usuario";
 
 const App = () => {
 	return (
@@ -26,7 +25,6 @@ const App = () => {
                     <Route path="/biblioteca/:id" element={<LibroUsuario/>}/>
                     <Route path="/publicacion/propias" element={<PublicacionUsuario/>}/>
                     <Route path="/crear-publicacion" element={<CrearPublicacion/>}/>
-                    <Route path="/usuario" element={<Usuario/>}/>
                 </Route>
             </Routes>
 		</Router>
