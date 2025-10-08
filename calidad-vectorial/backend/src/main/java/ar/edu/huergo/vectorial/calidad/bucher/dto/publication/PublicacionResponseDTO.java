@@ -49,4 +49,10 @@ public class PublicacionResponseDTO extends PublicacionDTO {
 
     // Desripción del usuario
     private String descripcionUsuario;
+
+    //Nombre del autor
+    private String nombre;
+
+    // Url de la foto del libro
+    private String urlFoto;
 }
