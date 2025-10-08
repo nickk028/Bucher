@@ -1,21 +1,20 @@
 import { getData } from './FetchUtils';
 
-// Helper - DO NOT use React hooks here. Returns a plain object { message, error }.
 export const fetchUsuario = async (signal) => {
     const result = { message: "", error: "" };
     try {
         const respond = await getData("usuario/propio", signal);
-        if (!respond.ok) {
-            result.message = await respond.text();
+        if (respond.ok) {
+            result.message = await respond.json();   
         } else {
-            const data = await respond.json();
-            result.message = data;
+            const text = await respond.text();
+            result.error = text;
         }
     } catch (err) {
-        if (err.name !== 'AbortError') {
-            result.error = err.message;
+        if (err.name === "AbortError") {
+            result.error = "abortado";
         } else {
-            result.error = 'aborted';
+            result.error = "Hubo un error: " + err.message;
         }
     } finally {
         return result;
