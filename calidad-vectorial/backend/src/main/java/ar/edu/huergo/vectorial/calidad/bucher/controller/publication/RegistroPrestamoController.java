@@ -40,6 +40,10 @@ public class RegistroPrestamoController {
         return registroPrestamoMapper.toDTOList(registroPrestamoService.obtenerRegistrosPrestamoPorUsuario(usuario));
     }
 
+    /**
+     * Obtiene los títulos de los 10 libros más prestados
+     * @return Una lista con los 10 libros más prestados
+     */
     @GetMapping("/podio")
     public List<String> obtenerPodioDeRegistros() {
         return registroPrestamoService.obtenerRegistrosPrestamosPodio();
