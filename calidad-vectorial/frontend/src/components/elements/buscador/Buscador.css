@@ -1,0 +1,26 @@
+.buscador {
+    width: calc(100vw - 140px);
+    height: 60px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+    padding-right: 40px;
+}
+
+.buscador__input {
+    width: 25%;
+    min-width: 220px;
+    height: 70%;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.buscador__input__lupa {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
