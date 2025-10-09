@@ -30,3 +30,12 @@
     font-style: normal;
     font-display: swap;
 }
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+input[type="password"] {
+    -ms-text-security: none;
+}
