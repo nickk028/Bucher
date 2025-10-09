@@ -39,6 +39,7 @@ class UsuarioValidationTest {
         // Given
         Usuario usuario = new Usuario();
         usuario.setUsername("usuario@gmail.com");
+        usuario.setNickname("usuario");
         usuario.setPassword("Contraseña@Segura123456");
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
 
@@ -179,11 +180,13 @@ class UsuarioValidationTest {
 
         Usuario usuarioMin = new Usuario();
         usuarioMin.setUsername(nombreMinimo);
+        usuarioMin.setNickname(nombreMinimo);
         usuarioMin.setPassword("Contraseña@Segura123456");
         usuarioMin.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
 
         Usuario usuarioMax = new Usuario();
         usuarioMax.setUsername(nombreMaximo);
+        usuarioMax.setNickname(nombreMaximo);
         usuarioMax.setPassword("Contraseña@Segura123456");
         usuarioMax.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
 
