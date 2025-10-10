@@ -112,36 +112,65 @@ public class DataInitializer {
             // -------------------------
             Autor autorJK = autorRepository.findByNombreIgnoringCase("J.K. Rowling")
                     .orElseGet(() -> autorRepository.save(
-                            new Autor("J.K. Rowling", "https://es.wikipedia.org/wiki/J._K._Rowling")
+                        new Autor(
+                            "J.K. Rowling",
+                            "Autora británica conocida por la saga de Harry Potter, una de las más exitosas de la historia.",
+                            "https://es.wikipedia.org/wiki/J._K._Rowling"
+                        )
                     ));
+
             Autor autorHerbert = autorRepository.findByNombreIgnoringCase("Frank Herbert")
                     .orElseGet(() -> autorRepository.save(
-                            new Autor("Frank Herbert", "https://es.wikipedia.org/wiki/Frank_Herbert")
+                        new Autor(
+                            "Frank Herbert",
+                            "Escritor estadounidense de ciencia ficción, célebre por su obra maestra 'Dune'.",
+                            "https://es.wikipedia.org/wiki/Frank_Herbert"
+                        )
                     ));
 
             Autor autorBrown = autorRepository.findByNombreIgnoringCase("Dan Brown")
                     .orElseGet(() -> autorRepository.save(
-                            new Autor("Dan Brown", "https://es.wikipedia.org/wiki/Dan_Brown")
+                        new Autor(
+                                "Dan Brown",
+                                "Novelista estadounidense, conocido por 'El código Da Vinci' y otros thrillers de misterio.",
+                                "https://es.wikipedia.org/wiki/Dan_Brown"
+                        )
                     ));
 
             Autor autorChristie = autorRepository.findByNombreIgnoringCase("Agatha Christie")
                     .orElseGet(() -> autorRepository.save(
-                            new Autor("Agatha Christie", "https://es.wikipedia.org/wiki/Agatha_Christie")
+                        new Autor(
+                                "Agatha Christie",
+                                "Famosa escritora británica de novelas policíacas, creadora de Hércules Poirot y Miss Marple.",
+                                "https://es.wikipedia.org/wiki/Agatha_Christie"
+                        )
                     ));
 
             Autor autorGarciaMarquez = autorRepository.findByNombreIgnoringCase("Gabriel García Márquez")
                     .orElseGet(() -> autorRepository.save(
-                            new Autor("Gabriel García Márquez", "https://es.wikipedia.org/wiki/Gabriel_Garc%C3%ADa_M%C3%A1rquez")
+                        new Autor(
+                                "Gabriel García Márquez",
+                                "Escritor colombiano, exponente del realismo mágico y autor de 'Cien años de soledad'.",
+                                "https://es.wikipedia.org/wiki/Gabriel_Garc%C3%ADa_M%C3%A1rquez"
+                        )
                     ));
 
             Autor autorAusten = autorRepository.findByNombreIgnoringCase("Jane Austen")
                     .orElseGet(() -> autorRepository.save(
-                            new Autor("Jane Austen", "https://es.wikipedia.org/wiki/Jane_Austen")
+                        new Autor(
+                                "Jane Austen",
+                                "Novelista británica reconocida por sus retratos irónicos de la sociedad inglesa del siglo XIX.",
+                                "https://es.wikipedia.org/wiki/Jane_Austen"
+                        )
                     ));
 
             Autor autorKing = autorRepository.findByNombreIgnoringCase("Stephen King")
                     .orElseGet(() -> autorRepository.save(
-                            new Autor("Stephen King", "https://es.wikipedia.org/wiki/Stephen_King")
+                        new Autor(
+                                "Stephen King",
+                                "Autor estadounidense, maestro del terror y el suspense, con más de 60 novelas publicadas.",
+                                "https://es.wikipedia.org/wiki/Stephen_King"
+                        )
                     ));
 
             // ------------------------

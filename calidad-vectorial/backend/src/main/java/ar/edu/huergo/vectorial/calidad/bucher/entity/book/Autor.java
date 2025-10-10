@@ -34,6 +34,11 @@ public class Autor {
     @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 digitos")
     private String nombre;
 
+    // Descripción del autor
+    @Column(nullable = true)
+    @Size(max = 255, message = "El nombre debe tener como máximo 100 digitos")
+    private String descripcion;
+
     // URL de la pagina de Wikipedia del autor
     @Column(nullable = true)
     private String urlWikipedia;
@@ -45,6 +50,12 @@ public class Autor {
     // Constructor
     public Autor(String nombre, String urlWikipedia) {
         this.nombre = nombre;
+        this.urlWikipedia = urlWikipedia;
+    }
+
+    public Autor(String nombre, String descripcion, String urlWikipedia) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.urlWikipedia = urlWikipedia;
     }
 }
