@@ -1,27 +1,44 @@
-import React from 'react'
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { getData } from '../../../../utils/FetchUtils';
 
-export const LibroUsuario = () => {
-    const handleBookUser = async (evento) => {
-        evento.preventDefault();
+export const LibroUsuario = (posicion) => {
+    const [message, setMessage] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const fetchLibroUsuario = async (signal) => {
         try {
-            const respond = await fetch("http://localhost:8080/biblioteca/${id}", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password, passwordConfirmation }),
-                credentials: "include"
-            });
+            setLoading(true);
+            const respond = await getData("biblioteca/" + posicion, signal);
             if (respond.ok) {
-                const text = await respond.text();
-                setMessage(text);
+                const data = await respond.json();
+                setMessage(data);
             } else {
-                const text = await respond.text();
-                setMessage(text);
+                setError("Error al obtener las publicaciones");
             }
-        } catch (error) {
-            setMessage("Error de conexión");
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                setError("Hubo un error: " + err.message);
+            }
         }
-    } 
-  return (
-    <div>bookuser</div>
-  )
+        finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        const controller = new AbortController();
+        fetchLibroUsuario(controller.signal);
+        return () => controller.abort();
+    }, []);
+
+    return (
+        <div>
+            <p>{message}</p>
+            <p>{loading && "Cargando..."}</p>
+            <p>{error}</p>
+            <Link to="/index">Index</Link>
+        </div>
+    );
 }
