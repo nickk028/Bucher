@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getData } from '../../utils/FetchUtils';
 import Header from '../../elements/header/Header';
 import Buscador from '../../elements/buscador/Buscador';
+import { UsuarioDetalles } from '../../elements/user/UsuarioDetalles';
 import './Publicacion.css';
 
 export const Publicacion = () => {
@@ -35,7 +36,7 @@ export const Publicacion = () => {
         } catch (err) {
             if (err.name !== 'AbortError') {
                 setError("Hubo un error: " + err.message);
-            } 
+            }
         } finally {
             setLoading(false);
         }
@@ -70,7 +71,9 @@ export const Publicacion = () => {
                             <span className='body-pub__content__publicacion__text_item__subtitle'>Estado</span>
                             {publicacion.estadoPublicacion}
                         </div>
-                        
+
+                        <UsuarioDetalles nombre={publicacion.usuarioCreador}>{publicacion.descripcionUsuario}</UsuarioDetalles>
+
                         <p>{publicacion.usuarioCreador}</p>
                         <p>{publicacion.descripcionUsuario}</p>
                         <p>{publicacion.fechaCreacion}</p>
