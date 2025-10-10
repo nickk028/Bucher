@@ -53,7 +53,7 @@ public class Libro {
     // Descripción del libro
     @Column(nullable = false, length = 100)
     @NotBlank(message = "La descripción es obligatorio.")
-    @Size(min = 2, max = 255, message = "La libro debe tener entre 2 y 255 digitos.")
+    @Size(min = 2, max = 800, message = "La libro debe tener entre 2 y 800 digitos.")
     private String descripcion;
 
     // Cantidad de páginas del libro

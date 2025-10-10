@@ -31,7 +31,7 @@ public class LibroResponseDTO {
 
     // Descripción del libro
     @NotBlank(message = "La descripción es obligatorio.")
-    @Size(min = 2, max = 255, message = "La libro debe tener entre 2 y 255 digitos.")
+    @Size(min = 2, max = 800, message = "La libro debe tener entre 2 y 800 digitos.")
     private String descripcion;
 
     // Categoría del libro
