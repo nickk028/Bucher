@@ -13,6 +13,7 @@ export const Publicacion = () => {
 
     const publicacion = {
         titulo: "Harry Potter y la piedra filosofal",
+        nombreAutor: "J. K. Rowling",
         descripcion: "Descipción super extensa de la publicación",
         estadoPublicacion: "Disponible",
         usuarioCreador: "lector@gmail.com",
@@ -60,9 +61,16 @@ export const Publicacion = () => {
                     <img className='body-pub__content__publicacion__img' src="https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" alt="Foto del libro" />
                     <div className='body-pub__content__publicacion__text'>
                         <h1 className='body-pub__content__publicacion__text__title'>{publicacion.titulo}</h1>
-                        <p>Autor</p>
-                        <p>{publicacion.descripcion}</p>
-                        <p>{publicacion.estadoPublicacion}</p>
+                        <p className='body-pub__content__publicacion__text__author'>{publicacion.nombreAutor}</p>
+                        <div className='body-pub__content__publicacion__text_item'>
+                            <span className='body-pub__content__publicacion__text_item__subtitle'>Descripción del libro</span>
+                            <p>{publicacion.descripcion}</p>
+                        </div>
+                        <div>
+                            <span className='body-pub__content__publicacion__text_item__subtitle'>Estado</span>
+                            {publicacion.estadoPublicacion}
+                        </div>
+                        
                         <p>{publicacion.usuarioCreador}</p>
                         <p>{publicacion.descripcionUsuario}</p>
                         <p>{publicacion.fechaCreacion}</p>

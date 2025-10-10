@@ -4,6 +4,7 @@
 
 .body-pub__content {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
 }
 
@@ -34,6 +35,7 @@
     color: #1a1a1a;
 
     height: auto;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -42,4 +44,13 @@
 
 .body-pub__content__publicacion__text__title {
     font-size: 2rem;
+}
+
+.body-pub__content__publicacion__text__author {
+    font-size: 1.5rem;
+    color: #5a5a5a;
+}
+
+.body-pub__content__publicacion__text_item__subtitle {
+    color: #929292;
 }
