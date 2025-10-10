@@ -28,7 +28,6 @@ export const Usuario = () => {
             <p>{message}</p>
             <p>{loading && "Cargando..."}</p>
             <p>{error}</p>
-            <Link to="/index">Index</Link>
         </div>
     );
 }
