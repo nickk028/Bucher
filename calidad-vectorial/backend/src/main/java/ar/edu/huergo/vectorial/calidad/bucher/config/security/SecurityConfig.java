@@ -77,8 +77,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.PUT, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
                 .requestMatchers(HttpMethod.DELETE, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
 
-                // Index
-                .requestMatchers(HttpMethod.GET, "/index").hasAnyRole("ADMIN", "LECTOR")
+                // Libro
+                .requestMatchers(HttpMethod.GET, "/libro/**").hasAnyRole("ADMIN", "LECTOR")
 
                 .anyRequest().authenticated())
 

@@ -75,6 +75,7 @@ public class Usuario {
 
     //Descripcion
     @Column(nullable = true)
+    @Size(max = 255, message = "La descripción debe tener como máximo 100 digitos")
     private String descripcion;
 
     // Set de roles del usuario
