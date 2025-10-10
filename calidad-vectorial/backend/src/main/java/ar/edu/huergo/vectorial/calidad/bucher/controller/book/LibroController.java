@@ -1,10 +1,13 @@
 package ar.edu.huergo.vectorial.calidad.bucher.controller.book;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.book.LibroMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
@@ -22,8 +25,14 @@ public class LibroController {
     private LibroMapper libroMapper;
 
     @GetMapping("/{id}")
-    public ResponseEntity<LibroResponseDTO> getMethodName(@PathVariable("id") Long id) {
+    public ResponseEntity<LibroResponseDTO> obtenerLibroPorId(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
             libroMapper.toDTO(libroService.obtenerLibroPorId(id)));
+    }
+
+    @GetMapping("/todos")
+    public ResponseEntity<List<LibroBasicDTO>> obtenerTodosLosLibros() {
+        return ResponseEntity.ok(
+            libroMapper.toBasicDTOList(libroService.obtenerTodosLosLibros()));
     }
 }

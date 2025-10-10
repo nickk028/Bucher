@@ -1,7 +1,12 @@
 package ar.edu.huergo.vectorial.calidad.bucher.mapper.book;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
+import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 
@@ -32,5 +37,27 @@ public class LibroMapper {
         libroResponseDTO.setUrlWikipediaAutor(libro.getAutor().getUrlWikipedia());
 
         return libroResponseDTO;
+    }
+
+    public LibroBasicDTO toBasicDTO(Libro libro) {
+        if (libro == null) {
+            return null;
+        }
+        LibroBasicDTO libroBasicDTO = new LibroBasicDTO();
+
+        libroBasicDTO.setId(libro.getId());
+        libroBasicDTO.setUrlFoto(libro.getUrlFoto());
+
+        return libroBasicDTO;
+    }
+
+    public List<LibroBasicDTO> toBasicDTOList(Set<Libro> libros) {
+        if (libros == null) {
+            return null;
+        }
+        return libros
+            .stream()
+            .map(this::toBasicDTO)
+            .collect(Collectors.toList());
     }
 }
