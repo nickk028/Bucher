@@ -8,7 +8,7 @@ import { Input } from "../../elements/input/Input";
 import { Button } from "../../elements/buttons/Button";
 import { LibroAnimado } from "../../elements/ojos/LibroAnimado";
 
-function Login() {
+export function Login() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
@@ -114,4 +114,3 @@ function Login() {
 		</div>
 	);
 }
-export default Login;
