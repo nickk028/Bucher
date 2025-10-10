@@ -30,7 +30,6 @@ import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPresta
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/publicacion")
 public class PublicacionController {
@@ -58,7 +57,7 @@ public class PublicacionController {
     }
 
     /**
-     * Obtiene una publicacion por id 
+     * Obtiene una publicacion por id
      * @param El id de la publiacion
      * @return La publiacion buscada
      */
