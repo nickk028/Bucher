@@ -1,5 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.mapper.book;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -53,7 +54,7 @@ public class LibroMapper {
 
     public List<LibroBasicDTO> toBasicDTOList(Set<Libro> libros) {
         if (libros == null) {
-            return null;
+            return new ArrayList<>();
         }
         return libros
             .stream()
