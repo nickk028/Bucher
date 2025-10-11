@@ -7,7 +7,7 @@ export const LibroUsuario = () => {
 
     return (
         <div>
-            <p>{data}</p>
+            <p>{JSON.stringify(data, null, 2)}</p>
             <p>{loading && "Cargando..."}</p>
             <p>{error}</p>
             <Link to="/index">Index</Link>
