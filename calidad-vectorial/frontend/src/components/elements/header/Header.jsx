@@ -11,15 +11,39 @@ const Header = () => {
             <div className="header__space"></div>
             <nav className="header__nav">
                 <Link className="header__nav__item" to="/index">
-                    <div alt="Logo de Bücher" className="nav__item__bucher">
-                        <div alt="Logo de Bücher" className="nav__item__bucher--claro" />
+                    <div alt="Logo de Bücher" className="header__nav__item__bucher">
+                        <div alt="Logo de Bücher" className="header__nav__item__bucher__fondo" />
                     </div>
-                    <div className="nav__item__circle"></div>
+                    <div className="header__nav__item__circle"></div>
                 </Link>
-                <Link><img src={logoTendencias} alt="Logo de Tendencias" className="nav__item__img" /></Link>
-                <Link to="/crear-publicacion"><img src={logoCrear} alt="Logo de Crear" className="nav__item__img" /></Link>
-                <Link to="/biblioteca"><img src={logoLibro} alt="Logo de Libro" className="nav__item__img" /></Link>
-                <Link><img src={logoUsuario} alt="Logo de Usuario" className="nav__item__img" /></Link>
+
+                <Link className="header__nav__item">
+                    <div alt="Logo de Tendencias" className="header__nav__item__tendencias">
+                        <div alt="Logo de Tendencias" className="header__nav__item__tendencias__fondo" />
+                    </div>
+                    <div className="header__nav__item__circle"></div>
+                </Link>
+
+                <Link className="header__nav__item" to="/crear-publicacion">
+                    <div alt="Logo de Crear" className="header__nav__item__crear">
+                        <div alt="Logo de Crear" className="header__nav__item__crear__fondo" />
+                    </div>
+                    <div className="header__nav__item__circle"></div>
+                </Link>
+
+                <Link className="header__nav__item" to="/biblioteca">
+                    <div alt="Logo de Libro" className="header__nav__item__libro">
+                        <div alt="Logo de Libro" className="header__nav__item__libro__fondo" />
+                    </div>
+                    <div className="header__nav__item__circle"></div>
+                </Link>
+
+                <Link className="header__nav__item">
+                    <div alt="Logo de Usuario" className="header__nav__item__usuario">
+                        <div alt="Logo de Usuario" className="header__nav__item__usuario__fondo" />
+                    </div>
+                    <div className="header__nav__item__circle"></div>
+                </Link>
             </nav>
         </header>
     )
