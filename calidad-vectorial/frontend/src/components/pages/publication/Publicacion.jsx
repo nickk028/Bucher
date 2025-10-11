@@ -1,24 +1,14 @@
-import { useEffect } from "react";
 import { useFetch } from '../../utils/FetchUtils';
 import Header from '../../elements/header/Header';
 import Buscador from '../../elements/buscador/Buscador';
 import { UsuarioDetalles } from '../../elements/user/UsuarioDetalles';
 import './Publicacion.css';
+import { useParams } from "react-router-dom";
 
-export const Publicacion = (id) => {
+export const Publicacion = () => {
     /*const [publicacion, setPublicacion] = useState(null);*/
-    
-    //const { data : publicacion , error, loading } = useFetch("publicacion/" + id);
-
-    const publicacion = {
-        titulo: "Harry Potter y la piedra filosofal",
-        nombreAutor: "J. K. Rowling",
-        descripcion: "Descipción super extensa de la publicación",
-        estadoPublicacion: "Disponible",
-        usuarioCreador: "lector@gmail.com",
-        descripcionUsuario: "Descripción excesivamente larga del usuario",
-        fechaCreacion:"07/10/2025"
-    };
+    const { id } = useParams()
+    const { data : publicacion , error, loading } = useFetch("publicacion/" + id); 
 
     return (
         <div className='body-pub'>
@@ -26,7 +16,7 @@ export const Publicacion = (id) => {
             <main className='body-pub__content'>
                 <Buscador />
                 <article className='body-pub__content__publicacion'>
-                    <img className='body-pub__content__publicacion__img' src="https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" alt="Foto del libro" />
+                    <img className='body-pub__content__publicacion__img' src = {publicacion.urlFoto} alt="Foto del libro" />
                     <div className='body-pub__content__publicacion__text'>
                         <h1 className='body-pub__content__publicacion__text__title'>{publicacion.titulo}</h1>
                         <p className='body-pub__content__publicacion__text__author'>{publicacion.nombreAutor}</p>
@@ -48,6 +38,8 @@ export const Publicacion = (id) => {
                     </div>
                 </article>
             </main>
+            <p>{error}</p>
+            <p>{loading && "Cargando..."}</p>
         </div>
     )
 }
