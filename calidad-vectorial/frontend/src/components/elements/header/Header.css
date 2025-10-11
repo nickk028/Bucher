@@ -23,14 +23,55 @@ header {
     box-sizing: border-box;
 }
 
-.nav__img {
+.header__nav__item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.nav__item__img {
     width: 80px;
     height: auto;
 }
 
-.nav__bucher {
-    width: 80px;
-    height: 80px;
+.nav__item__bucher {
+    position: relative;
+    width: 100%;
+    height: 100%;
     background: #08413C;
     mask-image: url("../../../assets/img/logos/logoBucher.png");
+    z-index: 1;
+}
+
+.nav__item__bucher--claro {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #EAFFEF;
+    mask-image: url("../../../assets/img/logos/logoBucher.png");
+    z-index: 1;
+    clip-path: circle(0);
+    transition: all 700ms ease;
+}
+
+.nav__item__circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    background: #08413C;
+    clip-path: circle(0);
+    transition: all 700ms ease;
+}
+
+.nav__item__bucher:hover .nav__item__bucher--claro {
+    clip-path: circle(60px);
+}
+
+.nav__item__bucher:hover~.nav__item__circle {
+    clip-path: circle(60px);
 }

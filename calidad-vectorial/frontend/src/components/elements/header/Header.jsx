@@ -10,11 +10,16 @@ const Header = () => {
         <header className="header">
             <div className="header__space"></div>
             <nav className="header__nav">
-                <Link to="/index"><div alt="Logo de Bücher" className="nav__bucher" /></Link>
-                <Link><img src={logoTendencias} alt="Logo de Tendencias" className="nav__img" /></Link>
-                <Link to="/crear-publicacion"><img src={logoCrear} alt="Logo de Crear" className="nav__img" /></Link>
-                <Link to="/biblioteca"><img src={logoLibro} alt="Logo de Libro" className="nav__img" /></Link>
-                <Link><img src={logoUsuario} alt="Logo de Usuario" className="nav__img" /></Link>
+                <Link className="header__nav__item" to="/index">
+                    <div alt="Logo de Bücher" className="nav__item__bucher">
+                        <div alt="Logo de Bücher" className="nav__item__bucher--claro" />
+                    </div>
+                    <div className="nav__item__circle"></div>
+                </Link>
+                <Link><img src={logoTendencias} alt="Logo de Tendencias" className="nav__item__img" /></Link>
+                <Link to="/crear-publicacion"><img src={logoCrear} alt="Logo de Crear" className="nav__item__img" /></Link>
+                <Link to="/biblioteca"><img src={logoLibro} alt="Logo de Libro" className="nav__item__img" /></Link>
+                <Link><img src={logoUsuario} alt="Logo de Usuario" className="nav__item__img" /></Link>
             </nav>
         </header>
     )
