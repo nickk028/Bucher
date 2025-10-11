@@ -1,60 +1,86 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
+/** Hook para realizar peticiones GET
+*   @param {string} url - endpoint al que se envía el GET
+*   @returns { data, loading, error }
+*        data: datos de respuesta (JSON o texto)
+*        loading: booleano para mostrar spinner
+*        error: mensaje de error (string)
+**/
 export const useFetch = (url) => {
-    const [data, setData] = useState("");
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
     useEffect(() => {
+        // Controller para poder cancelar la request si el componente se desmonta
         const controller = new AbortController();
         const signal = controller.signal;
 
-        const fetcher = async () => { 
-            setLoading(true);
+        // Función que realiza el GET
+        const fetchData = async () => {
+            setLoading(true); // arranca el spinner
+
             try {
+                // Realiza la request (pasa la señal para poder abortar)
                 const respond = await getData(url, signal);
-                if (respond.ok) { 
+
+                if (respond.ok) {
+                    // Parseo según content-type de la respuesta
                     const contentType = respond.headers.get("content-type");
                     if (contentType && contentType.includes("application/json")) {
                         const json = await respond.json();
-                        setData(json);
+                        setData(json); // setea JSON
                     } else {
                         const text = await respond.text();
-                        setData(text);
+                        setData(text); // setea texto plano
                     }
-
                 } else {
+                    // Muestra el mensaje de error de spring
                     setError("Error en la respuesta del servidor: " + respond.statusText);
                 }
             } catch (err) {
+                // Ignora AbortError
                 if (err.name !== "AbortError") {
                     setError("Error: " + err.message);
                 }
             } finally {
+                // Cierra el spinner (siempre)
                 setLoading(false);
             }
         };
-        
-        fetcher();
 
+        // Dispara el fetch al montar/cambiar la URL
+        fetchData();
+
+        // Cleanup: si el componente se desmonta, aborta la request
         return () => controller.abort();
     }, [url]);
 
     return { data, loading, error };
 };
 
-
-
+/** Hook para realizar peticiones POST
+*   @param {string} url - endpoint al que se envía el POST
+*   @returns { data, loading, error, execute }
+*       data: datos de respuesta (JSON o texto)
+*       loading: booleano para mostrar spinner
+*       error: mensaje de error (string)
+*       execute: función para ejecutar el POST
+**/
 export function usePost(url) {
+    // Estado: datos de respuesta, “cargando” y error
     const [data, setData] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    // Controller de la request activa
+    // Guarda el AbortController de la request activa
     const controllerRef = useRef(null);
+
+    // Flag: evita setState si el componente ya no está montado
     const isMountedRef = useRef(true);
 
-    // Cleanup al desmontar: abortar la request activa
+    // Define montaje/desmontaje del componente
     useEffect(() => {
         isMountedRef.current = true;
         return () => {
@@ -63,52 +89,60 @@ export function usePost(url) {
         };
     }, []);
 
+    // Función que ejecuta el POST (No cambiar nombre ni firma)
     const execute = useCallback(async (payload) => {
+        // Si había una request en curso, la cancela antes de iniciar otra
         if (controllerRef.current) {
             controllerRef.current.abort();
             controllerRef.current = null;
         }
 
+        // Crea un nuevo AbortController para esta request
         const controller = new AbortController();
         controllerRef.current = controller;
 
+        // Resetea estados de UI
         if (isMountedRef.current) {
             setLoading(true);
             setError("");
         }
 
         try {
+            // Envía el POST (incluye la señal para poder abortar)
             const respond = await postData(url, payload, controller.signal);
-            
-            if (controller.signal.aborted || !isMountedRef.current) return;
 
+            // Si se aborta la request o el componente se desmontó cancela la request 
+            if (controller.signal.aborted || !isMountedRef.current) return;
+ 
             if (respond.ok) {
+                // Parseo según content-type de la respuesta
                 const contentType = respond.headers.get("content-type");
                 if (contentType && contentType.includes("application/json")) {
-
                     const json = await respond.json();
-                    console.log("[usePost] json:", json);
                     if (isMountedRef.current) setData(json);
                 } else {
-
                     const text = await respond.text();
-                    console.log("[usePost] json:", text);
                     if (isMountedRef.current) setData(text);
                 }
             } else {
-                if (isMountedRef.current) setError("Error en la respuesta del servidor: " + respond.statusText);
-                console.log("error", error);
+                // Muestra el mensaje de error de spring
+                if (isMountedRef.current) {
+                    setError("Error en la respuesta del servidor: " + respond.statusText);
+                }
             }
         } catch (err) {
+            // Ignora AbortError
             if (err.name !== "AbortError" && isMountedRef.current) {
                 setError("Error: " + err.message);
             }
         } finally {
+            // Apaga el spinner y limpia el controller de esta request
             if (isMountedRef.current) setLoading(false);
             controllerRef.current = null;
         }
     }, [url]);
 
+    // Devuelve toda la información y la función para disparar el POST en el handler
     return { data, loading, error, execute };
 }
 
