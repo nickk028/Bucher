@@ -1,4 +1,4 @@
-import { useFetch } from '../../../utils/FetchUtils';
+import { useFetch } from '../../../../utils/FetchUtils';
 import { useParams } from 'react-router-dom';
 export const CategoriaLibro = () => {
     const { categoria } = useParams()

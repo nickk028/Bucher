@@ -9,7 +9,7 @@ import { PublicacionUsuario } from "./components/pages/user/userpublication/Publ
 import { Register } from "./components/pages/register/Register";
 import { CrearPublicacion } from "./components/pages/publication/CrearPublicacion";
 import { ProtectedRoute } from './components/utils/TokenUtils';
-import { CategoriaLibro } from "./components/pages/user/bookshelf/CategoriaLibro";
+import { CategoriaLibro } from "./components/pages/user/bookshelf/category/CategoriaLibro";
 
 const App = () => {
 	return (
