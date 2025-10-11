@@ -18,8 +18,15 @@ export const useFetch = (url) => {
                     signal
                 });
                 if (respond.ok) { 
-                    const json = await respond.json();
-                    setData(json);
+                    const contentType = respond.headers.get("content-type");
+                    if (contentType && contentType.includes("application/json")) {
+                        const json = await respond.json();
+                        setData(json);
+                    } else {
+                        const text = await respond.text();
+                        setData(text);
+                    }
+
                 } else {
                     setError("Error en la respuesta del servidor.");
                 }
