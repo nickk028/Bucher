@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useFetch } from "../../../../utils/FetchUtils"
 
-export const LibroUsuario = (posicion) => {
+export const LibroUsuario = () => {
+    const { posicion } = useParams()
     const { data, loading, error } = useFetch("biblioteca/" + posicion);
 
     return (

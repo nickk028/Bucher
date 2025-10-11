@@ -17,7 +17,7 @@ export const Index = () => {
                 ) : publicaciones.length > 0 ? (
                     <ul className='body-index__content__pub-list'>
                         {publicaciones.map(pub => (
-                            <li className='body-index__content__pub-list__item' key={pub.id}><Link to={`/publicacion/${pub.id}`}>
+                            <li className='body-index__content__pub-list__item' key={pub.id}> <Link to={`/publicacion/${pub.id}`}>
                                 <PublicacionCard
                                     urlFoto={pub.urlFoto}
                                     titulo={pub.titulo}
