@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioUpdateDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 
 @Component
@@ -21,7 +22,13 @@ public class LibroUsuarioMapper {
      */
     public LibroUsuario toEntity(LibroUsuarioCreateDTO libroUsuarioCreateDTO) {
         LibroUsuario libroUsuario = new LibroUsuario();
-        libroUsuario.setEstadoLectura(libroUsuarioCreateDTO.getEstadoLectura());
+
+        if (libroUsuarioCreateDTO.getEstadoLectura() == null) {
+            libroUsuario.setEstadoLectura(EstadoLectura.indefinido);
+        } else {
+            libroUsuario.setEstadoLectura(libroUsuarioCreateDTO.getEstadoLectura());
+        }
+
         libroUsuario.setPaginaActual(libroUsuarioCreateDTO.getPaginaActual());
         libroUsuario.setPuntuacion(libroUsuarioCreateDTO.getPuntuacion());
 
@@ -36,8 +43,13 @@ public class LibroUsuarioMapper {
     public LibroUsuario toEntity(LibroUsuarioUpdateDTO libroUsuarioUpdateDTO) {
         LibroUsuario libroUsuario = new LibroUsuario();
 
+        if (libroUsuarioUpdateDTO.getEstadoLectura() == null) {
+            libroUsuario.setEstadoLectura(EstadoLectura.indefinido);
+        } else {
+            libroUsuario.setEstadoLectura(libroUsuarioUpdateDTO.getEstadoLectura());
+        }
+
         libroUsuario.setId(libroUsuarioUpdateDTO.getId());
-        libroUsuario.setEstadoLectura(libroUsuarioUpdateDTO.getEstadoLectura());
         libroUsuario.setPaginaActual(libroUsuarioUpdateDTO.getPaginaActual());
         libroUsuario.setPuntuacion(libroUsuarioUpdateDTO.getPuntuacion());
 
@@ -45,7 +57,7 @@ public class LibroUsuarioMapper {
     }
 
     /**
-     * Pasa de entidad libroUsuario a LibroUsuarioResponseDTO 
+     * Pasa de entidad libroUsuario a LibroUsuarioResponseDTO
      * @param libroUsuario La entidad a transformar en DTO
      * @return LibroUsuarioResponseDTO como entidad
      */
