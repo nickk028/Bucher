@@ -37,7 +37,7 @@ export const useFetch = (url) => {
                     }
                 } else {
                     // Muestra el mensaje de error de spring
-                    setError("Error en la respuesta del servidor: " + respond.statusText);
+                    setError("Error en la respuesta del servidor: " + respond.status + " " + respond.statusText);
                 }
             } catch (err) {
                 // Ignora AbortError
@@ -127,7 +127,7 @@ export function usePost(url) {
             } else {
                 // Muestra el mensaje de error de spring
                 if (isMountedRef.current) {
-                    setError("Error en la respuesta del servidor: " + respond.statusText);
+                    setError("Error en la respuesta del servidor: " + respond.status + " " + respond.statusText );
                 }
             }
         } catch (err) {
