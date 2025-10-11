@@ -17,7 +17,7 @@ public enum EstadoLectura {
         }
 
         try {
-            return EstadoLectura.valueOf(value.trim().toUpperCase());
+            return EstadoLectura.valueOf(value.trim());
         } catch (IllegalArgumentException e) {
             return indefinido;
         }
