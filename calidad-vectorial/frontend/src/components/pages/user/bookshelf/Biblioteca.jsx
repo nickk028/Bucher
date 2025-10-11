@@ -23,8 +23,8 @@ export const Biblioteca = () => {
             <div>
                 <h1>Ver Libros</h1>
                 <p>{JSON.stringify(dataBiblioteca, null, 2)}</p>
-                <p>{errorBiblioteca && "Cargando..."}</p>
-                <p>{loadingBiblioteca}</p>
+                <p>{loadingBiblioteca && "Cargando..."}</p>
+                <p>{errorBiblioteca}</p>
             </div>
 
             <h1>Añadir libro</h1>
@@ -38,7 +38,8 @@ export const Biblioteca = () => {
 				{dataPost && <p> Operacion Exitosa </p>}
 				{errorPost && <p>{errorPost}</p>}
 			</form>
-            <Link to="/index">Index</Link>
+            <Link to="/index">Index</Link> 
+            <Link to="/biblioteca/categoria/terror">Terror</Link>
         </div>
     );
 }

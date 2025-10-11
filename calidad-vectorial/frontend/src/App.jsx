@@ -9,6 +9,7 @@ import { PublicacionUsuario } from "./components/pages/user/userpublication/Publ
 import { Register } from "./components/pages/register/Register";
 import { CrearPublicacion } from "./components/pages/publication/CrearPublicacion";
 import { ProtectedRoute } from './components/utils/TokenUtils';
+import { CategoriaLibro } from "./components/pages/user/bookshelf/CategoriaLibro";
 
 const App = () => {
 	return (
@@ -22,6 +23,7 @@ const App = () => {
                     <Route path="/publicacion/:id" element={<Publicacion/>}/>
                     <Route path="/biblioteca" element={<Biblioteca/>}/>
                     <Route path="/biblioteca/:id" element={<LibroUsuario/>}/>
+                    <Route path="/biblioteca/categoria/:categoria" element={<CategoriaLibro/>}/>
                     <Route path="/publicacion/propias" element={<PublicacionUsuario/>}/>
                     <Route path="/crear-publicacion" element={<CrearPublicacion/>}/>
                 </Route>
