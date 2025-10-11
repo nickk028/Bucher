@@ -1,31 +1,11 @@
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
-import { fetchUsuario } from '../../utils/UserUtils';
+import { useFetch } from "../../utils/FetchUtils" 
 
 export const Usuario = () => {
-    const [message, setMessage] = useState("");
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
-
-    const cargarUsuario = async (signal) => {
-        setLoading(true);
-        const response = await fetchUsuario(signal);
-        if (response.error !== "abortado") {
-            setError(response.error || "");
-            setMessage(typeof response.message === "object" ? JSON.stringify(response.message, null, 2) : response.message || "");
-        }
-        setLoading(false);
-    }
-
-    useEffect(() => {
-        const controller = new AbortController();
-        cargarUsuario(controller.signal);
-        return () => controller.abort();
-    }, []);
+    const { data, loading, error } = useFetch("usuario/propio");
 
     return (
         <div>
-            <p>{message}</p>
+            <p>{JSON.stringify(data, null, 2)}</p>
             <p>{loading && "Cargando..."}</p>
             <p>{error}</p>
         </div>
