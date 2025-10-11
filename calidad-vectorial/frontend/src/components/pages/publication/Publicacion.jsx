@@ -1,16 +1,14 @@
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from "react";
-import { getData } from '../../utils/FetchUtils';
+import { useEffect } from "react";
+import { useFetch } from '../../utils/FetchUtils';
 import Header from '../../elements/header/Header';
 import Buscador from '../../elements/buscador/Buscador';
 import { UsuarioDetalles } from '../../elements/user/UsuarioDetalles';
 import './Publicacion.css';
 
-export const Publicacion = () => {
-    const [error, setError] = useState("");
-    const { id } = useParams();
+export const Publicacion = (id) => {
     /*const [publicacion, setPublicacion] = useState(null);*/
-    const [loading, setLoading] = useState(false);
+    
+    //const { data : publicacion , error, loading } = useFetch("publicacion/" + id);
 
     const publicacion = {
         titulo: "Harry Potter y la piedra filosofal",
@@ -21,37 +19,6 @@ export const Publicacion = () => {
         descripcionUsuario: "Descripción excesivamente larga del usuario",
         fechaCreacion:"07/10/2025"
     };
-
-    const fetchPublicacion = async (signal, id) => {
-        try {
-            setLoading(true);
-            const respond = await getData("publicacion/" + id, signal);
-            if (respond.ok) {
-                const data = await respond.json();
-                setPublicacion(data);
-                
-            } else {
-                setError("Error al obtener la publicación");
-            }
-        } catch (err) {
-            if (err.name !== 'AbortError') {
-                setError("Hubo un error: " + err.message);
-            }
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        if (!id) {
-            setError("ID no proporcionado");
-            setLoading(false);
-            return;
-        }
-        const controller = new AbortController();
-        fetchPublicacion(controller.signal, id);
-        return () => controller.abort();
-    }, [id]);
 
     return (
         <div className='body-pub'>
