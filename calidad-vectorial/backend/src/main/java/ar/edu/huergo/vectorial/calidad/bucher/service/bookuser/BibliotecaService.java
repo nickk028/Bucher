@@ -48,6 +48,16 @@ public class BibliotecaService {
      */
     public Biblioteca subirLibroUsuario(Biblioteca bibliotecaUsuario, LibroUsuario libroUsuarioIngresado, String titulo) {
         libroUsuarioIngresado.setLibro(libroService.obtenerLibroPorTitulo(titulo));
+
+        // Se define el Estado de Lectura en caso de que no se haya ingresado
+        if (libroUsuarioIngresado.getEstadoLectura() == EstadoLectura.indefinido) {
+            if (libroUsuarioIngresado.getPaginaActual() == 0) {
+                libroUsuarioIngresado.setEstadoLectura(EstadoLectura.pendiente);
+            } else {
+                libroUsuarioIngresado.setEstadoLectura(EstadoLectura.leyendo);
+            }
+        }
+
         libroUsuarioIngresado.setBiblioteca(bibliotecaUsuario);
         bibliotecaUsuario.getLibrosUsuario().add(libroUsuarioIngresado);
 
