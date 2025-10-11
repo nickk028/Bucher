@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 
 /**
@@ -31,7 +32,7 @@ public class LibroUsuarioService {
      * @return El LibroUsuario modificado
      */
     public LibroUsuario modificarLibroUsuario(LibroUsuario libroUsuarioAModificar, LibroUsuario libroUsuarioNuevo) {
-        if (!libroUsuarioAModificar.getEstadoLectura().equals("nada")) {
+        if (libroUsuarioNuevo.getEstadoLectura() != EstadoLectura.indefinido) {
             libroUsuarioAModificar.setEstadoLectura(libroUsuarioNuevo.getEstadoLectura());
         }
         if (libroUsuarioAModificar.getPaginaActual() != 0) {
