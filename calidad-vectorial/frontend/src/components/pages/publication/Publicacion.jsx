@@ -19,20 +19,26 @@ export const Publicacion = () => {
                     <img className='body-pub__content__publicacion__img' src = {publicacion.urlFoto} alt="Foto del libro" />
                     <div className='body-pub__content__publicacion__text'>
                         <h1 className='body-pub__content__publicacion__text__title'>{publicacion.titulo}</h1>
-                        <p className='body-pub__content__publicacion__text__author'>{publicacion.nombreAutor}</p>
-                        <div className='body-pub__content__publicacion__text_item'>
-                            <span className='body-pub__content__publicacion__text_item__subtitle'>Descripción del libro</span>
+                        <p className='body-pub__content__publicacion__text__author'>{publicacion.nombre}</p>
+                        <div className='body-pub__content__publicacion__text__item'>
+                            <span className='body-pub__content__publicacion__text__item__subtitle'>Descripción del libro</span>
                             <p>{publicacion.descripcion}</p>
                         </div>
                         <div>
-                            <span className='body-pub__content__publicacion__text_item__subtitle'>Estado: </span>
+                            <span className='body-pub__content__publicacion__text__item__subtitle'>Estado: </span>
                             {publicacion.estadoPublicacion}
                         </div>
 
-                        <UsuarioDetalles nombre={publicacion.usuarioCreador}>{publicacion.descripcionUsuario}</UsuarioDetalles>
+                        <div>
+                            <span className='body-pub__content__publicacion__text__item__subtitle'>Sobre su dueño</span>
+                            <UsuarioDetalles nombre={publicacion.usuarioCreador}>{publicacion.descripcionUsuario}</UsuarioDetalles>
+                        </div>
 
-                        <p>{publicacion.descripcionUsuario}</p>
-                        <p>{publicacion.fechaCreacion}</p>
+                        <div>
+                            <span className='body-pub__content__publicacion__text__item__subtitle'>Fehca de creación: </span>
+                            {publicacion.fechaCreacion}
+                        </div>
+                        
                         {/*<p>{error}</p>*/}
                     </div>
                 </article>
