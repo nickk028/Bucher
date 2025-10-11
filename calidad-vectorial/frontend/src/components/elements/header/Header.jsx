@@ -1,8 +1,4 @@
 import { Link } from "react-router-dom";
-import logoTendencias from '../../../assets/img/logos/logoTendencias.png';
-import logoCrear from '../../../assets/img/logos/logoCrear.png';
-import logoLibro from '../../../assets/img/logos/logoLibro.png';
-import logoUsuario from '../../../assets/img/logos/logoUsuario.png';
 import './Header.css';
 
 const Header = () => {
