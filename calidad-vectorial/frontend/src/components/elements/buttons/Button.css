@@ -9,16 +9,6 @@
     align-items: center;
 }
 
-.btn--claro {
-    background-color: #C9DACD;
-    color: #0E675F;
-}
-
-.btn--oscuro {
-    background-color: #0E675F;
-    color: #C9DACD;
-}
-
 .btn--solapa {
     height: 45px;
     width: 250px;
@@ -34,6 +24,26 @@
     box-sizing: border-box;
     padding-left: 8px;
     padding-right: 8px;
+}
+
+.btn--solapa--claro {
+    background-color: #C9DACD;
+    color: #0E675F;
+}
+
+.btn--solapa--oscuro {
+    background-color: #0E675F;
+    color: #C9DACD;
+}
+
+.btn--default--claro {
+    background-color: #C9DACD;
+    color: #0E675F;
+}
+
+.btn--default--oscuro {
+    background-color: #0E675F;
+    color: #f2f2f2;
 }
 
 .btn-group {
