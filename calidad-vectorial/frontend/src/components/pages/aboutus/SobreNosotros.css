@@ -1,9 +1,10 @@
 .body-sobre-nosotros {
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
-.hero {
+.body-sobre-nosotros__hero {
     display: flex;
     width: 96%;
     min-height: 300px;
@@ -16,7 +17,7 @@
     animation: aparecer--hero 600ms ease-in-out both;
 }
 
-.hero__content {
+.body-sobre-nosotros__hero__content {
     width: 100%;
     background-color: #dce9df;
     display: flex;
@@ -25,7 +26,7 @@
     padding-left: clamp(6vw, 80%, 40px);
 }
 
-.hero__title {
+.body-sobre-nosotros__hero__title {
     font-family: "Handelson Three", cursive;
     font-size: clamp(10vw, 8rem, 18vw);
     font-weight: 500;
@@ -36,7 +37,7 @@
     animation: aparecer 1s ease-in-out both 200ms;
 }
 
-.hero__subtitle {
+.body-sobre-nosotros__hero__subtitle {
     font-family: sans-serif;
     font-size: clamp(1.5vw, 1.5rem, 2.7vw);
     color: #08413C;
@@ -46,7 +47,7 @@
     animation: aparecer 1s ease-in-out both 200ms;
 }
 
-.hero__image {
+.body-sobre-nosotros__hero__image {
     width: 60%;
     height: 100%;
     background-image: url("../../../assets/img/estanteria.jpg");
