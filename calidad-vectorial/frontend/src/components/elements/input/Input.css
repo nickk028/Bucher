@@ -25,6 +25,12 @@
     padding-right: 34px;
 }
 
+.input-group__input--grande {
+    resize: none;
+    height: 190px;
+    padding-top: 5px;
+}
+
 .input-group__label {
     color: #6C757D;
     position: absolute;
@@ -36,13 +42,15 @@
 }
 
 .input-group__input:valid~.input-group__label {
-    top: -50%;
+    top: 0;
+    transform: translateY(-90%);
     font-size: 1rem;
     color: #6C757D;
 }
 
 .input-group__input:focus~.input-group__label {
-    top: -50%;
+    top: 0;
+    transform: translateY(-90%);
     font-size: 1rem;
     color: #0E675F;
 }
@@ -64,5 +72,4 @@
     background: none;
     border: none;
     cursor: pointer;
-    transition: opacity 0.2s ease;
 }
