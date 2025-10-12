@@ -40,24 +40,12 @@ export const CrearPublicacion = () => {
 				)}
 
 				{pagina == "social" &&(
-					<p>s</p>
+					<p>Social</p>
 				)}
-
+				{/*{data && <p>{JSON.stringify(data, null, 2)}</p>}
+				{error && <p>{error}</p>}*/}
 				<img className="body-crear-prestamo__img" src={principitoLuna} alt="Principito en la Luna" />
 			</main>
 		</>
 	)
-
-	{/*<div>
-		<h1>Crear Publicacion</h1>
-		<form onSubmit={handleCrearPublicacion}>
-			<input type="text" value={titulo} onChange={e => setTitulo(e.target.value)} placeholder="Título" />
-			<input type="text" value={descripcion} onChange={e => setDescripcion(e.target.value)} placeholder="Descripción" />
-			<input type="number" value={limiteDias} onChange={e => setLimiteDias(e.target.value)} placeholder="Límite de Días" />
-			<button type="submit" disabled={loading}>Crear Publicación</button>
-
-			{data && <p>{JSON.stringify(data, null, 2)}</p>}
-			{error && <p>{error}</p>}
-		</form>
-	</div>*/}
 };
