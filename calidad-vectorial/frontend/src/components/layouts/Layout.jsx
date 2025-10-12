@@ -4,9 +4,11 @@ import './Layout.css';
 
 const Layout = () => {
     return (
-        <div className="body">
+        <div className="body-layout">
             <Header />
-            <Outlet />
+            <div className="body-layout__content">
+                <Outlet />
+            </div>
         </div>
     );
 };

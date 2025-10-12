@@ -28,7 +28,7 @@
     gap: 10px;
 }
 
-.body-pub__publicacion__img {
+.body-pub__publicacion__aside__img {
     height: 65vh;
     min-height: 400px;
     width: auto;
@@ -42,8 +42,8 @@
     color: #1a1a1a;
 
     height: auto;
+    width: 65%;
     min-width: 400px;
-    max-width: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -52,6 +52,7 @@
 
 .body-pub__publicacion__text__title {
     font-size: 2rem;
+    color: #0E675F;
 }
 
 .body-pub__publicacion__text__author {
@@ -65,9 +66,10 @@
 
 .body-pub__publicacion__text__item__subtitle {
     color: #929292;
+    text-shadow: 1px 1px 2px #d1d1d1;
 }
 
 .body-pub__publicacion__text__item__parrafo {
-    max-height: 100px;
+    max-height: 78px;
     overflow: auto;
 }

@@ -4,23 +4,23 @@ import './Input.css';
 import ver from '../../../assets/img/ver.png';
 import esconder from '../../../assets/img/esconder.png';
 
-export const Input = ({ children, type, name, value, placeholder, variant, title,onChange, onFocus, onBlur }) => {
+export const Input = ({ children, type, name, value, placeholder, variant, title, onChange, onFocus, onBlur }) => {
     const [showPassword, setShowPassword] = useState(false);
     const inputRef = useRef(null);
 
     const togglePassword = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         setShowPassword((inputType) => !inputType);
 
         if (inputRef.current) {
             // Selecciona el input si se toca el ojo
-            inputRef.current.focus(); 
+            inputRef.current.focus();
         }
 
             if (inputType === "password") {
-                // Chusmea la contraseña 
+                // Chusmea la contraseña
                 window.dispatchEvent(new Event("passwordPeek"));
-            } 
+            }
             if (inputType === "text") {
                 // Cierra los ojos
                 window.dispatchEvent(new Event("passwordFocus"));
@@ -35,7 +35,7 @@ export const Input = ({ children, type, name, value, placeholder, variant, title
                 if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} else {window.dispatchEvent(new Event("passwordFocus"))};}
             }}
             onBlur={ () => {
-                if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}}} 
+                if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}}}
             name={name} id={name} type={inputType} value={value} required />
             
             <label className='input-group__label' htmlFor={name}> {children} </label>

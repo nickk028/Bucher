@@ -19,13 +19,22 @@ export const Publicacion = () => {
                 <article className='body-pub__publicacion'>
 
                     <aside className="body-pub__publicacion__aside">
-                        <img className='body-pub__publicacion__img' src = {publicacion.urlFoto} alt="Foto del libro" />
+                        <img className='body-pub__publicacion__aside__img' src = {publicacion.urlFoto} alt="Foto del libro" />
                         <Button variant="default" color="oscuro">Pedir libro</Button>
                     </aside>
 
                     <div className='body-pub__publicacion__text'>
                         <h1 className='body-pub__publicacion__text__title'>{publicacion.titulo}</h1>
                         <p className='body-pub__publicacion__text__author'>{publicacion.nombre}</p>
+
+                        <div className='body-pub__publicacion__text__item'>
+                            <span className='body-pub__publicacion__text__item__subtitle'>Estado de la publicación: </span>
+                            {publicacion.estadoPublicacion}
+                        </div>
+                        <div className='body-pub__publicacion__text__item'>
+                            <span className='body-pub__publicacion__text__item__subtitle'>Duración del préstamo: </span>
+                            {publicacion.limiteDias}
+                        </div>
                         <div className='body-pub__publicacion__text__item'>
                             <span className='body-pub__publicacion__text__item__subtitle'>Descripción del libro</span>
                             <p className='body-pub__publicacion__text__item__parrafo'>{publicacion.descripcion}</p>
