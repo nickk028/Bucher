@@ -7,23 +7,25 @@ import './SobreNosotros.css';
 
 export const SobreNosotros = () => {
     return (
+        <>
         <div className='body-sobre-nosotros'>
-            <section className="hero">
-                <div className="hero__content">
-                    <h1 className="hero__title">Bücher</h1>
-                    <p className="hero__subtitle">
+            <section className="body-sobre-nosotros__hero">
+                <div className="body-sobre-nosotros__hero__content">
+                    <h1 className="body-sobre-nosotros__hero__title">Bücher</h1>
+                    <p className="body-sobre-nosotros__hero__subtitle">
                     Lleva tu lectura al siguiente nivel,
                     <br/>
                     que lo bueno se comparta.</p>
                 </div>
-                <div className="hero__image"></div>
+                <div className="body-sobre-nosotros__hero__image"></div>
         </section>
         <ButtonGroup>
             <Button variant='solapa' color='claro' to="/login">Iniciar Sesión</Button>
             <Button variant='solapa' color='oscuro' to='/register'>Registrarse</Button>
         </ButtonGroup>
-
+        </div>
         <Footer></Footer>
-    </div>
+    
+    </>
     )
 }
