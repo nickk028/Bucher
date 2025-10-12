@@ -1,5 +1,6 @@
 .body-layout {
     display: flex;
+    min-height: 100vh;
 }
 
 .body-layout__content {

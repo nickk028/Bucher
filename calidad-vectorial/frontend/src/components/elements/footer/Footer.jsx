@@ -1,10 +1,10 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 import './Footer.css';
 
 export const Footer = () => {
     return (
         <footer className='footer'>
-            <h1 className='footer__title'>Bücher</h1>
+            <Link to='/' className='footer__title'>Bücher</Link>
             <div className='footer__content'>
                 <div>
                     <p>Registrarse</p>

@@ -4,7 +4,6 @@ import './Header.css';
 const Header = () => {
     return (
         <header className="header">
-            <div className="header__space"></div>
             <nav className="header__nav">
                 <Link className="header__nav__item" to="/index">
                     <div alt="Logo de Bücher" className="header__nav__item__bucher">
