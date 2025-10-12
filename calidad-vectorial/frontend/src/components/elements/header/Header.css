@@ -88,7 +88,7 @@ header {
     mask-image: url("../../../assets/img/logos/logoBucher.png");
     z-index: 1;
     clip-path: circle(0);
-    transition: all 550ms ease;
+    transition: all 300ms ease;
 }
 
 .header__nav__item__tendencias__fondo {
@@ -100,7 +100,7 @@ header {
     mask-image: url("../../../assets/img/logos/logoTendencias.png");
     z-index: 1;
     clip-path: circle(0);
-    transition: all 550ms ease;
+    transition: all 300ms ease;
 }
 
 .header__nav__item__crear__fondo {
@@ -112,7 +112,7 @@ header {
     mask-image: url("../../../assets/img/logos/logoCrear.png");
     z-index: 1;
     clip-path: circle(0);
-    transition: all 550ms ease;
+    transition: all 300ms ease;
 }
 
 .header__nav__item__libro__fondo {
@@ -124,7 +124,7 @@ header {
     mask-image: url("../../../assets/img/logos/logoLibro.png");
     z-index: 1;
     clip-path: circle(0);
-    transition: all 550ms ease;
+    transition: all 300ms ease;
 }
 
 .header__nav__item__usuario__fondo {
@@ -136,7 +136,7 @@ header {
     mask-image: url("../../../assets/img/logos/logoUsuario2.png");
     z-index: 1;
     clip-path: circle(0);
-    transition: all 550ms ease;
+    transition: all 300ms ease;
 }
 
 .header__nav__item__circle {
@@ -149,7 +149,7 @@ header {
     border-radius: 50%;
     background: #08413C;
     clip-path: circle(0);
-    transition: all 550ms ease;
+    transition: all 300ms ease;
 }
 
 .header__nav__item__bucher:hover .header__nav__item__bucher__fondo,
