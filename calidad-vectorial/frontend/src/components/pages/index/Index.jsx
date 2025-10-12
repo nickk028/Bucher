@@ -9,15 +9,14 @@ export const Index = () => {
     const { data : publicaciones, error, loading } = useFetch("publicacion");
 
     return (
-        <div className='body-index'>
-            <Header />
-            <main className='body-index__content'>
+        <>
+            <main className='body-index'>
                 {loading ? (
                     <p>Cargando...</p>
                 ) : publicaciones.length > 0 ? (
-                    <ul className='body-index__content__pub-list'>
+                    <ul className='body-index__pub-list'>
                         {publicaciones.map(pub => (
-                            <li className='body-index__content__pub-list__item' key={pub.id}> <Link to={`/publicacion/${pub.id}`}>
+                            <li className='body-index__pub-list__item' key={pub.id}> <Link to={`/publicacion/${pub.id}`}>
                                 <PublicacionCard
                                     urlFoto={pub.urlFoto}
                                     titulo={pub.titulo}
@@ -31,8 +30,7 @@ export const Index = () => {
                 ) : (
                     <p>{error ? 'No fue posible obtener publicaciones.' : 'No hay publicaciones.'}</p>
                 )}
-                <Link to="/crear-publicacion">Crear Nueva Publicación</Link>
             </main>
-        </div>
+        </>
     )
 }
