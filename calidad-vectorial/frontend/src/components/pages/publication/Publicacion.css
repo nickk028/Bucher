@@ -1,20 +1,16 @@
 .body-pub {
     display: flex;
-}
-
-.body-pub__content {
-    display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 }
 
-.body-pub__content__nav {
-    max-width: calc(100vw - 140px);
+.body-pub__nav {
+    max-width: auto;
     height: 60px;
     background-color: #f2f2f2;
 }
 
-.body-pub__content__publicacion {
+.body-pub__publicacion {
     display: flex;
     height: 75vh;
     max-width: calc(100vw - 140px);
@@ -24,7 +20,7 @@
     gap: 2vw;
 }
 
-.body-pub__content__publicacion__aside {
+.body-pub__publicacion__aside {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -32,14 +28,14 @@
     gap: 10px;
 }
 
-.body-pub__content__publicacion__img {
+.body-pub__publicacion__img {
     height: 65vh;
     min-height: 400px;
     width: auto;
     aspect-ratio: 70/100;
 }
 
-.body-pub__content__publicacion__text {
+.body-pub__publicacion__text {
     font-family: "Klee One", cursive;
     font-weight: 600;
     font-size: 1.05rem;
@@ -54,24 +50,24 @@
     padding-bottom: 10px;
 }
 
-.body-pub__content__publicacion__text__title {
+.body-pub__publicacion__text__title {
     font-size: 2rem;
 }
 
-.body-pub__content__publicacion__text__author {
+.body-pub__publicacion__text__author {
     font-size: 1.5rem;
     color: #5a5a5a;
 }
 
-.body-pub__content__publicacion__text__item {
+.body-pub__publicacion__text__item {
     max-height: 100px;
 }
 
-.body-pub__content__publicacion__text__item__subtitle {
+.body-pub__publicacion__text__item__subtitle {
     color: #929292;
 }
 
-.body-pub__content__publicacion__text__item__parrafo {
+.body-pub__publicacion__text__item__parrafo {
     max-height: 100px;
     overflow: auto;
 }

@@ -7,48 +7,47 @@ import { Button } from '../../elements/buttons/Button';
 import './Publicacion.css';
 
 export const Publicacion = () => {
-    /*const [publicacion, setPublicacion] = useState(null);*/
     const { id } = useParams()
     const { data : publicacion , error, loading } = useFetch("publicacion/" + id);
 
     return (
-        <div className='body-pub'>
-            <Header />
-            <main className='body-pub__content'>
-                <Buscador />
-                <article className='body-pub__content__publicacion'>
-                    <aside className="body-pub__content__publicacion__aside">
-                        <img className='body-pub__content__publicacion__img' src = {publicacion.urlFoto} alt="Foto del libro" />
+        <main className='body-pub'>
+        <Buscador />
+            {loading ? (
+                <p>Cargando...</p>
+            ) : publicacion.titulo && (
+                <article className='body-pub__publicacion'>
+
+                    <aside className="body-pub__publicacion__aside">
+                        <img className='body-pub__publicacion__img' src = {publicacion.urlFoto} alt="Foto del libro" />
                         <Button variant="default" color="oscuro">Pedir libro</Button>
                     </aside>
 
-                    <div className='body-pub__content__publicacion__text'>
-                        <h1 className='body-pub__content__publicacion__text__title'>{publicacion.titulo}</h1>
-                        <p className='body-pub__content__publicacion__text__author'>{publicacion.nombre}</p>
-                        <div className='body-pub__content__publicacion__text__item'>
-                            <span className='body-pub__content__publicacion__text__item__subtitle'>Descripción del libro</span>
-                            <p className='body-pub__content__publicacion__text__item__parrafo'>{publicacion.descripcion}</p>
+                    <div className='body-pub__publicacion__text'>
+                        <h1 className='body-pub__publicacion__text__title'>{publicacion.titulo}</h1>
+                        <p className='body-pub__publicacion__text__author'>{publicacion.nombre}</p>
+                        <div className='body-pub__publicacion__text__item'>
+                            <span className='body-pub__publicacion__text__item__subtitle'>Descripción del libro</span>
+                            <p className='body-pub__publicacion__text__item__parrafo'>{publicacion.descripcion}</p>
                         </div>
                         <div>
-                            <span className='body-pub__content__publicacion__text__item__subtitle'>Estado: </span>
+                            <span className='body-pub__publicacion__text__item__subtitle'>Estado: </span>
                             {publicacion.estadoPublicacion}
                         </div>
 
                         <div>
-                            <span className='body-pub__content__publicacion__text__item__subtitle'>Sobre su dueño</span>
+                            <span className='body-pub__publicacion__text__item__subtitle'>Sobre su dueño</span>
                             <UsuarioDetalles nombre={publicacion.usuarioCreador}>{publicacion.descripcionUsuario}</UsuarioDetalles>
                         </div>
 
                         <div>
-                            <span className='body-pub__content__publicacion__text__item__subtitle'>Fehca de creación: </span>
+                            <span className='body-pub__publicacion__text__item__subtitle'>Fehca de creación: </span>
                             {publicacion.fechaCreacion}
                         </div>
-                        {/*<p>{error}</p>*/}
                     </div>
                 </article>
-            </main>
+            )}
             <p>{error}</p>
-            <p>{loading && "Cargando..."}</p>
-        </div>
+        </main>
     )
 }
