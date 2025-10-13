@@ -10,7 +10,6 @@ import { Register } from "./components/pages/register/Register";
 import { CrearPublicacion } from "./components/pages/publication/CrearPublicacion";
 import { ProtectedRoute } from './components/utils/TokenUtils';
 import { CategoriaLibro } from "./components/pages/user/bookshelf/category/CategoriaLibro";
-import Layout from "./components/layouts/Layout";
 
 const App = () => {
 	return (
@@ -19,17 +18,15 @@ const App = () => {
                 <Route path="/" element={<SobreNosotros/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
-                    <Route element={<ProtectedRoute />}>
-                        <Route element={<Layout />}>
-                            <Route path="/index" element={<Index />} />
-                            <Route path="/publicacion/:id" element={<Publicacion />} />
-                            <Route path="/biblioteca" element={<Biblioteca />} />
-                            <Route path="/biblioteca/:posicion" element={<LibroUsuario />} />
-                            <Route path="/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
-                            <Route path="/publicacion/propias" element={<PublicacionUsuario />} />
-                            <Route path="/crear-publicacion" element={<CrearPublicacion />} />
-                        </Route>
-                    </Route>
+                <Route element={<ProtectedRoute/>}>
+                    <Route path="/index" element={<Index />} />
+                    <Route path="/publicacion/:id" element={<Publicacion />} />
+                    <Route path="/biblioteca" element={<Biblioteca />} />
+                    <Route path="/biblioteca/:posicion" element={<LibroUsuario />} />
+                    <Route path="/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
+                    <Route path="/publicacion/propias" element={<PublicacionUsuario />} />
+                    <Route path="/crear-publicacion" element={<CrearPublicacion />} />
+                </Route>
             </Routes>
 		</Router>
     );

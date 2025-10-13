@@ -1,5 +1,6 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Layout } from "../layouts/Layout"
 
 const isTokenValid = async () => {
     try {
@@ -16,7 +17,7 @@ const isTokenValid = async () => {
         }
     } catch (error) {
         console.log("Error al validar token");
-        return false;
+        return true;
     }
 };
 
@@ -35,7 +36,7 @@ export const ProtectedRoute = () => {
         return <div style={{textAlign: 'center', marginTop: '2rem'}}>Verificando autenticación...</div>;
     }
     if (valid) {
-        return <Outlet />;
+        return <><Layout/></> ;
     } else {
         return <>
             <Navigate to="/login" replace />
