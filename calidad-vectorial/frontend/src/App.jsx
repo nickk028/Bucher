@@ -10,6 +10,7 @@ import { Register } from "./components/pages/register/Register";
 import { CrearPublicacion } from "./components/pages/publication/CrearPublicacion";
 import { ProtectedRoute } from './components/utils/TokenUtils';
 import { CategoriaLibro } from "./components/pages/user/bookshelf/category/CategoriaLibro";
+import { Tendencias } from "./components/pages/tendences/Tendencias";
 
 const App = () => {
 	return (
@@ -26,6 +27,7 @@ const App = () => {
                     <Route path="/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
                     <Route path="/publicacion/propias" element={<PublicacionUsuario />} />
                     <Route path="/crear-publicacion" element={<CrearPublicacion />} />
+                    <Route path="/tendencias" element={<Tendencias />} />
                 </Route>
             </Routes>
 		</Router>
