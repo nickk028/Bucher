@@ -36,12 +36,16 @@ public class Autor {
 
     // Descripción del autor
     @Column(nullable = true)
-    @Size(max = 255, message = "El nombre debe tener como máximo 100 digitos")
+    @Size(max = 255, message = "La descripcion debe tener como máximo 100 digitos")
     private String descripcion;
 
     // URL de la pagina de Wikipedia del autor
     @Column(nullable = true)
     private String urlWikipedia;
+
+    // URL de la imagen del autor
+    @Column(nullable = true)
+    private String urlFotoAutor;
 
     // Relacion 1 a Muchos con Libros
     @OneToMany(mappedBy = "autor")
@@ -53,9 +57,10 @@ public class Autor {
         this.urlWikipedia = urlWikipedia;
     }
 
-    public Autor(String nombre, String descripcion, String urlWikipedia) {
+    public Autor(String nombre, String descripcion, String urlWikipedia, String urlFotoAutor) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.urlWikipedia = urlWikipedia;
+        this.urlFotoAutor = urlFotoAutor;
     }
 }
