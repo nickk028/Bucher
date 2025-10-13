@@ -24,7 +24,7 @@ const App = () => {
                             <Route path="/index" element={<Index />} />
                             <Route path="/publicacion/:id" element={<Publicacion />} />
                             <Route path="/biblioteca" element={<Biblioteca />} />
-                            <Route path="/biblioteca/:id" element={<LibroUsuario />} />
+                            <Route path="/biblioteca/:posicion" element={<LibroUsuario />} />
                             <Route path="/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
                             <Route path="/publicacion/propias" element={<PublicacionUsuario />} />
                             <Route path="/crear-publicacion" element={<CrearPublicacion />} />
