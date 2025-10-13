@@ -11,6 +11,7 @@ import { CrearPublicacion } from "./components/pages/publication/CrearPublicacio
 import { ProtectedRoute } from './components/utils/TokenUtils';
 import { CategoriaLibro } from "./components/pages/user/bookshelf/category/CategoriaLibro";
 import { Tendencias } from "./components/pages/tendences/Tendencias";
+import { Configuracion } from "./components/pages/user/configuration/Configuracion";
 
 const App = () => {
 	return (
@@ -28,6 +29,7 @@ const App = () => {
                     <Route path="/publicacion/propias" element={<PublicacionUsuario />} />
                     <Route path="/crear-publicacion" element={<CrearPublicacion />} />
                     <Route path="/tendencias" element={<Tendencias />} />
+                    <Route path="/configuracion" element={<Configuracion />} />
                 </Route>
             </Routes>
 		</Router>
