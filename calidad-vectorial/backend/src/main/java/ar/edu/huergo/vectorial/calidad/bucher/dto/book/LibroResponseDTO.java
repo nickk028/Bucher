@@ -51,4 +51,7 @@ public class LibroResponseDTO {
 
     // URL de la pagina de Wikipedia del autor
     private String urlWikipediaAutor;
+
+    // URL del autor
+    private String urlFotoAutor;
 }
