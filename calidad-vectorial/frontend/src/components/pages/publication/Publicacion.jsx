@@ -8,8 +8,11 @@ import './Publicacion.css';
 export const Publicacion = () => {
     const { id } = useParams()
     const { data : publicacion , error : errorFetch, loading : loadingError } = useFetch("publicacion/" + id);
-    const { data : respuestaPost , error : errorPost, loading : loadingPost } = usePost("publicacion/prestamo/" + id, {});
+    const { data : respuestaPost , error : errorPost, loading : loadingPost, execute } = usePost("publicacion/prestamo/" + id, {});
 
+    const handlePedirLibro = () => {
+        execute();
+    }
     return (
         <main className='body-pub'>
         <Buscador />
@@ -20,7 +23,7 @@ export const Publicacion = () => {
 
                     <aside className="body-pub__publicacion__aside">
                         <img className='body-pub__publicacion__aside__img' src = {publicacion.urlFoto} alt="Foto del libro" />
-                        <Button variant="default" color="oscuro">Pedir libro</Button>
+                        <Button variant="default" color="oscuro" onClick={handlePedirLibro}>Pedir libro</Button>
                     </aside>
 
                     <div className='body-pub__publicacion__text'>
@@ -56,10 +59,10 @@ export const Publicacion = () => {
                     </div>
                 </article>
             )}
-            <p>{errorFetch}</p>
+            <p>{errorFetch && errorFetch}</p>
             <p>{loadingPost && "Cargando..."}</p>
-            <p>{errorPost}</p>
-            <p>{JSON.stringify(respuestaPost, null, 2)}</p>
+            <p>{errorPost && errorPost}</p>
+            <p>{respuestaPost && JSON.stringify(respuestaPost, null, 2)}</p>
         </main>
     )
 }
