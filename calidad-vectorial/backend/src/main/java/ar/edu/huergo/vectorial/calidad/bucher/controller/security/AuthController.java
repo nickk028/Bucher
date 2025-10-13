@@ -103,4 +103,23 @@ public class AuthController {
             return ResponseEntity.status(401).header("Cache-Control", "no-store").body("Token inválido");
         }
     }
+
+    /**
+     * Cierra la sesión del usuario
+     * @param response Permite construir la respuesta HTTP para el navegador
+     * @return Redirección al login
+     */
+    @PostMapping("/logout")
+    public String logout(HttpServletResponse response) {
+        // Eliminar la cookie JWT
+        Cookie jwtCookie = new Cookie("JWT_TOKEN", "");
+        jwtCookie.setHttpOnly(true);
+        jwtCookie.setSecure(false);
+        jwtCookie.setPath("/");
+        jwtCookie.setMaxAge(0); // Expira inmediatamente
+
+        response.addCookie(jwtCookie);
+
+        return ResponseEntity.ok("Logout exitoso");
+    }
 }
