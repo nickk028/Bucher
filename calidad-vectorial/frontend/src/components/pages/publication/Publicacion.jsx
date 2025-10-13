@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useFetch } from '../../utils/FetchUtils';
-import Header from '../../elements/header/Header';
+import { useFetch, usePost } from '../../utils/FetchUtils';
 import Buscador from '../../elements/buscador/Buscador';
 import { UsuarioDetalles } from '../../elements/user/UsuarioDetalles';
 import { Button } from '../../elements/buttons/Button';
@@ -8,12 +7,13 @@ import './Publicacion.css';
 
 export const Publicacion = () => {
     const { id } = useParams()
-    const { data : publicacion , error, loading } = useFetch("publicacion/" + id);
+    const { data : publicacion , error : errorFetch, loading : loadingError } = useFetch("publicacion/" + id);
+    const { data : respuestaPost , error : errorPost, loading : loadingPost } = usePost("publicacion/prestamo/" + id, {});
 
     return (
         <main className='body-pub'>
         <Buscador />
-            {loading ? (
+            {loadingError ? (
                 <p>Cargando...</p>
             ) : publicacion.titulo && (
                 <article className='body-pub__publicacion'>
@@ -56,7 +56,10 @@ export const Publicacion = () => {
                     </div>
                 </article>
             )}
-            <p>{error}</p>
+            <p>{errorFetch}</p>
+            <p>{loadingPost && "Cargando..."}</p>
+            <p>{errorPost}</p>
+            <p>{JSON.stringify(respuestaPost, null, 2)}</p>
         </main>
     )
 }
