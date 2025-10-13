@@ -3,7 +3,7 @@ import Header from "../elements/header/Header";
 import { Footer } from "../elements/footer/Footer";
 import './Layout.css';
 
-const Layout = () => {
+export const Layout = () => {
     return (
         <>
         <div className="body-layout">
@@ -16,4 +16,3 @@ const Layout = () => {
         </>
     );
 };
-export default Layout;
