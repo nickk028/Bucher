@@ -12,7 +12,7 @@ const Header = () => {
                     <div className="header__nav__item__circle"></div>
                 </Link>
 
-                <Link className="header__nav__item">
+                <Link className="header__nav__item" to="/tendencias">
                     <div alt="Logo de Tendencias" className="header__nav__item__tendencias">
                         <div alt="Logo de Tendencias" className="header__nav__item__tendencias__fondo" />
                     </div>
