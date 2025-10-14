@@ -3,6 +3,7 @@ import { usePost } from '../../utils/FetchUtils';
 import { Button } from '../../elements/buttons/Button';
 import { ButtonGroup } from '../../elements/buttons/ButtonGroup';
 import { Input } from '../../elements/input/Input';
+import { LibroAnimado } from '../../elements/ojos/LibroAnimado'
 import principitoLuna from '../../../assets/img/principitoLuna.png'
 import './CrearPublicacion.css';
 
@@ -46,6 +47,7 @@ export const CrearPublicacion = () => {
 				{error && <p>{error}</p>}*/}
 				<img className="body-crear-prestamo__img" src={principitoLuna} alt="Principito en la Luna" />
 			</main>
+			<LibroAnimado color="amarillo"></LibroAnimado>
 		</>
 	)
 };
