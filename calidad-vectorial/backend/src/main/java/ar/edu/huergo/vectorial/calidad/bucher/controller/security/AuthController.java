@@ -107,7 +107,7 @@ public class AuthController {
     /**
      * Cierra la sesión del usuario
      * @param response Permite construir la respuesta HTTP para el navegador
-     * @return Redirección al login
+     * @return 200 ok 
      */
     @PostMapping("/logout")
     public String logout(HttpServletResponse response) {
