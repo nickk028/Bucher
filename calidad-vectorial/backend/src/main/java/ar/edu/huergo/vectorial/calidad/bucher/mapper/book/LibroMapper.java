@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroTopDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 
 
@@ -53,6 +54,19 @@ public class LibroMapper {
         return libroBasicDTO;
     }
 
+    public LibroTopDTO toTopDTO(Libro libro) {
+        if (libro == null) {
+            return null;
+        }
+        LibroTopDTO libroTopDTO = new LibroTopDTO();
+
+        libroTopDTO.setId(libro.getId());
+        libroTopDTO.setUrlFoto(libro.getUrlFoto());
+        libroTopDTO.setTitulo(libro.getTitulo());
+
+        return libroTopDTO;
+    }
+
     public List<LibroBasicDTO> toBasicDTOList(Set<Libro> libros) {
         if (libros == null) {
             return new ArrayList<>();
@@ -60,6 +74,16 @@ public class LibroMapper {
         return libros
             .stream()
             .map(this::toBasicDTO)
+            .collect(Collectors.toList());
+    }
+
+    public List<LibroTopDTO> toTopDTOList(Set<Libro> libros) {
+        if (libros == null) {
+            return new ArrayList<>();
+        }
+        return libros
+            .stream()
+            .map(this::toTopDTO)
             .collect(Collectors.toList());
     }
 }
