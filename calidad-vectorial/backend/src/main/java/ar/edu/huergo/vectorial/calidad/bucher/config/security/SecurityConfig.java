@@ -53,7 +53,6 @@ public class SecurityConfig {
                 .requestMatchers("/favicon.ico").permitAll()
 
                 // Login y Registro
-                .requestMatchers(HttpMethod.GET, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/logout").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
