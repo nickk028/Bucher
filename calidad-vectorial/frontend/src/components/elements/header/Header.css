@@ -20,6 +20,9 @@ header {
 
 .header__nav__item {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 80px;
     height: 80px;
 }
@@ -49,10 +52,11 @@ header {
 
 .header__nav__item__crear {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 65px;
+    height: 65px;
     background: #08413C;
     mask-image: url("../../../assets/img/logos/logoCrear.png");
+    mask-size: contain;
     z-index: 1;
 }
 
@@ -101,10 +105,11 @@ header {
 .header__nav__item__crear__fondo {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
+    width: 65px;
+    height: 65px;
     background: #EAFFEF;
     mask-image: url("../../../assets/img/logos/logoCrear.png");
+    mask-size: contain;
     z-index: 1;
     clip-path: circle(0);
     transition: all 300ms ease;
