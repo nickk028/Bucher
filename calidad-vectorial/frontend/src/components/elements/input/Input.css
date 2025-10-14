@@ -43,15 +43,15 @@
 
 .input-group__input:valid~.input-group__label {
     top: 0;
-    transform: translateY(-90%);
-    font-size: 1rem;
+    transform: translateY(-120%);
+    font-size: 1.3rem;
     color: #6C757D;
 }
 
 .input-group__input:focus~.input-group__label {
     top: 0;
-    transform: translateY(-90%);
-    font-size: 1rem;
+    transform: translateY(-120%);
+    font-size: 1.3rem;
     color: #0E675F;
 }
 
