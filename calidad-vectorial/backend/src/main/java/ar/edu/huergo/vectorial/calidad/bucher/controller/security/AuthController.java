@@ -107,10 +107,10 @@ public class AuthController {
     /**
      * Cierra la sesión del usuario
      * @param response Permite construir la respuesta HTTP para el navegador
-     * @return Redirección al login
+     * @return 200 ok 
      */
     @PostMapping("/logout")
-    public String logout(HttpServletResponse response) {
+    public ResponseEntity<String> logout(HttpServletResponse response) {
         // Eliminar la cookie JWT
         Cookie jwtCookie = new Cookie("JWT_TOKEN", "");
         jwtCookie.setHttpOnly(true);
