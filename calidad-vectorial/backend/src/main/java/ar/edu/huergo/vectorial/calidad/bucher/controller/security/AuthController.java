@@ -110,7 +110,7 @@ public class AuthController {
      * @return 200 ok 
      */
     @PostMapping("/logout")
-    public String logout(HttpServletResponse response) {
+    public ResponseEntity<String> logout(HttpServletResponse response) {
         // Eliminar la cookie JWT
         Cookie jwtCookie = new Cookie("JWT_TOKEN", "");
         jwtCookie.setHttpOnly(true);
