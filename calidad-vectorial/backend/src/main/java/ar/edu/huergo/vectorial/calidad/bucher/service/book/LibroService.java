@@ -40,6 +40,11 @@ public class LibroService {
             .orElseThrow(() -> new EntityNotFoundException("Libro no encontrado"));
     }
 
+    /**
+     * Obtiene Libros por su categoria
+     * @param categoria La categoria de los libros a buscar
+     * @return Los libros de la categoria
+     */
     public Set<Libro> obtenerLibrosPorCategoria(Categoria categoria) {
         return new HashSet<> (libroRepository.findAllByCategoriaContaining(categoria));
     }
