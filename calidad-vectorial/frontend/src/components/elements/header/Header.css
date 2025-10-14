@@ -160,7 +160,7 @@ header {
 }
 
 .circle--selected {
-    background: #486963;
+    background: #2F5B56;
     clip-path: circle(60px);
     transition: all 300ms ease;
 }
