@@ -10,15 +10,27 @@
     margin-left: 10%;
 }
 
-.body-crear-prestamo__img {
-    width: 50%;
-    max-width: 400px;
-    height: auto;
-    aspect-ratio: 65/100;
-    rotate: -2deg;
+.body-crear-prestamo__form__limite-dias {
+    width: 240px;
+}
 
-    position: absolute;
-    bottom: -10px;
-    right: 0;
-    z-index: -1;
+.body-crear-prestamo__img {
+    display: none;
+}
+
+@media (width > 900px) and (height > 490px) {
+
+    .body-crear-prestamo__img {
+        display: block;
+        width: 50%;
+        max-width: 400px;
+        height: auto;
+        aspect-ratio: 65/100;
+        rotate: -2deg;
+
+        position: absolute;
+        bottom: -10px;
+        right: 0;
+        z-index: -1;
+    }
 }
