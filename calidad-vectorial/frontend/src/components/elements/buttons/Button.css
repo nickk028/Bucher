@@ -22,8 +22,8 @@
     min-width: 150px;
     border-radius: 10px;
     box-sizing: border-box;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: max(8px, 5%);
+    padding-right: max(8px, 5%);
 }
 
 .btn--solapa--claro {
