@@ -35,6 +35,7 @@ export const Biblioteca = () => {
                     options={dataLibros ? dataLibros.map(libro => libro.titulo) : []}
                     placeholder="Título"
                     onChange={e => setTitulo(e.target.value)}
+                    value = {titulo}
                 />
                 <input type="number" value={pagina} onChange={e => setPagina(e.target.value)} placeholder="pagina" />
                 <input type="text" value={estadoLectura} onChange={e => setEstadoLectura(e.target.value)} placeholder="estadoLectura" />
