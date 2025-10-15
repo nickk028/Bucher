@@ -1,5 +1,4 @@
 .buscador {
-    width: calc(100vw - 140px);
     height: 60px;
 
     display: flex;

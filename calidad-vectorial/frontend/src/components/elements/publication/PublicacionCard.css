@@ -1,7 +1,9 @@
-.card {
+.pub-card {
     width: 400px;
     height: 250px;
     background: #ffffff;
+    font-family: "Hind Siliguri";
+    font-size: 1.1rem;
 
     box-sizing: border-box;
     box-shadow: 0px 0px 5px #969696;
@@ -11,31 +13,30 @@
     padding: 16px;
 }
 
-.card__image {
+.pub-card__image {
     width: 40%;
     height: auto;
 }
 
-.card__list {
+.pub-card__list {
     width: 55%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-.card__list__item {
+.pub-card__list__item {
     display: flex;
     flex-direction: column;
 }
 
-.card__list__item__title {
-    font-size: 1.2rem;
+.pub-card__list__item__title {
+    font-size: 1.5rem;
     font-weight: 600;
     color: #0E675F;
 }
 
-.card__list__item__subtitle {
+.pub-card__list__item__subtitle {
     color: #929292;
     text-shadow: 1px 1px 2px #d1d1d1;
 }

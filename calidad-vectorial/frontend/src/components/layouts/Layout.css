@@ -7,4 +7,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
+    color: #1a1a1a;
 }
