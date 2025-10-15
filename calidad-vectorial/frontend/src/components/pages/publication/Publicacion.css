@@ -36,10 +36,8 @@
 }
 
 .body-pub__publicacion__text {
-    font-family: "Klee One", cursive;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 1.05rem;
-    color: #1a1a1a;
 
     height: auto;
     width: 65%;
@@ -52,12 +50,14 @@
 
 .body-pub__publicacion__text__title {
     font-size: 2rem;
+    font-weight: 600;
     color: #0E675F;
 }
 
 .body-pub__publicacion__text__author {
     font-size: 1.5rem;
-    color: #5a5a5a;
+    font-weight: 600;
+    color: #7c7c7c;
 }
 
 .body-pub__publicacion__text__item {
