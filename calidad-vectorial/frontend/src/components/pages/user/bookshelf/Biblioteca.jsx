@@ -25,7 +25,7 @@ export const Biblioteca = () => {
             <div>
                 <h1>Ver Libros</h1>
                 <p>{JSON.stringify(dataBiblioteca, null, 2)}</p>
-                <p>{loadingBiblioteca && "Cargando..."}</p>
+                <p>{loadingBiblioteca && "Cargando biblioteca..."}</p>
                 <p>{errorBiblioteca}</p>
             </div>
 
@@ -42,10 +42,11 @@ export const Biblioteca = () => {
                 <input type="number" value={puntuacion} onChange={e => setPuntuacion(e.target.value)} placeholder="puntuacion" />
 				<button type="submit" disabled={loadingPost}>Guardar Libro</button>
 
-                
-
-				{dataPost && <p> Operacion Exitosa </p>}
+				{dataPost && <p> Operacion post Exitosa </p>}
 				{errorPost && <p>{errorPost}</p>}
+                {loadingPost && <p>Cargando Post...</p>}
+                {loadingLibros && <p>Cargando libros...</p>}
+                {errorLibros && <p>{errorLibros}</p>}           
 			</form>
             <Link to="/index">Index</Link> 
             <Link to="/biblioteca/categoria/terror">Terror</Link>
