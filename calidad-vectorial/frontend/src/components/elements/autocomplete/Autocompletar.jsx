@@ -7,25 +7,19 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 	// Detectar si el componente está siendo controlado desde afuera
 	const isControlled = valorExterno !== undefined;
 
-	// Use a string value always to avoid runtime errors when calling string methods
+	// El valor actual: externo si está controlado, interno si no lo está (siempre deberia estarlo)
 	const value = String(isControlled ? (valorExterno ?? "") : valorInterno);
 
 	if (isControlled && typeof onChange !== "function") {
-		// eslint-disable-next-line no-console
-		console.warn(
-			"Autocompletar: 'value' fue proporcionado pero falta 'onChange'. El componente está en modo controlado y no podrá actualizarse desde dentro."
-		);
+		console.warn("Autocompletar: 'value' fue proporcionado pero falta 'onChange'. El componente está en modo controlado y no podrá actualizarse desde dentro.");
 	}
 
-	// setValue: for controlled components, call onChange with an event-like object
-	// so parent handlers that expect `e.target.value` keep working. For uncontrolled,
-	// use the internal state setter.
 	const setValue = isControlled
 		? (newVal) => {
-			  if (typeof onChange === "function") {
-				  onChange({ target: { value: newVal } });
-			  }
-		  }
+			if (typeof onChange === "function") {
+				onChange({ target: { value: newVal } });
+			}
+		}
 		: setValorInterno;
 
 	// Filtrado seguro: coercionar opciones a string antes de comparar
@@ -49,7 +43,6 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 				className="form-control"
 				value={value}
 				onChange={(e) => {
-					// pass only the raw string; controlled mode will wrap into event-like object
 					setValue(e.target.value);
 					setShowList(true);
 				}}
