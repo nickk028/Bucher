@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Usuario } from '../../../elements/user/Usuario';
 import { useState } from "react";
 import { useFetch, usePost } from '../../../utils/FetchUtils';
+import { Autocompletar } from "../../../elements/autocomplete/Autocompletar";
 
 export const Biblioteca = () => {
     const [titulo, setTitulo] = useState("");
@@ -11,6 +12,7 @@ export const Biblioteca = () => {
 
     const { data : dataBiblioteca, error : errorBiblioteca, loading : loadingBiblioteca } = useFetch("biblioteca");
     const { data : dataPost, loading : loadingPost, error : errorPost, execute } = usePost("biblioteca");
+    const { data : dataLibros, error : errorLibros, loading : loadingLibros } = useFetch("libro/todos");
 
     const handleAgregarLibroUsuario = async (e) => {
         e.preventDefault();
@@ -29,11 +31,17 @@ export const Biblioteca = () => {
 
             <h1>Añadir libro</h1>
 			<form onSubmit={handleAgregarLibroUsuario}>
-				<input type="text" value={titulo} onChange={e => setTitulo(e.target.value)} placeholder="Título" />
+				<Autocompletar
+                    options={dataLibros}
+                    placeholder="Título"
+                    onChange={e => setTitulo(e.target.value)}
+                />
                 <input type="number" value={pagina} onChange={e => setPagina(e.target.value)} placeholder="pagina" />
                 <input type="text" value={estadoLectura} onChange={e => setEstadoLectura(e.target.value)} placeholder="estadoLectura" />
                 <input type="number" value={puntuacion} onChange={e => setPuntuacion(e.target.value)} placeholder="puntuacion" />
 				<button type="submit" disabled={loadingPost}>Guardar Libro</button>
+
+                
 
 				{dataPost && <p> Operacion Exitosa </p>}
 				{errorPost && <p>{errorPost}</p>}

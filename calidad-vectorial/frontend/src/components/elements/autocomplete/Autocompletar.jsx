@@ -35,7 +35,7 @@ export function Autocompletar({options = [], value: valorExterno, onChange, maxS
 	};
 
   return (
-    <div style={{ position: "relative" }}>
+    <div>
 		<input type="text" className="form-control" value={value} onChange={(e) => { setValue(e.target.value); setShowList(true); }}
 		onFocus={() => setShowList(true)} onBlur={() => setTimeout(() => setShowList(false), 100)} {...props} />
 
