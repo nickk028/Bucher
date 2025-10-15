@@ -1,6 +1,6 @@
-import './Buscador.css';
 import { Input } from '../input/Input';
 import lupa from '../../../assets/img/lupa.png';
+import './Buscador.css';
 
 const Buscador = () => {
     return (
