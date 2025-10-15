@@ -77,7 +77,7 @@ public class LibroMapper {
             .collect(Collectors.toList());
     }
 
-    public List<LibroTopDTO> toTopDTOList(Set<Libro> libros) {
+    public List<LibroTopDTO> toTopDTOList(List<Libro> libros) {
         if (libros == null) {
             return new ArrayList<>();
         }

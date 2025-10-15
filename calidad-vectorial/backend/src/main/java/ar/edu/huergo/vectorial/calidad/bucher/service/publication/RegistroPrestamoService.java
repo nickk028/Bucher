@@ -2,8 +2,6 @@ package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,17 +75,4 @@ public class RegistroPrestamoService {
         return registroPrestamoRepository.findByFechaPrestamoBetween(fechaInicioSemana, fechaActual);
     }
 
-    /**
-     * Obtiene una lista con los nombres de los 10 libros más prestados de la semana
-     * @return La lista de los libros más prestados
-     */
-    public List<String> obtenerRegistrosPrestamosPodio() {
-        List<RegistroPrestamo> registrosSemanales = obtenerRegistrosPrestamosDeLaSemana();
-        Map<String, Long> conteoPrestamos = registrosSemanales.stream().collect(Collectors.groupingBy(
-            rp -> rp.getPublicacion().getLibro().getTitulo(), Collectors.counting()));
-        List<String> podioRegistro =  conteoPrestamos.entrySet().stream().sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
-            .limit(10).map(Map.Entry::getKey).toList();
-        
-        return podioRegistro; 
-    }
 }
