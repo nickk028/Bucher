@@ -16,15 +16,6 @@
     animation: rostro-flotar 4s ease-in-out infinite;
 }
 
-@keyframes rostro-flotar {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-6px);
-    }
-}
-
 .rostro--rojo {
     background: #db1515;
     color: #a40f0f;
