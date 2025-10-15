@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
 import { Link } from "react-router-dom";
 import './Login.css';
-import { AuthBox } from "../../elements/authbok/AuthBox";
+import { AuthBox } from "../../elements/authbox/AuthBox";
 import { Input } from "../../elements/input/Input";
 import { Button } from "../../elements/buttons/Button";
-import { LibroAnimado } from "../../elements/ojos/LibroAnimado";
+import { LibroAnimado } from "../../elements/animatedbook/LibroAnimado";
 
 export function Login() {
 	const [username, setUsername] = useState("");

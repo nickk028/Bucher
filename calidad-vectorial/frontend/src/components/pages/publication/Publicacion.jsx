@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useFetch, usePost } from '../../utils/FetchUtils';
-import Buscador from '../../elements/buscador/Buscador';
+import Buscador from '../../elements/search/Buscador';
 import { UsuarioDetalles } from '../../elements/user/UsuarioDetalles';
 import { Button } from '../../elements/buttons/Button';
 import './Publicacion.css';

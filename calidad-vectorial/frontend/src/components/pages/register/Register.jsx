@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
 import './Register.css';
-import { AuthBox } from "../../elements/authbok/AuthBox";
+import { AuthBox } from "../../elements/authbox/AuthBox";
 import { Button } from "../../elements/buttons/Button";
 import { Input } from "../../elements/input/Input";
 import { postData } from '../../utils/FetchUtils';
-import { LibroAnimado } from '../../elements/ojos/LibroAnimado';
+import { LibroAnimado } from '../../elements/animatedbook/LibroAnimado';
 
 export const Register = () => {
     const navigate = useNavigate();
