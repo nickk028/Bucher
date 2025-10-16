@@ -10,3 +10,9 @@
     font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
     color: #1a1a1a;
 }
+
+.body-layout__büchi {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}

@@ -20,7 +20,7 @@ export const SobreNosotros = () => {
                 <div className="body-sobre-nosotros__hero__image"></div>
         </section>
         <ButtonGroup>
-            <Button variant='solapa' color='claro' to="/login">Iniciar Sesión</Button>
+            <Button variant='solapa' color='claro' to="/login">Iniciar sesión</Button>
             <Button variant='solapa' color='oscuro' to='/register'>Registrarse</Button>
         </ButtonGroup>
         </div>
