@@ -11,6 +11,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestam
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -68,6 +70,11 @@ public class Usuario {
         regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*]).*$",
         message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial.")
     private String password;
+
+    // Avatar del usuario
+    @NotNull(message = "El avatar es obligatorio.")
+    @Enumerated(EnumType.STRING)
+    private Avatar avatar;
 
     // Pronombres
     @Column(nullable = true)
