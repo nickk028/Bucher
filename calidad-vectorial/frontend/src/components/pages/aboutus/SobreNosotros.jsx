@@ -2,7 +2,6 @@ import React from 'react'
 import { Button } from '../../elements/buttons/Button';
 import { ButtonGroup } from '../../elements/buttons/ButtonGroup';
 import { Footer } from '../../elements/footer/Footer';
-import '../../elements/global.css';
 import './SobreNosotros.css';
 
 export const SobreNosotros = () => {

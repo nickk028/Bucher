@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react'
-import '../../elements/global.css';
 import './Input.css';
 import ver from '../../../assets/img/ver.png';
 import esconder from '../../../assets/img/esconder.png';

@@ -106,3 +106,73 @@
 .rostro--büchi .rostro__content__text {
     font-size: 3rem;
 }
+
+.globo {
+    position: absolute;
+    background: currentColor;
+    top: 0;
+    left: 0;
+    transform: translate(-100%, -150%);
+    border-radius: 10px;
+
+    padding: 10px;
+    padding-bottom: 20px;
+    width: 200px;
+}
+
+.globo::before {
+    content: '';
+    background: currentColor;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 150%);
+
+    border-radius: 50%;
+    width: 10%;
+    aspect-ratio: 1 / 1;
+}
+
+.globo::after {
+    content: '';
+    background: currentColor;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(160%, 300%);
+
+    border-radius: 50%;
+    width: 10%;
+    aspect-ratio: 1 / 1;
+}
+
+.globo--rojo {
+    color: #db1515;
+}
+
+.globo--amarillo {
+    color: #f3f346;
+}
+
+.globo--azul {
+    color: #5b6df6;
+}
+
+.globo__text {
+    color: #1a1a1a;
+    text-shadow: 2px 2px 4px;
+}
+
+.globo__text--rojo {
+    text-shadow: #a40f0f;
+}
+
+.globo__text--amarillo {
+    text-shadow:#9f9f2e;
+}
+
+.globo__text--azul {
+    text-shadow:#3c49a6;
+}

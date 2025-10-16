@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useFetch } from '../../utils/FetchUtils';
 import PublicacionCard from '../../elements/publication/PublicacionCard';
 import './Index.css';
-import '../../elements/global.css';
+import '../../../global.css';
 
 export const Index = () => {
     const { data : publicaciones, error, loading } = useFetch("publicacion");

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useBook } from "../../context/LibroContexto";
 
 /** Hook para realizar peticiones GET
 *   @param {string} url - endpoint al que se envía el GET
@@ -11,6 +12,8 @@ export const useFetch = (url) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    const { setLibroMensaje } = useBook();
 
     useEffect(() => {
         // Controller para poder cancelar la request si el componente se desmonta
@@ -38,11 +41,13 @@ export const useFetch = (url) => {
                 } else {
                     // Muestra el mensaje de error de spring
                     setError("Error en la respuesta del servidor: " + respond.status + " " + respond.statusText);
+                    setLibroMensaje("Error en la respuesta del servidor: " + respond.status + " " + respond.statusText);
                 }
             } catch (err) {
                 // Ignora AbortError
                 if (err.name !== "AbortError") {
                     setError("Error: " + err.message);
+                    setLibroMensaje("Error: " + err.message);
                 }
             } finally {
                 // Cierra el spinner (siempre)
@@ -105,6 +110,7 @@ export function usePost(url) {
         if (isMountedRef.current) {
             setLoading(true);
             setError("");
+            setLibroMensaje("");
         }
 
         try {
@@ -113,7 +119,7 @@ export function usePost(url) {
 
             // Si se aborta la request o el componente se desmontó cancela la request 
             if (controller.signal.aborted || !isMountedRef.current) return;
- 
+
             if (respond.ok) {
                 // Parseo según content-type de la respuesta
                 const contentType = respond.headers.get("content-type");
@@ -128,12 +134,14 @@ export function usePost(url) {
                 // Muestra el mensaje de error de spring
                 if (isMountedRef.current) {
                     setError("Error en la respuesta del servidor: " + respond.status + " " + respond.statusText );
+                    setLibroMensaje("Error en la respuesta del servidor: " + respond.status + " " + respond.statusText)
                 }
             }
         } catch (err) {
             // Ignora AbortError
             if (err.name !== "AbortError" && isMountedRef.current) {
                 setError("Error: " + err.message);
+                setLibroMensaje("Error: " + err.message)
             }
         } finally {
             // Apaga el spinner y limpia el controller de esta request

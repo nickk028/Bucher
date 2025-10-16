@@ -14,9 +14,8 @@ export const LibroAnimado = ({ children, variant="medio", color="amarillo", mens
             {mostrarMensaje && mensaje && (
                 <>
                     {variant == "büchi" ? (
-                        <div className="rostro__globo">
-                            <p className="rostro__globo__texto">{mensaje}</p>
-                            <div className="rostro__globo__punta"></div>
+                        <div className={`globo globo--${color}`}>
+                            <p className={`globo__text globo__text--${color}`}>{mensaje}</p>
                         </div>
                     ) : (
                         <div className="rostro__globo">

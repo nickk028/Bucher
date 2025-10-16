@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { BookProvider } from "./context/LibroContexto";
+
 import { Login } from "./components/pages/login/Login";
 import { SobreNosotros } from "./components/pages/aboutus/SobreNosotros";
 import { Index } from "./components/pages/index/Index";
@@ -15,24 +18,26 @@ import { Configuracion } from "./components/pages/user/configuration/Configuraci
 
 const App = () => {
 	return (
-		<Router>
-			<Routes>
-                <Route path="/" element={<SobreNosotros/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/register" element={<Register/>}/>
-                <Route element={<ProtectedRoute/>}>
-                    <Route path="/index" element={<Index />} />
-                    <Route path="/publicacion/:id" element={<Publicacion />} />
-                    <Route path="/biblioteca" element={<Biblioteca />} />
-                    <Route path="/biblioteca/:posicion" element={<LibroUsuario />} />
-                    <Route path="/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
-                    <Route path="/publicacion/propias" element={<PublicacionUsuario />} />
-                    <Route path="/crear-publicacion" element={<CrearPublicacion />} />
-                    <Route path="/tendencias" element={<Tendencias />} />
-                    <Route path="/configuracion" element={<Configuracion />} />
-                </Route>
-            </Routes>
-		</Router>
+        <BookProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<SobreNosotros/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/register" element={<Register/>}/>
+                    <Route element={<ProtectedRoute/>}>
+                        <Route path="/index" element={<Index />} />
+                        <Route path="/publicacion/:id" element={<Publicacion />} />
+                        <Route path="/biblioteca" element={<Biblioteca />} />
+                        <Route path="/biblioteca/:posicion" element={<LibroUsuario />} />
+                        <Route path="/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
+                        <Route path="/publicacion/propias" element={<PublicacionUsuario />} />
+                        <Route path="/crear-publicacion" element={<CrearPublicacion />} />
+                        <Route path="/tendencias" element={<Tendencias />} />
+                        <Route path="/configuracion" element={<Configuracion />} />
+                    </Route>
+                </Routes>
+            </Router>
+        </BookProvider>
     );
 }
 export default App;
