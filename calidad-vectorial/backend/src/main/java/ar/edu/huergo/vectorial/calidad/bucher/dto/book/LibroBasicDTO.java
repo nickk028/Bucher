@@ -12,6 +12,9 @@ public class LibroBasicDTO {
     // Id principal
     private Long id;
 
+    // Titulo del libro
+    private String titulo;
+
     // URL de la foto del libro
     private String urlFoto;
 }
