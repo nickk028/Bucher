@@ -2,6 +2,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.service.security;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
@@ -71,6 +73,7 @@ public class UsuarioService {
         usuario.setRoles(Set.of(rolCliente));
         usuario.setBiblioteca(biblioteca);
         biblioteca.setUsuario(usuario);
+        usuario.setAvatar(getAvatarRandom());
         return usuarioRepository.save(usuario);
     }
 
@@ -100,5 +103,14 @@ public class UsuarioService {
             }
         }
         return false;
+    }
+
+    // Inicializa el random
+    private static final Random random = new Random();
+    
+    public static Avatar getAvatarRandom() {
+        Avatar[] avatares = Avatar.values();
+        int indiceAleatorio = random.nextInt(avatares.length);
+        return (avatares[indiceAleatorio]);
     }
 }
