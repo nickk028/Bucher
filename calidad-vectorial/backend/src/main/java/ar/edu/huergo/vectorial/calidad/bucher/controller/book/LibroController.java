@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
-import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroTopDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.book.LibroMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
@@ -45,8 +44,8 @@ public class LibroController {
     }
 
     @GetMapping("/tendencias")
-    public ResponseEntity<List<LibroTopDTO>> obtenerLibrosMasLeidos() {
-        List<LibroTopDTO> librosTop = libroMapper.toTopDTOList(libroService.obtenerLibrosMasPrestadosDeLaSemana());
-        return ResponseEntity.ok(librosTop);
+    public ResponseEntity<List<LibroBasicDTO>> obtenerLibrosMasLeidos() {
+        List<LibroBasicDTO> librosEnTendencia = libroMapper.toBasicDTOList(libroService.obtenerLibrosMasPrestadosDeLaSemana());
+        return ResponseEntity.ok(librosEnTendencia);
     }
 }

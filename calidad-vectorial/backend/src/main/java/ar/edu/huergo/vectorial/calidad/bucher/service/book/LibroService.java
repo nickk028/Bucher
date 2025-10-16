@@ -59,7 +59,7 @@ public class LibroService {
     }
 
 
-    public List<Libro> obtenerLibrosMasPrestadosDeLaSemana() {
+    public Set<Libro> obtenerLibrosMasPrestadosDeLaSemana() {
         List<RegistroPrestamo> prestamosDeLaSemana = registroPrestamoService.obtenerRegistrosPrestamosDeLaSemana();
 
         Map<Libro,Integer> contadorPrestamos = new HashMap();
@@ -73,6 +73,6 @@ public class LibroService {
             }
         }
 
-        return contadorPrestamos.entrySet().stream().sorted((a, b) -> b.getValue().compareTo(a.getValue())).limit(10).map(Map.Entry::getKey).collect(Collectors.toList());
+        return contadorPrestamos.entrySet().stream().sorted((a, b) -> b.getValue().compareTo(a.getValue())).limit(10).map(Map.Entry::getKey).collect(Collectors.toSet());
     }
 }
