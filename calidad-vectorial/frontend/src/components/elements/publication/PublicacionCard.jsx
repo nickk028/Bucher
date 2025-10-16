@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './PublicacionCard.css';
-import '../../elements/global.css';
 
 const PublicacionCard = ({ urlFoto, titulo, usuarioNickname, estadoPublicacion, limiteDias }) => {
     return (

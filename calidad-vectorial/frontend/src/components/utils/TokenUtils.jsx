@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Layout } from "../layouts/Layout"
+import { Layout } from "../../layouts/Layout"
 
 const isTokenValid = async () => {
     try {
