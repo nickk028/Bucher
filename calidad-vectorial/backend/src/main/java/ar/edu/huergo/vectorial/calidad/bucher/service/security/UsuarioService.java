@@ -107,7 +107,7 @@ public class UsuarioService {
 
     // Inicializa el random
     private static final Random random = new Random();
-    
+
     public static Avatar getAvatarRandom() {
         Avatar[] avatares = Avatar.values();
         int indiceAleatorio = random.nextInt(avatares.length);

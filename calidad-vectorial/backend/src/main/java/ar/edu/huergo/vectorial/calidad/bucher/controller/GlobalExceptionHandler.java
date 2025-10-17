@@ -7,10 +7,13 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
@@ -99,7 +102,36 @@ public class GlobalExceptionHandler {
         problem.setType(URI.create("https://http.dev/problems/invalid-message"));
         return problem;
     }
-/*
+
+    @ExceptionHandler(UsernameNotFoundException.class) // Detecta cuando el usuario no existe (no anda)
+    public ProblemDetail handleUsernameNotFound(UsernameNotFoundException ex) {
+
+        ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
+        problem.setTitle("Usuario no encontrado");
+        problem.setDetail(ex.getMessage());
+        problem.setType(URI.create("https://http.dev/problems/user-not-found"));
+        return problem;
+    }
+
+    @ExceptionHandler(BadCredentialsException.class) // Detecta cuando las credenciales son inválidas
+    public ProblemDetail handleBadCredentials(BadCredentialsException ex) {
+
+        ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.UNAUTHORIZED);
+        problem.setTitle("Credenciales inválidas");
+        problem.setDetail("El nombre de usuario o la contraseña son incorrectos");
+        problem.setType(URI.create("https://http.dev/problems/bad-credentials"));
+        return problem;
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class) // Detecta cuando se realiza una request a una url inexistente
+    public ProblemDetail handleNotFoundException(NoHandlerFoundException ex) {
+        ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
+        problem.setTitle("Ruta no encontrada");
+        problem.setDetail("La URL solicitada no existe: " + ex.getRequestURL());
+        problem.setType(URI.create("https://http.dev/problems/not-found"));
+        return problem;
+}
+
     @ExceptionHandler(Exception.class) // Detección general de excepciones internas que no fueron detectadas por otro ExceptionHandler
     public ProblemDetail handleGeneric(Exception ex) {
         ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -109,5 +141,5 @@ public class GlobalExceptionHandler {
         // Log de error con stacktrace para diagnóstico
         log.error("Error no controlado", ex);
         return problem;
-    }*/
+    }
 }
