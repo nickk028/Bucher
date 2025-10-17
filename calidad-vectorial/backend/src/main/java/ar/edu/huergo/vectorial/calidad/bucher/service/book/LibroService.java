@@ -62,7 +62,7 @@ public class LibroService {
     public Set<Libro> obtenerLibrosMasPrestadosDeLaSemana() {
         List<RegistroPrestamo> prestamosDeLaSemana = registroPrestamoService.obtenerRegistrosPrestamosDeLaSemana();
 
-        Map<Libro,Integer> contadorPrestamos = new HashMap();
+        Map<Libro,Integer> contadorPrestamos = new HashMap<>();
 
         for (RegistroPrestamo p : prestamosDeLaSemana) {
             Libro libro = p.getPublicacion().getLibro();

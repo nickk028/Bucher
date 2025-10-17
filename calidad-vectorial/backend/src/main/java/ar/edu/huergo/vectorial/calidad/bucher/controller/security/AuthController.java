@@ -49,6 +49,7 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginDTO request,
         HttpServletResponse response) {  // Permite crear la respuesta para el navegador -> en este caso se le envía una cookie
 
+
         // 1) Autenticar credenciales username/password
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.username(), request.password()));
@@ -107,7 +108,7 @@ public class AuthController {
     /**
      * Cierra la sesión del usuario
      * @param response Permite construir la respuesta HTTP para el navegador
-     * @return 200 ok 
+     * @return 200 ok
      */
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
