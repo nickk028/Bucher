@@ -1,7 +1,8 @@
 .pub-card {
-    width: 400px;
+    width: 455px;
     height: 250px;
     background: #ffffff;
+    overflow: hidden;
     font-family: "Hind Siliguri";
     font-size: 1.1rem;
 
