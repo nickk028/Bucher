@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useBook } from '../../../context/LibroContexto';
 import { useFetch } from '../../utils/FetchUtils';
 import PublicacionCard from '../../elements/publication/PublicacionCard';
 import './Index.css';
@@ -6,6 +7,9 @@ import '../../../global.css';
 
 export const Index = () => {
     const { data : publicaciones, error, loading } = useFetch("publicacion");
+
+    const { setLibroMensaje } = useBook();
+    setLibroMensaje(error);
 
     return (
         <main className='body-index'>

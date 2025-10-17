@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useBook } from "../../../context/LibroContexto";
 import { usePost } from '../../utils/FetchUtils';
 import { Button } from '../../elements/buttons/Button';
 import { ButtonGroup } from '../../elements/buttons/ButtonGroup';
@@ -14,6 +15,9 @@ export const CrearPublicacion = () => {
 	const [pagina, setPagina] = useState("prestamo");
 
     const { data, loading, error, execute } = usePost("publicacion/crear");
+
+	const { setLibroMensaje } = useBook();
+	setLibroMensaje(error);
 
     const handleCrearPublicacion = async (e) => {
         e.preventDefault();
