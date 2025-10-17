@@ -2,5 +2,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.dto.security;
 
 import java.util.Set;
 
-public record UsuarioResponseDTO(String username, Set<String> roles) {
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
+
+public record UsuarioResponseDTO(String username, Avatar avatar, Set<String> roles) {
 }
