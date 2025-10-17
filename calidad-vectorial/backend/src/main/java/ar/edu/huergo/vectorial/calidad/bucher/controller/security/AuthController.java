@@ -49,6 +49,8 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginDTO request,
         HttpServletResponse response) {  // Permite crear la respuesta para el navegador -> en este caso se le envía una cookie
 
+        // 0) Verifica que el usuario exista
+        usuarioService.obtenerUsuarioPorNombre(request.username());
 
         // 1) Autenticar credenciales username/password
         authenticationManager.authenticate(
