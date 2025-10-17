@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import { Usuario } from '../../../elements/user/Usuario';
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useFetch, usePost } from '../../../utils/FetchUtils';
+import { Usuario } from '../../../elements/user/Usuario';
 import { Autocompletar } from "../../../elements/autocomplete/Autocompletar";
 
 export const Biblioteca = () => {
@@ -46,9 +46,9 @@ export const Biblioteca = () => {
 				{errorPost && <p>{errorPost}</p>}
                 {loadingPost && <p>Cargando Post...</p>}
                 {loadingLibros && <p>Cargando libros...</p>}
-                {errorLibros && <p>{errorLibros}</p>}           
+                {errorLibros && <p>{errorLibros}</p>}
 			</form>
-            <Link to="/index">Index</Link> 
+            <Link to="/index">Index</Link>
             <Link to="/biblioteca/categoria/terror">Terror</Link>
         </div>
     );
