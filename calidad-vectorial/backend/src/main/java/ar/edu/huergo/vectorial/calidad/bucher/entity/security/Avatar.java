@@ -23,7 +23,7 @@ public enum Avatar {
         this.url = url;
     }
 
-    public String grtUrl() {
+    public String getUrl() {
         return url;
     }
 

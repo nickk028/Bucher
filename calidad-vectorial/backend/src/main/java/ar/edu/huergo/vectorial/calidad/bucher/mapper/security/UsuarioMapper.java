@@ -26,6 +26,7 @@ public class UsuarioMapper {
         }
         return new UsuarioResponseDTO(
             usuario.getUsername(),
+            usuario.getAvatar(),
             new HashSet<>(
                 usuario.getRoles()
                     .stream()
