@@ -1,10 +1,6 @@
-import { useBook } from '../../../context/LibroContexto';
 import { useFetch } from '../../utils/FetchUtils';
 export const Tendencias = () => {
     const { data, loading, error } = useFetch("registro/podio");
-
-    const { setLibroMensaje } = useBook();
-    setLibroMensaje(error);
 
     return (
         <div>
