@@ -14,6 +14,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.AutorRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.EditorialRepository;
@@ -54,6 +55,7 @@ public class DataInitializer {
                 Usuario u = new Usuario("admin@gmail.com", encoder.encode(adminPassword));
                 u.setNickname("admin@gmail.com");
                 u.setRoles(Set.of(admin));
+                u.setAvatar(Avatar.ALICIA);
                 u.setBiblioteca(biblioteca);
                 biblioteca.setUsuario(u);
                 usuarioRepository.save(u);
@@ -66,6 +68,7 @@ public class DataInitializer {
                 PasswordValidator.validate(clientePassword);
                 Biblioteca biblioteca = new Biblioteca();
                 Usuario u = new Usuario("lector@gmail.com", encoder.encode(clientePassword));
+                u.setAvatar(Avatar.RAPUNZEL);
                 u.setNickname("lector@gmail.com");
                 u.setRoles(Set.of(cliente));
                 u.setBiblioteca(biblioteca);
