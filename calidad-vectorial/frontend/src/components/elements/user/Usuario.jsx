@@ -10,7 +10,7 @@ export const Usuario = () => {
         execute();
     }
 
-    const avatarUsuario = respuestaUsuario?.avatar?.toLowerCase() + ".png";
+    const avatarUsuario = (respuestaUsuario?.avatar?.toLowerCase() || "logoUsuario") + ".png";
 
     return (
         <aside className="aside-user">
@@ -33,25 +33,12 @@ export const Usuario = () => {
                     <div className="aside-user__buttons">
                         <Button variant="default" color="oscuro">Editar perfil</Button>
 
-                        <Button variant="default" color="rojo">Cerrar sesión</Button>
+                        <Button variant="default" color="rojo" onClick={handleLogout}>Cerrar sesión</Button>
                     </div>
                 </div>
 
                 <div className="aside-user__barra" />
             </div>
         </aside>
-
-        
     );
-    {/*
-        <div>
-            <p>{JSON.stringify(respuestaUsuario, null, 2)}</p>
-            <p>{loadingUsuario && "Cargando Usuario..."}</p>
-            <p>{errorUsuario}</p>
-
-            <button onClick={handleLogout}>Cerrar sesión</button>
-            {loadingLogout && <p>Cerrando sesión...</p>}
-            {errorLogout && <p>{errorLogout}</p>}
-            {respuestaLogout && <p>{JSON.stringify(respuestaLogout, null, 2)}</p>}
-        </div>*/}
 };
