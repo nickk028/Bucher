@@ -14,18 +14,30 @@ export const Usuario = () => {
 
     return (
         <aside className="aside-user">
-            <img src={`/assets/img/avatares/${avatarUsuario}`} alt="" />
+            <div className="aside-user__content">
+                <div className="aside-user__content__data">
+                    <img className="aside-user__img" src={`/assets/img/avatares/${avatarUsuario}`} alt="Avatar del usuario" />
 
-            <h1>{respuestaUsuario.username}</h1>
+                    <div className="aside-user__content__data__text">
+                        <h1 className="aside-user__content__data__text__username">{respuestaUsuario.username}</h1>
 
-            <p>{respuestaUsuario.pronombres}</p>
+                        <p>{respuestaUsuario.pronombres}Pronombres</p>
 
-            <p>{respuestaUsuario.descripcion}</p>
+                        <div>
+                            <span className="aside-user__content__data__text__subtitle">Descripción</span>
+                            <p className="aside-user__content__data__text__descripcion">{respuestaUsuario.descripcion} Descripción</p>
+                        </div>
+                        
+                    </div>
 
-            <div className="aside-user__buttons">
-            <Button variant="default" color="oscuro">Editar perfil</Button>
+                    <div className="aside-user__buttons">
+                        <Button variant="default" color="oscuro">Editar perfil</Button>
 
-            <Button variant="default" color="rojo">Cerrar sesión</Button>
+                        <Button variant="default" color="rojo">Cerrar sesión</Button>
+                    </div>
+                </div>
+
+                <div className="aside-user__barra" />
             </div>
         </aside>
 

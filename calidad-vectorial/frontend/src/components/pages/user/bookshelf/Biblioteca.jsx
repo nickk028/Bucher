@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useFetch, usePost } from '../../../utils/FetchUtils';
+import './Biblioteca.css';
 import { Usuario } from '../../../elements/user/Usuario';
 import { Autocompletar } from "../../../elements/autocomplete/Autocompletar";
 
@@ -20,9 +21,10 @@ export const Biblioteca = () => {
     };
 
     return (
-        <div>
+        <div className="biblioteca-body">
             <Usuario/>
-            <div>
+            <main>
+                <div>
                 <h1>Ver Libros</h1>
                 <p>{JSON.stringify(dataBiblioteca, null, 2)}</p>
                 <p>{loadingBiblioteca && "Cargando biblioteca..."}</p>
@@ -50,6 +52,8 @@ export const Biblioteca = () => {
 			</form>
             <Link to="/index">Index</Link>
             <Link to="/biblioteca/categoria/terror">Terror</Link>
+            </main>
+            
         </div>
     );
 }
