@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState  } from 'react';
 import { Layout } from "../../layouts/Layout"
 
@@ -31,20 +31,23 @@ export const ProtectedRoute = () => {
             setValid(result);
         };
         checkToken();
-    }, []);
+    }, [url.pathname]);
 
     if (valid === null) {
         return <div style={{textAlign: 'center', marginTop: '2rem'}}>Verificando autenticación...</div>;
     }
     if (valid) {
         if (url.pathname === "/login" || url.pathname === "/register") {
-            return <Navigate to="/index" replace />
-;
+            return <Navigate to="/index" replace />;
         } else {
             return <Layout />;
         }
     } else {
-        return <Navigate to="/login" replace />;
+        if (url.pathname !== "/login" && url.pathname !== "/register") {
+            return <Navigate to="/login" replace />;
+        } else {
+            return <Outlet />;
+        }
     }
 };
 
