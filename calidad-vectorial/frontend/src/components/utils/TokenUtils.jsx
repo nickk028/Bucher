@@ -1,5 +1,5 @@
-import { Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useEffect, useState  } from 'react';
 import { Layout } from "../../layouts/Layout"
 
 const isTokenValid = async () => {
@@ -23,6 +23,7 @@ const isTokenValid = async () => {
 
 export const ProtectedRoute = () => {
     const [valid, setValid] = useState(null);
+    const url = useLocation();
 
     useEffect(() => {
         const checkToken = async () => {
@@ -36,12 +37,14 @@ export const ProtectedRoute = () => {
         return <div style={{textAlign: 'center', marginTop: '2rem'}}>Verificando autenticación...</div>;
     }
     if (valid) {
-        return <><Layout/></> ;
+        if (url.pathname === "/login" || url.pathname === "/register") {
+            return <Navigate to="/index" replace />
+;
+        } else {
+            return <Layout />;
+        }
     } else {
-        return <>
-            <Navigate to="/login" replace />
-            <div style={{textAlign: 'center', marginTop: '2rem', color: 'red'}}>Redirigiendo a login...</div>
-        </>;
+        return <Navigate to="/login" replace />;
     }
 };
 

@@ -20,11 +20,11 @@ const App = () => {
 	return (
         <BookProvider>
             <Router>
-                <Routes>
+                <Routes>  
                     <Route path="/" element={<SobreNosotros/>}/>
-                    <Route path="/login" element={<Login/>}/>
-                    <Route path="/register" element={<Register/>}/>
                     <Route element={<ProtectedRoute/>}>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/register" element={<Register/>}/>
                         <Route path="/index" element={<Index />} />
                         <Route path="/publicacion/:id" element={<Publicacion />} />
                         <Route path="/biblioteca" element={<Biblioteca />} />
