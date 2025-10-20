@@ -16,7 +16,7 @@ export const Layout = () => {
                 <Outlet />
             </div>
             <div className="body-layout__büchi">
-                <LibroAnimado  variant="büchi" color="azul" mensaje={libroMensaje} mostrarMensaje={true}>B</LibroAnimado>
+                <LibroAnimado  variant="büchi" color="dorado" mensaje={libroMensaje} mostrarMensaje={true}>B</LibroAnimado>
             </div>
         </div>
         <Footer />
