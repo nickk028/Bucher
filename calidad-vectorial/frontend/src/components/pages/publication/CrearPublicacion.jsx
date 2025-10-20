@@ -33,11 +33,11 @@ export const CrearPublicacion = () => {
 					<form className="body-crear-prestamo__form" onSubmit={handleCrearPublicacion}>
 						<Input type="text" value={titulo} name="titulo" onChange={e => setTitulo(e.target.value)}>Título</Input>
 						<Input variant="grande" type="text" value={descripcion} name="descripcion" onChange={e => setDescripcion(e.target.value)}>Descripción del estado del libro</Input>
+
 						<div className="body-crear-prestamo__form__limite-dias">
 						<Input type="number" value={limiteDias} name="limiteDias" onChange={e => setLimiteDias(e.target.value)}>Duración del préstamo</Input>
-						</div>
-
 						<Button type="submit" color="oscuro" variant="default" disabled={loading}>Crear publicación</Button>
+						</div>
 					</form>
 				)}
 
