@@ -15,25 +15,29 @@ import { ProtectedRoute } from './components/utils/TokenUtils';
 import { CategoriaLibro } from "./components/pages/user/bookshelf/category/CategoriaLibro";
 import { Tendencias } from "./components/pages/tendences/Tendencias";
 import { Configuracion } from "./components/pages/user/configuration/Configuracion";
+import { UsuarioLayout } from "./layouts/UsuarioLayout";
 
 const App = () => {
 	return (
         <BookProvider>
             <Router>
-                <Routes>  
+                <Routes>
                     <Route path="/" element={<SobreNosotros/>}/>
                     <Route element={<ProtectedRoute/>}>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/index" element={<Index />} />
                         <Route path="/publicacion/:id" element={<Publicacion />} />
-                        <Route path="/biblioteca" element={<Biblioteca />} />
-                        <Route path="/biblioteca/:posicion" element={<LibroUsuario />} />
-                        <Route path="/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
-                        <Route path="/publicacion/propias" element={<PublicacionUsuario />} />
                         <Route path="/crear-publicacion" element={<CrearPublicacion />} />
                         <Route path="/tendencias" element={<Tendencias />} />
-                        <Route path="/configuracion" element={<Configuracion />} />
+
+                        <Route path="/usuario" element={<UsuarioLayout />}>
+                            <Route path="/usuario/biblioteca" element={<Biblioteca />} />
+                            <Route path="/usuario/biblioteca/:posicion" element={<LibroUsuario />} />
+                            <Route path="/usuario/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
+                            <Route path="/usuario/publicacion/propias" element={<PublicacionUsuario />} />
+                            <Route path="/usuario/configuracion" element={<Configuracion />} />
+                        </Route>
                     </Route>
                 </Routes>
             </Router>

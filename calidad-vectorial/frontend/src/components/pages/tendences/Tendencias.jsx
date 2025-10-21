@@ -1,6 +1,6 @@
 import { useFetch } from '../../utils/FetchUtils';
 export const Tendencias = () => {
-    const { data, loading, error } = useFetch("registro/podio");
+    const { data, loading, error } = useFetch("libro/tendencias");
 
     return (
         <div>
