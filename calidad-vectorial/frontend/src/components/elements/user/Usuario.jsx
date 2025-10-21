@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useFetch, usePost } from "../../utils/FetchUtils";
-import { Button } from "../buttons/Button";
 import './Usuario.css';
+import { Button } from "../buttons/Button";
+import { Input } from "../input/Input";
 
 export const Usuario = () => {
     const { data: respuestaUsuario, loading: loadingUsuario, error: errorUsuario } = useFetch("usuario/propio");
@@ -48,40 +49,40 @@ export const Usuario = () => {
             <div className="aside-user__content">
                 <div className="aside-user__content__data">
                     <img className="aside-user__img" src={`/assets/img/avatares/${avatarUsuario}`} alt="Avatar del usuario" />
-                    <div className="aside-user__content__data__text">
-                        <h1 className="aside-user__content__data__text__username">{respuestaUsuario.username }</h1>
-                        <form onSubmit={handleSubmitDataUser}>
-                            <div>
-                                <label>Pronombres:</label>
-                                <input type="text" name="pronombres" value={formData.pronombres} onChange={handleChange} disabled={!editando} />
-                            </div>
+                    <form className="aside-user__content__data__text" onSubmit={handleSubmitDataUser}>
 
-                            <div>
-                                <label className="aside-user__content__data__text__subtitle">Descripción:</label>
-                                <input className="aside-user__content__data__text__descripcion" type="text" name="descripcion" value={formData.descripcion} onChange={handleChange} disabled={!editando} />
-                            </div>
-                            <div className="aside-user__buttons"> 
-                                {editando && (
-                                    <Button type="submit" variant="default" color="oscuro">
-                                        Guardar cambios
-                                    </Button>
-                                )}
-                                {!editando && (
-                                    <Button type="button" variant="default" color="oscuro" onClick={() => setEditando(!editando)}>
-                                        Editar perfil
-                                    </Button>
-                                )}
-                            </div>
-                        </form>
-                    </div>
-                    <div className="aside-user__buttons">        
-                        <Button variant="default" color="oscuro" onClick={handleLogout}>
+                        <h1 className="aside-user__content__data__text__username">{respuestaUsuario.username }</h1>
+
+                        <div>
+                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando}`}>Pronombres:</label>
+                            <Input type="text" name="pronombres" value={formData.pronombres} onChange={handleChange} disabled={!editando} required={false}/>
+                        </div>
+
+                        <div>
+                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando}`}>Descripción:</label>
+                            <Input className="aside-user__content__data__text__descripcion" variant="medio" type="text" name="descripcion" value={formData.descripcion} onChange={handleChange} disabled={!editando} required={false}/>
+                        </div>
+
+                        <div className="aside-user__buttons">
+                            {editando && (
+                                <Button type="submit" variant="default" color="oscuro">
+                                    Guardar cambios
+                                </Button>
+                            )}
+                            {!editando && (
+                                <Button type="button" variant="default" color="oscuro" onClick={() => setEditando(!editando)}>
+                                    Editar perfil
+                                </Button>
+                            )}
+                        </div>
+
+                        <Button variant="default" color="rojo" onClick={handleLogout}>
                             Cerrar sesión
-                        </Button>                        
-                    </div>                    
+                        </Button>
+                    </form>
                 </div>
                 <div className="aside-user__barra" />
-            </div>  
+            </div>
         </aside>
     );
 };

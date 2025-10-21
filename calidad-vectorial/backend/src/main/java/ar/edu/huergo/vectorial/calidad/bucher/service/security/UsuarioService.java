@@ -113,4 +113,15 @@ public class UsuarioService {
         int indiceAleatorio = random.nextInt(avatares.length);
         return (avatares[indiceAleatorio]);
     }
+
+    public Usuario modificarUsuario(Usuario usuarioAModificar, Usuario usuarioNuevo) {
+        if (usuarioNuevo.getPronombres() != null) {
+            usuarioAModificar.setPronombres(usuarioNuevo.getPronombres());
+        }
+        if (usuarioNuevo.getDescripcion() != null) {
+            usuarioAModificar.setDescripcion(usuarioNuevo.getDescripcion());
+        }
+
+        return usuarioRepository.save(usuarioAModificar);
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.RegistrarDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 
@@ -31,7 +32,9 @@ public class UsuarioMapper {
                 usuario.getRoles()
                     .stream()
                     .map(Rol::getNombre)
-                    .toList()));
+                    .toList()),
+            usuario.getPronombres(),
+            usuario.getDescripcion());
     }
 
     /*
@@ -57,6 +60,19 @@ public class UsuarioMapper {
         }
         Usuario usuario = new Usuario();
         usuario.setUsername(registrarDTO.username());
+        return usuario;
+    }
+
+    public Usuario toEntity(UsuarioUpdateDTO usuarioDTO) {
+        if (usuarioDTO == null) {
+            return null;
+        }
+        Usuario usuario = new Usuario();
+        usuario.setUsername(usuarioDTO.getUsername());
+        usuario.setRoles(usuarioDTO.getRoles());
+        usuario.setAvatar(usuarioDTO.getAvatar());
+        usuario.setPronombres(usuarioDTO.getPronombres());
+        usuario.setDescripcion(usuarioDTO.getDescripcion());
         return usuario;
     }
 }
