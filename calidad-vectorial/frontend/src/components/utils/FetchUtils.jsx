@@ -74,7 +74,7 @@ export const useFetch = (url) => {
 *       error: mensaje de error (string)
 *       execute: función para ejecutar el POST
 **/
-export function usePost(url) {
+export function usePost(url, method = "POST") {
     // Estado: datos de respuesta, “cargando” y error
     const [data, setData] = useState("");
     const [loading, setLoading] = useState(false);
@@ -118,7 +118,7 @@ export function usePost(url) {
 
         try {
             // Envía el POST (incluye la señal para poder abortar)
-            const respond = await postData(url, payload, controller.signal);
+            const respond = await postData(url, payload, controller.signal, method);
 
             // Si se aborta la request o el componente se desmontó cancela la request
             if (controller.signal.aborted || !isMountedRef.current) return;
@@ -157,9 +157,9 @@ export function usePost(url) {
     return { data, loading, error, execute };
 }
 
-export const postData = async (url, data, signal) => {
+export const postData = async (url, data, signal, method = "POST") => {
     const respond = await fetch("http://localhost:8080/" + url, {
-        method: "POST",
+        method: method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
         credentials: "include",
