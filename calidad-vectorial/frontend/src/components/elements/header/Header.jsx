@@ -5,10 +5,12 @@ import './Header.css';
 const Header = () => {
 
     const location = useLocation();
+    const { pathname } = location;
     const [click, setClick] = useState(location.pathname);
 
     useEffect(() => {
         setClick(location.pathname);
+        console.log(click)
     }, [location]);
 
     return (
@@ -35,18 +37,18 @@ const Header = () => {
                     <div className={`header__nav__item__circle ${click == "/crear-publicacion" ? 'circle--selected' : ''}`}></div>
                 </Link>
 
-                <Link className="header__nav__item" to="/biblioteca">
+                <Link className="header__nav__item" to="/usuario/biblioteca">
                     <div alt="Logo de Libro" className={`header__nav__item__libro`}>
-                        <div alt="Logo de Libro" className={`header__nav__item__libro__fondo ${click == "/biblioteca" ? 'selected' : ''}`} />
+                        <div alt="Logo de Libro" className={`header__nav__item__libro__fondo ${click == "/usuario/biblioteca" ? 'selected' : ''}`} />
                     </div>
-                    <div className={`header__nav__item__circle ${click == "/biblioteca" ? 'circle--selected' : ''}`}></div>
+                    <div className={`header__nav__item__circle ${click == "/usuario/biblioteca" ? 'circle--selected' : ''}`}></div>
                 </Link>
 
-                <Link className="header__nav__item" to="/configuracion">
+                <Link className="header__nav__item" to={click.includes("/usuario") ? pathname : "/usuario/configuracion"}>
                     <div alt="Logo de Usuario" className={`header__nav__item__usuario`}>
-                        <div alt="Logo de Usuario" className={`header__nav__item__usuario__fondo ${click == "/configuracion" ? 'selected' : ''}`} />
+                        <div alt="Logo de Usuario" className={`header__nav__item__usuario__fondo ${click.includes("/usuario") ? 'selected' : ''}`} />
                     </div>
-                    <div className={`header__nav__item__circle ${click == "/configuracion" ? 'circle--selected' : ''}`}></div>
+                    <div className={`header__nav__item__circle ${click.includes("/usuario") ? 'circle--selected' : ''}`}></div>
                 </Link>
             </nav>
         </header>

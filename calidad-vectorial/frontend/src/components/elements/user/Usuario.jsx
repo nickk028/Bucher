@@ -52,33 +52,34 @@ export const Usuario = () => {
                     <form className="aside-user__content__data__text" onSubmit={handleSubmitDataUser}>
 
                         <h1 className="aside-user__content__data__text__username">{respuestaUsuario.username }</h1>
-                            <div>
-                                <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando}`}>Pronombres:</label>
-                                <Input type="text" name="pronombres" value={formData.pronombres} onChange={handleChange} disabled={!editando} required={false}/>
-                            </div>
 
-                            <div>
-                                <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando}`}>Descripción:</label>
-                                <Input className="aside-user__content__data__text__descripcion" variant="medio" type="text" name="descripcion" value={formData.descripcion} onChange={handleChange} disabled={!editando} required={false}/>
-                            </div>
-                            <div className="aside-user__buttons">
-                                {editando && (
-                                    <Button type="submit" variant="default" color="oscuro">
-                                        Guardar cambios
-                                    </Button>
-                                )}
-                                {!editando && (
-                                    <Button type="button" variant="default" color="oscuro" onClick={() => setEditando(!editando)}>
-                                        Editar perfil
-                                    </Button>
-                                )}
-                            </div>
-                        </form>
-                    <div className="aside-user__buttons">
+                        <div>
+                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando}`}>Pronombres:</label>
+                            <Input type="text" name="pronombres" value={formData.pronombres} onChange={handleChange} disabled={!editando} required={false}/>
+                        </div>
+
+                        <div>
+                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando}`}>Descripción:</label>
+                            <Input className="aside-user__content__data__text__descripcion" variant="medio" type="text" name="descripcion" value={formData.descripcion} onChange={handleChange} disabled={!editando} required={false}/>
+                        </div>
+
+                        <div className="aside-user__buttons">
+                            {editando && (
+                                <Button type="submit" variant="default" color="oscuro">
+                                    Guardar cambios
+                                </Button>
+                            )}
+                            {!editando && (
+                                <Button type="button" variant="default" color="oscuro" onClick={() => setEditando(!editando)}>
+                                    Editar perfil
+                                </Button>
+                            )}
+                        </div>
+
                         <Button variant="default" color="rojo" onClick={handleLogout}>
                             Cerrar sesión
                         </Button>
-                    </div>
+                    </form>
                 </div>
                 <div className="aside-user__barra" />
             </div>
