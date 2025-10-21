@@ -11,7 +11,7 @@ export const Button = ({ children, type="button", variant='solapa', color='claro
                         {children}
                     </div>
                     <span className={`btn btn--${variant} btn--${variant}--oscuro`}>
-                            {children}
+                        {children}
                     </span>
                 </Link>
             )
@@ -20,6 +20,18 @@ export const Button = ({ children, type="button", variant='solapa', color='claro
             <Link to={to} className={`btn btn--${variant} btn--${variant}--${color}`}>{children}</Link>
             );
     }
+    if (variant == "solapa") {
+            return (
+                <button type={type} className='btn' disabled={isDisabled} onClick={onClick}>
+                    <div className={`btn btn--${variant} btn--${variant}--${color}`}>
+                        {children}
+                    </div>
+                    <span className={`btn btn--${variant} btn--${variant}--oscuro`}>
+                        {children}
+                    </span>
+                </button>
+            )
+        };
     return (
         <button type={type} className={`btn btn--${variant} btn--${variant}--${color}`} disabled={isDisabled} onClick={onClick}>{children}</button>
     )
