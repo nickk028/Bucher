@@ -4,9 +4,21 @@ import './Button.css';
 
 export const Button = ({ children, type="button", variant='solapa', color='claro', to, isDisabled=false, onClick }) => {
     if (to) {
-    return (
-        <Link to={to} className={`btn btn--${variant} btn--${variant}--${color}`}>{children}</Link>
-        );
+        if (variant == "solapa") {
+            return (
+                <Link to={to} className='btn'>
+                    <div className={`btn btn--${variant} btn--${variant}--${color}`}>
+                        {children}
+                    </div>
+                    <span className={`btn btn--${variant} btn--${variant}--oscuro`}>
+                            {children}
+                    </span>
+                </Link>
+            )
+        };
+        return (
+            <Link to={to} className={`btn btn--${variant} btn--${variant}--${color}`}>{children}</Link>
+            );
     }
     return (
         <button type={type} className={`btn btn--${variant} btn--${variant}--${color}`} disabled={isDisabled} onClick={onClick}>{children}</button>

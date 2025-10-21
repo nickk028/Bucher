@@ -10,6 +10,7 @@
 }
 
 .btn--solapa {
+    position: relative;
     height: 45px;
     width: 250px;
     min-width: 200px;
@@ -29,11 +30,29 @@
 .btn--solapa--claro {
     background-color: #C9DACD;
     color: #0E675F;
+    transition: all 0ms ease-in-out;
 }
 
 .btn--solapa--oscuro {
     background-color: #0E675F;
     color: #C9DACD;
+}
+
+.btn--solapa ~ span {
+    position: absolute !important;
+    width: 100%;
+    right: 0;
+    clip-path: circle(0 at right);
+    transition: all 400ms ease-in;
+}
+
+.btn:hover .btn--solapa--claro ~ .btn--solapa--oscuro {
+    clip-path: circle(100% at center);
+}
+
+.btn:hover .btn--solapa--claro {
+    background-color: #0E675F;
+    transition: all 0ms ease-in-out 400ms;
 }
 
 .btn--default--claro {

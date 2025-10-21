@@ -5,12 +5,10 @@ import './Header.css';
 const Header = () => {
 
     const location = useLocation();
-    const { pathname } = location;
     const [click, setClick] = useState(location.pathname);
 
     useEffect(() => {
         setClick(location.pathname);
-        console.log(click)
     }, [location]);
 
     return (
@@ -44,7 +42,7 @@ const Header = () => {
                     <div className={`header__nav__item__circle ${click == "/usuario/biblioteca" ? 'circle--selected' : ''}`}></div>
                 </Link>
 
-                <Link className="header__nav__item" to={click.includes("/usuario") ? pathname : "/usuario/configuracion"}>
+                <Link className="header__nav__item" to={click.includes("/usuario") ? click : "/usuario/configuracion"}>
                     <div alt="Logo de Usuario" className={`header__nav__item__usuario`}>
                         <div alt="Logo de Usuario" className={`header__nav__item__usuario__fondo ${click.includes("/usuario") ? 'selected' : ''}`} />
                     </div>
