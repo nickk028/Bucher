@@ -1,26 +1,23 @@
 .coming-soon {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: flex-start; /* Arriba */
+    justify-content: center;
+    align-items: flex-start;
     height: 100vh;
-    padding-top: 40px; /* Espacio desde el top */
+    padding-top: 40px;
 }
 
-/* Caja que contiene el texto y el link */
-.cs-box {
+.coming-soon-box {
     text-align: center;
     padding: 20px 40px;
 }
 
-/* Título */
-.cs-box h1 {
+.coming-soon-box h1 {
   font-size: 2rem;
   color: #333;
   margin-bottom: 15px;
 }
 
-/* Link debajo */
-.cs-link {
+.coming-soon-link {
   display: inline-block;
   text-decoration: none;
   padding: 10px 20px;
