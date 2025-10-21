@@ -7,7 +7,6 @@ export const PublicacionUsuario = () => {
 
     return (
         <div>
-            <Usuario/>
             <p>{data}</p>
             <p>{loading && "Cargando..."}</p>
             <p>{error}</p>

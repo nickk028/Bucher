@@ -7,11 +7,21 @@
 .body-crear-prestamo__form {
     width: 50vw;
     height: 50vh;
+    font-size: 1.3rem;
     margin-left: 10%;
+
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .body-crear-prestamo__form__limite-dias {
     width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .body-crear-prestamo__img {

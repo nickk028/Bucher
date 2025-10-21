@@ -31,6 +31,26 @@
     color: #3c49a6;
 }
 
+.rostro--dorado {
+    background: linear-gradient(to top left, #B8860B, #FFCC33);
+    color: #FFCC33;
+}
+
+/*
+linear-gradient(to bottom, #FFD700, #D4AF37)
+linear-gradient(to top right, #B8860B, #FFCC33)
+*/
+
+.rostro--verde-oscuro {
+    background: #117c4c;
+    color: #08413C;
+}
+
+.rostro--verde-claro {
+    background: #349569;
+    color: #0E675F;
+}
+
 .rostro--grande {
     aspect-ratio: 2/3;
 }

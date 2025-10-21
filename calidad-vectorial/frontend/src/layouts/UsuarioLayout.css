@@ -1,0 +1,8 @@
+.layout-user {
+    display: flex;
+    gap: 10px;
+}
+
+.layout-user__content {
+    width: 100%;
+}

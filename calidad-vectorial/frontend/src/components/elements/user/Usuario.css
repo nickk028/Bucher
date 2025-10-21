@@ -8,7 +8,7 @@
 
 .aside-user__content {
     width: 310px;
-    height: 100vh;
+    min-height: 100vh;
     position: sticky;
     left: 0;
     top: 0;
@@ -42,8 +42,7 @@
 .aside-user__content__data__text {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-
+    gap: 10px;
     font-size: 1.1rem;
 }
 
@@ -54,14 +53,17 @@
 .aside-user__content__data__text__subtitle {
     color: #929292;
     text-shadow: 1px 1px 2px #d1d1d1;
+    transition: all 200ms ease-in-out;
+}
+
+.aside-user__content__data__text__subtitle--true {
+    color: #0E675F;
+    box-shadow: #08413C;
 }
 
 .aside-user__content__data__text__descripcion {
     height: 100px;
-    border: 2px solid #0E675F;
-    border-radius: 5px;
-    padding: 5px;
-    overflow: auto;
+    font-size: 1.1rem;
 }
 
 .aside-user__buttons {

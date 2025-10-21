@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.RegistrarDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.security.UsuarioMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
@@ -59,5 +60,19 @@ public class UsuarioController {
         Usuario nuevoUsuario = usuarioService.registrar(usuario, registrarDTO.password(), registrarDTO.verificationPassword());
         UsuarioResponseDTO nuevoUsuarioDTO = usuarioMapper.toDTO(nuevoUsuario);
         return ResponseEntity.ok(nuevoUsuarioDTO);
+    }
+
+    @PostMapping("/modificar")
+    public ResponseEntity<UsuarioResponseDTO> modificarUsuario(@Valid @RequestBody UsuarioUpdateDTO usuarioUpdateDTO) {
+        UserDetails usuarioAutenticado = usuarioService.getUserDetailsActual();
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+
+        usuarioUpdateDTO.setUsername(usuario.getUsername());
+        usuarioUpdateDTO.setRoles(usuario.getRoles());
+
+        Usuario usuarioNuevo = usuarioMapper.toEntity(usuarioUpdateDTO);
+
+        Usuario usuarioActualizado = usuarioService.modificarUsuario(usuario, usuarioNuevo);
+        return ResponseEntity.ok(usuarioMapper.toDTO(usuarioActualizado));
     }
 }
