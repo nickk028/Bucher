@@ -1,0 +1,29 @@
+.coming-soon {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: flex-start; /* Arriba */
+    height: 100vh;
+    padding-top: 40px; /* Espacio desde el top */
+}
+
+/* Caja que contiene el texto y el link */
+.cs-box {
+    text-align: center;
+    padding: 20px 40px;
+}
+
+/* Título */
+.cs-box h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Link debajo */
+.cs-link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
