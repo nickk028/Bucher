@@ -18,7 +18,6 @@ export const Configuracion = () => {
 
     return (
         <div>
-            <Usuario />
             <label>
                 {/* (!!) Transforma cualquier valor a boolean */}
                 <input type="checkbox" checked={!!configuracion.buchy} onChange={onConfigChange} name="buchy"/>
