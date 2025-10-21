@@ -1,0 +1,26 @@
+.coming-soon {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    padding-top: 40px;
+}
+
+.coming-soon-box {
+    text-align: center;
+    padding: 20px 40px;
+}
+
+.coming-soon-box h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.coming-soon-link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
