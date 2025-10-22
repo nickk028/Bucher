@@ -9,5 +9,4 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 
 public interface LibroUsuarioRepository extends JpaRepository<LibroUsuario, Long>{
     List<LibroUsuario> findByBibliotecaAndEstadoLectura (Biblioteca biblioteca, EstadoLectura estadoLectura);
-
-}   
+}
