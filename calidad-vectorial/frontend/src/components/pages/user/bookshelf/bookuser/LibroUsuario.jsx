@@ -3,13 +3,22 @@ import { useFetch } from "../../../../utils/FetchUtils"
 
 export const LibroUsuario = () => {
     const { posicion } = useParams()
-    const { data, loading, error } = useFetch("biblioteca/" + posicion);
+    const { data : bookUser, loading : loadingBookUser, error : ErrorBookUser } = useFetch("biblioteca/" + posicion);
 
     return (
         <div>
-            <p>{JSON.stringify(data, null, 2)}</p>
-            <p>{loading && "Cargando..."}</p>
-            <p>{error}</p>
+            {loadingBookUser ? (
+                <p>Cargando Libro Usuario...</p>
+            ) : bookUser ? (
+                    <li>
+                        <p> Titulo: {bookUser.titulo} </p>
+                        <p> Pagina actual: {bookUser.paginaActual} </p>
+                        <p> Estado Lectura: {bookUser.estadoLectura} </p>
+                        <p> Puntuacion: {bookUser.puntuacion} </p>
+                    </li>
+            ) : (
+                <p>{ErrorBookUser}</p>
+            )}
             <Link to="/index">Index</Link>
         </div>
     );
