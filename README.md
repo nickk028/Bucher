@@ -1,156 +1,29 @@
-# Definition of Ready (DOR)
+# Tecnologías necesarias para ejecutar el proyecto
 
-## Usuario
-- Iniciar sesión con JWT de validacion.
-- Registrarse con JWT de validacion.
-- Obtener todos los usuarios (admin).
+Este proyecto está dividido en dos partes:
+- **Back End (API REST en Java con Spring Boot)**
+- **Front End (interfaz en React con Vite)**.
 
-## Libro
-- Libros pregenerados con Autor y Editorial.
+## Back End
 
-## Publicacion
-- Crear una publicación con un libro de nuestra base de datos (inventada por el momento).
-- Obtener publicaciones.
-- Obtener publicaciones propias.
-- Modificar una publicación propia / modificar una publicacion agena como admin.
-- Eliminar una publicación propia / eliminar una publicacion agena como admin.
-- Pedir prestado un libro.
-- Devolver libro (admin).
+El **Back End** está desarrollado en **Java 21**, utilizando **Gradle** para la gestión de las dependencias, y **Spring Boot** como framework principal para hacer funcionar la API REST.
 
-## Biblioteca
-- Obtener biblioteca propia.
-- Crear Libro de Usuario.
-- Modificar Libro de Usuario.
-- Eliminar Libro de Usuario.
-
-## Registro Préstamo
-- Obtener registros de prestamo propios.
+### Requisitos
+- **Java 21**
+    [Descargar JDK](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
+- **Gradle** instalado globalmente
+    [Instrucciones de instalación](https://gradle.org/install/)
+- **Extensión de Spring Boot** para **Visual Studio Code**
+    *(Permite ejecutar y depurar fácilmente el proyecto Spring Boot desde el entorno de desarrollo)*
 
 
-# Requests (Postman)
+## Front End
 
-## Usuario
+El **Front End** está desarrollado en **React** para crear la interfaz visual y **Vite** como empaquetador y gestor de las dependencias.
 
-### Registro de Usuario
-- **URL**: http://localhost:8080/usuario/registrar
-- **Método**: POST
-- **Body** (Json):
-{
-    "username":"ejemplo@ej",
-    "password":"1234567890123456Aa@",
-    "verificationPassword":"1234567890123456Aa@"
-}
-
-### Iniciar Sesión
-
-#### Login ejemplo del Registro
-- **URL**: http://localhost:8080/auth/login
-- **Método**: POST
-- **Body** (Json):
-{
-    "username":"ejemplo@ej",
-    "password":"1234567890123456Aa@"
-}
-
-#### Login lector
-- **URL**: http://localhost:8080/auth/login
-- **Método**: POST
-- **Body** (Json):
-{
-    "username":"lector@gmail.com",
-    "password":"LectorSuperSegura@123"
-}
-
-#### Login admin
-- **URL**: http://localhost:8080/auth/login
-- **Método**: POST
-- **Body** (Json):
-{
-    "username":"admin@gmail.com",
-    "password":"AdminSuperSegura@123"
-}
-
-### Obtener todos los usuarios (admin)
-- **URL**: http://localhost:8080/usuario
-- **Método**: GET
-
-## Publicación
-
-### Crear Publicación
-- **URL**: http://localhost:8080/publicacion/crear
-- **Método**: POST
-- **Body** (Json):
-{
-    "titulo":"Harry Potter y la piedra filosofal",
-    "descripcion":"Libro",
-    "limiteDias":2
-}
-
-### Obtener todas las Publicaciones
-- **URL**: http://localhost:8080/publicacion
-- **Método**: GET
-
-### Eliminar Publicación
-- **URL**: http://localhost:8080/publicacion/eliminar/1
-- **Método**: DELETE
-
-### Obtener Publicaciones propias
-- **URL**: http://localhost:8080/publicacion/propias
-- **Método**: GET
-
-### Modificar Publicación
-- **URL**: http://localhost:8080/publicacion/modificar/1
-- **Método**: PUT
-- **Body** (Json):
-{
-    "limiteDias":10,
-    "descripcion":"nueva descripcion",
-    "detallesEstadoLibro":"Nuevo",
-    "estadoPublicacion":"No_disponible"
-}
-
-### Pedir Préstamo
-- **URL**: http://localhost:8080/publicacion/prestamo/1
-- **Método**: POST
-
-### Devolver Préstamo (admin)
-- **URL**: http://localhost:8080/publicacion/devolucion/1
-- **Método**: POST
-
-## Biblioteca
-
-### Obtener Biblioteca propia
-- **URL**: http://localhost:8080/biblioteca
-- **Método**: GET
-
-### Crear Libro de Usuario
-- **URL**: http://localhost:8080/biblioteca
-- **Método**: POST
-- **Body** (Json):
-{
-    "titulo":"Harry Potter y la piedra filosofal",
-    "paginaActual":1,
-    "estadoLectura":"Leyendo",
-    "puntuacion":100
-}
-
-### Modificar Libro de Usuario
-(estadoLectura solo admin)
-- **URL**: http://localhost:8080/biblioteca/1
-- **Método**: PUT
-- **Body** (Json):
-{
-    "estadoLectura":"Leído",
-    "paginaActual":100,
-    "puntuacion":95
-}
-
-### Eliminar Libro de Usuario
-- **URL**: http://localhost:8080/biblioteca/1
-- **Método**: DELETE
-
-## Registro Préstamo
-
-### Obtener Registros Préstamo propios
-- **URL**: http://localhost:8080/registro
-- **Método**: GET
+### Requisitos
+- **Node.js**
+    [Descargar Node.js](https://nodejs.org/es/download)
+- **Vite**
+    Instalado dentro del entorno de Node.js desde la terminal:
+    npm install vite --save-dev
