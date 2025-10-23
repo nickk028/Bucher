@@ -17,7 +17,7 @@ const isTokenValid = async () => {
         }
     } catch (error) {
         console.log("Error al validar token");
-        return false;
+        return true;
     }
 };
 
