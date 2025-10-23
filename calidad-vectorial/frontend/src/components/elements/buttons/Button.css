@@ -42,12 +42,12 @@
     width: 100%;
     border-left: 2px solid #0E675F;
     right: 0;
-    clip-path: circle(0 at center bottom);
+    clip-path: circle(0 at center right);
     transition: all 500ms ease;
 }
 
 .btn--solapa--oscuro ~ span {
-    clip-path: circle(100% at center bottom);
+    clip-path: circle(100% at center right);
 }
 
 .btn:hover .btn--solapa--claro ~ .btn--solapa--oscuro {

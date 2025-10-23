@@ -9,7 +9,7 @@ export const UsuarioLayout = () => {
     const { pathname } = location;
 
     return (
-        <div>
+        <>
             <div className="layout-user">
                 <Usuario />
                 <div className="layout-user__content">
@@ -21,8 +21,7 @@ export const UsuarioLayout = () => {
                     </ButtonGroup>
                     <Outlet />
                 </div>
-                
             </div>
-        </div>
+        </>
     )
 }
