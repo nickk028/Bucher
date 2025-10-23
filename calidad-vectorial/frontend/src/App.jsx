@@ -18,13 +18,12 @@ import { Configuracion } from "./components/pages/user/configuration/Configuraci
 import { UsuarioLayout } from "./layouts/UsuarioLayout";
 import { ComingSoon } from "./components/elements/errors/ComingSoon";
 
-const App = () => {
+export const App = () => {
 	return (
         <BookProvider>
             <Router>
                 <Routes>
-                    <Route path="/" element={<SobreNosotros/>}/>
-                
+                    <Route path="/" element={<SobreNosotros/>}/>                
                     <Route element={<ProtectedRoute/>}>
                         <Route path="/coming-soon" element={<ComingSoon />} />
                         <Route path="/login" element={<Login/>}/>
@@ -46,4 +45,3 @@ const App = () => {
         </BookProvider>
     );
 }
-export default App;
