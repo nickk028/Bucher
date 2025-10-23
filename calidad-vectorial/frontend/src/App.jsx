@@ -16,7 +16,7 @@ import { CategoriaLibro } from "./components/pages/user/bookshelf/category/Categ
 import { Tendencias } from "./components/pages/tendences/Tendencias";
 import { Configuracion } from "./components/pages/user/configuration/Configuracion";
 import { UsuarioLayout } from "./layouts/UsuarioLayout";
-import { ComingSoon } from "./components/pages/Errors/ComingSoon";
+import { ComingSoon } from "./components/elements/errors/ComingSoon";
 
 const App = () => {
 	return (
@@ -24,8 +24,9 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={<SobreNosotros/>}/>
-                    <Route path="/coming-soon" element={<ComingSoon />} />
+                
                     <Route element={<ProtectedRoute/>}>
+                        <Route path="/coming-soon" element={<ComingSoon />} />
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/index" element={<Index />} />
@@ -33,11 +34,11 @@ const App = () => {
                         <Route path="/crear-publicacion" element={<CrearPublicacion />} />
                         <Route path="/tendencias" element={<Tendencias />} />
                         <Route path="/usuario" element={<UsuarioLayout />}>
-                            <Route path="/usuario/biblioteca" element={<Biblioteca />} />
-                            <Route path="/usuario/biblioteca/:posicion" element={<LibroUsuario />} />
-                            <Route path="/usuario/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
-                            <Route path="/usuario/publicacion/propias" element={<PublicacionUsuario />} />
-                            <Route path="/usuario/configuracion" element={<Configuracion />} />
+                        <Route path="/usuario/biblioteca" element={<Biblioteca />} />
+                        <Route path="/usuario/biblioteca/:posicion" element={<LibroUsuario />} />
+                        <Route path="/usuario/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
+                        <Route path="/usuario/publicacion/propias" element={<PublicacionUsuario />} />
+                        <Route path="/usuario/configuracion" element={<Configuracion />} />
                         </Route>
                     </Route>
                 </Routes>

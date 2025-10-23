@@ -5,6 +5,7 @@ import { ButtonGroup } from '../../elements/buttons/ButtonGroup';
 import { Input } from '../../elements/input/Input';
 import principitoLuna from '../../../assets/img/principitoLuna.png'
 import './CrearPublicacion.css';
+import { ComingSoon } from "../../elements/errors/ComingSoon";
 
 export const CrearPublicacion = () => {
     const [titulo, setTitulo] = useState("");
@@ -42,7 +43,7 @@ export const CrearPublicacion = () => {
 				)}
 
 				{pagina == "social" &&(
-					<p>Social</p>
+					<ComingSoon/>
 				)}
 				{/*{data && <p>{JSON.stringify(data, null, 2)}</p>}
 				{error && <p>{error}</p>}*/}
