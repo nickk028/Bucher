@@ -25,21 +25,26 @@ export const Usuario = () => {
         }
     }, [respuestaUsuario]);
 
-    const handleLogout = () => {
-        executeLogout();
+    const handleLogout = async () => {
+        await executeLogout();
     };
 
     const handleSubmitDataUser = (e) => {
         e.preventDefault();
         if (formData.pronombres !== respuestaUsuario.pronombres || formData.descripcion !== respuestaUsuario.descripcion) {
-            //executeDataUsuario();
+            //await executeDataUsuario(); (agregar async)
             console.log("Datos cambiados");
         }
         setEditando(false);
     };
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value, type } = e.target;
+        if (type === 'number') {
+            setFormData({ ...formData, [name]: value === '' ? '' : Number(value) });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const avatarUsuario = (respuestaUsuario?.avatar?.toLowerCase() ?? "logoUsuario") + ".png";

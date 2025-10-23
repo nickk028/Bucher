@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Input } from "../input/Input";
 
 export function Autocompletar({ options = [], value: valorExterno, onChange, maxSuggestions = 3, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");
@@ -38,7 +39,7 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 
 	return (
 		<div>
-			<input
+			<Input
 				type="text"
 				className="form-control"
 				value={value}
