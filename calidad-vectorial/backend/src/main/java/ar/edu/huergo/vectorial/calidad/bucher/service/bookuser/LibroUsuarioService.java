@@ -35,10 +35,10 @@ public class LibroUsuarioService {
         if (libroUsuarioNuevo.getEstadoLectura() != EstadoLectura.indefinido) {
             libroUsuarioAModificar.setEstadoLectura(libroUsuarioNuevo.getEstadoLectura());
         }
-        if (libroUsuarioAModificar.getPaginaActual() != 0) {
+        if (libroUsuarioNuevo.getPaginaActual() != 0) {
             libroUsuarioAModificar.setPaginaActual(libroUsuarioNuevo.getPaginaActual());
         }
-        if (libroUsuarioAModificar.getPuntuacion() != 0) {
+        if (libroUsuarioNuevo.getPuntuacion() != 0) {
             libroUsuarioAModificar.setPuntuacion(libroUsuarioNuevo.getPuntuacion());
         }
 

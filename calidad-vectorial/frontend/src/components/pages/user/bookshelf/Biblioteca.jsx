@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useFetch, usePost } from '../../../utils/FetchUtils';
 import './Biblioteca.css';
 import { Autocompletar } from "../../../elements/autocomplete/Autocompletar";
+import { Input } from "../../../elements/input/Input";
+import { Button } from "../../../elements/buttons/Button";
 
 export const Biblioteca = () => {
     const [titulo, setTitulo] = useState("");
@@ -36,10 +38,10 @@ export const Biblioteca = () => {
                 onChange={e => setTitulo(e.target.value)}
                 value = {titulo}
             />
-            <input type="number" value={pagina} onChange={e => setPagina(e.target.value)} placeholder="pagina" />
-            <input type="text" value={estadoLectura} onChange={e => setEstadoLectura(e.target.value)} placeholder="estadoLectura" />
-            <input type="number" value={puntuacion} onChange={e => setPuntuacion(e.target.value)} placeholder="puntuacion" />
-            <button type="submit" disabled={loadingPost}>Guardar Libro</button>
+            <Input type="number" value={pagina} onChange={e => setPagina(e.target.value)} placeholder="pagina" required={false}/>
+            <Input type="text" value={estadoLectura} onChange={e => setEstadoLectura(e.target.value)} placeholder="estadoLectura" required={false}/>
+            <Input type="number" value={puntuacion} onChange={e => setPuntuacion(e.target.value)} placeholder="puntuacion" required={false}/>
+            <Button type="submit" variant="default" color="oscuro" disabled={loadingPost}>Guardar Libro</Button>
 
             {dataPost && <p> Operacion post Exitosa </p>}
             {errorPost && <p>{errorPost}</p>}
