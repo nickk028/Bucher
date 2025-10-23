@@ -62,9 +62,9 @@ public class PublicacionServiceTest {
         // Crear usuario
         usuarioEjemplo = new Usuario("usuario@example.com", "Password123!@#$%^&");
         usuarioEjemplo.setId(1L);
-        usuarioEjemplo.setNickname("escritor123");
+        usuarioEjemplo.setNickname("lector123");
         usuarioEjemplo.setAvatar(Avatar.ALICIA);
-        usuarioEjemplo.setRoles(Set.of(new Rol("ESCRITOR")));
+        usuarioEjemplo.setRoles(Set.of(new Rol("LECTOR")));
 
         // Crear libro
         Autor autor = new Autor("Gabriel García Márquez", "https://es.wikipedia.org/wiki/Gabriel_García_Márquez");
