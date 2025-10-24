@@ -21,7 +21,7 @@ const Header = () => {
                     <div className={`header__nav__item__circle ${click == "/index" ? 'circle--selected' : ''}`}></div>
                 </Link>
 
-                <Link className="header__nav__item" to="/tendencias" onClick={() => handleClick("tendencias")}>
+                <Link className="header__nav__item" to="/tendencias">
                     <div alt="Logo de Tendencias" className={`header__nav__item__tendencias`}>
                         <div alt="Logo de Tendencias" className={`header__nav__item__tendencias__fondo ${click == "/tendencias" ? 'selected' : ''}`} />
                     </div>
