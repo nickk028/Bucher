@@ -56,7 +56,7 @@
     transition: all 200ms ease-in-out;
 }
 
-.aside-user__content__data__text__subtitle--true {
+.aside-user__content__data__text__subtitle--editando {
     color: #0E675F;
     box-shadow: #08413C;
 }
