@@ -26,7 +26,7 @@ public class LibroService {
     @Autowired
     LibroRepository libroRepository;
 
-    @Autowired 
+    @Autowired
     RegistroPrestamoService registroPrestamoService;
 
     public Set<Libro> obtenerTodosLosLibros() {

@@ -147,6 +147,4 @@ public class BibliotecaController {
 
         return ResponseEntity.ok().body("Eliminado correctamente");
     }
-
-    
 }
