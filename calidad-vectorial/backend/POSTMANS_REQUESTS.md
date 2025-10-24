@@ -14,6 +14,23 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
     "verificationPassword":"1234567890123456Aa@"
 }
 
+### Obtener todos los usuarios (admin)
+- **URL**: http://localhost:8080/usuario
+- **Método**: GET
+
+### Obtener datos de usuario propios
+- **URL**: http://localhost:8080/usuario/propio
+- **Método**: GET
+
+### Modificar datos de usuario propios
+- **URL**: http://localhost:8080/usuario/modificar
+- **Método**: PUT
+- **Body** (Json):
+{
+    "pronombres": ["pronombre1"],
+    "descripcion": "Descripción del usuario"
+}
+
 ### Iniciar Sesión
 
 #### Login ejemplo del Registro
@@ -43,11 +60,31 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
     "password":"AdminSuperSegura@123"
 }
 
-### Obtener todos los usuarios (admin)
-- **URL**: http://localhost:8080/usuario
+### Logout
+- **URL**: http://localhost:8080/auth/logout
+- **Método**: POST
+
+### Validar token
+- **URL**: http://localhost:8080/auth/validar-token
 - **Método**: GET
 
 ## Publicación
+
+### Obtener todas las Publicaciones
+- **URL**: http://localhost:8080/publicacion
+- **Método**: GET
+
+### Obtener Publicaciones propias
+- **URL**: http://localhost:8080/publicacion/propias
+- **Método**: GET
+
+### Obtener Publicacion por id
+- **URL**: http://localhost:8080/publicacion/1
+- **Método**: GET
+
+### Obtener Publicaciones por categoria del libro
+- **URL**: http://localhost:8080/publicacion/categoria/aventura
+- **Método**: GET
 
 ### Crear Publicación
 - **URL**: http://localhost:8080/publicacion/crear
@@ -59,20 +96,8 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
     "limiteDias":2
 }
 
-### Obtener todas las Publicaciones
-- **URL**: http://localhost:8080/publicacion
-- **Método**: GET
-
-### Eliminar Publicación
-- **URL**: http://localhost:8080/publicacion/eliminar/1
-- **Método**: DELETE
-
-### Obtener Publicaciones propias
-- **URL**: http://localhost:8080/publicacion/propias
-- **Método**: GET
-
 ### Modificar Publicación
-- **URL**: http://localhost:8080/publicacion/modificar/1
+- **URL**: http://localhost:8080/publicacion/actualizar/1
 - **Método**: PUT
 - **Body** (Json):
 {
@@ -81,6 +106,10 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
     "detallesEstadoLibro":"Nuevo",
     "estadoPublicacion":"No_disponible"
 }
+
+### Eliminar Publicación
+- **URL**: http://localhost:8080/publicacion/eliminar/1
+- **Método**: DELETE
 
 ### Pedir Préstamo
 - **URL**: http://localhost:8080/publicacion/prestamo/1
@@ -96,6 +125,14 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
 - **URL**: http://localhost:8080/biblioteca
 - **Método**: GET
 
+### Obtener Libro Usuario
+- **URL**: http://localhost:8080/biblioteca/1
+- **Método**: GET
+
+### Obtener Libros Usuario por estado de lectura
+- **URL**: http://localhost:8080/biblioteca/estado/leyendo
+- **Método**: GET
+
 ### Crear Libro de Usuario
 - **URL**: http://localhost:8080/biblioteca
 - **Método**: POST
@@ -103,7 +140,7 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
 {
     "titulo":"Harry Potter y la piedra filosofal",
     "paginaActual":1,
-    "estadoLectura":"Leyendo",
+    "estadoLectura":"leyendo",
     "puntuacion":100
 }
 
@@ -113,7 +150,7 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
 - **Método**: PUT
 - **Body** (Json):
 {
-    "estadoLectura":"Leído",
+    "estadoLectura":"leido",
     "paginaActual":100,
     "puntuacion":95
 }
@@ -126,4 +163,22 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
 
 ### Obtener Registros Préstamo propios
 - **URL**: http://localhost:8080/registro
+- **Método**: GET
+
+## Libro
+
+### Obtener todos los libros
+- **URL**: http://localhost:8080/libro/todos
+- **Método**: GET
+
+### Obtener libro por id
+- **URL**: http://localhost:8080/libro/1
+- **Método**: GET
+
+### Obtener libro por categoria
+- **URL**: http://localhost:8080/libro/categoria/aventura
+- **Método**: GET
+
+### Obtener tendencias
+- **URL**: http://localhost:8080/libro/tendencias
 - **Método**: GET
