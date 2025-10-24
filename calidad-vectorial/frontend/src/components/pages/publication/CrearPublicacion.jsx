@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { usePost } from '../../utils/FetchUtils';
+import { usePost, useFetch } from '../../utils/FetchUtils';
 import { Button } from '../../elements/buttons/Button';
 import { ButtonGroup } from '../../elements/buttons/ButtonGroup';
 import { Input } from '../../elements/input/Input';
