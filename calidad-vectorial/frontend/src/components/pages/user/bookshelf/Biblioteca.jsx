@@ -18,7 +18,7 @@ export const Biblioteca = () => {
 
     const handleAgregarLibroUsuario = async (e) => {
         e.preventDefault();
-        await execute({ tituloPost, paginaPost, estadoLecturaPost, puntuacionPost });
+        await execute({ titulo: tituloPost, paginaActual: paginaPost, estadoLectura: estadoLecturaPost, puntuacion: puntuacionPost });
     };
 
     return (
@@ -31,7 +31,7 @@ export const Biblioteca = () => {
                     <ul>
                         {dataBiblioteca.map(bookUser =>(
                             <li key = {bookUser.id} > 
-                                <Link to={`usuario/biblioteca/${bookUser.id}`}>
+                                <Link to={`/usuario/biblioteca/${bookUser.id}`}>
                                     <p>Titulo: {bookUser.titulo}</p>
                                     <p>Pagina actual: {bookUser.paginaActual}</p>
                                     <p>Estado de lectura: {bookUser.estadoLectura}</p>
@@ -48,14 +48,14 @@ export const Biblioteca = () => {
             <h1>Añadir libro</h1>
             <form onSubmit={handleAgregarLibroUsuario}>
                 <Autocompletar
-                    options={dataLibros ? dataLibros.map(libro => libro.tituloPost) : []}
+                    options={dataLibros ? dataLibros.map(libro => libro.titulo) : []}
                     placeholder="Título"
                     onChange={e => setTituloPost(e.target.value)}
                     value = {tituloPost}
                 />
-                <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="pagina" required={false}/>
-                <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="estadoLectura" required={false}/>
-                <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="puntuacionPost" required={false}/>
+                <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="Pagina" required={false}/>
+                <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="Estado de Lectura" required={false}/>
+                <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="Puntuacion" required={false}/>
                 <Button type="submit" variant="default" color="oscuro" disabled={loadingPost}>Guardar Libro</Button>
 
                 {dataPost && <p> Operacion post Exitosa </p>}

@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { usePost } from '../../utils/FetchUtils';
+import { usePost, useFetch } from '../../utils/FetchUtils';
 import { Button } from '../../elements/buttons/Button';
 import { ButtonGroup } from '../../elements/buttons/ButtonGroup';
 import { Input } from '../../elements/input/Input';
 import principitoLuna from '../../../assets/img/principitoLuna.png'
 import './CrearPublicacion.css';
 import { ComingSoon } from "../../elements/errors/ComingSoon";
+import { Autocompletar } from "../../elements/autocomplete/Autocompletar";
 
 export const CrearPublicacion = () => {
     const [titulo, setTitulo] = useState("");
@@ -15,6 +16,7 @@ export const CrearPublicacion = () => {
 	const [pagina, setPagina] = useState("prestamo");
 
     const { data, loading, error, execute } = usePost("publicacion/crear");
+	const { data : dataLibros, error : errorLibros, loading : loadingLibros } = useFetch("libro/todos");
 
     const handleCrearPublicacion = async (e) => {
         e.preventDefault();
@@ -32,7 +34,14 @@ export const CrearPublicacion = () => {
 			<main className="body-crear-prestamo">
 				{pagina == "prestamo" &&(
 					<form className="body-crear-prestamo__form" onSubmit={handleCrearPublicacion}>
-						<Input type="text" value={titulo} name="titulo" onChange={e => setTitulo(e.target.value)}>Título</Input>
+						<Autocompletar 
+							options={dataLibros ? dataLibros.map(libro => libro.titulo) : []}
+							type="text" 
+							value={titulo} 
+							name="titulo" 
+							onChange={e => setTitulo(e.target.value)}>
+								Título
+						</Autocompletar>
 						<Input variant="grande" type="text" value={descripcion} name="descripcion" onChange={e => setDescripcion(e.target.value)}>Descripción del estado del libro</Input>
 
 						<div className="body-crear-prestamo__form__limite-dias">
