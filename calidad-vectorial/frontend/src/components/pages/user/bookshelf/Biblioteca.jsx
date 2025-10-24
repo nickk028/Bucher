@@ -18,7 +18,7 @@ export const Biblioteca = () => {
 
     const handleAgregarLibroUsuario = async (e) => {
         e.preventDefault();
-        await execute({ tituloPost, paginaPost, estadoLecturaPost, puntuacionPost });
+        await execute({ titulo: tituloPost, paginaActual: paginaPost, estadoLectura: estadoLecturaPost, puntuacion: puntuacionPost });
     };
 
     return (
@@ -53,9 +53,9 @@ export const Biblioteca = () => {
                     onChange={e => setTituloPost(e.target.value)}
                     value = {tituloPost}
                 />
-                <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="pagina" required={false}/>
-                <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="estadoLectura" required={false}/>
-                <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="puntuacionPost" required={false}/>
+                <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="Pagina" required={false}/>
+                <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="Estado de Lectura" required={false}/>
+                <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="Puntuacion" required={false}/>
                 <Button type="submit" variant="default" color="oscuro" disabled={loadingPost}>Guardar Libro</Button>
 
                 {dataPost && <p> Operacion post Exitosa </p>}
