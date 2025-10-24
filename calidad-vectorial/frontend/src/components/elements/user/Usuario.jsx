@@ -59,12 +59,12 @@ export const Usuario = () => {
                         <h1 className="aside-user__content__data__text__username">{respuestaUsuario.username }</h1>
 
                         <div>
-                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando}`}>Pronombres:</label>
+                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando ? 'editando' : ''}`}>Pronombres:</label>
                             <Input type="text" name="pronombres" value={formData.pronombres} onChange={handleChange} disabled={!editando} required={false}/>
                         </div>
 
                         <div>
-                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando}`}>Descripción:</label>
+                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando ? 'editando' : ''}`}>Descripción:</label>
                             <Input className="aside-user__content__data__text__descripcion" variant="medio" type="text" name="descripcion" value={formData.descripcion} onChange={handleChange} disabled={!editando} required={false}/>
                         </div>
 
