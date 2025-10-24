@@ -16,7 +16,7 @@ export const UsuarioLayout = () => {
                     <ButtonGroup>
                         <Button color={pathname.includes("/publicacion") ? "oscuro" : "claro"} to="/usuario/publicacion/propias">Publicaciones</Button>
                         <Button color={pathname.includes("/biblioteca") ? "oscuro" : "claro"} to="/usuario/biblioteca">Biblioteca</Button>
-                        <Button color={pathname.startsWith("/**") ? "oscuro" : "claro"} to="/usuario/configuracion">Préstamos</Button>
+                        <Button color={pathname.startsWith("/usuario/prestamos") ? "oscuro" : "claro"} to="/usuario/prestamos">Préstamos</Button>
                         <Button color={pathname.includes("/configuracion") ? "oscuro" : "claro"} to="/usuario/configuracion">Configuración</Button>
                     </ButtonGroup>
                     <Outlet />
