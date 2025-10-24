@@ -48,7 +48,7 @@ export const Biblioteca = () => {
             <h1>Añadir libro</h1>
             <form onSubmit={handleAgregarLibroUsuario}>
                 <Autocompletar
-                    options={dataLibros ? dataLibros.map(libro => libro.tituloPost) : []}
+                    options={dataLibros ? dataLibros.map(libro => libro.titulo) : []}
                     placeholder="Título"
                     onChange={e => setTituloPost(e.target.value)}
                     value = {tituloPost}
