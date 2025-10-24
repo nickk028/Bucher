@@ -31,7 +31,7 @@ export const Biblioteca = () => {
                     <ul>
                         {dataBiblioteca.map(bookUser =>(
                             <li key = {bookUser.id} > 
-                                <Link to={`usuario/biblioteca/${bookUser.id}`}>
+                                <Link to={`/usuario/biblioteca/${bookUser.id}`}>
                                     <p>Titulo: {bookUser.titulo}</p>
                                     <p>Pagina actual: {bookUser.paginaActual}</p>
                                     <p>Estado de lectura: {bookUser.estadoLectura}</p>
