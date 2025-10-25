@@ -87,7 +87,17 @@ public class PublicacionController {
      */
     @GetMapping("/categoria/{categoria}")
     public ResponseEntity<List<PublicacionBasicDTO>> obtenerPublicacionesPorCategoria(@PathVariable("categoria") Categoria categoria) {
-        return ResponseEntity.ok(publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionPorCategoria(categoria)));
+        return ResponseEntity.ok(publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionesPorCategoria(categoria)));
+    }
+
+    /**
+     * Obtiene las publicaciones de un estado
+     * @param estado Estado buscado
+     * @return Las publicaciones del estado buscado
+     */
+    @GetMapping("/estado/{estado}")
+    public ResponseEntity<List<PublicacionBasicDTO>> obtenerPublicacionesPorEstado(@PathVariable("estado") Estado estado) {
+        return ResponseEntity.ok(publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionesPorEstado(estado)));
     }
 
     /**
@@ -172,13 +182,13 @@ public class PublicacionController {
             return ResponseEntity.unprocessableEntity().body("La publicación no esta disponible");
         }
 
-        publicacionService.modificarEstadoPublicacion(publicacion, Estado.Prestado);
+        publicacionService.modificarEstadoPublicacion(publicacion, Estado.Entrega_pendiente);
         registroPrestamoService.crearRegistroUsuario(usuario, publicacion);
         return ResponseEntity.ok().body("Préstamo creado");
     }
 
     /**
-     * Permite a un usuario devolver una publicación
+     * Permite al admin devolver una publicación
      * @param id El ID de la publicación a devolver
      * @return OK (200) o Unprocessable Entity (422)
      */

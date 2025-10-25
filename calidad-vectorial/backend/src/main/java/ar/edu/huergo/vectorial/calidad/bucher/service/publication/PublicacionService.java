@@ -161,7 +161,16 @@ public class PublicacionService {
      * @param categoría La categoría que se filtra
      * @return Las publicaciones filtradas por la categoría
     */
-    public Set<Publicacion> obtenerPublicacionPorCategoria(Categoria categoria) {
+    public Set<Publicacion> obtenerPublicacionesPorCategoria(Categoria categoria) {
         return new HashSet<>(publicacionRepository.findAllByCategoria(categoria));
+    }
+
+    /**
+     * Obtiene las publicaciones de un estado
+     * @param estado el estado que se filtra
+     * @return Las publicaciones filtradas por el estado
+     */
+    public Set<Publicacion> obtenerPublicacionesPorEstado(Estado estado) {
+        return new HashSet<>(publicacionRepository.findAllByEstado(estado));
     }
 }
