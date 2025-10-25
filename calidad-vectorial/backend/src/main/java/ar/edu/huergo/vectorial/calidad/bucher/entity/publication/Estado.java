@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum Estado {
     Disponible,
+    Entrega_pendiente,
     Prestado,
+    Devolucion_pendiente,
     No_disponible,
     Indefinido;
 
