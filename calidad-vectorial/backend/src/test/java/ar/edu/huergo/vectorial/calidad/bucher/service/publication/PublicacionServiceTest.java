@@ -205,7 +205,7 @@ public class PublicacionServiceTest {
                 .thenReturn(publicaciones);
 
         // When
-        Set<Publicacion> resultado = publicacionService.obtenerPublicacionPorCategoria(categoria);
+        Set<Publicacion> resultado = publicacionService.obtenerPublicacionesPorCategoria(categoria);
 
         // Then
         assertNotNull(resultado);

@@ -17,6 +17,5 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Long> 
     @Query("SELECT p FROM Publicacion p WHERE :categoria MEMBER OF p.libro.categoria")
     List<Publicacion> findAllByCategoria(@Param("categoria") Categoria categoria);
 
-    @Query("SELECT p FROM Publicacion p WHERE :estado MEMBER OF p.libro.estado")
-    List<Publicacion> findAllByEstado(@Param("estado") Estado estado);
+    List<Publicacion> findAllByEstadoPublicacion(Estado estado);
 }

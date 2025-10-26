@@ -171,6 +171,6 @@ public class PublicacionService {
      * @return Las publicaciones filtradas por el estado
      */
     public Set<Publicacion> obtenerPublicacionesPorEstado(Estado estado) {
-        return new HashSet<>(publicacionRepository.findAllByEstado(estado));
+        return new HashSet<>(publicacionRepository.findAllByEstadoPublicacion(estado));
     }
 }
