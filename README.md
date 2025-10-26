@@ -1,29 +1,18 @@
-# Tecnologías necesarias para ejecutar el proyecto
+# Proyecto Bücher
+Este es el proyecto Bücher, realizado para la materia de Programación Orientada Objetos en conjunto con Proyecto Informático II.
 
-Este proyecto está dividido en dos partes:
-- **Back End (API REST en Java con Spring Boot)**
-- **Front End (interfaz en React con Vite)**.
+## Detalles del proyecto
+Los detalles del D.O.R. (Definition Of Ready) están especificados en el archivo *DOR.md* dentro de la carpeta *calidad-vectorial*.
+Adenás, dentro de la carpeta */calidad-vectorial/backend*, se encuentra el archivo *POSTMAN_REQUESTS*, con las requests para los endpoints del **BackEnd**.
 
-## Back End
+## Tecnologías del proyecto
+Los detalles de las tecnologías utilizadas y los requisitos para hacer correr el programa se encuentran especificados en el archivo *HELP.md* dentro de la carpeta *calidad-vectorial*.
 
-El **Back End** está desarrollado en **Java 21**, utilizando **Gradle** para la gestión de las dependencias, y **Spring Boot** como framework principal para hacer funcionar la API REST.
-
-### Requisitos
-- **Java 21**
-    [Descargar JDK](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
-- **Gradle** instalado globalmente
-    [Instrucciones de instalación](https://gradle.org/install/)
-- **Extensión de Spring Boot** para **Visual Studio Code**
-    *(Permite ejecutar y depurar fácilmente el proyecto Spring Boot desde el entorno de desarrollo)*
-
-
-## Front End
-
-El **Front End** está desarrollado en **React** para crear la interfaz visual y **Vite** como empaquetador y gestor de las dependencias.
-
-### Requisitos
-- **Node.js**
-    [Descargar Node.js](https://nodejs.org/es/download)
-- **Vite**
-    Instalado dentro del entorno de Node.js desde la terminal:
-    npm install vite --save-dev
+## Iniciar el proyecto
+Para levantar el proyecto, se necesita ejecutar el **Back End** por un lado, y el **Front End** por el otro. Para ello hay dos formas:
+- Ejecutando el archivo *iniciar.bat* dentro de la carpeta *calidad-vectorial*.
+- Ejecutando de forma manual ambas partes del proyecto:
+    - ### BackEnd
+    En la carpeta */calidad-vectorial/backend*, ejecutar el comando *gradlew bootRun* en la terminal o ejecutando el archivo main del backend llamado *CalidadVectorialApplication.java*, en */calidad-vectorial/backend/src/main/java/ar/edu/huergo/vectorial/calidad/bucher*
+    - ### FrontEnd
+    Ejecutar el comando *npm run dev* en la carpeta */calidad-vectorial/frontend*

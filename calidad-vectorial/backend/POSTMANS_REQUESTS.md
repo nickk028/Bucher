@@ -86,6 +86,11 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
 - **URL**: http://localhost:8080/publicacion/categoria/aventura
 - **Método**: GET
 
+### Obtener Publicaciones por estado (admin)
+- **URL**: http://localhost:8080/publicacion/estado/Disponible
+- **Método**: GET
+
+
 ### Crear Publicación
 - **URL**: http://localhost:8080/publicacion/crear
 - **Método**: POST
