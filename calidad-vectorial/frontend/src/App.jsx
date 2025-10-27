@@ -24,7 +24,7 @@ export const App = () => {
         <BookProvider>
             <Router>
                 <Routes>
-                    <Route path="/" element={<SobreNosotros/>}/>                
+                    <Route path="/" element={<SobreNosotros/>}/>
                     <Route element={<ProtectedRoute/>}>
                         <Route path="/coming-soon" element={<ComingSoon />} />
                         <Route path="/login" element={<Login/>}/>
