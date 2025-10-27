@@ -1,5 +1,5 @@
-import './ComingSoon.css'
-import { Link } from 'react-router-dom';
+import "./ComingSoon.css"
+import { Link } from "react-router-dom";
 export const ComingSoon = () => {
     return (  
         <div className="coming-soon">

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
-import { useFetch, usePost } from '../../../utils/FetchUtils';
-import './Biblioteca.css';
+import { Link } from "react-router-dom";
+import { useFetch, usePost } from "../../../utils/FetchUtils";
+import "./Biblioteca.css";
 import { Autocompletar } from "../../../elements/autocomplete/Autocompletar";
 import { Input } from "../../../elements/input/Input";
 import { Button } from "../../../elements/buttons/Button";
@@ -24,7 +24,7 @@ export const Biblioteca = () => {
     return (
         <main>
             <div>
-                <h1>Ver Libros</h1>
+                <h1>Ver biblioteca </h1>
                 {loadingBiblioteca ? (
                     <p>Cargando biblioteca...</p>
                 ) : dataBiblioteca ? (
@@ -45,7 +45,7 @@ export const Biblioteca = () => {
                 )}
             </div>   
 
-            <h1>Añadir libro</h1>
+            <h1>Añadir libro a la biblioteca</h1>
             <form onSubmit={handleAgregarLibroUsuario}>
                 <Autocompletar
                     options={dataLibros ? dataLibros.map(libro => libro.titulo) : []}

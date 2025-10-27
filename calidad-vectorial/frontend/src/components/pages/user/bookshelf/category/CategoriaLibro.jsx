@@ -1,5 +1,5 @@
-import { useFetch } from '../../../../utils/FetchUtils';
-import { useParams } from 'react-router-dom';
+import { useFetch } from "../../../../utils/FetchUtils";
+import { useParams } from "react-router-dom";
 export const CategoriaLibro = () => {
     const { categoria } = useParams()
     const { data, loading, error } = useFetch("libro/categoria/" + categoria);

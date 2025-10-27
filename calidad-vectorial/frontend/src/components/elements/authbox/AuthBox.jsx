@@ -1,5 +1,4 @@
-import React from 'react'
-import './AuthBox.css';
+import "./AuthBox.css";
 import logo from "../../../assets/img/logo.png"
 
 export const AuthBox = ({ children, titulo="Título del cuadro", onSubmit, botonDer, botonIzq, linkExtra }) => {

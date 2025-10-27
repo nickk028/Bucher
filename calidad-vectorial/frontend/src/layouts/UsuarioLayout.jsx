@@ -1,5 +1,5 @@
 import { Outlet, useLocation  } from "react-router-dom";
-import './UsuarioLayout.css';
+import "./UsuarioLayout.css";
 import { Usuario } from "../components/elements/user/Usuario";
 import { ButtonGroup } from "../components/elements/buttons/ButtonGroup";
 import { Button } from "../components/elements/buttons/Button";

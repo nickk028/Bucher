@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../utils/LoginUtils";
-import './Register.css';
+import "./Register.css";
 import { AuthBox } from "../../elements/authbox/AuthBox";
 import { Button } from "../../elements/buttons/Button";
 import { Input } from "../../elements/input/Input";
-import { postData } from '../../utils/FetchUtils';
-import { LibroAnimado } from '../../elements/animatedbook/LibroAnimado';
+import { postData } from "../../utils/FetchUtils";
+import { LibroAnimado } from "../../elements/animatedbook/LibroAnimado";
 
 export const Register = () => {
     const navigate = useNavigate();
@@ -148,7 +148,7 @@ export const Register = () => {
             {paso == 3 && (
                 <AuthBox titulo="Lo último..." onSubmit={handleRegister}
                 botonDer={
-                    <Button type='submit' variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
+                    <Button type="submit" variant="default" color="oscuro" isDisabled={isDisabled}>Aceptar</Button>
                 }
                 botonIzq={
                     <Button variant="default" color="oscuro" onClick={() => setPaso(paso - 1)}>Atrás</Button>

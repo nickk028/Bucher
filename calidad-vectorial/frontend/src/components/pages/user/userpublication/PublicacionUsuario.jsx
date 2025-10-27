@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
-import { useFetch } from '../../../utils/FetchUtils';
-import { LibroUsuario } from '../bookshelf/bookuser/LibroUsuario';
+import { Link } from "react-router-dom";
+import { useFetch } from "../../../utils/FetchUtils";
 
 export const PublicacionUsuario = () => {
     const { data : PublicacionUsuario, loading :loadingPublicacionUsuario, error : errorpublicacionUsuario } = useFetch("publicacion/propias");
@@ -8,7 +7,7 @@ export const PublicacionUsuario = () => {
     return (
         <div>
             <div>
-                <h1>Ver Libros</h1>
+                <h1>Ver tus publicaciones</h1>
                 {loadingPublicacionUsuario ? (
                     <p>Cargando biblioteca...</p>
                 ) : PublicacionUsuario ? (

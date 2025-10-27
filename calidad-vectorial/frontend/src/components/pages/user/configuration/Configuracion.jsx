@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import { validarExisteConfig, setConfig } from '../../../utils/ConfigUtils';
-import { Autocompletar } from '../../../elements/autocomplete/Autocompletar';
-import { Button } from '../../../elements/buttons/Button';
-import { Input } from '../../../elements/input/Input';
+import { useState } from "react";
+import { validarExisteConfig, setConfig } from "../../../utils/ConfigUtils";
+import { Autocompletar } from "../../../elements/autocomplete/Autocompletar";
+import { Button } from "../../../elements/buttons/Button";
 
 export const Configuracion = () => {
     // Carga/ crea la configuración al montar
     const [configuracion, setConfiguracion] = useState(() => validarExisteConfig());
-    const coloresBuchy = [ "color1", "color2", "color3" ];
+    const coloresBuchy = [ "azul", "rojo", "amarillo", "dorado", "verde-oscuro", "verde-claro" ];
     
     const onBoolChange = (e) => {
         const { name, checked } = e.target;   // siempre boolean
@@ -30,6 +29,7 @@ export const Configuracion = () => {
 
     return (
         <div>
+            <h1>Configuracion</h1>
             <label>
                 <form onSubmit={onConfigSubmit}>
                     <input type="checkbox" checked={!!configuracion.buchy} onChange={onBoolChange} name="buchy"/>
