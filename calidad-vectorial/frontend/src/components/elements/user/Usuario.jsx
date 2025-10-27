@@ -6,8 +6,8 @@ import { Input } from "../input/Input";
 
 export const Usuario = () => {
     const { data: respuestaUsuario, loading: loadingUsuario, error: errorUsuario } = useFetch("usuario/propio");
-    const { data: respuestaLogout, error: errorLogout, loading: loadingLogout, execute : executeLogout} = usePost("auth/logout", {});
-    //const { data: respuestaDataUsuario, error: errorDataUsuario, loading: loadingDataUsuario, execute: executeDataUsuario } = usePost("URL", {}, "PUT");
+    const { data: respuestaLogout, error: errorLogout, loading: loadingLogout, execute : executeLogout} = usePost("auth/logout");
+    //const { data: respuestaDataUsuario, error: errorDataUsuario, loading: loadingDataUsuario, execute: executeDataUsuario } = usePost("URL", "PUT");
     //Cambiar URL del controller
 
     const [editando, setEditando] = useState(false);
