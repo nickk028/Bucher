@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "../input/Input";
 
-export function Autocompletar({ options = [], value: valorExterno, onChange, maxSuggestions = 3, ...props }) {
+export function Autocompletar({ options = [], value: valorExterno, onChange, maxSuggestions = 100, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");
 	const [showList, setShowList] = useState(false);
 
@@ -27,10 +27,8 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 	const normalizedValue = (value ?? "").toString();
 	const filtered =
 		normalizedValue.trim() === ""
-			? []
-			: options
-				  .filter((opt) => String(opt ?? "").toLowerCase().includes(normalizedValue.toLowerCase()))
-				  .slice(0, maxSuggestions);
+			? options.slice(0, maxSuggestions)
+			: options.filter((opt) => String(opt ?? "").toLowerCase().includes(normalizedValue.toLowerCase())).slice(0, maxSuggestions);
 
 	const handleSelect = (option) => {
 		setValue(option);
@@ -54,9 +52,9 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 
 			{showList && filtered.length > 0 && (
 				<ul>
-					{filtered.map((opt, i) => (
-						<li key={i} onMouseDown={() => handleSelect(opt)}>
-							{opt}
+					{filtered.map((opcion, i) => (
+						<li key={i} onMouseDown={() => handleSelect(opcion)}>
+							{opcion}
 						</li>
 					))}
 				</ul>

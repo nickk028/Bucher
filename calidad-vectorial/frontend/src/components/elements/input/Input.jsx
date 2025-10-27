@@ -60,7 +60,8 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
             <div className='input-group'>
                 <textarea className={`input-group__input input-group__input--${type} input-group__input--${variant}`} placeholder={placeholder} title={title} onChange={onChange} ref={inputRef}
                 onFocus={() => {
-                    if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} else {window.dispatchEvent(new Event("passwordFocus"))};}
+                    if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} 
+                    else {window.dispatchEvent(new Event("passwordFocus"))};}
                 }}
                 onBlur={ () => {
                     if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}}}
@@ -86,10 +87,13 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
         <div className='input-group'>
             <input className={`input-group__input input-group__input--${type} input-group__input--${variant}`} placeholder={placeholder} title={title} onChange={onChange} ref={inputRef}
             onFocus={() => {
-                if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} else {window.dispatchEvent(new Event("passwordFocus"))};}
+                if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} 
+                else {window.dispatchEvent(new Event("passwordFocus"))};}
+                else {onFocus && onFocus()}
             }}
             onBlur={ () => {
-                if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}}}
+                if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}
+                else {onBlur && onBlur()}}}
             name={name} id={name} type={inputType} value={value} required={required} disabled={disabled} />
             
             <label className='input-group__label' htmlFor={name}> {children} </label>
