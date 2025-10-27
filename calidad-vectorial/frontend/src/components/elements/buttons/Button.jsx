@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react"
 import { Link } from "react-router-dom";
-import './Button.css';
+import "./Button.css";
 
-export const Button = ({ children, type="button", variant='solapa', color='claro', to, isDisabled=false, onClick }) => {
+export const Button = ({ children, type="button", variant="solapa", color="claro", to, isDisabled=false, onClick }) => {
     if (to) {
         if (variant == "solapa") {
             return (
-                <Link to={to} className='btn'>
+                <Link to={to} className="btn">
                     <div className={`btn btn--${variant} btn--${variant}--${color}`}>
                         {children}
                     </div>
@@ -22,7 +22,7 @@ export const Button = ({ children, type="button", variant='solapa', color='claro
     }
     if (variant == "solapa") {
             return (
-                <button type={type} className='btn' disabled={isDisabled} onClick={onClick}>
+                <button type={type} className="btn" disabled={isDisabled} onClick={onClick}>
                     <div className={`btn btn--${variant} btn--${variant}--${color}`}>
                         {children}
                     </div>

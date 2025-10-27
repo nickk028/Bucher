@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useFetch, usePost } from "../../utils/FetchUtils";
-import './Usuario.css';
+import "./Usuario.css";
 import { Button } from "../buttons/Button";
 import { Input } from "../input/Input";
 
@@ -12,15 +12,15 @@ export const Usuario = () => {
 
     const [editando, setEditando] = useState(false);
     const [formData, setFormData] = useState({
-        pronombres: '',
-        descripcion: ''
+        pronombres: "",
+        descripcion: ""
     });
 
     useEffect(() => {
         if (respuestaUsuario) {
             setFormData({
-                pronombres: respuestaUsuario.pronombres || '',
-                descripcion: respuestaUsuario.descripcion || ''
+                pronombres: respuestaUsuario.pronombres || "",
+                descripcion: respuestaUsuario.descripcion || ""
             });
         }
     }, [respuestaUsuario]);
@@ -40,8 +40,8 @@ export const Usuario = () => {
 
     const handleChange = (e) => {
         const { name, value, type } = e.target;
-        if (type === 'number') {
-            setFormData({ ...formData, [name]: value === '' ? '' : Number(value) });
+        if (type === "number") {
+            setFormData({ ...formData, [name]: value === "" ? "" : Number(value) });
         } else {
             setFormData({ ...formData, [name]: value });
         }
@@ -59,12 +59,12 @@ export const Usuario = () => {
                         <h1 className="aside-user__content__data__text__username">{respuestaUsuario.username }</h1>
 
                         <div>
-                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando ? 'editando' : ''}`}>Pronombres:</label>
+                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando ? "editando" : ""}`}>Pronombres:</label>
                             <Input type="text" name="pronombres" value={formData.pronombres} onChange={handleChange} disabled={!editando} required={false}/>
                         </div>
 
                         <div>
-                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando ? 'editando' : ''}`}>Descripción:</label>
+                            <label className={`aside-user__content__data__text__subtitle aside-user__content__data__text__subtitle--${editando ? "editando" : ""}`}>Descripción:</label>
                             <Input className="aside-user__content__data__text__descripcion" variant="medio" type="text" name="descripcion" value={formData.descripcion} onChange={handleChange} disabled={!editando} required={false}/>
                         </div>
 

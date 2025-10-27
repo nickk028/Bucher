@@ -1,9 +1,10 @@
-import { useFetch } from '../../../../utils/FetchUtils';
+import { useFetch } from "../../../../utils/FetchUtils";
 export const Prestamo = () => {
     const { data, loading, error } = useFetch("registro");
 
     return (
         <div>
+            <h1>Tus prestamos</h1>
             <p>{JSON.stringify(data, null, 2)}</p>
             <p>{loading && "Cargando..."}</p>
             <p>{error}</p>

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { usePost, useFetch } from '../../utils/FetchUtils';
-import { Button } from '../../elements/buttons/Button';
-import { ButtonGroup } from '../../elements/buttons/ButtonGroup';
-import { Input } from '../../elements/input/Input';
-import principitoLuna from '../../../assets/img/principitoLuna.png'
-import './CrearPublicacion.css';
+import { usePost, useFetch } from "../../utils/FetchUtils";
+import { Button } from "../../elements/buttons/Button";
+import { ButtonGroup } from "../../elements/buttons/ButtonGroup";
+import { Input } from "../../elements/input/Input";
+import principitoLuna from "../../../assets/img/principitoLuna.png"
+import "./CrearPublicacion.css";
 import { ComingSoon } from "../../elements/errors/ComingSoon";
 import { Autocompletar } from "../../elements/autocomplete/Autocompletar";
 

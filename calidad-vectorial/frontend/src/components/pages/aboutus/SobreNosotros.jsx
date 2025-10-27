@@ -1,13 +1,13 @@
-import React from 'react'
-import { Button } from '../../elements/buttons/Button';
-import { ButtonGroup } from '../../elements/buttons/ButtonGroup';
-import { Footer } from '../../elements/footer/Footer';
-import './SobreNosotros.css';
+import React from "react"
+import { Button } from "../../elements/buttons/Button";
+import { ButtonGroup } from "../../elements/buttons/ButtonGroup";
+import { Footer } from "../../elements/footer/Footer";
+import "./SobreNosotros.css";
 
 export const SobreNosotros = () => {
     return (
         <>
-        <div className='body-sobre-nosotros'>
+        <div className="body-sobre-nosotros">
             <section className="body-sobre-nosotros__hero">
                 <div className="body-sobre-nosotros__hero__content">
                     <h1 className="body-sobre-nosotros__hero__title">Bücher</h1>
@@ -19,8 +19,8 @@ export const SobreNosotros = () => {
                 <div className="body-sobre-nosotros__hero__image"></div>
         </section>
         <ButtonGroup>
-            <Button variant='solapa' color='claro' to="/login">Iniciar sesión</Button>
-            <Button variant='solapa' color='oscuro' to='/register'>Registrarse</Button>
+            <Button variant="solapa" color="claro" to="/login">Iniciar sesión</Button>
+            <Button variant="solapa" color="oscuro" to="/register">Registrarse</Button>
         </ButtonGroup>
         </div>
         <Footer></Footer>

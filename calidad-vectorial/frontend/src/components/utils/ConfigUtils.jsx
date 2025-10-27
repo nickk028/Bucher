@@ -1,9 +1,9 @@
-import { leerJSON, escribirJSON } from './JsonUtils';
+import { leerJSON, escribirJSON } from "./JsonUtils";
 
 // La configuracion por defecto
 export const DEFAULT = {
     buchy: true,
-    colorBuchy: "amarillo"
+    colorBuchy: "verde-claro"
 };
 
 export const validarExisteConfig = () => {
@@ -37,7 +37,7 @@ export const getConfig = () => {
 */
 export const setConfig = (partialOrUpdater) => {
     const vieja = getConfig();
-    const nueva = typeof partialOrUpdater === 'function'
+    const nueva = typeof partialOrUpdater === "function"
         ? (partialOrUpdater(vieja) ?? vieja)
         : { ...vieja, ...(partialOrUpdater ?? {}) };
 

@@ -11,7 +11,7 @@ import { LibroUsuario } from "./components/pages/user/bookshelf/bookuser/LibroUs
 import { PublicacionUsuario } from "./components/pages/user/userpublication/PublicacionUsuario";
 import { Register } from "./components/pages/register/Register";
 import { CrearPublicacion } from "./components/pages/publication/CrearPublicacion";
-import { ProtectedRoute } from './components/utils/TokenUtils';
+import { ProtectedRoute } from "./components/utils/TokenUtils";
 import { CategoriaLibro } from "./components/pages/user/bookshelf/category/CategoriaLibro";
 import { Tendencias } from "./components/pages/tendences/Tendencias";
 import { Configuracion } from "./components/pages/user/configuration/Configuracion";
