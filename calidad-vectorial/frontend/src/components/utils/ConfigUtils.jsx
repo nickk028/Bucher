@@ -3,6 +3,7 @@ import { leerJSON, escribirJSON } from './JsonUtils';
 // La configuracion por defecto
 export const DEFAULT = {
     buchy: true,
+    colorBuchy: "amarillo"
 };
 
 export const validarExisteConfig = () => {
