@@ -7,8 +7,8 @@ import { Input } from "../input/Input";
 export const Usuario = () => {
     const { data: respuestaUsuario, loading: loadingUsuario, error: errorUsuario } = useFetch("usuario/propio");
     const { data: respuestaLogout, error: errorLogout, loading: loadingLogout, execute : executeLogout} = usePost("auth/logout");
-    //const { data: respuestaDataUsuario, error: errorDataUsuario, loading: loadingDataUsuario, execute: executeDataUsuario } = usePost("URL", "PUT");
-    //Cambiar URL del controller
+    const { data: respuestaDataUsuario, error: errorDataUsuario, loading: loadingDataUsuario, execute: executeDataUsuario } = usePost("usuario/modificar", "PUT");
+
 
     const [editando, setEditando] = useState(false);
     const [formData, setFormData] = useState({
@@ -29,10 +29,10 @@ export const Usuario = () => {
         await executeLogout();
     };
 
-    const handleSubmitDataUser = (e) => {
+    const  handleSubmitDataUser = async (e) => {
         e.preventDefault();
         if (formData.pronombres !== respuestaUsuario.pronombres || formData.descripcion !== respuestaUsuario.descripcion) {
-            //await executeDataUsuario(); (agregar async)
+            await executeDataUsuario({avatar : null, pronombres: formData.pronombres, descripcion: formData.descripcion});
             console.log("Datos cambiados");
         }
         setEditando(false);
