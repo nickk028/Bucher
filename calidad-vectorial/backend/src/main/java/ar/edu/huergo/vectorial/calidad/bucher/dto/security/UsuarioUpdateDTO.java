@@ -23,4 +23,7 @@ public class UsuarioUpdateDTO {
     String pronombres;
     @Size(max = 255, message = "La descripción debe tener como máximo 255 dígitos")
     String descripcion;
+    String direccion;
+    String piso;
+    String codigoPostal;
 }

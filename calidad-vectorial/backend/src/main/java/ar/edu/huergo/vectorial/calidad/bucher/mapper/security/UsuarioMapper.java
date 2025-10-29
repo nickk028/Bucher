@@ -73,6 +73,9 @@ public class UsuarioMapper {
         usuario.setAvatar(usuarioDTO.getAvatar());
         usuario.setPronombres(usuarioDTO.getPronombres());
         usuario.setDescripcion(usuarioDTO.getDescripcion());
+        usuario.setDireccion(usuarioDTO.getDireccion());
+        usuario.setPiso(usuarioDTO.getPiso());
+        usuario.setCodigoPostal(usuarioDTO.getCodigoPostal());
         return usuario;
     }
 }

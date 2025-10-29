@@ -24,10 +24,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -84,6 +86,21 @@ public class Usuario {
     @Column(nullable = true)
     @Size(max = 255, message = "La descripción debe tener como máximo 255 dígitos")
     private String descripcion;
+
+    //Direccion
+    @Column(nullable = true)
+    @Size(max = 255, message = "La direccion debe tener como máximo 255 dígitos")
+    private String direccion;
+
+    //Piso
+    @Column(nullable = true)
+    @Size(max = 255, message = "El piso debe tener como máximo 255 dígitos")
+    private String piso;
+
+    //Codigo Postal
+    @Column(nullable = true)
+    @Size(max = 255, message = "El código postal debe tener como máximo 255 dígitos")
+    private String codigoPostal;
 
     // Set de roles del usuario
     // Relacion Muchos a Muchos con Roles
