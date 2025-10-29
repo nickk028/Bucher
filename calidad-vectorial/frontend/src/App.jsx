@@ -17,7 +17,7 @@ import { Tendencias } from "./components/pages/tendences/Tendencias";
 import { Configuracion } from "./components/pages/user/configuration/Configuracion";
 import { UsuarioLayout } from "./layouts/UsuarioLayout";
 import { ComingSoon } from "./components/elements/errors/ComingSoon";
-import { Prestamo } from "./components/pages/user/bookshelf/loan/Prestamo";
+import { Prestamo } from "./components/pages/user/loan/Prestamo";
 
 
 export const App = () => {

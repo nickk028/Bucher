@@ -108,8 +108,8 @@ export function Login() {
 				linkExtra={
 						<Link to="/register">¿No tienes una cuenta? ¡Crea una!</Link>
 					}>
-				<Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}>Nombre de usuario</Input>
-				<Input type="password" value={password} name="password" onChange={(e) => setPassword(e.target.value)}>Contraseña</Input>
+				<Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)} autoComplete="on">Nombre de usuario</Input>
+				<Input type="password" value={password} name="password" onChange={(e) => setPassword(e.target.value)} autoComplete="on">Contraseña</Input>
 			</AuthBox>
 		</div>
 	);

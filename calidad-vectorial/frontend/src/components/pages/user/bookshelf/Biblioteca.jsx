@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetch, usePost } from "../../../utils/FetchUtils";
-import "./Biblioteca.css";
 import { Autocompletar } from "../../../elements/autocomplete/Autocompletar";
 import { Input } from "../../../elements/input/Input";
 import { Button } from "../../../elements/buttons/Button";
+import "./Biblioteca.css";
 
 export const Biblioteca = () => {
     const [tituloPost, setTituloPost] = useState("");
@@ -22,9 +22,9 @@ export const Biblioteca = () => {
     };
 
     return (
-        <main>
+        <main className="biblioteca-body">
             <div>
-                <h1>Ver biblioteca </h1>
+                <h1 className="biblioteca-body__title">Ver biblioteca </h1>
                 {loadingBiblioteca ? (
                     <p>Cargando biblioteca...</p>
                 ) : dataBiblioteca ? (
