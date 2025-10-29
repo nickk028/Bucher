@@ -1,9 +1,9 @@
-.biblioteca-body {
+.pub-user-body {
     padding-left: 20px;
     padding-right: 20px;
 }
 
-.biblioteca-body__title {
+.pub-user-body__title {
     color: #08413C;
     font-size: 3rem;
     font-weight: 500;
