@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { BookProvider } from "./context/LibroContexto";
+import { GlobalProvider } from "./context/GlobalProvider";
 
 import { Login } from "./components/pages/login/Login";
 import { SobreNosotros } from "./components/pages/aboutus/SobreNosotros";
@@ -19,9 +19,10 @@ import { UsuarioLayout } from "./layouts/UsuarioLayout";
 import { ComingSoon } from "./components/elements/errors/ComingSoon";
 import { Prestamo } from "./components/pages/user/bookshelf/loan/Prestamo";
 
+
 export const App = () => {
 	return (
-        <BookProvider>
+        <GlobalProvider>
             <Router>
                 <Routes>
                     <Route path="/" element={<SobreNosotros/>}/>
@@ -44,6 +45,6 @@ export const App = () => {
                     </Route>
                 </Routes>
             </Router>
-        </BookProvider>
+        </GlobalProvider>
     );
 }
