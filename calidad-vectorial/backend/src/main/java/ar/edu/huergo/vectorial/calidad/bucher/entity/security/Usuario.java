@@ -78,7 +78,7 @@ public class Usuario {
 
     // Pronombres
     @Column(nullable = true)
-    private Set<String> pronombres;
+    private String pronombres;
 
     //Descripcion
     @Column(nullable = true)
