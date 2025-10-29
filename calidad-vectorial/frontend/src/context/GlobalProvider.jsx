@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { BookProvider } from "./BookContext";
+import { BookProvider } from "./LibroContexto";
 
 export const GlobalContext = createContext();
 
