@@ -33,22 +33,25 @@ export const CrearPublicacion = () => {
 			</nav>
 			<main className="body-crear-prestamo">
 				{pagina == "prestamo" &&(
-					<form className="body-crear-prestamo__form" onSubmit={handleCrearPublicacion}>
-						<Autocompletar 
-							options={dataLibros ? dataLibros.map(libro => libro.titulo) : []}
-							type="text" 
-							value={titulo} 
-							name="titulo" 
-							onChange={e => setTitulo(e.target.value)}>
-								Título
-						</Autocompletar>
-						<Input variant="grande" type="text" value={descripcion} name="descripcion" onChange={e => setDescripcion(e.target.value)}>Descripción del estado del libro</Input>
+					<>
+						<h1 className="body-crear-prestamo__title">Nueva publicación</h1>
+						<form className="body-crear-prestamo__form" onSubmit={handleCrearPublicacion}>
+							<Autocompletar 
+								options={dataLibros ? dataLibros.map(libro => libro.titulo) : []}
+								type="text" 
+								value={titulo} 
+								name="titulo" 
+								onChange={e => setTitulo(e.target.value)}>
+									Título
+							</Autocompletar>
+							<Input variant="grande" type="text" value={descripcion} name="descripcion" onChange={e => setDescripcion(e.target.value)}>Descripción del estado del libro</Input>
 
-						<div className="body-crear-prestamo__form__limite-dias">
-						<Input type="number" value={limiteDias} name="limiteDias" onChange={e => setLimiteDias(e.target.value)}>Duración del préstamo</Input>
-						<Button type="submit" color="oscuro" variant="default" disabled={loading}>Crear publicación</Button>
-						</div>
-					</form>
+							<div className="body-crear-prestamo__form__limite-dias">
+							<Input type="number" value={limiteDias} name="limiteDias" onChange={e => setLimiteDias(e.target.value)}>Duración del préstamo</Input>
+							<Button type="submit" color="oscuro" variant="default" disabled={loading}>Crear publicación</Button>
+							</div>
+						</form>
+					</>
 				)}
 
 				{pagina == "social" &&(

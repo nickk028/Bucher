@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Input } from "../input/Input";
+import "./Autocompletar.css";
 
 export function Autocompletar({ options = [], value: valorExterno, onChange, maxSuggestions = 100, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");
@@ -36,10 +37,9 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 	};
 
 	return (
-		<div>
+		<div className="autocomplete">
 			<Input
 				type="text"
-				className="form-control"
 				value={value}
 				onChange={(e) => {
 					setValue(e.target.value);
@@ -51,9 +51,9 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 			/>
 
 			{showList && filtered.length > 0 && (
-				<ul>
+				<ul className="autocomplete__options">
 					{filtered.map((opcion, i) => (
-						<li key={i} onMouseDown={() => handleSelect(opcion)}>
+						<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion)}>
 							{opcion}
 						</li>
 					))}
