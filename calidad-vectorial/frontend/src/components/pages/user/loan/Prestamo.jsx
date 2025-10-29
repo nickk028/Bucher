@@ -1,4 +1,4 @@
-import { useFetch } from "../../../../utils/FetchUtils";
+import { useFetch } from "../../../utils/FetchUtils";
 export const Prestamo = () => {
     const { data, loading, error } = useFetch("registro");
 

@@ -126,8 +126,8 @@ export const Register = () => {
                 linkExtra={
                     <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
                 }>
-                    <Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)}>Email</Input>
-                    <Input type="password" value={password} name="password" onChange={e => setPassword(e.target.value)}>Contraseña</Input>
+                    <Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)} autoComplete="on">Email</Input>
+                    <Input type="password" value={password} name="password" onChange={e => setPassword(e.target.value)} autoComplete="on">Contraseña</Input>
                     <Input type="password" value={verificationPassword} name="verificationPassword" onChange={e => setVerificationPassword(e.target.value)}>Confirmar contraseña</Input>
                 </AuthBox>
             )}

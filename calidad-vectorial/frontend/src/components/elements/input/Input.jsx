@@ -3,7 +3,7 @@ import "./Input.css";
 import ver from "../../../assets/img/ver.png";
 import esconder from "../../../assets/img/esconder.png";
 
-export const Input = ({ children, type, name, value, placeholder, variant="default", title, required=true, disabled=false, onChange, onFocus, onBlur }) => {
+export const Input = ({ children, type, name, value, placeholder, variant="default", title, required=true, disabled=false, onChange, onFocus, onBlur , autoComplete="off", autoCorrect="off", autoCapitalize="none", spellCheck="false"}) => {
     const [showPassword, setShowPassword] = useState(false);
     const inputRef = useRef(null);
 
@@ -94,8 +94,9 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
             onBlur={ () => {
                 if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}
                 else {onBlur && onBlur()}}}
-            name={name} id={name} type={inputType} value={value} required={required} disabled={disabled} />
-            
+            name={name} id={name} type={inputType} value={value} required={required} disabled={disabled} 
+            autoComplete={autoComplete} autoCorrect={autoCorrect} autoCapitalize={autoCapitalize} spellCheck={spellCheck}/>
+
             <label className="input-group__label" htmlFor={name}> {children} </label>
 
             {type === "password" && (
