@@ -16,6 +16,8 @@
     box-sizing: border-box;
     padding-left: 5px;
     padding-right: 5px;
+
+    transition: all ease-in-out 200ms;
 }
 
 .input-group__input--password {
@@ -65,6 +67,7 @@
 
 .input-group__input:focus {
     border-color: #117c4c;
+    box-shadow: 0px 0px 4px #08413C;
 }
 
 .input-group__input:disabled {

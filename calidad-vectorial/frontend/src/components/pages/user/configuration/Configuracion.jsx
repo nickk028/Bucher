@@ -3,14 +3,10 @@ import { ConfiguracionDataUsuario } from "../../../elements/configuration/config
 
 export const Configuracion = () => {
     return (
-        <div>
-            <div className="">
-                <ConfiguracionAplicacion />
-            </div>
+        <main>
+            <ConfiguracionAplicacion />
 
-            <div className="">
-                <ConfiguracionDataUsuario />
-            </div>
-        </div>
+            <ConfiguracionDataUsuario />
+        </main>
     );
 };
