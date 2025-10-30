@@ -2,6 +2,7 @@ import { useState } from "react";
 import { validarExisteConfig, setConfig } from "../../utils/ConfigUtils";
 import { Autocompletar } from "../autocomplete/Autocompletar";
 import { Button } from "../buttons/Button";
+import "./Configuracion.css";
 
 export const ConfiguracionAplicacion = () => {
     // Carga/ crea la configuración al montar
@@ -28,27 +29,25 @@ export const ConfiguracionAplicacion = () => {
     }
 
     return (
-        <div>
-            <div className="">
-                <h1>Configuracion de aplicacion</h1>
-                <label>
-                    <form onSubmit={onConfigSubmit}>
-                        <input type="checkbox" checked={!!configuracion.buchy} onChange={onBoolChange} name="buchy"/>
-                        Activar "buchy"
-                        <Autocompletar 
-                            options = {coloresBuchy}
-                            placeholder = "Color Buchy"
-                            name = "colorBuchy"
-                            value = {configuracion.colorBuchy}
-                            onChange = {onStringChange("colorBuchy")}
-                            />
-                        <Button type="submit" variant="default" color="oscuro" disabled={false}>Guardar Configuración</Button>
-                    </form>
-                </label>
+        <div className="config-content">
+            <h1 className="config-content__title">Configuración aplicación</h1>
+            <label>
+                <form onSubmit={onConfigSubmit}>
+                    <input type="checkbox" checked={!!configuracion.buchy} onChange={onBoolChange} name="buchy"/>
+                    Activar "buchy"
+                    <Autocompletar
+                        options = {coloresBuchy}
+                        placeholder = "Color Buchy"
+                        name = "colorBuchy"
+                        value = {configuracion.colorBuchy}
+                        onChange = {onStringChange("colorBuchy")}
+                        />
+                    <Button type="submit" variant="default" color="oscuro" disabled={false}>Guardar Configuración</Button>
+                </form>
+            </label>
 
-                {/* JSON guardado */}
-                <p>{JSON.stringify(configuracion, null, 2)}</p>
-            </div>
+            {/* JSON guardado */}
+            <p>{JSON.stringify(configuracion, null, 2)}</p>
         </div>
     );
 };
