@@ -2,6 +2,7 @@ import { useState } from "react";
 import { validarExisteConfig, setConfig } from "../../utils/ConfigUtils";
 import { Autocompletar } from "../autocomplete/Autocompletar";
 import { Button } from "../buttons/Button";
+import { Input } from "../input/Input";
 import "./Configuracion.css";
 
 export const ConfiguracionAplicacion = () => {
@@ -33,8 +34,7 @@ export const ConfiguracionAplicacion = () => {
             <h1 className="config-content__title">Configuración aplicación</h1>
             <label>
                 <form onSubmit={onConfigSubmit}>
-                    <input type="checkbox" checked={!!configuracion.buchy} onChange={onBoolChange} name="buchy"/>
-                    Activar "buchy"
+                    <Input type="checkbox" checked={!!configuracion.buchy} onChange={onBoolChange} name="buchy"> Activar Buchi</Input>
                     <Autocompletar
                         options = {coloresBuchy}
                         placeholder = "Color Buchy"

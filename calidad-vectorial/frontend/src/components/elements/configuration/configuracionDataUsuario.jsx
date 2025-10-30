@@ -59,7 +59,7 @@ export const ConfiguracionDataUsuario = () => {
                 </div>
 
                 <div>
-                    <label className={`config-content__form__label config-content__form__label--${editando ? "editando" : ""}`}>Direccion</label>
+                    <label className={`config-content__form__label config-content__form__label--${editando ? "editando" : ""}`}>Dirección</label>
                     <Input type="text" name="direccion" value={formData.direccion} onChange={handleChange} disabled={!editando} required={false}/>
                 </div>
 
@@ -69,7 +69,7 @@ export const ConfiguracionDataUsuario = () => {
                 </div>
 
                 <div>
-                    <label className={`config-content__form__label config-content__form__label--${editando ? "editando" : ""}`}>Codigo Postal</label>
+                    <label className={`config-content__form__label config-content__form__label--${editando ? "editando" : ""}`}>Código postal</label>
                     <Input type="text" name="codigoPostal" value={formData.codigoPostal} onChange={handleChange} disabled={!editando} required={false}/>
                 </div>
 
