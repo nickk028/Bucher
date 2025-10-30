@@ -83,18 +83,29 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
         );
     };
 
+    if (type == "checkbox") {
+        return (
+            <div className="input-group input-group--checkbox">
+                <span className="input-group--checkbox__text" htmlFor={name}>{children}</span>
+                <input className={`input-group__input--${type}`} type="checkbox" placeholder={placeholder} title={title} onChange={onChange} ref={inputRef}
+                name={name} id={name} value={value} required={required} disabled={disabled}
+                autoComplete={autoComplete} autoCorrect={autoCorrect} autoCapitalize={autoCapitalize} spellCheck={spellCheck}/>
+            </div>
+        );
+    };
+
     return (
         <div className="input-group">
             <input className={`input-group__input input-group__input--${type} input-group__input--${variant}`} placeholder={placeholder} title={title} onChange={onChange} ref={inputRef}
             onFocus={() => {
-                if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} 
+                if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));}
                 else {window.dispatchEvent(new Event("passwordFocus"))};}
                 else {onFocus && onFocus()}
             }}
             onBlur={ () => {
                 if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}
                 else {onBlur && onBlur()}}}
-            name={name} id={name} type={inputType} value={value} required={required} disabled={disabled} 
+            name={name} id={name} type={inputType} value={value} required={required} disabled={disabled}
             autoComplete={autoComplete} autoCorrect={autoCorrect} autoCapitalize={autoCapitalize} spellCheck={spellCheck}/>
 
             <label className="input-group__label" htmlFor={name}> {children} </label>
