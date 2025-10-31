@@ -8,7 +8,7 @@ export const UsuarioDetalles = ({ children, nombre }) => {
                 <h1 className="card-user__content__name">{nombre}</h1>
                 <p className="card-user__content__description">{children}</p>
             </div>
-            <img src={logoUsuario} alt="" />
+            <img src={logoUsuario} alt="Imagen del usuario"/>
         </div>
     )
 }

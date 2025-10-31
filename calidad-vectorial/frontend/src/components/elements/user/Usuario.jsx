@@ -14,7 +14,7 @@ export const Usuario = () => {
     const avatarUsuario = (respuestaUsuario?.avatar?.toLowerCase() ?? "logoUsuario") + ".png";
 
     return (
-        <aside className="aside-user">
+        <div className="aside-user">
             <div className="aside-user__content">
                 <div className="aside-user__content__data">
                     <img className="aside-user__img" src={`/assets/img/avatares/${avatarUsuario}`} alt="Avatar del usuario" />
@@ -31,12 +31,12 @@ export const Usuario = () => {
                         <Input className="aside-user__content__data__text__descripcion" variant="medio" type="text" name="descripcion" value={respuestaUsuario.descripcion} disabled={true} required={false}/>
                     </div>
 
-                    <Button variant="default" color="rojo" onClick={handleLogout}>
+                    <Button variant="default" color="rojo" onClick={handleLogout} to = "/">
                         Cerrar sesión
                     </Button>
                 </div>
                 <div className="aside-user__barra" />
             </div>
-        </aside>
+        </div>
     );
 };

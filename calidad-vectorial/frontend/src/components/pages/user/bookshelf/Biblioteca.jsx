@@ -30,7 +30,7 @@ export const Biblioteca = () => {
                 ) : dataBiblioteca ? (
                     <ul>
                         {dataBiblioteca.map(bookUser =>(
-                            <li key = {bookUser.id} > 
+                            <li key = {bookUser.id} >
                                 <Link to={`/usuario/biblioteca/${bookUser.id}`}>
                                     <p>Titulo: {bookUser.titulo}</p>
                                     <p>Pagina actual: {bookUser.paginaActual}</p>
@@ -43,7 +43,7 @@ export const Biblioteca = () => {
                 ) : (
                     <p>Error al cargar la biblioteca : {errorBiblioteca}</p>
                 )}
-            </div>   
+            </div>
 
             <h1>Añadir libro a la biblioteca</h1>
             <form onSubmit={handleAgregarLibroUsuario}>
