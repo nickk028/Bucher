@@ -14,11 +14,11 @@ export const LibroUsuario = () => {
         puntuacion: 0
     });
     const { data : putBookUser, loading : loadingPutBookUser, error : ErrorPutBookUser, execute } = usePost("biblioteca/" + posicion, "PUT" );
-    
+
     useEffect(() => {
         if (getBookUser) {
             setFormData({
-                id: getBookUser.id, 
+                id: getBookUser.id,
                 paginaActual: getBookUser.paginaActual || 0,
                 estadoLectura: getBookUser.estadoLectura || "",
                 puntuacion: getBookUser.puntuacion || 0
@@ -37,15 +37,14 @@ export const LibroUsuario = () => {
 
     const handleSubmitDataBookUser = async (e) => {
         e.preventDefault();
-        
+
         if (formData.paginaActual !== getBookUser.paginaActual || formData.estadoLectura !== getBookUser.estadoLectura || formData.puntuacion !== getBookUser.puntuacion) {
             await execute(formData);
             console.log("Datos cambiados");
             console.log("data: ", formData);
             console.log("BookUser: ", getBookUser);
-            
-        } 
-        
+
+        }
         setEditando(false);
     };
 
@@ -68,12 +67,12 @@ export const LibroUsuario = () => {
                             <label>Puntuacion:</label>
                             <Input type="number" name="puntuacion" value={formData.puntuacion} onChange={handleChange} disabled={!editando} required={false}/>
                         </div>
-                    
+
                         { editando && (
                             <Button type="submit" variant="default" color="oscuro">
                                 Guardar cambios
                             </Button>
-                        )} 
+                        )}
                         { !editando && (
                             <Button type="button" variant="default" color="oscuro" onClick={() => setEditando(!editando)}>
                                     Actualizar avances
