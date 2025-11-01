@@ -3,10 +3,11 @@ import { usePost, useFetch } from "../../utils/FetchUtils";
 import { Button } from "../../elements/buttons/Button";
 import { ButtonGroup } from "../../elements/buttons/ButtonGroup";
 import { Input } from "../../elements/input/Input";
-import principitoLuna from "../../../assets/img/principitoLuna.png"
-import "./CrearPublicacion.css";
 import { ComingSoon } from "../../elements/errors/ComingSoon";
 import { Autocompletar } from "../../elements/autocomplete/Autocompletar";
+import { PopUp } from "../../elements/modal/PopUp";
+import principitoLuna from "../../../assets/img/principitoLuna.png"
+import "./CrearPublicacion.css";
 
 export const CrearPublicacion = () => {
     const [titulo, setTitulo] = useState("");
@@ -14,6 +15,7 @@ export const CrearPublicacion = () => {
     const [limiteDias, setLimiteDias] = useState("");
 
 	const [pagina, setPagina] = useState("prestamo");
+	const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
     const { data, loading, error, execute } = usePost("publicacion/crear");
 	const { data : dataLibros, error : errorLibros, loading : loadingLibros } = useFetch("libro/todos");
@@ -21,10 +23,18 @@ export const CrearPublicacion = () => {
     const handleCrearPublicacion = async (e) => {
         e.preventDefault();
         await execute({ titulo, descripcion, limiteDias: parseInt(limiteDias) });
+		setMostrarPopUp(true);
     };
 
 	return (
 		<>
+			{mostrarPopUp && (
+				<PopUp onClose={() => setMostrarPopUp(false)}>
+					Publciación creada con éxito
+				</PopUp>
+				)
+			}
+
 			<nav>
 				<ButtonGroup>
 					<Button color={pagina == "social" ? "oscuro" : "claro"} onClick={pagina !="social" ? () => setPagina("social") : undefined}>Social</Button>
