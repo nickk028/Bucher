@@ -38,12 +38,12 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
                 onBlur={ () => {
                     if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}}}
                 name={name} id={name} type={inputType} value={value ?? ""} required={required} disabled={disabled} />
-                
+
                 <label className="input-group__label" htmlFor={name}> {children} </label>
 
                 {type === "password" && (
                     <button type="button" className="input-group__ojo" onMouseDown={togglePassword}  >
-                        
+
                         {showPassword ? (
                             <img src={esconder} alt="esconder" />
                         ): (
@@ -66,12 +66,10 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
                 onBlur={ () => {
                     if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}}}
                 name={name} id={name} type={inputType} value={value ?? ""} required={required} disabled={disabled} />
-                
                 <label className="input-group__label" htmlFor={name}> {children} </label>
 
                 {type === "password" && (
                     <button type="button" className="input-group__ojo" onMouseDown={togglePassword}  >
-                        
                         {showPassword ? (
                             <img src={esconder} alt="esconder" />
                         ): (
@@ -112,7 +110,6 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
 
             {type === "password" && (
                 <button type="button" className="input-group__ojo" onMouseDown={togglePassword}  >
-                    
                     {showPassword ? (
                         <img src={esconder} alt="esconder" />
                     ): (
