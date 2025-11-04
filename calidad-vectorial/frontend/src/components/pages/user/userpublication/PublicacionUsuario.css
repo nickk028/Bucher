@@ -1,5 +1,5 @@
 .pub-user-body {
-    padding-left: 20px;
+    padding-left: 50px;
     padding-right: 20px;
 }
 
@@ -7,4 +7,15 @@
     color: #08413C;
     font-size: 3rem;
     font-weight: 500;
+}
+
+.pub-user-bod__list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pub-user-bod__list__item {
+    width: fit-content;
 }

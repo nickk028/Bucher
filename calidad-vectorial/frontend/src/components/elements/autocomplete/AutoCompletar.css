@@ -24,6 +24,12 @@
 .autocomplete__options__item {
     padding: 5px;
     max-width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    color: #08413C;
+    gap: 20px;
 }
 
 .autocomplete__options__item:hover {
