@@ -6,9 +6,9 @@ import { Button } from "../../elements/buttons/Button";
 import "./Publicacion.css";
 
 export const Publicacion = () => {
-    const { id } = useParams()
+    const { id } = useParams();
     const { data : publicacion , error : errorFetch, loading : loadingError } = useFetch("publicacion/" + id);
-    const { data : respuestaPost , error : errorPost, loading : loadingPost, execute } = usePost("publicacion/prestamo/" + id, {});
+    const { data : respuestaPost , error : errorPost, loading : loadingPost, execute } = usePost("publicacion/prestamo/" + id);
 
     const handlePedirLibro = () => {
         execute();

@@ -75,7 +75,7 @@ export const LibroUsuario = () => {
                         )}
                         { !editando && (
                             <Button type="button" variant="default" color="oscuro" onClick={() => setEditando(!editando)}>
-                                    Actualizar avances
+                                Actualizar avances
                             </Button>
                         )}
                     </form>

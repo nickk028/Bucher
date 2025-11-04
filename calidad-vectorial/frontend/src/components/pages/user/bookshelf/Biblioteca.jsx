@@ -45,27 +45,35 @@ export const Biblioteca = () => {
                 )}
             </div>
 
-            <h1>Añadir libro a la biblioteca</h1>
-            <form onSubmit={handleAgregarLibroUsuario}>
-                <Autocompletar
-                    options={dataLibros ? dataLibros.map(libro => libro.titulo) : []}
-                    placeholder="Título"
-                    onChange={e => setTituloPost(e.target.value)}
-                    value = {tituloPost}
-                />
-                <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="Pagina" required={false}/>
-                <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="Estado de Lectura" required={false}/>
-                <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="Puntuacion" required={false}/>
-                <Button type="submit" variant="default" color="oscuro" disabled={loadingPost}>Guardar Libro</Button>
+            <div className="">
+                <div className="">
+                    <h1>Añadir libro a la biblioteca</h1>
+                    <form onSubmit={handleAgregarLibroUsuario}>
+                        <Autocompletar
+                            options = {dataLibros ? dataLibros.map(libro => [libro.urlFoto, libro.titulo]) : []}
+                            placeholder = "Título"
+                            tipo = "doble"
+                            imgHeight = "50px"
+                            imgWidth = "30px"
+                            onChange = {e => setTituloPost(e.target.value)}
+                            value = {tituloPost}
+                            />
+                        <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="Pagina" required={false}/>
+                        <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="Estado de Lectura" required={false}/>
+                        <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="Puntuacion" required={false}/>
+                        <Button type="submit" variant="default" color="oscuro" disabled={loadingPost}>Guardar Libro</Button>
 
-                {dataPost && <p> Operacion post Exitosa </p>}
-                {errorPost && <p>{errorPost}</p>}
-                {loadingPost && <p>Cargando Post...</p>}
-                {loadingLibros && <p>Cargando libros...</p>}
-                {errorLibros && <p>{errorLibros}</p>}
-            </form>
-            <Link to="/index">Index</Link>
-            <Link to="/biblioteca/categoria/terror">Terror</Link>
+                        {dataPost && <p> Operacion post Exitosa </p>}
+                        {errorPost && <p>{errorPost}</p>}
+                        {loadingPost && <p>Cargando Post...</p>}
+                        {loadingLibros && <p>Cargando libros...</p>}
+                        {errorLibros && <p>{errorLibros}</p>}
+                    </form>
+                </div>
+                <div className="">
+                    <Button to = "/libros" variant="default" color="oscuro">Seleccionar libro</Button>
+                </div>
+            </div>
         </main>
     );
 }

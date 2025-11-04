@@ -18,7 +18,8 @@ import { Configuracion } from "./components/pages/user/configuration/Configuraci
 import { UsuarioLayout } from "./layouts/UsuarioLayout";
 import { ComingSoon } from "./components/elements/errors/ComingSoon";
 import { Prestamo } from "./components/pages/user/loan/Prestamo";
-
+import { Libros } from "./components/pages/books/libros";
+import { Libro } from "./components/pages/books/book/Libro";
 
 export const App = () => {
 	return (
@@ -34,14 +35,16 @@ export const App = () => {
                         <Route path="/publicacion/:id" element={<Publicacion />} />
                         <Route path="/crear-publicacion" element={<CrearPublicacion />} />
                         <Route path="/tendencias" element={<Tendencias />} />
-                        <Route path="/usuario" element={<UsuarioLayout />}>
-                        <Route path="/usuario/biblioteca" element={<Biblioteca />} />
-                        <Route path="/usuario/biblioteca/:posicion" element={<LibroUsuario />} />
-                        <Route path="/usuario/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
-                        <Route path="/usuario/publicacion/propias" element={<PublicacionUsuario />} />
-                        <Route path="/usuario/configuracion" element={<Configuracion />} />
-                        <Route path="/usuario/prestamos" element={<Prestamo />} />
+                        <Route path="/usuario" element={<UsuarioLayout />} >
+                            <Route path="/usuario/biblioteca" element={<Biblioteca />} />
+                            <Route path="/usuario/biblioteca/:posicion" element={<LibroUsuario />} />
+                            <Route path="/usuario/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
+                            <Route path="/usuario/publicacion/propias" element={<PublicacionUsuario />} />
+                            <Route path="/usuario/configuracion" element={<Configuracion />} />
+                            <Route path="/usuario/prestamos" element={<Prestamo />} />
                         </Route>
+                        <Route path="/libros" element={<Libros />} />
+                        <Route path="/libros/:id" element={<Libro />} />
                     </Route>
                 </Routes>
             </Router>
