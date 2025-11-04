@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePost, useFetch } from "../../utils/FetchUtils";
 import { Button } from "../../elements/buttons/Button";
 import { ButtonGroup } from "../../elements/buttons/ButtonGroup";
@@ -17,19 +17,27 @@ export const CrearPublicacion = () => {
 	const [pagina, setPagina] = useState("prestamo");
 	const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
-    const { data, loading, error, execute } = usePost("publicacion/crear");
+    const { data : dataPost, loading : loadingPost, error : errorPost, execute } = usePost("publicacion/crear");
 	const { data : dataLibros, error : errorLibros, loading : loadingLibros } = useFetch("libro/todos");
 
     const handleCrearPublicacion = async (e) => {
         e.preventDefault();
         await execute({ titulo, descripcion, limiteDias: parseInt(limiteDias) });
-		setMostrarPopUp(true);
     };
+
+	useEffect(() => {
+		if (dataPost && !errorPost) {
+			setMostrarPopUp(true);
+			setTitulo("");
+			setDescripcion("");
+			setLimiteDias("");
+		}
+	}, [dataPost, errorPost]);
 
 	return (
 		<>
 			{mostrarPopUp && (
-				<PopUp onClose={() => setMostrarPopUp(false)}>
+				<PopUp onClick={() => setMostrarPopUp(false)}>
 					Publciación creada con éxito
 				</PopUp>
 				)
@@ -58,7 +66,7 @@ export const CrearPublicacion = () => {
 
 							<div className="body-crear-prestamo__form__limite-dias">
 							<Input type="number" value={limiteDias} name="limiteDias" onChange={e => setLimiteDias(e.target.value)}>Duración del préstamo</Input>
-							<Button type="submit" color="oscuro" variant="default" disabled={loading}>Crear publicación</Button>
+							<Button type="submit" color="oscuro" variant="default" disabled={loadingPost}>Crear publicación</Button>
 							</div>
 						</form>
 					</>

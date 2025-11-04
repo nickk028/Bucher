@@ -32,22 +32,22 @@ export const ConfiguracionAplicacion = () => {
     return (
         <div className="config-content">
             <h1 className="config-content__title">Configuración aplicación</h1>
-            <label>
-                <form onSubmit={onConfigSubmit}>
-                    <Input type="checkbox" checked={!!configuracion.buchy} onChange={onBoolChange} name="buchy"> Activar Buchi</Input>
+            <form className="config-content__form" onSubmit={onConfigSubmit}>
+                <Input type="checkbox" checked={!!configuracion.buchy} onChange={onBoolChange} name="buchy"> Activar Buchy</Input>
+                <div className="config-content__input-group">
+                    <label className="config-content__form__label" htmlFor="colorBuchy">Color de Buchy</label>
                     <Autocompletar
-                        options = {coloresBuchy}
-                        placeholder = "Color Buchy"
-                        name = "colorBuchy"
-                        value = {configuracion.colorBuchy}
-                        onChange = {onStringChange("colorBuchy")}
-                        />
+                    options = {coloresBuchy}
+                    placeholder = "Color Buchy"
+                    name = "colorBuchy"
+                    value = {configuracion.colorBuchy}
+                    onChange = {onStringChange("colorBuchy")}
+                    />
+                </div>
+                <div>
                     <Button type="submit" variant="default" color="oscuro" disabled={false}>Guardar Configuración</Button>
-                </form>
-            </label>
-
-            {/* JSON guardado */}
-            <p>{JSON.stringify(configuracion, null, 2)}</p>
+                </div>
+            </form>
         </div>
     );
 };
