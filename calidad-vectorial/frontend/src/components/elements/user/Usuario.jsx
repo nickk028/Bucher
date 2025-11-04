@@ -2,13 +2,16 @@ import { useFetch, usePost } from "../../utils/FetchUtils";
 import "./Usuario.css";
 import { Button } from "../buttons/Button";
 import { Input } from "../input/Input";
+import { useNavigate } from "react-router-dom";
 
 export const Usuario = () => {
+    const navigate = useNavigate();
     const { data: respuestaUsuario, loading: loadingUsuario, error: errorUsuario } = useFetch("usuario/propio");
     const { data: respuestaLogout, error: errorLogout, loading: loadingLogout, execute : executeLogout} = usePost("auth/logout");
 
     const handleLogout = async () => {
         await executeLogout();
+        navigate("/");
     };
 
     const avatarUsuario = (respuestaUsuario?.avatar?.toLowerCase() ?? "logoUsuario") + ".png";
@@ -18,7 +21,7 @@ export const Usuario = () => {
             <div className="aside-user__content">
                 <div className="aside-user__content__data">
                     <img className="aside-user__img" src={`/assets/img/avatares/${avatarUsuario}`} alt="Avatar del usuario" />
-            
+
                     <h1 className="aside-user__content__data__text__username">{respuestaUsuario.username }</h1>
 
                     <div>
@@ -31,7 +34,7 @@ export const Usuario = () => {
                         <Input className="aside-user__content__data__text__descripcion" variant="medio" type="text" name="descripcion" value={respuestaUsuario.descripcion} disabled={true} required={false}/>
                     </div>
 
-                    <Button variant="default" color="rojo" onClick={handleLogout} to = "/">
+                    <Button variant="default" color="rojo" onClick={handleLogout}>
                         Cerrar sesión
                     </Button>
                 </div>

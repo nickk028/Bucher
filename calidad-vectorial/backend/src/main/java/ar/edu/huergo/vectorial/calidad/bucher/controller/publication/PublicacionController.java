@@ -195,7 +195,7 @@ public class PublicacionController {
     @PostMapping("/devolucion/{id}")
     public ResponseEntity<String> devolverPublicacion(@PathVariable("id") Long id) {
         Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);
-        
+
         if (publicacion.getEstadoPublicacion() != Estado.Prestado) {
             return ResponseEntity.unprocessableEntity().body("La publicación no está prestada");
         }

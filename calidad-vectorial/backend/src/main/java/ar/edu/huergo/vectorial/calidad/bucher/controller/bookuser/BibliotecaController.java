@@ -141,7 +141,7 @@ public class BibliotecaController {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
         Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
-        
+
         bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaUsuario); // Existe el libro usuario
         bibliotecaService.eliminarLibroUsuarioDeBiblioteca(bibliotecaUsuario, posicion);
 
