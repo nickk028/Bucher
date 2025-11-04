@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Input } from "../input/Input";
 import "./Autocompletar.css";
 
-export function Autocompletar({ options = [], tipo, value: valorExterno, onChange, maxSuggestions = 100, ...props }) {
+export function Autocompletar({ options = [], tipo, value: valorExterno, onChange, imgHeight, imgWidth, maxSuggestions = 100, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");
 	const [showList, setShowList] = useState(false);
 
@@ -67,7 +67,7 @@ export function Autocompletar({ options = [], tipo, value: valorExterno, onChang
 						<>
 						{optFiltrados.map((opcion, i) => (
 							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion[1])}>
-								<img src={opcion[0]} alt="Imagen libro" height="50px" width="30px"/>
+								<img src={opcion[0]} alt="Imagen libro" height={imgHeight} width={imgWidth}/>
 								{opcion[1]}
 							</li>
 						))}
