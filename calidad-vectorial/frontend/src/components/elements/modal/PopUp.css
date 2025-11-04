@@ -16,8 +16,39 @@
 }
 
 .popup__content {
-    width: 35vw;
+    width: 55vw;
     height: 40vh;
 
     background: #f5f5f5;
+
+    padding: 40px;
+    border-radius: 1rem;
+
+    position: relative;
+}
+
+.popup__content__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: auto;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+
+    font-size: 4rem;
+    color: #08413C;
+
+    cursor: pointer;
+}
+
+.popup__content__text {
+    text-align: center;
+    font-size: 2rem;
+
+    color: #0E675F;
 }

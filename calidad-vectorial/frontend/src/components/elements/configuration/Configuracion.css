@@ -32,3 +32,11 @@
     color: #0E675F;
     box-shadow: #08413C;
 }
+
+.config-content__input-group {
+    min-width: max-content;
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
