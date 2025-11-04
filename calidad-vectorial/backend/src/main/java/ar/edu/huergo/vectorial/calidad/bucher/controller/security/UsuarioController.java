@@ -72,7 +72,7 @@ public class UsuarioController {
         usuarioUpdateDTO.setRoles(usuario.getRoles());
 
         Usuario usuarioNuevo = usuarioMapper.toEntity(usuarioUpdateDTO);
-
+        
         Usuario usuarioActualizado = usuarioService.modificarUsuario(usuario, usuarioNuevo);
         return ResponseEntity.ok(usuarioMapper.toDTO(usuarioActualizado));
     }

@@ -121,6 +121,18 @@ public class UsuarioService {
         if (usuarioNuevo.getDescripcion() != null) {
             usuarioAModificar.setDescripcion(usuarioNuevo.getDescripcion());
         }
+        if (usuarioNuevo.getNickname() != null) {
+            usuarioAModificar.setNickname(usuarioNuevo.getNickname());
+        }
+        if (usuarioNuevo.getDireccion() != null) {
+            usuarioAModificar.setDireccion(usuarioNuevo.getDireccion());
+        }
+        if (usuarioNuevo.getPiso() != null) {
+            usuarioAModificar.setPiso(usuarioNuevo.getPiso());
+        }
+        if (usuarioNuevo.getCodigoPostal() != null) {
+            usuarioAModificar.setCodigoPostal(usuarioNuevo.getCodigoPostal());
+        }
 
         return usuarioRepository.save(usuarioAModificar);
     }
