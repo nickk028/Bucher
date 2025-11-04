@@ -10,6 +10,7 @@ export const ConfiguracionDataUsuario = () => {
     
     const [editando, setEditando] = useState(false);
     const [formData, setFormData] = useState({
+        avatar : "",
         pronombres: "",
         descripcion: "",
         nickname: "",
@@ -21,20 +22,25 @@ export const ConfiguracionDataUsuario = () => {
     useEffect(() => {
         if (respuestaUsuario) {
             setFormData({
-                pronombres: respuestaUsuario.pronombres || "",
-                descripcion: respuestaUsuario.descripcion || "",
-                nickname: "",
-                direccion: "",
-                piso: "",
-                codigoPostal: ""
+                avatar : respuestaUsuario.avatar,
+                pronombres: respuestaUsuario.pronombres ?? "",
+                descripcion: respuestaUsuario.descripcion ?? "",
+                nickname: respuestaUsuario.nickname ?? "",
+                direccion: respuestaUsuario.direccion ?? "",
+                piso: respuestaUsuario.piso ?? "",
+                codigoPostal: respuestaUsuario.codigoPostal ?? ""
             });
         }
     }, [respuestaUsuario]);
 
     const  handleSubmitDataUser = async (e) => {
         e.preventDefault();
-        if (formData.pronombres !== respuestaUsuario.pronombres || formData.descripcion !== respuestaUsuario.descripcion) {
-            await executeDataUsuario({avatar : null, pronombres: formData.pronombres, descripcion: formData.descripcion});
+        if (!(formData in respuestaUsuario)) {
+            await executeDataUsuario(formData);
+            console.log(respuestaUsuario);
+            console.log(formData);
+            console.log(respuestaDataUsuario);
+
             console.log("Datos cambiados");
         }
         setEditando(false);
