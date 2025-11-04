@@ -3,7 +3,7 @@ import "./Input.css";
 import ver from "../../../assets/img/ver.png";
 import esconder from "../../../assets/img/esconder.png";
 
-export const Input = ({ children, type, name, value, placeholder, variant="default", title, required=true, disabled=false, onChange, onFocus, onBlur , autoComplete="off", autoCorrect="off", autoCapitalize="none", spellCheck="false"}) => {
+export const Input = ({ children, type, name, value, checked, placeholder, variant="default", title, required=true, disabled=false, onChange, onFocus, onBlur , autoComplete="off", autoCorrect="off", autoCapitalize="none", spellCheck="false"}) => {
     const [showPassword, setShowPassword] = useState(false);
     const inputRef = useRef(null);
 
@@ -86,7 +86,7 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
             <div className="input-group input-group--checkbox">
                 <span className="input-group--checkbox__text" htmlFor={name}>{children}</span>
                 <input className={`input-group__input--${type}`} type="checkbox" placeholder={placeholder} title={title} onChange={onChange} ref={inputRef}
-                name={name} id={name} value={value ?? ""} required={false} disabled={disabled}
+                name={name} id={name} checked={checked ?? ""} required={false} disabled={disabled}
                 autoComplete={autoComplete} autoCorrect={autoCorrect} autoCapitalize={autoCapitalize} spellCheck={spellCheck}/>
             </div>
         );

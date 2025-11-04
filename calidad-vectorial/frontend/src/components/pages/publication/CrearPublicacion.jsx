@@ -56,11 +56,13 @@ export const CrearPublicacion = () => {
 						<form className="body-crear-prestamo__form" onSubmit={handleCrearPublicacion}>
 							<Autocompletar
 								options={dataLibros ? dataLibros.map(libro => [libro.urlFoto ,libro.titulo]) : []}
-								type="text"
-								tipo="doble"
-								value={titulo}
-								name="titulo"
-								onChange={e => setTitulo(e.target.value)}>
+								type = "text"
+								tipo = "doble"
+								imgHeight = "100px"
+								imagWidth = "60px"
+								value = {titulo}
+								name = "titulo"
+								onChange = {e => setTitulo(e.target.value)}>
 									Título
 							</Autocompletar>
 							<Input variant="grande" type="text" value={descripcion} name="descripcion" onChange={e => setDescripcion(e.target.value)}>Descripción del estado del libro</Input>
