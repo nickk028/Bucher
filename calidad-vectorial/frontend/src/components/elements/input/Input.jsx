@@ -37,7 +37,7 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
                 }}
                 onBlur={ () => {
                     if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}}}
-                name={name} id={name} type={inputType} value={value} required={required} disabled={disabled} />
+                name={name} id={name} type={inputType} value={value ?? ""} required={required} disabled={disabled} />
                 
                 <label className="input-group__label" htmlFor={name}> {children} </label>
 
@@ -65,7 +65,7 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
                 }}
                 onBlur={ () => {
                     if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}}}
-                name={name} id={name} type={inputType} value={value} required={required} disabled={disabled} />
+                name={name} id={name} type={inputType} value={value ?? ""} required={required} disabled={disabled} />
                 
                 <label className="input-group__label" htmlFor={name}> {children} </label>
 
@@ -88,7 +88,7 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
             <div className="input-group input-group--checkbox">
                 <span className="input-group--checkbox__text" htmlFor={name}>{children}</span>
                 <input className={`input-group__input--${type}`} type="checkbox" placeholder={placeholder} title={title} onChange={onChange} ref={inputRef}
-                name={name} id={name} value={value} required={required} disabled={disabled}
+                name={name} id={name} value={value ?? ""} required={required} disabled={disabled}
                 autoComplete={autoComplete} autoCorrect={autoCorrect} autoCapitalize={autoCapitalize} spellCheck={spellCheck}/>
             </div>
         );
@@ -105,7 +105,7 @@ export const Input = ({ children, type, name, value, placeholder, variant="defau
             onBlur={ () => {
                 if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}
                 else {onBlur && onBlur()}}}
-            name={name} id={name} type={inputType} value={value} required={required} disabled={disabled}
+            name={name} id={name} type={inputType} value={value ?? ""} required={required} disabled={disabled}
             autoComplete={autoComplete} autoCorrect={autoCorrect} autoCapitalize={autoCapitalize} spellCheck={spellCheck}/>
 
             <label className="input-group__label" htmlFor={name}> {children} </label>
