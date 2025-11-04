@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.config;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +14,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
@@ -22,6 +25,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.BibliotecaRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.util.PasswordValidator;
 
 @Configuration // Marca esta clase como una clase de configuración de Spring
@@ -36,7 +40,8 @@ public class DataInitializer {
             BibliotecaRepository bibliotecaRepository,
             EditorialRepository editorialRepository,
             AutorRepository autorRepository,
-            LibroRepository libroRepository) {
+            LibroRepository libroRepository,
+            PublicacionRepository publicacionRepository) {
         return args -> {
 
             // ----------------------------------
@@ -298,6 +303,119 @@ public class DataInitializer {
                 it.setAutor(autorKing);
                 libroRepository.save(it);
             }
-        };
+
+            // ------------------------
+            // Inicialización de Publicaciones
+            // ------------------------
+
+			Optional<Usuario> usuarioLector = usuarioRepository.findByUsername("lector@gmail.com");
+			
+			Optional<Libro> harryPotter = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+					"Harry Potter y la piedra filosofal", "Primera edición", autorJK, editorialHP);
+
+			Optional<Libro> it = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+					"It", "Primera edición", autorKing, editorialViking);
+
+			Optional<Libro> orgullo = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+					"Orgullo y prejuicio", "Primera edición", autorAusten, editorialChapman);
+
+			Optional<Libro> soledad = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+					"Cien años de soledad", "Primera edición", autorGarciaMarquez, editorialPlaneta);
+
+			Optional<Libro> orientExpress = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+					"Asesinato en el Orient Express", "Primera edición", autorChristie, editorialPlaneta);
+
+
+			//publicaciones
+			if (usuarioLector.isPresent() && harryPotter.isPresent()) {
+				Usuario usuario = usuarioLector.get();
+				Libro libro = harryPotter.get();
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+					
+					Publicacion publicacion = new Publicacion();
+					publicacion.setUsuario(usuario);
+					publicacion.setLibro(libro);
+					publicacion.setDescripcion("Libro de Harry Potter y la piedra filosofal para prestar; en buenas condiciones, señalado con post-its.");
+					publicacion.setLimiteDias(25);
+					publicacion.setDetallesEstadoLibro("nada");
+					publicacion.setEstadoPublicacion(Estado.Disponible);
+					publicacion.setFechaCreacion(LocalDate.now());
+					
+					publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLector.isPresent() && it.isPresent()) {
+				Usuario usuario = usuarioLector.get();
+				Libro libro = it.get();
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+					
+					Publicacion publicacion = new Publicacion();
+					publicacion.setUsuario(usuario);
+					publicacion.setLibro(libro);
+					publicacion.setDescripcion("Libro It para prestar; esta como nuevo, tiene comentarios hechos en lapiz (en algunos capítulos).");
+					publicacion.setLimiteDias(17);
+					publicacion.setDetallesEstadoLibro("nada");
+					publicacion.setEstadoPublicacion(Estado.Disponible);
+					publicacion.setFechaCreacion(LocalDate.now());
+					
+					publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLector.isPresent() && orgullo.isPresent()) {
+				Usuario usuario = usuarioLector.get();
+				Libro libro = orgullo.get();
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+					
+					Publicacion publicacion = new Publicacion();
+					publicacion.setUsuario(usuario);
+					publicacion.setLibro(libro);
+					publicacion.setDescripcion("Unidad de Orgullo y prejuicio para prestar. El libro se encuentra en buenas condiciones, fue solo leido una vez y no presenta marcas o manchas.");
+					publicacion.setLimiteDias(30);
+					publicacion.setDetallesEstadoLibro("nada");
+					publicacion.setEstadoPublicacion(Estado.Disponible);
+					publicacion.setFechaCreacion(LocalDate.now());
+					
+					publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLector.isPresent() && soledad.isPresent()) {
+				Usuario usuario = usuarioLector.get();
+				Libro libro = soledad.get();
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+					
+					Publicacion publicacion = new Publicacion();
+					publicacion.setUsuario(usuario);
+					publicacion.setLibro(libro);
+					publicacion.setDescripcion("Edicion de Cien años de soledad de Garcia Marquez, con comentarios hechos en lapiz al margen de las hojas.");
+					publicacion.setLimiteDias(15);
+					publicacion.setDetallesEstadoLibro("nada");
+					publicacion.setEstadoPublicacion(Estado.Disponible);
+					publicacion.setFechaCreacion(LocalDate.now());
+					
+					publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLector.isPresent() && orientExpress.isPresent()) {
+				Usuario usuario = usuarioLector.get();
+				Libro libro = orientExpress.get();
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+					
+					Publicacion publicacion = new Publicacion();
+					publicacion.setUsuario(usuario);
+					publicacion.setLibro(libro);
+					publicacion.setDescripcion("Edicion de Asesinato en el Orient Express con comentarios hechos en lapiz al margen de las hojas.");
+					publicacion.setLimiteDias(20);
+					publicacion.setDetallesEstadoLibro("nada");
+					publicacion.setEstadoPublicacion(Estado.Disponible);
+					publicacion.setFechaCreacion(LocalDate.now());
+					
+					publicacionRepository.save(publicacion);
+				}
+			}
+		};
     }
 }
