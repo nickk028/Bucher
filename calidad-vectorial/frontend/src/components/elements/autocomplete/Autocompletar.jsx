@@ -25,14 +25,14 @@ export function Autocompletar({ options = [], tipo, value: valorExterno, onChang
 		: setValorInterno;
 
 	// Filtrado seguro: coercionar opciones a string antes de comparar
-	const normalizedValue = (value ?? "").toString();
-	const filtered =
-		normalizedValue.trim() === ""
+	const valorNormalizado = (value ?? "").toString();
+	const optFiltrados =
+		valorNormalizado.trim() === ""
 			? options.slice(0, maxSuggestions)
-			: tipo === "simple" ? options.filter((opt) => String(opt ?? "").toLowerCase().includes(normalizedValue.toLowerCase())).slice(0, maxSuggestions)
-				: tipo == "doble" ? options.filter((opt) => String(opt[1] ?? "").toLowerCase().includes(normalizedValue.toLowerCase())).slice(0, maxSuggestions)
+			: tipo === "simple" ? options.filter((opt) => String(opt ?? "").toLowerCase().includes(valorNormalizado.toLowerCase())).slice(0, maxSuggestions)
+				: tipo == "doble" ? options.filter((opt) => String(opt[1] ?? "").toLowerCase().includes(valorNormalizado.toLowerCase())).slice(0, maxSuggestions)
 				: options.slice(0, maxSuggestions);
-	
+
 	const handleSelect = (option) => {
 			setValue(option);
 			setShowList(false);
@@ -52,11 +52,11 @@ export function Autocompletar({ options = [], tipo, value: valorExterno, onChang
 				{...props}
 			/>
 
-			{showList && filtered.length > 0 && (
+			{showList && optFiltrados.length > 0 && (
 				<ul className="autocomplete__options">
 					{tipo == "simple" && (
 						<>
-						{filtered.map((opcion, i) => (	
+						{optFiltrados.map((opcion, i) => (
 							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion)}>
 								{opcion}
 							</li>
@@ -65,14 +65,14 @@ export function Autocompletar({ options = [], tipo, value: valorExterno, onChang
 					)}
 					{tipo == "doble" &&(
 						<>
-						{filtered.map((opcion, i) => (	
+						{optFiltrados.map((opcion, i) => (
 							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion[1])}>
 								<img src={opcion[0]} alt="Imagen libro" height="50px" width="30px"/>
 								{opcion[1]}
 							</li>
 						))}
 						</>
-					)} 
+					)}
 				</ul>
 			)}
 		</div>

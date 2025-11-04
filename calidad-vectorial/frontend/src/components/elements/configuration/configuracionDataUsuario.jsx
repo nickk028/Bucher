@@ -7,7 +7,7 @@ import "./Configuracion.css";
 export const ConfiguracionDataUsuario = () => {
     const { data: respuestaUsuario, loading: loadingUsuario, error: errorUsuario } = useFetch("usuario/propio");
     const { data: respuestaDataUsuario, error: errorDataUsuario, loading: loadingDataUsuario, execute: executeDataUsuario } = usePost("usuario/modificar", "PUT");
-    
+
     const [editando, setEditando] = useState(false);
     const [formData, setFormData] = useState({
         avatar : "",
