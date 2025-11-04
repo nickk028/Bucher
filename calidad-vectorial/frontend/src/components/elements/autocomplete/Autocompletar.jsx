@@ -77,4 +77,4 @@ export function Autocompletar({ options = [], tipo, value: valorExterno, onChang
 			)}
 		</div>
 	);
-}
+};

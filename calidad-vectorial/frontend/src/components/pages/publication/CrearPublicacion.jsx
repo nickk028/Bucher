@@ -37,8 +37,8 @@ export const CrearPublicacion = () => {
 	return (
 		<>
 			{mostrarPopUp && (
-				<PopUp onClick={() => setMostrarPopUp(false)}>
-					Publciación creada con éxito
+				<PopUp onClick={() => setMostrarPopUp(false)} titulo= "✔️ Publciación creada con éxito ✔️">
+					Tu publicación ya está visible para todos.
 				</PopUp>
 				)
 			}

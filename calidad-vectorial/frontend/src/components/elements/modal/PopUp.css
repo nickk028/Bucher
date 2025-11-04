@@ -15,7 +15,7 @@
     z-index: 10;
 }
 
-.popup__content {
+.popup__card {
     width: 55vw;
     height: 40vh;
 
@@ -23,11 +23,28 @@
 
     padding: 40px;
     border-radius: 1rem;
+    border: 3px solid #08413C;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
     position: relative;
+
+    animation: aparecer 200ms ease-in-out both;
 }
 
-.popup__content__close {
+@keyframes aparecer {
+    0% {
+        scale: .8;
+    }
+    100% {
+        scale: 1;
+    }
+}
+
+.popup__card__close {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -46,9 +63,16 @@
     cursor: pointer;
 }
 
-.popup__content__text {
+.popup__card__text {
     text-align: center;
     font-size: 2rem;
 
     color: #0E675F;
+}
+
+.popup__card__text__content {
+    padding-top: 20px;
+    font-size: 1.2rem;
+
+    color: #08413C;
 }
