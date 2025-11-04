@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Input } from "../input/Input";
 import "./Autocompletar.css";
 
-export function Autocompletar({ options = [], value: valorExterno, onChange, maxSuggestions = 100, ...props }) {
+export function Autocompletar({ options = [], tipo, value: valorExterno, onChange, maxSuggestions = 100, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");
 	const [showList, setShowList] = useState(false);
 
@@ -29,11 +29,13 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 	const filtered =
 		normalizedValue.trim() === ""
 			? options.slice(0, maxSuggestions)
-			: options.filter((opt) => String(opt ?? "").toLowerCase().includes(normalizedValue.toLowerCase())).slice(0, maxSuggestions);
-
+			: tipo === "simple" ? options.filter((opt) => String(opt ?? "").toLowerCase().includes(normalizedValue.toLowerCase())).slice(0, maxSuggestions)
+				: tipo == "doble" ? options.filter((opt) => String(opt[1] ?? "").toLowerCase().includes(normalizedValue.toLowerCase())).slice(0, maxSuggestions)
+				: options.slice(0, maxSuggestions);
+	
 	const handleSelect = (option) => {
-		setValue(option);
-		setShowList(false);
+			setValue(option);
+			setShowList(false);
 	};
 
 	return (
@@ -52,11 +54,25 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 
 			{showList && filtered.length > 0 && (
 				<ul className="autocomplete__options">
-					{filtered.map((opcion, i) => (
-						<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion)}>
-							{opcion}
-						</li>
-					))}
+					{tipo == "simple" && (
+						<>
+						{filtered.map((opcion, i) => (	
+							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion)}>
+								{opcion}
+							</li>
+						))}
+						</>
+					)}
+					{tipo == "doble" &&(
+						<>
+						{filtered.map((opcion, i) => (	
+							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion[1])}>
+								<img src={opcion[0]} alt="Imagen libro" height="50px" width="30px"/>
+								{opcion[1]}
+							</li>
+						))}
+						</>
+					)} 
 				</ul>
 			)}
 		</div>

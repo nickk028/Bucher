@@ -47,8 +47,9 @@ export const CrearPublicacion = () => {
 						<h1 className="body-crear-prestamo__title">Nueva publicación</h1>
 						<form className="body-crear-prestamo__form" onSubmit={handleCrearPublicacion}>
 							<Autocompletar
-								options={dataLibros ? dataLibros.map(libro => libro.titulo) : []}
+								options={dataLibros ? dataLibros.map(libro => [libro.urlFoto ,libro.titulo]) : []}
 								type="text"
+								tipo="doble"
 								value={titulo}
 								name="titulo"
 								onChange={e => setTitulo(e.target.value)}>
