@@ -33,4 +33,7 @@ public class LibroUsuarioResponseDTO {
 
     // Puntuación que el usuario le da al libro (0 a 100)
     private int puntuacion;
+
+    // Foto del libro
+    private String urlFoto;
 }

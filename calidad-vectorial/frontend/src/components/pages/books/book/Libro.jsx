@@ -23,6 +23,10 @@ export const Libro = () => {
                 <div className="">
                     <img src={libro.urlFoto} alt="Imagen del libro" height="315px" width="202px" />
                     <h2>{libro.titulo}</h2>
+                    <p>Descripcion: {libro.descripcion}</p>
+                    <p>Autor: {libro.nombreAutor}</p>
+                    <p>Descripcion del Autor: {libro.descripcionAutor}</p>
+                    <a href={libro.urlWikipediaAutor}>Mas sobre el autor aqui</a>
                     <Button  onClick={handleAgregarLibroUsuario} disabled={loadingPost} variant="default" color="oscuro">Agregar a mi biblioteca</Button>
                 </div>
             ) : (

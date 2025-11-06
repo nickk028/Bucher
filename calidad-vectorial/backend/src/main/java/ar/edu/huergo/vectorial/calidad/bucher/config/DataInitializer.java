@@ -4231,7 +4231,7 @@ public class DataInitializer {
 				libro.setEdicion("Primera edición");
 				libro.setCalificacion(91);
 				libro.setFechaPublicacion(LocalDate.of(2009, 11, 9));
-				libro.setUrlFoto("hhttps://proassetspdlcom.cdnstatics2.com/usuaris/libros/thumbs/ac6d1ac4-0d3a-470d-8a08-7374bf7c807e/d_360_620/portada_gs-16ntras-la-pista-yeti_geronimo-stilton_201703291028.webp");
+				libro.setUrlFoto("https://proassetspdlcom.cdnstatics2.com/usuaris/libros/thumbs/ac6d1ac4-0d3a-470d-8a08-7374bf7c807e/d_360_620/portada_gs-16ntras-la-pista-yeti_geronimo-stilton_201703291028.webp");
 				libro.setPrecio(23.99);
 				libro.setCategoria(Set.of(Categoria.infantil, Categoria.aventura));
 				libro.setEditorial(editorialPlaneta);
