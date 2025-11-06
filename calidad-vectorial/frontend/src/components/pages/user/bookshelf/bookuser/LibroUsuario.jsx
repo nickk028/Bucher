@@ -53,6 +53,10 @@ export const LibroUsuario = () => {
             {loadingGetBookUser ? (
                 <p>Cargando Libro Usuario...</p>
             ) : getBookUser ? (
+                <div className="">
+                    <div className="">
+                        <img src={getBookUser.urlFoto} alt="Foto del libro" height="250px" width="150px"/>    
+                    </div>
                     <form onSubmit = {handleSubmitDataBookUser}>
                         <h1> Titulo: {getBookUser.titulo} </h1>
                         <div>
@@ -79,6 +83,7 @@ export const LibroUsuario = () => {
                             </Button>
                         )}
                     </form>
+                </div>
             ) : (
                 <p>{ErrorGetBookUser}</p>
             )}
