@@ -17,7 +17,7 @@ export const CrearPublicacion = () => {
 	const [pagina, setPagina] = useState("prestamo");
 	const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
-    const { data : dataPost, loading : loadingPost, error : errorPost, execute } = usePost("publicacion/crear");
+    const { data : respuestaPost, loading : loadingPost, error : errorPost, execute } = usePost("publicacion/crear");
 	const { data : dataLibros, error : errorLibros, loading : loadingLibros } = useFetch("libro/todos");
 
     const handleCrearPublicacion = async (e) => {
@@ -26,13 +26,13 @@ export const CrearPublicacion = () => {
     };
 
 	useEffect(() => {
-		if (dataPost && !errorPost) {
+		if (respuestaPost && !errorPost) {
 			setMostrarPopUp(true);
 			setTitulo("");
 			setDescripcion("");
 			setLimiteDias("");
 		}
-	}, [dataPost, errorPost]);
+	}, [respuestaPost, errorPost]);
 
 	return (
 		<>
@@ -78,8 +78,6 @@ export const CrearPublicacion = () => {
 				{pagina == "social" &&(
 					<ComingSoon/>
 				)}
-				{/*{data && <p>{JSON.stringify(data, null, 2)}</p>}
-				{error && <p>{error}</p>}*/}
 				<img className="body-crear-prestamo__img" src={principitoLuna} alt="Principito en la Luna" />
 			</main>
 		</>
