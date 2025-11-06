@@ -6,7 +6,7 @@ export const PopUp = ({ children, onClick, titulo}) => {
         <div className="popup" onClick={onClick}>
             <div className="popup__card" onClick={(e) => e.stopPropagation()}>
                 <div className="popup__card__close" onClick={onClick}>
-                    &times; 
+                    &times;
                 </div>
                 <div className="popup__card__text">
                     <div className="popup__card__text__title">

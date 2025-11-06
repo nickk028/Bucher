@@ -32,10 +32,10 @@
 
     position: relative;
 
-    animation: aparecer 200ms ease-in-out both;
+    animation: aparecer-popup 200ms ease-in-out both;
 }
 
-@keyframes aparecer {
+@keyframes aparecer-popup {
     0% {
         scale: .8;
     }
