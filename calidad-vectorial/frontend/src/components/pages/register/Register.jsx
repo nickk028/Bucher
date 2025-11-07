@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { loginRequest } from "../../utils/LoginUtils";
+import { loginRequest, validarSeguridadPassword } from "../../utils/LoginUtils";
 import "./Register.css";
 import { AuthBox } from "../../elements/authbox/AuthBox";
 import { Button } from "../../elements/buttons/Button";
@@ -20,6 +20,7 @@ export const Register = () => {
     const [direccion, setDireccion] = useState("");
     const [pisoDept, setPisoDept] = useState("");
     const [codigoPostal, setcodigoPostal] = useState("");
+    const yearActual = new Date().getFullYear();
 
     const [error, setError] = useState("");
     const [paso, setPaso] = useState(1);
@@ -121,7 +122,7 @@ export const Register = () => {
             {paso == 1 && (
                 <AuthBox titulo="Registrarse"
                 botonDer={
-                    <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => setPaso(paso + 1)}>Siguiente</Button>
+                    <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => {if (validarSeguridadPassword(password) === 5 || verificationPassword === password) {setPaso(paso + 1)}}}>Siguiente</Button>
                 }
                 linkExtra={
                     <Link to="/login">¿Ya tienes una cuenta? ¡Inicia sesión!</Link>
@@ -135,13 +136,13 @@ export const Register = () => {
             {paso == 2 && (
                 <AuthBox titulo="Ya casi..."
                 botonDer={
-                    <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => setPaso(paso + 1)}>Siguiente</Button>
+                    <Button variant="default" color="oscuro" isDisabled={isDisabled} onClick={() => {if (parseInt(fechaNacimiento.split("-")) < yearActual && parseInt(fechaNacimiento.split("-")) > yearActual - 100) {setPaso(paso + 1)}}}>Siguiente</Button>
                 }
                 botonIzq={
                     <Button variant="default" color="oscuro" onClick={() => setPaso(paso - 1)}>Atrás</Button>
                 }>
                     <Input type="text" value={nickname} name="nickname" onChange={e => setNickname(e.target.value)}>Nombre de usuario</Input>
-                    <Input type="text" value={fechaNacimiento} name="fechaNacimiento" onChange={e => setfechaNacimiento(e.target.value)}>Fecha de nacimiento</Input>
+                    <Input type="date" value={fechaNacimiento} name="fechaNacimiento" onChange={e => setfechaNacimiento(e.target.value)}>Fecha de nacimiento</Input>
                 </AuthBox>
             )}
 
