@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.controller.book;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,5 +48,12 @@ public class LibroController {
     public ResponseEntity<List<LibroBasicDTO>> obtenerLibrosMasLeidos() {
         List<LibroBasicDTO> librosEnTendencia = libroMapper.toBasicDTOList(libroService.obtenerLibrosMasPrestadosDeLaSemana());
         return ResponseEntity.ok(librosEnTendencia);
+    }
+
+    @GetMapping("/ordenados")
+    public ResponseEntity<Map<Categoria, List<LibroResponseDTO>>> obtenerLibrosOrdenados() {
+        Map<Categoria, List<LibroResponseDTO>> librosOrdenados = libroMapper.toDTOMap(libroService.obtenerLibrosOrdenados());
+        return ResponseEntity.ok(librosOrdenados);
+
     }
 }
