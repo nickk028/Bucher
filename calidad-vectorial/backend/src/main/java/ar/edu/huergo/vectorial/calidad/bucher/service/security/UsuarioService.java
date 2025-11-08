@@ -111,6 +111,9 @@ public class UsuarioService {
     public static Avatar getAvatarRandom() {
         Avatar[] avatares = Avatar.values();
         int indiceAleatorio = random.nextInt(avatares.length);
+        if (indiceAleatorio >= avatares.length) {
+            indiceAleatorio = avatares.length - 1;
+        }
         return (avatares[indiceAleatorio]);
     }
 

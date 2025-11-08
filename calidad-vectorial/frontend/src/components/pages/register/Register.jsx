@@ -85,7 +85,8 @@ export const Register = () => {
 
         try {
             const respond = await postData("usuario/registrar", {
-                username, password, verificationPassword },
+                username, password, verificationPassword, nickname, direccion, piso: pisoDept, codigoPostal
+            },
                 controller.signal
             );
 

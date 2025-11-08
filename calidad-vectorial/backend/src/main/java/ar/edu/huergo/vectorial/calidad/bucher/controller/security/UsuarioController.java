@@ -57,7 +57,6 @@ public class UsuarioController {
     @PostMapping("/registrar")
     public ResponseEntity<UsuarioResponseDTO> registrarCliente(@Valid @RequestBody RegistrarDTO registrarDTO) {
         Usuario usuario = usuarioMapper.toEntity(registrarDTO);
-        usuario.setNickname(usuario.getUsername());
         Usuario nuevoUsuario = usuarioService.registrar(usuario, registrarDTO.password(), registrarDTO.verificationPassword());
         UsuarioResponseDTO nuevoUsuarioDTO = usuarioMapper.toDTO(nuevoUsuario);
         return ResponseEntity.ok(nuevoUsuarioDTO);
@@ -72,7 +71,7 @@ public class UsuarioController {
         usuarioUpdateDTO.setRoles(usuario.getRoles());
 
         Usuario usuarioNuevo = usuarioMapper.toEntity(usuarioUpdateDTO);
-        
+
         Usuario usuarioActualizado = usuarioService.modificarUsuario(usuario, usuarioNuevo);
         return ResponseEntity.ok(usuarioMapper.toDTO(usuarioActualizado));
     }
