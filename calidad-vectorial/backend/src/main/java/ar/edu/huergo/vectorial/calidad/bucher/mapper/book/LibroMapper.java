@@ -1,7 +1,9 @@
 package ar.edu.huergo.vectorial.calidad.bucher.mapper.book;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 
 
@@ -41,6 +44,17 @@ public class LibroMapper {
         return libroResponseDTO;
     }
 
+    public Map<Categoria, List<LibroResponseDTO>> toDTOMap(Map<Categoria, Set<Libro>> original) {
+        Map<Categoria, List<LibroResponseDTO>> resultado = new HashMap<>();
+        for (Map.Entry<Categoria, Set<Libro>> entry : original.entrySet()) {
+            Set<Libro> librosDeLaCategoria = entry.getValue();
+            List<LibroResponseDTO> dtos = toResponseDTOList(librosDeLaCategoria);
+            Categoria categoria = entry.getKey();
+            resultado.put(categoria, dtos);
+        }
+        return (resultado);
+    }
+
     public LibroBasicDTO toBasicDTO(Libro libro) {
         if (libro == null) {
             return null;
@@ -61,6 +75,16 @@ public class LibroMapper {
         return libros
             .stream()
             .map(this::toBasicDTO)
+            .collect(Collectors.toList());
+    }
+
+        public List<LibroResponseDTO> toResponseDTOList(Set<Libro> libros) {
+        if (libros == null) {
+            return new ArrayList<>();
+        }
+        return libros
+            .stream()
+            .map(this::toDTO)
             .collect(Collectors.toList());
     }
 }
