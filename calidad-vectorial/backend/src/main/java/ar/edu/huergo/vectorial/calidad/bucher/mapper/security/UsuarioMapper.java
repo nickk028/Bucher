@@ -1,8 +1,8 @@
 package ar.edu.huergo.vectorial.calidad.bucher.mapper.security;
 
-import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
@@ -64,6 +64,10 @@ public class UsuarioMapper {
         }
         Usuario usuario = new Usuario();
         usuario.setUsername(registrarDTO.username());
+        usuario.setNickname(registrarDTO.nickname());
+        usuario.setDireccion(registrarDTO.direccion());
+        usuario.setPiso(registrarDTO.piso());
+        usuario.setCodigoPostal(registrarDTO.codigoPostal());
         return usuario;
     }
 
