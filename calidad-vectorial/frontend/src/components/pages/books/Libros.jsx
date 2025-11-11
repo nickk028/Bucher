@@ -4,46 +4,7 @@ import Buscador from "../../elements/search/Buscador";
 import { Link } from "react-router-dom";
 
 export const Libros = () => {
-    const { data : libros , error : errorFetch, loading : loadingError } = useFetch("libro/todos");
-    const { data : librosordenados , error , loading  } = useFetch("libro/ordenados");
-
-    // Agrupar `librosordenados` de forma robusta soportando varias formas del JSON:
-    // - objeto: { categoria1: [...], categoria2: [...] }
-    // - array de grupos: [{ categoria: 'X', lista: [...] }, ...]
-    // - array de libros: [{ titulo, categoria, ... }, ...]
-    const groupedCategories = useMemo(() => {
-        if (!librosordenados) return {};
-
-        if (Array.isArray(librosordenados)) {
-            const first = librosordenados[0];
-
-            // Array de grupos con propiedad lista/libros/items
-            if (first && (first.lista || first.libros || first.items)) {
-                const map = {};
-                librosordenados.forEach(g => {
-                    const name = g.categoria || g.nombre || 'Sin categoría';
-                    const list = g.lista || g.libros || g.items || [];
-                    map[name] = list;
-                });
-                return map;
-            }
-
-            // Array de libros -> agrupar por su propiedad categoria
-            return librosordenados.reduce((acc, b) => {
-                const name = b.categoria || 'Sin categoría';
-                acc[name] = acc[name] || [];
-                acc[name].push(b);
-                return acc;
-            }, {});
-        }
-
-        // Si ya es un objeto con claves = categorías
-        if (typeof librosordenados === 'object') {
-            return librosordenados;
-        }
-
-        return {};
-    }, [librosordenados]);
+    const { data : librosOrdenados , errorLibros , loadingLibros  } = useFetch("libro/ordenados");
 
     // Formatea una clave de categoría a una etiqueta legible para mostrar
     const formatCategoryName = (rawCategoria) => {
@@ -74,12 +35,12 @@ export const Libros = () => {
     return (
         <div className="">
             <Buscador />
-            {loadingError ? (
+            {loadingLibros ? (
                 <p>Cargando...</p>
-            ) : libros.length > 0 ? (
+            ) : librosOrdenados ? (
                 <div className="">
                     <div className="">
-                        {Object.entries(groupedCategories).map(([categoria, lista]) => (
+                        {Object.entries(librosOrdenados).map(([categoria, lista]) => (
                             <section key={categoria} className="book-group">
                                 <h3>{formatCategoryName(categoria)} ({lista.length})</h3>
                                 <ul className="">
@@ -97,7 +58,7 @@ export const Libros = () => {
                     </div>
                 </div>
             ) : (
-                <p>{errorFetch ? errorFetch : "Error al cargar los libros."}</p>
+                <p>{errorLibros}</p>
             )}
         </div>
     )
