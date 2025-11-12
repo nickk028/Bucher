@@ -9,13 +9,27 @@
 }
 
 .buscador__input {
-    width: 25%;
-    min-width: 220px;
+    flex: 0 1 35%;
+    min-width: 240px;
+    max-width: 350px;
+    box-sizing: border-box;
     height: 70%;
 
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+.buscador__input > :first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.buscador__input button {
+    flex: 0 0 auto;
+    border: none;
+    background: transparent;
+    padding: 0;
 }
 
 .buscador__input__lupa {
