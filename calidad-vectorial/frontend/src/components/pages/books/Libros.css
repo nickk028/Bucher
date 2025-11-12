@@ -1,0 +1,59 @@
+.book-group {
+    margin-bottom: 1.5rem;
+}
+
+.book-group-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    color: #222;
+}
+
+.categories-container {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.books-row {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.5rem 0.25rem;
+    margin: 0;
+    list-style: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+
+.book-item {
+    flex: 0 0 auto;
+    width: 180px;
+    max-width: 220px;
+}
+
+.books-row-wrapper {
+    position: relative;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.scroll-btn.left {
+    left: 6px;
+}
+.scroll-btn.right {
+    right: 6px;
+}
