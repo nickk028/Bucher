@@ -23,6 +23,7 @@ const Buscador = () => {
                     options={dataLibros ? dataLibros.map(libro => [libro.urlFoto ,libro.titulo]) : []}
                     type = "text"
                     tipo = "doble"
+                    placeholder = "Buscar libro por título"
                     imgHeight = "100px"
                     imagWidth = "60px"
                     value = {titulo}
