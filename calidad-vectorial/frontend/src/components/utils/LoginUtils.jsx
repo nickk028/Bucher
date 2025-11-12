@@ -12,23 +12,23 @@ export async function loginRequest({ username, password }, signal) {
 
 export function validarSeguridadPassword(password) {
     let puntosSeguridad = 0;
-    const LARGOMINIMO = 16;
+    const LARGO_MINIMO = 16;
+    const LARGO_MAXIMO = 60;
 
-    if (password.length < LARGOMINIMO) {
+    if (password.length >= LARGO_MINIMO && password.length <= LARGO_MAXIMO) {
         puntosSeguridad = puntosSeguridad + 1;
     }
-    if (!/[A-Z]/.test(password)) {
+    if (/[A-Z]/.test(password)) {
         puntosSeguridad = puntosSeguridad + 1;
     }
-    if (!/[a-z]/.test(password)) {
+    if (/[a-z]/.test(password)) {
         puntosSeguridad = puntosSeguridad + 1;
     }
-    if (!/[0-9]/.test(password)) {
+    if (/[0-9]/.test(password)) {
         puntosSeguridad = puntosSeguridad + 1;
     }
-    if (!/[!@#$%^&+=]/.test(password)) {
+    if (/[!@#$%^&+=]/.test(password)) {
         puntosSeguridad = puntosSeguridad + 1;
     }
-
     return puntosSeguridad;
-    }
+};
