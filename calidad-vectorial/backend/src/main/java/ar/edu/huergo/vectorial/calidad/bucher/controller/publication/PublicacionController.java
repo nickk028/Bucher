@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.controller.publication;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -100,6 +101,16 @@ public class PublicacionController {
         return ResponseEntity.ok(publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionesPorEstado(estado)));
     }
 
+    /**
+     * Obtiene las publicaciones ordenadas por categoria
+     * @return Las publicaciones ordenadas
+     */
+    @GetMapping("/ordenadas")
+    public ResponseEntity<Map<Categoria, List<PublicacionResponseDTO>>> obtenerPublicacionesOrdenadas() {
+        Map<Categoria, List<PublicacionResponseDTO>> publicacionesOrdenadas = publicacionMapper.toDTOMap(publicacionService.obtenerPublicacionesOrdenadas());
+        return ResponseEntity.ok(publicacionesOrdenadas);
+    }
+    
     /**
     * Crea una nueva publicación
     * @param publicacionCreateDTO El DTO con los datos de la publicación a crear
