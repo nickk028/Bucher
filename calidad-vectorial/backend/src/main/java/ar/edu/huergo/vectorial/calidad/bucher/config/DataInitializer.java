@@ -16,6 +16,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
@@ -24,9 +25,10 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.book.EditorialRepositor
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.BibliotecaRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionRepository;
-import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.RegistroPrestamoRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.util.PasswordValidator;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 
 @Configuration // Marca esta clase como una clase de configuración de Spring
 // Clase para inicializar datos en la base de datos al iniciar la aplicación
@@ -41,7 +43,8 @@ public class DataInitializer {
             EditorialRepository editorialRepository,
             AutorRepository autorRepository,
             LibroRepository libroRepository, 
-			PublicacionRepository publicacionRepository) {
+			PublicacionRepository publicacionRepository,
+			RegistroPrestamoRepository registroPrestamoRepository) {
         return args -> {
 
             // ----------------------------------
@@ -4495,6 +4498,23 @@ public class DataInitializer {
             Optional<Libro> dune = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
 				"Dune", "Primera edición", autorHerbert, editorialChilton);
 
+			Optional<Libro> hobbit = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+				"El Hobbit", "Primera edición", autorTolkien, editorialPlaneta);
+
+			Optional<Libro>  heroeOlimpo = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+				"El último héroe del Olimpo", "Primera edición", autorRiordan, editorialPenguin);
+			
+			Optional<Libro>  durmientes = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+				"Bellas durmientes", "Primera edición", autorKing, editorialPenguin);
+
+			Optional<Libro>  sofia = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+				"La magia de ser Sofía", "Primera edición", autorBenavent, editorialPenguin);
+
+			Optional<Libro>  sinsajo = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+				"Sinsajo", "Primera edición", autorCollins, editorialMolino);
+
+			Optional<Libro>  amorSombra = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+				"De amor y sombra", "Primera edición", autorAllende, editorialSudamericana);
 
             //publicaciones
 			if (usuarioLectorUno.isPresent() && harryPotter.isPresent()) {
@@ -4613,6 +4633,174 @@ public class DataInitializer {
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorDos.isPresent() && heroeOlimpo.isPresent()) {
+				Usuario usuario = usuarioLectorDos.get();
+				Libro libro = heroeOlimpo.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("Libro en excelente estado, sin marcas ni hojas dobladas. La tapa y el lomo están intactos, con muy poco desgaste por uso. Ideal para disfrutar de una buena lectura como nuevo.");
+                    publicacion.setLimiteDias(22);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorTres.isPresent() && sofia.isPresent()) {
+				Usuario usuario = usuarioLectorTres.get();
+				Libro libro = sofia.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("El libro está en buen estado general, con algún que otro detalle por el uso (como una esquina doblada o una marca leve en la tapa).");
+                    publicacion.setLimiteDias(17);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorCuatro.isPresent() && durmientes.isPresent()) {
+				Usuario usuario = usuarioLectorCuatro.get();
+				Libro libro = durmientes.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("El libro está en buen estado. Todas las páginas están completas y se puede leer sin problema, a pesar de algunas anotaciones en los margenes.");
+                    publicacion.setLimiteDias(24);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorUno.isPresent() && amorSombra.isPresent()) {
+				Usuario usuario = usuarioLectorUno.get();
+				Libro libro = amorSombra.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("El libro tiene algunas marquitas del uso, pero nada grave. Está completo y en buen estado para leerlo sin problema.");
+                    publicacion.setLimiteDias(24);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorDos.isPresent() && sinsajo.isPresent()) {
+				Usuario usuario = usuarioLectorDos.get();
+				Libro libro = sinsajo.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("Ejemplar en buen estado general, con leves signos de uso propios del paso del tiempo. Conserva todas sus páginas íntegras y es totalmente legible.");
+                    publicacion.setLimiteDias(24);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorUno.isPresent() && hobbit.isPresent()) {
+				Usuario usuario = usuarioLectorUno.get();
+				Libro libro = hobbit.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("Ejemplar en excelente estado. Conserva todas sus páginas íntegras y es totalmente legible, señalado con post-its.");
+                    publicacion.setLimiteDias(24);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
+
+
+
+			// Prestamos prestados 
+
+			Optional<Publicacion> publicacionHobbit = publicacionRepository.findByLibroTituloIgnoreCase("El Hobbit");
+			Optional<Publicacion> publicacionSofia = publicacionRepository.findByLibroTituloIgnoreCase("La magia de ser Sofía");
+			Optional<Publicacion> publicacionSinsajo = publicacionRepository.findByLibroTituloIgnoreCase("Sinsajo");
+			Optional<Publicacion> publicacionAmorSombra = publicacionRepository.findByLibroTituloIgnoreCase("De amor y sombra");
+
+
+			if (usuarioLectorDos.isPresent() && publicacionHobbit.isPresent()) {
+				Usuario usuarioSolicitante = usuarioLectorDos.get();
+				Publicacion publicacion = publicacionHobbit.get();
+
+				if (registroPrestamoRepository.findByPublicacionAndUsuario(publicacion, usuarioSolicitante).isEmpty()) {
+					RegistroPrestamo prestamo = new RegistroPrestamo();
+					prestamo.setPublicacion(publicacion);
+					prestamo.setUsuario(usuarioSolicitante);
+					prestamo.setFechaPrestamo(LocalDate.now().minusDays(3));
+					prestamo.setFechaDevolucion(LocalDate.now().plusDays(10));
+					registroPrestamoRepository.save(prestamo);
+				}
+			}
+
+			if (usuarioLectorDos.isPresent() && publicacionSofia.isPresent()) {
+				Usuario usuarioSolicitante = usuarioLectorDos.get();
+				Publicacion publicacion = publicacionSofia.get();
+
+				if (registroPrestamoRepository.findByPublicacionAndUsuario(publicacion, usuarioSolicitante).isEmpty()) {
+					RegistroPrestamo prestamo = new RegistroPrestamo();
+					prestamo.setPublicacion(publicacion);
+					prestamo.setUsuario(usuarioSolicitante);
+					prestamo.setFechaPrestamo(LocalDate.now().minusDays(19));
+					prestamo.setFechaDevolucion(LocalDate.now().plusDays(-2));
+					registroPrestamoRepository.save(prestamo);
+				}
+			}
+
+			if (usuarioLectorTres.isPresent() && publicacionSinsajo.isPresent()) {
+				Usuario usuarioSolicitante = usuarioLectorTres.get();
+				Publicacion publicacion = publicacionSinsajo.get();
+
+				if (registroPrestamoRepository.findByPublicacionAndUsuario(publicacion, usuarioSolicitante).isEmpty()) {
+					RegistroPrestamo prestamo = new RegistroPrestamo();
+					prestamo.setPublicacion(publicacion);
+					prestamo.setUsuario(usuarioSolicitante);
+					prestamo.setFechaPrestamo(LocalDate.now().minusDays(20));
+					prestamo.setFechaDevolucion(LocalDate.now().plusDays(4));
+					registroPrestamoRepository.save(prestamo);
+				}
+			}
+
+			if (usuarioLectorDos.isPresent() && publicacionAmorSombra.isPresent()) {
+				Usuario usuarioSolicitante = usuarioLectorDos.get();
+				Publicacion publicacion = publicacionAmorSombra.get();
+
+				if (registroPrestamoRepository.findByPublicacionAndUsuario(publicacion, usuarioSolicitante).isEmpty()) {
+					RegistroPrestamo prestamo = new RegistroPrestamo();
+					prestamo.setPublicacion(publicacion);
+					prestamo.setUsuario(usuarioSolicitante);
+					prestamo.setFechaPrestamo(LocalDate.now().minusDays(30));
+					prestamo.setFechaDevolucion(LocalDate.now().plusDays(-20));
+					registroPrestamoRepository.save(prestamo);
 				}
 			}
         };
