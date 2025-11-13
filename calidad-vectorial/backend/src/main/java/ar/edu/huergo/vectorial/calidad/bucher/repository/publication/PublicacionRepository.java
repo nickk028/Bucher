@@ -23,4 +23,5 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Long> 
     List<Publicacion> findAllByEstadoPublicacion(Estado estado);
 
     Optional<Publicacion> findByUsuarioAndLibroAndFechaCreacion(Usuario usuario, Libro libro, LocalDate fechaCreacion);
+    Optional<Publicacion> findByLibroTituloIgnoreCase(String libro);
 }

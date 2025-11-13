@@ -14,4 +14,6 @@ public interface RegistroPrestamoRepository extends JpaRepository<RegistroPresta
     List<RegistroPrestamo> findAllByUsuario(Usuario usuario);
     Optional<RegistroPrestamo> findByPublicacionAndFechaDevolucionIsNull(Publicacion publicacion);
     List<RegistroPrestamo> findByFechaPrestamoBetween(LocalDate fechaInicioSemana, LocalDate fechaActual);
+    Optional<RegistroPrestamo> findByPublicacionAndUsuario(Publicacion publicacion, Usuario usuario);
+
 }
