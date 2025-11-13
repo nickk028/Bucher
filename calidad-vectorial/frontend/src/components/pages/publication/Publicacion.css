@@ -4,12 +4,6 @@
     flex-direction: column;
 }
 
-.body-pub__nav {
-    max-width: auto;
-    height: 60px;
-    background-color: #f2f2f2;
-}
-
 .body-pub__publicacion {
     display: flex;
     height: 75vh;

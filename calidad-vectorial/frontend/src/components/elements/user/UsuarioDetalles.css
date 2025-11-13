@@ -23,3 +23,12 @@
     max-height: 72%;
     overflow: auto;
 }
+
+.card-user__foto {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
