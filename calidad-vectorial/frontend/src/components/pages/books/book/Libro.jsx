@@ -33,7 +33,7 @@ export const Libro = () => {
 
                         <div className="body-pub__libro__text__item">
                             <span className="body-pub__libro__text__item__subtitle">Géneros: </span>
-                            {libro.categorias}
+                            {[...libro.categorias].join(', ')}
                         </div>
 
                         <div className="body-pub__libro__text__item">

@@ -206,7 +206,7 @@ public class DataInitializer {
                             "J.K. Rowling",
                             "Autora británica conocida por la saga de Harry Potter, una de las más exitosas de la historia.",
                             "https://es.wikipedia.org/wiki/J._K._Rowling",
-                            "https://commons.wikimedia.org/wiki/File:J._K._Rowling_2010.jpg"
+                            "https://upload.wikimedia.org/wikipedia/commons/5/5d/J._K._Rowling_2010.jpg"
                             
                         )
                     ));
@@ -217,7 +217,7 @@ public class DataInitializer {
                             "Frank Herbert",
                             "Escritor estadounidense de ciencia ficción, célebre por su obra maestra 'Dune'.",
                             "https://es.wikipedia.org/wiki/Frank_Herbert",
-                            "https://commons.wikimedia.org/wiki/File:Frank_Herbert_1984_(square).jpg"
+                            "https://upload.wikimedia.org/wikipedia/commons/8/8e/Frank_Herbert_1984_%28square%29.jpg"
                         )
                     ));
 
@@ -227,7 +227,7 @@ public class DataInitializer {
                                 "Dan Brown",
                                 "Novelista estadounidense, conocido por 'El código Da Vinci' y otros thrillers de misterio.",
                                 "https://es.wikipedia.org/wiki/Dan_Brown",
-                                "https://commons.wikimedia.org/wiki/File:Dan_Brown_bookjacket_cropped.jpg"
+                                "https://upload.wikimedia.org/wikipedia/commons/8/8b/Dan_Brown_bookjacket_cropped.jpg"
                         )
                     ));
 
@@ -237,7 +237,7 @@ public class DataInitializer {
                                 "Agatha Christie",
                                 "Famosa escritora británica de novelas policíacas, creadora de Hércules Poirot y Miss Marple.",
                                 "https://es.wikipedia.org/wiki/Agatha_Christie",
-                                "https://commons.wikimedia.org/wiki/File:Agatha_Christie.png"
+                                "https://upload.wikimedia.org/wikipedia/commons/c/cf/Agatha_Christie.png"
                         )
                     ));
 
@@ -247,7 +247,7 @@ public class DataInitializer {
                                 "Gabriel García Márquez",
                                 "Escritor colombiano, exponente del realismo mágico y autor de 'Cien años de soledad'.",
                                 "https://es.wikipedia.org/wiki/Gabriel_Garc%C3%ADa_M%C3%A1rquez",
-                                "https://commons.wikimedia.org/wiki/File:Gabriel_Garcia_Marquez.jpg"
+                                "https://upload.wikimedia.org/wikipedia/commons/0/0f/Gabriel_Garcia_Marquez.jpg"
                         )
                     ));
 
@@ -267,7 +267,7 @@ public class DataInitializer {
                                 "Stephen King",
                                 "Autor estadounidense, maestro del terror y el suspense, con más de 60 novelas publicadas.",
                                 "https://es.wikipedia.org/wiki/Stephen_King",
-                                "https://commons.wikimedia.org/wiki/File:Stephen_King_at_the_2024_Toronto_International_Film_Festival_2_(cropped).jpg"
+                                "https://upload.wikimedia.org/wikipedia/commons/2/24/Stephen_King_at_the_2024_Toronto_International_Film_Festival_2_%28cropped%29.jpg"
                         )
                     ));
 

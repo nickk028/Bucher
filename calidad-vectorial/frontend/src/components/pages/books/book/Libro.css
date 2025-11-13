@@ -60,6 +60,7 @@
 }
 
 .body-pub__libro__text__item__parrafo {
+    max-height: 300px;
     overflow: auto;
 }
 
