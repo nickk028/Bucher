@@ -9,13 +9,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 
@@ -142,11 +140,11 @@ public class PublicacionMapper {
             .collect(Collectors.toList());
     }
 
-    public Map<Categoria, List<PublicacionResponseDTO>> toDTOMap(Map<Categoria, Set<Publicacion>> original) {
-        Map<Categoria, List<PublicacionResponseDTO>> resultado = new HashMap<>();
+    public Map<Categoria, List<PublicacionBasicDTO>> toDTOMap(Map<Categoria, Set<Publicacion>> original) {
+        Map<Categoria, List<PublicacionBasicDTO>> resultado = new HashMap<>();
         for (Map.Entry<Categoria, Set<Publicacion>> entry : original.entrySet()) {
             Set<Publicacion> publicacionesDeLaCategoria = entry.getValue();
-            List<PublicacionResponseDTO> dtos = toDTOList(publicacionesDeLaCategoria);
+            List<PublicacionBasicDTO> dtos = toBasicDTOList(publicacionesDeLaCategoria);
             Categoria categoria = entry.getKey();
             resultado.put(categoria, dtos);
         }

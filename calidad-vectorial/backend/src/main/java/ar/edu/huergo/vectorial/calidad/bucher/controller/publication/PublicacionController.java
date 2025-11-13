@@ -106,8 +106,8 @@ public class PublicacionController {
      * @return Las publicaciones ordenadas
      */
     @GetMapping("/ordenadas")
-    public ResponseEntity<Map<Categoria, List<PublicacionResponseDTO>>> obtenerPublicacionesOrdenadas() {
-        Map<Categoria, List<PublicacionResponseDTO>> publicacionesOrdenadas = publicacionMapper.toDTOMap(publicacionService.obtenerPublicacionesOrdenadas());
+    public ResponseEntity<Map<Categoria, List<PublicacionBasicDTO>>> obtenerPublicacionesOrdenadas() {
+        Map<Categoria, List<PublicacionBasicDTO>> publicacionesOrdenadas = publicacionMapper.toDTOMap(publicacionService.obtenerPublicacionesOrdenadas());
         return ResponseEntity.ok(publicacionesOrdenadas);
     }
     
