@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetch, usePost } from "../../../utils/FetchUtils";
 import { Autocompletar } from "../../../elements/autocomplete/Autocompletar";
+import { LibroCard } from "../../../elements/book/LibroCard";
 import { Input } from "../../../elements/input/Input";
 import { Button } from "../../../elements/buttons/Button";
 import "./Biblioteca.css";
@@ -32,10 +33,7 @@ export const Biblioteca = () => {
                         {dataBiblioteca.map(bookUser =>(
                             <li key = {bookUser.id} >
                                 <Link to={`/usuario/biblioteca/${bookUser.id}`}>
-                                    <p>Titulo: {bookUser.titulo}</p>
-                                    <p>Pagina actual: {bookUser.paginaActual}</p>
-                                    <p>Estado de lectura: {bookUser.estadoLectura}</p>
-                                    <p>Puntuacion personal: {bookUser.puntuacion}</p>
+                                    <LibroCard urlFoto={bookUser.urlFoto} titulo={bookUser.titulo} />
                                 </Link>
                             </li>
                         ))}

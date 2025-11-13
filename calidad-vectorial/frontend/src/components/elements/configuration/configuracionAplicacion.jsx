@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { validarExisteConfig, setConfig } from "../../utils/ConfigUtils";
+import { useBook } from "../../../context/LibroContexto";
 import { Autocompletar } from "../autocomplete/Autocompletar";
 import { Button } from "../buttons/Button";
 import { Input } from "../input/Input";
@@ -17,6 +18,8 @@ export const ConfiguracionAplicacion = () => {
     const coloresBuchy = [
         [buchyAzul ,"azul"], [buchyRojo, "rojo"], [buchyAmarillo,"amarillo"],
         [buchyDorado,"dorado"], [buchyVerdeOscuro,"verde-oscuro"], [buchyVerdeClaro,"verde-claro"] ];
+    
+    const { setLibroMensaje } = useBook();
 
     const onBoolChange = (e) => {
         console.log(e.target);
@@ -26,17 +29,17 @@ export const ConfiguracionAplicacion = () => {
 
     const onStringChange = (nombre) => (valor) => {
         setConfiguracion(prev => ({ ...prev, [nombre]: valor .target.value }));
-    }
+    };
 
     const onConfigSubmit = (e) => {
         e.preventDefault();
-        if (coloresBuchy.includes(configuracion.colorBuchy)) {
+        if (coloresBuchy.some(([img, color]) => color === configuracion.colorBuchy)) {
             setConfig(configuracion);
+            setLibroMensaje("Datos cambiados con éxito");
         } else {
-            console.log("Color de Buchy inválido");
-            // ns como mostrar error
+            setLibroMensaje("Color de Buchy inválido");
         }
-    }
+    };
 
     return (
         <div className="config-content">
@@ -57,10 +60,9 @@ export const ConfiguracionAplicacion = () => {
                     />
                 </div>
                 <div>
-                    <Button type="submit" variant="default" color="oscuro" disabled={false}>Guardar Configuración</Button>
+                    <Button type="submit" variant="default" color="oscuro" disabled={false}>Guardar configuración</Button>
                 </div>
             </form>
-            {configuracion && ( JSON.stringify(configuracion) )}
         </div>
     );
 };
