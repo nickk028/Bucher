@@ -39,10 +39,10 @@ export const Publicacion = () => {
                 ) : publicacion.titulo && (
                     <article className="body-pub__publicacion">
 
-                        <aside className="body-pub__publicacion__aside">
+                        <div className="body-pub__publicacion__aside">
                             <img className="body-pub__publicacion__aside__img" src = {publicacion.urlFoto} alt="Foto del libro" />
                             <Button variant="default" color="oscuro" onClick={handlePedirLibro}>Pedir libro</Button>
-                        </aside>
+                        </div>
 
                         <div className="body-pub__publicacion__text">
                             <h1 className="body-pub__publicacion__text__title">{publicacion.titulo}</h1>
