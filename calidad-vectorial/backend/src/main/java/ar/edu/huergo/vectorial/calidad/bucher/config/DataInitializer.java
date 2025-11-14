@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.config;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,6 +15,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
@@ -24,11 +27,12 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.book.AutorRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.EditorialRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.BibliotecaRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.LibroUsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.RegistroPrestamoRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.util.PasswordValidator;
-import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 
 @Configuration // Marca esta clase como una clase de configuración de Spring
 // Clase para inicializar datos en la base de datos al iniciar la aplicación
@@ -44,7 +48,8 @@ public class DataInitializer {
             AutorRepository autorRepository,
             LibroRepository libroRepository, 
 			PublicacionRepository publicacionRepository,
-			RegistroPrestamoRepository registroPrestamoRepository) {
+			RegistroPrestamoRepository registroPrestamoRepository,
+			LibroUsuarioRepository libroUsuarioRepository) {
         return args -> {
 
             // ----------------------------------
@@ -90,7 +95,7 @@ public class DataInitializer {
                 PasswordValidator.validate(clientePassword);
                 Biblioteca biblioteca = new Biblioteca();
                 Usuario u = new Usuario("paulamartinez@gmail.com", encoder.encode(clientePassword));
-                u.setAvatar(Avatar.RAPUNZEL);
+                u.setAvatar(Avatar.BRUJA);
                 u.setNickname("Paula_03");
                 u.setRoles(Set.of(cliente));
                 u.setBiblioteca(biblioteca);
@@ -104,7 +109,7 @@ public class DataInitializer {
                 PasswordValidator.validate(clientePassword);
                 Biblioteca biblioteca = new Biblioteca();
                 Usuario u = new Usuario("jlopez@gmail.com", encoder.encode(clientePassword));
-                u.setAvatar(Avatar.RAPUNZEL);
+                u.setAvatar(Avatar.HARRYPOTTER);
                 u.setNickname("Juan_Lopez");
                 u.setRoles(Set.of(cliente));
                 u.setBiblioteca(biblioteca);
@@ -118,10 +123,29 @@ public class DataInitializer {
                 PasswordValidator.validate(clientePassword);
                 Biblioteca biblioteca = new Biblioteca();
                 Usuario u = new Usuario("mljueguen@gmail.com", encoder.encode(clientePassword));
-                u.setAvatar(Avatar.RAPUNZEL);
+                u.setAvatar(Avatar.PINOCHO);
                 u.setNickname("MaLu");
                 u.setRoles(Set.of(cliente));
                 u.setBiblioteca(biblioteca);
+                biblioteca.setUsuario(u);
+                usuarioRepository.save(u);
+                bibliotecaRepository.save(biblioteca);
+            }
+			// Usuario Lector - 5 / Ejemplo expo
+			if (usuarioRepository.findByUsername("jrolando@gmail.com").isEmpty()) {
+                String clientePassword = "LectorSuperSegura@123";
+                PasswordValidator.validate(clientePassword);
+                Biblioteca biblioteca = new Biblioteca();
+                Usuario u = new Usuario("jrolando@gmail.com", encoder.encode(clientePassword));
+                u.setAvatar(Avatar.REINADECORAZONES);
+                u.setNickname("Juli_Lectora");
+                u.setRoles(Set.of(cliente));
+                u.setBiblioteca(biblioteca);
+				u.setDireccion("Av. Independencia 1562");
+				u.setPiso("9 A");
+				u.setCodigoPostal("1100");
+				u.setPronombres("Ella");
+				u.setDescripcion("Lectora desde hace 10 años, amante del drama y el romance. Mi libro favorito es Orgullo y Prejuicio y siempre busco nuevas lecturas.");
                 biblioteca.setUsuario(u);
                 usuarioRepository.save(u);
                 bibliotecaRepository.save(biblioteca);
@@ -4475,6 +4499,7 @@ public class DataInitializer {
 			Optional<Usuario> usuarioLectorDos = usuarioRepository.findByUsername("mljueguen@gmail.com");
 			Optional<Usuario> usuarioLectorTres = usuarioRepository.findByUsername("jlopez@gmail.com");
 			Optional<Usuario> usuarioLectorCuatro = usuarioRepository.findByUsername("paulamartinez@gmail.com");
+			Optional<Usuario> usuarioLectorCinco = usuarioRepository.findByUsername("jrolando@gmail.com");
 
 
 			Optional<Libro> harryPotter = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
@@ -4515,6 +4540,18 @@ public class DataInitializer {
 
 			Optional<Libro>  amorSombra = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
 				"De amor y sombra", "Primera edición", autorAllende, editorialSudamericana);
+
+			Optional<Libro>  constelaciones = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+				"El chico que dibujaba constelaciones", "Primera edición", autorKellen, editorialPlaneta);
+
+			Optional<Libro> lluvia = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+				"Blackwater: lluvia", "Primera edición", autorMcdowell, editorialTitania);
+
+			Optional<Libro> heartless = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+				"Heartless", "Primera edición", autorMeyer, editorialPenguin);
+
+			Optional<Libro> casa = libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+				"Blackwater: la casa", "Primera edición", autorMcdowell, editorialTitania);
 
             //publicaciones
 			if (usuarioLectorUno.isPresent() && harryPotter.isPresent()) {
@@ -4697,7 +4734,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("El libro tiene algunas marquitas del uso, pero nada grave. Está completo y en buen estado para leerlo sin problema.");
-                    publicacion.setLimiteDias(24);
+                    publicacion.setLimiteDias(30);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4714,7 +4751,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Ejemplar en buen estado general, con leves signos de uso propios del paso del tiempo. Conserva todas sus páginas íntegras y es totalmente legible.");
-                    publicacion.setLimiteDias(24);
+                    publicacion.setLimiteDias(27);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4730,6 +4767,57 @@ public class DataInitializer {
                     publicacion.setUsuario(usuario);
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("Libro en buen estado, lectura recomendable!");
+                    publicacion.setLimiteDias(24);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorCinco.isPresent() && casa.isPresent()) {
+				Usuario usuario = usuarioLectorCinco.get();
+				Libro libro = casa.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("El libro es excelente y esta en muy buen estado.");
+                    publicacion.setLimiteDias(17);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorCinco.isPresent() && lluvia.isPresent()) {
+				Usuario usuario = usuarioLectorCinco.get();
+				Libro libro = lluvia.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("Libro en muy buenas condiciones a pesar de las veces que fue leido, no presenta anotaciones pero si hay algunas hojas con puntas dobladas.");
+                    publicacion.setLimiteDias(24);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorCinco.isPresent() && heartless.isPresent()) {
+				Usuario usuario = usuarioLectorCinco.get();
+				Libro libro = heartless.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Ejemplar en excelente estado. Conserva todas sus páginas íntegras y es totalmente legible, señalado con post-its.");
                     publicacion.setLimiteDias(24);
                     publicacion.setDetallesEstadoLibro("Nada");
@@ -4738,6 +4826,39 @@ public class DataInitializer {
 				}
 			}
 
+			if (usuarioLectorCinco.isPresent() && constelaciones.isPresent()) {
+				Usuario usuario = usuarioLectorCinco.get();
+				Libro libro = constelaciones.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("Copia de El chico que dibujaba constelaciones, en perfecto estado. Señalizado con post-its, los cuales estan categorizados por color.");
+                    publicacion.setLimiteDias(20);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorCinco.isPresent() && amorSombra.isPresent()) {
+				Usuario usuario = usuarioLectorCinco.get();
+				Libro libro = amorSombra.get();
+
+				if (publicacionRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+                    Publicacion publicacion = new Publicacion();
+                    publicacion.setUsuario(usuario);
+                    publicacion.setLibro(libro);
+                    publicacion.setFechaCreacion(LocalDate.now());
+                    publicacion.setDescripcion("Ejemplar relativamente en buen estado. Una parte de las primeras hojas estan algo arrugadas debido a que tuve un incidente con agua.");
+                    publicacion.setLimiteDias(20);
+                    publicacion.setDetallesEstadoLibro("Nada");
+                    publicacion.setEstadoPublicacion(Estado.Disponible);
+                    publicacionRepository.save(publicacion);
+				}
+			}
 
 
 			// Prestamos prestados 
@@ -4746,6 +4867,7 @@ public class DataInitializer {
 			Optional<Publicacion> publicacionSofia = publicacionRepository.findByLibroTituloIgnoreCase("La magia de ser Sofía");
 			Optional<Publicacion> publicacionSinsajo = publicacionRepository.findByLibroTituloIgnoreCase("Sinsajo");
 			Optional<Publicacion> publicacionAmorSombra = publicacionRepository.findByLibroTituloIgnoreCase("De amor y sombra");
+			Optional<Publicacion> publicacionConstelaciones = publicacionRepository.findByLibroTituloIgnoreCase("El chicho que dibujaba constelaciones");
 
 
 			if (usuarioLectorDos.isPresent() && publicacionHobbit.isPresent()) {
@@ -4776,16 +4898,16 @@ public class DataInitializer {
 				}
 			}
 
-			if (usuarioLectorTres.isPresent() && publicacionSinsajo.isPresent()) {
-				Usuario usuarioSolicitante = usuarioLectorTres.get();
+			if (usuarioLectorCinco.isPresent() && publicacionSinsajo.isPresent()) {
+				Usuario usuarioSolicitante = usuarioLectorCinco.get();
 				Publicacion publicacion = publicacionSinsajo.get();
 
 				if (registroPrestamoRepository.findByPublicacionAndUsuario(publicacion, usuarioSolicitante).isEmpty()) {
 					RegistroPrestamo prestamo = new RegistroPrestamo();
 					prestamo.setPublicacion(publicacion);
 					prestamo.setUsuario(usuarioSolicitante);
-					prestamo.setFechaPrestamo(LocalDate.now().minusDays(20));
-					prestamo.setFechaDevolucion(LocalDate.now().plusDays(4));
+					prestamo.setFechaPrestamo(LocalDate.now().minusDays(40));
+					prestamo.setFechaDevolucion(LocalDate.now().plusDays(-13));
 					registroPrestamoRepository.save(prestamo);
 				}
 			}
@@ -4798,11 +4920,141 @@ public class DataInitializer {
 					RegistroPrestamo prestamo = new RegistroPrestamo();
 					prestamo.setPublicacion(publicacion);
 					prestamo.setUsuario(usuarioSolicitante);
-					prestamo.setFechaPrestamo(LocalDate.now().minusDays(30));
+					prestamo.setFechaPrestamo(LocalDate.now().minusDays(40));
 					prestamo.setFechaDevolucion(LocalDate.now().plusDays(-20));
 					registroPrestamoRepository.save(prestamo);
 				}
 			}
+
+			if (usuarioLectorUno.isPresent() && publicacionConstelaciones.isPresent()) {
+				Usuario usuarioSolicitante = usuarioLectorUno.get();
+				Publicacion publicacion = publicacionConstelaciones.get();
+
+				if (registroPrestamoRepository.findByPublicacionAndUsuario(publicacion, usuarioSolicitante).isEmpty()) {
+					RegistroPrestamo prestamo = new RegistroPrestamo();
+					prestamo.setPublicacion(publicacion);
+					prestamo.setUsuario(usuarioSolicitante);
+					prestamo.setFechaPrestamo(LocalDate.now().minusDays(30));
+					prestamo.setFechaDevolucion(LocalDate.now().plusDays(-10));
+					registroPrestamoRepository.save(prestamo);
+				}
+			}
+
+
+
+			Optional<Usuario> optUsuarioCinco = usuarioRepository.findByUsername("jrolando@gmail.com");
+
+			if (optUsuarioCinco.isPresent()) {
+				Usuario usuarioCinco = optUsuarioCinco.get();
+				Biblioteca bibliotecaCinco = usuarioCinco.getBiblioteca();
+				List<String> titulosLibros = List.of(
+					"El chico que dibujaba constelaciones",
+					"Heartless",
+					"Blackwater: Lluvia",
+					"Blackwater: La casa",
+					"Llévame a cualquier lugar",
+					"Volver a empezar", 
+					"Romper el círculo",
+					"Nosotros en la luna",
+					"Donde todo brilla",
+					"Cress",
+					"Winter",
+					"Scarlet"
+				);
+				for (String titulo : titulosLibros) {
+					System.out.println("Buscando libro: " + titulo); // <--- log para verificar
+
+					libroRepository.findByTituloIgnoreCaseAndEdicion(
+							titulo, "Primera edición"
+					).ifPresentOrElse(libro -> {
+						System.out.println("Libro encontrado: " + libro.getTitulo()); // <--- log si lo encuentra
+
+						boolean yaExiste = libroUsuarioRepository.existsByBibliotecaAndLibro(bibliotecaCinco, libro);
+						if (!yaExiste) {
+							LibroUsuario lu = new LibroUsuario();
+							lu.setBiblioteca(bibliotecaCinco);
+							lu.setLibro(libro);
+							lu.setPaginaActual(0);
+							lu.setEstadoLectura(EstadoLectura.pendiente);
+							lu.setPuntuacion(0);
+							libroUsuarioRepository.save(lu);
+							System.out.println("Libro agregado a la biblioteca: " + libro.getTitulo());
+						} else {
+							System.out.println("El libro ya existía en la biblioteca: " + libro.getTitulo());
+						}
+					}, () -> {
+						System.out.println("Libro NO encontrado en la base de datos: " + titulo); // <--- log si no lo encuentra
+					});
+				}
+			}
+
+			if (optUsuarioCinco.isPresent()) {
+				Usuario usuarioCinco = optUsuarioCinco.get();
+				Biblioteca bibliotecaCinco = usuarioCinco.getBiblioteca();
+				List<String> titulosLibros = List.of(
+					"La promesa de Julieta",
+					"Cujo",
+					"El resplandor",
+					"Divergente",
+					"Insurgente",
+					"Leal",
+					"Cuatro",
+					"El cuaderno de Maya",
+					"Testigo de cargo",
+					"Después de ti",
+					"Yo antes de ti",
+					"Sigue lloviendo",
+					"Sigo siendo yo"
+				);
+				for (String titulo : titulosLibros) {
+					libroRepository.findByTituloIgnoreCaseAndEdicion(
+							titulo, "Primera edición"
+					).ifPresent(libro -> {
+						boolean yaExiste = libroUsuarioRepository.existsByBibliotecaAndLibro(bibliotecaCinco, libro);
+						if (!yaExiste) {
+							LibroUsuario lu = new LibroUsuario();
+							lu.setBiblioteca(bibliotecaCinco);
+							lu.setLibro(libro);
+							lu.setPaginaActual(0);
+							lu.setEstadoLectura(EstadoLectura.pendiente);
+							lu.setPuntuacion(0);
+							libroUsuarioRepository.save(lu);
+						}
+					});
+				}
+
+			} else {
+				System.out.println("Usuario no encontrado. Primero creá el usuario.");
+			}
+
+						if (optUsuarioCinco.isPresent()) {
+				Usuario usuarioCinco = optUsuarioCinco.get();
+				Biblioteca bibliotecaCinco = usuarioCinco.getBiblioteca();
+				List<String> titulosLibros = List.of(
+					"Emma",
+					"Distancia de rescate"
+				);
+				for (String titulo : titulosLibros) {
+					libroRepository.findByTituloIgnoreCaseAndEdicion(
+							titulo, "Primera edición"
+					).ifPresent(libro -> {
+						boolean yaExiste = libroUsuarioRepository.existsByBibliotecaAndLibro(bibliotecaCinco, libro);
+						if (!yaExiste) {
+							LibroUsuario lu = new LibroUsuario();
+							lu.setBiblioteca(bibliotecaCinco);
+							lu.setLibro(libro);
+							lu.setPaginaActual(175);
+							lu.setEstadoLectura(EstadoLectura.leyendo);
+							lu.setPuntuacion(0);
+							libroUsuarioRepository.save(lu);
+						}
+					});
+				}
+
+			} else {
+				System.out.println("Usuario no encontrado. Primero creá el usuario.");
+			}
+
         };
     }
 }

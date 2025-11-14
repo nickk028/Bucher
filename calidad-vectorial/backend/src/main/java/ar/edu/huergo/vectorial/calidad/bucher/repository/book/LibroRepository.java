@@ -14,6 +14,6 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 public interface LibroRepository extends JpaRepository<Libro, Long>{
     Optional<Libro> findByTituloIgnoringCase(String titulo);
     Optional<Libro> findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(String titulo, String edicion, Autor autor, Editorial editorial);
-
+    Optional<Libro> findByTituloIgnoreCaseAndEdicion(String titulo, String edicion);
     List<Libro> findAllByCategoriaContaining(Categoria categoria);
 }
