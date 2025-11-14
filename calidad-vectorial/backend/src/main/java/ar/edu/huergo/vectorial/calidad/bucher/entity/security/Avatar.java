@@ -3,19 +3,19 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.security;
 public enum Avatar {
     ALICIA("alicia.png"),
     BRUJA("bruja.png"),
-    CAPERUCITAROJA("caperucitaRoja.png"),
+    CAPERUCITAROJA("caperucitaroja.png"),
     CENICIENTA("cenicienta.png"),
     DETECTIVE("detective.png"),
     DOROTHY("dorothy.png"),
     DRACULA("dracula.png"),
     FRANKENSTEIN("frankenstein.png"),
     GANDALF("gandalf.png"),
-    HARRYPOTTER("harryPotter.png"),
-    HOMBREDEHOJALATA("homreDeHojalata.png"),
+    HARRYPOTTER("harrypotter.png"),
+    HOMBREDEHOJALATA("homredehojalata.png"),
     KATNISS("katniss.png"),
     PINOCHO("pinocho.png"),
     RAPUNZEL("rapunzel.png"),
-    REINADECORAZONES("reinaDeCorazones.png");
+    REINADECORAZONES("reinadecorazones.png");
 
     private final String url;
 
