@@ -47,24 +47,24 @@ export const Biblioteca = () => {
             )}
 
         <main className="biblioteca-body">
-            <div>
-                <h1 className="biblioteca-body__title">Ver biblioteca </h1>
-                {loadingBiblioteca ? (
-                    <p>Cargando biblioteca...</p>
-                ) : dataBiblioteca ? (
-                    <ul>
-                        {dataBiblioteca.map(bookUser =>(
-                            <li key = {bookUser.id} >
-                                <Link to={`/usuario/biblioteca/${bookUser.id}`}>
-                                    <LibroCard urlFoto={bookUser.urlFoto} titulo={bookUser.titulo} />
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>Error al cargar la biblioteca : {errorBiblioteca}</p>
-                )}
-            </div>
+        <div>
+            <h1 className="biblioteca-body__title">Ver biblioteca </h1>
+            {loadingBiblioteca ? (
+                <p>Cargando biblioteca...</p>
+            ) : dataBiblioteca ? (
+                <div className="biblioteca-lista">
+                    {dataBiblioteca.map(bookUser => (
+                        <Link key={bookUser.id} to={`/usuario/biblioteca/${bookUser.id}`}>
+                            <LibroCard urlFoto={bookUser.urlFoto} titulo={bookUser.titulo} />
+                        </Link>
+                    ))}
+                </div>
+            ) : (
+                <p>Error al cargar la biblioteca : {errorBiblioteca}</p>
+            )}
+        </div>
+
+
 
             <div className="">
                 <div className="">
