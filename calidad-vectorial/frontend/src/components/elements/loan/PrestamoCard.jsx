@@ -20,7 +20,7 @@ const PrestamoCard = ({ prestamo }) => {
         const inicio = new Date(fechaPrestamo);
         const hoy = new Date();
 
-        const diffTiempo = hoy - inicio; 
+        const diffTiempo = hoy - inicio;
         const diffDias = Math.floor(diffTiempo / (1000 * 60 * 60 * 24));
         return limiteDias - diffDias;
     };
@@ -37,7 +37,7 @@ const PrestamoCard = ({ prestamo }) => {
     };
 
     return (
-       <article className="prestamo-card">
+        <article className="prestamo-card">
         <img className="prestamo-card__image" src={urlFoto} alt="Foto del libro" />
 
         <ul className="prestamo-card__list">
@@ -45,7 +45,7 @@ const PrestamoCard = ({ prestamo }) => {
                 <h1 className="prestamo-card__list__item__title">{titulo}</h1>
             </li>
             <li>
-                <span className="prestamo-card__list__item__subtitle">Autor: </span> 
+                <span className="prestamo-card__list__item__subtitle">Autor: </span>
                 {nombre}
             </li>
             <li>
