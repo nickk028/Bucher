@@ -57,7 +57,7 @@ const PrestamoCard = ({ prestamo }) => {
                 {fechaPrestamo}
             </li>
             <li>
-                <span className="prestamo-card__list__item__subtitle">Días restantes: </span>
+                <span className="prestamo-card__list__item__subtitle">Duración del préstamo: </span>
                 {diasRestantes}
             </li>
             <li>
