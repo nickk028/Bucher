@@ -8,3 +8,54 @@
     font-size: 3rem;
     font-weight: 500;
 }
+
+.biblioteca-body__title--margen {
+    color: #08413C;
+    font-size: 3rem;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.biblioteca-agregar {
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 5px #969696;
+    max-width: 900px;
+    width: 100%;
+}
+
+.biblioteca-agregar__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 10px;
+}
+
+.biblioteca-agregar__largo {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    gap: 15px
+}
+
+.biblioteca-agregar__corto {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 15px;
+}
+
+.biblioteca-agregar button {
+    width: fit-content;
+    margin-top: 5px;
+}
+
+.biblioteca-seleccionar-container {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+    width: 925px;    
+}
+

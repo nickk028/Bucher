@@ -5,6 +5,9 @@ import { AutoCompletarLibro } from "../../../elements/autocomplete/types/AutoCom
 import { LibroCard } from "../../../elements/book/LibroCard";
 import { Input } from "../../../elements/input/Input";
 import { Button } from "../../../elements/buttons/Button";
+import { useEffect } from "react";
+import { PopUp } from "../../../elements/modal/PopUp";
+
 import "./Biblioteca.css";
 
 export const Biblioteca = () => {
@@ -12,6 +15,7 @@ export const Biblioteca = () => {
     const [paginaPost, setPaginaPost] = useState("");
     const [estadoLecturaPost, setEstadoLecturaPost] = useState("");
     const [puntuacionPost, setPuntuacionPost] = useState("");
+    const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
     const { data : dataBiblioteca, error : errorBiblioteca, loading : loadingBiblioteca } = useFetch("biblioteca");
     const { data : dataPost, loading : loadingPost, error : errorPost, execute } = usePost("biblioteca");
@@ -22,7 +26,26 @@ export const Biblioteca = () => {
         await execute({ titulo: tituloPost, paginaActual: paginaPost, estadoLectura: estadoLecturaPost, puntuacion: puntuacionPost });
     };
 
+    useEffect(() => {
+        if (dataPost && !errorPost) {
+            setMostrarPopUp(true);
+
+            // Limpiar formulario
+            setTituloPost("");
+            setPaginaPost("");
+            setEstadoLecturaPost("");
+            setPuntuacionPost("");
+        }
+    }, [dataPost, errorPost]);
+
     return (
+        <>
+            {mostrarPopUp && (
+                <PopUp onClick={() => setMostrarPopUp(false)} titulo="✔️ Libro agregado con éxito ✔️">
+                    El libro fue añadido a tu biblioteca.
+                </PopUp>
+            )}
+
         <main className="biblioteca-body">
             <div>
                 <h1 className="biblioteca-body__title">Ver biblioteca </h1>
@@ -45,29 +68,29 @@ export const Biblioteca = () => {
 
             <div className="">
                 <div className="">
-                    <h1 className="biblioteca-body__title">Añadir libro a la biblioteca</h1>
-                    <form onSubmit={handleAgregarLibroUsuario}>
-                        <AutoCompletarLibro
-                            placeholder = "Título"
-                            onChange = {e => setTituloPost(e.target.value)}
-                            value = {tituloPost}
-                        />
-                        <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="Pagina" required={false}/>
-                        <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="Estado de Lectura" required={false}/>
-                        <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="Puntuacion" required={false}/>
-                        <Button type="submit" variant="default" color="oscuro" disabled={loadingPost}>Guardar Libro</Button>
+                    <h1 className="biblioteca-body__title--margen">Añadir libro a la biblioteca</h1>
+                    <div className="biblioteca-agregar">
+                        <form className="biblioteca-agregar__form" onSubmit={handleAgregarLibroUsuario}>
+                            <div className="biblioteca-agregar__largo">
+                                <AutoCompletarLibro placeholder="Título" onChange={e => setTituloPost(e.target.value)} value={tituloPost}/>
+                                <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="Estado de lectura"/>
+                            </div>
+                            <div className="biblioteca-agregar__corto">
+                                <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="Página actual"/>
+                                <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="Puntuación"/>
+                            </div>
+                            <Button type="submit" variant="default" color="oscuro" disabled={loadingPost}>
+                                Guardar Libro
+                            </Button>
+                        </form>
+                    </div>
 
-                        {dataPost && <p> Operacion post Exitosa </p>}
-                        {errorPost && <p>{errorPost}</p>}
-                        {loadingPost && <p>Cargando Post...</p>}
-                        {loadingLibros && <p>Cargando libros...</p>}
-                        {errorLibros && <p>{errorLibros}</p>}
-                    </form>
                 </div>
-                <div className="">
+                <div className="biblioteca-seleccionar-container">
                     <Button to = "/libros" variant="default" color="oscuro">Seleccionar libro</Button>
                 </div>
             </div>
         </main>
+    </>
     );
 }
