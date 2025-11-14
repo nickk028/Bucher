@@ -1,13 +1,28 @@
 import { useFetch } from "../../../utils/FetchUtils";
+import PrestamoCard from "../../../elements/loan/PrestamoCard";
+import "./Prestamo.css";
+
 export const Prestamo = () => {
-    const { data, loading, error } = useFetch("registro");
+    const { data: prestamos, loading, error } = useFetch("registro");
 
     return (
-        <div>
-            <h1>Tus prestamos</h1>
-            <p>{JSON.stringify(data, null, 2)}</p>
-            <p>{loading && "Cargando..."}</p>
-            <p>{error}</p>
+        <div className="prestamos-page">
+            <h1>Tus préstamos</h1>
+
+            {loading && <p>Cargando...</p>}
+            {error && <p>{error}</p>}
+
+            {!loading && prestamos?.length > 0 ? (
+                <ul className="prestamos-list">
+                    {prestamos.map((prestamo, i) => (
+                        <li key={i}>
+                            <PrestamoCard prestamo={prestamo} />
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                !loading && <p>No tenés préstamos.</p>
+            )}
         </div>
-    )
-}
+    );
+};

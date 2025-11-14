@@ -1,0 +1,19 @@
+.prestamos-page {
+    padding: 20px;
+}
+
+.prestamos-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.prestamos-list li {
+    display: flex;
+    justify-content:left;
+    margin-left: 10px;
+}
