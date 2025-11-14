@@ -108,7 +108,7 @@
 .filtrador-row input[type="text"],
 .filtrador-row input[type="number"],
 .filtrador-row select {
-    padding: 6px 8px;
+    padding: 6px 15px;
     border-radius: 4px;
     border: 1px solid #ccc;
 }

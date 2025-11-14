@@ -6,6 +6,7 @@ import { Button } from "../../elements/buttons/Button";
 import "./Index.css";
 import "../../../global.css";
 import { useRef, useState } from "react";
+import { AutoCompletarLibro } from "../../elements/autocomplete/types/AutoCompletarLibro";
 
 export const Index = () => {
     const { data: publicacionesPorCategoria, error, loading } = useFetch("publicacion/ordenadas");
@@ -133,15 +134,18 @@ export const Index = () => {
                     <div className="filtrador-opciones">
                         <form className="filtrador-form" onSubmit={aplicarFiltro}>
                             <div className="filtrador-row">
-                                <Input type="text" name="usuario" value={filtros.usuario} onChange={e => setFiltros(f => ({ ...f, usuario: e.target.value }))}>
+                                <Input type="text" name="usuario" value={filtros.usuario} onChange={e => setFiltros(f => ({ ...f, usuario: e.target.value }))} required={false}>
                                     Usuario
                                 </Input>
                             </div>
 
                             <div className="filtrador-row">
-                                <Input type="text" name="libro" value={filtros.libro} onChange={e => setFiltros(f => ({ ...f, libro: e.target.value }))}>
-                                    Libro (título)
-                                </Input>
+                                <AutoCompletarLibro
+                                    value={filtros.libro}
+                                    onChange={e => setFiltros(f => ({ ...f, libro: e.target.value }))}
+                                    required={false}>
+                                        Título
+                                </AutoCompletarLibro>
                             </div>
 
                             <div className="filtrador-row">
@@ -165,13 +169,13 @@ export const Index = () => {
                             </div>
 
                             <div className="filtrador-row">
-                                <Input type="number" name="limiteMin" value={filtros.limiteMin} onChange={e => setFiltros(f => ({ ...f, limiteMin: e.target.value }))}>
+                                <Input type="number" name="limiteMin" value={filtros.limiteMin} onChange={e => setFiltros(f => ({ ...f, limiteMin: e.target.value }))} required={false}>
                                     Límite días (min)
                                 </Input>
 
                                 <div style={{ width: 12 }} />
 
-                                <Input type="number" name="limiteMax" value={filtros.limiteMax} onChange={e => setFiltros(f => ({ ...f, limiteMax: e.target.value }))}>
+                                <Input type="number" name="limiteMax" value={filtros.limiteMax} onChange={e => setFiltros(f => ({ ...f, limiteMax: e.target.value }))} required={false}>
                                     Límite días (máx)
                                 </Input>
                             </div>

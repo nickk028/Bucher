@@ -4,7 +4,7 @@ import { Button } from "../../elements/buttons/Button";
 import { ButtonGroup } from "../../elements/buttons/ButtonGroup";
 import { Input } from "../../elements/input/Input";
 import { ComingSoon } from "../../elements/errors/ComingSoon";
-import { Autocompletar } from "../../elements/autocomplete/Autocompletar";
+import { AutoCompletarLibro } from "../../elements/autocomplete/types/AutoCompletarLibro";
 import { PopUp } from "../../elements/modal/PopUp";
 import principitoLuna from "../../../assets/img/principitoLuna.png"
 import "./CrearPublicacion.css";
@@ -54,17 +54,11 @@ export const CrearPublicacion = () => {
 					<>
 						<h1 className="body-crear-prestamo__title">Nueva publicación</h1>
 						<form className="body-crear-prestamo__form" onSubmit={handleCrearPublicacion}>
-							<Autocompletar
-								options={dataLibros ? dataLibros.map(libro => [libro.urlFoto ,libro.titulo]) : []}
-								type = "text"
-								tipo = "doble"
-								imgHeight = "100px"
-								imagWidth = "60px"
+							<AutoCompletarLibro
 								value = {titulo}
-								name = "titulo"
 								onChange = {e => setTitulo(e.target.value)}>
 									Título
-							</Autocompletar>
+							</AutoCompletarLibro>
 							<Input variant="grande" type="text" value={descripcion} name="descripcion" onChange={e => setDescripcion(e.target.value)}>Descripción del estado del libro</Input>
 
 							<div className="body-crear-prestamo__form__limite-dias">

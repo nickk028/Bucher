@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetch, usePost } from "../../../utils/FetchUtils";
-import { Autocompletar } from "../../../elements/autocomplete/Autocompletar";
+import { AutoCompletarLibro } from "../../../elements/autocomplete/types/AutoCompletarLibro";
 import { LibroCard } from "../../../elements/book/LibroCard";
 import { Input } from "../../../elements/input/Input";
 import { Button } from "../../../elements/buttons/Button";
@@ -47,15 +47,11 @@ export const Biblioteca = () => {
                 <div className="">
                     <h1>Añadir libro a la biblioteca</h1>
                     <form onSubmit={handleAgregarLibroUsuario}>
-                        <Autocompletar
-                            options = {dataLibros ? dataLibros.map(libro => [libro.urlFoto, libro.titulo]) : []}
+                        <AutoCompletarLibro
                             placeholder = "Título"
-                            tipo = "doble"
-                            imgHeight = "50px"
-                            imgWidth = "30px"
                             onChange = {e => setTituloPost(e.target.value)}
                             value = {tituloPost}
-                            />
+                        />
                         <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="Pagina" required={false}/>
                         <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="Estado de Lectura" required={false}/>
                         <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="Puntuacion" required={false}/>

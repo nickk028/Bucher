@@ -2,7 +2,7 @@ import lupa from "../../../assets/img/lupa.png";
 import "./Buscador.css";
 import { useFetch } from "../../utils/FetchUtils";
 import { useState } from "react";
-import { Autocompletar } from "../autocomplete/Autocompletar";
+import { AutoCompletarLibro } from "../autocomplete/types/AutoCompletarLibro";
 import { useNavigate } from "react-router-dom";
 
 const Buscador = () => {
@@ -19,17 +19,11 @@ const Buscador = () => {
     return (
         <nav className="buscador">
             <form className="buscador__input" onSubmit={handleBuscarLibro}>
-                <Autocompletar
-                    options={dataLibros ? dataLibros.map(libro => [libro.urlFoto ,libro.titulo]) : []}
-                    type = "text"
-                    tipo = "doble"
+                <AutoCompletarLibro
                     placeholder = "Buscar libro por título"
-                    imgHeight = "100px"
-                    imagWidth = "60px"
                     value = {titulo}
-                    name = "titulo"
-                    onChange = {e => setTitulo(e.target.value)}>
-                </Autocompletar>
+                    onChange = {e => setTitulo(e.target.value)}
+                />
                 <button type = "submit" style={{border: "hidden"}}><img className="buscador__input__lupa" src={lupa} alt="Lupa" /></button>
             </form>
         </nav>
