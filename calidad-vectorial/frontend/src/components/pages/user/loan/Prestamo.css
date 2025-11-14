@@ -1,5 +1,7 @@
 .prestamos-page {
     padding: 20px;
+    margin-left: 30px;
+    margin-top: -20px;
 }
 
 .prestamos-list {
@@ -17,3 +19,10 @@
     justify-content:left;
     margin-left: 10px;
 }
+
+.prestamos-user-body__title {
+    color: #08413C;
+    font-size: 3rem;
+    font-weight: 500;
+}
+
