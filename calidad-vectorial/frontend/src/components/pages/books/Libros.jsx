@@ -59,18 +59,11 @@ export const Libros = () => {
                             <section key={categoria} className="book-group">
                                 <h3 className="book-group-title">{formatCategoryName(categoria)} ({lista.length})</h3>
                                 <div className="books-row-wrapper">
-                                    <button
-                                        className="scroll-btn left"
-                                        onClick={() => desplazarIzquierda(categoria)}
-                                        aria-label={`Desplazar ${categoria} a la izquierda`}
-                                    >
+                                    <button className="scroll-btn left" onClick={() => desplazarIzquierda(categoria)} aria-label={`Desplazar ${categoria} a la izquierda`}>
                                         ‹
                                     </button>
 
-                                    <ul
-                                        className="books-row"
-                                        ref={el => { filasRef.current[categoria] = el; }}
-                                    >
+                                    <ul className="books-row" ref={el => { filasRef.current[categoria] = el; }}>
                                         {lista.map(libro => (
                                             <li className="book-item" key={libro.id || libro.titulo}>
                                                 <Link to={`/libros/${libro.id || ''}`}>
@@ -80,11 +73,7 @@ export const Libros = () => {
                                         ))}
                                     </ul>
 
-                                    <button
-                                        className="scroll-btn right"
-                                        onClick={() => desplazarDerecha(categoria)}
-                                        aria-label={`Desplazar ${categoria} a la derecha`}
-                                    >
+                                    <button className="scroll-btn right" onClick={() => desplazarDerecha(categoria)} aria-label={`Desplazar ${categoria} a la derecha`}>
                                         ›
                                     </button>
                                 </div>
