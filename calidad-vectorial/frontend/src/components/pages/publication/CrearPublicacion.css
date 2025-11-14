@@ -7,7 +7,9 @@
 }
 
 .body-crear-prestamo__title {
-    color: #0E675F;
+        color: #08413C;
+    font-size: 3rem;
+    font-weight: 500;
     margin-left: 10%;
 }
 

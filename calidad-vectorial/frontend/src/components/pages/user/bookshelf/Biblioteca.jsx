@@ -45,7 +45,7 @@ export const Biblioteca = () => {
 
             <div className="">
                 <div className="">
-                    <h1>Añadir libro a la biblioteca</h1>
+                    <h1 className="biblioteca-body__title">Añadir libro a la biblioteca</h1>
                     <form onSubmit={handleAgregarLibroUsuario}>
                         <AutoCompletarLibro
                             placeholder = "Título"
