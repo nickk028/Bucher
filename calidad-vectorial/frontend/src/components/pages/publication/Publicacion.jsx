@@ -9,8 +9,9 @@ import "./Publicacion.css";
 
 export const Publicacion = () => {
     const { id } = useParams();
-    const { data : publicacion , error : errorFetch, loading : loadingError } = useFetch("publicacion/" + id);
+    const { data: publicacion, error: errorFetch, loading: loadingError, refetch } = useFetch("publicacion/" + id);
     const { data : respuestaPost , error : errorPost, loading : loadingPost, execute } = usePost("publicacion/prestamo/" + id);
+    const disponible = publicacion.estadoPublicacion === "Disponible";
 
     const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
@@ -27,11 +28,12 @@ export const Publicacion = () => {
     return (
         <>
             {mostrarPopUp && (
-				<PopUp onClick={() => setMostrarPopUp(false)} titulo= "✔️ Préstamo creado con éxito ✔️">
-					Tu préstamo ya está procesándose. Te notificaremos cuando tu pedido esté listo.
-				</PopUp>
-				)
-			}
+                <PopUp onClick={() => { setMostrarPopUp(false); refetch();}}
+                    titulo="✔️ Préstamo creado con éxito ✔️">
+                    Tu préstamo ya está procesándose. Te notificaremos cuando tu pedido esté listo.
+                </PopUp>
+            )}
+
             <main className="body-pub">
                 <Buscador />
                 {loadingError ? (
@@ -41,7 +43,8 @@ export const Publicacion = () => {
 
                         <div className="body-pub__publicacion__aside">
                             <img className="body-pub__publicacion__aside__img" src = {publicacion.urlFoto} alt="Foto del libro" />
-                            <Button variant="default" color="oscuro" onClick={handlePedirLibro}>Pedir libro</Button>
+                            <Button variant="default" color={disponible ? "oscuro" : "disabled"} isDisabled={!disponible} onClick={handlePedirLibro}>
+                                {disponible ? "Pedir libro" : "Libro no disponible"} </Button>
                         </div>
 
                         <div className="body-pub__publicacion__text">
