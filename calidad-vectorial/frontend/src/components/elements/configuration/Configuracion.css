@@ -1,0 +1,42 @@
+.config-content {
+    padding-left: 50px;
+    padding-right: 250px;
+}
+
+.config-content__title {
+    color: #08413C;
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.config-content__form {
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 10px;
+
+    margin-bottom: 20px;
+
+    gap: 10px;
+}
+
+.config-content__form__label {
+    font-size: 1.1rem;
+
+    color: #929292;
+    text-shadow: 1px 1px 2px #d1d1d1;
+    transition: all 200ms ease-in-out;
+}
+
+.config-content__form__label--editando {
+    color: #0E675F;
+    box-shadow: #08413C;
+}
+
+.config-content__input-group {
+    min-width: max-content;
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}

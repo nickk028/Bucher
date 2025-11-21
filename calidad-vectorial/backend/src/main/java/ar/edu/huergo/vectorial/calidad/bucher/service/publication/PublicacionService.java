@@ -1,6 +1,8 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -172,5 +174,18 @@ public class PublicacionService {
      */
     public Set<Publicacion> obtenerPublicacionesPorEstado(Estado estado) {
         return new HashSet<>(publicacionRepository.findAllByEstadoPublicacion(estado));
+    }
+
+    /**
+     * Obtiene todas las publicaciones ordenadas por categoria
+     * @return Las publicaciones de las categorias
+     */
+    public Map<Categoria,Set<Publicacion>> obtenerPublicacionesOrdenadas() {
+        Map<Categoria, Set<Publicacion>> todasLasPublicaciones = new HashMap<>();
+        for (Categoria categoria : Categoria.values()) {
+            Set<Publicacion> publicacionesPorCategoria = obtenerPublicacionesPorCategoria(categoria);
+            todasLasPublicaciones.put(categoria, publicacionesPorCategoria);
+        }
+        return todasLasPublicaciones;
     }
 }

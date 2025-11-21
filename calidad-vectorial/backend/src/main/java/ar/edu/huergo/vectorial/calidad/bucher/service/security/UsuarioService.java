@@ -111,6 +111,9 @@ public class UsuarioService {
     public static Avatar getAvatarRandom() {
         Avatar[] avatares = Avatar.values();
         int indiceAleatorio = random.nextInt(avatares.length);
+        if (indiceAleatorio >= avatares.length) {
+            indiceAleatorio = avatares.length - 1;
+        }
         return (avatares[indiceAleatorio]);
     }
 
@@ -120,6 +123,18 @@ public class UsuarioService {
         }
         if (usuarioNuevo.getDescripcion() != null) {
             usuarioAModificar.setDescripcion(usuarioNuevo.getDescripcion());
+        }
+        if (usuarioNuevo.getNickname() != null) {
+            usuarioAModificar.setNickname(usuarioNuevo.getNickname());
+        }
+        if (usuarioNuevo.getDireccion() != null) {
+            usuarioAModificar.setDireccion(usuarioNuevo.getDireccion());
+        }
+        if (usuarioNuevo.getPiso() != null) {
+            usuarioAModificar.setPiso(usuarioNuevo.getPiso());
+        }
+        if (usuarioNuevo.getCodigoPostal() != null) {
+            usuarioAModificar.setCodigoPostal(usuarioNuevo.getCodigoPostal());
         }
 
         return usuarioRepository.save(usuarioAModificar);

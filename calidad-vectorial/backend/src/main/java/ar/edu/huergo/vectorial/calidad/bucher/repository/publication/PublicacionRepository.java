@@ -21,6 +21,8 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Long> 
     List<Publicacion> findAllByCategoria(@Param("categoria") Categoria categoria);
 
     List<Publicacion> findAllByEstadoPublicacion(Estado estado);
+    List<Publicacion> findAllByLibroCategoriaContaining(Categoria categoria);
 
-    Optional<Publicacion> findByUsuarioAndLibroAndFechaCreacion(Usuario usuario, Libro libro, LocalDate fecha);
+    Optional<Publicacion> findByUsuarioAndLibroAndFechaCreacion(Usuario usuario, Libro libro, LocalDate fechaCreacion);
+    Optional<Publicacion> findByLibroTituloIgnoreCase(String libro);
 }

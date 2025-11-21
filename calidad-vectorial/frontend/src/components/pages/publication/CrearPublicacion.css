@@ -2,6 +2,15 @@
     position: relative;
     min-height: calc(100vh - 75px);
     overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+.body-crear-prestamo__title {
+        color: #08413C;
+    font-size: 3rem;
+    font-weight: 500;
+    margin-left: 10%;
 }
 
 .body-crear-prestamo__form {

@@ -20,7 +20,7 @@
 
 .btn--default {
     height: 30px;
-    min-width: 150px;
+    min-width: max-content;
     border-radius: 10px;
     box-sizing: border-box;
     padding-left: max(8px, 5%);
@@ -89,4 +89,16 @@
 
 .btn-group .btn + .btn {
     margin-left: -25px;
+}
+
+.btn--solapa--disabled {
+    background-color: #cfcfcf;
+    color: #7a7a7a;
+    cursor: not-allowed;
+}
+
+.btn--default--disabled {
+    background-color: #cfcfcf;
+    color: #7a7a7a;
+    cursor: not-allowed;
 }

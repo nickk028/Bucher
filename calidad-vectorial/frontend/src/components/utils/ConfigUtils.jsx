@@ -24,7 +24,7 @@ export const validarExisteConfig = () => {
 export const getConfig = () => {
     const existente = leerJSON("Configuracion", null);
     // Si no existe devuelve la config por defecto
-    if (existente == null) return { ...DEFAULT }; 
+    if (existente == null) return { ...DEFAULT };
     // Si existe devuelve un merge de ambas
     return { ...DEFAULT, ...existente };
 };

@@ -1,0 +1,78 @@
+.popup {
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #1a1a1a70;
+    backdrop-filter: blur(1px);
+
+    z-index: 10;
+}
+
+.popup__card {
+    width: 55vw;
+    height: 40vh;
+
+    background: #f5f5f5;
+
+    padding: 40px;
+    border-radius: 1rem;
+    border: 3px solid #08413C;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    position: relative;
+
+    animation: aparecer-popup 200ms ease-in-out both;
+}
+
+@keyframes aparecer-popup {
+    0% {
+        scale: .8;
+    }
+    100% {
+        scale: 1;
+    }
+}
+
+.popup__card__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: auto;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+
+    font-size: 4rem;
+    color: #08413C;
+
+    cursor: pointer;
+}
+
+.popup__card__text {
+    text-align: center;
+    font-size: 2rem;
+
+    color: #0E675F;
+}
+
+.popup__card__text__content {
+    padding-top: 20px;
+    font-size: 1.2rem;
+
+    color: #08413C;
+}

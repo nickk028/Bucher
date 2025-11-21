@@ -27,10 +27,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 @Entity // Marca la clase como una entidad de JPA
 @Data // Genera getters, setters, toString, equals y hashCode
@@ -53,7 +53,7 @@ public class Libro {
     // Descripción del libro
     @Column(nullable = false, length = 100)
     @NotBlank(message = "La descripción es obligatorio.")
-    @Size(min = 2, max = 800, message = "La libro debe tener entre 2 y 800 digitos.")
+    @Size(min = 2, max = 1500, message = "La libro debe tener entre 2 y 1500 digitos.")
     private String descripcion;
 
     // Cantidad de páginas del libro

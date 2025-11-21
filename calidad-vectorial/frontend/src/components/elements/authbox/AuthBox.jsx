@@ -25,5 +25,5 @@ export const AuthBox = ({ children, titulo="Título del cuadro", onSubmit, boton
             )}
             <h1 className='auth-box__footer'>Bücher</h1>
         </section>
-    )
-}
+    );
+};

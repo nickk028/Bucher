@@ -78,12 +78,27 @@ public class Usuario {
 
     // Pronombres
     @Column(nullable = true)
-    private Set<String> pronombres;
+    private String pronombres;
 
     //Descripcion
     @Column(nullable = true)
     @Size(max = 255, message = "La descripción debe tener como máximo 255 dígitos")
     private String descripcion;
+
+    //Direccion
+    @Column(nullable = true)
+    @Size(max = 255, message = "La direccion debe tener como máximo 255 dígitos")
+    private String direccion;
+
+    //Piso
+    @Column(nullable = true)
+    @Size(max = 255, message = "El piso debe tener como máximo 255 dígitos")
+    private String piso;
+
+    //Codigo Postal
+    @Column(nullable = true)
+    @Size(max = 255, message = "El código postal debe tener como máximo 255 dígitos")
+    private String codigoPostal;
 
     // Set de roles del usuario
     // Relacion Muchos a Muchos con Roles

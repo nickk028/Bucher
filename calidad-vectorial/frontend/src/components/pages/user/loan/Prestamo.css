@@ -1,0 +1,37 @@
+.prestamos-page {
+    padding: 20px;
+    margin-left: 30px;
+    margin-top: -20px;
+}
+
+.prestamos-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.prestamos-list li {
+    display: flex;
+    justify-content:left;
+    margin-left: 10px;
+}
+
+.prestamos-user-body__title {
+    color: #08413C;
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.biblioteca-lista {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+}

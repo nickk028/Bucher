@@ -17,7 +17,7 @@ const isTokenValid = async () => {
         }
     } catch (error) {
         console.log("Error al validar token");
-        return true;
+        return false;
     }
 };
 
@@ -50,4 +50,3 @@ export const ProtectedRoute = () => {
         }
     }
 };
-
