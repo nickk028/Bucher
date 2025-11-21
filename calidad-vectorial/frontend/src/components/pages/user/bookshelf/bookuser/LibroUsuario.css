@@ -1,0 +1,56 @@
+.libro-user {
+    display: flex;
+    height: 75vh;
+    max-width: calc(100vw - 480px);
+    box-sizing: border-box;
+    padding-left: 25px;
+    padding-right: 25px;
+    gap: 2vw;
+}
+
+.libro-user__aside {
+    display: flex;
+    height: 65vh;
+    min-height: 400px;
+    width: auto;
+    aspect-ratio: 70/100;
+}
+
+.libro-user__text {
+    font-weight: 400;
+    font-size: 1.05rem;
+
+    height: auto;
+    width: 65%;
+    min-width: 400px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.libro-user__text__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #0E675F;
+    margin-bottom: 30px;
+}
+
+.libro-user__text__form {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.libro-user__text__form__label {
+    font-size: 1.1rem;
+
+    color: #929292;
+    text-shadow: 1px 1px 2px #d1d1d1;
+    transition: all 200ms ease-in-out;
+}
+
+.libro-user__text__form__label--editando {
+    color: #0E675F;
+    box-shadow: #08413C;
+}

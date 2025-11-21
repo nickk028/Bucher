@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetch, usePost } from "../../../utils/FetchUtils";
-import "./Biblioteca.css";
-import { Autocompletar } from "../../../elements/autocomplete/Autocompletar";
+import { AutoCompletarLibro } from "../../../elements/autocomplete/types/AutoCompletarLibro";
+import { LibroCard } from "../../../elements/book/LibroCard";
 import { Input } from "../../../elements/input/Input";
 import { Button } from "../../../elements/buttons/Button";
+import { useEffect } from "react";
+import { PopUp } from "../../../elements/modal/PopUp";
+
+import "./Biblioteca.css";
 
 export const Biblioteca = () => {
     const [tituloPost, setTituloPost] = useState("");
     const [paginaPost, setPaginaPost] = useState("");
     const [estadoLecturaPost, setEstadoLecturaPost] = useState("");
     const [puntuacionPost, setPuntuacionPost] = useState("");
+    const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
     const { data : dataBiblioteca, error : errorBiblioteca, loading : loadingBiblioteca } = useFetch("biblioteca");
     const { data : dataPost, loading : loadingPost, error : errorPost, execute } = usePost("biblioteca");
@@ -21,51 +26,71 @@ export const Biblioteca = () => {
         await execute({ titulo: tituloPost, paginaActual: paginaPost, estadoLectura: estadoLecturaPost, puntuacion: puntuacionPost });
     };
 
+    useEffect(() => {
+        if (dataPost && !errorPost) {
+            setMostrarPopUp(true);
+
+            // Limpiar formulario
+            setTituloPost("");
+            setPaginaPost("");
+            setEstadoLecturaPost("");
+            setPuntuacionPost("");
+        }
+    }, [dataPost, errorPost]);
+
     return (
-        <main>
-            <div>
-                <h1>Ver biblioteca </h1>
-                {loadingBiblioteca ? (
-                    <p>Cargando biblioteca...</p>
-                ) : dataBiblioteca ? (
-                    <ul>
-                        {dataBiblioteca.map(bookUser =>(
-                            <li key = {bookUser.id} > 
-                                <Link to={`/usuario/biblioteca/${bookUser.id}`}>
-                                    <p>Titulo: {bookUser.titulo}</p>
-                                    <p>Pagina actual: {bookUser.paginaActual}</p>
-                                    <p>Estado de lectura: {bookUser.estadoLectura}</p>
-                                    <p>Puntuacion personal: {bookUser.puntuacion}</p>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>Error al cargar la biblioteca : {errorBiblioteca}</p>
-                )}
-            </div>   
+        <>
+            {mostrarPopUp && (
+                <PopUp onClick={() => setMostrarPopUp(false)} titulo="✔️ Libro agregado con éxito ✔️">
+                    El libro fue añadido a tu biblioteca.
+                </PopUp>
+            )}
 
-            <h1>Añadir libro a la biblioteca</h1>
-            <form onSubmit={handleAgregarLibroUsuario}>
-                <Autocompletar
-                    options={dataLibros ? dataLibros.map(libro => libro.titulo) : []}
-                    placeholder="Título"
-                    onChange={e => setTituloPost(e.target.value)}
-                    value = {tituloPost}
-                />
-                <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="Pagina" required={false}/>
-                <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="Estado de Lectura" required={false}/>
-                <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="Puntuacion" required={false}/>
-                <Button type="submit" variant="default" color="oscuro" disabled={loadingPost}>Guardar Libro</Button>
+        <main className="biblioteca-body">
+        <div>
+            <h1 className="biblioteca-body__title">Ver biblioteca </h1>
+            {loadingBiblioteca ? (
+                <p>Cargando biblioteca...</p>
+            ) : dataBiblioteca ? (
+                <div className="biblioteca-lista">
+                    {dataBiblioteca.map(bookUser => (
+                        <Link key={bookUser.id} to={`/usuario/biblioteca/${bookUser.id}`}>
+                            <LibroCard urlFoto={bookUser.urlFoto} titulo={bookUser.titulo} />
+                        </Link>
+                    ))}
+                </div>
+            ) : (
+                <p>Error al cargar la biblioteca : {errorBiblioteca}</p>
+            )}
+        </div>
 
-                {dataPost && <p> Operacion post Exitosa </p>}
-                {errorPost && <p>{errorPost}</p>}
-                {loadingPost && <p>Cargando Post...</p>}
-                {loadingLibros && <p>Cargando libros...</p>}
-                {errorLibros && <p>{errorLibros}</p>}
-            </form>
-            <Link to="/index">Index</Link>
-            <Link to="/biblioteca/categoria/terror">Terror</Link>
+
+
+            <div className="">
+                <div className="">
+                    <h1 className="biblioteca-body__title--margen">Añadir libro a la biblioteca</h1>
+                    <div className="biblioteca-agregar">
+                        <form className="biblioteca-agregar__form" onSubmit={handleAgregarLibroUsuario}>
+                            <div className="biblioteca-agregar__largo">
+                                <AutoCompletarLibro placeholder="Título" onChange={e => setTituloPost(e.target.value)} value={tituloPost}/>
+                                <Input type="text" value={estadoLecturaPost} onChange={e => setEstadoLecturaPost(e.target.value)} placeholder="Estado de lectura"/>
+                            </div>
+                            <div className="biblioteca-agregar__corto">
+                                <Input type="number" value={paginaPost} onChange={e => setPaginaPost(e.target.value)} placeholder="Página actual"/>
+                                <Input type="number" value={puntuacionPost} onChange={e => setPuntuacionPost(e.target.value)} placeholder="Puntuación"/>
+                            </div>
+                            <Button type="submit" variant="default" color="oscuro" disabled={loadingPost}>
+                                Guardar Libro
+                            </Button>
+                        </form>
+                    </div>
+
+                </div>
+                <div className="biblioteca-seleccionar-container">
+                    <Button to = "/libros" variant="default" color="oscuro">Seleccionar libro</Button>
+                </div>
+            </div>
         </main>
+    </>
     );
 }

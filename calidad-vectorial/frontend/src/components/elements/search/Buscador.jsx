@@ -1,15 +1,31 @@
-import { Input } from "../input/Input";
 import lupa from "../../../assets/img/lupa.png";
 import "./Buscador.css";
+import { useFetch } from "../../utils/FetchUtils";
+import { useState } from "react";
+import { AutoCompletarLibro } from "../autocomplete/types/AutoCompletarLibro";
+import { useNavigate } from "react-router-dom";
 
 const Buscador = () => {
+    const { data : dataLibros , errorLibros , loadingLibros  } = useFetch("libro/todos");
+    const [titulo, setTitulo] = useState("");
+    const navigate = useNavigate();
+
+    const handleBuscarLibro = (e) => {
+        e.preventDefault();
+        const id = dataLibros.find(libro => libro.titulo === titulo)?.id || '';
+        navigate(`/libros/${id}`);
+    }
+
     return (
         <nav className="buscador">
-            <div className="buscador__input">
-                <Input type="text" name="buscador" placeholder="Buscar..." ></Input>
-                <label htmlFor="buscador"><img className="buscador__input__lupa" src={lupa} alt="Lupa" /></label>
-            </div>
-            
+            <form className="buscador__input" onSubmit={handleBuscarLibro}>
+                <AutoCompletarLibro
+                    placeholder = "Buscar libro por título"
+                    value = {titulo}
+                    onChange = {e => setTitulo(e.target.value)}
+                />
+                <button type = "submit" style={{border: "hidden"}}><img className="buscador__input__lupa" src={lupa} alt="Lupa" /></button>
+            </form>
         </nav>
     )
 }

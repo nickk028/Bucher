@@ -68,6 +68,7 @@ public class LibroUsuarioMapper {
         LibroUsuarioResponseDTO libroUsuarioResponseDTO = new LibroUsuarioResponseDTO();
         libroUsuarioResponseDTO.setId(libroUsuario.getId());
         libroUsuarioResponseDTO.setTitulo(libroUsuario.getLibro().getTitulo());
+        libroUsuarioResponseDTO.setUrlFoto(libroUsuario.getLibro().getUrlFoto());
         libroUsuarioResponseDTO.setEstadoLectura(libroUsuario.getEstadoLectura());
         libroUsuarioResponseDTO.setPaginaActual(libroUsuario.getPaginaActual());
         libroUsuarioResponseDTO.setPuntuacion(libroUsuario.getPuntuacion());

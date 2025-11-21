@@ -1,4 +1,3 @@
-import React from "react"
 import { Button } from "../../elements/buttons/Button";
 import { ButtonGroup } from "../../elements/buttons/ButtonGroup";
 import { Footer } from "../../elements/footer/Footer";
@@ -24,7 +23,6 @@ export const SobreNosotros = () => {
         </ButtonGroup>
         </div>
         <Footer></Footer>
-    
     </>
     )
 }

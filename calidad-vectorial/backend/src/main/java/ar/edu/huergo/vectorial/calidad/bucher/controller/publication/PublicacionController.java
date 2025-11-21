@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.controller.publication;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -101,6 +102,16 @@ public class PublicacionController {
     }
 
     /**
+     * Obtiene las publicaciones ordenadas por categoria
+     * @return Las publicaciones ordenadas
+     */
+    @GetMapping("/ordenadas")
+    public ResponseEntity<Map<Categoria, List<PublicacionBasicDTO>>> obtenerPublicacionesOrdenadas() {
+        Map<Categoria, List<PublicacionBasicDTO>> publicacionesOrdenadas = publicacionMapper.toDTOMap(publicacionService.obtenerPublicacionesOrdenadas());
+        return ResponseEntity.ok(publicacionesOrdenadas);
+    }
+    
+    /**
     * Crea una nueva publicación
     * @param publicacionCreateDTO El DTO con los datos de la publicación a crear
     * @param usuarioAutenticado El usuario autenticado
@@ -195,7 +206,7 @@ public class PublicacionController {
     @PostMapping("/devolucion/{id}")
     public ResponseEntity<String> devolverPublicacion(@PathVariable("id") Long id) {
         Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);
-        
+
         if (publicacion.getEstadoPublicacion() != Estado.Prestado) {
             return ResponseEntity.unprocessableEntity().body("La publicación no está prestada");
         }

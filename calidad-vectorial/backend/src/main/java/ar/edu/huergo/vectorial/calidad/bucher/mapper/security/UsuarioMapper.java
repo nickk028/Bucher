@@ -1,8 +1,8 @@
 package ar.edu.huergo.vectorial.calidad.bucher.mapper.security;
 
-import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
@@ -27,14 +27,18 @@ public class UsuarioMapper {
         }
         return new UsuarioResponseDTO(
             usuario.getUsername(),
-            usuario.getAvatar(),
+            usuario.getNickname(),
+            usuario.getAvatar(),   
             new HashSet<>(
                 usuario.getRoles()
                     .stream()
                     .map(Rol::getNombre)
                     .toList()),
             usuario.getPronombres(),
-            usuario.getDescripcion());
+            usuario.getDescripcion(),
+            usuario.getDireccion(),
+            usuario.getPiso(),
+            usuario.getCodigoPostal());
     }
 
     /*
@@ -60,6 +64,10 @@ public class UsuarioMapper {
         }
         Usuario usuario = new Usuario();
         usuario.setUsername(registrarDTO.username());
+        usuario.setNickname(registrarDTO.nickname());
+        usuario.setDireccion(registrarDTO.direccion());
+        usuario.setPiso(registrarDTO.piso());
+        usuario.setCodigoPostal(registrarDTO.codigoPostal());
         return usuario;
     }
 
@@ -69,10 +77,14 @@ public class UsuarioMapper {
         }
         Usuario usuario = new Usuario();
         usuario.setUsername(usuarioDTO.getUsername());
+        usuario.setNickname(usuarioDTO.getNickname());
         usuario.setRoles(usuarioDTO.getRoles());
         usuario.setAvatar(usuarioDTO.getAvatar());
         usuario.setPronombres(usuarioDTO.getPronombres());
         usuario.setDescripcion(usuarioDTO.getDescripcion());
+        usuario.setDireccion(usuarioDTO.getDireccion());
+        usuario.setPiso(usuarioDTO.getPiso());
+        usuario.setCodigoPostal(usuarioDTO.getCodigoPostal());
         return usuario;
     }
 }

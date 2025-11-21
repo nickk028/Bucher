@@ -4,6 +4,12 @@
     position: relative;
 }
 
+.input-group--checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .input-group__input {
     width: 100%;
     height: 32px;
@@ -16,10 +22,70 @@
     box-sizing: border-box;
     padding-left: 5px;
     padding-right: 5px;
+
+    transition: all ease-in-out 200ms;
 }
 
 .input-group__input--password {
     padding-right: 34px;
+}
+
+.input-group__input--checkbox {
+    position: relative;
+    appearance: none;
+    cursor: pointer;
+
+    width: 45px;
+    min-width: 45px;
+    height: 25px;
+    min-height: 25px;
+
+    border: 2px solid #929292;
+    border-radius: 1rem;
+    background: #d1d1d1;
+
+    display: flex;
+    align-items: center;
+
+    transition: all ease-in-out 200ms;
+}
+
+.input-group__input--checkbox:hover {
+    box-shadow: 0px 0px 3px #08413C;
+}
+
+.input-group__input--checkbox::after {
+    content: '';
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: calc(100% - 2px);
+    width: auto;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+
+    background: #f5f5f5;
+
+    transition: all ease-in-out 200ms
+}
+
+.input-group__input--checkbox:checked {
+    background: #0E675F;
+    border-color: #0E675F;
+}
+
+.input-group__input--checkbox:checked::after {
+    transform: translateX(120%);
+}
+
+.input-group--checkbox__text {
+    font-size: 1.1rem;
+
+    color: #929292;
+    text-shadow: 1px 1px 2px #d1d1d1;
 }
 
 .input-group__input--grande {
@@ -65,6 +131,7 @@
 
 .input-group__input:focus {
     border-color: #117c4c;
+    box-shadow: 0px 0px 4px #08413C;
 }
 
 .input-group__input:disabled {

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Input } from "../input/Input";
+import "./Autocompletar.css";
 
-export function Autocompletar({ options = [], value: valorExterno, onChange, maxSuggestions = 100, ...props }) {
+export function Autocompletar({ options = [], tipo, value: valorExterno, onChange, imgHeight, imgWidth, maxSuggestions = 100, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");
 	const [showList, setShowList] = useState(false);
 
@@ -24,22 +25,23 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 		: setValorInterno;
 
 	// Filtrado seguro: coercionar opciones a string antes de comparar
-	const normalizedValue = (value ?? "").toString();
-	const filtered =
-		normalizedValue.trim() === ""
+	const valorNormalizado = (value ?? "").toString();
+	const optFiltrados =
+		valorNormalizado.trim() === ""
 			? options.slice(0, maxSuggestions)
-			: options.filter((opt) => String(opt ?? "").toLowerCase().includes(normalizedValue.toLowerCase())).slice(0, maxSuggestions);
+			: tipo === "simple" ? options.filter((opt) => String(opt ?? "").toLowerCase().includes(valorNormalizado.toLowerCase())).slice(0, maxSuggestions)
+				: tipo == "doble" ? options.filter((opt) => String(opt[1] ?? "").toLowerCase().includes(valorNormalizado.toLowerCase())).slice(0, maxSuggestions)
+				: options.slice(0, maxSuggestions);
 
 	const handleSelect = (option) => {
-		setValue(option);
-		setShowList(false);
+			setValue(option);
+			setShowList(false);
 	};
 
 	return (
-		<div>
+		<div className="autocomplete">
 			<Input
 				type="text"
-				className="form-control"
 				value={value}
 				onChange={(e) => {
 					setValue(e.target.value);
@@ -50,15 +52,29 @@ export function Autocompletar({ options = [], value: valorExterno, onChange, max
 				{...props}
 			/>
 
-			{showList && filtered.length > 0 && (
-				<ul>
-					{filtered.map((opcion, i) => (
-						<li key={i} onMouseDown={() => handleSelect(opcion)}>
-							{opcion}
-						</li>
-					))}
+			{showList && optFiltrados.length > 0 && (
+				<ul className="autocomplete__options">
+					{tipo == "simple" && (
+						<>
+						{optFiltrados.map((opcion, i) => (
+							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion)}>
+								{opcion}
+							</li>
+						))}
+						</>
+					)}
+					{tipo == "doble" &&(
+						<>
+						{optFiltrados.map((opcion, i) => (
+							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion[1])}>
+								<img src={opcion[0]} alt="Imagen libro" height={imgHeight} width={imgWidth}/>
+								{opcion[1]}
+							</li>
+						))}
+						</>
+					)}
 				</ul>
 			)}
 		</div>
 	);
-}
+};

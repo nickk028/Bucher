@@ -1,0 +1,37 @@
+.autocomplete {
+    position: relative;
+}
+
+.autocomplete__options {
+    width: 100%;
+    max-height: 230px;
+    overflow-y: auto;
+    background: #ffff;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px #1a1a1a;
+
+    box-sizing: border-box;
+    margin-bottom: 10px;
+
+    z-index: 10;
+}
+
+.autocomplete__options__item {
+    padding: 5px;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    color: #08413C;
+    gap: 20px;
+}
+
+.autocomplete__options__item:hover {
+    background: #f2f2f2;
+}

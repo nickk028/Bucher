@@ -58,6 +58,15 @@ public class LibroService {
         return new HashSet<> (libroRepository.findAllByCategoriaContaining(categoria));
     }
 
+    public Map<Categoria,Set<Libro>> obtenerLibrosOrdenados() {
+        Map<Categoria, Set<Libro>> todosLosLibros = new HashMap<>();
+        for (Categoria categoria : Categoria.values()) {
+            Set<Libro> librosPorCategoria = obtenerLibrosPorCategoria(categoria);
+            todosLosLibros.put(categoria, librosPorCategoria);
+        }
+        return todosLosLibros;
+    }
+
 
     public Set<Libro> obtenerLibrosMasPrestadosDeLaSemana() {
         List<RegistroPrestamo> prestamosDeLaSemana = registroPrestamoService.obtenerRegistrosPrestamosDeLaSemana();

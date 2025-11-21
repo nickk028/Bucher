@@ -39,5 +39,4 @@ public class RegistroPrestamoController {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
         return registroPrestamoMapper.toDTOList(registroPrestamoService.obtenerRegistrosPrestamoPorUsuario(usuario));
     }
-    
 }

@@ -1,6 +1,6 @@
 .tend-body {
     height: 100%;
-    display: flex;
+    display: flex;  
     align-items: center;
 
     padding: 20px;
@@ -9,10 +9,16 @@
 
 .tend-body__podio {
     width: 60%;
-
     display: flex;
-    flex-grow: 0;
     justify-content: space-evenly;
+
+    background-image: url("../../../assets/img/podioImg.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: contain;
+    height: 550px; 
+    align-items: flex-end;
+    margin-top: -45px;
 }
 
 .tend-body__space {
@@ -23,8 +29,46 @@
 }
 
 .tend-body__lista {
-    height: 100%;
+    height: 98%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+}
+
+.tend-body__podio {
+    position: relative;
+}
+
+.tend-body__titulo {
+    position: absolute;
+    bottom: 15px;
+    left: 37%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* primer libro */
+.tend-body__podio .portada-libro:nth-child(1) {
+    position: absolute;
+    bottom: 118px; /* más arriba = más ganador */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* segundo libro */
+.tend-body__podio .portada-libro:nth-child(2) {
+    position: absolute;
+    bottom: 185px;
+    left: 26%;
+    transform: translateX(-50%);
+}
+
+/* tercer libro */
+.tend-body__podio .portada-libro:nth-child(3) {
+    position: absolute;
+    bottom: 212px;
+    left: 74%;
+    transform: translateX(-50%);
 }

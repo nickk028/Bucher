@@ -14,6 +14,7 @@ export const useFetch = (url) => {
     const [error, setError] = useState("");
 
     const { setLibroMensaje } = useBook();
+    const fetchDataRef = useRef(null);
 
     useEffect(() => {
         // Controller para poder cancelar la request si el componente se desmonta
@@ -55,15 +56,22 @@ export const useFetch = (url) => {
                 setLoading(false);
             }
         };
-
+        fetchDataRef.current = fetchData;
         // Dispara el fetch al montar/cambiar la URL
         fetchData();
 
         // Cleanup: si el componente se desmonta, aborta la request
         return () => controller.abort();
     }, [url]);
+        
+    const refetch = () => {
+        if (fetchDataRef.current) {
+            const controller = new AbortController();
+            fetchDataRef.current(controller.signal);
+        }
+    };
 
-    return { data, loading, error };
+    return { data, loading, error, refetch };
 };
 
 /** Hook para realizar peticiones POST

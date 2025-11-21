@@ -1,7 +1,9 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.security;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -27,5 +29,27 @@ public record RegistrarDTO(
     @Pattern(
         regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).*$",
         message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial")
-    String verificationPassword) {
+    String verificationPassword,
+
+    // Nick name de la cuenta del usuario
+    @Column(nullable = false, unique = true, length = 100)
+    @NotBlank(message = "El nickname es obligatorio.")
+    @NotNull(message = "El nickname es obligatorio.")
+    @Size(min = 3, max = 100, message = "El nickname debe tener entre 2 y 100 digitos.")
+    String nickname,
+
+    //Direccion
+    @Column(nullable = true)
+    @Size(max = 255, message = "La direccion debe tener como máximo 255 dígitos")
+    String direccion,
+
+    //Piso
+    @Column(nullable = true)
+    @Size(max = 255, message = "El piso debe tener como máximo 255 dígitos")
+    String piso,
+
+    //Codigo Postal
+    @Column(nullable = true)
+    @Size(max = 255, message = "El código postal debe tener como máximo 255 dígitos")
+    String codigoPostal) {
 }

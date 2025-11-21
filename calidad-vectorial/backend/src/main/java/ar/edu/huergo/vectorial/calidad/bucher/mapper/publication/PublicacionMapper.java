@@ -1,7 +1,9 @@
 package ar.edu.huergo.vectorial.calidad.bucher.mapper.publication;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,6 +13,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionBasicDT
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionUpdateDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 
@@ -135,5 +138,16 @@ public class PublicacionMapper {
             .stream()
             .map(this::toBasicDTO)
             .collect(Collectors.toList());
+    }
+
+    public Map<Categoria, List<PublicacionBasicDTO>> toDTOMap(Map<Categoria, Set<Publicacion>> original) {
+        Map<Categoria, List<PublicacionBasicDTO>> resultado = new HashMap<>();
+        for (Map.Entry<Categoria, Set<Publicacion>> entry : original.entrySet()) {
+            Set<Publicacion> publicacionesDeLaCategoria = entry.getValue();
+            List<PublicacionBasicDTO> dtos = toBasicDTOList(publicacionesDeLaCategoria);
+            Categoria categoria = entry.getKey();
+            resultado.put(categoria, dtos);
+        }
+        return (resultado);
     }
 }

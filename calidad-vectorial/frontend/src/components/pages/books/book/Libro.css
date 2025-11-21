@@ -1,0 +1,74 @@
+.body-libro {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.body-pub__libro {
+    display: flex;
+    height: 75vh;
+    max-width: calc(100vw - 140px);
+    box-sizing: border-box;
+    padding-left: 25px;
+    padding-right: 25px;
+    gap: 2vw;
+}
+
+.body-pub__libro__aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    gap: 10px;
+}
+
+.body-pub__libro__aside__img {
+    height: 65vh;
+    min-height: 400px;
+    width: auto;
+    aspect-ratio: 70/100;
+}
+
+.body-pub__libro__text {
+    font-weight: 400;
+    font-size: 1.05rem;
+
+    height: auto;
+    width: 65%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.body-pub__libro__text__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #0E675F;
+}
+
+.body-pub__libro__text__author {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #7c7c7c;
+}
+
+.body-pub__libro__text__item__subtitle {
+    color: #929292;
+    text-shadow: 1px 1px 2px #d1d1d1;
+}
+
+.body-pub__libro__text__item__parrafo {
+    max-height: 300px;
+    overflow: auto;
+}
+
+.body-pub__libro__text__item__link {
+    color: #117c4c;
+    transition: color 150ms ease-in-out;
+}
+
+.body-pub__libro__text__item__link:hover {
+    color: #5bc797;
+}

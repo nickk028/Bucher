@@ -9,4 +9,9 @@ public enum Categoria {
     realismomagico,
     romance,
     terror,
+    historico,
+    psicologia,
+    drama,
+    humor,
+    infantil,
 }

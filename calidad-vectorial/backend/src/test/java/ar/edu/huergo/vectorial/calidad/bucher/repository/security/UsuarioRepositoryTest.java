@@ -48,7 +48,7 @@ class UsuarioRepositoryTest {
         usuario.setAvatar(Avatar.ALICIA);
         usuario.setRoles(Set.of(rolLector));
         usuario.setDescripcion("Un usuario de ejemplo.");
-        usuario.setPronombres(Set.of("él", "lo"));
+        usuario.setPronombres("el/lo");
         return usuario;
     }
 
@@ -128,7 +128,7 @@ class UsuarioRepositoryTest {
     void deberiaGuardarUsuarioConMultiplesRolesYPronombres() {
         Usuario usuario = crearUsuarioBase();
         usuario.setRoles(Set.of(rolAdmin, rolLector));
-        usuario.setPronombres(Set.of("ella", "le"));
+        usuario.setPronombres("elle/le");
 
         Usuario guardado = usuarioRepository.saveAndFlush(usuario);
 
