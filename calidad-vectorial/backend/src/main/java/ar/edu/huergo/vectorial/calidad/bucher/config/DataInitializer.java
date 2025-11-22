@@ -606,6 +606,8 @@ public class DataInitializer {
                 libro.setUrlFoto("https://cdn.livriz.com/media/mediaspace/F9AFB48D-741D-4834-B760-F59344EEFF34/45/dfb31119-5232-4ef4-b34b-26261fbfa924/9788498389142.jpg");
                 libro.setPrecio(36.97);
                 libro.setCategoria(Set.of(Categoria.cienciaficcion));
+				libro.setEditorial(editorialSalamandra);
+				libro.setAutor(autorJK);
                 libroRepository.save(libro);
             }
 			//9
@@ -4488,11 +4490,9 @@ public class DataInitializer {
 
 
 
-            // ------------------------
-            // Inicialización de Publicaciones
-            // ------------------------
-
-			Optional<Usuario> usuarioLector = usuarioRepository.findByUsername("lector@gmail.com");
+			// ------------------------
+			// Inicialización de Publicaciones
+			// ------------------------
 			Optional<Usuario> usuarioLectorUno = usuarioRepository.findByUsername("lector@gmail.com");
 			Optional<Usuario> usuarioLectorDos = usuarioRepository.findByUsername("lector2@gmail.com");
 			Optional<Usuario> usuarioLectorTres = usuarioRepository.findByUsername("jlopez@gmail.com");
