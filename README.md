@@ -1,7 +1,7 @@
 # Proyecto Bücher
-Este es el proyecto Bücher, realizado para la materia de Programación Orientada Objetos en conjunto con Proyecto Informático II.
+Este es el proyecto Bücher, realizado para el Ins. Ind. Luis A. Huergo comenzada en el 5 año de la especialidad de informática
 
-##Integrantes:
+## Integrantes:
 - Ignacio Nicolas Falcone
 - Ignacio Román Pineda
 - Rocío Belén Podazza
