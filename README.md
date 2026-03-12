@@ -1,6 +1,11 @@
 # Proyecto Bücher
 Este es el proyecto Bücher, realizado para la materia de Programación Orientada Objetos en conjunto con Proyecto Informático II.
 
+##Integrantes:
+- Ignacio Nicolas Falcone
+- Ignacio Román Pineda
+- Rocío Belén Podazza
+
 ## Detalles del proyecto
 Los detalles del D.O.R. (Definition Of Ready) están especificados en el archivo *DOR.md* dentro de la carpeta *calidad-vectorial*.
 Adenás, dentro de la carpeta */calidad-vectorial/backend*, se encuentra el archivo *POSTMAN_REQUESTS*, con las requests para los endpoints del **BackEnd**.
