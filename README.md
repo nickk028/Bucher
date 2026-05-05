@@ -1,5 +1,5 @@
 # Proyecto Bücher
-Este es el proyecto Bücher, realizado para el Ins. Ind. Luis A. Huergo comenzada en el 5 año de la especialidad de informática
+Este es el proyecto Bücher, realizado para el Ins. Ind. Luis A. Huergo comenzado en el 5°to año de la especialidad de informática y retomado en el 6°to.
 
 ## Integrantes:
 - Ignacio Nicolas Falcone
