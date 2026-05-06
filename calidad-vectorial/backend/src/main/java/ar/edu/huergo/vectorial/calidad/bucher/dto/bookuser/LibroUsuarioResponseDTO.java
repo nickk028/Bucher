@@ -21,7 +21,7 @@ public class LibroUsuarioResponseDTO {
     // Título del libro
     @NotBlank(message = "El libro es obligatorio.")
     @Size(min = 2, max = 100, message = "El libro debe tener entre 2 y 100 digitos.")
-    String titulo;
+    private String titulo;
 
     // Pagina actual de libro que está leyendo el usuario
     @NotNull(message = "La página actual es obligatoria.")
