@@ -73,6 +73,7 @@ public class UsuarioService {
         usuario.setRoles(Set.of(rolCliente));
         usuario.setBiblioteca(biblioteca);
         biblioteca.setUsuario(usuario);
+        biblioteca.setNombre("Biblioteca");
         usuario.setAvatar(getAvatarRandom());
         return usuarioRepository.save(usuario);
     }

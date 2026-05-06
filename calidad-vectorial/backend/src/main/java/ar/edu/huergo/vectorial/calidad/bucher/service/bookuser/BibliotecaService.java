@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.BibliotecaRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.LibroUsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
@@ -34,9 +35,18 @@ public class BibliotecaService {
      * @return La Biblioteca encontrada
      * @throws EntityNotFoundException No encuentra la Biblioteca
      */
-    public Biblioteca obtenerBiblioteca(Long idUsuario) throws EntityNotFoundException {
-        return bibliotecaRepository.findById(idUsuario)
+    public Biblioteca obtenerBiblioteca(Long idBiblioteca) throws EntityNotFoundException {
+        return bibliotecaRepository.findById(idBiblioteca)
             .orElseThrow(() -> new EntityNotFoundException("Biblioteca no encontrada"));
+    }
+
+    /**
+     * 
+     * @param usuario
+     * @return
+     */
+    public List<Biblioteca> obtenerBibliotecasPorUsuario(Usuario usuario) {
+        return bibliotecaRepository.findAllByUsuario(usuario);
     }
 
     /**

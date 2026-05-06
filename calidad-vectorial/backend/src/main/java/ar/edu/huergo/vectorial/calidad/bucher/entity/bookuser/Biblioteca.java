@@ -10,9 +10,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,9 +33,16 @@ public class Biblioteca {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
     private Long id;
 
-    // Usuario Dueño de la biblioteca
-    // Relación 1 a 1 con Usuario
-    @OneToOne
+    // Nombre de la biblioteca
+    @JoinColumn(name = "nombre", nullable = false, unique = false)
+    @NotBlank(message = "El nombre de la biblioteca es obligatorio.")
+    @NotNull(message = "El nombre de la biblioteca es obligatorio.")
+    @Size(min = 3, max = 100, message = "El nombre debe tener entre 2 y 100 digitos.")
+    private String nombre;
+
+    // Usuario Dueño de las bibliotecas
+    // Relación muchos a 1 con Usuario
+    @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false, unique = true)
     private Usuario usuario;
 

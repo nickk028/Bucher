@@ -73,6 +73,7 @@ public class DataInitializer {
                 u.setAvatar(Avatar.ALICIA);
                 u.setBiblioteca(biblioteca);
                 biblioteca.setUsuario(u);
+				biblioteca.setNombre("Biblioteca");
                 usuarioRepository.save(u);
                 bibliotecaRepository.save(biblioteca);
             }
@@ -88,6 +89,7 @@ public class DataInitializer {
                 u.setRoles(Set.of(cliente));
                 u.setBiblioteca(biblioteca);
                 biblioteca.setUsuario(u);
+				biblioteca.setNombre("Biblioteca");
                 usuarioRepository.save(u);
                 bibliotecaRepository.save(biblioteca);
             }
@@ -102,6 +104,7 @@ public class DataInitializer {
                 u.setRoles(Set.of(cliente));
                 u.setBiblioteca(biblioteca);
                 biblioteca.setUsuario(u);
+				biblioteca.setNombre("Biblioteca");
                 usuarioRepository.save(u);
                 bibliotecaRepository.save(biblioteca);
             }
@@ -116,6 +119,7 @@ public class DataInitializer {
                 u.setRoles(Set.of(cliente));
                 u.setBiblioteca(biblioteca);
                 biblioteca.setUsuario(u);
+				biblioteca.setNombre("Biblioteca");
                 usuarioRepository.save(u);
                 bibliotecaRepository.save(biblioteca);
             }
@@ -130,6 +134,7 @@ public class DataInitializer {
                 u.setRoles(Set.of(cliente));
                 u.setBiblioteca(biblioteca);
                 biblioteca.setUsuario(u);
+				biblioteca.setNombre("Biblioteca");
                 usuarioRepository.save(u);
                 bibliotecaRepository.save(biblioteca);
             }
@@ -149,6 +154,7 @@ public class DataInitializer {
 				u.setPronombres("Ella");
 				u.setDescripcion("Lectora desde hace 10 años, amante del drama y el romance. Mi libro favorito es Orgullo y Prejuicio y siempre busco nuevas lecturas.");
                 biblioteca.setUsuario(u);
+				biblioteca.setNombre("Biblioteca");
                 usuarioRepository.save(u);
                 bibliotecaRepository.save(biblioteca);
             }
