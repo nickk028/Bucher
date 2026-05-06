@@ -51,7 +51,9 @@ public class DataInitializer {
 			RegistroPrestamoRepository registroPrestamoRepository,
 			LibroUsuarioRepository libroUsuarioRepository) {
         return args -> {
+			if (rolRepository.count() == 0) {
 
+			
             // ----------------------------------
             // Inicialización de roles y usuarios
             // ----------------------------------
@@ -5052,7 +5054,7 @@ public class DataInitializer {
 			} else {
 				System.out.println("Usuario no encontrado. Primero creá el usuario.");
 			}
-
+		}
         };
     }
 }

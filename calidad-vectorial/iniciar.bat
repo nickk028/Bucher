@@ -19,6 +19,6 @@ start cmd /k "npm run dev"
 cd ..
 
 echo =============================
-echo Proyecto Bucher en ejecución.
+echo Ejecutando Proyecto Bucher
 echo =============================
 pause
