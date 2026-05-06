@@ -41,16 +41,27 @@ public class BibliotecaController {
     @Autowired UsuarioService usuarioService;
 
     /**
-     * Obtiene la biblioteca del usuario autenticado
-     * @param usuarioAutenticado El usuario autenticado
-     * @return La biblioteca del usuario autenticado
-     */
+    * Obtiene las bibliotecas del usuario autenticado
+    * @param usuarioAutenticado El usuario autenticado
+    * @return Las bibliotecas del usuario autenticado
+    */
     @GetMapping
-    public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerBibliotecaPropia(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
+    public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerBibliotecasPropias(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
 
         return ResponseEntity.ok(
-            libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaService.obtenerBiblioteca(usuario.getId()))));
+            libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaService.obtenerBibliotecasPorUsuario(usuario))));
+    }
+
+    /**
+    * Obtiene una biblioteca especifica del usuario autenticado
+    * @param idBiblioteca EL ID de la biblioteca
+    * @return La biblioteca del usuario autenticado
+    */
+    @GetMapping("/{idBiblioteca}")
+    public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerBibliotecaPorId(@PathVariable("idBiblioteca") Long idBiblioteca) {
+        return ResponseEntity.ok(
+            libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaService.obtenerBiblioteca(idBiblioteca))));
     }
 
     /**
@@ -71,11 +82,11 @@ public class BibliotecaController {
     }
 
     /**
-     * Obtiene una lista de libroUsuario de la biblioteca del usuario autenticado por su estadoLectura
-     * @param estado El estadoLectura de los libroUsuario a obtener
-     * @param usuarioAutenticado El usuario autenticado
-     * @return La lista de libroUsuario del estadoLectura indicado
-     */
+    * Obtiene una lista de libroUsuario de la biblioteca del usuario autenticado por su estadoLectura
+    * @param estado El estadoLectura de los libroUsuario a obtener
+    * @param usuarioAutenticado El usuario autenticado
+    * @return La lista de libroUsuario del estadoLectura indicado
+    */
     @GetMapping("/estado/{estadoLectura}")
     public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerLibroUsuarioPorEstado(@PathVariable("estadoLectura") EstadoLectura estadoLectura,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
@@ -106,12 +117,12 @@ public class BibliotecaController {
     }
 
     /**
-     * Modifica un libroUsuario de la biblioteca del usuario autenticado por su posición
-     * @param posicion La posición del libroUsuario en la biblioteca
-     * @param libroUsuarioUpdateDTO El libroUsuario con los datos a modificar
-     * @param usuarioAutenticado El usuario autenticado
-     * @return El libroUsuario modificado
-     */
+    * Modifica un libroUsuario de la biblioteca del usuario autenticado por su posición
+    * @param posicion La posición del libroUsuario en la biblioteca
+    * @param libroUsuarioUpdateDTO El libroUsuario con los datos a modificar
+    * @param usuarioAutenticado El usuario autenticado
+    * @return El libroUsuario modificado
+    */
     @PutMapping("/{posicion}")
     public ResponseEntity<LibroUsuarioResponseDTO> modificarLibroUsuario(@PathVariable("posicion") int posicion, @Valid @RequestBody LibroUsuarioUpdateDTO libroUsuarioUpdateDTO,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
@@ -130,11 +141,11 @@ public class BibliotecaController {
     }
 
     /**
-     * Elimina un libroUsuario de la biblioteca del usuario autenticado por su posición
-     * @param posicion La posición del libroUsuario en la biblioteca
-     * @param usuarioAutenticado El usuario autenticado
-     * @return OK (200)
-     */
+    * Elimina un libroUsuario de la biblioteca del usuario autenticado por su posición
+    * @param posicion La posición del libroUsuario en la biblioteca
+    * @param usuarioAutenticado El usuario autenticado
+    * @return OK (200)
+    */
     @DeleteMapping("/{posicion}")
     public ResponseEntity<String> eliminarLibroUsuario(@PathVariable("posicion") int posicion,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
