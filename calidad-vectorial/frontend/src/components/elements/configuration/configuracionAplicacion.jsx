@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { validarExisteConfig, setConfig } from "../../utils/ConfigUtils";
 import { useBook } from "../../../context/LibroContexto";
-import { Autocompletar } from "../autocomplete/Autocompletar";
+import { Autocompletar } from "../autocomplete/AutoCompletar";
 import { Button } from "../buttons/Button";
 import { Input } from "../input/Input";
 import "./Configuracion.css";
