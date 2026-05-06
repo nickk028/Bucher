@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.BibliotecaBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioUpdateDTO;
@@ -22,6 +23,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
+import ar.edu.huergo.vectorial.calidad.bucher.mapper.bookuser.BibliotecaMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.bookuser.LibroUsuarioMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.bookuser.BibliotecaService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.bookuser.LibroUsuarioService;
@@ -40,17 +42,19 @@ public class BibliotecaController {
 
     @Autowired UsuarioService usuarioService;
 
+    @Autowired BibliotecaMapper bibliotecaMapper;
+
     /**
     * Obtiene las bibliotecas del usuario autenticado
     * @param usuarioAutenticado El usuario autenticado
     * @return Las bibliotecas del usuario autenticado
     */
     @GetMapping
-    public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerBibliotecasPropias(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
+    public ResponseEntity<List<BibliotecaBasicDTO>> obtenerBibliotecasPropias(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
 
         return ResponseEntity.ok(
-            libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaService.obtenerBibliotecasPorUsuario(usuario))));
+            bibliotecaMapper.toDTOList(bibliotecaService.obtenerBibliotecasPorUsuario(usuario)));
     }
 
     /**

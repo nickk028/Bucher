@@ -30,6 +30,12 @@ public class BibliotecaMapper {
         );
     }
 
+    public List<BibliotecaBasicDTO> toDTOList(List<Biblioteca> bibliotecas) {
+        return bibliotecas.stream()
+            .map(this::toBasicDTO)
+            .collect(Collectors.toList());
+    }
+
     public Biblioteca toEntity(BibliotecaResponseDTO bibliotecaResponseDTO) {
         Biblioteca biblioteca = new Biblioteca();
 
