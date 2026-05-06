@@ -1,5 +1,5 @@
 import { useFetch } from "../../../utils/FetchUtils";
-import { Autocompletar } from "../Autocompletar";
+import { Autocompletar } from "../AutoCompletar";
 
 export const AutoCompletarLibro = ({ placeholder, onChange, value , ...props}) => {
     const { data : dataLibros , errorLibros , loadingLibros  } = useFetch("libro/todos");

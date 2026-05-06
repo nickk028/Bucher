@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Input } from "../input/Input";
-import "./Autocompletar.css";
+import "./AutoCompletar.css";
 
 export function Autocompletar({ options = [], tipo, value: valorExterno, onChange, imgHeight, imgWidth, maxSuggestions = 100, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");

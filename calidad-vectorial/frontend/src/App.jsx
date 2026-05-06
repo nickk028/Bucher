@@ -18,7 +18,7 @@ import { Configuracion } from "./components/pages/user/configuration/Configuraci
 import { UsuarioLayout } from "./layouts/UsuarioLayout";
 import { ComingSoon } from "./components/elements/errors/ComingSoon";
 import { Prestamo } from "./components/pages/user/loan/Prestamo";
-import { Libros } from "./components/pages/books/libros";
+import { Libros } from "./components/pages/books/Libros";
 import { Libro } from "./components/pages/books/book/Libro";
 
 export const App = () => {
