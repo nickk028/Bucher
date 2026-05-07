@@ -33,8 +33,8 @@ public class BibliotecaService {
     * @return La Biblioteca encontrada
     * @throws EntityNotFoundException No encuentra la Biblioteca
     */
-    public Biblioteca obtenerBiblioteca(Long idBiblioteca) throws EntityNotFoundException {
-        return bibliotecaRepository.findById(idBiblioteca)
+    public Biblioteca obtenerBiblioteca(Long idBiblioteca, Usuario usuario) throws EntityNotFoundException {
+        return bibliotecaRepository.findByIdAndUsuario(idBiblioteca, usuario)
             .orElseThrow(() -> new EntityNotFoundException("Biblioteca no encontrada"));
     }
 
