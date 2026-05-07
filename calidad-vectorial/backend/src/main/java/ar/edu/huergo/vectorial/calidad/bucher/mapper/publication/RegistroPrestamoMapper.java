@@ -17,10 +17,10 @@ public class RegistroPrestamoMapper {
     @Autowired PublicacionMapper publicacionMapper;
     
     /**
-     * Convierte una entidad RegistroPrestamo a un DTO RegistroPrestamoResponseDTO
-     * @param registroPrestamo La entidad RegistroPrestamo a convertir
-     * @return El DTO RegistroPrestamoResponseDTO resultante
-     */
+    * Convierte una entidad RegistroPrestamo a un DTO RegistroPrestamoResponseDTO
+    * @param registroPrestamo La entidad RegistroPrestamo a convertir
+    * @return El DTO RegistroPrestamoResponseDTO resultante
+    */
     public RegistroPrestamoResponseDTO toDTO(RegistroPrestamo registroPrestamo) {
         if (registroPrestamo == null) {
             return null;
@@ -36,10 +36,10 @@ public class RegistroPrestamoMapper {
     }
 
     /**
-     * Convierte una lista de entidades RegistroPrestamo a una lista de DTOs RegistroPrestamoResponseDTO
-     * @param registrosPrestamo La lista de entidades RegistroPrestamo a convertir
-     * @return La lista de DTOs RegistroPrestamoResponseDTO resultante
-     */
+    * Convierte una lista de entidades RegistroPrestamo a una lista de DTOs RegistroPrestamoResponseDTO
+    * @param registrosPrestamo La lista de entidades RegistroPrestamo a convertir
+    * @return La lista de DTOs RegistroPrestamoResponseDTO resultante
+    */
     public List<RegistroPrestamoResponseDTO> toDTOList(List<RegistroPrestamo> registrosPrestamo) {
         if (registrosPrestamo == null) {
             return new ArrayList<>();

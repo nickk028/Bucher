@@ -32,17 +32,17 @@ public class UsuarioService {
     private final RolRepository rolRepository;
 
     /**
-     * Método para obtener todos los usuarios
-     * @return Un HashSet de todos los usuarios
-     */
+    * Método para obtener todos los usuarios
+    * @return Un HashSet de todos los usuarios
+    */
     public Set<Usuario> obtenerTodosUsuarios() {
         return new HashSet<>(usuarioRepository.findAll());
     }
 
     /**
-     * Obtiene los detalles del usuario actualmente autenticado.
-     * @return Los detalles del usuario autenticado o null si no hay ninguno.
-     */
+    * Obtiene los detalles del usuario actualmente autenticado.
+    * @return Los detalles del usuario autenticado o null si no hay ninguno.
+    */
     public UserDetails getUserDetailsActual() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails userDetails) {
@@ -52,13 +52,13 @@ public class UsuarioService {
     }
 
     /**
-     * Registra un nuevo usuario con la contraseña codificada y asigna el rol "LECTOR" por defecto.
-     * @param usuario El usuario a registrar
-     * @param password password La contraseña en texto plano
-     * @param verificacionPassword La verificación de la contraseña en texto plano
-     * @return El usuario registrado
-     * @throws IllegalArgumentException Si no existe el rol LECTOR al momento de asignarselo al usuario
-     */
+    * Registra un nuevo usuario con la contraseña codificada y asigna el rol "LECTOR" por defecto.
+    * @param usuario El usuario a registrar
+    * @param password password La contraseña en texto plano
+    * @param verificacionPassword La verificación de la contraseña en texto plano
+    * @return El usuario registrado
+    * @throws IllegalArgumentException Si no existe el rol LECTOR al momento de asignarselo al usuario
+    */
     public Usuario registrar(Usuario usuario, String password, String verificacionPassword) {
         if (!password.equals(verificacionPassword)) {
             throw new IllegalArgumentException("Las contraseñas no coinciden");
@@ -90,11 +90,11 @@ public class UsuarioService {
     }
 
     /**
-     * Verifica si un usuario tiene un rol específico
-     * @param usuario El usuario a verificar
-     * @param rolIngresado El rol a verificar
-     * @return true si el usuario tiene el rol, false en caso contrario
-     */
+    * Verifica si un usuario tiene un rol específico
+    * @param usuario El usuario a verificar
+    * @param rolIngresado El rol a verificar
+    * @return true si el usuario tiene el rol, false en caso contrario
+    */
     public static boolean hasRol(Usuario usuario, String rolIngresado) {
         ArrayList<Rol> roles = new ArrayList<>(usuario.getRoles());
         for (Rol rolUsuario : roles) {

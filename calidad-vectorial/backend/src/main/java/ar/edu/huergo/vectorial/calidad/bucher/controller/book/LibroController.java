@@ -26,34 +26,55 @@ public class LibroController {
     @Autowired
     private LibroMapper libroMapper;
 
+    /**
+    * Obtiene todos los libros disponibles
+    * @return Lista de todos los libros
+    */
     @GetMapping("/todos")
     public ResponseEntity<List<LibroBasicDTO>> obtenerTodosLosLibros() {
         return ResponseEntity.ok(
             libroMapper.toBasicDTOList(libroService.obtenerTodosLosLibros()));
     }
 
+    /**
+    * Obtiene un libro por su ID
+    * @param id El ID del libro a obtener
+    * @return El libro correspondiente al ID indicado
+    */
     @GetMapping("/{id}")
     public ResponseEntity<LibroResponseDTO> obtenerLibroPorId(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
             libroMapper.toDTO(libroService.obtenerLibroPorId(id)));
     }
 
+    /**
+    * Obtiene una lista de libros filtrados por categoría
+    * @param categoria La categoría por la cual filtrar los libros
+    * @return Lista de libros pertenecientes a la categoría indicada
+    */
     @GetMapping("/categoria/{categoria}")
     public ResponseEntity<List<LibroBasicDTO>> obtenerLibrosPorCategoria(@PathVariable("categoria") Categoria categoria) {
         return ResponseEntity.ok(
             libroMapper.toBasicDTOList(libroService.obtenerLibrosPorCategoria(categoria)));
     }
 
+    /**
+    * Obtiene los libros más leídos de la semana
+    * @return Lista de libros en tendencia según la cantidad de préstamos de la semana
+    */
     @GetMapping("/tendencias")
     public ResponseEntity<List<LibroBasicDTO>> obtenerLibrosMasLeidos() {
         List<LibroBasicDTO> librosEnTendencia = libroMapper.toBasicDTOList(libroService.obtenerLibrosMasPrestadosDeLaSemana());
         return ResponseEntity.ok(librosEnTendencia);
     }
 
+    /**
+    * Obtiene todos los libros agrupados y ordenados por categoría
+    * @return Mapa con cada categoría como clave y su lista de libros correspondiente como valor
+    */
     @GetMapping("/ordenados")
     public ResponseEntity<Map<Categoria, List<LibroResponseDTO>>> obtenerLibrosOrdenados() {
         Map<Categoria, List<LibroResponseDTO>> librosOrdenados = libroMapper.toDTOMap(libroService.obtenerLibrosOrdenados());
         return ResponseEntity.ok(librosOrdenados);
-
     }
 }

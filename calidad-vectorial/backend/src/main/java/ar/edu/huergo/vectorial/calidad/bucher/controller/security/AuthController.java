@@ -37,14 +37,14 @@ public class AuthController {
     private final UsuarioService usuarioService;
 
     /**
-     * Procesa el form de login y autentica al usuario
-     * @param username El nombre de usuario enviado desde el HTML
-     * @param password La contraseña enviada desde el HTML
-     * @param response Permite construir la respuesta HTTP para el navegador
-     * @param redirectAttributes Para pasar atributos entre redirecciones HTTP
-     * @return Redirección al index
-     * @throws BadCredentialsException Si las credenciales son inválidas
-     */
+    * Procesa el form de login y autentica al usuario
+    * @param username El nombre de usuario enviado desde el HTML
+    * @param password La contraseña enviada desde el HTML
+    * @param response Permite construir la respuesta HTTP para el navegador
+    * @param redirectAttributes Para pasar atributos entre redirecciones HTTP
+    * @return Redirección al index
+    * @throws BadCredentialsException Si las credenciales son inválidas
+    */
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginDTO request,
         HttpServletResponse response) {  // Permite crear la respuesta para el navegador -> en este caso se le envía una cookie
@@ -78,10 +78,10 @@ public class AuthController {
     }
 
     /**
-     * Valida el token JWT presente en la cookie HTTP-only.
-     * @param request El request HTTP para acceder a las cookies.
-     * @return 200 si el token es válido, 401 si no.
-     */
+    * Valida el token JWT presente en la cookie HTTP-only.
+    * @param request El request HTTP para acceder a las cookies.
+    * @return 200 si el token es válido, 401 si no.
+    */
     @GetMapping("/validar-token")
     public ResponseEntity<String> validateToken(HttpServletRequest request) {
         String token = null;
@@ -108,10 +108,10 @@ public class AuthController {
     }
 
     /**
-     * Cierra la sesión del usuario
-     * @param response Permite construir la respuesta HTTP para el navegador
-     * @return 200 ok
-     */
+    * Cierra la sesión del usuario
+    * @param response Permite construir la respuesta HTTP para el navegador
+    * @return 200 ok
+    */
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         // Eliminar la cookie JWT

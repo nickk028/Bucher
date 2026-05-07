@@ -30,9 +30,9 @@ public class UsuarioController {
     private final UsuarioMapper usuarioMapper;
 
     /**
-     * Obtiene todos los usuarios
-     * @return Una lista de todos los usuarios
-     */
+    * Obtiene todos los usuarios
+    * @return Una lista de todos los usuarios
+    */
     @GetMapping
     public ResponseEntity<List<UsuarioResponseDTO>> obtenerTodosUsuarios() {
         return ResponseEntity.ok(
@@ -50,10 +50,10 @@ public class UsuarioController {
     }
 
     /**
-     * Registra un nuevo usuario
-     * @param registrarDTO El DTO con los datos del usuario a registrar
-     * @return El usuario registrado
-     */
+    * Registra un nuevo usuario
+    * @param registrarDTO El DTO con los datos del usuario a registrar
+    * @return El usuario registrado
+    */
     @PostMapping("/registrar")
     public ResponseEntity<UsuarioResponseDTO> registrarCliente(@Valid @RequestBody RegistrarDTO registrarDTO) {
         Usuario usuario = usuarioMapper.toEntity(registrarDTO);
@@ -62,6 +62,11 @@ public class UsuarioController {
         return ResponseEntity.ok(nuevoUsuarioDTO);
     }
 
+    /**
+    * Modifica los datos del usuario autenticado
+    * @param usuarioUpdateDTO Los nuevos datos del usuario a modificar
+    * @return El usuario con los datos actualizados
+    */
     @PutMapping("/modificar")
     public ResponseEntity<UsuarioResponseDTO> modificarUsuario(@Valid @RequestBody UsuarioUpdateDTO usuarioUpdateDTO) {
         UserDetails usuarioAutenticado = usuarioService.getUserDetailsActual();

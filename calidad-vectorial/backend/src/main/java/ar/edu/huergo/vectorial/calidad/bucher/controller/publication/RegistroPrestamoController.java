@@ -30,10 +30,10 @@ public class RegistroPrestamoController {
     private UsuarioService usuarioService;
 
     /**
-     * Obtiene los registros de préstamo de un usuario específico
-     * @param usuario El usuario cuyos registros se desean obtener
-     * @return Una lista de registros de préstamo del usuario
-     */
+    * Obtiene los registros de préstamo de un usuario específico
+    * @param usuario El usuario cuyos registros se desean obtener
+    * @return Una lista de registros de préstamo del usuario
+    */
     @GetMapping
     public List<RegistroPrestamoResponseDTO> obtenerRegistrosUsuario(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());

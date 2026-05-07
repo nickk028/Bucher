@@ -17,9 +17,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
 import jakarta.persistence.EntityNotFoundException;
 
-/**
- * Clase que maneja la lógica de Libro
- */
+//Clase que maneja la lógica de Libro
 @Service
 public class LibroService {
 
@@ -29,35 +27,49 @@ public class LibroService {
     @Autowired
     RegistroPrestamoService registroPrestamoService;
 
+    /**
+    * Obtiene todos los libros disponibles
+    * @return Conjunto con todos los libros
+    */
     public Set<Libro> obtenerTodosLosLibros() {
         return new HashSet<> (libroRepository.findAll());
     }
 
+    /**
+    * Obtiene un libro por su ID
+    * @param id El ID del libro a obtener
+    * @return El libro correspondiente al ID indicado
+    * @throws EntityNotFoundException Si no existe un libro con el ID indicado
+    */
     public Libro obtenerLibroPorId(Long id) throws EntityNotFoundException {
         return libroRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Libro no encontrado"));
     }
 
     /**
-     * Obtiene un Libro por su titulo
-     * @param titulo El titulo del Libro a buscar
-     * @return El Libro encontrado
-     * @throws EntityNotFoundException No encuentra el Libro
-     */
+    * Obtiene un Libro por su titulo
+    * @param titulo El titulo del Libro a buscar
+    * @return El Libro encontrado
+    * @throws EntityNotFoundException No encuentra el Libro
+    */
     public Libro obtenerLibroPorTitulo(String titulo) throws EntityNotFoundException {
         return libroRepository.findByTituloIgnoringCase(titulo)
             .orElseThrow(() -> new EntityNotFoundException("Libro no encontrado"));
     }
 
     /**
-     * Obtiene Libros por su categoria
-     * @param categoria La categoria de los libros a buscar
-     * @return Los libros de la categoria
-     */
+    * Obtiene Libros por su categoria
+    * @param categoria La categoria de los libros a buscar
+    * @return Los libros de la categoria
+    */
     public Set<Libro> obtenerLibrosPorCategoria(Categoria categoria) {
         return new HashSet<> (libroRepository.findAllByCategoriaContaining(categoria));
     }
 
+    /**
+    * Obtiene todos los libros agrupados por categoría
+    * @return Mapa con cada categoría como clave y su conjunto de libros correspondiente como valor
+    */
     public Map<Categoria,Set<Libro>> obtenerLibrosOrdenados() {
         Map<Categoria, Set<Libro>> todosLosLibros = new HashMap<>();
         for (Categoria categoria : Categoria.values()) {
@@ -67,7 +79,10 @@ public class LibroService {
         return todosLosLibros;
     }
 
-
+    /**
+    * Obtiene los 10 libros más prestados de la semana actual
+    * @return Conjunto con los 10 libros más prestados, ordenados de mayor a menor cantidad de préstamos
+    */
     public Set<Libro> obtenerLibrosMasPrestadosDeLaSemana() {
         List<RegistroPrestamo> prestamosDeLaSemana = registroPrestamoService.obtenerRegistrosPrestamosDeLaSemana();
 

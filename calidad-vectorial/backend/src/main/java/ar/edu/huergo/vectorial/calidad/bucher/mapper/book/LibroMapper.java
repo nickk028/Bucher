@@ -21,10 +21,10 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 public class LibroMapper {
 
     /**
-     * Pasa de Libro a entidad LibroResponseDTO
-     * @param Libro a pasar a DTO
-     * @return Libro como ResponseDTO
-     */
+    * Pasa de Libro a entidad LibroResponseDTO
+    * @param Libro a pasar a DTO
+    * @return Libro como ResponseDTO
+    */
     public LibroResponseDTO toDTO(Libro libro) {
         if (libro == null) {
             return null;
@@ -44,6 +44,11 @@ public class LibroMapper {
         return libroResponseDTO;
     }
 
+    /**
+    * Convierte un mapa de categorías con sus libros en un mapa de categorías con sus DTOs
+    * @param original El mapa original con categorías y sus conjuntos de libros
+    * @return Mapa con cada categoría y su lista de LibroResponseDTO correspondiente
+    */
     public Map<Categoria, List<LibroResponseDTO>> toDTOMap(Map<Categoria, Set<Libro>> original) {
         Map<Categoria, List<LibroResponseDTO>> resultado = new HashMap<>();
         for (Map.Entry<Categoria, Set<Libro>> entry : original.entrySet()) {
@@ -55,6 +60,11 @@ public class LibroMapper {
         return (resultado);
     }
 
+    /**
+    * Convierte un Libro en un LibroBasicDTO
+    * @param libro El libro a convertir
+    * @return El LibroBasicDTO con los datos básicos del libro, o null si el libro es null
+    */
     public LibroBasicDTO toBasicDTO(Libro libro) {
         if (libro == null) {
             return null;
@@ -68,6 +78,11 @@ public class LibroMapper {
         return libroBasicDTO;
     }
 
+    /**
+    * Convierte un conjunto de Libros en una lista de LibroBasicDTO
+    * @param libros El conjunto de libros a convertir
+    * @return Lista de LibroBasicDTO, o una lista vacía si el conjunto es null
+    */
     public List<LibroBasicDTO> toBasicDTOList(Set<Libro> libros) {
         if (libros == null) {
             return new ArrayList<>();
@@ -78,7 +93,12 @@ public class LibroMapper {
             .collect(Collectors.toList());
     }
 
-        public List<LibroResponseDTO> toResponseDTOList(Set<Libro> libros) {
+    /**
+    * Convierte un conjunto de Libros en una lista de LibroResponseDTO
+    * @param libros El conjunto de libros a convertir
+    * @return Lista de LibroResponseDTO, o una lista vacía si el conjunto es null
+    */
+    public List<LibroResponseDTO> toResponseDTOList(Set<Libro> libros) {
         if (libros == null) {
             return new ArrayList<>();
         }

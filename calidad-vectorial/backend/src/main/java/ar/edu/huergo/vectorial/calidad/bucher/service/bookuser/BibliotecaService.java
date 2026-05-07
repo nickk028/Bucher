@@ -14,9 +14,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.LibroUsuarioRe
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
 import jakarta.persistence.EntityNotFoundException;
 
-/**
- * Clase que maneja la lógica de Biblioteca
- */
+//Clase que maneja la lógica de Biblioteca
 @Service
 public class BibliotecaService {
 
@@ -30,11 +28,11 @@ public class BibliotecaService {
     private LibroService libroService;
 
     /**
-     * Obtiene la Biblioteca de un Usuario
-     * @param idUsuario El id del Usuario de la Biblioteca
-     * @return La Biblioteca encontrada
-     * @throws EntityNotFoundException No encuentra la Biblioteca
-     */
+    * Obtiene la Biblioteca de un Usuario
+    * @param idUsuario El id del Usuario de la Biblioteca
+    * @return La Biblioteca encontrada
+    * @throws EntityNotFoundException No encuentra la Biblioteca
+    */
     public Biblioteca obtenerBiblioteca(Long idBiblioteca) throws EntityNotFoundException {
         return bibliotecaRepository.findById(idBiblioteca)
             .orElseThrow(() -> new EntityNotFoundException("Biblioteca no encontrada"));

@@ -48,9 +48,9 @@ public class PublicacionController {
     private RegistroPrestamoService registroPrestamoService;
 
     /**
-     * Obtiene todas las publicaciones
-     * @return Un conjunto de todas las publicaciones
-     */
+    * Obtiene todas las publicaciones
+    * @return Un conjunto de todas las publicaciones
+    */
     @GetMapping
     public ResponseEntity<List<PublicacionBasicDTO>> obtenerTodasLasPublicaciones() {
         return ResponseEntity.ok(
@@ -58,10 +58,10 @@ public class PublicacionController {
     }
 
     /**
-     * Obtiene una publicacion por id
-     * @param El id de la publiacion
-     * @return La publiacion buscada
-     */
+    * Obtiene una publicacion por id
+    * @param El id de la publiacion
+    * @return La publiacion buscada
+    */
     @GetMapping("/{id}")
     public ResponseEntity<PublicacionResponseDTO> obtenerPublicacion(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
@@ -69,10 +69,10 @@ public class PublicacionController {
     }
 
     /**
-     * Obtiene las publicaciones del usuario autenticado
-     * @param usuarioAutenticado El usuario autenticado
-     * @return Las publicaciones del usuario autenticado
-     */
+    * Obtiene las publicaciones del usuario autenticado
+    * @param usuarioAutenticado El usuario autenticado
+    * @return Las publicaciones del usuario autenticado
+    */
     @GetMapping("/propias")
     public ResponseEntity<List<PublicacionResponseDTO>> obtenerPublicacionesPorUsuario(@AuthenticationPrincipal UserDetails usuarioAutenticado) {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
@@ -82,29 +82,29 @@ public class PublicacionController {
     }
 
     /**
-     * Obtiene las publicaciones de una categoria
-     * @param categoria Categoria buscada
-     * @return Las publicaciones de una categoria
-     */
+    * Obtiene las publicaciones de una categoria
+    * @param categoria Categoria buscada
+    * @return Las publicaciones de una categoria
+    */
     @GetMapping("/categoria/{categoria}")
     public ResponseEntity<List<PublicacionBasicDTO>> obtenerPublicacionesPorCategoria(@PathVariable("categoria") Categoria categoria) {
         return ResponseEntity.ok(publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionesPorCategoria(categoria)));
     }
 
     /**
-     * Obtiene las publicaciones de un estado
-     * @param estado Estado buscado
-     * @return Las publicaciones del estado buscado
-     */
+    * Obtiene las publicaciones de un estado
+    * @param estado Estado buscado
+    * @return Las publicaciones del estado buscado
+    */
     @GetMapping("/estado/{estado}")
     public ResponseEntity<List<PublicacionBasicDTO>> obtenerPublicacionesPorEstado(@PathVariable("estado") Estado estado) {
         return ResponseEntity.ok(publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionesPorEstado(estado)));
     }
 
     /**
-     * Obtiene las publicaciones ordenadas por categoria
-     * @return Las publicaciones ordenadas
-     */
+    * Obtiene las publicaciones ordenadas por categoria
+    * @return Las publicaciones ordenadas
+    */
     @GetMapping("/ordenadas")
     public ResponseEntity<Map<Categoria, List<PublicacionBasicDTO>>> obtenerPublicacionesOrdenadas() {
         Map<Categoria, List<PublicacionBasicDTO>> publicacionesOrdenadas = publicacionMapper.toDTOMap(publicacionService.obtenerPublicacionesOrdenadas());
@@ -128,11 +128,11 @@ public class PublicacionController {
     }
 
     /**
-     * Elimina una publicación por su ID (solo el usuario que la creo o un admin)
-     * @param id El ID de la publicación a eliminar
-     * @param usuarioAutenticado El usuario autenticado
-     * @return OK (200) si se eliminó correctamente, Not Found (404) si no se encontró o no tiene permisos
-     */
+    * Elimina una publicación por su ID (solo el usuario que la creo o un admin)
+    * @param id El ID de la publicación a eliminar
+    * @param usuarioAutenticado El usuario autenticado
+    * @return OK (200) si se eliminó correctamente, Not Found (404) si no se encontró o no tiene permisos
+    */
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarPublicacion(@PathVariable("id") Long id,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
@@ -150,12 +150,12 @@ public class PublicacionController {
     }
 
     /**
-     * Modifica una publicación (solo el usuario que la creo o un admin)
-     * @param id El ID de la publicación a modificar
-     * @param publicacionDTO El DTO con los datos a modificar
-     * @param usuarioAutenticado El usuario autenticado
-     * @return La publicación modificada
-     */
+    * Modifica una publicación (solo el usuario que la creo o un admin)
+    * @param id El ID de la publicación a modificar
+    * @param publicacionDTO El DTO con los datos a modificar
+    * @param usuarioAutenticado El usuario autenticado
+    * @return La publicación modificada
+    */
     @PutMapping("/actualizar/{id}")
     public ResponseEntity<PublicacionResponseDTO> actualizarPublicacion(@PathVariable("id") Long id,
     @Valid @RequestBody PublicacionUpdateDTO publicacionDTO,
@@ -175,11 +175,11 @@ public class PublicacionController {
     }
 
     /**
-     * Permite a un usuario pedir prestada una publicación
-     * @param id El ID de la publicación a pedir prestada
-     * @param usuarioAutenticado El usuario autenticado
-     * @return OK (200) o Unprocessable Entity (422)
-     */
+    * Permite a un usuario pedir prestada una publicación
+    * @param id El ID de la publicación a pedir prestada
+    * @param usuarioAutenticado El usuario autenticado
+    * @return OK (200) o Unprocessable Entity (422)
+    */
     @PostMapping("/prestamo/{id}")
     public ResponseEntity<String> pedirPrestadoPublicacion(@PathVariable("id") Long id,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
@@ -199,10 +199,10 @@ public class PublicacionController {
     }
 
     /**
-     * Permite al admin devolver una publicación
-     * @param id El ID de la publicación a devolver
-     * @return OK (200) o Unprocessable Entity (422)
-     */
+    * Permite al admin devolver una publicación
+    * @param id El ID de la publicación a devolver
+    * @return OK (200) o Unprocessable Entity (422)
+    */
     @PostMapping("/devolucion/{id}")
     public ResponseEntity<String> devolverPublicacion(@PathVariable("id") Long id) {
         Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);

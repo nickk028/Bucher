@@ -22,10 +22,10 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 public class PublicacionMapper {
 
     /**
-     * Pasa de PubicacionCreateDTO a entidad Publicacion
-     * @param PubicacionCreateDTO El DTO a transformar en entidad
-     * @return Pubicacion como entidad
-     */
+    * Pasa de PubicacionCreateDTO a entidad Publicacion
+    * @param PubicacionCreateDTO El DTO a transformar en entidad
+    * @return Pubicacion como entidad
+    */
     public Publicacion toEntity(PublicacionCreateDTO publicacionCreateDTO) {
         Publicacion publicacion = new Publicacion();
         publicacion.setDescripcion(publicacionCreateDTO.getDescripcion());
@@ -35,34 +35,34 @@ public class PublicacionMapper {
     }
     
     /**
-     * Pasa de PubicacionUpdateDTO a entidad Publicacion
-     * @param PubicacionUpdateDTO El DTO a transformar en entidad
-     * @return Pubicacion como entidad
-     */
+    * Pasa de PubicacionUpdateDTO a entidad Publicacion
+    * @param PubicacionUpdateDTO El DTO a transformar en entidad
+    * @return Pubicacion como entidad
+    */
     public Publicacion toEntity(PublicacionUpdateDTO publicacionUpdateDTO) {
-    Publicacion publicacion = new Publicacion();
+        Publicacion publicacion = new Publicacion();
 
-    if (publicacionUpdateDTO.getDescripcion() == null || publicacionUpdateDTO.getDescripcion().isEmpty()) {
-        publicacion.setDescripcion("nada");
-    } else {
-        publicacion.setDescripcion(publicacionUpdateDTO.getDescripcion());
-    }
+        if (publicacionUpdateDTO.getDescripcion() == null || publicacionUpdateDTO.getDescripcion().isEmpty()) {
+            publicacion.setDescripcion("nada");
+        } else {
+            publicacion.setDescripcion(publicacionUpdateDTO.getDescripcion());
+        }
 
-    publicacion.setLimiteDias(publicacionUpdateDTO.getLimiteDias());
+        publicacion.setLimiteDias(publicacionUpdateDTO.getLimiteDias());
 
-    if (publicacionUpdateDTO.getDetallesEstadoLibro() == null || publicacionUpdateDTO.getDetallesEstadoLibro().isEmpty()) {
-        publicacion.setDetallesEstadoLibro("nada");
-    } else {
-        publicacion.setDetallesEstadoLibro(publicacionUpdateDTO.getDetallesEstadoLibro());
-    }
+        if (publicacionUpdateDTO.getDetallesEstadoLibro() == null || publicacionUpdateDTO.getDetallesEstadoLibro().isEmpty()) {
+            publicacion.setDetallesEstadoLibro("nada");
+        } else {
+            publicacion.setDetallesEstadoLibro(publicacionUpdateDTO.getDetallesEstadoLibro());
+        }
 
-    if (publicacionUpdateDTO.getEstadoPublicacion() == null) {
-        publicacion.setEstadoPublicacion(Estado.Indefinido);
-    } else {
-        publicacion.setEstadoPublicacion(publicacionUpdateDTO.getEstadoPublicacion());
-    }
+        if (publicacionUpdateDTO.getEstadoPublicacion() == null) {
+            publicacion.setEstadoPublicacion(Estado.Indefinido);
+        } else {
+            publicacion.setEstadoPublicacion(publicacionUpdateDTO.getEstadoPublicacion());
+        }
 
-    return publicacion;
+        return publicacion;
     }
 
     /**
@@ -89,11 +89,11 @@ public class PublicacionMapper {
         return publicacionResponseDTO;
     }
 
-        /**
-     * Pasa de Pubicacion a entidad PublicacionBasicDTO
-     * @param Pubicacion a pasar a DTO
-     * @return Pubicacion como BasicDTO
-     */
+    /**
+    * Pasa de Pubicacion a entidad PublicacionBasicDTO
+    * @param Pubicacion a pasar a DTO
+    * @return Pubicacion como BasicDTO
+    */
     public PublicacionBasicDTO toBasicDTO(Publicacion publicacion) {
         if (publicacion == null) {
             return null;
@@ -111,10 +111,10 @@ public class PublicacionMapper {
     }
 
     /**
-     * Pasa de una lista de Publicaciones a una lista de PublicacionesResponseDTO
-     * @param PubicacionesResponseDTO La lista de Publicaciones a transformar en ResponseDTO
-     * @return PublicacionesResponseDTO como DTO
-     */
+    * Pasa de una lista de Publicaciones a una lista de PublicacionesResponseDTO
+    * @param PubicacionesResponseDTO La lista de Publicaciones a transformar en ResponseDTO
+    * @return PublicacionesResponseDTO como DTO
+    */
     public List<PublicacionResponseDTO> toDTOList(Set<Publicacion> publicaciones) {
         if (publicaciones == null) {
             return new ArrayList<>();
@@ -126,10 +126,10 @@ public class PublicacionMapper {
     }
 
     /**
-     * Pasa de una lista de Publicaciones a una lista de PublicacionesBasicDTO
-     * @param PubicacionesBasicDTO La lista de Publicaciones a transformar en BasicDTO
-     * @return PublicacionesBasicDTO como DTO
-     */
+    * Pasa de una lista de Publicaciones a una lista de PublicacionesBasicDTO
+    * @param PubicacionesBasicDTO La lista de Publicaciones a transformar en BasicDTO
+    * @return PublicacionesBasicDTO como DTO
+    */
     public List<PublicacionBasicDTO> toBasicDTOList(Set<Publicacion> publicaciones) {
         if (publicaciones == null) {
             return new ArrayList<>();
@@ -140,6 +140,11 @@ public class PublicacionMapper {
             .collect(Collectors.toList());
     }
 
+    /**
+    * Convierte un mapa de categorías con sus publicaciones en un mapa de categorías con sus DTOs
+    * @param original El mapa original con categorías y sus conjuntos de publicaciones
+    * @return Mapa con cada categoría y su lista de PublicacionBasicDTO correspondiente
+    */
     public Map<Categoria, List<PublicacionBasicDTO>> toDTOMap(Map<Categoria, Set<Publicacion>> original) {
         Map<Categoria, List<PublicacionBasicDTO>> resultado = new HashMap<>();
         for (Map.Entry<Categoria, Set<Publicacion>> entry : original.entrySet()) {
