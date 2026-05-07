@@ -59,27 +59,32 @@ public class BibliotecaController {
 
     /**
     * Obtiene una biblioteca especifica del usuario autenticado
-    * @param idBiblioteca EL ID de la biblioteca
+    * @param idBiblioteca El id de la biblioteca del usuario
     * @return La biblioteca del usuario autenticado
     */
     @GetMapping("/{idBiblioteca}")
-    public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerBibliotecaPorId(@PathVariable("idBiblioteca") Long idBiblioteca) {
+    public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerBibliotecaPorId(@PathVariable("idBiblioteca") Long idBiblioteca,
+    @AuthenticationPrincipal UserDetails usuarioAutenticado) {
+
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+
         return ResponseEntity.ok(
-            libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaService.obtenerBiblioteca(idBiblioteca))));
+            libroUsuarioMapper.toDTOList(libroUsuarioService.extraerLibrosUsuario(bibliotecaService.obtenerBiblioteca(idBiblioteca, usuario))));
     }
 
     /**
     * Obtiene un libroUsuario de la biblioteca del usuario autenticado por su posición
+    * @param idBiblioteca El id de la biblioteca del usuario
     * @param posicion La posición del libroUsuario en la biblioteca
     * @param usuarioAutenticado El usuario autenticado
     * @return El libroUsuario en la posición indicada
     */
-    @GetMapping("/{posicion}")
-    public ResponseEntity<LibroUsuarioResponseDTO> obtenerLibroUsuario(@PathVariable("posicion") int posicion,
+    @GetMapping("/{idBiblioteca}/{posicion}")
+    public ResponseEntity<LibroUsuarioResponseDTO> obtenerLibroUsuario(@PathVariable("posicion") int posicion, @PathVariable("idBiblioteca") Long idBiblioteca,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
-        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
+        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(idBiblioteca, usuario);
 
         return ResponseEntity.ok(
             libroUsuarioMapper.toDTO(bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaUsuario)));
@@ -87,15 +92,16 @@ public class BibliotecaController {
 
     /**
     * Obtiene una lista de libroUsuario de la biblioteca del usuario autenticado por su estadoLectura
+    * @param idBiblioteca El id de la biblioteca del usuario
     * @param estado El estadoLectura de los libroUsuario a obtener
     * @param usuarioAutenticado El usuario autenticado
     * @return La lista de libroUsuario del estadoLectura indicado
     */
-    @GetMapping("/estado/{estadoLectura}")
-    public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerLibroUsuarioPorEstado(@PathVariable("estadoLectura") EstadoLectura estadoLectura,
+    @GetMapping("/{idBiblioteca}/estado/{estadoLectura}")
+    public ResponseEntity<List<LibroUsuarioResponseDTO>> obtenerLibroUsuarioPorEstado(@PathVariable("estadoLectura") EstadoLectura estadoLectura, @PathVariable("idBiblioteca") Long idBiblioteca,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
-        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
+        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(idBiblioteca, usuario);
 
         return ResponseEntity.ok(libroUsuarioMapper.toDTOList(bibliotecaService.obtenerLibrosPorEstado(bibliotecaUsuario, estadoLectura)));
     }
@@ -106,12 +112,12 @@ public class BibliotecaController {
     * @param usuarioAutenticado El usuario autenticado
     * @return La biblioteca actualizada del usuario autenticado
     */
-    @PostMapping
-    public ResponseEntity<List<LibroUsuarioResponseDTO>> subirLibroUsuario(@Valid @RequestBody LibroUsuarioCreateDTO libroUsuarioCreateDTO,
+    @PostMapping("/{idBiblioteca}")
+    public ResponseEntity<List<LibroUsuarioResponseDTO>> subirLibroUsuario(@PathVariable("idBiblioteca") Long idBiblioteca ,@Valid @RequestBody LibroUsuarioCreateDTO libroUsuarioCreateDTO,
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
-        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
+        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(idBiblioteca, usuario);
 
         LibroUsuario libroUsuarioIngresado = libroUsuarioMapper.toEntity(libroUsuarioCreateDTO);
         Biblioteca bibliotecaActualizada = bibliotecaService.subirLibroUsuario(bibliotecaUsuario, libroUsuarioIngresado, libroUsuarioCreateDTO.getTitulo());
@@ -132,7 +138,7 @@ public class BibliotecaController {
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
-        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
+        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId(), usuario);
 
         LibroUsuario libroUsuarioIngresado = libroUsuarioMapper.toEntity(libroUsuarioUpdateDTO);
         LibroUsuario libroUsuarioAModificar = bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaUsuario);
@@ -155,7 +161,7 @@ public class BibliotecaController {
     @AuthenticationPrincipal UserDetails usuarioAutenticado) {
 
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
-        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId());
+        Biblioteca bibliotecaUsuario = bibliotecaService.obtenerBiblioteca(usuario.getId(), usuario);
 
         bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaUsuario); // Existe el libro usuario
         bibliotecaService.eliminarLibroUsuarioDeBiblioteca(bibliotecaUsuario, posicion);
