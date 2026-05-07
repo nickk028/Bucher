@@ -15,6 +15,11 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 public class BibliotecaMapper {
     @Autowired LibroUsuarioMapper libroUsuarioMapper;
 
+    /**
+    * Pasa de entidad Biblioteca a BibliotecaBasicDto
+    * @param biblioteca La entidad a transformar a DTO
+    * @return biblioteca como BasicDto
+    */
     public BibliotecaBasicDTO toBasicDTO(Biblioteca biblioteca) {
         return new BibliotecaBasicDTO(
             biblioteca.getId(),
@@ -22,6 +27,11 @@ public class BibliotecaMapper {
         );
     }
 
+    /**
+    * Pasa de entidad Biblioteca a BibliotecaResponseDto
+    * @param biblioteca La entidad a transformar a DTO
+    * @return biblioteca como ResponseDto
+    */
     public BibliotecaResponseDTO toDTO(Biblioteca biblioteca) {
         return new BibliotecaResponseDTO(
             biblioteca.getId(),
@@ -30,12 +40,22 @@ public class BibliotecaMapper {
         );
     }
 
+    /**
+    * Pasa de una lista de entidades Biblioteca a una lista de BibliotecaBasicDTO
+    * @param bibliotecas La lista de entidades a transformar a DTOs
+    * @return Una lista de Dtos transformados
+    */
     public List<BibliotecaBasicDTO> toDTOList(List<Biblioteca> bibliotecas) {
         return bibliotecas.stream()
             .map(this::toBasicDTO)
             .collect(Collectors.toList());
     }
 
+    /**
+    * Pasa de un BibliotecaResponseDto a una entidad Biblioteca
+    * @param bibliotecaResponseDTO El BibliotecaResponseDTO a transofrmar
+    * @return Una entidad biblioteca transformada
+    */
     public Biblioteca toEntity(BibliotecaResponseDTO bibliotecaResponseDTO) {
         Biblioteca biblioteca = new Biblioteca();
 

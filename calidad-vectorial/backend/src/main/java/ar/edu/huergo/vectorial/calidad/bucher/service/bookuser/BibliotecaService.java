@@ -41,21 +41,21 @@ public class BibliotecaService {
     }
 
     /**
-     * 
-     * @param usuario
-     * @return
-     */
+    * Obtiene una lista de Bibliotecas por Usuario
+    * @param usuario El Usuario de las Bibliotecas
+    * @return La lista de Bibliotecas encontradas
+    */
     public List<Biblioteca> obtenerBibliotecasPorUsuario(Usuario usuario) {
         return bibliotecaRepository.findAllByUsuario(usuario);
     }
 
     /**
-     * Sube un nuevo LibroUsuario a la Biblioteca
-     * @param bibliotecaUsuario La Biblioteca del Usuario
-     * @param libroUsuarioIngresado El LibroUsuario ingresado
-     * @param titulo El titulo del Libro al que le corresponde el LibroUsuario
-     * @return La Biblioteca actualizada
-     */
+    * Sube un nuevo LibroUsuario a la Biblioteca
+    * @param bibliotecaUsuario La Biblioteca del Usuario
+    * @param libroUsuarioIngresado El LibroUsuario ingresado
+    * @param titulo El titulo del Libro al que le corresponde el LibroUsuario
+    * @return La Biblioteca actualizada
+    */
     public Biblioteca subirLibroUsuario(Biblioteca bibliotecaUsuario, LibroUsuario libroUsuarioIngresado, String titulo) {
         libroUsuarioIngresado.setLibro(libroService.obtenerLibroPorTitulo(titulo));
 
@@ -75,12 +75,12 @@ public class BibliotecaService {
     }
 
     /**
-     * Obtiene el LibroUsuario según su posición en la Biblioteca
-     * @param posicion La posición del LibroUsuario
-     * @param biblioteca La Biblioteca ingresada
-     * @return El LibroUsuario encontrado
-     * @throws EntityNotFoundException No encuentra el LibroUsuario
-     */
+    * Obtiene el LibroUsuario según su posición en la Biblioteca
+    * @param posicion La posición del LibroUsuario
+    * @param biblioteca La Biblioteca ingresada
+    * @return El LibroUsuario encontrado
+    * @throws EntityNotFoundException No encuentra el LibroUsuario
+    */
     public LibroUsuario obtenerLibroUsuarioPorPosicion(int posicion, Biblioteca biblioteca) throws EntityNotFoundException {
         List<LibroUsuario> librosUsuario = biblioteca.getLibrosUsuario();
         if (posicion <= 0 || posicion >= librosUsuario.size() + 1) {
@@ -90,29 +90,29 @@ public class BibliotecaService {
     }
 
     /**
-     * Obtiene una lista de LibroUsuario filtrado por EstadoLectura
-     * @param biblioteca La Biblioteca ingresada
-     * @param estado El EstadoLectura ingresado
-     * @return La lista de LibroUsuario de un EstadoLectura
-     */
+    * Obtiene una lista de LibroUsuario filtrado por EstadoLectura
+    * @param biblioteca La Biblioteca ingresada
+    * @param estado El EstadoLectura ingresado
+    * @return La lista de LibroUsuario de un EstadoLectura
+    */
     public List<LibroUsuario> obtenerLibrosPorEstado(Biblioteca biblioteca, EstadoLectura estado) {
         return libroUsuarioRepository.findByBibliotecaAndEstadoLectura(biblioteca, estado);
     }
 
     /**
-     * Actualiza la Biblioteca en el repository
-     * @param bibliotecaUsuario La Biblioteca a actualizar
-     * @return La Biblioteca actualizada
-     */
+    * Actualiza la Biblioteca en el repository
+    * @param bibliotecaUsuario La Biblioteca a actualizar
+    * @return La Biblioteca actualizada
+    */
     public Biblioteca actualizarBiblioteca(Biblioteca bibliotecaUsuario) {
         return bibliotecaRepository.save(bibliotecaUsuario);
     }
 
     /**
-     * Elimina el LibroUsuario y guarda la Biblioteca
-     * @param biblioteca La Biblioteca a actualizar
-     * @param posicion La posicion del LibroUsuario a eliminar
-     */
+    * Elimina el LibroUsuario y guarda la Biblioteca
+    * @param biblioteca La Biblioteca a actualizar
+    * @param posicion La posicion del LibroUsuario a eliminar
+    */
     public void eliminarLibroUsuarioDeBiblioteca(Biblioteca biblioteca, int posicion) {
         biblioteca.getLibrosUsuario().remove(posicion - 1);
         bibliotecaRepository.save(biblioteca);
