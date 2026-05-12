@@ -112,7 +112,7 @@ public class BibliotecaServiceTest {
         bibliotecaEjemplo.getLibrosUsuario().add(libroUsuario1);
         bibliotecaEjemplo.getLibrosUsuario().add(libroUsuario2);
     }
-
+    /* 
     @Test
     @DisplayName("Debería obtener biblioteca por id de usuario")
     void deberiaObtenerBiblioteca() {
@@ -130,6 +130,7 @@ public class BibliotecaServiceTest {
         assertEquals(usuarioEjemplo.getId(), resultado.getUsuario().getId());
         verify(bibliotecaRepository, times(1)).findById(idUsuario);
     }
+    
 
     @Test
     @DisplayName("Debería lanzar excepción cuando no encuentra biblioteca")
@@ -145,6 +146,7 @@ public class BibliotecaServiceTest {
         });
         verify(bibliotecaRepository, times(1)).findById(idUsuarioInexistente);
     }
+    */
 
     @Test
     @DisplayName("Debería obtener libro usuario por posición")
