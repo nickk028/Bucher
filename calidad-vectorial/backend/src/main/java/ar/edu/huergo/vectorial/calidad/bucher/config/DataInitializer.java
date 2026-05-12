@@ -4570,7 +4570,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Ejemplar de Harry Potter y la piedra filosofal disponible para préstamo, libro en excelente estado.");
-                    publicacion.setLimiteDias(20);
+                    publicacion.setLimiteDias(21);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4604,7 +4604,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Novela clasica de Jane Austen, Orgullo y prejuicio. Libro en muy buenas condiciones, con anotaciones al margen de las hojas.");
-                    publicacion.setLimiteDias(25);
+                    publicacion.setLimiteDias(21);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4621,7 +4621,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Cien años de soledad, libro leido una sola vez. Sin marcas o señalaciones, como nuevo.");
-                    publicacion.setLimiteDias(30);
+                    publicacion.setLimiteDias(28);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4638,7 +4638,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Ejemplar de Asesinato en el Orient Express disponible para préstamo, excelente condiciones (sin marcar).");
-                    publicacion.setLimiteDias(23);
+                    publicacion.setLimiteDias(21);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4655,7 +4655,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("El código Da Vinci, libro en muy buen estado.");
-                    publicacion.setLimiteDias(18);
+                    publicacion.setLimiteDias(21);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4689,7 +4689,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Libro en excelente estado, sin marcas ni hojas dobladas. La tapa y el lomo están intactos, con muy poco desgaste por uso. Ideal para disfrutar de una buena lectura como nuevo.");
-                    publicacion.setLimiteDias(22);
+                    publicacion.setLimiteDias(21);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4706,7 +4706,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("El libro está en buen estado general, con algún que otro detalle por el uso (como una esquina doblada o una marca leve en la tapa).");
-                    publicacion.setLimiteDias(17);
+                    publicacion.setLimiteDias(21);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4723,7 +4723,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("El libro está en buen estado. Todas las páginas están completas y se puede leer sin problema, a pesar de algunas anotaciones en los margenes.");
-                    publicacion.setLimiteDias(24);
+                    publicacion.setLimiteDias(21);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4740,7 +4740,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("El libro tiene algunas marquitas del uso, pero nada grave. Está completo y en buen estado para leerlo sin problema.");
-                    publicacion.setLimiteDias(30);
+                    publicacion.setLimiteDias(28);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4757,7 +4757,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Ejemplar en buen estado general, con leves signos de uso propios del paso del tiempo. Conserva todas sus páginas íntegras y es totalmente legible.");
-                    publicacion.setLimiteDias(27);
+                    publicacion.setLimiteDias(28);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4774,7 +4774,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Libro en buen estado, lectura recomendable!");
-                    publicacion.setLimiteDias(24);
+                    publicacion.setLimiteDias(28);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4791,7 +4791,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("El libro es excelente y esta en muy buen estado.");
-                    publicacion.setLimiteDias(17);
+                    publicacion.setLimiteDias(28);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4808,7 +4808,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Libro en muy buenas condiciones a pesar de las veces que fue leido, no presenta anotaciones pero si hay algunas hojas con puntas dobladas.");
-                    publicacion.setLimiteDias(24);
+                    publicacion.setLimiteDias(28);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4825,7 +4825,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Ejemplar en excelente estado. Conserva todas sus páginas íntegras y es totalmente legible, señalado con post-its.");
-                    publicacion.setLimiteDias(24);
+                    publicacion.setLimiteDias(21);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4842,7 +4842,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Copia de El chico que dibujaba constelaciones, en perfecto estado. Señalizado con post-its, los cuales estan categorizados por color.");
-                    publicacion.setLimiteDias(20);
+                    publicacion.setLimiteDias(21);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
@@ -4859,7 +4859,7 @@ public class DataInitializer {
                     publicacion.setLibro(libro);
                     publicacion.setFechaCreacion(LocalDate.now());
                     publicacion.setDescripcion("Ejemplar relativamente en buen estado. Una parte de las primeras hojas estan algo arrugadas debido a que tuve un incidente con agua.");
-                    publicacion.setLimiteDias(20);
+                    publicacion.setLimiteDias(21);
                     publicacion.setDetallesEstadoLibro("Nada");
                     publicacion.setEstadoPublicacion(Estado.Disponible);
                     publicacionRepository.save(publicacion);
