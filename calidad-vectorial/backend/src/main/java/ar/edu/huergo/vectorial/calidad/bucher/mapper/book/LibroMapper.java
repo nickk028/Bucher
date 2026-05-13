@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroBasicDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
@@ -106,5 +107,21 @@ public class LibroMapper {
             .stream()
             .map(this::toDTO)
             .collect(Collectors.toList());
+    }
+
+    public Libro toEntity(LibroCreateDTO libroCreateDTO) {
+        if (libroCreateDTO == null) {
+            return null;
+        }
+        Libro libro = new Libro();
+
+        libro.setId(libroCreateDTO.getId());
+        libro.setTitulo(libroCreateDTO.getTitulo());
+        libro.setDescripcion(libroCreateDTO.getDescripcion());
+        libro.setCategoria(libroCreateDTO.getCategorias());
+        libro.setPaginas(libroCreateDTO.getPaginas());
+        libro.setEdicion(libroCreateDTO.getEdicion());
+        libro.setFechaPublicacion(libroCreateDTO.getFechaPublicacion());
+        return libro;
     }
 }
