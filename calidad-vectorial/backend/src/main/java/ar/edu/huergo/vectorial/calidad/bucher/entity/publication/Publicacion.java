@@ -60,7 +60,7 @@ public class Publicacion {
     @NotNull(message = "El mímite de días es obligatorio.")
     @Positive(message = "El límite de días debe ser mayor a 0.")
     @Min(1)
-    @Max(365)
+    @Max(65)
     private int limiteDias;
 
     // Detalles del estado del libro (Ej: "Nuevo", "Usado - Buen estado", "Dañado", etc.)

@@ -61,6 +61,8 @@ public class DataInitializer {
                     .orElseGet(() -> rolRepository.save(new Rol("ADMIN")));
             Rol cliente = rolRepository.findByNombre("LECTOR")
                     .orElseGet(() -> rolRepository.save(new Rol("LECTOR")));
+			Rol escritor = rolRepository.findByNombre("ESCRITOR")
+                    .orElseGet(() -> rolRepository.save(new Rol("ESCRITOR")));
 
             // Usuario Admin
             if (usuarioRepository.findByUsername("admin@gmail.com").isEmpty()) {
@@ -86,7 +88,7 @@ public class DataInitializer {
                 Usuario u = new Usuario("lector@gmail.com", encoder.encode(clientePassword));
                 u.setAvatar(Avatar.RAPUNZEL);
                 u.setNickname("lector@gmail.com");
-                u.setRoles(Set.of(cliente));
+                u.setRoles(Set.of(cliente,escritor));
                 u.setBiblioteca(biblioteca);
                 biblioteca.setUsuario(u);
 				biblioteca.setNombre("Biblioteca");

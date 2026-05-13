@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroBasicDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.book.LibroMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/libro")
@@ -76,5 +79,12 @@ public class LibroController {
     public ResponseEntity<Map<Categoria, List<LibroResponseDTO>>> obtenerLibrosOrdenados() {
         Map<Categoria, List<LibroResponseDTO>> librosOrdenados = libroMapper.toDTOMap(libroService.obtenerLibrosOrdenados());
         return ResponseEntity.ok(librosOrdenados);
+    }
+
+    @PostMapping("/crear")
+    public ResponseEntity<LibroResponseDTO> crearLibro(LibroCreateDTO libroCreateDTO) {
+
+        Libro libroNuevo = libroMapper.toEntity(libroCreateDTO);
+        return ResponseEntity.ok(libroMapper.toDTO(libroNuevo));
     }
 }

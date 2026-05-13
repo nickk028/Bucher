@@ -1,5 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.book;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -98,5 +99,11 @@ public class LibroService {
         }
 
         return contadorPrestamos.entrySet().stream().sorted((a, b) -> b.getValue().compareTo(a.getValue())).limit(10).map(Map.Entry::getKey).collect(Collectors.toSet());
+    }
+
+    public Libro crearLibro(Libro libro) {
+        libro.setFechaPublicacion(LocalDate.now());
+        
+        return libroRepository.save(libro);
     }
 }

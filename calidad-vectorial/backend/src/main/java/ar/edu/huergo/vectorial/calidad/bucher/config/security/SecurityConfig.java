@@ -79,6 +79,7 @@ public class SecurityConfig {
 
                 // Libro
                 .requestMatchers(HttpMethod.GET, "/libro/**").hasAnyRole("ADMIN", "LECTOR")
+                .requestMatchers(HttpMethod.POST, "/libro/crear").hasAnyRole("ADMIN", "ESCRITOR")
 
                 .anyRequest().authenticated())
 
