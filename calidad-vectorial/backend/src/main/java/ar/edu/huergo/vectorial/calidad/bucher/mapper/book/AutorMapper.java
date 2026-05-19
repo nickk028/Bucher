@@ -1,6 +1,8 @@
 package ar.edu.huergo.vectorial.calidad.bucher.mapper.book;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -31,5 +33,20 @@ public class AutorMapper {
         autorResponseDTO.setUsername(autor.getUsuario().getUsername());
 
         return autorResponseDTO;
+    }
+
+    /**
+    * Pasa una lista de Autores a una lista de AutorResponseDTO
+    * @param autores
+    * @return
+    */
+    public List<AutorResponseDTO> toDTOList(List<Autor> autores) {
+        if (autores == null) {
+            return new ArrayList<>();
+        }
+        return autores
+            .stream()
+            .map(this::toDTO)
+            .collect(Collectors.toList());
     }
 }
