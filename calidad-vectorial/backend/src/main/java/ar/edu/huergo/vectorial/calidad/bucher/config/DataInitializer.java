@@ -237,6 +237,16 @@ public class DataInitializer {
             // -------------------------
             // Inicialización de Autores
             // -------------------------
+			Autor autorAnonimo = autorRepository.findByNombreIgnoringCase("Anónimo")
+					.orElseGet(() -> autorRepository.save(
+						new Autor(
+							"Anónimo",
+							"Autor sin identidad conocida o atribuida, utilizado en obras cuyo creador permanece desconocido o decide no revelar su nombre.",
+							"https://es.wikipedia.org/wiki/Obra_an%C3%B3nima",
+							"https://upload.wikimedia.org/wikipedia/commons/8/84/Anonymous_emblem.svg"
+						)
+        			));
+
             Autor autorJK = autorRepository.findByNombreIgnoringCase("J.K. Rowling")
                     .orElseGet(() -> autorRepository.save(
                         new Autor(
@@ -4494,6 +4504,23 @@ public class DataInitializer {
 				libro.setCategoria(Set.of(Categoria.fantastico));
 				libro.setEditorial(editorialPlaneta);
 				libro.setAutor(autorTolkien);
+				libroRepository.save(libro);
+			}
+			//238
+			if (libroRepository.findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+					"Beowulf", "Primera edición", autorAnonimo, editorialPlaneta).isEmpty()) {
+				Libro libro = new Libro();
+				libro.setTitulo("Beowulf");
+				libro.setDescripcion("Beowulf es uno de los poemas épicos más importantes de la literatura medieval y una de las obras fundamentales de la tradición anglosajona. La historia narra las hazañas del héroe Beowulf, quien viaja para ayudar al rey Hrothgar a liberar su reino del monstruoso Grendel, una criatura sanguinaria que aterroriza a sus guerreros. Tras vencerlo, Beowulf deberá enfrentarse también a la temible madre de Grendel y, años más tarde, a un dragón que amenaza la paz de su pueblo. Un relato cargado de heroísmo, honor, gloria y tragedia, donde el destino y la lucha entre el bien y el mal marcan el camino de los hombres.");
+				libro.setPaginas(256);
+				libro.setEdicion("Primera edición");
+				libro.setCalificacion(90);
+				libro.setFechaPublicacion(LocalDate.of(2000, 5, 10));
+				libro.setUrlFoto("https://upload.wikimedia.org/wikipedia/commons/7/7d/Beowulf_Cotton_MS_Vitellius_A_XV_f._132r.jpg");
+				libro.setPrecio(29.99);
+				libro.setCategoria(Set.of(Categoria.fantastico));
+				libro.setEditorial(editorialPlaneta);
+				libro.setAutor(autorAnonimo);
 				libroRepository.save(libro);
 			}
 

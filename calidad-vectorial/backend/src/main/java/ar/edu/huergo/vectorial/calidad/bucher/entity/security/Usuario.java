@@ -125,11 +125,6 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Biblioteca biblioteca;
 
-    // Relacion 1 a 1 con Autor
-    @OneToOne(mappedBy = "usuario")
-    @Column(nullable = true, unique = true)
-    private Autor autor;
-
     // Constructor
     public Usuario(String username, String password) {
         this.username = username;

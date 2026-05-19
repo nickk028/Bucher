@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -54,8 +56,8 @@ public class Autor {
     private List<Libro> libros = new ArrayList<>();
 
     // Relacion 1 a 1 con Usuario
-    @OneToOne(mappedBy = "autor")
-    @Column(nullable = true, unique = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     // Constructor
