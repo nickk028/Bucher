@@ -3,12 +3,14 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -50,6 +52,11 @@ public class Autor {
     // Relacion 1 a Muchos con Libros
     @OneToMany(mappedBy = "autor")
     private List<Libro> libros = new ArrayList<>();
+
+    // Relacion 1 a 1 con Usuario
+    @OneToOne(mappedBy = "autor")
+    @Column(nullable = true, unique = true)
+    private Usuario usuario;
 
     // Constructor
     public Autor(String nombre, String urlWikipedia) {

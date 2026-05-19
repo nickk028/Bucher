@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
@@ -123,6 +124,11 @@ public class Usuario {
     // Relación 1 a 1 con biblioteca
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Biblioteca biblioteca;
+
+    // Relacion 1 a 1 con Autor
+    @OneToOne(mappedBy = "usuario")
+    @Column(nullable = true, unique = true)
+    private Autor autor;
 
     // Constructor
     public Usuario(String username, String password) {
