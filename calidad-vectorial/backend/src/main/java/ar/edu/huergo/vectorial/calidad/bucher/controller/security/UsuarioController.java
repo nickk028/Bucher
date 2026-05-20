@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.RegistrarDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioRolUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.security.UsuarioMapper;
@@ -78,6 +79,20 @@ public class UsuarioController {
         Usuario usuarioNuevo = usuarioMapper.toEntity(usuarioUpdateDTO);
 
         Usuario usuarioActualizado = usuarioService.modificarUsuario(usuario, usuarioNuevo);
+        return ResponseEntity.ok(usuarioMapper.toDTO(usuarioActualizado));
+    }
+
+    /**
+    * Modifica el rol de un usuario
+    * @param usuarioRolUpdateDTO El DTO con el username y los roles
+    * @return El usuario con el rol modificado
+    */
+    @PutMapping("/modificar/rol")
+    public ResponseEntity<UsuarioResponseDTO> modificarRolUsuario(@Valid @RequestBody UsuarioRolUpdateDTO usuarioRolUpdateDTO) {
+        if (usuarioRolUpdateDTO.getUsername() == null || usuarioRolUpdateDTO.getRoles() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        Usuario usuarioActualizado = usuarioService.modificarRolUsuario(usuarioRolUpdateDTO.getUsername(), usuarioRolUpdateDTO.getRoles());
         return ResponseEntity.ok(usuarioMapper.toDTO(usuarioActualizado));
     }
 }

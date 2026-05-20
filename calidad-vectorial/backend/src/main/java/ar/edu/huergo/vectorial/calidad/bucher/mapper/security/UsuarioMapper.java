@@ -25,20 +25,18 @@ public class UsuarioMapper {
         if (usuario == null) {
             return null;
         }
-        return new UsuarioResponseDTO(
-            usuario.getUsername(),
-            usuario.getNickname(),
-            usuario.getAvatar(),   
-            new HashSet<>(
-                usuario.getRoles()
-                    .stream()
-                    .map(Rol::getNombre)
-                    .toList()),
-            usuario.getPronombres(),
-            usuario.getDescripcion(),
-            usuario.getDireccion(),
-            usuario.getPiso(),
-            usuario.getCodigoPostal());
+
+        UsuarioResponseDTO usuarioDTO = new UsuarioResponseDTO();
+        usuarioDTO.setUsername(usuario.getUsername());
+        usuarioDTO.setNickname(usuario.getNickname());
+        usuarioDTO.setAvatar(usuario.getAvatar());
+        usuarioDTO.setPronombres(usuario.getPronombres());
+        usuarioDTO.setDescripcion(usuario.getDescripcion());
+        usuarioDTO.setDireccion(usuario.getDireccion());
+        usuarioDTO.setPiso(usuario.getPiso());
+        usuarioDTO.setCodigoPostal(usuario.getCodigoPostal());
+        usuarioDTO.setRoles(new HashSet<>(usuario.getRoles()));
+        return usuarioDTO;
     }
 
     /**

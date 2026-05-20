@@ -109,6 +109,10 @@ public class UsuarioService {
     // Inicializa el random
     private static final Random random = new Random();
 
+    /**
+    * Obtiene un avatar aleatorio.
+    * @return Un avatar aleatorio del enum Avatar
+    */
     public static Avatar getAvatarRandom() {
         Avatar[] avatares = Avatar.values();
         int indiceAleatorio = random.nextInt(avatares.length);
@@ -118,6 +122,12 @@ public class UsuarioService {
         return (avatares[indiceAleatorio]);
     }
 
+    /**
+    * Modifica los datos de un usuario existente con los datos de un usuario nuevo, solo si los datos del usuario nuevo no son nulos.
+    * @param usuarioAModificar El usuario existente a modificar
+    * @param usuarioNuevo El usuario con los nuevos datos para modificar el usuario existente
+    * @return El usuario modificado con los nuevos datos, o el usuario original si el usuario nuevo es null
+    */
     public Usuario modificarUsuario(Usuario usuarioAModificar, Usuario usuarioNuevo) {
         if (usuarioNuevo.getPronombres() != null) {
             usuarioAModificar.setPronombres(usuarioNuevo.getPronombres());
@@ -139,5 +149,20 @@ public class UsuarioService {
         }
 
         return usuarioRepository.save(usuarioAModificar);
+    }
+
+    /**
+    * Modifica el rol de un usuario.
+    * @param username El nombre de usuario del usuario a modificar
+    * @param nuevosRoles El conjunto de nuevos roles para el usuario
+    * @return El usuario con el rol modificado
+    */
+    public Usuario modificarRolUsuario(String username, Set<Rol> nuevosRoles) {
+        Usuario usuario = usuarioRepository.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
+
+        usuario.setRoles(nuevosRoles);
+
+        return usuarioRepository.save(usuario);
     }
 }
