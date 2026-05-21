@@ -4,26 +4,45 @@ import { useFetch } from "../../utils/FetchUtils";
 import { useState } from "react";
 import { AutoCompletarLibro } from "../autocomplete/types/AutoCompletarLibro";
 import { useNavigate } from "react-router-dom";
+import { Input } from "../input/Input";
 
 const Buscador = () => {
     const { data : dataLibros , errorLibros , loadingLibros  } = useFetch("libro/todos");
-    const [titulo, setTitulo] = useState("");
+    const { data : dataPrestamos , errorPrestamos , loadingPrestamos  } = useFetch("publicacion");
+    const { data : dataUsuarios , errorUsuarios , loadingUsuarios  } = useFetch("usuario");
+    const [filtro, setFiltro] = useState("");
+    const [opcionFiltrado, setOpcionFiltrado] = useState("")
     const navigate = useNavigate();
 
     const handleBuscarLibro = (e) => {
         e.preventDefault();
-        const id = dataLibros.find(libro => libro.titulo === titulo)?.id || '';
-        navigate(`/libros/${id}`);
+        if ( opcionFiltrado == "libros" ) {
+            const id = dataLibros.find(libro => libro.titulo === titulo)?.id || '';
+            navigate(`/libros/${id}`);
+        } else if ( opcionFiltrado == "prestamos" ){
+        }
     }
 
     return (
         <nav className="buscador">
             <form className="buscador__input" onSubmit={handleBuscarLibro}>
-                <AutoCompletarLibro
+                <select id="buscar" name="buscar" onChange={e => setOpcionFiltrado(e.target.value)}>
+                    <option value="prestamos">Prestamos</option>
+                    <option value="usuarios">Usuarios</option>
+                    <option value="libros">Libros</option>
+                </select>
+                {opcionFiltrado == "libros" ?(
+                    <AutoCompletarLibro
                     placeholder = "Buscar libro por título"
-                    value = {titulo}
-                    onChange = {e => setTitulo(e.target.value)}
-                />
+                    value = {filtro}
+                    onChange = {e => setFiltro(e.target.value)}
+                    />
+                ) : opcionFiltrado == "prestamos" ? (
+                    <Input type="text" value={filtro} name="filtro" onChange = {e => setFiltro(e.target.value)}></Input>
+                ) : opcionFiltrado == "usuarios" && (
+                    <Input type="text" value={filtro} name="filtro" onChange = {e => setFiltro(e.target.value)}></Input>
+                )}
+                
                 <button type = "submit" style={{border: "hidden"}}><img className="buscador__input__lupa" src={lupa} alt="Lupa" /></button>
             </form>
         </nav>
