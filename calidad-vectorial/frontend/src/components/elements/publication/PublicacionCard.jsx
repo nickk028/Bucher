@@ -6,9 +6,9 @@ const PublicacionCard = ({ urlFoto, titulo, usuarioNickname, estadoPublicacion, 
             <div className="pub-card__image">
                 <img src={urlFoto} alt="Foto del libro" />
             </div>
-            <h2 className="pub-card__title">{titulo} asdsadasdasdas dasdasda</h2>
+            <h2 className="pub-card__title">{titulo}</h2>
             <div className="pub-card__content">
-                <p>{usuarioNickname}</p>
+                <p className="pub-card__content__usr">{usuarioNickname}</p>
                 <p>{limiteDias} días</p>
             </div>
         </article>
