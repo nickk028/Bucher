@@ -4,10 +4,10 @@ header {
 }
 
 .header__nav {
-    width: 140px;
+    width: 73px;
     height: 100vh;
     min-height: 640px;
-    background: #EAFFEF;
+    background: #F9FFFA;
 
     box-shadow: 0px 0px 10px #31693e;
 
@@ -16,7 +16,7 @@ header {
     left: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
 }
@@ -28,29 +28,108 @@ header {
     align-items: center;
     width: 80px;
     height: 80px;
-}
-
-.header__nav__item__img {
-    width: 80px;
-    height: auto;
+    transform: scale(.58);
 }
 
 .header__nav__item__bucher {
     position: relative;
     width: 100%;
     height: 100%;
-    background: #08413C;
-    mask-image: url("../../../assets/img/logos/logoBucher.png");
+    background-image: url("../../../assets/img/logos/logoBucher.png");
+    background-size: contain;
     z-index: 1;
+    transition: all 200ms ease-in-out;
+}
+
+.header__nav__item__prestamos {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/img/logos/logoPublicacionesClaro.png");
+    background-size: contain;
+    z-index: 1;
+    transition: all 200ms ease-in-out;
+}
+
+.header__nav__item__prestamos--selected {
+    background-image: url("../../../assets/img/logos/logoPublicacionesPintado.png");
+}
+
+.header__nav__item__prestamos:hover {
+    background-image: url("../../../assets/img/logos/logoPublicacionesPintado.png");
+}
+
+.header__nav__item__comentario-social {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/img/logos/logoComentarioSocialClaro.png");
+    background-size: contain;
+    z-index: 1;
+    transition: all 200ms ease-in-out;
+}
+
+.header__nav__item__comentario-social--selected {
+    background-image: url("../../../assets/img/logos/logoComentarioSocialPintado.png");
+}
+
+.header__nav__item__comentario-social:hover {
+    background-image: url("../../../assets/img/logos/logoComentarioSocialPintado.png");
+}
+
+.header__nav__item__biblioteca {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/img/logos/logoBibliotecaClaro.png");
+    background-size: contain;
+    z-index: 1;
+    transition: all 200ms ease-in-out;
+}
+
+.header__nav__item__biblioteca--selected {
+    background-image: url("../../../assets/img/logos/logoBibliotecaPintado.png");
+}
+
+.header__nav__item__biblioteca:hover {
+    background-image: url("../../../assets/img/logos/logoBibliotecaPintado.png");
 }
 
 .header__nav__item__tendencias {
     position: relative;
     width: 100%;
     height: 100%;
-    background: #08413C;
-    mask-image: url("../../../assets/img/logos/logoTendencias.png");
+    background-image: url("../../../assets/img/logos/logoTendenciasClaro.png");
+    background-size: contain;
     z-index: 1;
+    transition: all 200ms ease-in-out;
+}
+
+.header__nav__item__tendencias--selected {
+    background-image: url("../../../assets/img/logos/logoTendenciasPintado.png");
+}
+
+.header__nav__item__tendencias:hover {
+    background-image: url("../../../assets/img/logos/logoTendenciasPintado.png");
+}
+
+.header__nav__item__configuracion {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/img/logos/logoConfiguracionClaro.png");
+    background-size: contain;
+    z-index: 1;
+    transition: all 200ms ease-in-out;
+
+}
+
+.header__nav__item__configuracion--selected {
+    background-image: url("../../../assets/img/logos/logoConfiguracionPintado.png");
+}
+
+.header__nav__item__configuracion:hover {
+    background-image: url("../../../assets/img/logos/logoConfiguracionPintado.png");
 }
 
 .header__nav__item__crear {
@@ -61,142 +140,4 @@ header {
     mask-image: url("../../../assets/img/logos/logoCrear.png");
     mask-size: contain;
     z-index: 1;
-}
-
-.header__nav__item__libro {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: #08413C;
-    mask-image: url("../../../assets/img/logos/logoLibro.png");
-    z-index: 1;
-}
-
-.header__nav__item__usuario {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: #08413C;
-    mask-image: url("../../../assets/img/logos/logoUsuario2.png");
-    z-index: 1;
-}
-
-.header__nav__item__bucher__fondo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: #EAFFEF;
-    mask-image: url("../../../assets/img/logos/logoBucher.png");
-    z-index: 1;
-    clip-path: circle(0);
-    transition: all 300ms ease;
-}
-
-.header__nav__item__tendencias__fondo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: #EAFFEF;
-    mask-image: url("../../../assets/img/logos/logoTendencias.png");
-    z-index: 1;
-    clip-path: circle(0);
-    transition: all 300ms ease;
-}
-
-.header__nav__item__crear__fondo {
-    position: absolute;
-    inset: 0;
-    width: 65px;
-    height: 65px;
-    background: #EAFFEF;
-    mask-image: url("../../../assets/img/logos/logoCrear.png");
-    mask-size: contain;
-    z-index: 1;
-    clip-path: circle(0);
-    transition: all 300ms ease;
-}
-
-.header__nav__item__libro__fondo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: #EAFFEF;
-    mask-image: url("../../../assets/img/logos/logoLibro.png");
-    z-index: 1;
-    clip-path: circle(0);
-    transition: all 300ms ease;
-}
-
-.header__nav__item__usuario__fondo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: #EAFFEF;
-    mask-image: url("../../../assets/img/logos/logoUsuario2.png");
-    z-index: 1;
-    clip-path: circle(0);
-    transition: all 300ms ease;
-}
-
-.header__nav__item__circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120px;
-    height: 120px;
-    transform: translate(-50%,-50%);
-    border-radius: 50%;
-    background: #08413C;
-    clip-path: circle(0);
-    transition: all 300ms ease;
-}
-
-.selected {
-    background: #EAFFEF;
-    clip-path: circle(60px);
-}
-
-.circle--selected {
-    background: #2F5B56;
-    clip-path: circle(60px);
-    transition: all 300ms ease;
-}
-
-/*
-486963-
-41524e-
-2F5B56-
-*/
-
-.header__nav__item__bucher:hover ~ .circle--selected,
-.circle--selected:hover,
-.header__nav__item__tendencias:hover ~ .circle--selected,
-.circle--selected:hover,
-.header__nav__item__crear:hover ~ .circle--selected,
-.circle--selected:hover,
-.header__nav__item__libro:hover ~ .circle--selected,
-.circle--selected:hover,
-.header__nav__item__usuario:hover ~ .circle--selected,
-.circle--selected:hover {
-    background: #08413C;
-}
-
-.header__nav__item__bucher:hover .header__nav__item__bucher__fondo,
-.header__nav__item__tendencias:hover .header__nav__item__tendencias__fondo,
-.header__nav__item__crear:hover .header__nav__item__crear__fondo,
-.header__nav__item__libro:hover .header__nav__item__libro__fondo,
-.header__nav__item__usuario:hover .header__nav__item__usuario__fondo {
-    clip-path: circle(60px);
-}
-
-.header__nav__item__bucher:hover ~ .header__nav__item__circle,
-.header__nav__item__tendencias:hover ~ .header__nav__item__circle,
-.header__nav__item__crear:hover ~ .header__nav__item__circle,
-.header__nav__item__libro:hover ~ .header__nav__item__circle,
-.header__nav__item__usuario:hover ~ .header__nav__item__circle {
-    clip-path: circle(60px);
 }

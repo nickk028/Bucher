@@ -13,18 +13,20 @@ const Header = () => {
     return (
         <header className="header">
             <nav className="header__nav">
-                <Link className="header__nav__item" to="/index">
-                    <div alt="Logo de Bücher" className={`header__nav__item__bucher`}>
-                        <div alt="Logo de Bücher" className={`header__nav__item__bucher__fondo ${click == "/index" ? "selected" : ""}`} />
-                    </div>
-                    <div className={`header__nav__item__circle ${click == "/index" ? "circle--selected" : ""}`}></div>
+                <Link className="header__nav__item" to="/inicio">
+                    <div alt="Logo de Bücher" className={`header__nav__item__bucher header__nav__item__bucher--${click=="/inicio" ? "selected" : ""}`} />
                 </Link>
 
-                <Link className="header__nav__item" to="/tendencias">
-                    <div alt="Logo de Tendencias" className={`header__nav__item__tendencias`}>
-                        <div alt="Logo de Tendencias" className={`header__nav__item__tendencias__fondo ${click == "/tendencias" ? "selected" : ""}`} />
-                    </div>
-                    <div className={`header__nav__item__circle ${click == "/tendencias" ? "circle--selected" : ""}`}></div>
+                <Link className="header__nav__item" to="/prestamos">
+                    <div alt="Logo de Bücher" className={`header__nav__item__prestamos header__nav__item__prestamos--${click=="/prestamos" ? "selected" : ""}`} />
+                </Link>
+
+                <Link className="header__nav__item" to="/comentariossocial">
+                    <div alt="Logo de Comentario Social" className={`header__nav__item__comentario-social header__nav__item__comentario-social--${click=="/comentariossocial" ? "selected" : ""}`} />
+                </Link>
+
+                <Link className="header__nav__item" to="/biblioteca">
+                    <div alt="Logo de Biblioteca" className={`header__nav__item__biblioteca header__nav__item__biblioteca--${click=="/biblioteca" ? "selected" : ""}`} />
                 </Link>
 
                 <Link className="header__nav__item" to="/crear-publicacion">
@@ -34,18 +36,13 @@ const Header = () => {
                     <div className={`header__nav__item__circle ${click == "/crear-publicacion" ? "circle--selected" : ""}`}></div>
                 </Link>
 
-                <Link className="header__nav__item" to="/libros">
-                    <div alt="Logo de Libro" className={`header__nav__item__libro`}>
-                        <div alt="Logo de Libro" className={`header__nav__item__libro__fondo ${click == "/libros" ? "selected" : ""}`} />
-                    </div>
-                    <div className={`header__nav__item__circle ${click == "/libros" ? "circle--selected" : ""}`}></div>
+                <Link className="header__nav__item" to="/tendencias">
+                    <div alt="Logo de Tendencias" className={`header__nav__item__tendencias header__nav__item__tendencias--${click=="/tendencias" ? "selected" : ""}`} />
                 </Link>
 
                 <Link className="header__nav__item" to={click.includes("/usuario") ? click : "/usuario/configuracion"}>
-                    <div alt="Logo de Usuario" className={`header__nav__item__usuario`}>
-                        <div alt="Logo de Usuario" className={`header__nav__item__usuario__fondo ${click.includes("/usuario") ? "selected" : ""}`} />
+                    <div alt="Logo de Usuario" className={`header__nav__item__configuracion header__nav__item__configuracion--${click.includes("/configuracion") ? "selected" : ""}`}>
                     </div>
-                    <div className={`header__nav__item__circle ${click.includes("/usuario") ? "circle--selected" : ""}`}></div>
                 </Link>
             </nav>
         </header>
