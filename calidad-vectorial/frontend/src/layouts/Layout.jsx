@@ -19,7 +19,6 @@ export const Layout = () => {
 
 
     return (
-        <>
         <div className="body-layout">
             <Header />
             <div className="body-layout__content">
@@ -31,7 +30,5 @@ export const Layout = () => {
                 </div>
             )}
         </div>
-        <Footer />
-        </>
     );
 };

@@ -5,7 +5,6 @@ import "./SobreNosotros.css";
 
 export const SobreNosotros = () => {
     return (
-        <>
         <div className="body-sobre-nosotros">
             <section className="body-sobre-nosotros__hero">
                 <div className="body-sobre-nosotros__hero__content">
@@ -22,7 +21,5 @@ export const SobreNosotros = () => {
             <Button variant="solapa" color="oscuro" to="/register">Registrarse</Button>
         </ButtonGroup>
         </div>
-        <Footer></Footer>
-    </>
     )
 }
