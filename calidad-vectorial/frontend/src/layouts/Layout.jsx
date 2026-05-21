@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useBook } from "../context/LibroContexto";
 import Header from "../components/elements/header/Header";
-import { Footer } from "../components/elements/footer/Footer";
 import { LibroAnimado } from "../components/elements/animatedbook/LibroAnimado";
 import "./Layout.css";
 import { getConfig } from "../components/utils/ConfigUtils";

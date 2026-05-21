@@ -1,6 +1,5 @@
 import { Button } from "../../elements/buttons/Button";
 import { ButtonGroup } from "../../elements/buttons/ButtonGroup";
-import { Footer } from "../../elements/footer/Footer";
 import "./SobreNosotros.css";
 
 export const SobreNosotros = () => {

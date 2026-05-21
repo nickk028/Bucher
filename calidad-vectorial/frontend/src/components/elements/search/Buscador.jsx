@@ -19,6 +19,7 @@ const Buscador = () => {
     return (
         <nav className="buscador">
             <form className="buscador__input" onSubmit={handleBuscarLibro}>
+                <></>
                 <AutoCompletarLibro
                     placeholder = "Buscar libro por título"
                     value = {titulo}
