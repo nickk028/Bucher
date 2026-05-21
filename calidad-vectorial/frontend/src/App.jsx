@@ -4,7 +4,9 @@ import { GlobalProvider } from "./context/GlobalProvider";
 
 import { Login } from "./components/pages/login/Login";
 import { SobreNosotros } from "./components/pages/aboutus/SobreNosotros";
-import { Index } from "./components/pages/index/Index";
+import { Inicio } from "./components/pages/index/Inicio";
+import { Prestamos } from "./components/pages/loans/Prestamos";
+import { ComentariosSocial } from "./components/pages/socialcoments/ComentariosSocial";
 import { Publicacion } from "./components/pages/publication/Publicacion";
 import { Biblioteca } from "./components/pages/user/bookshelf/Biblioteca";
 import { LibroUsuario } from "./components/pages/user/bookshelf/bookuser/LibroUsuario";
@@ -31,7 +33,9 @@ export const App = () => {
                         <Route path="/coming-soon" element={<ComingSoon />} />
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/index" element={<Index />} />
+                        <Route path="/inicio" element={<Inicio />} />
+                        <Route path="/prestamos" element={<Prestamos />} />
+                        <Route path="/comentariossocial" element={<ComentariosSocial />} />
                         <Route path="/publicacion/:id" element={<Publicacion />} />
                         <Route path="/crear-publicacion" element={<CrearPublicacion />} />
                         <Route path="/tendencias" element={<Tendencias />} />

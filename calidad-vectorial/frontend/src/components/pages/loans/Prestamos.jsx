@@ -3,12 +3,12 @@ import { useFetch } from "../../utils/FetchUtils";
 import PublicacionCard from "../../elements/publication/PublicacionCard";
 import { Input } from "../../elements/input/Input";
 import { Button } from "../../elements/buttons/Button";
-import "./Index.css";
+import "./Prestamos.css";
 import "../../../global.css";
 import { useRef, useState } from "react";
 import { AutoCompletarLibro } from "../../elements/autocomplete/types/AutoCompletarLibro";
 
-export const Index = () => {
+export const Prestamos = () => {
     const { data: publicacionesPorCategoria, error, loading } = useFetch("publicacion/ordenadas");
     const [mostrarFiltrador, setMostrarFiltrador] = useState(false);
     const ESTADOS = ["Disponible", "Entrega_pendiente", "Prestado", "Devolucion_pendiente", "No_disponible", "Indefinido"];
