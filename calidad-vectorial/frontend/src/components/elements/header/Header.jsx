@@ -13,8 +13,8 @@ const Header = () => {
     return (
         <header className="header">
             <nav className="header__nav">
-                <Link className="header__nav__item" to="/inicio">
-                    <div alt="Logo de Bücher" className={`header__nav__item__bucher header__nav__item__bucher--${click=="/inicio" ? "selected" : ""}`} />
+                <Link className="header__nav__item" to="/index">
+                    <div alt="Logo de Bücher" className={`header__nav__item__bucher header__nav__item__bucher--${click=="/index" ? "selected" : ""}`} />
                 </Link>
 
                 <Link className="header__nav__item" to="/prestamos">
