@@ -206,7 +206,7 @@ export const Prestamos = () => {
 
                                         <ul className="pub-row" ref={el => (filasRef.current[categoria] = el)}>
                                             {lista.map(pub => (
-                                                <li className="pub-item" key={pub.id}>
+                                                <li key={pub.id}>
                                                     <Link to={`/publicacion/${pub.id}`}>
                                                         <PublicacionCard
                                                             urlFoto={pub.urlFoto}

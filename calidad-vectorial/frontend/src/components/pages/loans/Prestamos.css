@@ -31,11 +31,6 @@
     scroll-behavior: smooth;
 }
 
-.pub-item {
-    flex: 0 0 auto;
-    width: 475px; /* Ajustalo si tu card es más chica */
-}
-
 .scroll-btn {
     position: absolute;
     top: 50%;
@@ -132,7 +127,6 @@
 
 @media (max-width: 720px) {
     .filtrador-form { flex-direction: column; align-items: stretch; }
-    .pub-item { width: 320px; }
 }
 
 /* Ajustes visuales para el botón Filtrar dentro del contenedor */
