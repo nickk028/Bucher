@@ -7,6 +7,17 @@
     list-style-type: none;
 }
 
+:root {
+    --negro: #1A1A1A;
+    --banco: #FAFAFA;
+    --blacno-puro: #FFFF;
+    --gris-claro: #DCDCDC;
+    --gris-oscuro: #565656;
+    --verde-oscuro: #08413C;
+    --verde: #0E675F;
+    --verde-claro: #F9FFFA;
+}
+
 @font-face {
     font-family: "Handelson Three";
     src: url("./assets/fonts/handelson-w00-three/Handelson-W00-Three.woff2") format("woff2"),
