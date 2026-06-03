@@ -1,5 +1,23 @@
-.portada-libro {
+.libro-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.libro-card__portada-libro {
     width: 140px;
     aspect-ratio: 2 / 3;
-    box-shadow: 0px 0px 5px #1a1a1a;
+    box-shadow: 0px 0px 2px #D9D9D9;
+}
+
+.libro-card__titulo {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.libro-card__estrellas {
+    margin-top: -5px;
+    display: flex;
+    justify-content: space-evenly;
 }

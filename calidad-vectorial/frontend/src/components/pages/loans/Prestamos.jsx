@@ -3,6 +3,8 @@ import { useFetch } from "../../utils/FetchUtils";
 import PublicacionCard from "../../elements/publication/PublicacionCard";
 import { Input } from "../../elements/input/Input";
 import { Button } from "../../elements/buttons/Button";
+import flechaIzq from "../../../assets/img/flechaIzq.png"
+import flechaDer from "../../../assets/img/flechaDer.png"
 import "./Prestamos.css";
 import "../../../global.css";
 import { useRef, useState } from "react";
@@ -127,7 +129,7 @@ export const Prestamos = () => {
     };
 
     return (
-        <main className="body-index">
+        <main className="body-prestamos">
             <div className="filtrador-container ">
                 <Button variant="default" color="oscuro" onClick={() => setMostrarFiltrador(!mostrarFiltrador)}>Filtrar</Button>
                 {mostrarFiltrador && (
@@ -189,7 +191,7 @@ export const Prestamos = () => {
                 )}
             </div>
 
-            <div className="">
+            <div>
                 {loading ? (
                     <p>Cargando publicaciones...</p>
                 ) : publicacionesFiltradas ? (
@@ -197,16 +199,14 @@ export const Prestamos = () => {
                         {Object.entries(publicacionesFiltradas).map(([categoria, lista]) =>
                             lista.length > 0 && (
                                 <section key={categoria} className="pub-group">
-                                    <h3 className="pub-group-title"> {formatCategoryName(categoria)} ({lista.length}) </h3>
+                                    <h3 className="pub-group-title"> {formatCategoryName(categoria)} </h3>
 
                                     <div className="pub-row-wrapper">
-                                        <button className="scroll-btn left" onClick={() => desplazarIzquierda(categoria)}>
-                                            ‹
-                                        </button>
+                                        <img src={flechaIzq} className="pub-row__scroll-btn left" onClick={() => desplazarIzquierda(categoria)} />
 
                                         <ul className="pub-row" ref={el => (filasRef.current[categoria] = el)}>
                                             {lista.map(pub => (
-                                                <li className="pub-item" key={pub.id}>
+                                                <li key={pub.id}>
                                                     <Link to={`/publicacion/${pub.id}`}>
                                                         <PublicacionCard
                                                             urlFoto={pub.urlFoto}
@@ -220,9 +220,7 @@ export const Prestamos = () => {
                                             ))}
                                         </ul>
 
-                                        <button className="scroll-btn right" onClick={() => desplazarDerecha(categoria)}>
-                                            ›
-                                        </button>
+                                        <img src={flechaDer} className="pub-row__scroll-btn right" onClick={() => desplazarDerecha(categoria)} />
                                     </div>
                                 </section>
                             )

@@ -1,0 +1,67 @@
+.body-comsocial {
+    padding: 20px;
+    margin-right: 120px;
+}
+
+.body-comsocial__form {
+    height: 380px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #fafafa;
+    border: 2px solid #DCDCDC;
+    border-radius: 20px;
+}
+
+.body-comsocial__form__content {
+    display: flex;
+    flex-grow: 1;
+}
+
+.body-comsocial__form__content__text {
+    width: 50%;
+    height: 100%;
+
+    font-size: 1.5rem;
+
+    padding: 2%;
+    flex-grow: 1;
+
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    resize: none;
+    overflow-y: auto;
+}
+
+.body-comsocial__form__options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.body-comsocial__form__options div {
+    display: flex;
+    gap: 20px;
+}
+
+.body-comsocial__form__options__buttons {
+    display: flex;
+    align-items: center;
+
+    max-width: 220px;
+    padding: 5px 20px 5px 20px;
+
+    border: 2px solid #DCDCDC;
+    border-radius: 30px;
+
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.body-comsocial__form__options__buttons__checkbox {
+    width: 60px;
+    height: 60px;
+}
