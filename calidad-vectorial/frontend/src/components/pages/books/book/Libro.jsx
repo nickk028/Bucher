@@ -6,6 +6,7 @@ import { Button } from "../../../elements/buttons/Button";
 import Buscador from "../../../elements/search/Buscador";
 import { UsuarioDetalles } from "../../../elements/user/UsuarioDetalles";
 import { PopUp } from "../../../elements/modal/PopUp";
+import Estrella from "../../../../assets/img/estrellaGrande.svg?react";
 
 export const Libro = () => {
     const { id } = useParams();
@@ -41,29 +42,42 @@ export const Libro = () => {
                     <article className="body-pub__libro">
                         <div className="body-pub__libro__aside">
                             <img className="body-pub__libro__aside__img" src = {libro.urlFoto} alt="Foto del libro" />
-                            <Button  onClick={handleAgregarLibroUsuario} disabled={loadingPost} variant="default" color="oscuro">Agregar a mi biblioteca</Button>
+                            <Button  onClick={handleAgregarLibroUsuario} disabled={loadingPost} variant="default" color="oscuro">Agregar a la biblioteca</Button>
                         </div>
                         <div className="body-pub__libro__text">
-                            <h1 className="body-pub__libro__text__title">{libro.titulo}</h1>
-                            <p className="body-pub__libro__text__author">{libro.nombreAutor}</p>
+                            <div>
+                                <h1 className="body-pub__libro__text__title">{libro.titulo}</h1>
+                                <p className="body-pub__libro__text__author">{libro.nombreAutor}</p>
+                            </div>
+                            <div className="body-pub__libro__text__estrellas">
+                                <Estrella />
+                                <Estrella />
+                                <Estrella />
+                                <Estrella />
+                                <Estrella />
+                                <div className="body-pub__libro__text__estrellas__valor">
+                                    <h2>5 Estrellas</h2>
+                                    <p>20 usuarios lo calificaron</p>
+                                </div>
+                            </div>
 
-                            <div className="body-pub__libro__text__item">
-                                <span className="body-pub__libro__text__item__subtitle">Géneros: </span>
-                                {[...libro.categorias].join(', ')}
+                            <div className="body-pub__libro__text__parrafo">
+                                <h2>Sinopsis del libro</h2>
+                                <p>{libro.descripcion}</p>
+                            </div>
+
+                            <div className="body-pub__libro__text__genero"> 
+                                <p>Género:</p>
+                                {libro.categorias.map((categoria, index) => (
+                                    <div key={index} className="body-pub__libro__text__genero__item">
+                                        {categoria}
+                                    </div>
+                                ))}
                             </div>
 
                             <div className="body-pub__libro__text__item">
-                                <span className="body-pub__libro__text__item__subtitle">Descripción: </span>
-                                <p className="body-pub__libro__text__item__parrafo">{libro.descripcion}</p>
-                            </div>
-
-                            <div className="body-pub__libro__text__item">
-                                <span className="body-pub__libro__text__item__subtitle">Sobre su autor</span>
                                 <UsuarioDetalles nombre={libro.nombreAutor} foto={libro.urlFotoAutor}>
                                     {libro.descripcionAutor}
-                                    <div>
-                                        Conoce más sobre este autor: <a className="body-pub__libro__text__item__link" href={libro.urlWikipediaAutor} target="_blank"> {libro.urlWikipediaAutor}</a>
-                                    </div>
                                 </UsuarioDetalles>
                             </div>
                         </div>
