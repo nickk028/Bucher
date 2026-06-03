@@ -29,7 +29,7 @@
 }
 
 .pub-card__content {
-    color: var(--gris-oscuro);
+    color: var(--text-secondary);
     font-size: .9rem;
     width: 100%;
     display: flex;
