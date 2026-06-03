@@ -36,10 +36,21 @@ export const Prestamos = () => {
     const filasRef = useRef({});
 
     const desplazarPorPagina = (categoria, direccion) => {
-        const elemento = filasRef.current[categoria];
-        if (!elemento) return;
-        const anchoPagina = elemento.clientWidth || 300;
-        elemento.scrollBy({ left: direccion * anchoPagina, behavior: "smooth"});
+        const fila = filasRef.current[categoria];
+        if (!fila) return;
+
+        const primerItem = fila.querySelector("li");
+        if (!primerItem) return;
+
+        const segundoItem = primerItem.nextElementSibling;
+        if (!segundoItem) return;
+
+        const paso = segundoItem.offsetLeft - primerItem.offsetLeft;
+
+        fila.scrollBy({
+            left: direccion * paso * 5,
+            behavior: "smooth"
+        });
     };
 
     const desplazarIzquierda = (categoria) => desplazarPorPagina(categoria, -1);

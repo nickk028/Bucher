@@ -1,6 +1,6 @@
 .btn {
     font-family: "Hind Siliguri";
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     cursor: pointer;
     border: none;
 
@@ -19,12 +19,12 @@
 }
 
 .btn--default {
-    height: 30px;
+    height: 40px;
     min-width: max-content;
     border-radius: 10px;
     box-sizing: border-box;
-    padding-left: max(8px, 5%);
-    padding-right: max(8px, 5%);
+    padding-left: max(8px, 4%);
+    padding-right: max(8px, 4%);
 }
 
 .btn--solapa--claro {
