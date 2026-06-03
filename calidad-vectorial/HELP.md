@@ -27,3 +27,6 @@ El **Front End** está desarrollado en **React** para crear la interfaz visual y
 - **Vite**
     Instalado dentro del entorno de Node.js desde la terminal:
     npm install vite --save-dev
+    **Vite plugin svrg**
+    Instalado dentro del entorno de Node.js desde la terminal:
+    npm install --save-dev vite-plugin-svgr
