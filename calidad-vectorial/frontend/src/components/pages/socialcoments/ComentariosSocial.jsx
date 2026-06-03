@@ -1,4 +1,5 @@
 import { LibroCard } from "../../elements/book/LibroCard";
+import { ComentarioSocial } from "../../elements/social/ComentarioSocial";
 import { Button } from "../../elements/buttons/Button";
 import { Input } from "../../elements/input/Input";
 
@@ -40,13 +41,31 @@ export const ComentariosSocial = () => {
                         <TacharPosteo />
                     </div>
                     <div className="body-comsocial__form__options__buttons">
-                        <label>Contiene spoilers</label>
-                        <input className="body-comsocial__form__options__buttons__checkbox" type="checkbox"></input>
+                        <p>Contiene spoilers</p>
+                        <input id="spoiler" name="spoiler" className="body-comsocial__form__options__buttons__checkbox" type="checkbox"></input>
                     </div>
                     </div>
                     <Button type="submit" variant="default" color="oscuro">Publicar</Button>
                 </div>
             </form>
+            <section>
+                <ComentarioSocial
+                    nickname="Usuario de ejemplo 1"
+                    urlFoto="/assets/img/avatares/reinadecorazones.png"
+                    tiempoPublicacion="3"
+                >
+                    Estuve semanas con bloqueo lector 😩, ningún libro me atrapaba. Pero arranqué Juliette y las canciones perdidas y me sacó de ese pozo.
+                    <br />
+                    Tip personal 👉 elegir algo juvenil, ágil y con personajes intensos... a mí siempre me rescata.
+                </ComentarioSocial>
+                <ComentarioSocial
+                    nickname="Usuario de ejemplo 2"
+                    urlFoto="/assets/img/avatares/dorothy.png"
+                    tiempoPublicacion="3"
+                >
+                    Volví a leer El Principito ✨. Qué increíble cómo cada vez revela algo nuevo: hoy me recordó que lo esencial sigue estando en lo pequeño.
+                </ComentarioSocial>
+            </section>
         </main>
     );
 };

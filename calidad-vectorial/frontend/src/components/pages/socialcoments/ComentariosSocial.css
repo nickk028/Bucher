@@ -1,16 +1,18 @@
 .body-comsocial {
     padding: 20px;
-    margin-right: 120px;
+    margin-right: 220px;
+    margin-left: 40px;
+    padding-bottom: 60px;
 }
 
 .body-comsocial__form {
-    height: 380px;
+    height: 280px;
     padding: 20px;
 
     display: flex;
     flex-direction: column;
 
-    background: #fafafa;
+    background: #FFFFFF;
     border: 2px solid #DCDCDC;
     border-radius: 20px;
 }
@@ -45,14 +47,17 @@
 .body-comsocial__form__options div {
     display: flex;
     gap: 20px;
+    scale: .85;
+    transform: translateX(-9%);;
 }
 
 .body-comsocial__form__options__buttons {
     display: flex;
     align-items: center;
+    margin-right: -20px;
 
     max-width: 220px;
-    padding: 5px 20px 5px 20px;
+    padding: 10px 20px 10px 20px;
 
     border: 2px solid #DCDCDC;
     border-radius: 30px;
@@ -61,7 +66,16 @@
     line-height: 1;
 }
 
+.body-comsocial__form__options__buttons svg {
+    cursor: pointer;
+}
+
+.body-comsocial__form__options__buttons p {
+    width: min-content;
+}
+
 .body-comsocial__form__options__buttons__checkbox {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
 }

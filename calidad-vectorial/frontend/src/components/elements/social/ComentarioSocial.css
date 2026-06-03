@@ -1,0 +1,48 @@
+.com-social {
+    position: relative;
+    display: flex;
+
+    gap: 20px;
+
+    margin-top: 60px;
+    margin-left: 40px;
+}
+
+.com-social::before {
+    content: '';
+    position: absolute;
+
+    bottom: -20px;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: var(--verde);
+}
+
+.com-social__img {
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.com-social__img img {
+    width: 100%;
+}
+
+.com-social__content {
+    max-height: 250px;
+    width: fit-content;
+}
+
+.com-social__content h1 {
+    font-size: 1.5rem;
+}
+
+.com-social__content__tiempo {
+    margin-top: 20px;
+    margin-right: 40px;
+
+    color: var(--gris-oscuro);
+    text-align: end;
+}

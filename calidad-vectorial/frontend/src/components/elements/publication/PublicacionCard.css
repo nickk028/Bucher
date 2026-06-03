@@ -1,7 +1,7 @@
 .pub-card {
     font-family: "Hind Siliguri";
     font-size: 1.1rem;
-    width: 200px;
+    width: 150px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -9,8 +9,8 @@
 
 .pub-card__image {
     display: block;
-    height: 300px;
-    width: 200px;
+    height: 220px;
+    width: 150px;
 }
 
 .pub-card__image img {
@@ -22,23 +22,23 @@
 
 .pub-card__title {
     width: 100%;
-    font-size: 1rem;
+    font-size: .9rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 
 .pub-card__content {
-    color: #929292;
+    color: var(--gris-oscuro);
+    font-size: .9rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    gap: 5px;
 }
 
 .pub-card__content__usr {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 70%;
+    width: 60%;
 }
