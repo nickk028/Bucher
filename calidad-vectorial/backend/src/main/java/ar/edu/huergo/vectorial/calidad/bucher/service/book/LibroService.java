@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
@@ -17,6 +18,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestam
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.data.domain.Pageable;
 
 //Clase que maneja la lógica de Libro
 @Service
@@ -58,8 +60,13 @@ public class LibroService {
             .orElseThrow(() -> new EntityNotFoundException("Libro no encontrado"));
     }
 
+    /**
+    * Obtiene todos los libros del repository filtrados en base al titulo ingresado
+    * @return La lista de los libros filtrados
+    */
     public Set<Libro> filtrarLibrosPorTitulo(String titulo) {
-        return new HashSet<> (libroRepository.findAllByTituloContaining(titulo));
+        Pageable limite = PageRequest.of(0, 20);
+        return new HashSet<> (libroRepository.findAllByTituloContainingIgnoreCase(titulo, limite));
     }
 
     /**

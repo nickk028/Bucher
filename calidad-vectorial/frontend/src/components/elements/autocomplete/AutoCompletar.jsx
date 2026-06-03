@@ -3,7 +3,7 @@ import { Input } from "../input/Input";
 import "./AutoCompletar.css";
 import { getData } from "../../utils/FetchUtils";
 
-export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, imgHeight, imgWidth, maxSuggestions = 100, ...props }) {
+export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, onSelect, imgHeight, imgWidth, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");
 	const [showList, setShowList] = useState(false);
 	const [optFiltrados, setOptFiltrados] = useState([]);
@@ -29,9 +29,13 @@ export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, i
 	// Filtrado seguro: coercionar opciones a string antes de comparar
 	const valorNormalizado = (value ?? "").toString();
 
-	const handleSelect = (option) => {
-		setValue(option);
+	const handleSelect = (opcion) => {
+		setValue(opcion.titulo);
 		setShowList(false);
+
+		if (typeof onSelect === "function") {
+			onSelect(opcion);
+		}
 	};
 
 	useEffect(() => {
@@ -45,15 +49,15 @@ export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, i
 
 		const timer = setTimeout(async () => {
 			try {
-				const respond = await getData(urlFetch, controller.signal);
+				const respond = await getData(urlFetch + value, controller.signal);
 
 				if (!respond.ok) {
 					throw new Error("Error en la respuesta del servidor: " + respond.status + " " + respond.statusText);
 				}
 
-				const data = (await respond.json()).slice(0, maxSuggestions);
+				const data = (await respond.json());
 
-				setOptFiltrados(data.map(obj => [obj.urlFoto ?? null, obj.titulo]));
+				setOptFiltrados(data);
 
 				setShowList(true);
 			} catch (err) {
@@ -87,10 +91,10 @@ export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, i
 			{showList && optFiltrados.length > 0 && (
 				<ul className="autocomplete__options">
 					<>
-						{optFiltrados.map((opcion, i) => (
-							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion[1])}>
-								{opcion[0] && <img src={opcion[0]} alt="Imagen" height={imgHeight} width={imgWidth}/>}
-								{opcion[1]}
+						{optFiltrados.map((opcion) => (
+							<li className="autocomplete__options__item" key={opcion.id} onMouseDown={() => handleSelect(opcion)}>
+								{opcion.urlFoto && <img src={opcion.urlFoto} alt="Imagen" height={imgHeight} width={imgWidth}/>}
+								{opcion.titulo}
 							</li>
 						))}
 					</>

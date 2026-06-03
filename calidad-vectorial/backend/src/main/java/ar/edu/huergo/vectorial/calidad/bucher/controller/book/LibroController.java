@@ -49,6 +49,17 @@ public class LibroController {
         return ResponseEntity.ok(
             libroMapper.toDTO(libroService.obtenerLibroPorId(id)));
     }
+    
+    /**
+    * Obtiene un libro por su titulo
+    * @param titulo El titulo del libro a obtener
+    * @return El libro correspondiente al titulo indicado
+    */
+    @GetMapping("/titulo/{titulo}")
+    public ResponseEntity<LibroBasicDTO> obtenerLibroPorTitulo(@PathVariable("titulo") String tituloLibro) {
+        return ResponseEntity.ok(
+            libroMapper.toBasicDTO(libroService.obtenerLibroPorTitulo(tituloLibro)));
+    }
 
     /**
     * Obtiene una lista de libros filtrados por categoría
@@ -94,6 +105,7 @@ public class LibroController {
 
     /**
     * Obtiene todos los libros filtrados en base al titulo ingresado
+    * @param tituloLibro El titulo del libro a obtener
     * @return La lista de los libros filtrados
     */
     @GetMapping("/filtrar/titulo/{titulo}")
