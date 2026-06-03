@@ -1,15 +1,11 @@
 import lupa from "../../../assets/img/lupa.png";
 import "./Buscador.css";
-import { useFetch } from "../../utils/FetchUtils";
 import { useState } from "react";
 import { AutoCompletarLibro } from "../autocomplete/types/AutoCompletarLibro";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../input/Input";
 
 const Buscador = () => {
-    const { data : dataLibros , errorLibros , loadingLibros  } = useFetch("libro/todos");
-    const { data : dataPrestamos , errorPrestamos , loadingPrestamos  } = useFetch("publicacion");
-    const { data : dataUsuarios , errorUsuarios , loadingUsuarios  } = useFetch("usuario");
     const [filtro, setFiltro] = useState("");
     const [opcionFiltrado, setOpcionFiltrado] = useState("")
     const navigate = useNavigate();
@@ -38,7 +34,11 @@ const Buscador = () => {
                     onChange = {e => setFiltro(e.target.value)}
                     />
                 ) : opcionFiltrado == "prestamos" ? (
-                    <Input type="text" value={filtro} name="filtro" onChange = {e => setFiltro(e.target.value)}></Input>
+                    <AutoCompletarLibro
+                        placeholder = "Buscar prestamo por libro"
+                        value = {filtro}
+                        onChange = {e => setFiltro(e.target.value)}
+                    />
                 ) : opcionFiltrado == "usuarios" && (
                     <Input type="text" value={filtro} name="filtro" onChange = {e => setFiltro(e.target.value)}></Input>
                 )}

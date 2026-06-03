@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "../input/Input";
 import "./AutoCompletar.css";
+import { getData } from "../../utils/FetchUtils";
 
-export function Autocompletar({ options = [], tipo, value: valorExterno, onChange, imgHeight, imgWidth, maxSuggestions = 100, ...props }) {
+export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, imgHeight, imgWidth, maxSuggestions = 100, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");
 	const [showList, setShowList] = useState(false);
+	const [optFiltrados, setOptFiltrados] = useState([]);
 
 	// Detectar si el componente está siendo controlado desde afuera
 	const isControlled = valorExterno !== undefined;
@@ -26,17 +28,53 @@ export function Autocompletar({ options = [], tipo, value: valorExterno, onChang
 
 	// Filtrado seguro: coercionar opciones a string antes de comparar
 	const valorNormalizado = (value ?? "").toString();
-	const optFiltrados =
-		valorNormalizado.trim() === ""
-			? options.slice(0, maxSuggestions)
-			: tipo === "simple" ? options.filter((opt) => String(opt ?? "").toLowerCase().includes(valorNormalizado.toLowerCase())).slice(0, maxSuggestions)
-				: tipo == "doble" ? options.filter((opt) => String(opt[1] ?? "").toLowerCase().includes(valorNormalizado.toLowerCase())).slice(0, maxSuggestions)
-				: options.slice(0, maxSuggestions);
 
 	const handleSelect = (option) => {
-			setValue(option);
-			setShowList(false);
+		setValue(option);
+		setShowList(false);
 	};
+
+	useEffect(() => {
+		if (!value || value.trim().length < 1) {
+			setOptFiltrados([]);
+			setShowList(false);
+			return;
+		}
+
+		const controller = new AbortController();
+
+		const timer = setTimeout(async () => {
+			try {
+				const respond = await getData(urlFetch, controller.signal);
+
+				if (!respond.ok) {
+					throw new Error("Error en la respuesta del servidor: " + respond.status + " " + respond.statusText);
+				}
+
+				const data = (await respond.json()).slice(0, maxSuggestions);
+
+				if (tipo == "doble") {
+					setOptFiltrados(data.map(obj => [obj.urlFoto, obj.titulo]));
+				}
+
+				if (tipo == "simple") {
+					setOptFiltrados(data.map(obj => obj.titulo));
+				}
+
+				setShowList(true);
+			} catch (err) {
+				if (err.name !== "AbortError") {
+					console.error(err);
+				}
+			}
+		}, 500);
+
+		return () => {
+			clearTimeout(timer);
+			controller.abort();
+		};
+
+	}, [value, urlFetch]);
 
 	return (
 		<div className="autocomplete">
@@ -56,25 +94,26 @@ export function Autocompletar({ options = [], tipo, value: valorExterno, onChang
 				<ul className="autocomplete__options">
 					{tipo == "simple" && (
 						<>
-						{optFiltrados.map((opcion, i) => (
-							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion)}>
-								{opcion}
-							</li>
-						))}
+							{optFiltrados.map((opcion, i) => (
+								<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion)}>
+									{opcion}
+								</li>
+							))}
 						</>
 					)}
-					{tipo == "doble" &&(
+
+					{tipo == "doble" && (
 						<>
-						{optFiltrados.map((opcion, i) => (
-							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion[1])}>
-								<img src={opcion[0]} alt="Imagen libro" height={imgHeight} width={imgWidth}/>
-								{opcion[1]}
-							</li>
-						))}
+							{optFiltrados.map((opcion, i) => (
+								<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion[1])}>
+									<img src={opcion[0]} alt="Imagen libro" height={imgHeight} width={imgWidth}/>
+									{opcion[1]}
+								</li>
+							))}
 						</>
 					)}
 				</ul>
 			)}
 		</div>
 	);
-};
+}

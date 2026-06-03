@@ -16,4 +16,5 @@ public interface LibroRepository extends JpaRepository<Libro, Long>{
     Optional<Libro> findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(String titulo, String edicion, Autor autor, Editorial editorial);
     Optional<Libro> findByTituloIgnoreCaseAndEdicion(String titulo, String edicion);
     List<Libro> findAllByCategoriaContaining(Categoria categoria);
+    List<Libro> findAllByTituloContaining(String titulo);
 }

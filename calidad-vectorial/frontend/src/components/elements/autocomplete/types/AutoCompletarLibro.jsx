@@ -1,13 +1,11 @@
-import { useFetch } from "../../../utils/FetchUtils";
 import { Autocompletar } from "../AutoCompletar";
 
 export const AutoCompletarLibro = ({ placeholder, onChange, value , ...props}) => {
-    const { data : dataLibros , errorLibros , loadingLibros  } = useFetch("libro/todos");
 
     return (
         <div>
             <Autocompletar
-                options={dataLibros ? dataLibros.map(libro => [libro.urlFoto ,libro.titulo]) : []}
+                urlFetch = "libro/todos"
                 type = "text"
                 tipo = "doble"
                 placeholder = {placeholder}

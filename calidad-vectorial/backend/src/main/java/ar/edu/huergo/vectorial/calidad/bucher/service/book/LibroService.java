@@ -58,6 +58,10 @@ public class LibroService {
             .orElseThrow(() -> new EntityNotFoundException("Libro no encontrado"));
     }
 
+    public Set<Libro> filtrarLibrosPorTitulo(String titulo) {
+        return new HashSet<> (libroRepository.findAllByTituloContaining(titulo));
+    }
+
     /**
     * Obtiene Libros por su categoria
     * @param categoria La categoria de los libros a buscar
@@ -101,6 +105,10 @@ public class LibroService {
         return contadorPrestamos.entrySet().stream().sorted((a, b) -> b.getValue().compareTo(a.getValue())).limit(10).map(Map.Entry::getKey).collect(Collectors.toSet());
     }
 
+    /**
+    * Guarda un nuevo libro creado por un escritor
+    * @return El libro guardado en el repository
+    */
     public Libro crearLibro(Libro libro) {
         libro.setFechaPublicacion(LocalDate.now());
         

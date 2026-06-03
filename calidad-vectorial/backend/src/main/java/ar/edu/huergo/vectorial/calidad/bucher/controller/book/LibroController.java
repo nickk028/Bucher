@@ -18,6 +18,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/libro")
@@ -81,10 +83,21 @@ public class LibroController {
         return ResponseEntity.ok(librosOrdenados);
     }
 
+    /**
+    * Guarda un nuevo libro creado por un escritor
+    * @return El libro creado
+    */
     @PostMapping("/crear")
     public ResponseEntity<LibroResponseDTO> crearLibro(LibroCreateDTO libroCreateDTO) {
 
         Libro libroNuevo = libroMapper.toEntity(libroCreateDTO);
         return ResponseEntity.ok(libroMapper.toDTO(libroNuevo));
     }
+
+    @GetMapping("/{titulo}")
+    public ResponseEntity<List<LibroBasicDTO>> obtenerLibrosPorTitulo(@PathVariable("titulo") String tituloLibro) {
+        return ResponseEntity.ok(
+            libroMapper.toBasicDTOList(libroService.filtrarLibrosPorTitulo(tituloLibro)));
+    }
+    
 }
