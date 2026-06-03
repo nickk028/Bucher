@@ -1,6 +1,6 @@
 import { Autocompletar } from "../AutoCompletar";
 
-export const AutoCompletarLibro = ({ placeholder, onChange, value , ...props}) => {
+export const AutoCompletarLibro = ({ placeholder, onChange, onSelect, value , ...props}) => {
 
     return (
         <div>
@@ -14,6 +14,7 @@ export const AutoCompletarLibro = ({ placeholder, onChange, value , ...props}) =
                 value = {value}
                 name = "titulo"
                 onChange = {onChange}
+                onSelect = {onSelect}
                 {...props}>
             </Autocompletar>
         </div>

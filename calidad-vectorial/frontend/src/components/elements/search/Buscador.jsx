@@ -2,20 +2,22 @@ import lupa from "../../../assets/img/lupa.png";
 import "./Buscador.css";
 import { useState } from "react";
 import { AutoCompletarLibro } from "../autocomplete/types/AutoCompletarLibro";
-import { useNavigate } from "react-router-dom";
 import { Input } from "../input/Input";
+import { useNavigate } from "react-router-dom";
 
 const Buscador = () => {
     const [filtro, setFiltro] = useState("");
+    const [libro, setLibro] = useState("");
     const [opcionFiltrado, setOpcionFiltrado] = useState("")
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const handleBuscarLibro = (e) => {
         e.preventDefault();
+        console.log(libro)
         if ( opcionFiltrado == "libros" ) {
-            const id = dataLibros.find(libro => libro.titulo === titulo)?.id || '';
-            navigate(`/libros/${id}`);
+            navigate("/libros/" + libro.id)
         } else if ( opcionFiltrado == "prestamos" ){
+            
         }
     }
 
@@ -29,9 +31,10 @@ const Buscador = () => {
                 </select>
                 {opcionFiltrado == "libros" ?(
                     <AutoCompletarLibro
-                    placeholder = "Buscar libro por título"
-                    value = {filtro}
-                    onChange = {e => setFiltro(e.target.value)}
+                        placeholder = "Buscar libro por título"
+                        value = {filtro}
+                        onChange = {e => setFiltro(e.target.value)}
+                        onSelect = {(libro) => setLibro(libro)}
                     />
                 ) : opcionFiltrado == "prestamos" ? (
                     <AutoCompletarLibro
