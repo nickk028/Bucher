@@ -3,7 +3,7 @@ import { Input } from "../input/Input";
 import "./AutoCompletar.css";
 import { getData } from "../../utils/FetchUtils";
 
-export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, imgHeight, imgWidth, maxSuggestions = 100, ...props }) {
+export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, imgHeight, imgWidth, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");
 	const [showList, setShowList] = useState(false);
 	const [optFiltrados, setOptFiltrados] = useState([]);
@@ -45,13 +45,14 @@ export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, i
 
 		const timer = setTimeout(async () => {
 			try {
-				const respond = await getData(urlFetch, controller.signal);
+				console.log(urlFetch + value)
+				const respond = await getData(urlFetch + value, controller.signal);
 
 				if (!respond.ok) {
 					throw new Error("Error en la respuesta del servidor: " + respond.status + " " + respond.statusText);
 				}
 
-				const data = (await respond.json()).slice(0, maxSuggestions);
+				const data = (await respond.json());
 
 				setOptFiltrados(data.map(obj => [obj.urlFoto ?? null, obj.titulo]));
 
