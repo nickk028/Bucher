@@ -53,13 +53,7 @@ export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, i
 
 				const data = (await respond.json()).slice(0, maxSuggestions);
 
-				if (tipo == "doble") {
-					setOptFiltrados(data.map(obj => [obj.urlFoto, obj.titulo]));
-				}
-
-				if (tipo == "simple") {
-					setOptFiltrados(data.map(obj => obj.titulo));
-				}
+				setOptFiltrados(data.map(obj => [obj.urlFoto ?? null, obj.titulo]));
 
 				setShowList(true);
 			} catch (err) {
@@ -92,26 +86,14 @@ export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, i
 
 			{showList && optFiltrados.length > 0 && (
 				<ul className="autocomplete__options">
-					{tipo == "simple" && (
-						<>
-							{optFiltrados.map((opcion, i) => (
-								<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion)}>
-									{opcion}
-								</li>
-							))}
-						</>
-					)}
-
-					{tipo == "doble" && (
-						<>
-							{optFiltrados.map((opcion, i) => (
-								<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion[1])}>
-									<img src={opcion[0]} alt="Imagen libro" height={imgHeight} width={imgWidth}/>
-									{opcion[1]}
-								</li>
-							))}
-						</>
-					)}
+					<>
+						{optFiltrados.map((opcion, i) => (
+							<li className="autocomplete__options__item" key={i} onMouseDown={() => handleSelect(opcion[1])}>
+								{opcion[0] && <img src={opcion[0]} alt="Imagen" height={imgHeight} width={imgWidth}/>}
+								{opcion[1]}
+							</li>
+						))}
+					</>
 				</ul>
 			)}
 		</div>
