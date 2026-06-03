@@ -18,8 +18,6 @@ import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @RequestMapping("/libro")
@@ -94,7 +92,11 @@ public class LibroController {
         return ResponseEntity.ok(libroMapper.toDTO(libroNuevo));
     }
 
-    @GetMapping("/{titulo}")
+    /**
+    * Obtiene todos los libros filtrados en base al titulo ingresado
+    * @return La lista de los libros filtrados
+    */
+    @GetMapping("/filtrar/titulo/{titulo}")
     public ResponseEntity<List<LibroBasicDTO>> obtenerLibrosPorTitulo(@PathVariable("titulo") String tituloLibro) {
         return ResponseEntity.ok(
             libroMapper.toBasicDTOList(libroService.filtrarLibrosPorTitulo(tituloLibro)));
