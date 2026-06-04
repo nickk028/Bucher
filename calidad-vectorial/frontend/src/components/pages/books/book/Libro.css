@@ -10,7 +10,6 @@
     max-width: calc(100vw - 140px);
     box-sizing: border-box;
     padding-left: 60px;
-    padding-right: 25px;
     gap: 45px;
 }
 
@@ -23,8 +22,7 @@
 }
 
 .body-pub__libro__aside__img {
-    height: 70vh;
-    min-height: 400px;
+    height: 50vh;
     width: auto;
     aspect-ratio: 2/3;
 }
@@ -34,7 +32,6 @@
     font-size: 1rem;
 
     height: auto;
-    width: 65%;
     min-width: 400px;
 
     display: flex;
@@ -42,7 +39,6 @@
     gap: 10px;
 
     padding-bottom: 10px;
-    margin-top: 10px;
 }
 
 .body-pub__libro__text__title {
@@ -56,17 +52,13 @@
 
 .body-pub__libro__text__estrellas {
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
 .body-pub__libro__text__estrellas__valor h2 {
     font-size: 1rem;
     font-weight: 300;
-}
-
-.body-pub__libro__text__estrellas__valor p {
-    font-weight: 300;
-    color: var(--text-primary);
 }
 
 .body-pub__libro__text__parrafo {
@@ -76,9 +68,8 @@
     border: 1px solid var(--border-primary);
     border-radius: 10px;
 
-    overflow: auto;
     padding: 10px;
-
+    overflow-y: auto;
     font-size: 1rem;
 }
 
@@ -100,13 +91,4 @@
 
     border: 1px solid var(--border-primary);
     border-radius: 25px;
-}
-
-.body-pub__libro__text__item__link {
-    color: #117c4c;
-    transition: color 150ms ease-in-out;
-}
-
-.body-pub__libro__text__item__link:hover {
-    color: #5bc797;
 }
