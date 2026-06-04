@@ -1,7 +1,6 @@
 import podioImg from "../../../assets/img/podioImg.png";
 import { useFetch } from "../../utils/FetchUtils";
 import { LibroCard } from "../../elements/book/LibroCard";
-import Buscador from "../../elements/search/Buscador";
 import "./Tendencias.css";
 
 export const Tendencias = () => {
@@ -9,7 +8,6 @@ export const Tendencias = () => {
 
     return (
         <main>
-            <Buscador></Buscador>
             <div className="tend-body">
                 <div className="tend-body__podio">
                     {data.slice(0, 3).map((libro) => (

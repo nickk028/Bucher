@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch, usePost } from "../../utils/FetchUtils";
-import Buscador from "../../elements/search/Buscador";
 import { UsuarioDetalles } from "../../elements/user/UsuarioDetalles";
 import { Button } from "../../elements/buttons/Button";
 import { PopUp } from "../../elements/modal/PopUp";
@@ -35,7 +34,6 @@ export const Publicacion = () => {
             )}
 
             <main className="body-pub">
-                <Buscador />
                 {loadingError ? (
                     <p>Cargando...</p>
                 ) : publicacion.titulo && (

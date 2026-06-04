@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
-import { useFetch } from "../../utils/FetchUtils";
-import PublicacionCard from "../../elements/publication/PublicacionCard";
-import { Input } from "../../elements/input/Input";
-import { Button } from "../../elements/buttons/Button";
-import flechaIzq from "../../../assets/img/flechaIzq.png"
-import flechaDer from "../../../assets/img/flechaDer.png"
 import "./Prestamos.css";
 import "../../../global.css";
+import PublicacionCard from "../../elements/publication/PublicacionCard";
+import flechaIzq from "../../../assets/img/flechaIzq.png"
+import flechaDer from "../../../assets/img/flechaDer.png"
+import { Input } from "../../elements/input/Input";
+import { Button } from "../../elements/buttons/Button";
 import { useRef, useState } from "react";
 import { AutoCompletarLibro } from "../../elements/autocomplete/types/AutoCompletarLibro";
+import { Link } from "react-router-dom";
+import { useFetch } from "../../utils/FetchUtils";
 
 export const Prestamos = () => {
     const { data: publicacionesPorCategoria, error, loading } = useFetch("publicacion/ordenadas");

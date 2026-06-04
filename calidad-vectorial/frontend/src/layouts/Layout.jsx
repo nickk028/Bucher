@@ -5,6 +5,7 @@ import { LibroAnimado } from "../components/elements/animatedbook/LibroAnimado";
 import "./Layout.css";
 import { getConfig } from "../components/utils/ConfigUtils";
 import { useEffect, useState } from "react";
+import { Buscador } from "../components/elements/search/Buscador";
 
 export const Layout = () => {
     const { libroMensaje } = useBook();
@@ -21,6 +22,7 @@ export const Layout = () => {
         <div className="body-layout">
             <Header />
             <div className="body-layout__content">
+                <Buscador/>
                 <Outlet />
             </div>
             {configuracion.buchy && (

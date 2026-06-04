@@ -5,10 +5,10 @@ import { AutoCompletarLibro } from "../autocomplete/types/AutoCompletarLibro";
 import { Input } from "../input/Input";
 import { useNavigate } from "react-router-dom";
 
-const Buscador = () => {
+export const Buscador = () => {
     const [filtro, setFiltro] = useState("");
-    const [libro, setLibro] = useState("");
-    const [opcionFiltrado, setOpcionFiltrado] = useState("")
+    const [libro, setLibro] = useState(null);
+    const [opcionFiltrado, setOpcionFiltrado] = useState("prestamos")
     const navigate = useNavigate()
 
     const handleBuscarLibro = (e) => {
@@ -16,7 +16,9 @@ const Buscador = () => {
         console.log(libro)
         if ( opcionFiltrado == "libros" ) {
             navigate("/libros/" + libro.id)
-        } else if ( opcionFiltrado == "prestamos" ){
+        } else if ( opcionFiltrado == "prestamos" ) {
+            
+        } else if ( opcionFiltrado == "usuarios" ) {
             
         }
     }
@@ -41,9 +43,10 @@ const Buscador = () => {
                         placeholder = "Buscar prestamo por libro"
                         value = {filtro}
                         onChange = {e => setFiltro(e.target.value)}
+                        onSelect = {(libro) => setLibro(libro)}
                     />
                 ) : opcionFiltrado == "usuarios" && (
-                    <Input type="text" value={filtro} name="filtro" onChange = {e => setFiltro(e.target.value)}></Input>
+                    <Input type="text" value={filtro} name="filtro" placeholder = "Buscar usuario por nick" onChange = {e => setFiltro(e.target.value)}></Input>
                 )}
                 
                 <button type = "submit" style={{border: "hidden"}}><img className="buscador__input__lupa" src={lupa} alt="Lupa" /></button>
@@ -51,4 +54,3 @@ const Buscador = () => {
         </nav>
     )
 }
-export default Buscador
