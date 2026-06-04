@@ -50,7 +50,7 @@ export const ComentariosSocial = () => {
             </form>
             <section>
                 <ComentarioSocial
-                    nickname="Usuario de ejemplo 1"
+                    nickname="Gimena"
                     urlFoto="/assets/img/avatares/reinadecorazones.png"
                     tiempoPublicacion="3"
                 >
@@ -59,7 +59,7 @@ export const ComentariosSocial = () => {
                     Tip personal 👉 elegir algo juvenil, ágil y con personajes intensos... a mí siempre me rescata.
                 </ComentarioSocial>
                 <ComentarioSocial
-                    nickname="Usuario de ejemplo 2"
+                    nickname="Wendy's"
                     urlFoto="/assets/img/avatares/dorothy.png"
                     tiempoPublicacion="3"
                 >

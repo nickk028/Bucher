@@ -10,12 +10,30 @@
 :root {
     --negro: #1A1A1A;
     --blanco: #FAFAFA;
-    --blacno-puro: #FFFF;
+    --blanco-puro: #FFFFFF;
     --gris-claro: #DCDCDC;
     --gris-oscuro: #565656;
     --verde-oscuro: #08413C;
     --verde: #0E675F;
     --verde-claro: #F9FFFA;
+
+    /* Semánticas */
+    /* Textos */
+    --text-primary: var(--negro);
+    --text-secondary: var(--gris-oscuro);
+
+    /* Fondos */
+    --bg-primary: var(--blanco);
+    --bg-surface: var(--blanco-puro);
+    --bg-accent: var(--verde-claro);
+
+    /* Bordes */
+    --border-primary: var(--gris-claro);
+    --border-secondary: var(--gris-oscuro);
+
+    /* Marca */
+    --brand-primary: var(--verde);
+    --brand-dark: var(--verde-oscuro);
 }
 
 @font-face {

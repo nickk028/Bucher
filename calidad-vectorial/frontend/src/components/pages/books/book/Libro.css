@@ -6,62 +6,100 @@
 
 .body-pub__libro {
     display: flex;
-    height: 75vh;
+    height: 90vh;
     max-width: calc(100vw - 140px);
     box-sizing: border-box;
-    padding-left: 25px;
+    padding-left: 60px;
     padding-right: 25px;
-    gap: 2vw;
+    gap: 45px;
 }
 
 .body-pub__libro__aside {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     height: 100%;
     gap: 10px;
 }
 
 .body-pub__libro__aside__img {
-    height: 65vh;
+    height: 70vh;
     min-height: 400px;
     width: auto;
-    aspect-ratio: 70/100;
+    aspect-ratio: 2/3;
 }
 
 .body-pub__libro__text {
     font-weight: 400;
-    font-size: 1.05rem;
+    font-size: 1rem;
 
     height: auto;
     width: 65%;
     min-width: 400px;
+
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 10px;
+
     padding-bottom: 10px;
+    margin-top: 10px;
 }
 
 .body-pub__libro__text__title {
     font-size: 2rem;
     font-weight: 600;
-    color: #0E675F;
 }
 
 .body-pub__libro__text__author {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #7c7c7c;
+    font-size: 1rem;
 }
 
-.body-pub__libro__text__item__subtitle {
-    color: #929292;
-    text-shadow: 1px 1px 2px #d1d1d1;
+.body-pub__libro__text__estrellas {
+    display: flex;
+    gap: 10px;
 }
 
-.body-pub__libro__text__item__parrafo {
-    max-height: 300px;
+.body-pub__libro__text__estrellas__valor h2 {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.body-pub__libro__text__estrellas__valor p {
+    font-weight: 300;
+    color: var(--text-primary);
+}
+
+.body-pub__libro__text__parrafo {
+    height: auto;
+    flex-grow: 1;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-primary);
+    border-radius: 10px;
+
     overflow: auto;
+    padding: 10px;
+
+    font-size: 1rem;
+}
+
+.body-pub__libro__text__parrafo h2 {
+    font-size: 1rem;
+}
+
+.body-pub__libro__text__genero {
+    display: flex;
+    gap: 20px;
+}
+
+.body-pub__libro__text__genero__item {
+    width: 120px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid var(--border-primary);
+    border-radius: 25px;
 }
 
 .body-pub__libro__text__item__link {
