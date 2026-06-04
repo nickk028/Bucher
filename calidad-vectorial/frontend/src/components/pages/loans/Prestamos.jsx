@@ -141,8 +141,10 @@ export const Prestamos = () => {
 
     return (
         <main className="body-prestamos">
+            {/*
             <div className="filtrador-container ">
                 <Button variant="default" color="oscuro" onClick={() => setMostrarFiltrador(!mostrarFiltrador)}>Filtrar</Button>
+                
                 {mostrarFiltrador && (
                     <div className="filtrador-opciones">
                         <form className="filtrador-form" onSubmit={aplicarFiltro}>
@@ -201,7 +203,7 @@ export const Prestamos = () => {
                     </div>
                 )}
             </div>
-
+            */}
             <div>
                 {loading ? (
                     <p>Cargando publicaciones...</p>
