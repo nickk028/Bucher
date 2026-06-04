@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useFetch, usePost } from "../../../utils/FetchUtils";
 import "./Libro.css";
 import { Button } from "../../../elements/buttons/Button";
-import Buscador from "../../../elements/search/Buscador";
 import { UsuarioDetalles } from "../../../elements/user/UsuarioDetalles";
 import { PopUp } from "../../../elements/modal/PopUp";
 import Estrella from "../../../../assets/img/estrellaGrande.svg?react";
@@ -34,8 +33,7 @@ export const Libro = () => {
 				</PopUp>
 				)
 			}
-            <main className="body-libro">
-                <Buscador />
+            <main className="body-libro">      
                 {loadingError ? (
                     <p>Cargando...</p>
                 ) : libro.titulo ? (

@@ -1,5 +1,4 @@
 import { useFetch } from "../../utils/FetchUtils";
-import Buscador from "../../elements/search/Buscador";
 import { Link } from "react-router-dom";
 import { LibroCard } from "../../elements/book/LibroCard";
 import { useRef } from 'react';
@@ -49,7 +48,6 @@ export const Libros = () => {
 
     return (
         <div className="">
-            <Buscador />
             {loadingLibros ? (
                 <p>Cargando...</p>
             ) : librosOrdenados ? (
