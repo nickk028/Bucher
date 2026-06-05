@@ -1,0 +1,31 @@
+.side-bar-card {
+    width: auto;
+    height: fit-content;
+
+    background: var(--bg-surface);
+    box-sizing: border-box;
+    padding: 15px;
+
+    border: var(--border-primary) solid 1px;
+    border-radius: 10px;
+}
+
+.side-bar-card__encabezado {
+    display: flex;
+    align-items: center;
+
+    color: var(--brand-dark);
+    font-size: .9rem;
+
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.side-bar-card__encabezado__img {
+    width: fit-content;
+    aspect-ratio: 1 / 1;
+
+    background: var(--bg-accent);
+    padding: 5px;
+    border-radius: 10px;
+}

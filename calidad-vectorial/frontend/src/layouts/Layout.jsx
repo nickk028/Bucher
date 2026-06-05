@@ -2,15 +2,24 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useBook } from "../context/LibroContexto";
 import Header from "../components/elements/header/Header";
 import { LibroAnimado } from "../components/elements/animatedbook/LibroAnimado";
+import { SideBar } from "../components/elements/sidebar/SideBar";
+import { SideBarCard } from "../components/elements/sidebar/SideBarCard";
 import "./Layout.css";
 import { getConfig } from "../components/utils/ConfigUtils";
 import { useEffect, useState } from "react";
 import { Buscador } from "../components/elements/search/Buscador";
+import Ajustes from "../assets/img/svg/ajustes.svg?react";
 
 export const Layout = () => {
     const { libroMensaje } = useBook();
     const [configuracion, setConfiguracion] = useState(() => getConfig());
     const location = useLocation();
+
+    const mostrarConfig =
+        location.pathname.startsWith("/usuario");
+
+    const mostrarCrear =
+        location.pathname.startsWith("/crear");
 
     // Actualiza la configuración al cambiar de ruta
     useEffect(() => {
@@ -21,6 +30,19 @@ export const Layout = () => {
     return (
         <div className="body-layout">
             <Header />
+            {mostrarConfig && (
+                <SideBar titulo="Configuración">
+                        <SideBarCard
+                            titulo="titulo"
+                            texto="Texto"
+                            img={<Ajustes />}
+                        />
+                </SideBar>
+            )}
+
+            {mostrarCrear && (
+                <SideBar />
+            )}
             <div className="body-layout__content">
                 <Buscador/>
                 <Outlet />

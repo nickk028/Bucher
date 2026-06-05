@@ -1,13 +1,16 @@
 .body-layout {
     display: flex;
     min-height: 100vh;
+    max-width: 100vw;
+    flex-grow: 0;
     background: var(--bg-primary);
 }
 
 .body-layout__content {
+    flex: 1 1 0;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    width: calc(100% - 73px);
     font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
     color: var(--text-primary);
 }

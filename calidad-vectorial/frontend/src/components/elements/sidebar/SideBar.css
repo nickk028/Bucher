@@ -1,0 +1,18 @@
+.barra-lat {
+    position: sticky;
+    width: 300px;
+    height: auto;
+
+    background: var(--bg-primary);
+    box-sizing: border-box;
+    padding: 20px;
+
+    border-right: var(--border-primary) solid 2px;
+
+    font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
+}
+
+.barra-lat h1 {
+    font-size: 1.5rem;
+    color: var(--brand-dark);
+}
