@@ -1,18 +1,50 @@
-.barra-lat {
-    position: sticky;
+.sidebar {
     width: 300px;
     height: auto;
 
     background: var(--bg-primary);
-    box-sizing: border-box;
-    padding: 20px;
 
     border-right: var(--border-primary) solid 2px;
 
     font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
 }
 
-.barra-lat h1 {
+.sidebar__content {
+    width: 100%;
+    height: 100vh;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    gap: 20px;
+
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.sidebar__content h1 {
     font-size: 1.5rem;
     color: var(--brand-dark);
+}
+
+.sidebar__cards {
+    display: flex;
+    flex-flow: column nowrap;
+
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.sidebar__content__footer {
+    display: flex;
+    justify-content: center;
+
+    font-family: "Handelson Three";
+    font-size: 3.5rem;
+
+    color: var(--brand-primary);
 }

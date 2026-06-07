@@ -1,15 +1,24 @@
+import { Link, useLocation } from "react-router-dom";
 import "./SideBarCard.css";
 
-export const SideBarCard = ({titulo, texto, img}) => {
+export const SideBarCard = ({titulo, opciones, img}) => {
+    const location = useLocation();
+
     return (
-        <div className="side-bar-card">
-            <div className="side-bar-card__encabezado">
-                <div className="side-bar-card__encabezado__img">
+        <div className="sidebar-card">
+            <div className="sidebar-card__encabezado">
+                <div className="sidebar-card__encabezado__img">
                     {img}
                 </div>
                 <h2>{titulo}</h2>
             </div>
-            <p>{texto}</p>
+            <ul className="sidebar-card__options">
+                {opciones.map((opcion) => (
+                    <li key={opcion.to} className={`sidebar-card__options__option--${location.pathname == opcion.to ? "selected" : ""}`}>
+                        <Link to={opcion.to}>{opcion.text}</Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     )
 }

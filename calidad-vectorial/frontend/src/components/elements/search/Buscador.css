@@ -1,10 +1,11 @@
 .buscador {
     height: 60px;
+    flex: 1 1 0;
 
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    padding-right: 40px;
+    padding-right: 20px;
     padding-left: 40px;
 }
 

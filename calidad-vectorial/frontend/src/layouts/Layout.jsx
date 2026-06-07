@@ -8,7 +8,9 @@ import "./Layout.css";
 import { getConfig } from "../components/utils/ConfigUtils";
 import { useEffect, useState } from "react";
 import { Buscador } from "../components/elements/search/Buscador";
+import cenicienta from "../assets/img/avatares/cenicienta.png";
 import Ajustes from "../assets/img/icons/configuracion/ajustes.svg?react";
+import Soporte from "../assets/img/icons/configuracion/soporte.svg?react";
 
 export const Layout = () => {
     const { libroMensaje } = useBook();
@@ -16,7 +18,7 @@ export const Layout = () => {
     const location = useLocation();
 
     const mostrarConfig =
-        location.pathname.startsWith("/usuario");
+        location.pathname.startsWith("/configuracion");
 
     const mostrarCrear =
         location.pathname.startsWith("/crear");
@@ -33,9 +35,23 @@ export const Layout = () => {
             {mostrarConfig && (
                 <SideBar titulo="Configuración">
                         <SideBarCard
-                            titulo="titulo"
-                            texto="Texto"
+                            titulo="Ajustes"
+                            opciones={[
+                                    {to: "/configuracion/editar-perfil", text: "Editar perfil"},
+                                    {to: "/configuracion/apariencia", text: "Apariencia"},
+                                    {to: "/configuracion/suscripcion", text: "Suscripción"},
+                                    {to: "/configuracion/notificaciones", text: "Notificaciones"}
+                                ]}
                             img={<Ajustes />}
+                        />
+                        <SideBarCard
+                            titulo="Soporte"
+                            opciones={[
+                                    {to: "/apariencia", text: "Apariencia"},
+                                    {to: "/suscripcion", text: "Suscripción"},
+                                    {to: "/notificaciones", text: "Notificaciones"}
+                                ]}
+                            img={<Soporte />}
                         />
                 </SideBar>
             )}
@@ -44,7 +60,12 @@ export const Layout = () => {
                 <SideBar />
             )}
             <div className="body-layout__content">
-                <Buscador/>
+                <div className="body-layout__content__barra">
+                    <Buscador/>
+                    <div className="body-layout__content__barra__img">
+                        <img src={cenicienta} alt="Foto de usuario" />
+                    </div>
+                </div>
                 <Outlet />
             </div>
             {configuracion.buchy && (

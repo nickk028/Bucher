@@ -3,7 +3,7 @@ import { Input } from "../input/Input";
 import "./AutoCompletar.css";
 import { getData } from "../../utils/FetchUtils";
 
-export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, onSelect, imgHeight, imgWidth, ...props }) {
+export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, onSelect, imgHeight, imgWidth, variant, ...props }) {
 	const [valorInterno, setValorInterno] = useState("");
 	const [showList, setShowList] = useState(false);
 	const [optFiltrados, setOptFiltrados] = useState([]);
@@ -78,7 +78,7 @@ export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, o
 		<div className="autocomplete">
 			<Input
 				type="text"
-				variant="buscador"
+				variant={variant}
 				value={value}
 				onChange={(e) => {
 					setValue(e.target.value);
