@@ -5,7 +5,7 @@ import "./Libro.css";
 import { Button } from "../../../elements/buttons/Button";
 import { UsuarioDetalles } from "../../../elements/user/UsuarioDetalles";
 import { PopUp } from "../../../elements/modal/PopUp";
-import Estrella from "../../../../assets/img/estrellaGrande.svg?react";
+import Estrella from "../../../../assets/img/icons/utils/estrellaGrande.svg?react";
 
 export const Libro = () => {
     const { id } = useParams();

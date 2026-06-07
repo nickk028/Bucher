@@ -1,8 +1,8 @@
 import "./Prestamos.css";
 import "../../../global.css";
 import PublicacionCard from "../../elements/publication/PublicacionCard";
-import flechaIzq from "../../../assets/img/flechaIzq.png"
-import flechaDer from "../../../assets/img/flechaDer.png"
+import flechaIzq from "../../../assets/img/icons/utils/flechaIzq.png"
+import flechaDer from "../../../assets/img/icons/utils/flechaDer.png"
 import { Input } from "../../elements/input/Input";
 import { Button } from "../../elements/buttons/Button";
 import { useRef, useState } from "react";

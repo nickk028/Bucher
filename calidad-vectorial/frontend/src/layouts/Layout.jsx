@@ -8,7 +8,7 @@ import "./Layout.css";
 import { getConfig } from "../components/utils/ConfigUtils";
 import { useEffect, useState } from "react";
 import { Buscador } from "../components/elements/search/Buscador";
-import Ajustes from "../assets/img/svg/ajustes.svg?react";
+import Ajustes from "../assets/img/icons/configuracion/ajustes.svg?react";
 
 export const Layout = () => {
     const { libroMensaje } = useBook();

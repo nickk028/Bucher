@@ -1,5 +1,5 @@
 import "./LibroCard.css";
-import Estrella from "../../../assets/img/estrella.svg?react";
+import Estrella from "../../../assets/img/icons/utils/estrella.svg?react";
 
 export const LibroCard = ({urlFoto, titulo}) => {
     return (

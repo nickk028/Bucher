@@ -4,13 +4,13 @@ import { Button } from "../../elements/buttons/Button";
 import { Input } from "../../elements/input/Input";
 
 import cenicienta from "../../../assets/img/avatares/cenicienta.png";
-import MencionarUsuarioPosteo from "../../../assets/img/posteo/mencionarUsuarioPosteo.svg?react";
-import MencionarLibroPosteo from "../../../assets/img/posteo/mencionarLibroPosteo.svg?react";
-import SubirImagenPosteo from "../../../assets/img/posteo/subirImagenPosteo.svg?react";
-import ColorLetra from "../../../assets/img/posteo/colorLetra.svg?react";
-import NegritaPosteo from "../../../assets/img/posteo/negritaPosteo.svg?react";
-import SubrayarPosteo from "../../../assets/img/posteo/subrayarPosteo.svg?react";
-import TacharPosteo from "../../../assets/img/posteo/tacharPosteo.svg?react"
+import MencionarUsuarioPosteo from "../../../assets/img/icons/posteo/mencionarUsuarioPosteo.svg?react";
+import MencionarLibroPosteo from "../../../assets/img/icons/posteo/mencionarLibroPosteo.svg?react";
+import SubirImagenPosteo from "../../../assets/img/icons/posteo/subirImagenPosteo.svg?react";
+import ColorLetra from "../../../assets/img/icons/posteo/colorLetra.svg?react";
+import NegritaPosteo from "../../../assets/img/icons/posteo/negritaPosteo.svg?react";
+import SubrayarPosteo from "../../../assets/img/icons/posteo/subrayarPosteo.svg?react";
+import TacharPosteo from "../../../assets/img/icons/posteo/tacharPosteo.svg?react"
 
 import "./ComentariosSocial.css";
 
