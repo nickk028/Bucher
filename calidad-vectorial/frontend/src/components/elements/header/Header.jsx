@@ -40,8 +40,8 @@ const Header = () => {
                     <div alt="Logo de Tendencias" className={`header__nav__item__tendencias header__nav__item__tendencias--${click=="/tendencias" ? "selected" : ""}`} />
                 </Link>
 
-                <Link className="header__nav__item" to={click.includes("/usuario") ? click : "/usuario/configuracion"}>
-                    <div alt="Logo de Usuario" className={`header__nav__item__configuracion header__nav__item__configuracion--${click.includes("/configuracion") ? "selected" : ""}`}>
+                <Link className="header__nav__item" to={click.includes("/configuracion") ? click : "/configuracion/editar-perfil"}>
+                    <div alt="Logo de Configuracion" className={`header__nav__item__configuracion header__nav__item__configuracion--${click.includes("/configuracion") ? "selected" : ""}`}>
                     </div>
                 </Link>
             </nav>

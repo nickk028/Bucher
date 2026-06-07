@@ -17,6 +17,7 @@ import { ProtectedRoute } from "./components/utils/TokenUtils";
 import { CategoriaLibro } from "./components/pages/user/bookshelf/category/CategoriaLibro";
 import { Tendencias } from "./components/pages/tendences/Tendencias";
 import { Configuracion } from "./components/pages/user/configuration/Configuracion";
+import { EditarPerfil } from "./components/pages/configuration/editarperfil/EditarPerfil";
 import { UsuarioLayout } from "./layouts/UsuarioLayout";
 import { ComingSoon } from "./components/elements/errors/ComingSoon";
 import { Prestamo } from "./components/pages/user/loan/Prestamo";
@@ -39,14 +40,7 @@ export const App = () => {
                         <Route path="/publicacion/:id" element={<Publicacion />} />
                         <Route path="/crear-publicacion" element={<CrearPublicacion />} />
                         <Route path="/tendencias" element={<Tendencias />} />
-                        <Route path="/usuario" element={<UsuarioLayout />} >
-                            <Route path="/usuario/biblioteca" element={<Biblioteca />} />
-                            <Route path="/usuario/biblioteca/:posicion" element={<LibroUsuario />} />
-                            <Route path="/usuario/biblioteca/categoria/:categoria" element={<CategoriaLibro />} />
-                            <Route path="/usuario/publicacion/propias" element={<PublicacionUsuario />} />
-                            <Route path="/usuario/configuracion" element={<Configuracion />} />
-                            <Route path="/usuario/prestamos" element={<Prestamo />} />
-                        </Route>
+                        <Route path="/configuracion/editar-perfil" element={< EditarPerfil/>} />
                         <Route path="/libros" element={<Libros />} />
                         <Route path="/libros/:id" element={<Libro />} />
                     </Route>

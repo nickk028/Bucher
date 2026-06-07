@@ -1,0 +1,99 @@
+.config-content {
+    padding-left: 40px;
+    padding-right: 360px;
+    padding-bottom: 60px;
+}
+
+.config-content__title {
+    color: #08413C;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.config-content__form {
+    display: flex;
+    flex-flow: column nowrap;
+
+    background: var(--bg-surface);
+    border: var(--border-primary) solid 2px;
+    border-radius: 8px;
+
+    padding: 10px 100px 10px 10px;
+}
+
+.config-content__form h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    color: var(--brand-dark);
+}
+
+.config-content__form__label {
+    font-size: 1rem;
+
+    color: var(--text-secondary);
+    transition: all 200ms ease-in-out;
+}
+
+.carrusel {
+    display: flex;
+    gap: 28px;
+
+    width: 100%;
+    height: 100px;
+
+    box-sizing: border-box;
+    padding: 10px;
+
+    border: var(--border-primary) solid 1px;
+    border-radius: 8px;
+}
+
+.contenedor {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    padding-right: 60px;
+}
+
+.contenedor > :first-child {
+    width: 30%;
+}
+
+.contenedor > :nth-child(2) {
+    width: 20%;
+}
+
+.contenedor > :nth-child(3) {
+    width: 20%;
+}
+
+.contenedor-2 {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    padding-right: 60px;
+}
+
+.contenedor-2 > :first-child {
+    width: 65%;
+}
+
+.contenedor-2 > :nth-child(2) {
+    width: 20%;
+}
+
+.config-content__form__label--editando {
+    color: #0E675F;
+    box-shadow: #08413C;
+}
+
+.config-content__input-group {
+    min-width: max-content;
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}

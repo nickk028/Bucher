@@ -93,7 +93,7 @@ export const Input = ({ children, type, name, value, checked, placeholder, varia
         );
     };
 
-    if (variant == "buscador") {
+    if (variant == "buscador-principal") {
         return (
             <div className="input-group">
             <input className={`input-group__input input-group__input--${type} input-group__input--${variant}`} placeholder={placeholder} title={title} onChange={onChange} ref={inputRef}
