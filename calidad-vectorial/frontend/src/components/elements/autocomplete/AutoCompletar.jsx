@@ -78,6 +78,7 @@ export function Autocompletar({ urlFetch, tipo, value: valorExterno, onChange, o
 		<div className="autocomplete">
 			<Input
 				type="text"
+				variant="buscador"
 				value={value}
 				onChange={(e) => {
 					setValue(e.target.value);

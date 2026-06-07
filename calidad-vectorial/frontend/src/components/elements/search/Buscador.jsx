@@ -1,4 +1,3 @@
-import lupa from "../../../assets/img/lupa.png";
 import "./Buscador.css";
 import { useState } from "react";
 import { AutoCompletarLibro } from "../autocomplete/types/AutoCompletarLibro";
@@ -46,10 +45,8 @@ export const Buscador = () => {
                         onSelect = {(libro) => setLibro(libro)}
                     />
                 ) : opcionFiltrado == "usuarios" && (
-                    <Input type="text" value={filtro} name="filtro" placeholder = "Buscar usuario por nick" onChange = {e => setFiltro(e.target.value)}></Input>
+                    <Input type="text" value={filtro} name="filtro" variant="buscador" placeholder = "Buscar usuario por nick" onChange = {e => setFiltro(e.target.value)}></Input>
                 )}
-                
-                <button type = "submit" style={{border: "hidden"}}><img className="buscador__input__lupa" src={lupa} alt="Lupa" /></button>
             </form>
         </nav>
     )

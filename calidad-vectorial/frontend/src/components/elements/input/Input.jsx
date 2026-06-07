@@ -1,7 +1,8 @@
 import { useState, useRef } from "react"
 import "./Input.css";
-import ver from "../../../assets/img/ver.png";
-import esconder from "../../../assets/img/esconder.png";
+import ver from "../../../assets/img/icons/utils/ver.png";
+import esconder from "../../../assets/img/icons/utils/esconder.png";
+import lupa from "../../../assets/img/icons/utils/lupa.png";
 
 export const Input = ({ children, type, name, value, checked, placeholder, variant="default", title, required=true, disabled=false, onChange, onFocus, onBlur , autoComplete="off", autoCorrect="off", autoCapitalize="none", spellCheck="false"}) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -60,7 +61,7 @@ export const Input = ({ children, type, name, value, checked, placeholder, varia
             <div className="input-group">
                 <textarea className={`input-group__input input-group__input--${type} input-group__input--${variant}`} placeholder={placeholder} title={title} onChange={onChange} ref={inputRef}
                 onFocus={() => {
-                    if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));} 
+                    if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));}
                     else {window.dispatchEvent(new Event("passwordFocus"))};}
                 }}
                 onBlur={ () => {
@@ -89,6 +90,26 @@ export const Input = ({ children, type, name, value, checked, placeholder, varia
                 name={name} id={name} checked={checked ?? ""} required={false} disabled={disabled}
                 autoComplete={autoComplete} autoCorrect={autoCorrect} autoCapitalize={autoCapitalize} spellCheck={spellCheck}/>
             </div>
+        );
+    };
+
+    if (variant == "buscador") {
+        return (
+            <div className="input-group">
+            <input className={`input-group__input input-group__input--${type} input-group__input--${variant}`} placeholder={placeholder} title={title} onChange={onChange} ref={inputRef}
+            onFocus={() => {
+                if (type == "password") {if (inputType === "text") {window.dispatchEvent(new Event("passwordPeek"));}
+                else {window.dispatchEvent(new Event("passwordFocus"))};}
+                else {onFocus && onFocus()}
+            }}
+            onBlur={ () => {
+                if (type == "password") {window.dispatchEvent(new Event("passwordBlur"))}
+                else {onBlur && onBlur()}}}
+            name={name} id={name} type={inputType} value={value ?? ""} required={required} disabled={disabled}
+            autoComplete={autoComplete} autoCorrect={autoCorrect} autoCapitalize={autoCapitalize} spellCheck={spellCheck}/>
+
+            <button className="input-group__lupa" type = "submit" style={{border: "hidden"}}><img src={lupa} alt="Lupa" /></button>
+        </div>
         );
     };
 
