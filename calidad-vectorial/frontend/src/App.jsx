@@ -24,6 +24,7 @@ import { ComingSoon } from "./components/elements/errors/ComingSoon";
 //import { Prestamo } from "./components/pages/user/loan/Prestamo";
 import { Libros } from "./components/pages/books/Libros";
 import { Libro } from "./components/pages/books/book/Libro";
+import { Usuario } from "./components/pages/user/Usuario";
 
 export const App = () => {
 	return (
@@ -45,6 +46,7 @@ export const App = () => {
                         <Route path="/configuracion/editar-perfil" element={< EditarPerfil/>} />
                         <Route path="/libros" element={<Libros />} />
                         <Route path="/libros/:id" element={<Libro />} />
+                        <Route path="/usuario" element={<Usuario />} />
                     </Route>
                 </Routes>
             </Router>

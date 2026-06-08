@@ -1,0 +1,155 @@
+.usuario {
+    width: 100%;
+    min-width: 100vh;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 40px;
+
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 120px;
+}
+
+.usuario__section {
+    width: 100%;
+    height: max(140px, 22vh);
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    gap: 3%;
+}
+
+.usuario__section__img {
+    height: 100%;
+    width: auto;
+}
+
+.usuario__section__img img {
+    width: 100%;
+    height: 100%;
+}
+
+.usuario__section__content {
+    height: 100%;
+    width: max(200px, 50%);
+
+    flex: 1 1 max(200px, 50%);
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.usuario__section__content__datos {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 20%;
+}
+
+.usuario__section__content__datos__encabezado h1 {
+    font-weight: 200;
+    margin-bottom: -10px;
+}
+
+.usuario__section__content__datos__encabezado p {
+    margin-bottom: 10px;
+}
+
+.usuario__section__content__datos__lista {
+    width: 0;
+    flex: 1 1 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+.usuario__section__content__datos__lista li {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.usuario__section__content__descripcion {
+    width: 100%;
+    height: 0;
+
+    flex: 1 1 0;
+
+    box-sizing: border-box;
+    border: var(--border-primary) solid 1px;
+    border-radius: 8px;
+
+    padding: 5px 10px 5px 10px;
+}
+
+.usuario__section__puntos {
+    width: 22%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    border: var(--border-primary) solid 1px;
+    border-radius: 8px;
+}
+
+.usuario__content {
+    width: 100%;
+    min-height: 200px;
+
+    display: flex;
+    flex-flow: row nowrap;
+
+    background: var(--bg-surface);
+
+    box-sizing: border-box;
+    border: var(--border-primary) solid 2px;
+    border-radius: 8px;
+}
+
+.usuario__content__clasificacion {
+    width: 15%;
+    height: 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+
+    box-sizing: border-box;
+    border-right: var(--border-primary) solid 2px;
+    padding: 15px;
+}
+
+.usuario__content__clasificacion__item {
+    width: 100%;
+    height: 70px;
+
+    background: var(--bg-primary);
+
+    box-sizing: border-box;
+    border: var(--border-primary) solid 2px;
+    border-radius: 8px;
+
+    padding: 5px;
+
+    cursor: pointer;
+}
+
+.usuario__content__clasificacion__item--selected {
+    font-weight: 800;
+}
+
+.usuario__content__libros {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 25px;
+
+    box-sizing: border-box;
+    padding: 25px;
+}

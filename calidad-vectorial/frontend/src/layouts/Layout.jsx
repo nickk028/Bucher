@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, Link } from "react-router-dom";
 import { useBook } from "../context/LibroContexto";
 import Header from "../components/elements/header/Header";
 import { LibroAnimado } from "../components/elements/animatedbook/LibroAnimado";
@@ -62,9 +62,9 @@ export const Layout = () => {
             <div className="body-layout__content">
                 <div className="body-layout__content__barra">
                     <Buscador/>
-                    <div className="body-layout__content__barra__img">
+                    <Link to="/usuario" className="body-layout__content__barra__img">
                         <img src={cenicienta} alt="Foto de usuario" />
-                    </div>
+                    </Link>
                 </div>
                 <Outlet />
             </div>
