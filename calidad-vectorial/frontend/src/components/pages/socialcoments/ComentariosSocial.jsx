@@ -24,7 +24,7 @@ export const ComentariosSocial = () => {
                     </div>
                     <textarea className="body-comsocial__form__content__text" name="posteo" id="posteo" />
                     <div>
-                        <LibroCard urlFoto="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVLofgGGZgYTRDxxH39fTr4mZfBg7nok7PZg&s" titulo="Sigue lloviendo" />
+                        <LibroCard urlFoto="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVLofgGGZgYTRDxxH39fTr4mZfBg7nok7PZg&s" titulo="Sigue lloviendo" estrllas={true}/>
                     </div>
                 </div>
                 <div className="body-comsocial__form__options">

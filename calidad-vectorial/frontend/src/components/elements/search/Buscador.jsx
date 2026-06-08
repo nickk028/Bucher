@@ -36,6 +36,7 @@ export const Buscador = () => {
                         value = {filtro}
                         onChange = {e => setFiltro(e.target.value)}
                         onSelect = {(libro) => setLibro(libro)}
+                        variant="buscador-principal"
                     />
                 ) : opcionFiltrado == "prestamos" ? (
                     <AutoCompletarLibro

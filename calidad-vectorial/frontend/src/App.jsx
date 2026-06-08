@@ -8,19 +8,20 @@ import { Inicio } from "./components/pages/index/Inicio";
 import { Prestamos } from "./components/pages/loans/Prestamos";
 import { ComentariosSocial } from "./components/pages/socialcoments/ComentariosSocial";
 import { Publicacion } from "./components/pages/publication/Publicacion";
-import { Biblioteca } from "./components/pages/user/bookshelf/Biblioteca";
+//import { Biblioteca } from "./components/pages/user/bookshelf/Biblioteca";
 import { LibroUsuario } from "./components/pages/user/bookshelf/bookuser/LibroUsuario";
 import { PublicacionUsuario } from "./components/pages/user/userpublication/PublicacionUsuario";
 import { Register } from "./components/pages/register/Register";
 import { CrearPublicacion } from "./components/pages/publication/CrearPublicacion";
 import { ProtectedRoute } from "./components/utils/TokenUtils";
-import { CategoriaLibro } from "./components/pages/user/bookshelf/category/CategoriaLibro";
+//import { CategoriaLibro } from "./components/pages/user/bookshelf/category/CategoriaLibro";
 import { Tendencias } from "./components/pages/tendences/Tendencias";
-import { Configuracion } from "./components/pages/user/configuration/Configuracion";
+import { Biblioteca } from "./components/pages/bookshelf/Biblioteca";
+//import { Configuracion } from "./components/pages/user/configuration/Configuracion";
 import { EditarPerfil } from "./components/pages/configuration/editarperfil/EditarPerfil";
-import { UsuarioLayout } from "./layouts/UsuarioLayout";
+//import { UsuarioLayout } from "./layouts/UsuarioLayout";
 import { ComingSoon } from "./components/elements/errors/ComingSoon";
-import { Prestamo } from "./components/pages/user/loan/Prestamo";
+//import { Prestamo } from "./components/pages/user/loan/Prestamo";
 import { Libros } from "./components/pages/books/Libros";
 import { Libro } from "./components/pages/books/book/Libro";
 
@@ -38,6 +39,7 @@ export const App = () => {
                         <Route path="/prestamos" element={<Prestamos />} />
                         <Route path="/comentariossocial" element={<ComentariosSocial />} />
                         <Route path="/publicacion/:id" element={<Publicacion />} />
+                        <Route path="/biblioteca" element={<Biblioteca />} />
                         <Route path="/crear-publicacion" element={<CrearPublicacion />} />
                         <Route path="/tendencias" element={<Tendencias />} />
                         <Route path="/configuracion/editar-perfil" element={< EditarPerfil/>} />
