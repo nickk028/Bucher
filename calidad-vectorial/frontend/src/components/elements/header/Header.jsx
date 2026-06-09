@@ -29,11 +29,8 @@ const Header = () => {
                     <div alt="Logo de Biblioteca" className={`header__nav__item__biblioteca header__nav__item__biblioteca--${click=="/biblioteca" ? "selected" : ""}`} />
                 </Link>
 
-                <Link className="header__nav__item" to="/crear-publicacion">
-                    <div alt="Logo de Crear" className={`header__nav__item__crear`}>
-                        <div alt="Logo de Crear" className={`header__nav__item__crear__fondo ${click == "/crear-publicacion" ? "selected" : ""}`} />
-                    </div>
-                    <div className={`header__nav__item__circle ${click == "/crear-publicacion" ? "circle--selected" : ""}`}></div>
+                <Link className="header__nav__item" to={click.includes("/crear") ? click : "/crear"}>
+                    <div alt="Logo de Crear" className={`header__nav__item__crear header__nav__item__crear--${click.includes("/crear")  ? "selected" : ""}`} />
                 </Link>
 
                 <Link className="header__nav__item" to="/tendencias">

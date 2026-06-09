@@ -57,7 +57,29 @@ export const Layout = () => {
             )}
 
             {mostrarCrear && (
-                <SideBar />
+                <SideBar>
+                    <SideBarCard
+                            titulo="Préstamo"
+                            opciones={[
+                                    {to: "/crear-publicacion", text: "Compartí uno de tus libros y expandí la lectura"}
+                                ]}
+                            img={<Ajustes />}
+                        />
+                    <SideBarCard
+                            titulo="Posteo"
+                            opciones={[
+                                    {to: "/crear-posteo", text: "Escribí sobre tus lecturas y opiniones."}
+                                ]}
+                            img={<Ajustes />}
+                        />
+                    <SideBarCard
+                            titulo="Libro"
+                            opciones={[
+                                    {to: "/crear-libro", text: "Mostra tus obras a nuevos lectores."}
+                                ]}
+                            img={<Ajustes />}
+                        />
+                </SideBar>
             )}
             <div className="body-layout__content">
                 <div className="body-layout__content__barra">

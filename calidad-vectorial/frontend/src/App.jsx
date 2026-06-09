@@ -17,6 +17,7 @@ import { ProtectedRoute } from "./components/utils/TokenUtils";
 //import { CategoriaLibro } from "./components/pages/user/bookshelf/category/CategoriaLibro";
 import { Tendencias } from "./components/pages/tendences/Tendencias";
 import { Biblioteca } from "./components/pages/bookshelf/Biblioteca";
+import { Crear } from "./components/pages/create/Crear";
 //import { Configuracion } from "./components/pages/user/configuration/Configuracion";
 import { EditarPerfil } from "./components/pages/configuration/editarperfil/EditarPerfil";
 //import { UsuarioLayout } from "./layouts/UsuarioLayout";
@@ -41,6 +42,7 @@ export const App = () => {
                         <Route path="/comentariossocial" element={<ComentariosSocial />} />
                         <Route path="/publicacion/:id" element={<Publicacion />} />
                         <Route path="/biblioteca" element={<Biblioteca />} />
+                        <Route path="/crear" element={<Crear />} />
                         <Route path="/crear-publicacion" element={<CrearPublicacion />} />
                         <Route path="/tendencias" element={<Tendencias />} />
                         <Route path="/configuracion/editar-perfil" element={< EditarPerfil/>} />
