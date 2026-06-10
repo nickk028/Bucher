@@ -36,7 +36,7 @@ export const Usuario = () => {
                     </div>
                 </div>
                 <div className="usuario__section__puntos">
-                    Puntos
+                    Coming Soon
                 </div>
             </section>
 

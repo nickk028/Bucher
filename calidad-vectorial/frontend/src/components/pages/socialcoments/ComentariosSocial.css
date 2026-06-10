@@ -46,7 +46,7 @@
 
 .body-comsocial__form__options div {
     display: flex;
-    gap: 20px;
+    gap: min(2%, 10px);
     scale: .85;
     transform: translateX(-9%);;
 }

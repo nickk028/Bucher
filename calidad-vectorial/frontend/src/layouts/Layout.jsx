@@ -76,17 +76,16 @@ export const Layout = () => {
                             opciones={[
                                     {to: "/configuracion/editar-perfil", text: "Editar perfil"},
                                     {to: "/configuracion/apariencia", text: "Apariencia"},
-                                    {to: "/configuracion/suscripcion", text: "Suscripción"},
-                                    {to: "/configuracion/notificaciones", text: "Notificaciones"}
+                                    {to: "/coming-soon", text: "Suscripción"},
+                                    {to: "/coming-soon", text: "Notificaciones"}
                                 ]}
                             img={<Ajustes />}
                         />
                         <SideBarCard
                             titulo="Soporte"
                             opciones={[
-                                    {to: "/apariencia", text: "Apariencia"},
-                                    {to: "/suscripcion", text: "Suscripción"},
-                                    {to: "/notificaciones", text: "Notificaciones"}
+                                    {to: "/coming-soon", text: "Preguntas Frecuentes"},
+                                    {to: "/coming-soon", text: "Términos y condiciones"}
                                 ]}
                             img={<Soporte />}
                         />
