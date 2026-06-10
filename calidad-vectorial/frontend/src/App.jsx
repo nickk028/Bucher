@@ -17,10 +17,11 @@ import { Biblioteca } from "./components/pages/bookshelf/Biblioteca";
 import { CrearPrestamo } from "./components/pages/create/prestamo/CrearPrestamo";
 import { CrearLibro } from "./components/pages/create/libro/CrearLibro";
 import { EditarPerfil } from "./components/pages/configuration/editarperfil/EditarPerfil";
-import { ComingSoon } from "./components/elements/errors/ComingSoon";
+import { ComingSoon } from "./components/pages/errors/comingsoon/ComingSoon";
 import { Libros } from "./components/pages/books/Libros";
 import { Libro } from "./components/pages/books/book/Libro";
 import { Usuario } from "./components/pages/user/Usuario";
+import { NotFound } from "./components/pages/errors/notfound/NotFound";
 
 export const App = () => {
 	return (
@@ -28,6 +29,8 @@ export const App = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={<SobreNosotros/>}/>
+                    <Route path="*" element={<NotFound />} />
+
                     <Route element={<ProtectedRoute/>}>
                         <Route path="/coming-soon" element={<ComingSoon />} />
                         <Route path="/login" element={<Login/>}/>
