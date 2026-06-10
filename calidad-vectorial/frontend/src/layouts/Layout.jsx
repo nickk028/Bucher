@@ -11,6 +11,9 @@ import { Buscador } from "../components/elements/search/Buscador";
 import cenicienta from "../assets/img/avatares/cenicienta.png";
 import Ajustes from "../assets/img/icons/configuracion/ajustes.svg?react";
 import Soporte from "../assets/img/icons/configuracion/soporte.svg?react";
+import CrearLibro from "../assets/img/icons/crear/crearLibro.svg?react";
+import CrearPosteo from "../assets/img/icons/crear/crearPosteo.svg?react";
+import CrearPrestamo from "../assets/img/icons/crear/crearPrestamo.svg?react";
 
 export const Layout = () => {
     const { libroMensaje } = useBook();
@@ -61,23 +64,23 @@ export const Layout = () => {
                     <SideBarCard
                             titulo="Préstamo"
                             opciones={[
-                                    {to: "/crear-publicacion", text: "Compartí uno de tus libros y expandí la lectura"}
+                                    {to: "/crear-prestamo", text: "Compartí uno de tus libros y expandí la lectura"}
                                 ]}
-                            img={<Ajustes />}
+                            img={<CrearPrestamo />}
                         />
                     <SideBarCard
                             titulo="Posteo"
                             opciones={[
-                                    {to: "/crear-posteo", text: "Escribí sobre tus lecturas y opiniones."}
+                                    {to: "/comentarios-social", text: "Escribí sobre tus lecturas y opiniones."}
                                 ]}
-                            img={<Ajustes />}
+                            img={<CrearPosteo />}
                         />
                     <SideBarCard
                             titulo="Libro"
                             opciones={[
                                     {to: "/crear-libro", text: "Mostra tus obras a nuevos lectores."}
                                 ]}
-                            img={<Ajustes />}
+                            img={<CrearLibro />}
                         />
                 </SideBar>
             )}

@@ -21,8 +21,8 @@ const Header = () => {
                     <div alt="Logo de Prestamos" className={`header__nav__item__prestamos header__nav__item__prestamos--${click=="/prestamos" ? "selected" : ""}`} />
                 </Link>
 
-                <Link className="header__nav__item" to="/comentariossocial">
-                    <div alt="Logo de Comentario Social" className={`header__nav__item__comentario-social header__nav__item__comentario-social--${click=="/comentariossocial" ? "selected" : ""}`} />
+                <Link className="header__nav__item" to="/comentarios-social">
+                    <div alt="Logo de Comentario Social" className={`header__nav__item__comentario-social header__nav__item__comentario-social--${click=="/comentarios-social" ? "selected" : ""}`} />
                 </Link>
 
                 <Link className="header__nav__item" to="/biblioteca">
