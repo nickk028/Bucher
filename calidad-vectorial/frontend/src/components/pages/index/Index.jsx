@@ -63,25 +63,25 @@ export const Index = () => {
                             limiteDias="14"
                         />
                         <PublicacionCard
-                            urlFoto="https://cdn.livriz.com/media/mediaspace/F9AFB48D-741D-4834-B760-F59344EEFF34/45/e8afc1c5-a0e5-4db5-afd5-6ad3ace888f3/9789500771870_fc43a029-ebe3-43d1-a6ae-b174e283ee70.jpg"
-                            titulo="Mi nombre es Emilia del Valle"
-                            usuarioNickname="Claudio"
+                            urlFoto="https://pdlibrosarg.cdnstatics2.com/usuaris/libros/thumbs/772d1279-adde-4a29-ba82-11071178969c/d_360_620/380957_portada_el-hobbit-edicion-revisada_j-r-r-tolkien_202306071037.webp"
+                            titulo="El Hobbit"
+                            usuarioNickname="Laura"
                             estadoPublicacion="Disponible"
                             limiteDias="14"
                         />
                         <PublicacionCard
-                            urlFoto="https://cdn.livriz.com/media/mediaspace/F9AFB48D-741D-4834-B760-F59344EEFF34/45/e8afc1c5-a0e5-4db5-afd5-6ad3ace888f3/9789500771870_fc43a029-ebe3-43d1-a6ae-b174e283ee70.jpg"
-                            titulo="Mi nombre es Emilia del Valle"
-                            usuarioNickname="Claudio"
+                            urlFoto="https://www.penguinlibros.com/ar/3005341-large_default/la-maldicion-del-titan-percy-jackson-y-los-dioses-del-olimpo-3.webp"
+                            titulo="La maldición del titán"
+                            usuarioNickname="Juli_lectora"
                             estadoPublicacion="Disponible"
                             limiteDias="14"
                         />
                     </div>
                 </section>
                 <section>
-                    <span className="index__text">Préstamos que te pueden interesar</span>
+                    <span className="index__text">Libros que te pueden interesar</span>
                     <div className="index__aside__container">
-                        <LibroCard titulo="El código Da Vinci" autor="Isabel Allende" urlFoto="https://upload.wikimedia.org/wikipedia/en/6/6b/DaVinciCode.jpg"></LibroCard>
+                        <LibroCard titulo="Cien años de soledad" autor="Gabriel García Márquez" urlFoto="https://cdn.livriz.com/media/mediaspace/F9AFB48D-741D-4834-B760-F59344EEFF34/45/b3735ff2-ec78-49a6-8371-83c0afc30ff8/9788466379717_ac1359a8-df49-431d-a6b2-e0e6d8786cd7.webp"></LibroCard>
                         <LibroCard titulo="El pasillo de la muerte" autor="Stephen King" urlFoto="https://0.academia-photos.com/attachment_thumbnails/64970363/mini_magick20201118-14474-1vl1u7.png?1605708442"></LibroCard>
                         <LibroCard titulo="Yo antes de ti" autor="Jojo Moyes" urlFoto="https://images.cdn3.buscalibre.com/fit-in/360x360/d0/ac/d0ac4eadaa99b866d2e308b6500feaed.jpg" estrllas={false}></LibroCard>
                     </div>

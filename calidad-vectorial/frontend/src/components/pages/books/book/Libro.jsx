@@ -56,7 +56,7 @@ export const Libro = () => {
                                 <div className="body-pub__libro__text__estrellas__valor">
                                     <h2>5 Estrellas</h2>
                                 </div>
-                            </div>
+                            </div>  
 
                             <div className="body-pub__libro__text__parrafo">
                                 <h2>Sinopsis del libro</h2>
