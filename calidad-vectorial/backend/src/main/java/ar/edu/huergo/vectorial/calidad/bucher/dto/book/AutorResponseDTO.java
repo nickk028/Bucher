@@ -2,19 +2,8 @@ package ar.edu.huergo.vectorial.calidad.bucher.dto.book;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
-import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
