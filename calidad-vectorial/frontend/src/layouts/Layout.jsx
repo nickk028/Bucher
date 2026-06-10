@@ -18,13 +18,11 @@ import CrearPrestamo from "../assets/img/icons/crear/crearPrestamo.svg?react";
 export const Layout = () => {
     const { libroMensaje } = useBook();
     const [configuracion, setConfiguracion] = useState(() => getConfig());
+    const [mostrarCrear, setMostrarCrear] = useState(false);
     const location = useLocation();
 
     const mostrarConfig =
         location.pathname.startsWith("/configuracion");
-
-    const mostrarCrear =
-        location.pathname.startsWith("/crear");
 
     // Actualiza la configuración al cambiar de ruta
     useEffect(() => {
@@ -34,7 +32,7 @@ export const Layout = () => {
 
     return (
         <div className="body-layout">
-            <Header />
+            <Header onToggleCrear={() => setMostrarCrear(prev => !prev)} mostrarCrear={mostrarCrear} />
             {mostrarConfig && (
                 <SideBar titulo="Configuración">
                         <SideBarCard
