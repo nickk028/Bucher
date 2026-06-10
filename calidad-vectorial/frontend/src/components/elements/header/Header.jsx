@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ onToggleCrear, mostrarCrear }) => {
     const location = useLocation();
     const [click, setClick] = useState(location.pathname);
 
@@ -29,7 +29,7 @@ const Header = () => {
                     <div alt="Logo de Biblioteca" className={`header__nav__item__biblioteca header__nav__item__biblioteca--${click=="/biblioteca" ? "selected" : ""}`} />
                 </Link>
 
-                <Link className="header__nav__item" to={click.includes("/crear") ? click : "/crear"}>
+                <Link className="header__nav__item" onClick={(e) => { e.preventDefault(); onToggleCrear(); }}>
                     <div alt="Logo de Crear" className={`header__nav__item__crear header__nav__item__crear--${click.includes("/crear")  ? "selected" : ""}`} />
                 </Link>
 
