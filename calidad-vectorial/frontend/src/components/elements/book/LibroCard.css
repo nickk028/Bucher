@@ -41,6 +41,18 @@
     font-weight: 300;
     text-align: center;
 
+    text-align: left;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.libro-card__titulo__autor {
+    font-size: .9rem;
+    color: var(--text-secondary);
+    margin-top: -5px;
+
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -4,7 +4,7 @@ import { GlobalProvider } from "./context/GlobalProvider";
 
 import { Login } from "./components/pages/login/Login";
 import { SobreNosotros } from "./components/pages/aboutus/SobreNosotros";
-import { Inicio } from "./components/pages/index/Inicio";
+import { Index } from "./components/pages/index/Index";
 import { Prestamos } from "./components/pages/loans/Prestamos";
 import { ComentariosSocial } from "./components/pages/socialcoments/ComentariosSocial";
 import { Publicacion } from "./components/pages/publication/Publicacion";
@@ -38,7 +38,7 @@ export const App = () => {
                         <Route path="/coming-soon" element={<ComingSoon />} />
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/index" element={<Inicio />} />
+                        <Route path="/index" element={<Index />} />
                         <Route path="/prestamos" element={<Prestamos />} />
                         <Route path="/comentarios-social" element={<ComentariosSocial />} />
                         <Route path="/publicacion/:id" element={<Publicacion />} />

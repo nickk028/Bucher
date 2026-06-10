@@ -61,7 +61,7 @@ export const ComentariosSocial = () => {
                 <ComentarioSocial
                     nickname="Wendy's"
                     urlFoto="/assets/img/avatares/dorothy.png"
-                    tiempoPublicacion="3"
+                    tiempoPublicacion="5"
                 >
                     Volví a leer El Principito ✨. Qué increíble cómo cada vez revela algo nuevo: hoy me recordó que lo esencial sigue estando en lo pequeño.
                 </ComentarioSocial>
