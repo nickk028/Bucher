@@ -1,0 +1,193 @@
+.apariencia {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 16px;
+ 
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 160px;
+}
+ 
+.apariencia__header h1 {
+    font-family: "Hind Siliguri", sans-serif;
+    font-size: 2rem;
+    color: var(--brand-dark);
+}
+ 
+.apariencia__header p {
+    font-family: "Hind Siliguri", sans-serif;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+ 
+/* ---- Card / form ---- */
+.apariencia__form {
+    width: 100%;
+    height: fit-content;
+ 
+    background: var(--bg-surface);
+ 
+    box-sizing: border-box;
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+ 
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+ 
+.apariencia__form h2 {
+    font-family: "Hind Siliguri", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--brand-dark);
+    margin: 0 0 4px;
+}
+ 
+/* ---- Group (label + container) ---- */
+.apariencia__form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+ 
+.apariencia__form__label {
+    font-family: "Hind Siliguri", sans-serif;
+    font-size: .9rem;
+    color: var(--text-secondary);
+}
+ 
+.apariencia__form__container {
+    width: fit-content;
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+ 
+.apariencia__form__container--colors {
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+ 
+/* ---- Checkboxes / radios custom ---- */
+.apariencia__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Hind Siliguri", sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    user-select: none;
+}
+ 
+.apariencia__checkbox {
+    display: none;
+}
+ 
+.apariencia__checkbox-custom {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border: 1.8px solid var(--border-primary);
+    border-radius: 4px;
+    background: var(--bg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+}
+ 
+.apariencia__checkbox:checked + .apariencia__checkbox-custom {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+}
+ 
+.apariencia__checkbox:checked + .apariencia__checkbox-custom::after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 9px;
+    border: 2px solid var(--blanco-puro);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg) translate(-1px, -1px);
+}
+ 
+/* ---- Color picker de Büchy ---- */
+.apariencia__color-btn {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.15s;
+    flex-shrink: 0;
+}
+ 
+.apariencia__color-btn--active {
+    position: relative;
+}
+
+.apariencia__color-btn--active::before {
+    content: '';
+    position: absolute;
+
+    bottom: 0px;
+    left: 0;
+    transform: translateX(50%);
+
+    width: 50%;
+    height: 2px;
+
+    background: var(--brand-primary);
+
+    border-radius: 0px;
+    transition: all 200ms ease;
+}
+ 
+.apariencia__color-btn:hover:not(.apariencia__color-btn--active)::before {
+    content: '';
+    position: absolute;
+
+    bottom: 0px;
+    left: 0;
+    transform: translateX(50%);
+
+    width: 50%;
+    height: 2px;
+
+    background: var(--border-primary);
+
+    border-radius: 0px;
+    transition: all 200ms ease;
+}
+ 
+/* Two overlapping circles: light behind, dark in front */
+.apariencia__color-circle {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.apariencia__color-circle--back {
+    right: 0px;
+    z-index: 0;
+}
+
+.apariencia__color-circle--front {
+    left: 0px;
+    z-index: 1;
+}

@@ -28,7 +28,7 @@ export const ComentariosSocial = () => {
                     </div>
                 </div>
                 <div className="body-comsocial__form__options">
-                    <div>
+                    <div className="body-comsocial__form__options__">
                         <div className="body-comsocial__form__options__buttons">
                         <MencionarUsuarioPosteo />
                         <MencionarLibroPosteo />

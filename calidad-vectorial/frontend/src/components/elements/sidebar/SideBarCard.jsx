@@ -14,7 +14,7 @@ export const SideBarCard = ({titulo, opciones, img}) => {
             </div>
             <ul className="sidebar-card__options">
                 {opciones.map((opcion) => (
-                    <li key={opcion.to} className={`sidebar-card__options__option--${location.pathname == opcion.to ? "selected" : ""}`}>
+                    <li key={opcion.text} className={`sidebar-card__options__option--${location.pathname == opcion.to ? "selected" : ""}`}>
                         <Link to={opcion.to}>{opcion.text}</Link>
                     </li>
                 ))}

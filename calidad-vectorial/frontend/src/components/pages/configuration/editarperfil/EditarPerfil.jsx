@@ -74,12 +74,12 @@ export const EditarPerfil = () => {
                     <Input type="text" name="username"onChange={handleChange} disabled={!editando} required={false}/>
                 </div>
 
-                <div >
+                <div className="config-content__form__apodo">
                     <label className={`config-content__form__label config-content__form__label--${editando ? "editando" : ""}`}>Apodo</label>
                     <Input type="text" name="nickname" onChange={handleChange} disabled={!editando} required={false}/>
                 </div>
 
-                <div>
+                <div className="config-content__form__pronombres">
                     <label className={`config-content__form__label config-content__form__label--${editando ? "editando" : ""}`}>Pronombres</label>
                     <Input type="text" name="pronombres" onChange={handleChange} disabled={!editando} required={false}/>
                 </div>

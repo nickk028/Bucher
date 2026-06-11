@@ -29,35 +29,23 @@ export const Layout = () => {
         setConfiguracion(getConfig());
     }, [location.key]);
 
+    useEffect(() => {
+        if (mostrarConfig) {
+            setMostrarCrear(false);
+        }
+    }, [mostrarConfig]);
+
+    useEffect(() => {
+        if (mostrarConfig) {
+            setConfiguracion(getConfig());
+        }
+    }, [mostrarCrear]);
 
     return (
         <div className="body-layout">
             <Header onToggleCrear={() => setMostrarCrear(prev => !prev)} mostrarCrear={mostrarCrear} />
-            {mostrarConfig && (
-                <SideBar titulo="Configuración">
-                        <SideBarCard
-                            titulo="Ajustes"
-                            opciones={[
-                                    {to: "/configuracion/editar-perfil", text: "Editar perfil"},
-                                    {to: "/configuracion/apariencia", text: "Apariencia"},
-                                    {to: "/configuracion/suscripcion", text: "Suscripción"},
-                                    {to: "/configuracion/notificaciones", text: "Notificaciones"}
-                                ]}
-                            img={<Ajustes />}
-                        />
-                        <SideBarCard
-                            titulo="Soporte"
-                            opciones={[
-                                    {to: "/apariencia", text: "Apariencia"},
-                                    {to: "/suscripcion", text: "Suscripción"},
-                                    {to: "/notificaciones", text: "Notificaciones"}
-                                ]}
-                            img={<Soporte />}
-                        />
-                </SideBar>
-            )}
 
-            {mostrarCrear && (
+            {mostrarCrear ? (
                 <SideBar>
                     <SideBarCard
                             titulo="Préstamo"
@@ -81,7 +69,28 @@ export const Layout = () => {
                             img={<CrearLibro />}
                         />
                 </SideBar>
-            )}
+            ) : mostrarConfig ? (
+                <SideBar titulo="Configuración">
+                        <SideBarCard
+                            titulo="Ajustes"
+                            opciones={[
+                                    {to: "/configuracion/editar-perfil", text: "Editar perfil"},
+                                    {to: "/configuracion/apariencia", text: "Apariencia"},
+                                    {to: "/coming-soon", text: "Suscripción"},
+                                    {to: "/coming-soon", text: "Notificaciones"}
+                                ]}
+                            img={<Ajustes />}
+                        />
+                        <SideBarCard
+                            titulo="Soporte"
+                            opciones={[
+                                    {to: "/coming-soon", text: "Preguntas Frecuentes"},
+                                    {to: "/configuracion/ToS", text: "Términos y condiciones"}
+                                ]}
+                            img={<Soporte />}
+                        />
+                </SideBar>
+            ) : null}
             <div className="body-layout__content">
                 <div className="body-layout__content__barra">
                     <Buscador/>
