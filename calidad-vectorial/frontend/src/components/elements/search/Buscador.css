@@ -41,7 +41,7 @@
 
 .buscador__input select:focus, .buscador__input select:focus-visible, .buscador__input select:active {
     border: var(--brand-primary) solid 2px;
-    border-radius: 8px 0px 0px 8px;
+    border-radius: 8px 0px 0px 0px;
 }
 
 .buscador__input > :nth-child(2) {
