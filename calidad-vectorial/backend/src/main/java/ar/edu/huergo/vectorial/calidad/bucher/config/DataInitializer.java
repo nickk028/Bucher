@@ -19,6 +19,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.PublicacionSocial;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
@@ -29,6 +30,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.BibliotecaRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.LibroUsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionSocialRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.RegistroPrestamoRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
@@ -49,7 +51,9 @@ public class DataInitializer {
             LibroRepository libroRepository, 
 			PublicacionRepository publicacionRepository,
 			RegistroPrestamoRepository registroPrestamoRepository,
-			LibroUsuarioRepository libroUsuarioRepository) {
+			LibroUsuarioRepository libroUsuarioRepository,
+			PublicacionSocialRepository publicacionSocialRepository
+		) {
         return args -> {
 			if (rolRepository.count() == 0) {
 
@@ -4975,8 +4979,6 @@ public class DataInitializer {
 				}
 			}
 
-
-
 			Optional<Usuario> optUsuarioCinco = usuarioRepository.findByUsername("jrolando@gmail.com");
 
 			if (optUsuarioCinco.isPresent()) {
@@ -5062,7 +5064,7 @@ public class DataInitializer {
 				System.out.println("Usuario no encontrado. Primero creá el usuario.");
 			}
 
-						if (optUsuarioCinco.isPresent()) {
+			if (optUsuarioCinco.isPresent()) {
 				Usuario usuarioCinco = optUsuarioCinco.get();
 				Biblioteca bibliotecaCinco = usuarioCinco.getBiblioteca();
 				List<String> titulosLibros = List.of(
@@ -5089,7 +5091,114 @@ public class DataInitializer {
 			} else {
 				System.out.println("Usuario no encontrado. Primero creá el usuario.");
 			}
-		}
+			// ------------------------
+			// Inicialización de Publicaciones Sociales
+			// ------------------------
+
+			if (usuarioLectorUno.isPresent() && harryPotter.isPresent()) {
+				Usuario usuario = usuarioLectorUno.get();
+				Libro libro = harryPotter.get();
+
+				if (publicacionSocialRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+					PublicacionSocial publicacion = new PublicacionSocial();
+					publicacion.setUsuario(usuario);
+					publicacion.setLibro(libro);
+					publicacion.setFechaCreacion(LocalDate.now());
+					publicacion.setDescripcion("Actualizó su progreso en “La metamorfosis” de Franz Kafka - 68% leído.");
+					publicacion.setTextoPublicacion("Llegué al capítulo 4 y cada vez me resulta más inquietante. Kafka definitivamente sabe cómo generar incomodidad.");
+					publicacionSocialRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorDos.isPresent() && it.isPresent()) {
+				Usuario usuario = usuarioLectorDos.get();
+				Libro libro = it.get();
+
+				if (publicacionSocialRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+					PublicacionSocial publicacion = new PublicacionSocial();
+					publicacion.setUsuario(usuario);
+					publicacion.setLibro(libro);
+					publicacion.setFechaCreacion(LocalDate.now());
+					publicacion.setDescripcion("Actualizó su progreso en “IT(Eso)” de Stephen King - 68% leído.");
+					publicacion.setTextoPublicacion("Una novela extensa pero atrapante. Stephen King logra mantener la tensión durante toda la historia.");
+					publicacionSocialRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorTres.isPresent() && soledad.isPresent()) {
+				Usuario usuario = usuarioLectorTres.get();
+				Libro libro = soledad.get();
+
+				if (publicacionSocialRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+					PublicacionSocial publicacion = new PublicacionSocial();
+					publicacion.setUsuario(usuario);
+					publicacion.setLibro(libro);
+					publicacion.setFechaCreacion(LocalDate.now());
+					publicacion.setDescripcion("Actualizó su progreso en “Cien años de soledad” de Gabriel García Márquez - 68% leído.");
+					publicacion.setTextoPublicacion("Cien años de soledad es una obra única. La historia de la familia Buendía me sorprendió mucho.");
+					publicacionSocialRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorCuatro.isPresent() && orgullo.isPresent()) {
+				Usuario usuario = usuarioLectorCuatro.get();
+				Libro libro = orgullo.get();
+
+				if (publicacionSocialRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+					PublicacionSocial publicacion = new PublicacionSocial();
+					publicacion.setUsuario(usuario);
+					publicacion.setLibro(libro);
+					publicacion.setFechaCreacion(LocalDate.now());
+					publicacion.setDescripcion("Terminó de leer “Orgullo y prejuicio” de Jane Austen.");
+					publicacion.setTextoPublicacion("Una historia increíble sobre la obsesión por la juventud y las apariencias. El final me dejó pensando durante horas. Sin dudas una de mis lecturas favoritas, libro de cinco estrellas e incluso más!");
+					publicacionSocialRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorCinco.isPresent() && dune.isPresent()) {
+				Usuario usuario = usuarioLectorCinco.get();
+				Libro libro = dune.get();
+
+				if (publicacionSocialRepository.findByUsuarioAndLibroAndFechaCreacion(usuario, libro, LocalDate.now()).isEmpty()) {
+					PublicacionSocial publicacion = new PublicacionSocial();
+					publicacion.setUsuario(usuario);
+					publicacion.setLibro(libro);
+					publicacion.setFechaCreacion(LocalDate.now());
+					publicacion.setDescripcion("Terminó de leer “Dune” de Frank Herbert.");
+					publicacion.setTextoPublicacion("Dune tiene un universo increíblemente detallado. Muy recomendable para los fanáticos del género.");
+					publicacionSocialRepository.save(publicacion);
+				}
+			}
+			if (usuarioLectorUno.isPresent()) {
+				Usuario usuario = usuarioLectorUno.get();
+
+				if (publicacionSocialRepository.findByUsuarioAndFechaCreacion(usuario, LocalDate.now()).isEmpty()) {
+					PublicacionSocial publicacion = new PublicacionSocial();
+					publicacion.setUsuario(usuario);
+					publicacion.setFechaCreacion(LocalDate.now());
+					publicacion.setTextoPublicacion("Terminé una maratón de lectura este fin de semana. ¿Qué libro recomendarían para seguir?");
+					publicacion.setLibro(null);
+					publicacion.setDescripcion(null);
+
+					publicacionSocialRepository.save(publicacion);
+				}
+			}
+
+			if (usuarioLectorTres.isPresent()) {
+				Usuario usuario = usuarioLectorTres.get();
+
+				if (publicacionSocialRepository.findByUsuarioAndFechaCreacion(usuario, LocalDate.now()).isEmpty()) {
+					PublicacionSocial publicacion = new PublicacionSocial();
+					publicacion.setUsuario(usuario);
+					publicacion.setFechaCreacion(LocalDate.now());
+					publicacion.setTextoPublicacion("Estoy buscando novelas de misterio para leer durante las vacaciones. Se aceptan sugerencias.");
+					publicacion.setLibro(null);
+					publicacion.setDescripcion(null);
+
+					publicacionSocialRepository.save(publicacion);
+				}
+			}
+			}
         };
     }
 }

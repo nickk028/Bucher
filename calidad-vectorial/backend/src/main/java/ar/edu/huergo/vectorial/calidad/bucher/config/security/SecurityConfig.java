@@ -72,7 +72,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.DELETE, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
 
                 //PublicacionSocial
-                .requestMatchers(HttpMethod.GET, "/publicacionSocial/**").hasAnyRole("ADMIN", "LECTOR")
+                .requestMatchers(HttpMethod.GET, "/publicacionSocial").hasAnyRole("ADMIN", "LECTOR")
 
                 // Registro
                 .requestMatchers(HttpMethod.GET, "/registro").hasAnyRole("ADMIN", "LECTOR")

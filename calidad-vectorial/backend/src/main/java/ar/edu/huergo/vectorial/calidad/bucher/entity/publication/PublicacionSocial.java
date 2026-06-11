@@ -46,7 +46,6 @@ public class PublicacionSocial {
 
     // Descripción de la publicación
     @Column(nullable = false, length = 128)
-    @NotBlank(message = "La descripción es obligatoria.")
     @Size(min = 5, max = 128, message = "La descripción debe tener entre 5 y 128 caracteres.")
     private String descripcion;
 
@@ -59,6 +58,5 @@ public class PublicacionSocial {
     // Relación muchos a 1 con Libro
     @ManyToOne
     @JoinColumn(name = "libro_id", nullable = true)
-    @NotNull(message = "El libro es obligatorio.")
     private Libro libro;
 }
