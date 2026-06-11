@@ -21,7 +21,7 @@ public class PublicacionSocialService {
     * Obtiene todas las publicaciones sociales
     * @return Un conjunto de todas las publicaciones sociales
     */
-    public Set<PublicacionSocial> obtenerTodasLasPublicaciones() {
+    public Set<PublicacionSocial> obtenerTodasLasPublicacionesSociales() {
         return new HashSet<>(publicacionSocialRepository.findAll());
     }
 }
