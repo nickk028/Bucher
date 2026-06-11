@@ -85,7 +85,7 @@ export const Layout = () => {
                             titulo="Soporte"
                             opciones={[
                                     {to: "/coming-soon", text: "Preguntas Frecuentes"},
-                                    {to: "/coming-soon", text: "Términos y condiciones"}
+                                    {to: "/configuracion/ToS", text: "Términos y condiciones"}
                                 ]}
                             img={<Soporte />}
                         />

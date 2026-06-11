@@ -47,7 +47,7 @@ export const Buscador = () => {
                         variant= "buscador-principal"
                     />
                 ) : opcionFiltrado == "usuarios" && (
-                    <Input type="text" value={filtro} name="filtro" variant="buscador-principal" placeholder = "Buscar usuario por nick" onChange = {e => setFiltro(e.target.value)}></Input>
+                    <Input type="text" value={filtro} name="filtro" variant="buscador-principal" placeholder = "Buscar usuario por su nickname" onChange = {e => setFiltro(e.target.value)}></Input>
                 )}
             </form>
         </nav>

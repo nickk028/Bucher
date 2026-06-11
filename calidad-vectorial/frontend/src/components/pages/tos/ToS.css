@@ -1,0 +1,112 @@
+.tos-content {
+    padding-left: 40px;
+    padding-right: 180px;
+    padding-bottom: 80px;
+}
+
+/* ---- Header ---- */
+
+
+.tos-content__title {
+    color: var(--brand-dark);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.tos-content__subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* ---- Cuerpo de secciones ---- */
+
+.tos-content__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* ---- Sección individual ---- */
+
+.tos-section {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.tos-section:last-child {
+    border-bottom: none;
+}
+
+.tos-section__heading {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.tos-section__number {
+    font-family: "Handelson Three", cursive;
+    font-size: 1.6rem;
+    color: var(--brand-primary);
+    line-height: 1;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.tos-section__title {
+    font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+}
+
+.tos-section__divider {
+    width: 40px;
+    height: 2px;
+    background: var(--brand-primary);
+    border-radius: 2px;
+    margin-bottom: 14px;
+    opacity: 0.5;
+}
+
+.tos-section__text {
+    font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.75;
+    white-space: pre-line;
+    max-width: 720px;
+}
+
+/* ---- Footer con aviso de aceptación ---- */
+
+.tos-footer {
+    margin-top: 44px;
+}
+
+.tos-footer__inner {
+    background: var(--bg-accent);
+    border: 2px solid var(--brand-primary);
+    border-radius: 10px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.tos-footer__notice {
+    font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+    color: var(--brand-dark);
+    line-height: 1.65;
+    margin: auto 0;
+}
+
+.tos-footer__notice strong {
+    font-weight: 800;
+    color: var(--brand-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--brand-primary);
+    text-underline-offset: 3px;
+}

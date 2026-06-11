@@ -22,6 +22,7 @@ import { Libros } from "./components/pages/books/Libros";
 import { Libro } from "./components/pages/books/book/Libro";
 import { Usuario } from "./components/pages/user/Usuario";
 import { NotFound } from "./components/pages/errors/notfound/NotFound";
+import { ToS } from "./components/pages/tos/ToS";
 
 export const App = () => {
 	return (
@@ -44,6 +45,7 @@ export const App = () => {
                         <Route path="/crear-libro" element={<CrearLibro />} />
                         <Route path="/tendencias" element={<Tendencias />} />
                         <Route path="/configuracion/editar-perfil" element={< EditarPerfil/>} />
+                        <Route path="/configuracion/ToS" element={< ToS/>} />
                         <Route path="/libros" element={<Libros />} />
                         <Route path="/libros/:id" element={<Libro />} />
                         <Route path="/usuario" element={<Usuario />} />
