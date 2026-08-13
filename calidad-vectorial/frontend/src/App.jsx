@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { GlobalProvider } from "./context/GlobalProvider";
 
 import { Login } from "./components/pages/login/Login";
+import { AuthPage } from "./components/pages/auth/AuthPage";
 import { SobreNosotros } from "./components/pages/aboutus/SobreNosotros";
 import { Index } from "./components/pages/index/Index";
 import { Prestamos } from "./components/pages/loans/Prestamos";
@@ -35,7 +36,7 @@ export const App = () => {
 
                     <Route element={<ProtectedRoute/>}>
                         <Route path="/coming-soon" element={<ComingSoon />} />
-                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/login" element={<AuthPage/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/index" element={<Index />} />
                         <Route path="/prestamos" element={<Prestamos />} />
