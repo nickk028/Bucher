@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.LoginDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.security.GoogleLoginDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.GoogleTokenService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,6 +38,7 @@ public class AuthController {
     private final JwtTokenService jwtTokenService;
     private final UserDetailsService userDetailsService;
     private final UsuarioService usuarioService;
+    private final GoogleTokenService googleTokenService;
 
     /**
     * Procesa el form de login y autentica al usuario
@@ -74,6 +78,40 @@ public class AuthController {
         response.addCookie(jwtCookie);
 
         // 5) Redirigir a la página principal después del login exitoso
+        return ResponseEntity.ok(Map.of("token", token));
+    }
+
+    /**
+    * Autentica (o registra) a un usuario mediante un idToken de Google.
+    * @param request El DTO con el idToken emitido por Google
+    * @param response Permite construir la respuesta HTTP para el navegador
+    * @return El token JWT generado
+    */
+    @PostMapping("/google")
+    public ResponseEntity<Map<String, String>> loginConGoogle(@RequestBody @Valid GoogleLoginDTO request,
+        HttpServletResponse response) {
+
+        var payload = googleTokenService.verificarToken(request.getIdToken());
+
+        String email = payload.getEmail();
+        String nombre = (String) payload.get("name");
+
+        usuarioService.registrarUsuarioGoogle(email, nombre);
+
+        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+        Set<String> roles = new HashSet<>(
+            userDetails.getAuthorities().stream().map(a -> a.getAuthority()).toList());
+
+        String token = jwtTokenService.generarToken(userDetails, roles);
+
+        Cookie jwtCookie = new Cookie("JWT_TOKEN", token);
+        jwtCookie.setHttpOnly(true);
+        jwtCookie.setSecure(false);
+        jwtCookie.setPath("/");
+        jwtCookie.setMaxAge(3600);
+
+        response.addCookie(jwtCookie);
+
         return ResponseEntity.ok(Map.of("token", token));
     }
 

@@ -39,7 +39,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // Valida rutas publicas
         String path = request.getRequestURI();
-        if (path.equals("/auth/login") || path.equals("/auth/logout")) {
+        if (path.equals("/auth/login") || path.equals("/auth/google") || path.equals("/auth/logout")) {
             filterChain.doFilter(request, response);
             return;
         }
