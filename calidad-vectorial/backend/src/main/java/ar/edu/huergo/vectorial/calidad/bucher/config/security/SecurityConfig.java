@@ -56,6 +56,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/logout").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
+                .requestMatchers(HttpMethod.POST, "/auth/google").permitAll()
 
                 // Usuario
                 .requestMatchers(HttpMethod.GET, "/usuario").hasRole("ADMIN")

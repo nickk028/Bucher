@@ -7,6 +7,7 @@ import { AuthBox } from "../../elements/authbox/AuthBox";
 import { Input } from "../../elements/input/Input";
 import { Button } from "../../elements/buttons/Button";
 import { LibroAnimado } from "../../elements/animatedbook/LibroAnimado";
+import { GoogleLoginButton } from "../../elements/googleauth/GoogleLoginButton";
 
 export function Login() {
 	const [username, setUsername] = useState("");
@@ -87,6 +88,34 @@ export function Login() {
 		}
 	};
 
+	const handleGoogleSuccess = () => {
+		navigate("/index");
+	};
+
+	const handleGoogleError = async (respond) => {
+		if (respond.message === "Error de conexión") {
+			setError("Error de conexión");
+			setOjoQueHabla(Math.floor(Math.random() * 3));
+			return;
+		}
+		try {
+			const jsonResponse = await respond.json();
+
+			if (jsonResponse.errores) {
+				setError(Object.values(jsonResponse.errores).join(". "));
+			} else if (jsonResponse.title) {
+				setError(jsonResponse.title);
+			} else if (jsonResponse.detail) {
+				setError(jsonResponse.detail);
+			} else {
+				setError(JSON.stringify(jsonResponse));
+			}
+		} catch (err) {
+			setError("Error: " + err.message);
+		}
+		setOjoQueHabla(Math.floor(Math.random() * 3));
+	};
+
 	return (
 		<div className="body-login">
 			<div className="body-login__grupo-ojos">
@@ -110,6 +139,7 @@ export function Login() {
 					}>
 				<Input type="text" value={username} name="username" onChange={e => setUsername(e.target.value)} autoComplete="on">Nombre de usuario</Input>
 				<Input type="password" value={password} name="password" onChange={(e) => setPassword(e.target.value)} autoComplete="on">Contraseña</Input>
+				<GoogleLoginButton onSuccess={handleGoogleSuccess} onError={handleGoogleError} />
 			</AuthBox>
 		</div>
 	);

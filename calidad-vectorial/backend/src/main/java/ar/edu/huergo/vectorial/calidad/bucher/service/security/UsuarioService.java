@@ -59,7 +59,7 @@ public class UsuarioService {
     * @return El usuario registrado
     * @throws IllegalArgumentException Si no existe el rol LECTOR al momento de asignarselo al usuario
     */
-    public Usuario registrar(Usuario usuario, String password, String verificacionPassword) {
+        public Usuario registrar(Usuario usuario, String password, String verificacionPassword) {
         if (!password.equals(verificacionPassword)) {
             throw new IllegalArgumentException("Las contraseñas no coinciden");
         }
@@ -68,6 +68,32 @@ public class UsuarioService {
         }
 
         usuario.setPassword(passwordEncoder.encode(password));
+        return asignarDatosBaseYGuardar(usuario);
+    }
+
+    /**
+    * Registra un usuario a partir de datos de Google si todavía no existe uno con ese email.
+    * @param email El email verificado por Google, utilizado como username
+    * @param nombreSugerido El nombre entregado por Google para sugerir el nickname
+    */
+    public void registrarUsuarioGoogle(String email, String nombreSugerido) {
+        if (usuarioRepository.existsByUsername(email)) {
+            return;
+        }
+        Usuario usuario = new Usuario();
+        usuario.setUsername(email);
+        usuario.setNickname(generarNicknameUnico(nombreSugerido));
+        usuario.setPassword(passwordEncoder.encode(generarPasswordAleatoria()));
+        asignarDatosBaseYGuardar(usuario);
+    }
+
+    /**
+    * Asigna el rol LECTOR, la biblioteca y el avatar por defecto a un usuario nuevo, y lo guarda.
+    * @param usuario El usuario a completar y guardar
+    * @return El usuario guardado
+    * @throws IllegalArgumentException Si no existe el rol LECTOR
+    */
+    private Usuario asignarDatosBaseYGuardar(Usuario usuario) {
         Rol rolCliente = rolRepository.findByNombre("LECTOR").orElseThrow(() -> new IllegalArgumentException("Rol 'LECTOR' no encontrado"));
         Biblioteca biblioteca = new Biblioteca();
         usuario.setRoles(Set.of(rolCliente));
@@ -76,6 +102,28 @@ public class UsuarioService {
         biblioteca.setNombre("Biblioteca");
         usuario.setAvatar(getAvatarRandom());
         return usuarioRepository.save(usuario);
+    }
+
+    /**
+    * Genera una contraseña aleatoria válida para usuarios que no la usarán (login externo).
+    * @return Una contraseña que cumple el patrón de validación de la entidad Usuario
+    */
+    private String generarPasswordAleatoria() {
+        return "Gg1!" + java.util.UUID.randomUUID().toString().replace("-", "").substring(0, 16);
+    }
+
+    /**
+    * Genera un nickname único a partir de un nombre base, agregando un sufijo numérico si ya existe.
+    * @param nombreBase El nombre sugerido como nickname
+    * @return Un nickname disponible en la base de datos
+    */
+    private String generarNicknameUnico(String nombreBase) {
+        String nickname = nombreBase;
+        int contador = 1;
+        while (usuarioRepository.existsByNickname(nickname)) {
+            nickname = nombreBase + contador++;
+        }
+        return nickname;
     }
 
     /**
