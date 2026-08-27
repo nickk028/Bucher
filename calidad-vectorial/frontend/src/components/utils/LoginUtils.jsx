@@ -10,6 +10,16 @@ export async function loginRequest({ username, password }, signal) {
     }
 }
 
+export async function googleLoginRequest(idToken, signal) {
+    try {
+        const response = await postData("auth/google", { idToken }, signal);
+        return response;
+
+    } catch (error) {
+        return { ok: false, message: "Error de conexión" };
+    }
+}
+
 export function validarSeguridadPassword(password) {
     let puntosSeguridad = 0;
     const LARGO_MINIMO = 16;
