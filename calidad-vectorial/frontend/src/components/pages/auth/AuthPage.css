@@ -75,6 +75,18 @@
     font-size: 1.1rem;
 }
 
+.auth-page__book__page--derecha__buchi {
+    position: absolute;
+    bottom: 80px;
+    right: 40px;
+}
+
+.auth-page__book__page--izquierda__buchi {
+    position: absolute;
+    bottom: 80px;
+    left: 40px;
+}
+
 .form {
     width: 30vw;
     display: flex;
@@ -83,40 +95,6 @@
     justify-content: center;
 
     margin-top: 20px;
-}
-
-.form div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    margin-top: 20px;
-    gap: 5px;
-}
-
-.form div label {
-    font-family: "Handelson Three";
-    font-size: 1.7rem;
-}
-
-.form div input {
-    /*font-family: "Handelson Three";*/
-    font-size: 18px; /* 18px 1.7rem*/
-
-    height: 55%;
-    width: 1;
-    flex: 1 1 0;
-
-    align-self: flex-end;
-    margin-bottom: 4px;
-    padding: none;
-    border: none;
-    border-bottom: var(--border-secondary) 2px solid;
-}
-
-.form div input:focus {
-    outline: none;
 }
 
 .auth-page__book__page--flip {
@@ -211,15 +189,17 @@
 .auth-page__book__page--flip__back h2, .auth-page__book__page--flip__front h2 {
     font-family: "Handelson Three";
     font-weight: 100;
-    font-size: 7rem;
+    font-size: 5rem;
     margin-top: 20%;
 }
 
 .auth-page__book__page--flip__back p, .auth-page__book__page--flip__front p {
-    font-size: 1.1rem;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--brand-dark);
 
     position: absolute;
-    bottom: 10px;
+    bottom: 10%;
     cursor: pointer;
 }
 
