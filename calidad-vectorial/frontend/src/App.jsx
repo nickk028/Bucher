@@ -36,7 +36,7 @@ export const App = () => {
 
                     <Route element={<ProtectedRoute/>}>
                         <Route path="/coming-soon" element={<ComingSoon />} />
-                        <Route path="/login" element={<AuthPage/>}/>
+                        <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/index" element={<Index />} />
                         <Route path="/prestamos" element={<Prestamos />} />

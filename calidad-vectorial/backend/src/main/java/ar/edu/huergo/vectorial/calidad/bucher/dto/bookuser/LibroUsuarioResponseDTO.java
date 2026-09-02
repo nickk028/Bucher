@@ -19,13 +19,9 @@ public class LibroUsuarioResponseDTO {
     private Long id;
     
     // Título del libro
-    @NotBlank(message = "El libro es obligatorio.")
-    @Size(min = 2, max = 100, message = "El libro debe tener entre 2 y 100 digitos.")
     private String titulo;
 
     // Pagina actual de libro que está leyendo el usuario
-    @NotNull(message = "La página actual es obligatoria.")
-    @PositiveOrZero(message = "La página actual debe ser 0 o mayor.")
     private int paginaActual;
 
     // Estado de lectura del libro (Ej: "Leyendo", "Terminado", "Pendiente", etc.)

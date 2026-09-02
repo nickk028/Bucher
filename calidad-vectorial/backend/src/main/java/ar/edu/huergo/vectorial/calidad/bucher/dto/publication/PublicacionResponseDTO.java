@@ -27,24 +27,16 @@ public class PublicacionResponseDTO extends PublicacionDTO {
     private Long id;
     
     // Nombre del usuario
-    @NotBlank(message = "El username es obligatorio.")
-    @Email(message = "El nombre debe ser un mail con un formato válido.")
     private String usuarioCreador;
 
     // Fecha de creación de la publicación
-    @NotNull(message = "La fecha de creación es obligatoria.")
     private LocalDate fechaCreacion;
 
     // Estado de la publicación (Ej: "Disponible", "Prestado", etc.)
-    @NotBlank(message = "El estado de la publicación es obligatorio.")
-    @Size(min = 2, max = 50, message = "El estado de la publicación debe tener entre 2 y 50 caracteres.")
     @Enumerated(EnumType.STRING)
     private Estado estadoPublicacion;
 
     // Descripción de la publicación
-    @Column(nullable = false, length = 255)
-    @NotBlank(message = "La descripción es obligatoria.")
-    @Size(min = 5, max = 255, message = "La descripción debe tener entre 5 y 255 caracteres.")
     private String descripcion;
 
     // Desripción del usuario
