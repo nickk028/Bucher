@@ -59,6 +59,8 @@
 
     padding-top: 5px;
     padding-left: 10px;
+
+    cursor: pointer;
 }
 
 .biblioteca__contenedor__aside__clasificacion__card--todos {background: #EAEAEA; border-color: #CFCFCF;}
