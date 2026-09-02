@@ -91,6 +91,10 @@ public class SecurityConfig {
                 // Autor
                 .requestMatchers(HttpMethod.GET, "/autor/**").hasAnyRole("ADMIN", "LECTOR")
                 
+                // MedioPago
+                .requestMatchers(HttpMethod.GET, "/medioPago/**").hasAnyRole("ADMIN", "LECTOR")
+                .requestMatchers(HttpMethod.POST, "/medioPago/**").hasRole("ADMIN")
+
                 .anyRequest().authenticated())
 
                 .exceptionHandling(

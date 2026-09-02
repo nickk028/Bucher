@@ -1,8 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;

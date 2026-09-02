@@ -3,7 +3,6 @@ package ar.edu.huergo.vectorial.calidad.bucher.service.bookuser;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
