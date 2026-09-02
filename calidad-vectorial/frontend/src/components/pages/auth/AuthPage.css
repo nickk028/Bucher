@@ -92,9 +92,12 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    justify-content: center;
 
     margin-top: 20px;
+}
+
+.form .btn {
+    margin-top: 30px;
 }
 
 .auth-page__book__page--flip {
