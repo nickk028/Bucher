@@ -1,7 +1,84 @@
-import {LibroCard} from "../../elements/book/LibroCard";
+import { useMemo, useState } from "react";
+import { LibroCard } from "../../elements/book/LibroCard";
+import { useFetch } from "../../utils/FetchUtils";
 import "./Biblioteca.css";
 
+// Mapea el enum EstadoLectura del backend (leyendo, abandonado, pendiente, leido, indefinido)
+// a las clasificaciones visuales que usa LibroCard / el aside.
+const ESTADO_A_CLASIFICACION = {
+    leyendo: "leyendo",
+    abandonado: "abandonados",
+    pendiente: "quiero-leer",
+    leido: "leidos",
+    indefinido: null
+};
+
+const CLASIFICACIONES = [
+    { key: "todos", label: "Todos" },
+    { key: "leidos", label: "Leídos" },
+    { key: "leyendo", label: "Leyendo" },
+    { key: "quiero-leer", label: "Quiero leer" },
+    { key: "abandonados", label: "Abandonados" }
+];
+
+const OPCIONES_ORDEN = [
+    { key: "progreso", label: "Progreso" },
+    { key: "autor", label: "Autor" },
+    { key: "clasificacion", label: "Clasificación" },
+    { key: "titulo", label: "Título" }
+];
+
 export const Biblioteca = () => {
+    const { data: dataBiblioteca, error: errorBiblioteca, loading: loadingBiblioteca } = useFetch("biblioteca/6");
+
+    const [filtroActivo, setFiltroActivo] = useState("todos");
+    const [ordenActivo, setOrdenActivo] = useState(null);
+
+    // Normaliza cada libro con su clasificación visual ya calculada
+    const libros = useMemo(() => {
+        if (!dataBiblioteca) return [];
+        return dataBiblioteca.map((libro) => ({
+            ...libro,
+            clasificacion: ESTADO_A_CLASIFICACION[libro.estadoLectura?.toLowerCase?.()] ?? null
+        }));
+    }, [dataBiblioteca]);
+
+    // Cuenta cuántos libros hay por cada clasificación (para las cards del aside)
+    const conteos = useMemo(() => {
+        const base = { todos: libros.length, leidos: 0, leyendo: 0, "quiero-leer": 0, abandonados: 0 };
+        for (const libro of libros) {
+            if (libro.clasificacion && base[libro.clasificacion] !== undefined) {
+                base[libro.clasificacion] += 1;
+            }
+        }
+        return base;
+    }, [libros]);
+
+    const librosFiltrados = useMemo(() => {
+        const filtrados = filtroActivo === "todos"
+            ? libros
+            : libros.filter((libro) => libro.clasificacion === filtroActivo);
+
+        if (!ordenActivo) return filtrados;
+
+        const copia = [...filtrados];
+        copia.sort((a, b) => {
+            switch (ordenActivo) {
+                case "progreso":
+                    return (b.paginaActual ?? 0) - (a.paginaActual ?? 0);
+                case "autor":
+                    return (a.autor ?? "").localeCompare(b.autor ?? "");
+                case "clasificacion":
+                    return (a.estadoLectura ?? "").localeCompare(b.estadoLectura ?? "");
+                case "titulo":
+                    return (a.titulo ?? "").localeCompare(b.titulo ?? "");
+                default:
+                    return 0;
+            }
+        });
+        return copia;
+    }, [libros, filtroActivo, ordenActivo]);
+
     return (
         <main className="biblioteca">
             <header className="biblioteca__encabezado">
@@ -12,57 +89,54 @@ export const Biblioteca = () => {
             <section className="biblioteca__contenedor">
                 <section className="biblioteca__contenedor__aside">
                     <section className="biblioteca__contenedor__aside__clasificacion">
-                        <div className="biblioteca__contenedor__aside__clasificacion__card biblioteca__contenedor__aside__clasificacion__card--todos">
-                            Todos <br /> 12
-                        </div>
-                        <div className="biblioteca__contenedor__aside__clasificacion__card biblioteca__contenedor__aside__clasificacion__card--leidos">
-                            Leídos <br /> 4
-                        </div>
-                        <div className="biblioteca__contenedor__aside__clasificacion__card biblioteca__contenedor__aside__clasificacion__card--leyendo">
-                            Leyendo <br /> 2
-                        </div>
-                        <div className="biblioteca__contenedor__aside__clasificacion__card biblioteca__contenedor__aside__clasificacion__card--quiero-leer">
-                            Quiero leer <br />3
-                        </div>
-                        <div className="biblioteca__contenedor__aside__clasificacion__card biblioteca__contenedor__aside__clasificacion__card--abandonados">
-                            Abandonados <br /> 2
-                        </div>
+                        {CLASIFICACIONES.map(({ key, label }) => (
+                            <div
+                                key={key}
+                                className={`biblioteca__contenedor__aside__clasificacion__card biblioteca__contenedor__aside__clasificacion__card--${key}${filtroActivo === key ? " biblioteca__contenedor__aside__clasificacion__card--activo" : ""}`}
+                                onClick={() => setFiltroActivo(key)}
+                            >
+                                {label} <br /> {conteos[key] ?? 0}
+                            </div>
+                        ))}
                     </section>
 
                     <section className="biblioteca__contenedor__aside__ordenar">
                         <h2>Ordenar por:</h2>
                         <ul className="biblioteca__contenedor__aside__ordenar__opciones">
-                            <li className="biblioteca__contenedor__aside__ordenar__opciones__opcion">
-                                Progreso
-                            </li>
-                            <li className="biblioteca__contenedor__aside__ordenar__opciones__opcion">
-                                Autor
-                            </li>
-                            <li className="biblioteca__contenedor__aside__ordenar__opciones__opcion">
-                                Clasificación
-                            </li>
-                            <li className="biblioteca__contenedor__aside__ordenar__opciones__opcion">
-                                Título
-                            </li>
+                            {OPCIONES_ORDEN.map(({ key, label }) => (
+                                <li
+                                    key={key}
+                                    className={`biblioteca__contenedor__aside__ordenar__opciones__opcion${ordenActivo === key ? " biblioteca__contenedor__aside__ordenar__opciones__opcion--activo" : ""}`}
+                                    onClick={() => setOrdenActivo(ordenActivo === key ? null : key)}
+                                >
+                                    {label}
+                                </li>
+                            ))}
                         </ul>
                     </section>
                 </section>
 
                 <section className="biblioteca__contenedor__libros">
-                    <LibroCard titulo="Harry Potter y la piedra filosofal" autor="J.K. Rowling" urlFoto="https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" clasificacion="quiero-leer" estrllas={false}></LibroCard>
-                    <LibroCard titulo="Valeria en el espejo" autor="Elísabet Benavent" urlFoto="https://cdn.livriz.com/media/mediaspace/F9AFB48D-741D-4834-B760-F59344EEFF34/45/f4142c2b-6d82-4fcf-909b-4b84f87b9fdd/9789877392487_02d9255d-7e10-4f6e-8e41-680891222916.jpg" clasificacion="abandonados" estrllas={false}></LibroCard>
-                    <LibroCard titulo="Mi nombre es Emilia del Valle" autor="Isabel Allende" urlFoto="https://cdn.livriz.com/media/mediaspace/F9AFB48D-741D-4834-B760-F59344EEFF34/45/e8afc1c5-a0e5-4db5-afd5-6ad3ace888f3/9789500771870_fc43a029-ebe3-43d1-a6ae-b174e283ee70.jpg" clasificacion="leyendo" estrllas={false}></LibroCard>
-                    <LibroCard titulo="El Retorno del Rey" autor="Christopher Tolkien" urlFoto="https://pdlibrosarg.cdnstatics2.com/usuaris/libros/thumbs/fbacf17d-96c3-45bf-a12b-8e0bb129ea37/d_360_620/400210_portada_el-senor-de-los-anillos-n-0303-el-retorno-del-rey-edicion-revisada_j-r-r-tolkien_202403121720.webp" clasificacion="leyendo" estrllas={false}></LibroCard>
-                    <LibroCard titulo="It" autor="Stephen King" urlFoto="https://upload.wikimedia.org/wikipedia/commons/1/1a/It_%281986%29_front_cover%2C_first_edition.jpg" clasificacion="quiero-leer" estrllas={false}></LibroCard>
-                    <LibroCard titulo="El Hobbit" autor="Christopher Tolkien" urlFoto="https://pdlibrosarg.cdnstatics2.com/usuaris/libros/thumbs/772d1279-adde-4a29-ba82-11071178969c/d_360_620/380957_portada_el-hobbit-edicion-revisada_j-r-r-tolkien_202306071037.webp" clasificacion="leidos" estrllas={false}></LibroCard>
-                    <LibroCard titulo="La cúpula" autor="Stephen King" urlFoto="https://cdn.livriz.com/media/mediaspace/F9AFB48D-741D-4834-B760-F59344EEFF34/45/f6e22475-224c-4db9-a5bb-fafd4932cd86/9789877257014_33eaf902-84af-4212-b715-686942bca64a.jpg" clasificacion="quiero-leer" estrllas={false}></LibroCard>
-                    <LibroCard titulo="Testigo de cargo" autor="Agatha Christie" urlFoto="https://images.cdn1.buscalibre.com/fit-in/360x360/5d/32/5d323f46674a3f55d9a581b5ac774979.jpg" clasificacion="abandonados" estrllas={false}></LibroCard>
-                    <LibroCard titulo="El código Da Vinci" autor="Dan Brown" urlFoto="https://upload.wikimedia.org/wikipedia/en/6/6b/DaVinciCode.jpg" clasificacion="leidos" estrllas={false}></LibroCard>
-                    <LibroCard titulo="Cementerio de animales" autor="Stephen King" urlFoto="https://acdn-us.mitiendanube.com/stores/001/731/769/products/9789877255133-7ea7703ade2608762e16964226268090-640-0.jpg" clasificacion="quiero-leer" estrllas={false}></LibroCard>
-                    <LibroCard titulo="El pasillo de la muerte" autor="Stephen King" urlFoto="https://0.academia-photos.com/attachment_thumbnails/64970363/mini_magick20201118-14474-1vl1u7.png?1605708442" clasificacion="leidos" estrllas={false}></LibroCard>
-                    <LibroCard titulo="Heartless" autor="Marissa Meyer" urlFoto="https://images.cdn3.buscalibre.com/fit-in/360x360/c2/3c/c23c70613dc1a56084d04b3ce04cc890.jpg" clasificacion="leyendo" estrllas={false}></LibroCard>
+                    {loadingBiblioteca ? (
+                        <p>Cargando biblioteca...</p>
+                    ) : errorBiblioteca ? (
+                        <p>Error al cargar la biblioteca: {errorBiblioteca}</p>
+                    ) : librosFiltrados.length === 0 ? (
+                        <p>No hay libros en esta clasificación.</p>
+                    ) : (
+                        librosFiltrados.map((libro) => (
+                            <LibroCard
+                                key={libro.id}
+                                titulo={libro.titulo}
+                                autor={libro.autor}
+                                urlFoto={libro.urlFoto}
+                                clasificacion={libro.clasificacion}
+                                estrllas={false}
+                            />
+                        ))
+                    )}
                 </section>
             </section>
         </main>
-    )
-}
+    );
+};
