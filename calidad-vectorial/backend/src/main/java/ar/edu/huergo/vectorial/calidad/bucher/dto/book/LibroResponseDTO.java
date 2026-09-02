@@ -26,6 +26,9 @@ public class LibroResponseDTO {
     // Descripción del libro
     private String descripcion;
 
+    // Precio actual del libro (último precio histórico)
+    private double precio;
+
     // Categoría del libro
     @Enumerated(EnumType.STRING)
     private Set<Categoria> categorias;

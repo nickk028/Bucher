@@ -87,6 +87,7 @@ public class SecurityConfig {
                 // Libro
                 .requestMatchers(HttpMethod.GET, "/libro/**").hasAnyRole("ADMIN", "LECTOR")
                 .requestMatchers(HttpMethod.POST, "/libro/crear").hasAnyRole("ADMIN", "ESCRITOR")
+                .requestMatchers(HttpMethod.PUT, "/libro/**").hasAnyRole("ADMIN")
 
                 // Autor
                 .requestMatchers(HttpMethod.GET, "/autor/**").hasAnyRole("ADMIN", "LECTOR")

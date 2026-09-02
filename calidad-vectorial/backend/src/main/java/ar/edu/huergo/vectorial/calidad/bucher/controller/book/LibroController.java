@@ -10,14 +10,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroCreateDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroPrecioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.payment.PrecioHistoricoResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.book.LibroMapper;
+import ar.edu.huergo.vectorial.calidad.bucher.mapper.payment.PrecioHistoricoMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.payment.PrecioHistoricoService;
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/libro")
@@ -28,6 +36,12 @@ public class LibroController {
 
     @Autowired
     private LibroMapper libroMapper;
+
+    @Autowired
+    private PrecioHistoricoService precioHistoricoService;
+
+    @Autowired
+    private PrecioHistoricoMapper precioHistoricoMapper;
 
     /**
     * Obtiene todos los libros disponibles
@@ -114,4 +128,28 @@ public class LibroController {
             libroMapper.toBasicDTOList(libroService.filtrarLibrosPorTitulo(tituloLibro)));
     }
     
+
+    /**
+    * Modifica el precio de un libro (solo admin) y genera un nuevo registro en su historial de precios
+    * @param id El ID del libro a modificar
+    * @param libroPrecioUpdateDTO El DTO con el nuevo precio del libro
+    * @return El libro con el precio actualizado
+    */
+    @PutMapping("/{id}/precio")
+    public ResponseEntity<LibroResponseDTO> modificarPrecioLibro(@PathVariable("id") Long id,
+    @Valid @RequestBody LibroPrecioUpdateDTO libroPrecioUpdateDTO) {
+        return ResponseEntity.ok(
+            libroMapper.toDTO(libroService.modificarPrecioLibro(id, libroPrecioUpdateDTO.getPrecio())));
+    }
+
+    /**
+    * Obtiene el historial de precios de un libro
+    * @param id El ID del libro del cual obtener el historial de precios
+    * @return La lista de precios históricos del libro
+    */
+    @GetMapping("/{id}/precio/historico")
+    public ResponseEntity<List<PrecioHistoricoResponseDTO>> obtenerHistorialPrecios(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(
+            precioHistoricoMapper.toDTOList(precioHistoricoService.obtenerHistorialPrecios(libroService.obtenerLibroPorId(id))));
+    }
 }
