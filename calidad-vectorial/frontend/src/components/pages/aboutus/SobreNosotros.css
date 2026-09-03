@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    font-family: "Hind Siliguri";
 }
 
 .body-sobre-nosotros__hero {
@@ -39,7 +40,7 @@
 
 .body-sobre-nosotros__hero__subtitle {
     font-family: sans-serif;
-    font-size: clamp(1.5vw, 1.5rem, 2.7vw);
+    font-size: clamp(1.4vw, 1.4rem, 2.7vw);
     color: #08413C;
     margin-bottom: 120px;
 
