@@ -13,6 +13,7 @@
     --blanco-puro: #FFFFFF;
     --gris-claro: #DCDCDC;
     --gris-oscuro: #565656;
+    --rojo: #F5D6D6;
     --verde-oscuro: #08413C;
     --verde: #0E675F;
     --verde-claro: #F9FFFA;
@@ -34,6 +35,7 @@
     /* Marca */
     --brand-primary: var(--verde);
     --brand-dark: var(--verde-oscuro);
+    --brand-red: var(--rojo)
 }
 
 @font-face {
