@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.payment.PrecioHistorico;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -37,7 +38,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "libros")
-@EqualsAndHashCode(exclude = {"publicaciones","autor","editorial"})
+@EqualsAndHashCode(exclude = {"publicaciones","autor","editorial", "preciosHistoricos"}) 
+// Excluye las relaciones de la comparación de igualdad y hashCode para evitar problemas de recursión infinita
 public class Libro {
 
     @Id // Id principal de la entidad
@@ -112,4 +114,8 @@ public class Libro {
     //Reacion 1 a muchos con Pubicaciones
     @OneToMany(mappedBy = "libro")
     private List<Publicacion> publicaciones = new ArrayList<>();
+
+    // Relación 1 a muchos con PrecioHistorico
+    @OneToMany(mappedBy = "libro")
+    private List<PrecioHistorico> preciosHistoricos = new ArrayList<>();
 }

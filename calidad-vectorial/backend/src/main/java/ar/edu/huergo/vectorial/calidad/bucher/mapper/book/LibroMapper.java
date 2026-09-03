@@ -36,6 +36,7 @@ public class LibroMapper {
         libroResponseDTO.setTitulo(libro.getTitulo());
         libroResponseDTO.setUrlFoto(libro.getUrlFoto());
         libroResponseDTO.setDescripcion(libro.getDescripcion());
+        libroResponseDTO.setPrecio(libro.getPrecio());
         libroResponseDTO.setCategorias(libro.getCategoria());
         libroResponseDTO.setNombreAutor(libro.getAutor().getNombre());
         libroResponseDTO.setDescripcionAutor(libro.getAutor().getDescripcion());
