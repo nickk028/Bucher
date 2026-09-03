@@ -16,6 +16,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.service.payment.PrecioHistoricoService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,9 @@ public class LibroService {
 
     @Autowired
     RegistroPrestamoService registroPrestamoService;
+
+    @Autowired
+    PrecioHistoricoService precioHistoricoService;
 
     /**
     * Obtiene todos los libros disponibles
@@ -118,7 +122,26 @@ public class LibroService {
     */
     public Libro crearLibro(Libro libro) {
         libro.setFechaPublicacion(LocalDate.now());
-        
-        return libroRepository.save(libro);
+        Libro libroCreado = libroRepository.save(libro);
+        precioHistoricoService.crearPrecioHistorico(libroCreado, libroCreado.getPrecio());
+
+        return libroCreado;
+    }
+
+    /**
+    * Modifica el precio de un libro y genera un nuevo registro en su historial de precios
+    * @param id El ID del libro a modificar
+    * @param nuevoPrecio El nuevo precio del libro
+    * @return El libro con el precio actualizado
+    * @throws EntityNotFoundException Si no existe un libro con el ID indicado
+    */
+    public Libro modificarPrecioLibro(Long id, double nuevoPrecio) throws EntityNotFoundException {
+        Libro libro = obtenerLibroPorId(id);
+        libro.setPrecio(nuevoPrecio);
+
+        Libro libroActualizado = libroRepository.save(libro);
+        precioHistoricoService.crearPrecioHistorico(libroActualizado, nuevoPrecio);
+
+        return libroActualizado;
     }
 }
