@@ -78,13 +78,23 @@
 .auth-page__book__page--derecha__buchi {
     position: absolute;
     bottom: 80px;
-    right: 40px;
+    right: 50%;
+    transform: translateX(50%);
 }
 
 .auth-page__book__page--izquierda__buchi {
     position: absolute;
     bottom: 80px;
-    left: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.auth-page__book__page--izquierda__buchi p {
+    rotate: 75deg;
+}
+
+.auth-page__book__page--derecha__buchi p {
+    rotate: 255deg;
 }
 
 .form {
@@ -97,7 +107,7 @@
 }
 
 .form .btn {
-    margin-top: 30px;
+    margin-top: 30px;   
 }
 
 .auth-page__book__page--flip {
@@ -191,9 +201,10 @@
 
 .auth-page__book__page--flip__back h2, .auth-page__book__page--flip__front h2 {
     font-family: "Handelson Three";
+    color: var(--text-primary);
+    font-size: 6rem;
     font-weight: 100;
-    font-size: 5rem;
-    margin-top: 20%;
+    margin-top: 21%;
 }
 
 .auth-page__book__page--flip__back p, .auth-page__book__page--flip__front p {

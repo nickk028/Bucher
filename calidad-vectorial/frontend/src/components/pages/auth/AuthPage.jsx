@@ -169,7 +169,7 @@ export const AuthPage = () => {
                     <h1>Bücher</h1>
                     <p>Inicia sesión para llevar tu lectura al máximo</p>
                     <div className="auth-page__book__page--izquierda__buchi">
-                        <LibroAnimado variant="büchi" color="verde-claro">-</LibroAnimado>
+                        <LibroAnimado variant="büchi" color="verde-claro">)</LibroAnimado>
                     </div>
                 </section>
 
@@ -249,7 +249,7 @@ export const AuthPage = () => {
                     <h1>Bücher</h1>
                     <p>Crea una cuenta para adentrarte en el mundo de la lectura</p>
                     <div className="auth-page__book__page--derecha__buchi">
-                        <LibroAnimado variant="büchi" color="verde-claro">-</LibroAnimado>
+                        <LibroAnimado variant="büchi" color="verde-claro">)</LibroAnimado>
                     </div>
                 </section>
             </main>
