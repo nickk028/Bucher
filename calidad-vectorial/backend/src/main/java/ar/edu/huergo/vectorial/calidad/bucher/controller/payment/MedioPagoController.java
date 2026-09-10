@@ -19,7 +19,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.service.payment.MedioPagoService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/medioPago")
+@RequestMapping("/medio-pago")
 public class MedioPagoController {
 
     @Autowired

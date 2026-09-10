@@ -88,7 +88,8 @@ public class PublicacionController {
     */
     @GetMapping("/categoria/{categoria}")
     public ResponseEntity<List<PublicacionBasicDTO>> obtenerPublicacionesPorCategoria(@PathVariable("categoria") Categoria categoria) {
-        return ResponseEntity.ok(publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionesPorCategoria(categoria)));
+        return ResponseEntity.ok(
+            publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionesPorCategoria(categoria)));
     }
 
     /**
@@ -98,7 +99,8 @@ public class PublicacionController {
     */
     @GetMapping("/estado/{estado}")
     public ResponseEntity<List<PublicacionBasicDTO>> obtenerPublicacionesPorEstado(@PathVariable("estado") Estado estado) {
-        return ResponseEntity.ok(publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionesPorEstado(estado)));
+        return ResponseEntity.ok(
+            publicacionMapper.toBasicDTOList(publicacionService.obtenerPublicacionesPorEstado(estado)));
     }
 
     /**
@@ -124,7 +126,8 @@ public class PublicacionController {
         Publicacion publicacionNueva = publicacionMapper.toEntity(publicacionCreateDTO);
         Publicacion publicacionCreada = publicacionService.crearPublicacion(publicacionNueva, publicacionCreateDTO.getTitulo(), usuarioAutenticado.getUsername());
 
-        return ResponseEntity.ok(publicacionMapper.toDTO(publicacionCreada));
+        return ResponseEntity.ok(
+            publicacionMapper.toDTO(publicacionCreada));
     }
 
     /**
@@ -171,7 +174,8 @@ public class PublicacionController {
             actualizada = publicacionService.modificarPublicacionUsuario(id, publicacion, usuario);
         }
 
-        return ResponseEntity.ok(publicacionMapper.toDTO(actualizada));
+        return ResponseEntity.ok(
+            publicacionMapper.toDTO(actualizada));
     }
 
     /**

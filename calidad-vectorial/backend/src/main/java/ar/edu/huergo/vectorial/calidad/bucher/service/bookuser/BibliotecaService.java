@@ -58,11 +58,11 @@ public class BibliotecaService {
         libroUsuarioIngresado.setLibro(libroService.obtenerLibroPorTitulo(titulo));
 
         // Se define el Estado de Lectura en caso de que no se haya ingresado
-        if (libroUsuarioIngresado.getEstadoLectura() == EstadoLectura.indefinido) {
+        if (libroUsuarioIngresado.getEstadoLectura() == EstadoLectura.Indefinido) {
             if (libroUsuarioIngresado.getPaginaActual() == 0) {
-                libroUsuarioIngresado.setEstadoLectura(EstadoLectura.pendiente);
+                libroUsuarioIngresado.setEstadoLectura(EstadoLectura.Pendiente);
             } else {
-                libroUsuarioIngresado.setEstadoLectura(EstadoLectura.leyendo);
+                libroUsuarioIngresado.setEstadoLectura(EstadoLectura.Leyendo);
             }
         }
 

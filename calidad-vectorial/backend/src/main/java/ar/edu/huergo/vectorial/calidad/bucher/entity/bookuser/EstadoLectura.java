@@ -4,22 +4,22 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum EstadoLectura {
-    leyendo,
-    abandonado,
-    pendiente,
-    leido,
-    indefinido;
+    Leyendo,
+    Abandonado,
+    Pendiente,
+    Leido,
+    Indefinido;
 
     @JsonCreator
     public static EstadoLectura from(String value) {
         if (value == null || value.trim().isEmpty()) {
-            return indefinido;
+            return Indefinido;
         }
 
         try {
             return EstadoLectura.valueOf(value.trim());
         } catch (IllegalArgumentException e) {
-            return indefinido;
+            return Indefinido;
         }
     }
 }

@@ -30,7 +30,7 @@ public class LibroUsuarioService {
     * @return El LibroUsuario modificado
     */
     public LibroUsuario modificarLibroUsuario(LibroUsuario libroUsuarioAModificar, LibroUsuario libroUsuarioNuevo) {
-        if (libroUsuarioNuevo.getEstadoLectura() != EstadoLectura.indefinido) {
+        if (libroUsuarioNuevo.getEstadoLectura() != EstadoLectura.Indefinido) {
             libroUsuarioAModificar.setEstadoLectura(libroUsuarioNuevo.getEstadoLectura());
         }
         if (libroUsuarioNuevo.getPaginaActual() != 0) {

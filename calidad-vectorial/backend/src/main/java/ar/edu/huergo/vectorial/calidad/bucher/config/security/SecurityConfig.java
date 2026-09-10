@@ -48,10 +48,6 @@ public class SecurityConfig {
                 session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
 
-                // Permite recursos estáticos (CSS, JS, imágenes) públicos
-                .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
-                .requestMatchers("/favicon.ico").permitAll()
-
                 // Login y Registro
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/logout").permitAll()
@@ -91,10 +87,10 @@ public class SecurityConfig {
 
                 // Autor
                 .requestMatchers(HttpMethod.GET, "/autor/**").hasAnyRole("ADMIN", "LECTOR")
-                
+
                 // MedioPago
-                .requestMatchers(HttpMethod.GET, "/medioPago/**").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.POST, "/medioPago/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/medio-pago/**").hasAnyRole("ADMIN", "LECTOR")
+                .requestMatchers(HttpMethod.POST, "/medio-pago/**").hasRole("ADMIN")
 
                 .anyRequest().authenticated())
 
@@ -179,9 +175,9 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173")); // tu frontend
+        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
         configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE"));
-        configuration.setAllowCredentials(true); // importante si usas cookie HTTP-only
+        configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(List.of("*"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
