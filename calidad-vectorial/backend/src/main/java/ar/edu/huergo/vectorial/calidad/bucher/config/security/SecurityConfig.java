@@ -87,10 +87,10 @@ public class SecurityConfig {
 
                 // Autor
                 .requestMatchers(HttpMethod.GET, "/autor/**").hasAnyRole("ADMIN", "LECTOR")
-
+                
                 // MedioPago
-                .requestMatchers(HttpMethod.GET, "/medio-pago/**").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.POST, "/medio-pago/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/medioPago/**").hasAnyRole("ADMIN", "LECTOR")
+                .requestMatchers(HttpMethod.POST, "/medioPago/**").hasRole("ADMIN")
 
                 .anyRequest().authenticated())
 
