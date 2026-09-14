@@ -23,7 +23,7 @@ public class LibroUsuarioCreateDTO {
     @PositiveOrZero(message = "La página actual debe ser 0 o mayor.")
     private int paginaActual;
 
-    // Estado de lectura del libro (Ej: "Leyendo", "Terminado", "Pendiente", etc.)
+    // Estado de lectura del libro (Ej: "leyendo", "Terminado", "Pendiente", etc.)
     private EstadoLectura estadoLectura;
 
     // Puntuación que el usuario le da al libro (0 a 100)

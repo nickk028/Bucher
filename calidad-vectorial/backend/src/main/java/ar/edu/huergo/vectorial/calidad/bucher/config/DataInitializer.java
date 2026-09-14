@@ -5012,7 +5012,7 @@ public class DataInitializer {
 							lu.setBiblioteca(bibliotecaCinco);
 							lu.setLibro(libro);
 							lu.setPaginaActual(0);
-							lu.setEstadoLectura(EstadoLectura.pendiente);
+							lu.setEstadoLectura(EstadoLectura.Pendiente);
 							lu.setPuntuacion(0);
 							libroUsuarioRepository.save(lu);
 							System.out.println("Libro agregado a la biblioteca: " + libro.getTitulo());
@@ -5053,7 +5053,7 @@ public class DataInitializer {
 							lu.setBiblioteca(bibliotecaCinco);
 							lu.setLibro(libro);
 							lu.setPaginaActual(0);
-							lu.setEstadoLectura(EstadoLectura.pendiente);
+							lu.setEstadoLectura(EstadoLectura.Pendiente);
 							lu.setPuntuacion(0);
 							libroUsuarioRepository.save(lu);
 						}
@@ -5081,7 +5081,7 @@ public class DataInitializer {
 							lu.setBiblioteca(bibliotecaCinco);
 							lu.setLibro(libro);
 							lu.setPaginaActual(175);
-							lu.setEstadoLectura(EstadoLectura.leyendo);
+							lu.setEstadoLectura(EstadoLectura.Leyendo);
 							lu.setPuntuacion(0);
 							libroUsuarioRepository.save(lu);
 						}

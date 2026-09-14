@@ -68,7 +68,7 @@ class LibroUsuarioValidationTest {
     private LibroUsuario crearLibroUsuarioValido() {
         LibroUsuario libroUsuario = new LibroUsuario();
         libroUsuario.setPaginaActual(50);
-        libroUsuario.setEstadoLectura(EstadoLectura.leyendo);
+        libroUsuario.setEstadoLectura(EstadoLectura.Leyendo);
         libroUsuario.setPuntuacion(85);
         libroUsuario.setLibro(libroEjemplo);
         libroUsuario.setBiblioteca(bibliotecaEjemplo);

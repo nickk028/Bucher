@@ -135,7 +135,7 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
 - **Método**: GET
 
 ### Obtener Libros Usuario por estado de lectura
-- **URL**: http://localhost:8080/biblioteca/estado/leyendo
+- **URL**: http://localhost:8080/biblioteca/estado/Leyendo
 - **Método**: GET
 
 ### Crear Libro de Usuario
@@ -145,7 +145,7 @@ Este documento describe las peticiones realizadas con **Postman** para probar lo
 {
     "titulo":"Harry Potter y la piedra filosofal",
     "paginaActual":1,
-    "estadoLectura":"leyendo",
+    "estadoLectura":"Leyendo",
     "puntuacion":100
 }
 

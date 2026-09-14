@@ -120,7 +120,7 @@ public class LibroUsuarioRepositoryTest {
         // Crear libros usuario de prueba
         libroUsuario1 = new LibroUsuario();
         libroUsuario1.setPaginaActual(100);
-        libroUsuario1.setEstadoLectura(EstadoLectura.leyendo);
+        libroUsuario1.setEstadoLectura(EstadoLectura.Leyendo);
         libroUsuario1.setPuntuacion(85);
         libroUsuario1.setLibro(libroEjemplo1);
         libroUsuario1.setBiblioteca(bibliotecaEjemplo);
@@ -128,7 +128,7 @@ public class LibroUsuarioRepositoryTest {
 
         libroUsuario2 = new LibroUsuario();
         libroUsuario2.setPaginaActual(662);
-        libroUsuario2.setEstadoLectura(EstadoLectura.leido);
+        libroUsuario2.setEstadoLectura(EstadoLectura.Leido);
         libroUsuario2.setPuntuacion(95);
         libroUsuario2.setLibro(libroEjemplo2);
         libroUsuario2.setBiblioteca(bibliotecaEjemplo);
@@ -136,7 +136,7 @@ public class LibroUsuarioRepositoryTest {
 
         libroUsuario3 = new LibroUsuario();
         libroUsuario3.setPaginaActual(0);
-        libroUsuario3.setEstadoLectura(EstadoLectura.pendiente);
+        libroUsuario3.setEstadoLectura(EstadoLectura.Pendiente);
         libroUsuario3.setPuntuacion(0);
         libroUsuario3.setLibro(libroEjemplo3);
         libroUsuario3.setBiblioteca(bibliotecaEjemplo);
@@ -148,33 +148,33 @@ public class LibroUsuarioRepositoryTest {
     @Test
     @DisplayName("Debería encontrar libros usuario por biblioteca y estado de lectura")
     void deberiaEncontrarLibrosUsuarioPorBibliotecaYEstado() {
-        // When - Buscar libros en estado leyendo
+        // When - Buscar libros en estado Leyendo
         List<LibroUsuario> librosleyendo =
-                libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, EstadoLectura.leyendo);
+                libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, EstadoLectura.Leyendo);
 
         // Then
         assertNotNull(librosleyendo);
         assertEquals(1, librosleyendo.size());
-        assertEquals(EstadoLectura.leyendo, librosleyendo.get(0).getEstadoLectura());
+        assertEquals(EstadoLectura.Leyendo, librosleyendo.get(0).getEstadoLectura());
         assertEquals("Cien Años de Soledad", librosleyendo.get(0).getLibro().getTitulo());
 
         // When - Buscar libros en estado leido
         List<LibroUsuario> librosleidos =
-                libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, EstadoLectura.leido);
+                libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, EstadoLectura.Leido);
 
         // Then
         assertNotNull(librosleidos);
         assertEquals(1, librosleidos.size());
-        assertEquals(EstadoLectura.leido, librosleidos.get(0).getEstadoLectura());
+        assertEquals(EstadoLectura.Leido, librosleidos.get(0).getEstadoLectura());
 
         // When - Buscar libros en estado pendiente
         List<LibroUsuario> librospendientes =
-                libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, EstadoLectura.pendiente);
+                libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, EstadoLectura.Pendiente);
 
         // Then
         assertNotNull(librospendientes);
         assertEquals(1, librospendientes.size());
-        assertEquals(EstadoLectura.pendiente, librospendientes.get(0).getEstadoLectura());
+        assertEquals(EstadoLectura.Pendiente, librospendientes.get(0).getEstadoLectura());
     }
 
     @Test
@@ -197,7 +197,7 @@ public class LibroUsuarioRepositoryTest {
 
         LibroUsuario nuevoLibroUsuario = new LibroUsuario();
         nuevoLibroUsuario.setPaginaActual(50);
-        nuevoLibroUsuario.setEstadoLectura(EstadoLectura.leyendo);
+        nuevoLibroUsuario.setEstadoLectura(EstadoLectura.Leyendo);
         nuevoLibroUsuario.setPuntuacion(90);
         nuevoLibroUsuario.setLibro(nuevoLibro);
         nuevoLibroUsuario.setBiblioteca(bibliotecaEjemplo);
@@ -215,7 +215,7 @@ public class LibroUsuarioRepositoryTest {
 
         assertTrue(libroUsuarioRecuperado.isPresent());
         assertEquals(50, libroUsuarioRecuperado.get().getPaginaActual());
-        assertEquals(EstadoLectura.leyendo, libroUsuarioRecuperado.get().getEstadoLectura());
+        assertEquals(EstadoLectura.Leyendo, libroUsuarioRecuperado.get().getEstadoLectura());
     }
 
     @Test
@@ -261,7 +261,7 @@ public class LibroUsuarioRepositoryTest {
 
         LibroUsuario nuevoLibroUsuario = new LibroUsuario();
         nuevoLibroUsuario.setPaginaActual(0);
-        nuevoLibroUsuario.setEstadoLectura(EstadoLectura.pendiente);
+        nuevoLibroUsuario.setEstadoLectura(EstadoLectura.Pendiente);
         nuevoLibroUsuario.setPuntuacion(0);
         nuevoLibroUsuario.setLibro(nuevoLibro);
         nuevoLibroUsuario.setBiblioteca(bibliotecaEjemplo);
@@ -277,7 +277,7 @@ public class LibroUsuarioRepositoryTest {
         // Given - Crear libro usuario con página actual negativa
         LibroUsuario nuevoLibroUsuario = new LibroUsuario();
         nuevoLibroUsuario.setPaginaActual(-10); // No cumple @PositiveOrZero
-        nuevoLibroUsuario.setEstadoLectura(EstadoLectura.leyendo);
+        nuevoLibroUsuario.setEstadoLectura(EstadoLectura.Leyendo);
         nuevoLibroUsuario.setPuntuacion(85);
         nuevoLibroUsuario.setLibro(libroEjemplo1);
         nuevoLibroUsuario.setBiblioteca(bibliotecaEjemplo);

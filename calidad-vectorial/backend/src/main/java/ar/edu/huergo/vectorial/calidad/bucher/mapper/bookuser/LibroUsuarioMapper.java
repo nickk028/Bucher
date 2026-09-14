@@ -24,7 +24,7 @@ public class LibroUsuarioMapper {
         LibroUsuario libroUsuario = new LibroUsuario();
 
         if (libroUsuarioCreateDTO.getEstadoLectura() == null) {
-            libroUsuario.setEstadoLectura(EstadoLectura.indefinido);
+            libroUsuario.setEstadoLectura(EstadoLectura.Indefinido);
         } else {
             libroUsuario.setEstadoLectura(libroUsuarioCreateDTO.getEstadoLectura());
         }
@@ -44,7 +44,7 @@ public class LibroUsuarioMapper {
         LibroUsuario libroUsuario = new LibroUsuario();
 
         if (libroUsuarioUpdateDTO.getEstadoLectura() == null) {
-            libroUsuario.setEstadoLectura(EstadoLectura.indefinido);
+            libroUsuario.setEstadoLectura(EstadoLectura.Indefinido);
         } else {
             libroUsuario.setEstadoLectura(libroUsuarioUpdateDTO.getEstadoLectura());
         }

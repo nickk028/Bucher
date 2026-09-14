@@ -17,6 +17,14 @@ export const useFetch = (url) => {
     const fetchDataRef = useRef(null);
 
     useEffect(() => {
+
+        if (!url) {
+            setData([]);
+            setLoading(false);
+            setError("");
+            return;
+        }
+
         // Controller para poder cancelar la request si el componente se desmonta
         const controller = new AbortController();
         const signal = controller.signal;

@@ -75,7 +75,7 @@ public class LibroUsuarioServiceTest {
         libroUsuario1 = new LibroUsuario();
         libroUsuario1.setId(1L);
         libroUsuario1.setPaginaActual(100);
-        libroUsuario1.setEstadoLectura(EstadoLectura.leyendo);
+        libroUsuario1.setEstadoLectura(EstadoLectura.Leyendo);
         libroUsuario1.setPuntuacion(85);
         libroUsuario1.setLibro(libroEjemplo);
         libroUsuario1.setBiblioteca(bibliotecaEjemplo);
@@ -83,7 +83,7 @@ public class LibroUsuarioServiceTest {
         libroUsuario2 = new LibroUsuario();
         libroUsuario2.setId(2L);
         libroUsuario2.setPaginaActual(417);
-        libroUsuario2.setEstadoLectura(EstadoLectura.leido);
+        libroUsuario2.setEstadoLectura(EstadoLectura.Leido);
         libroUsuario2.setPuntuacion(95);
         libroUsuario2.setLibro(libroEjemplo);
         libroUsuario2.setBiblioteca(bibliotecaEjemplo);
@@ -112,12 +112,12 @@ public class LibroUsuarioServiceTest {
         LibroUsuario libroUsuarioAModificar = new LibroUsuario();
         libroUsuarioAModificar.setId(1L);
         libroUsuarioAModificar.setPaginaActual(50);
-        libroUsuarioAModificar.setEstadoLectura(EstadoLectura.leyendo);
+        libroUsuarioAModificar.setEstadoLectura(EstadoLectura.Leyendo);
         libroUsuarioAModificar.setPuntuacion(70);
 
         LibroUsuario libroUsuarioNuevo = new LibroUsuario();
         libroUsuarioNuevo.setPaginaActual(150);
-        libroUsuarioNuevo.setEstadoLectura(EstadoLectura.leido);
+        libroUsuarioNuevo.setEstadoLectura(EstadoLectura.Leido);
         libroUsuarioNuevo.setPuntuacion(90);
 
         // When
@@ -125,7 +125,7 @@ public class LibroUsuarioServiceTest {
 
         // Then
         assertNotNull(resultado);
-        assertEquals(EstadoLectura.leido, resultado.getEstadoLectura());
+        assertEquals(EstadoLectura.Leido, resultado.getEstadoLectura());
         assertEquals(150, resultado.getPaginaActual());
         assertEquals(90, resultado.getPuntuacion());
     }

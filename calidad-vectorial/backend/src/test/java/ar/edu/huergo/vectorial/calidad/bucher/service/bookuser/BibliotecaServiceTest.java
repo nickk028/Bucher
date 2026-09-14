@@ -95,7 +95,7 @@ public class BibliotecaServiceTest {
         libroUsuario1 = new LibroUsuario();
         libroUsuario1.setId(1L);
         libroUsuario1.setPaginaActual(100);
-        libroUsuario1.setEstadoLectura(EstadoLectura.leyendo);
+        libroUsuario1.setEstadoLectura(EstadoLectura.Leyendo);
         libroUsuario1.setPuntuacion(85);
         libroUsuario1.setLibro(libroEjemplo);
         libroUsuario1.setBiblioteca(bibliotecaEjemplo);
@@ -103,7 +103,7 @@ public class BibliotecaServiceTest {
         libroUsuario2 = new LibroUsuario();
         libroUsuario2.setId(2L);
         libroUsuario2.setPaginaActual(0);
-        libroUsuario2.setEstadoLectura(EstadoLectura.pendiente);
+        libroUsuario2.setEstadoLectura(EstadoLectura.Pendiente);
         libroUsuario2.setPuntuacion(0);
         libroUsuario2.setLibro(libroEjemplo);
         libroUsuario2.setBiblioteca(bibliotecaEjemplo);
@@ -159,7 +159,7 @@ public class BibliotecaServiceTest {
         // Then
         assertNotNull(resultado);
         assertEquals(libroUsuario1.getId(), resultado.getId());
-        assertEquals(EstadoLectura.leyendo, resultado.getEstadoLectura());
+        assertEquals(EstadoLectura.Leyendo, resultado.getEstadoLectura());
     }
 
     @Test
@@ -178,7 +178,7 @@ public class BibliotecaServiceTest {
     @DisplayName("Debería obtener libros por estado de lectura")
     void deberiaObtenerLibrosPorEstado() {
         // Given
-        EstadoLectura estado = EstadoLectura.leyendo;
+        EstadoLectura estado = EstadoLectura.Leyendo;
         List<LibroUsuario> librosleyendo = List.of(libroUsuario1);
         when(libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, estado))
                 .thenReturn(librosleyendo);
@@ -189,7 +189,7 @@ public class BibliotecaServiceTest {
         // Then
         assertNotNull(resultado);
         assertEquals(1, resultado.size());
-        assertEquals(EstadoLectura.leyendo, resultado.get(0).getEstadoLectura());
+        assertEquals(EstadoLectura.Leyendo, resultado.get(0).getEstadoLectura());
         verify(libroUsuarioRepository, times(1))
                 .findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, estado);
     }
