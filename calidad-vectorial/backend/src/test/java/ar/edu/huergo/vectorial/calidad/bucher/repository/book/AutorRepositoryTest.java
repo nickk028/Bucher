@@ -1,22 +1,19 @@
 package ar.edu.huergo.vectorial.calidad.bucher.repository.book;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 
 @DataJpaTest
 @DisplayName("Tests de Integración - AutorRepository")
@@ -35,7 +32,10 @@ public class AutorRepositoryTest {
     @BeforeEach
     void setUp() {
         // Crear autores de prueba
-        autor1 = new Autor("Gabriel García Márquez", "https://es.wikipedia.org/wiki/Gabriel_García_Márquez");
+        autor1 = new Autor(
+            "Gabriel García Márquez",
+            "https://es.wikipedia.org/wiki/Gabriel_García_Márquez"
+        );
         autor1 = entityManager.persistAndFlush(autor1);
 
         autor2 = new Autor("Jorge Luis Borges", "https://es.wikipedia.org/wiki/Jorge_Luis_Borges");
@@ -51,12 +51,15 @@ public class AutorRepositoryTest {
     @DisplayName("Debería encontrar el autor con búsqueda case insensitive")
     void deberiaEncontrarAutorCaseInsensitive() {
         // When - Buscar con diferentes casos
-        Optional<Autor> resultadoMinuscula =
-                autorRepository.findByNombreIgnoringCase("gabriel garcía márquez");
-        Optional<Autor> resultadoMayuscula =
-                autorRepository.findByNombreIgnoringCase("GABRIEL GARCÍA MÁRQUEZ");
-        Optional<Autor> resultadoMixto =
-                autorRepository.findByNombreIgnoringCase("GaBrIeL GaRcÍa MáRqUeZ");
+        Optional<Autor> resultadoMinuscula = autorRepository.findByNombreIgnoringCase(
+            "gabriel garcía márquez"
+        );
+        Optional<Autor> resultadoMayuscula = autorRepository.findByNombreIgnoringCase(
+            "GABRIEL GARCÍA MÁRQUEZ"
+        );
+        Optional<Autor> resultadoMixto = autorRepository.findByNombreIgnoringCase(
+            "GaBrIeL GaRcÍa MáRqUeZ"
+        );
 
         // Then - Todos deberían dar el mismo resultado
         assertNotNull(resultadoMinuscula);
@@ -82,8 +85,7 @@ public class AutorRepositoryTest {
         // Then
         assertNotNull(autorGuardado.getId());
 
-        Optional<Autor> autorRecuperado =
-                autorRepository.findById(autorGuardado.getId());
+        Optional<Autor> autorRecuperado = autorRepository.findById(autorGuardado.getId());
 
         assertTrue(autorRecuperado.isPresent());
         assertEquals("Pablo Neruda", autorRecuperado.get().getNombre());
@@ -116,7 +118,10 @@ public class AutorRepositoryTest {
         assertEquals(3, cantidadAutores);
 
         // Agregar un autor más y verificar
-        Autor nuevoAutor = new Autor("Julio Cortázar", "https://es.wikipedia.org/wiki/Julio_Cortázar");
+        Autor nuevoAutor = new Autor(
+            "Julio Cortázar",
+            "https://es.wikipedia.org/wiki/Julio_Cortázar"
+        );
         entityManager.persistAndFlush(nuevoAutor);
 
         assertEquals(4, autorRepository.count());

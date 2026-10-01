@@ -1,24 +1,10 @@
 package ar.edu.huergo.vectorial.calidad.bucher.repository.publication;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
@@ -29,6 +15,17 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @DataJpaTest
 @DisplayName("Tests de Integración - PublicacionRepository")
@@ -178,16 +175,18 @@ public class PublicacionRepositoryTest {
     @DisplayName("Debería encontrar todas las publicaciones por usuario")
     void deberiaEncontrarPublicacionesPorUsuario() {
         // When - Buscar publicaciones del usuario 1
-        List<Publicacion> publicacionesUsuario1 =
-                publicacionRepository.findAllByUsuario(usuarioEjemplo1);
+        List<Publicacion> publicacionesUsuario1 = publicacionRepository.findAllByUsuario(
+            usuarioEjemplo1
+        );
 
         // Then
         assertNotNull(publicacionesUsuario1);
         assertEquals(2, publicacionesUsuario1.size());
 
         // When - Buscar publicaciones del usuario 2
-        List<Publicacion> publicacionesUsuario2 =
-                publicacionRepository.findAllByUsuario(usuarioEjemplo2);
+        List<Publicacion> publicacionesUsuario2 = publicacionRepository.findAllByUsuario(
+            usuarioEjemplo2
+        );
 
         // Then
         assertNotNull(publicacionesUsuario2);
@@ -198,16 +197,18 @@ public class PublicacionRepositoryTest {
     @DisplayName("Debería encontrar todas las publicaciones por categoría")
     void deberiaEncontrarPublicacionesPorCategoria() {
         // When - Buscar publicaciones de categoría realismo mágico
-        List<Publicacion> publicacionesRealismo =
-                publicacionRepository.findAllByCategoria(Categoria.realismomagico);
+        List<Publicacion> publicacionesRealismo = publicacionRepository.findAllByCategoria(
+            Categoria.realismomagico
+        );
 
         // Then
         assertNotNull(publicacionesRealismo);
         assertEquals(1, publicacionesRealismo.size());
 
         // When - Buscar publicaciones de categoría fantástico
-        List<Publicacion> publicacionesFantastico =
-                publicacionRepository.findAllByCategoria(Categoria.fantastico);
+        List<Publicacion> publicacionesFantastico = publicacionRepository.findAllByCategoria(
+            Categoria.fantastico
+        );
 
         // Then
         assertNotNull(publicacionesFantastico);
@@ -219,15 +220,16 @@ public class PublicacionRepositoryTest {
     void deberiaEncontrarPublicacionesPorEstado() {
         // When - Buscar publicaciones disponibles
         List<Publicacion> publicacionesDisponibles =
-                publicacionRepository.findAllByEstadoPublicacion(Estado.Disponible);
+            publicacionRepository.findAllByEstadoPublicacion(Estado.Disponible);
 
         // Then
         assertNotNull(publicacionesDisponibles);
         assertEquals(2, publicacionesDisponibles.size());
 
         // When - Buscar publicaciones prestadas
-        List<Publicacion> publicacionesPrestadas =
-                publicacionRepository.findAllByEstadoPublicacion(Estado.Prestado);
+        List<Publicacion> publicacionesPrestadas = publicacionRepository.findAllByEstadoPublicacion(
+            Estado.Prestado
+        );
 
         // Then
         assertNotNull(publicacionesPrestadas);
@@ -239,7 +241,7 @@ public class PublicacionRepositoryTest {
     void deberiaGuardarYRecuperarPublicacion() {
         // Given
         Libro libroExistente = publicacion1.getLibro();
-        
+
         Publicacion nuevaPublicacion = new Publicacion();
         nuevaPublicacion.setUsuario(usuarioEjemplo1);
         nuevaPublicacion.setDescripcion("Trilogía completa en excelente estado");
@@ -256,11 +258,15 @@ public class PublicacionRepositoryTest {
         // Then
         assertNotNull(publicacionGuardada.getId());
 
-        Optional<Publicacion> publicacionRecuperada =
-                publicacionRepository.findById(publicacionGuardada.getId());
+        Optional<Publicacion> publicacionRecuperada = publicacionRepository.findById(
+            publicacionGuardada.getId()
+        );
 
         assertTrue(publicacionRecuperada.isPresent());
-        assertEquals("Trilogía completa en excelente estado", publicacionRecuperada.get().getDescripcion());
+        assertEquals(
+            "Trilogía completa en excelente estado",
+            publicacionRecuperada.get().getDescripcion()
+        );
         assertEquals(45, publicacionRecuperada.get().getLimiteDias());
     }
 

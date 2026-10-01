@@ -1,22 +1,19 @@
 package ar.edu.huergo.vectorial.calidad.bucher.repository.book;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 
 @DataJpaTest
 @DisplayName("Tests de Integración - EditorialRepository")
@@ -35,10 +32,16 @@ public class EditorialRepositoryTest {
     @BeforeEach
     void setUp() {
         // Crear editoriales de prueba
-        editorial1 = new Editorial("Editorial Sudamericana", "https://es.wikipedia.org/wiki/Editorial_Sudamericana");
+        editorial1 = new Editorial(
+            "Editorial Sudamericana",
+            "https://es.wikipedia.org/wiki/Editorial_Sudamericana"
+        );
         editorial1 = entityManager.persistAndFlush(editorial1);
 
-        editorial2 = new Editorial("Penguin Random House", "https://es.wikipedia.org/wiki/Penguin_Random_House");
+        editorial2 = new Editorial(
+            "Penguin Random House",
+            "https://es.wikipedia.org/wiki/Penguin_Random_House"
+        );
         editorial2 = entityManager.persistAndFlush(editorial2);
 
         editorial3 = new Editorial("Anagrama", "https://es.wikipedia.org/wiki/Anagrama");
@@ -51,12 +54,15 @@ public class EditorialRepositoryTest {
     @DisplayName("Debería encontrar la editorial con búsqueda case insensitive")
     void deberiaEncontrarEditorialCaseInsensitive() {
         // When - Buscar con diferentes casos
-        Optional<Editorial> resultadoMinuscula =
-                editorialRepository.findByNombreIgnoringCase("editorial sudamericana");
-        Optional<Editorial> resultadoMayuscula =
-                editorialRepository.findByNombreIgnoringCase("EDITORIAL SUDAMERICANA");
-        Optional<Editorial> resultadoMixto =
-                editorialRepository.findByNombreIgnoringCase("EdItOrIaL SuDaMeRiCaNa");
+        Optional<Editorial> resultadoMinuscula = editorialRepository.findByNombreIgnoringCase(
+            "editorial sudamericana"
+        );
+        Optional<Editorial> resultadoMayuscula = editorialRepository.findByNombreIgnoringCase(
+            "EDITORIAL SUDAMERICANA"
+        );
+        Optional<Editorial> resultadoMixto = editorialRepository.findByNombreIgnoringCase(
+            "EdItOrIaL SuDaMeRiCaNa"
+        );
 
         // Then - Todos deberían dar el mismo resultado
         assertNotNull(resultadoMinuscula);
@@ -72,7 +78,10 @@ public class EditorialRepositoryTest {
     @DisplayName("Debería guardar y recuperar editorial correctamente")
     void deberiaGuardarYRecuperarEditorial() {
         // Given
-        Editorial nuevaEditorial = new Editorial("Planeta", "https://es.wikipedia.org/wiki/Grupo_Planeta");
+        Editorial nuevaEditorial = new Editorial(
+            "Planeta",
+            "https://es.wikipedia.org/wiki/Grupo_Planeta"
+        );
 
         // When
         Editorial editorialGuardada = editorialRepository.save(nuevaEditorial);
@@ -82,8 +91,9 @@ public class EditorialRepositoryTest {
         // Then
         assertNotNull(editorialGuardada.getId());
 
-        Optional<Editorial> editorialRecuperada =
-                editorialRepository.findById(editorialGuardada.getId());
+        Optional<Editorial> editorialRecuperada = editorialRepository.findById(
+            editorialGuardada.getId()
+        );
 
         assertTrue(editorialRecuperada.isPresent());
         assertEquals("Planeta", editorialRecuperada.get().getNombre());
@@ -116,7 +126,10 @@ public class EditorialRepositoryTest {
         assertEquals(3, cantidadEditoriales);
 
         // Agregar una editorial más y verificar
-        Editorial nuevaEditorial = new Editorial("Alfaguara", "https://es.wikipedia.org/wiki/Alfaguara");
+        Editorial nuevaEditorial = new Editorial(
+            "Alfaguara",
+            "https://es.wikipedia.org/wiki/Alfaguara"
+        );
         entityManager.persistAndFlush(nuevaEditorial);
 
         assertEquals(4, editorialRepository.count());

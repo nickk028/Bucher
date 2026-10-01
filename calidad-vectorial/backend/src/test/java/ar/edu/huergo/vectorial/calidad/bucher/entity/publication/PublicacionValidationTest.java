@@ -1,18 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 
-import java.util.Set;
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
@@ -20,10 +9,18 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
-
-
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import java.time.LocalDate;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class PublicacionValidationTest {
+
     private Validator validator;
     private Rol rolEjemplo;
     private Usuario usuarioEjemplo;
@@ -47,8 +44,14 @@ class PublicacionValidationTest {
         usuarioEjemplo.setRoles(Set.of(rolEjemplo));
 
         // Crear ejemplo Autor y Editorial
-        autorEjemplo = new Autor("Gabriel García Márquez", "https://es.wikipedia.org/wiki/Gabriel_García_Márquez");
-        editorialEjemplo = new Editorial("Editorial Sudamericana", "https://es.wikipedia.org/wiki/Editorial_Sudamericana");
+        autorEjemplo = new Autor(
+            "Gabriel García Márquez",
+            "https://es.wikipedia.org/wiki/Gabriel_García_Márquez"
+        );
+        editorialEjemplo = new Editorial(
+            "Editorial Sudamericana",
+            "https://es.wikipedia.org/wiki/Editorial_Sudamericana"
+        );
 
         // Crear ejemplo de Libro
         libroEjemplo = new Libro();
@@ -84,7 +87,10 @@ class PublicacionValidationTest {
         Publicacion publicacion = crearPublicacionValida();
 
         Set<ConstraintViolation<Publicacion>> violaciones = validator.validate(publicacion);
-        assertTrue(violaciones.isEmpty(), "No debería haber violaciones para una publicación válida.");
+        assertTrue(
+            violaciones.isEmpty(),
+            "No debería haber violaciones para una publicación válida."
+        );
     }
 
     @Test
@@ -95,8 +101,11 @@ class PublicacionValidationTest {
 
         Set<ConstraintViolation<Publicacion>> violaciones = validator.validate(publicacion);
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-            .anyMatch(v -> v.getPropertyPath().toString().equals("fechaCreacion")));
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) -> v.getPropertyPath().toString().equals("fechaCreacion"))
+        );
     }
 
     @Test
@@ -107,8 +116,11 @@ class PublicacionValidationTest {
 
         Set<ConstraintViolation<Publicacion>> violaciones = validator.validate(publicacion);
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-            .anyMatch(v -> v.getPropertyPath().toString().equals("descripcion")));
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) -> v.getPropertyPath().toString().equals("descripcion"))
+        );
     }
 
     @Test
@@ -119,8 +131,11 @@ class PublicacionValidationTest {
 
         Set<ConstraintViolation<Publicacion>> violaciones = validator.validate(publicacion);
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-            .anyMatch(v -> v.getPropertyPath().toString().equals("limiteDias")));
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) -> v.getPropertyPath().toString().equals("limiteDias"))
+        );
     }
 
     @Test
@@ -132,7 +147,10 @@ class PublicacionValidationTest {
 
         Set<ConstraintViolation<Publicacion>> violaciones = validator.validate(publicacion);
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-            .anyMatch(v -> v.getPropertyPath().toString().equals("estadoPublicacion")));
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) -> v.getPropertyPath().toString().equals("estadoPublicacion"))
+        );
     }
 }

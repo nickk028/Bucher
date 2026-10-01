@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 public class LibroUsuarioCreateDTO {
+
     // Título del libro
     @NotBlank(message = "El libro es obligatorio.")
     @Size(min = 2, max = 100, message = "El libro debe tener entre 2 y 100 digitos.")

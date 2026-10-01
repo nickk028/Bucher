@@ -1,5 +1,5 @@
-import "./ToS.css";
-import { SECCIONES } from "../../../assets/text/ToSText";
+import './ToS.css';
+import { SECCIONES } from '../../../assets/text/ToSText';
 
 export const ToS = () => {
     return (
@@ -27,7 +27,7 @@ export const ToS = () => {
             <footer className="tos-footer">
                 <div className="tos-footer__inner">
                     <p className="tos-footer__notice">
-                        Al realizar un préstamo o crear una publicación dentro de la plataforma,{" "}
+                        Al realizar un préstamo o crear una publicación dentro de la plataforma,{' '}
                         <strong>aceptás automáticamente estos Términos y Servicios</strong> en su
                         versión vigente al momento de la acción.
                     </p>

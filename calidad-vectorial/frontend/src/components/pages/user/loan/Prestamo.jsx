@@ -1,10 +1,10 @@
-import { useFetch } from "../../../utils/FetchUtils";
-import PrestamoCard from "../../../elements/loan/PrestamoCard";
-import { Link } from "react-router-dom";
-import "./Prestamo.css";
+import { useFetch } from '../../../utils/FetchUtils';
+import PrestamoCard from '../../../elements/loan/PrestamoCard';
+import { Link } from 'react-router-dom';
+import './Prestamo.css';
 
 export const Prestamo = () => {
-    const { data: prestamos, loading, error } = useFetch("registro");
+    const { data: prestamos, loading, error } = useFetch('registro');
 
     return (
         <div className="prestamos-page">

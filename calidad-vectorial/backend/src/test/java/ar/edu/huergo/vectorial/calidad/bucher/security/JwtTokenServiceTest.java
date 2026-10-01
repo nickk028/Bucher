@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,8 +23,6 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
 
 /**
  * Tests de seguridad para JwtTokenService
@@ -45,10 +43,10 @@ public class JwtTokenServiceTest {
     private UserDetails userDetails;
 
     private static final String SECRET_KEY =
-            "mi-clave-secreta-para-jwt-que-debe-ser-lo-suficientemente-larga-para-ser-segura";
+        "mi-clave-secreta-para-jwt-que-debe-ser-lo-suficientemente-larga-para-ser-segura";
     private static final long EXPIRATION_MS = 3600000; // 1 hora
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @BeforeEach
     void setUp() {
         // Crear el servicio con valores de prueba
@@ -58,10 +56,12 @@ public class JwtTokenServiceTest {
         userDetails = mock(UserDetails.class);
         when(userDetails.getUsername()).thenReturn("usuario@example.com");
 
-        when(userDetails.getAuthorities())
-                .thenReturn((Collection) Arrays.asList(
-                        new SimpleGrantedAuthority("ROLE_LECTOR"),
-                        new SimpleGrantedAuthority("ROLE_ADMIN")));
+        when(userDetails.getAuthorities()).thenReturn(
+            (Collection) Arrays.asList(
+                new SimpleGrantedAuthority("ROLE_LECTOR"),
+                new SimpleGrantedAuthority("ROLE_ADMIN")
+            )
+        );
     }
 
     @Test

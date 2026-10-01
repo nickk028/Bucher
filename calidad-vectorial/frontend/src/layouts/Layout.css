@@ -11,7 +11,7 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
+    font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
     color: var(--text-primary);
 }
 

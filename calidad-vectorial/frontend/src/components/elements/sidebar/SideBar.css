@@ -6,7 +6,7 @@
 
     border-right: var(--border-primary) solid 2px;
 
-    font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
+    font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
 }
 
 .sidebar__content {
@@ -76,7 +76,7 @@
     display: flex;
     justify-content: center;
 
-    font-family: "Handelson Three";
+    font-family: 'Handelson Three';
     font-size: 3.5rem;
 
     color: var(--brand-primary);

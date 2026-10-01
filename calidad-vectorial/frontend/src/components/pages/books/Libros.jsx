@@ -1,11 +1,11 @@
-import { useFetch } from "../../utils/FetchUtils";
-import { Link } from "react-router-dom";
-import { LibroCard } from "../../elements/book/LibroCard";
+import { useFetch } from '../../utils/FetchUtils';
+import { Link } from 'react-router-dom';
+import { LibroCard } from '../../elements/book/LibroCard';
 import { useRef } from 'react';
 import './Libros.css';
 
 export const Libros = () => {
-    const { data : librosOrdenados , errorLibros , loadingLibros  } = useFetch("libro/ordenados");
+    const { data: librosOrdenados, errorLibros, loadingLibros } = useFetch('libro/ordenados');
 
     const filasRef = useRef({});
 
@@ -55,23 +55,44 @@ export const Libros = () => {
                     <div className="categories-container">
                         {Object.entries(librosOrdenados).map(([categoria, lista]) => (
                             <section key={categoria} className="book-group">
-                                <h3 className="book-group-title">{formatCategoryName(categoria)} ({lista.length})</h3>
+                                <h3 className="book-group-title">
+                                    {formatCategoryName(categoria)} ({lista.length})
+                                </h3>
                                 <div className="books-row-wrapper">
-                                    <button className="scroll-btn left" onClick={() => desplazarIzquierda(categoria)} aria-label={`Desplazar ${categoria} a la izquierda`}>
+                                    <button
+                                        className="scroll-btn left"
+                                        onClick={() => desplazarIzquierda(categoria)}
+                                        aria-label={`Desplazar ${categoria} a la izquierda`}
+                                    >
                                         ‹
                                     </button>
 
-                                    <ul className="books-row" ref={el => { filasRef.current[categoria] = el; }}>
-                                        {lista.map(libro => (
-                                            <li className="book-item" key={libro.id || libro.titulo}>
+                                    <ul
+                                        className="books-row"
+                                        ref={(el) => {
+                                            filasRef.current[categoria] = el;
+                                        }}
+                                    >
+                                        {lista.map((libro) => (
+                                            <li
+                                                className="book-item"
+                                                key={libro.id || libro.titulo}
+                                            >
                                                 <Link to={`/libros/${libro.id || ''}`}>
-                                                    <LibroCard titulo={libro.titulo} urlFoto={libro.urlFoto} />
+                                                    <LibroCard
+                                                        titulo={libro.titulo}
+                                                        urlFoto={libro.urlFoto}
+                                                    />
                                                 </Link>
                                             </li>
                                         ))}
                                     </ul>
 
-                                    <button className="scroll-btn right" onClick={() => desplazarDerecha(categoria)} aria-label={`Desplazar ${categoria} a la derecha`}>
+                                    <button
+                                        className="scroll-btn right"
+                                        onClick={() => desplazarDerecha(categoria)}
+                                        aria-label={`Desplazar ${categoria} a la derecha`}
+                                    >
                                         ›
                                     </button>
                                 </div>
@@ -83,5 +104,5 @@ export const Libros = () => {
                 <p>{errorLibros}</p>
             )}
         </div>
-    )
-}
+    );
+};

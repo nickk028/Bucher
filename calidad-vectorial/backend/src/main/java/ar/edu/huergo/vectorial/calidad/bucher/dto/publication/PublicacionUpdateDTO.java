@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 public class PublicacionUpdateDTO {
+
     // Id
     @Id
     private Long id;

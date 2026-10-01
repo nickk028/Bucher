@@ -1,17 +1,16 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.security;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
-
 import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
 
 /**
  * Servicio responsable de crear y validar tokens JWT.
@@ -46,11 +45,13 @@ public class JwtTokenService {
      * @param expirationMillis El tiempo de expiración del token en milisegundos.
      * @throws IllegalArgumentException si la clave secreta es demasiado corta.
      */
-    public JwtTokenService(@Value("${security.jwt.secret}") String secret,
-        @Value("${security.jwt.expiration-ms}") long expirationMillis) {
-            this.signingKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-            this.expirationMillis = expirationMillis;
-        }
+    public JwtTokenService(
+        @Value("${security.jwt.secret}") String secret,
+        @Value("${security.jwt.expiration-ms}") long expirationMillis
+    ) {
+        this.signingKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        this.expirationMillis = expirationMillis;
+    }
 
     /**
      * Genera un JWT para el usuario autenticado. - subject: username - iat/exp: fechas de emisión y
@@ -64,12 +65,12 @@ public class JwtTokenService {
         Instant expiry = now.plusMillis(expirationMillis);
 
         return Jwts.builder()
-        .subject(userDetails.getUsername())
-        .issuedAt(Date.from(now))
-        .expiration(Date.from(expiry))
-        .claims(Map.of("roles", roles))
-        .signWith(signingKey)
-        .compact();
+            .subject(userDetails.getUsername())
+            .issuedAt(Date.from(now))
+            .expiration(Date.from(expiry))
+            .claims(Map.of("roles", roles))
+            .signWith(signingKey)
+            .compact();
     }
 
     /**
@@ -99,18 +100,20 @@ public class JwtTokenService {
      */
     public boolean esTokenValido(String token, UserDetails userDetails) {
         try {
-            var payload =
-                Jwts.parser()
-                    .verifyWith(signingKey)
-                    .build()
-                    .parseSignedClaims(token)
-                    .getPayload();
+            var payload = Jwts.parser()
+                .verifyWith(signingKey)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
 
             String username = payload.getSubject();
             Date expiration = payload.getExpiration();
 
-            return username != null && username.equals(userDetails.getUsername()) && expiration.after(new Date());
-
+            return (
+                username != null &&
+                username.equals(userDetails.getUsername()) &&
+                expiration.after(new Date())
+            );
         } catch (Exception ex) {
             // Cualquier problema (firma inválida, token malformado/expirado) -> inválido
             return false;

@@ -23,7 +23,7 @@
 
     padding: 40px;
     border-radius: 1rem;
-    border: 3px solid #08413C;
+    border: 3px solid #08413c;
 
     display: flex;
     flex-direction: column;
@@ -37,7 +37,7 @@
 
 @keyframes aparecer-popup {
     0% {
-        scale: .8;
+        scale: 0.8;
     }
     100% {
         scale: 1;
@@ -58,7 +58,7 @@
     overflow: hidden;
 
     font-size: 4rem;
-    color: #08413C;
+    color: #08413c;
 
     cursor: pointer;
 }
@@ -67,12 +67,12 @@
     text-align: center;
     font-size: 2rem;
 
-    color: #0E675F;
+    color: #0e675f;
 }
 
 .popup__card__text__content {
     padding-top: 20px;
     font-size: 1.2rem;
 
-    color: #08413C;
+    color: #08413c;
 }

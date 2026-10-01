@@ -3,7 +3,7 @@
     height: 250px;
     background: #ffffff;
     overflow: hidden;
-    font-family: "Hind Siliguri";
+    font-family: 'Hind Siliguri';
     font-size: 1.1rem;
 
     box-sizing: border-box;
@@ -38,7 +38,7 @@
 .prestamo-card__list__item__title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #0E675F;
+    color: #0e675f;
 }
 
 .prestamo-card__list__item__subtitle {

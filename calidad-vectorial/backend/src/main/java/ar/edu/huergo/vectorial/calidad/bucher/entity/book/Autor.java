@@ -1,8 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -15,11 +12,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 @Entity // Marca la clase como una entidad de JPA
 @Data // Genera getters, setters, toString, equals y hashCode

@@ -1,5 +1,5 @@
 .pub-card {
-    font-family: "Hind Siliguri";
+    font-family: 'Hind Siliguri';
     font-size: 1.1rem;
     width: 150px;
     display: flex;
@@ -22,7 +22,7 @@
 
 .pub-card__title {
     width: 100%;
-    font-size: .9rem;
+    font-size: 0.9rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -31,7 +31,7 @@
 
 .pub-card__content {
     color: var(--text-secondary);
-    font-size: .9rem;
+    font-size: 0.9rem;
     width: 100%;
     display: flex;
     justify-content: space-between;

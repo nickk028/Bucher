@@ -1,25 +1,23 @@
 package ar.edu.huergo.vectorial.calidad.bucher.mapper.bookuser;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Component;
-
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.EstadoLectura;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 @Component
 // Mapper de la entidad LibroUsuario utiizada para pasar de entidad a DTO y de DTO a entidad
 public class LibroUsuarioMapper {
 
     /**
-    * Pasa de LibroUsuarioResponseDTO a entidad LibroUsuario
-    * @param libroUsuarioCreateDTO El DTO a transformar en entidad
-    * @return LibroUsuario como entidad
-    */
+     * Pasa de LibroUsuarioResponseDTO a entidad LibroUsuario
+     * @param libroUsuarioCreateDTO El DTO a transformar en entidad
+     * @return LibroUsuario como entidad
+     */
     public LibroUsuario toEntity(LibroUsuarioCreateDTO libroUsuarioCreateDTO) {
         LibroUsuario libroUsuario = new LibroUsuario();
 
@@ -36,10 +34,10 @@ public class LibroUsuarioMapper {
     }
 
     /**
-    * Pasa de LibroUsuarioUpdateDTO a entidad LibroUsuario
-    * @param libroUsuarioUpdateDTO El DTO a transformar en entidad
-    * @return LibroUsuario como entidad
-    */
+     * Pasa de LibroUsuarioUpdateDTO a entidad LibroUsuario
+     * @param libroUsuarioUpdateDTO El DTO a transformar en entidad
+     * @return LibroUsuario como entidad
+     */
     public LibroUsuario toEntity(LibroUsuarioUpdateDTO libroUsuarioUpdateDTO) {
         LibroUsuario libroUsuario = new LibroUsuario();
 
@@ -57,10 +55,10 @@ public class LibroUsuarioMapper {
     }
 
     /**
-    * Pasa de entidad libroUsuario a LibroUsuarioResponseDTO
-    * @param libroUsuario La entidad a transformar en DTO
-    * @return LibroUsuarioResponseDTO como entidad
-    */
+     * Pasa de entidad libroUsuario a LibroUsuarioResponseDTO
+     * @param libroUsuario La entidad a transformar en DTO
+     * @return LibroUsuarioResponseDTO como entidad
+     */
     public LibroUsuarioResponseDTO toDTO(LibroUsuario libroUsuario) {
         if (libroUsuario == null) {
             return null;
@@ -78,17 +76,14 @@ public class LibroUsuarioMapper {
     }
 
     /**
-    * Pasa de una lista de entidades LibroUsuario a una lista de LibroUsuarioResponseDTO
-    * @param librosUsuario La lista de entidades a transformar en DTOs
-    * @return Lista de LibroUsuarioResponseDTO
-    */
+     * Pasa de una lista de entidades LibroUsuario a una lista de LibroUsuarioResponseDTO
+     * @param librosUsuario La lista de entidades a transformar en DTOs
+     * @return Lista de LibroUsuarioResponseDTO
+     */
     public List<LibroUsuarioResponseDTO> toDTOList(List<LibroUsuario> librosUsuario) {
         if (librosUsuario == null) {
             return null;
         }
-        return librosUsuario
-            .stream()
-            .map(this::toDTO)
-            .collect(Collectors.toList());
+        return librosUsuario.stream().map(this::toDTO).collect(Collectors.toList());
     }
 }

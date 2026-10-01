@@ -63,16 +63,30 @@
     cursor: pointer;
 }
 
-.biblioteca__contenedor__aside__clasificacion__card--todos {background: #EAEAEA; border-color: #CFCFCF;}
+.biblioteca__contenedor__aside__clasificacion__card--todos {
+    background: #eaeaea;
+    border-color: #cfcfcf;
+}
 
-.biblioteca__contenedor__aside__clasificacion__card--leidos {background: #D8F0D2; border-color: #9BCF8F;}
+.biblioteca__contenedor__aside__clasificacion__card--leidos {
+    background: #d8f0d2;
+    border-color: #9bcf8f;
+}
 
-.biblioteca__contenedor__aside__clasificacion__card--leyendo {background: #D8EAF8; border-color: #8DBBE8;}
+.biblioteca__contenedor__aside__clasificacion__card--leyendo {
+    background: #d8eaf8;
+    border-color: #8dbbe8;
+}
 
-.biblioteca__contenedor__aside__clasificacion__card--quiero-leer {background: #FFF1C9; border-color: #E7C96D;}
+.biblioteca__contenedor__aside__clasificacion__card--quiero-leer {
+    background: #fff1c9;
+    border-color: #e7c96d;
+}
 
-.biblioteca__contenedor__aside__clasificacion__card--abandonados {background: #F5D6D6; border-color: #D89A9A;}
-
+.biblioteca__contenedor__aside__clasificacion__card--abandonados {
+    background: #f5d6d6;
+    border-color: #d89a9a;
+}
 
 .biblioteca__contenedor__aside__ordenar {
     width: 100%;
@@ -102,7 +116,7 @@
     padding-bottom: 20px;
 
     color: var(--text-secondary);
-    font-size: .9rem;
+    font-size: 0.9rem;
 }
 
 .biblioteca__contenedor__aside__ordenar__opciones__opcion {

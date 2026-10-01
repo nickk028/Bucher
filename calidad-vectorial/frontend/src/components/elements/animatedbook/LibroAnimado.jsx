@@ -1,19 +1,24 @@
-import { useEffect, useRef } from "react";
-import { OjosAnimados } from "./OjosAnimados";
-import "./LibroAnimado.css";
+import { useEffect, useRef } from 'react';
+import { OjosAnimados } from './OjosAnimados';
+import './LibroAnimado.css';
 
 /**
  * Representa un rostro animado con ojos que siguen el cursor y parpadean.
  * También reacciona a eventos personalizados como el foco en campos de contraseña.
  */
-export const LibroAnimado = ({ children, variant="medio", color="amarillo", mensaje, mostrarMensaje }) => {
+export const LibroAnimado = ({
+    children,
+    variant = 'medio',
+    color = 'amarillo',
+    mensaje,
+    mostrarMensaje,
+}) => {
     return (
         <div className={`rostro rostro--${variant} rostro--${color}`}>
-
             {/* Globo de mensaje si está habilitado */}
             {mostrarMensaje && mensaje && (
                 <>
-                    {variant == "büchi" ? (
+                    {variant == 'büchi' ? (
                         <div className={`globo globo--${color}`}>
                             <p className={`globo__text globo__text--${color}`}>{mensaje}</p>
                         </div>

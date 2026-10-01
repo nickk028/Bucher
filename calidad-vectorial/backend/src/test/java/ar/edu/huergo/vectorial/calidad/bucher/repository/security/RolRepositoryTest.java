@@ -2,16 +2,14 @@ package ar.edu.huergo.vectorial.calidad.bucher.repository.security;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-
-import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 
 @DataJpaTest
 @DisplayName("Tests de Integración - RolRepository")

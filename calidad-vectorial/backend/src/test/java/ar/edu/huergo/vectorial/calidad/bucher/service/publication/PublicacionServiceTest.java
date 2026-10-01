@@ -1,27 +1,13 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
@@ -36,6 +22,17 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.Publicacion
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 import jakarta.persistence.EntityNotFoundException;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests de Unidad - PublicacionService")
@@ -67,9 +64,15 @@ public class PublicacionServiceTest {
         usuarioEjemplo.setRoles(Set.of(new Rol("LECTOR")));
 
         // Crear libro
-        Autor autor = new Autor("Gabriel García Márquez", "https://es.wikipedia.org/wiki/Gabriel_García_Márquez");
-        Editorial editorial = new Editorial("Editorial Sudamericana", "https://es.wikipedia.org/wiki/Editorial_Sudamericana");
-        
+        Autor autor = new Autor(
+            "Gabriel García Márquez",
+            "https://es.wikipedia.org/wiki/Gabriel_García_Márquez"
+        );
+        Editorial editorial = new Editorial(
+            "Editorial Sudamericana",
+            "https://es.wikipedia.org/wiki/Editorial_Sudamericana"
+        );
+
         libroEjemplo = new Libro();
         libroEjemplo.setId(1L);
         libroEjemplo.setTitulo("Cien Años de Soledad");
@@ -101,8 +104,9 @@ public class PublicacionServiceTest {
     void deberiaObtenerPublicacionPorId() {
         // Given
         Long idPublicacion = 1L;
-        when(publicacionRepository.findById(idPublicacion))
-                .thenReturn(Optional.of(publicacionEjemplo));
+        when(publicacionRepository.findById(idPublicacion)).thenReturn(
+            Optional.of(publicacionEjemplo)
+        );
 
         // When
         Publicacion resultado = publicacionService.obtenerPublicacionPorId(idPublicacion);
@@ -119,8 +123,7 @@ public class PublicacionServiceTest {
     void deberiaLanzarExcepcionCuandoNoEncuentraPublicacion() {
         // Given
         Long idPublicacionInexistente = 999L;
-        when(publicacionRepository.findById(idPublicacionInexistente))
-                .thenReturn(Optional.empty());
+        when(publicacionRepository.findById(idPublicacionInexistente)).thenReturn(Optional.empty());
 
         // When & Then
         assertThrows(EntityNotFoundException.class, () -> {
@@ -134,11 +137,12 @@ public class PublicacionServiceTest {
     void deberiaObtenerPublicacionesPorUsuario() {
         // Given
         List<Publicacion> publicaciones = List.of(publicacionEjemplo);
-        when(publicacionRepository.findAllByUsuario(usuarioEjemplo))
-                .thenReturn(publicaciones);
+        when(publicacionRepository.findAllByUsuario(usuarioEjemplo)).thenReturn(publicaciones);
 
         // When
-        Set<Publicacion> resultado = publicacionService.obtenerPublicacionesPorUsuario(usuarioEjemplo);
+        Set<Publicacion> resultado = publicacionService.obtenerPublicacionesPorUsuario(
+            usuarioEjemplo
+        );
 
         // Then
         assertNotNull(resultado);
@@ -153,20 +157,21 @@ public class PublicacionServiceTest {
         // Given
         String titulo = "Cien Años de Soledad";
         String username = "usuario@example.com";
-        
+
         Publicacion nuevaPublicacion = new Publicacion();
         nuevaPublicacion.setDescripcion("Nueva publicación de prueba");
         nuevaPublicacion.setLimiteDias(21);
 
-        when(usuarioService.obtenerUsuarioPorNombre(username))
-                .thenReturn(usuarioEjemplo);
-        when(libroService.obtenerLibroPorTitulo(titulo))
-                .thenReturn(libroEjemplo);
-        when(publicacionRepository.save(any(Publicacion.class)))
-                .thenReturn(nuevaPublicacion);
+        when(usuarioService.obtenerUsuarioPorNombre(username)).thenReturn(usuarioEjemplo);
+        when(libroService.obtenerLibroPorTitulo(titulo)).thenReturn(libroEjemplo);
+        when(publicacionRepository.save(any(Publicacion.class))).thenReturn(nuevaPublicacion);
 
         // When
-        Publicacion resultado = publicacionService.crearPublicacion(nuevaPublicacion, titulo, username);
+        Publicacion resultado = publicacionService.crearPublicacion(
+            nuevaPublicacion,
+            titulo,
+            username
+        );
 
         // Then
         assertNotNull(resultado);
@@ -183,11 +188,13 @@ public class PublicacionServiceTest {
     void deberiaModificarEstadoPublicacion() {
         // Given
         Estado nuevoEstado = Estado.Prestado;
-        when(publicacionRepository.save(any(Publicacion.class)))
-                .thenReturn(publicacionEjemplo);
+        when(publicacionRepository.save(any(Publicacion.class))).thenReturn(publicacionEjemplo);
 
         // When
-        Publicacion resultado = publicacionService.modificarEstadoPublicacion(publicacionEjemplo, nuevoEstado);
+        Publicacion resultado = publicacionService.modificarEstadoPublicacion(
+            publicacionEjemplo,
+            nuevoEstado
+        );
 
         // Then
         assertNotNull(resultado);
@@ -201,8 +208,7 @@ public class PublicacionServiceTest {
         // Given
         Categoria categoria = Categoria.realismomagico;
         List<Publicacion> publicaciones = List.of(publicacionEjemplo);
-        when(publicacionRepository.findAllByCategoria(categoria))
-                .thenReturn(publicaciones);
+        when(publicacionRepository.findAllByCategoria(categoria)).thenReturn(publicaciones);
 
         // When
         Set<Publicacion> resultado = publicacionService.obtenerPublicacionesPorCategoria(categoria);

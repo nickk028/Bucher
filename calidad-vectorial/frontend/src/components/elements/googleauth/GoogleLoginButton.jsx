@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { googleLoginRequest } from "../../utils/LoginUtils";
+import { useEffect, useRef } from 'react';
+import { googleLoginRequest } from '../../utils/LoginUtils';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
@@ -17,15 +17,15 @@ export const GoogleLoginButton = ({ onSuccess, onError }) => {
             }
         };
 
-        const script = document.createElement("script");
-        script.src = "https://accounts.google.com/gsi/client";
+        const script = document.createElement('script');
+        script.src = 'https://accounts.google.com/gsi/client';
         script.async = true;
         script.onload = () => {
             window.google.accounts.id.initialize({
                 client_id: GOOGLE_CLIENT_ID,
-                callback: handleCredentialResponse
+                callback: handleCredentialResponse,
             });
-            window.google.accounts.id.renderButton(buttonRef.current, { type: "icon" });
+            window.google.accounts.id.renderButton(buttonRef.current, { type: 'icon' });
         };
         document.body.appendChild(script);
 

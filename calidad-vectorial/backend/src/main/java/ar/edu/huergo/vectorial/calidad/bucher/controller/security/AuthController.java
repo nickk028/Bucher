@@ -1,9 +1,18 @@
 package ar.edu.huergo.vectorial.calidad.bucher.controller.security;
 
+import ar.edu.huergo.vectorial.calidad.bucher.dto.security.GoogleLoginDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.security.LoginDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.GoogleTokenService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,17 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import ar.edu.huergo.vectorial.calidad.bucher.dto.security.LoginDTO;
-import ar.edu.huergo.vectorial.calidad.bucher.service.security.JwtTokenService;
-import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
-import ar.edu.huergo.vectorial.calidad.bucher.dto.security.GoogleLoginDTO;
-import ar.edu.huergo.vectorial.calidad.bucher.service.security.GoogleTokenService;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 
 @RestController // Marca la clase como un controlador REST
 @RequestMapping("/auth") // Mapea las solicitudes a /auth
@@ -40,29 +38,38 @@ public class AuthController {
     private final GoogleTokenService googleTokenService;
 
     /**
-    * Procesa el form de login y autentica al usuario
-    * @param username El nombre de usuario enviado desde el HTML
-    * @param password La contraseña enviada desde el HTML
-    * @param response Permite construir la respuesta HTTP para el navegador
-    * @param redirectAttributes Para pasar atributos entre redirecciones HTTP
-    * @return Redirección al index
-    * @throws BadCredentialsException Si las credenciales son inválidas
-    */
+     * Procesa el form de login y autentica al usuario
+     * @param username El nombre de usuario enviado desde el HTML
+     * @param password La contraseña enviada desde el HTML
+     * @param response Permite construir la respuesta HTTP para el navegador
+     * @param redirectAttributes Para pasar atributos entre redirecciones HTTP
+     * @return Redirección al index
+     * @throws BadCredentialsException Si las credenciales son inválidas
+     */
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody @Valid LoginDTO request,
-        HttpServletResponse response) {  // Permite crear la respuesta para el navegador -> en este caso se le envía una cookie
+    public ResponseEntity<Map<String, String>> login(
+        @RequestBody @Valid LoginDTO request,
+        HttpServletResponse response
+    ) {
+        // Permite crear la respuesta para el navegador -> en este caso se le envía una cookie
 
         // 0) Verifica que el usuario exista
         usuarioService.obtenerUsuarioPorNombre(request.username());
 
         // 1) Autenticar credenciales username/password
         authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(request.username(), request.password()));
+            new UsernamePasswordAuthenticationToken(request.username(), request.password())
+        );
 
         // 2) Cargar UserDetails y derivar roles/authorities
         UserDetails userDetails = userDetailsService.loadUserByUsername(request.username());
         Set<String> roles = new HashSet<>(
-            userDetails.getAuthorities().stream().map(a -> a.getAuthority()).toList());
+            userDetails
+                .getAuthorities()
+                .stream()
+                .map((a) -> a.getAuthority())
+                .toList()
+        );
 
         // 3) Generar token JWT
         String token = jwtTokenService.generarToken(userDetails, roles);
@@ -81,15 +88,16 @@ public class AuthController {
     }
 
     /**
-    * Autentica (o registra) a un usuario mediante un idToken de Google.
-    * @param request El DTO con el idToken emitido por Google
-    * @param response Permite construir la respuesta HTTP para el navegador
-    * @return El token JWT generado
-    */
+     * Autentica (o registra) a un usuario mediante un idToken de Google.
+     * @param request El DTO con el idToken emitido por Google
+     * @param response Permite construir la respuesta HTTP para el navegador
+     * @return El token JWT generado
+     */
     @PostMapping("/google")
-    public ResponseEntity<Map<String, String>> loginConGoogle(@RequestBody @Valid GoogleLoginDTO request,
-        HttpServletResponse response) {
-
+    public ResponseEntity<Map<String, String>> loginConGoogle(
+        @RequestBody @Valid GoogleLoginDTO request,
+        HttpServletResponse response
+    ) {
         var payload = googleTokenService.verificarToken(request.getIdToken());
 
         String email = payload.getEmail();
@@ -99,7 +107,12 @@ public class AuthController {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
         Set<String> roles = new HashSet<>(
-            userDetails.getAuthorities().stream().map(a -> a.getAuthority()).toList());
+            userDetails
+                .getAuthorities()
+                .stream()
+                .map((a) -> a.getAuthority())
+                .toList()
+        );
 
         String token = jwtTokenService.generarToken(userDetails, roles);
 
@@ -115,10 +128,10 @@ public class AuthController {
     }
 
     /**
-    * Valida el token JWT presente en la cookie HTTP-only.
-    * @param request El request HTTP para acceder a las cookies.
-    * @return 200 si el token es válido, 401 si no.
-    */
+     * Valida el token JWT presente en la cookie HTTP-only.
+     * @param request El request HTTP para acceder a las cookies.
+     * @return 200 si el token es válido, 401 si no.
+     */
     @GetMapping("/validar-token")
     public ResponseEntity<String> validateToken(HttpServletRequest request) {
         String token = null;
@@ -132,23 +145,29 @@ public class AuthController {
         }
 
         if (token == null) {
-            return ResponseEntity.status(401).header("Cache-Control", "no-store").body("Token inválido");
+            return ResponseEntity.status(401)
+                .header("Cache-Control", "no-store")
+                .body("Token inválido");
         }
         try {
             if (jwtTokenService.esTokenValido(token, usuarioService.getUserDetailsActual())) {
                 return ResponseEntity.ok().header("Cache-Control", "no-store").body("Token válido");
             }
-            return ResponseEntity.status(401).header("Cache-Control", "no-store").body("Token inválido");
+            return ResponseEntity.status(401)
+                .header("Cache-Control", "no-store")
+                .body("Token inválido");
         } catch (Exception e) {
-            return ResponseEntity.status(401).header("Cache-Control", "no-store").body("Token inválido");
+            return ResponseEntity.status(401)
+                .header("Cache-Control", "no-store")
+                .body("Token inválido");
         }
     }
 
     /**
-    * Cierra la sesión del usuario
-    * @param response Permite construir la respuesta HTTP para el navegador
-    * @return 200 ok
-    */
+     * Cierra la sesión del usuario
+     * @param response Permite construir la respuesta HTTP para el navegador
+     * @return 200 ok
+     */
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         // Eliminar la cookie JWT

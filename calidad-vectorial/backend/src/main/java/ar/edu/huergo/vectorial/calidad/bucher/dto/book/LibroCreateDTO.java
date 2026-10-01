@@ -1,8 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.book;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -11,6 +8,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import java.time.LocalDate;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +29,11 @@ public class LibroCreateDTO {
 
     // Descripción del libro
     @NotBlank(message = "La descripción es obligatoria.")
-    @Size(min = 2, max = 800, message = "La descripción del libro debe tener entre 2 y 800 dígitos.")
+    @Size(
+        min = 2,
+        max = 800,
+        message = "La descripción del libro debe tener entre 2 y 800 dígitos."
+    )
     private String descripcion;
 
     // Cantidad de páginas del libro

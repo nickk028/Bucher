@@ -1,8 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.payment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +11,8 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data // Genera getters, setters, toString, equals y hashCode
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
-@EqualsAndHashCode(exclude = {"transacciones"})
+@EqualsAndHashCode(exclude = { "transacciones" })
 @Table(name = "medios_pago")
 public class MedioPago {
 

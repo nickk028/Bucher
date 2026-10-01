@@ -1,5 +1,5 @@
 .rostro {
-    font-family: "Hind Siliguri";
+    font-family: 'Hind Siliguri';
     border-radius: 5px 1.5rem 1.5rem 5px;
     /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);*/
     box-shadow: 4px 2px 1px;
@@ -32,8 +32,8 @@
 }
 
 .rostro--dorado {
-    background: linear-gradient(to top left, #B8860B, #FFCC33);
-    color: #FFCC33;
+    background: linear-gradient(to top left, #b8860b, #ffcc33);
+    color: #ffcc33;
 }
 
 /*
@@ -43,12 +43,12 @@ linear-gradient(to top right, #B8860B, #FFCC33)
 
 .rostro--verde-oscuro {
     background: #117c4c;
-    color: #08413C;
+    color: #08413c;
 }
 
 .rostro--verde-claro {
     background: #349569;
-    color: #0E675F;
+    color: #0e675f;
 }
 
 .rostro--grande {
@@ -71,7 +71,7 @@ linear-gradient(to top right, #B8860B, #FFCC33)
 }
 
 .rostro__content__text {
-    font-family: "Handelson Three", cursive;
+    font-family: 'Handelson Three', cursive;
     font-size: 5rem;
     font-weight: 500;
     color: currentColor;
@@ -102,7 +102,7 @@ linear-gradient(to top right, #B8860B, #FFCC33)
 
 .rostro__globo__texto {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: .8rem;
+    font-size: 0.8rem;
     color: #1a1a1a;
     text-align: center;
 }

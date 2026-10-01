@@ -1,8 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -16,6 +13,8 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Data // Genera getters, setters, toString, equals y hashCode
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
-@EqualsAndHashCode(exclude = {"librosUsuario"})
+@EqualsAndHashCode(exclude = { "librosUsuario" })
 @Table(name = "bibliotecas")
 public class Biblioteca {
 

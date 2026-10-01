@@ -13,10 +13,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 public class LibroUsuarioUpdateDTO {
+
     // Id
     @Id
     private Long id;
-    
+
     // Pagina actual de libro que está leyendo el usuario
     @PositiveOrZero(message = "La página actual debe ser 0 o mayor.")
     private int paginaActual;

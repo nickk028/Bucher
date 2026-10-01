@@ -1,15 +1,20 @@
-import { useFetch, usePost } from "../../utils/FetchUtils";
-import { useNavigate } from "react-router-dom";
-import Logout from "../../../assets/img/icons/configuracion/logout.svg?react";
-import"./SideBar.css";
+import { useFetch, usePost } from '../../utils/FetchUtils';
+import { useNavigate } from 'react-router-dom';
+import Logout from '../../../assets/img/icons/configuracion/logout.svg?react';
+import './SideBar.css';
 
-export const SideBar = ({children, titulo}) => {
+export const SideBar = ({ children, titulo }) => {
     const navigate = useNavigate();
-    const { data: respuestaLogout, error: errorLogout, loading: loadingLogout, execute : executeLogout} = usePost("auth/logout");
+    const {
+        data: respuestaLogout,
+        error: errorLogout,
+        loading: loadingLogout,
+        execute: executeLogout,
+    } = usePost('auth/logout');
 
     const handleLogout = async () => {
         await executeLogout();
-        navigate("/");
+        navigate('/');
     };
 
     return (
@@ -32,5 +37,5 @@ export const SideBar = ({children, titulo}) => {
                 </div>
             </div>
         </nav>
-    )
-}
+    );
+};

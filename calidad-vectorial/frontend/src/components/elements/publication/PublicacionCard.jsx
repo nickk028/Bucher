@@ -1,4 +1,4 @@
-import "./PublicacionCard.css";
+import './PublicacionCard.css';
 
 const PublicacionCard = ({ urlFoto, titulo, usuarioNickname, estadoPublicacion, limiteDias }) => {
     return (
@@ -12,6 +12,6 @@ const PublicacionCard = ({ urlFoto, titulo, usuarioNickname, estadoPublicacion, 
                 <p>{limiteDias} días</p>
             </div>
         </article>
-    )
-}
-export default PublicacionCard
+    );
+};
+export default PublicacionCard;

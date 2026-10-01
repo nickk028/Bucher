@@ -16,7 +16,7 @@
 }
 
 .coming-soon__title {
-    font-family: "Handelson Three", cursive;
+    font-family: 'Handelson Three', cursive;
     font-size: clamp(3rem, 7vw, 5.5rem);
     font-weight: 500;
     color: var(--brand-primary);
@@ -25,7 +25,7 @@
 }
 
 .coming-soon__subtitle {
-    font-family: "Hind Siliguri", Arial, sans-serif;
+    font-family: 'Hind Siliguri', Arial, sans-serif;
     font-size: 1rem;
     color: #929292;
     margin: 4px 0 16px 0;

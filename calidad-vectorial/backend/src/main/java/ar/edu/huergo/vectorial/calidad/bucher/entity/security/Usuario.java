@@ -1,10 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.security;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
@@ -29,18 +24,21 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
 
 @Entity // Marca la clase como una entidad de JPA
 @Data // Genera getters, setters, toString, equals y hashCode
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "usuarios")
-@EqualsAndHashCode(exclude = {"publicaciones", "prestamos", "biblioteca"})
+@EqualsAndHashCode(exclude = { "publicaciones", "prestamos", "biblioteca" })
 public class Usuario {
 
     @Id //Id principal de la entidad
@@ -68,7 +66,8 @@ public class Usuario {
     @Size(min = 16, max = 60, message = "La contraseña debe tener entre 16 y 60 digitos.")
     @Pattern(
         regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*]).*$",
-        message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial.")
+        message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial."
+    )
     private String password;
 
     // Avatar del usuario

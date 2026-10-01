@@ -1,9 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 
-import java.time.LocalDate;
-
-import org.hibernate.annotations.CurrentTimestamp;
-
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.Column;
@@ -17,9 +13,11 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CurrentTimestamp;
 
 @Entity // Marca la clase como una entidad de JPA
 @Data // Genera getters, setters, toString, equals y hashCode
@@ -52,7 +50,11 @@ public class PublicacionSocial {
     // Texto de la publicación
     @Column(nullable = false, length = 255)
     @NotBlank(message = "El texto de la publicación es obligatorio.")
-    @Size(min = 5, max = 255, message = "El texto de la publicación debe tener entre 5 y 255 caracteres.")
+    @Size(
+        min = 5,
+        max = 255,
+        message = "El texto de la publicación debe tener entre 5 y 255 caracteres."
+    )
     private String textoPublicacion;
 
     // Relación muchos a 1 con Libro

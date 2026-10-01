@@ -1,10 +1,10 @@
-import "./ComingSoon.css"
-import { useNavigate } from "react-router-dom";
-import { useFetch} from "../../../utils/FetchUtils";
+import './ComingSoon.css';
+import { useNavigate } from 'react-router-dom';
+import { useFetch } from '../../../utils/FetchUtils';
 
 export const ComingSoon = () => {
     const navigate = useNavigate();
-    const { data, error, loading } = useFetch("publicacionSocial");
+    const { data, error, loading } = useFetch('publicacionSocial');
     console.log(data);
     return (
         <div className="coming-soon">
@@ -15,4 +15,4 @@ export const ComingSoon = () => {
             </div>
         </div>
     );
-}
+};

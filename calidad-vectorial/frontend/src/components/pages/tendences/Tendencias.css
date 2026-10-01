@@ -1,6 +1,6 @@
 .tend-body {
     height: 100%;
-    display: flex;  
+    display: flex;
     align-items: center;
 
     padding: 20px;
@@ -12,11 +12,11 @@
     display: flex;
     justify-content: space-evenly;
 
-    background-image: url("../../../assets/img/podioImg.png");
+    background-image: url('../../../assets/img/podioImg.png');
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: contain;
-    height: 550px; 
+    height: 550px;
     align-items: flex-end;
     margin-top: -45px;
 }
@@ -25,7 +25,7 @@
     width: 2px;
     height: 100%;
     min-height: 400px;
-    background: #0E675F;
+    background: #0e675f;
 }
 
 .tend-body__lista {

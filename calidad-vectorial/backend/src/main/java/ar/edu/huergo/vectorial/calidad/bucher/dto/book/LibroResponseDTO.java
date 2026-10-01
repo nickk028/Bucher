@@ -1,10 +1,9 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.book;
 
-import java.util.Set;
-
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

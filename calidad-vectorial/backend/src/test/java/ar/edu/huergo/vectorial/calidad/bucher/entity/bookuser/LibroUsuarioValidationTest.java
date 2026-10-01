@@ -1,15 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
@@ -22,6 +14,12 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 @DisplayName("Tests de Validación - Entidad LibroUsuario")
 class LibroUsuarioValidationTest {
@@ -36,9 +34,15 @@ class LibroUsuarioValidationTest {
         validator = factory.getValidator();
 
         // Crear libro de ejemplo
-        Autor autor = new Autor("Gabriel García Márquez", "https://es.wikipedia.org/wiki/Gabriel_García_Márquez");
-        Editorial editorial = new Editorial("Editorial Sudamericana", "https://es.wikipedia.org/wiki/Editorial_Sudamericana");
-        
+        Autor autor = new Autor(
+            "Gabriel García Márquez",
+            "https://es.wikipedia.org/wiki/Gabriel_García_Márquez"
+        );
+        Editorial editorial = new Editorial(
+            "Editorial Sudamericana",
+            "https://es.wikipedia.org/wiki/Editorial_Sudamericana"
+        );
+
         libroEjemplo = new Libro();
         libroEjemplo.setId(1L);
         libroEjemplo.setTitulo("Cien Años de Soledad");
@@ -93,7 +97,11 @@ class LibroUsuarioValidationTest {
 
         Set<ConstraintViolation<LibroUsuario>> violaciones = validator.validate(libroUsuario);
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream().anyMatch(v -> v.getPropertyPath().toString().equals("paginaActual")));
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) -> v.getPropertyPath().toString().equals("paginaActual"))
+        );
     }
 
     @Test
@@ -149,9 +157,10 @@ class LibroUsuarioValidationTest {
         assertFalse(violaciones.isEmpty());
         assertTrue(violaciones.size() >= 2);
 
-        List<String> propiedadesConError = violaciones.stream()
-                .map(v -> v.getPropertyPath().toString())
-                .toList();
+        List<String> propiedadesConError = violaciones
+            .stream()
+            .map((v) -> v.getPropertyPath().toString())
+            .toList();
 
         assertTrue(propiedadesConError.contains("paginaActual"));
         assertTrue(propiedadesConError.contains("puntuacion"));

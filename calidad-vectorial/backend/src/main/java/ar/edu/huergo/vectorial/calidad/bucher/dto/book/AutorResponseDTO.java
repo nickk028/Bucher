@@ -1,9 +1,8 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.book;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import java.util.ArrayList;
 import java.util.List;
-
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

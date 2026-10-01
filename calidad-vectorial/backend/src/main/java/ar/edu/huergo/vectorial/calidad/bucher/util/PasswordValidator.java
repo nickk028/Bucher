@@ -7,14 +7,14 @@ import java.util.regex.Pattern;
  * Provee métodos para validar la fortaleza de una contraseña antes de codificarla.
  */
 public class PasswordValidator {
-    
+
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(
         "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{16,}$"
     );
-    
+
     private static final String PASSWORD_MESSAGE =
         "La contraseña debe tener al menos 16 caracteres, una mayúscula, una minúscula, un número y un carácter especial";
-    
+
     /**
      * Valida si una contraseña cumple con los requisitos de seguridad.
      * @param password la contraseña a validar
@@ -23,7 +23,7 @@ public class PasswordValidator {
     public static boolean isValid(String password) {
         return password != null && PASSWORD_PATTERN.matcher(password).matches();
     }
-    
+
     /**
      * Valida una contraseña y lanza una excepción si no es válida.
      * @param password la contraseña a validar
@@ -34,7 +34,7 @@ public class PasswordValidator {
             throw new IllegalArgumentException(PASSWORD_MESSAGE);
         }
     }
-    
+
     /**
      * Obtiene el mensaje de validación de la contraseña.
      * @return el mensaje de validación

@@ -1,27 +1,24 @@
 package ar.edu.huergo.vectorial.calidad.bucher.repository.book;
 
-import java.time.LocalDate;
-import java.util.Optional;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
+import java.time.LocalDate;
+import java.util.Optional;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @DataJpaTest
 @DisplayName("Tests de Integración - LibroRepository")
@@ -42,11 +39,13 @@ public class LibroRepositoryTest {
 
     @BeforeEach
     void setUp() {
-
         autorEjemplo = new Autor("Autor de ejemplo", "https://es.wikipedia.org/wiki/autor_ejemplo");
         entityManager.persist(autorEjemplo);
-        
-        editorialEjemplo = new Editorial("Editorial de ejemplo", "https://es.wikipedia.org/wiki/editorial_ejemplo");
+
+        editorialEjemplo = new Editorial(
+            "Editorial de ejemplo",
+            "https://es.wikipedia.org/wiki/editorial_ejemplo"
+        );
         entityManager.persist(editorialEjemplo);
 
         // Crear libros de prueba
@@ -99,12 +98,15 @@ public class LibroRepositoryTest {
     @DisplayName("Debería encontrar el libro con búsqueda case insensitive")
     void deberiaEncontrarLibroCaseInsensitive() {
         // When - Buscar con diferentes casos
-        Optional<Libro> resultadoMinuscula =
-                libroRepository.findByTituloIgnoringCase("cien años de soledad");
-        Optional<Libro> resultadoMayuscula =
-                libroRepository.findByTituloIgnoringCase("CIEN AÑOS DE SOLEDAD");
-        Optional<Libro> resultadoMixto =
-                libroRepository.findByTituloIgnoringCase("CiEn AÑos de SOlEDad");
+        Optional<Libro> resultadoMinuscula = libroRepository.findByTituloIgnoringCase(
+            "cien años de soledad"
+        );
+        Optional<Libro> resultadoMayuscula = libroRepository.findByTituloIgnoringCase(
+            "CIEN AÑOS DE SOLEDAD"
+        );
+        Optional<Libro> resultadoMixto = libroRepository.findByTituloIgnoringCase(
+            "CiEn AÑos de SOlEDad"
+        );
 
         // Then - Todos deberían dar el mismo resultado
         assertNotNull(resultadoMinuscula);
@@ -141,8 +143,7 @@ public class LibroRepositoryTest {
         // Then
         assertNotNull(libroGuardado.getId());
 
-        Optional<Libro> libroRecuperado =
-                libroRepository.findById(libroGuardado.getId());
+        Optional<Libro> libroRecuperado = libroRepository.findById(libroGuardado.getId());
 
         assertTrue(libroRecuperado.isPresent());
         assertEquals("Título de un libro nuevo", libroRecuperado.get().getTitulo());

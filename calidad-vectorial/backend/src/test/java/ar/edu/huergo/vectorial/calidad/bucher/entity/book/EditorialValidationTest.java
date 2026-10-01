@@ -3,16 +3,14 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Set;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 @DisplayName("Tests de Validación - Entidad Editorial")
 class EditorialValidationTest {
@@ -26,7 +24,10 @@ class EditorialValidationTest {
     }
 
     private Editorial crearEditorialValida() {
-        return new Editorial("Editorial Sudamericana", "https://es.wikipedia.org/wiki/Editorial_Sudamericana");
+        return new Editorial(
+            "Editorial Sudamericana",
+            "https://es.wikipedia.org/wiki/Editorial_Sudamericana"
+        );
     }
 
     @Test
@@ -104,8 +105,9 @@ class EditorialValidationTest {
         assertFalse(violaciones.isEmpty());
         assertTrue(violaciones.size() >= 1);
 
-        boolean errorEnNombre = violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("nombre"));
+        boolean errorEnNombre = violaciones
+            .stream()
+            .anyMatch((v) -> v.getPropertyPath().toString().equals("nombre"));
         assertTrue(errorEnNombre);
     }
 }

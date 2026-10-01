@@ -1,7 +1,8 @@
 package ar.edu.huergo.vectorial.calidad.bucher.config.security;
 
+import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -24,80 +25,109 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
-
 @Configuration // Marca esta clase como una clase de configuración de Spring
 @EnableMethodSecurity // Habilita la seguridad a nivel de método con anotaciones
 // Clase de configuración de seguridad de Spring Security
 public class SecurityConfig {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http,
-        JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
-
+    SecurityFilterChain securityFilterChain(
+        HttpSecurity http,
+        JwtAuthenticationFilter jwtAuthenticationFilter
+    ) throws Exception {
         // Configuración central de Spring Security con JWT:
         // - Deshabilitamos CSRF porque no usamos cookies/sesiones en un API stateless.
         // - Forzamos manejo de sesión sin estado (los datos de auth vienen en el JWT).
         // - Permitimos libre acceso solo al login, el resto requiere autenticación y roles.
         // - Registramos nuestro filtro JWT antes del filtro de usuario/contraseña.
-        http.cors(cors -> {})
-        .csrf(csrf -> csrf.disable())
-            .sessionManagement(
-                session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
+        http.cors((cors) -> {})
+            .csrf((csrf) -> csrf.disable())
+            .sessionManagement((session) ->
+                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
+            .authorizeHttpRequests((auth) ->
+                auth
 
-                // Login y Registro
-                .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/auth/logout").permitAll()
-                .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
-                .requestMatchers(HttpMethod.POST, "/auth/google").permitAll()
+                    // Login y Registro
+                    .requestMatchers(HttpMethod.POST, "/auth/login")
+                    .permitAll()
+                    .requestMatchers(HttpMethod.POST, "/auth/logout")
+                    .permitAll()
+                    .requestMatchers(HttpMethod.POST, "/usuario/registrar")
+                    .permitAll()
+                    .requestMatchers(HttpMethod.POST, "/auth/google")
+                    .permitAll()
 
-                // Usuario
-                .requestMatchers(HttpMethod.GET, "/usuario").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.GET, "/usuario/propio").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.PUT, "/usuario/modificar").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.GET, "/usuario/modificar/rol").hasRole("ADMIN")
+                    // Usuario
+                    .requestMatchers(HttpMethod.GET, "/usuario")
+                    .hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/usuario/propio")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.PUT, "/usuario/modificar")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.GET, "/usuario/modificar/rol")
+                    .hasRole("ADMIN")
 
-                // Publicacion
-                .requestMatchers(HttpMethod.GET, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.GET, "/publicacion/estado/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.POST, "/publicacion/devolucion/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.DELETE, "/publicacion/**").hasAnyRole("ADMIN", "LECTOR")
+                    // Publicacion
+                    .requestMatchers(HttpMethod.GET, "/publicacion/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.GET, "/publicacion/estado/**")
+                    .hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/publicacion/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.POST, "/publicacion/devolucion/**")
+                    .hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/publicacion/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.DELETE, "/publicacion/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
 
-                //PublicacionSocial
-                .requestMatchers(HttpMethod.GET, "/publicacionSocial").hasAnyRole("ADMIN", "LECTOR")
+                    //PublicacionSocial
+                    .requestMatchers(HttpMethod.GET, "/publicacionSocial")
+                    .hasAnyRole("ADMIN", "LECTOR")
 
-                // Registro
-                .requestMatchers(HttpMethod.GET, "/registro").hasAnyRole("ADMIN", "LECTOR")
+                    // Registro
+                    .requestMatchers(HttpMethod.GET, "/registro")
+                    .hasAnyRole("ADMIN", "LECTOR")
 
-                // Biblioteca
-                .requestMatchers(HttpMethod.GET, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.POST, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.PUT, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.DELETE, "/biblioteca/**").hasAnyRole("ADMIN", "LECTOR")
+                    // Biblioteca
+                    .requestMatchers(HttpMethod.GET, "/biblioteca/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.POST, "/biblioteca/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.PUT, "/biblioteca/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.DELETE, "/biblioteca/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
 
-                // Libro
-                .requestMatchers(HttpMethod.GET, "/libro/**").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.POST, "/libro/crear").hasAnyRole("ADMIN", "ESCRITOR")
-                .requestMatchers(HttpMethod.PUT, "/libro/**").hasAnyRole("ADMIN")
+                    // Libro
+                    .requestMatchers(HttpMethod.GET, "/libro/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.POST, "/libro/crear")
+                    .hasAnyRole("ADMIN", "ESCRITOR")
+                    .requestMatchers(HttpMethod.PUT, "/libro/**")
+                    .hasAnyRole("ADMIN")
 
-                // Autor
-                .requestMatchers(HttpMethod.GET, "/autor/**").hasAnyRole("ADMIN", "LECTOR")
-                
-                // MedioPago
-                .requestMatchers(HttpMethod.GET, "/medioPago/**").hasAnyRole("ADMIN", "LECTOR")
-                .requestMatchers(HttpMethod.POST, "/medioPago/**").hasRole("ADMIN")
+                    // Autor
+                    .requestMatchers(HttpMethod.GET, "/autor/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
 
-                .anyRequest().authenticated())
+                    // MedioPago
+                    .requestMatchers(HttpMethod.GET, "/medioPago/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.POST, "/medioPago/**")
+                    .hasRole("ADMIN")
 
-                .exceptionHandling(
-                    exceptions -> exceptions.accessDeniedHandler(accessDeniedHandler())
-                        .authenticationEntryPoint(authenticationEntryPoint()))
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                    .anyRequest()
+                    .authenticated()
+            )
+
+            .exceptionHandling((exceptions) ->
+                exceptions
+                    .accessDeniedHandler(accessDeniedHandler())
+                    .authenticationEntryPoint(authenticationEntryPoint())
+            )
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
@@ -113,11 +143,18 @@ public class SecurityConfig {
             response.setContentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE);
 
             ObjectMapper mapper = new ObjectMapper();
-            String jsonResponse = mapper.writeValueAsString(java.util.Map.of(
-                "type", "https://http.dev/problems/access-denied",
-                "title", "Acceso denegado",
-                "status", 403,
-                "detail", "No tienes permisos para acceder a este recurso"));
+            String jsonResponse = mapper.writeValueAsString(
+                java.util.Map.of(
+                    "type",
+                    "https://http.dev/problems/access-denied",
+                    "title",
+                    "Acceso denegado",
+                    "status",
+                    403,
+                    "detail",
+                    "No tienes permisos para acceder a este recurso"
+                )
+            );
 
             response.getWriter().write(jsonResponse);
         };
@@ -130,11 +167,18 @@ public class SecurityConfig {
             response.setContentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE);
 
             ObjectMapper mapper = new ObjectMapper();
-            String jsonResponse = mapper.writeValueAsString(java.util.Map.of(
-                "type", "https://http.dev/problems/unauthorized",
-                "title", "No autorizado",
-                "status", 401,
-                "detail", "Credenciales inválidas o faltantes"));
+            String jsonResponse = mapper.writeValueAsString(
+                java.util.Map.of(
+                    "type",
+                    "https://http.dev/problems/unauthorized",
+                    "title",
+                    "No autorizado",
+                    "status",
+                    401,
+                    "detail",
+                    "Credenciales inválidas o faltantes"
+                )
+            );
 
             response.getWriter().write(jsonResponse);
         };
@@ -143,21 +187,33 @@ public class SecurityConfig {
     @Bean
     UserDetailsService userDetailsService(UsuarioRepository usuarioRepository) {
         // Adaptamos nuestra entidad Usuario a UserDetails de Spring Security.
-        return username -> usuarioRepository.findByUsername(username)
-            .map(usuario ->
-                org.springframework.security.core.userdetails.User
-                .withUsername(usuario.getUsername()).password(usuario.getPassword())
-                .roles(usuario.getRoles().stream().map(r -> r.getNombre())
-                .toArray(String[]::new))
-                .build())
-                .orElseThrow(
-                    () -> new UsernameNotFoundException("Usuario no encontrado: " + username));
+        return (username) ->
+            usuarioRepository
+                .findByUsername(username)
+                .map((usuario) ->
+                    org.springframework.security.core.userdetails.User.withUsername(
+                        usuario.getUsername()
+                    )
+                        .password(usuario.getPassword())
+                        .roles(
+                            usuario
+                                .getRoles()
+                                .stream()
+                                .map((r) -> r.getNombre())
+                                .toArray(String[]::new)
+                        )
+                        .build()
+                )
+                .orElseThrow(() ->
+                    new UsernameNotFoundException("Usuario no encontrado: " + username)
+                );
     }
 
     @Bean
-    DaoAuthenticationProvider daoAuthenticationProvider(UserDetailsService userDetailsService,
-        PasswordEncoder passwordEncoder) {
-
+    DaoAuthenticationProvider daoAuthenticationProvider(
+        UserDetailsService userDetailsService,
+        PasswordEncoder passwordEncoder
+    ) {
         // Provider de autenticación que usa nuestro UserDetailsService y el encoder
         // para validar credentials en /auth/login.
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
@@ -167,7 +223,7 @@ public class SecurityConfig {
 
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
-            throws Exception {
+        throws Exception {
         // Exponemos el AuthenticationManager que usará el controlador de login.
         return configuration.getAuthenticationManager();
     }
@@ -176,7 +232,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:5173"));
-        configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(List.of("*"));
 

@@ -16,24 +16,24 @@
 }
 
 .not-found__code {
-    font-family: "Handelson Three", cursive;
+    font-family: 'Handelson Three', cursive;
     font-size: clamp(5rem, 14vw, 10rem);
     font-weight: 500;
-    color: #0E675F;
+    color: #0e675f;
     margin: 0;
     line-height: 1;
 }
 
 .not-found__title {
-    font-family: "Hind Siliguri", Arial, sans-serif;
+    font-family: 'Hind Siliguri', Arial, sans-serif;
     font-size: 1.3rem;
     font-weight: 600;
-    color: #08413C;
+    color: #08413c;
     margin: 0;
 }
 
 .not-found__subtitle {
-    font-family: "Hind Siliguri", Arial, sans-serif;
+    font-family: 'Hind Siliguri', Arial, sans-serif;
     font-size: 1rem;
     color: #929292;
     margin: 0 0 16px 0;

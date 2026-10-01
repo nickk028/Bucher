@@ -1,33 +1,32 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.security;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import static org.mockito.ArgumentMatchers.any;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests de Unidad - UsuarioService")
@@ -63,7 +62,6 @@ public class UsuarioServiceTest {
     @Test
     @DisplayName("Debería obtener todos los usuarios")
     void deberiaObtenerTodosLosUsuarios() {
-
         List<Usuario> usuariosEsperados = Arrays.asList(usuarioEjemplo);
         when(usuarioRepository.findAll()).thenReturn(usuariosEsperados);
 
@@ -91,7 +89,11 @@ public class UsuarioServiceTest {
         when(usuarioRepository.save(any(Usuario.class))).thenReturn(usuarioEjemplo);
 
         // When
-        Usuario resultado = usuarioService.registrar(usuarioEjemplo, password, verificationPassword);
+        Usuario resultado = usuarioService.registrar(
+            usuarioEjemplo,
+            password,
+            verificationPassword
+        );
 
         // Then
         assertNotNull(resultado);
@@ -114,8 +116,9 @@ public class UsuarioServiceTest {
         String verificationPassword = "Password*123456789";
 
         // When & Then
-        IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class,
-                () -> usuarioService.registrar(usuarioEjemplo, password, verificationPassword));
+        IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () ->
+            usuarioService.registrar(usuarioEjemplo, password, verificationPassword)
+        );
 
         assertEquals("Las contraseñas no coinciden", excepcion.getMessage());
 
@@ -135,8 +138,9 @@ public class UsuarioServiceTest {
         when(usuarioRepository.existsByUsername(usuarioEjemplo.getUsername())).thenReturn(true);
 
         // When & Then
-        IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class,
-                () -> usuarioService.registrar(usuarioEjemplo, password, verificationPassword));
+        IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () ->
+            usuarioService.registrar(usuarioEjemplo, password, verificationPassword)
+        );
 
         assertEquals("El nombre de usuario ya está en uso", excepcion.getMessage());
 
@@ -154,9 +158,9 @@ public class UsuarioServiceTest {
         String verificationPassword = "Password@123456789";
 
         // When & Then
-        IllegalArgumentException excepcion =
-                assertThrows(IllegalArgumentException.class, () -> usuarioService
-                        .registrar(usuarioEjemplo, passwordVacio, verificationPassword));
+        IllegalArgumentException excepcion = assertThrows(IllegalArgumentException.class, () ->
+            usuarioService.registrar(usuarioEjemplo, passwordVacio, verificationPassword)
+        );
 
         assertEquals("Las contraseñas no coinciden", excepcion.getMessage());
     }

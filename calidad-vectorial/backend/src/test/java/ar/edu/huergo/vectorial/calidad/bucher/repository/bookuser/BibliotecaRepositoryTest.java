@@ -1,24 +1,21 @@
 package ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser;
 
-import java.util.Optional;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
+import java.util.Optional;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @DataJpaTest
 @DisplayName("Tests de Integración - BibliotecaRepository")
@@ -97,8 +94,9 @@ public class BibliotecaRepositoryTest {
         // Then
         assertNotNull(bibliotecaGuardada.getId());
 
-        Optional<Biblioteca> bibliotecaRecuperada =
-                bibliotecaRepository.findById(bibliotecaGuardada.getId());
+        Optional<Biblioteca> bibliotecaRecuperada = bibliotecaRepository.findById(
+            bibliotecaGuardada.getId()
+        );
 
         assertTrue(bibliotecaRecuperada.isPresent());
         assertEquals("nuevolector", bibliotecaRecuperada.get().getUsuario().getNickname());

@@ -1,7 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.publication;
 
 import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 public class RegistroPrestamoResponseDTO {
+
     // Fecha del registro de préstamo
     private LocalDate fechaPrestamo;
 

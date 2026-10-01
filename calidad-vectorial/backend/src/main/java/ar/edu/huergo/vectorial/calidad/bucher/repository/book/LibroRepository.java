@@ -1,20 +1,23 @@
 package ar.edu.huergo.vectorial.calidad.bucher.repository.book;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 // Repositorio JPA para la entidad Libro
-public interface LibroRepository extends JpaRepository<Libro, Long>{
+public interface LibroRepository extends JpaRepository<Libro, Long> {
     Optional<Libro> findByTituloIgnoringCase(String titulo);
-    Optional<Libro> findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(String titulo, String edicion, Autor autor, Editorial editorial);
+    Optional<Libro> findByTituloIgnoreCaseAndEdicionIgnoreCaseAndAutorAndEditorial(
+        String titulo,
+        String edicion,
+        Autor autor,
+        Editorial editorial
+    );
     Optional<Libro> findByTituloIgnoreCaseAndEdicion(String titulo, String edicion);
     List<Libro> findAllByCategoriaContaining(Categoria categoria);
     List<Libro> findAllByTituloContainingIgnoreCase(String titulo, Pageable pageable);

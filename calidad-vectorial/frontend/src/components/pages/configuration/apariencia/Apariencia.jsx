@@ -1,12 +1,12 @@
-import { useState } from "react";
-import "./Apariencia.css";
-import { getConfig, setConfig } from "../../../utils/ConfigUtils";
+import { useState } from 'react';
+import './Apariencia.css';
+import { getConfig, setConfig } from '../../../utils/ConfigUtils';
 
 const COLORES_BUCHY = [
-    { id: "dorado",   dark: "#B8860B", light: "#FFCC33" },
-    { id: "azul",     dark: "#3C49A6", light: "#5B6DF6" },
-    { id: "rojo",     dark: "#A40F0F", light: "#DB1515" },
-    { id: "amarillo", dark: "#9F9F2E", light: "#F3F346" },
+    { id: 'dorado', dark: '#B8860B', light: '#FFCC33' },
+    { id: 'azul', dark: '#3C49A6', light: '#5B6DF6' },
+    { id: 'rojo', dark: '#A40F0F', light: '#DB1515' },
+    { id: 'amarillo', dark: '#9F9F2E', light: '#F3F346' },
 ];
 
 export const Apariencia = () => {
@@ -36,7 +36,7 @@ export const Apariencia = () => {
                                 type="checkbox"
                                 className="apariencia__checkbox"
                                 checked={!!config.buchy}
-                                onChange={(e) => update("buchy", e.target.checked)}
+                                onChange={(e) => update('buchy', e.target.checked)}
                             />
                             <span className="apariencia__checkbox-custom" />
                             Mostrar a Büchy
@@ -46,7 +46,7 @@ export const Apariencia = () => {
                                 type="checkbox"
                                 className="apariencia__checkbox"
                                 checked={!!config.consejos}
-                                onChange={(e) => update("consejos", e.target.checked)}
+                                onChange={(e) => update('consejos', e.target.checked)}
                             />
                             <span className="apariencia__checkbox-custom" />
                             Mostrar consejos y ayuda
@@ -61,8 +61,8 @@ export const Apariencia = () => {
                             <button
                                 key={c.id}
                                 type="button"
-                                className={`apariencia__color-btn ${config.colorBuchy === c.id ? "apariencia__color-btn--active" : ""}`}
-                                onClick={() => update("colorBuchy", c.id)}
+                                className={`apariencia__color-btn ${config.colorBuchy === c.id ? 'apariencia__color-btn--active' : ''}`}
+                                onClick={() => update('colorBuchy', c.id)}
                                 aria-label={`Color ${c.id}`}
                             >
                                 <span
@@ -82,28 +82,28 @@ export const Apariencia = () => {
             {/* ---- Tema ---- */}
             <section className="apariencia__form">
                 <h2>Tema</h2>
-                    <label className="apariencia__checkbox-label">
-                        <input
-                            type="radio"
-                            name="tema"
-                            className="apariencia__checkbox"
-                            checked={config.tema === "claro" || !config.tema}
-                            onChange={() => update("tema", "claro")}
-                        />
-                        <span className="apariencia__checkbox-custom" />
-                        Claro
-                    </label>
-                    <label className="apariencia__checkbox-label">
-                        <input
-                            type="radio"
-                            name="tema"
-                            className="apariencia__checkbox"
-                            checked={config.tema === "oscuro"}
-                            onChange={() => update("tema", "oscuro")}
-                        />
-                        <span className="apariencia__checkbox-custom" />
-                        Oscuro
-                    </label>
+                <label className="apariencia__checkbox-label">
+                    <input
+                        type="radio"
+                        name="tema"
+                        className="apariencia__checkbox"
+                        checked={config.tema === 'claro' || !config.tema}
+                        onChange={() => update('tema', 'claro')}
+                    />
+                    <span className="apariencia__checkbox-custom" />
+                    Claro
+                </label>
+                <label className="apariencia__checkbox-label">
+                    <input
+                        type="radio"
+                        name="tema"
+                        className="apariencia__checkbox"
+                        checked={config.tema === 'oscuro'}
+                        onChange={() => update('tema', 'oscuro')}
+                    />
+                    <span className="apariencia__checkbox-custom" />
+                    Oscuro
+                </label>
             </section>
         </main>
     );

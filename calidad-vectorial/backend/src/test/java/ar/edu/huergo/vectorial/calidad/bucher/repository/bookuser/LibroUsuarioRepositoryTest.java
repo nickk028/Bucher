@@ -1,23 +1,10 @@
 package ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
@@ -29,6 +16,16 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @DataJpaTest
 @DisplayName("Tests de Integración - LibroUsuarioRepository")
@@ -71,7 +68,10 @@ public class LibroUsuarioRepositoryTest {
         Autor autor = new Autor("Autor de ejemplo", "https://es.wikipedia.org/wiki/autor_ejemplo");
         entityManager.persist(autor);
 
-        Editorial editorial = new Editorial("Editorial de ejemplo", "https://es.wikipedia.org/wiki/editorial_ejemplo");
+        Editorial editorial = new Editorial(
+            "Editorial de ejemplo",
+            "https://es.wikipedia.org/wiki/editorial_ejemplo"
+        );
         entityManager.persist(editorial);
 
         // Crear libros
@@ -149,8 +149,10 @@ public class LibroUsuarioRepositoryTest {
     @DisplayName("Debería encontrar libros usuario por biblioteca y estado de lectura")
     void deberiaEncontrarLibrosUsuarioPorBibliotecaYEstado() {
         // When - Buscar libros en estado Leyendo
-        List<LibroUsuario> librosleyendo =
-                libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, EstadoLectura.Leyendo);
+        List<LibroUsuario> librosleyendo = libroUsuarioRepository.findByBibliotecaAndEstadoLectura(
+            bibliotecaEjemplo,
+            EstadoLectura.Leyendo
+        );
 
         // Then
         assertNotNull(librosleyendo);
@@ -159,8 +161,10 @@ public class LibroUsuarioRepositoryTest {
         assertEquals("Cien Años de Soledad", librosleyendo.get(0).getLibro().getTitulo());
 
         // When - Buscar libros en estado leido
-        List<LibroUsuario> librosleidos =
-                libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, EstadoLectura.Leido);
+        List<LibroUsuario> librosleidos = libroUsuarioRepository.findByBibliotecaAndEstadoLectura(
+            bibliotecaEjemplo,
+            EstadoLectura.Leido
+        );
 
         // Then
         assertNotNull(librosleidos);
@@ -169,7 +173,10 @@ public class LibroUsuarioRepositoryTest {
 
         // When - Buscar libros en estado pendiente
         List<LibroUsuario> librospendientes =
-                libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, EstadoLectura.Pendiente);
+            libroUsuarioRepository.findByBibliotecaAndEstadoLectura(
+                bibliotecaEjemplo,
+                EstadoLectura.Pendiente
+            );
 
         // Then
         assertNotNull(librospendientes);
@@ -192,7 +199,9 @@ public class LibroUsuarioRepositoryTest {
         nuevoLibro.setPrecio(2500.00);
         nuevoLibro.setCategoria(Set.of(Categoria.fantastico));
         nuevoLibro.setAutor(entityManager.find(Autor.class, libroEjemplo1.getAutor().getId()));
-        nuevoLibro.setEditorial(entityManager.find(Editorial.class, libroEjemplo1.getEditorial().getId()));
+        nuevoLibro.setEditorial(
+            entityManager.find(Editorial.class, libroEjemplo1.getEditorial().getId())
+        );
         entityManager.persist(nuevoLibro);
 
         LibroUsuario nuevoLibroUsuario = new LibroUsuario();
@@ -210,8 +219,9 @@ public class LibroUsuarioRepositoryTest {
         // Then
         assertNotNull(libroUsuarioGuardado.getId());
 
-        Optional<LibroUsuario> libroUsuarioRecuperado =
-                libroUsuarioRepository.findById(libroUsuarioGuardado.getId());
+        Optional<LibroUsuario> libroUsuarioRecuperado = libroUsuarioRepository.findById(
+            libroUsuarioGuardado.getId()
+        );
 
         assertTrue(libroUsuarioRecuperado.isPresent());
         assertEquals(50, libroUsuarioRecuperado.get().getPaginaActual());
@@ -231,7 +241,9 @@ public class LibroUsuarioRepositoryTest {
 
         // Then
         assertFalse(libroUsuarioRepository.existsById(libroUsuarioId));
-        Optional<LibroUsuario> libroUsuarioEliminado = libroUsuarioRepository.findById(libroUsuarioId);
+        Optional<LibroUsuario> libroUsuarioEliminado = libroUsuarioRepository.findById(
+            libroUsuarioId
+        );
         assertFalse(libroUsuarioEliminado.isPresent());
     }
 
@@ -256,7 +268,9 @@ public class LibroUsuarioRepositoryTest {
         nuevoLibro.setPrecio(1600.00);
         nuevoLibro.setCategoria(Set.of(Categoria.fantastico));
         nuevoLibro.setAutor(entityManager.find(Autor.class, libroEjemplo1.getAutor().getId()));
-        nuevoLibro.setEditorial(entityManager.find(Editorial.class, libroEjemplo1.getEditorial().getId()));
+        nuevoLibro.setEditorial(
+            entityManager.find(Editorial.class, libroEjemplo1.getEditorial().getId())
+        );
         entityManager.persist(nuevoLibro);
 
         LibroUsuario nuevoLibroUsuario = new LibroUsuario();

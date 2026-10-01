@@ -12,8 +12,8 @@
     display: flex;
     flex-direction: column;
 
-    background: #FFFFFF;
-    border: 2px solid #DCDCDC;
+    background: #ffffff;
+    border: 2px solid #dcdcdc;
     border-radius: 20px;
 }
 
@@ -47,8 +47,8 @@
 .body-comsocial__form__options div {
     display: flex;
     gap: min(2%, 10px);
-    scale: .85;
-    transform: translateX(-9%);;
+    scale: 0.85;
+    transform: translateX(-9%);
 }
 
 .body-comsocial__form__options__buttons {
@@ -59,7 +59,7 @@
     max-width: 220px;
     padding: 10px 20px 10px 20px;
 
-    border: 2px solid #DCDCDC;
+    border: 2px solid #dcdcdc;
     border-radius: 30px;
 
     font-size: 1.5rem;

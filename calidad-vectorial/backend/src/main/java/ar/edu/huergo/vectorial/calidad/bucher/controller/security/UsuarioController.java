@@ -1,16 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.controller.security;
 
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.RegistrarDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioRolUpdateDTO;
@@ -19,7 +8,16 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.security.UsuarioMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController // Marca la clase como un controlador REST
 @RequiredArgsConstructor // Genera un constructor con los campos finales
@@ -31,13 +29,12 @@ public class UsuarioController {
     private final UsuarioMapper usuarioMapper;
 
     /**
-    * Obtiene todos los usuarios
-    * @return Una lista de todos los usuarios
-    */
+     * Obtiene todos los usuarios
+     * @return Una lista de todos los usuarios
+     */
     @GetMapping
     public ResponseEntity<List<UsuarioResponseDTO>> obtenerTodosUsuarios() {
-        return ResponseEntity.ok(
-            usuarioMapper.toDTOList(usuarioService.obtenerTodosUsuarios()));
+        return ResponseEntity.ok(usuarioMapper.toDTOList(usuarioService.obtenerTodosUsuarios()));
     }
 
     @GetMapping("/propio")
@@ -51,25 +48,33 @@ public class UsuarioController {
     }
 
     /**
-    * Registra un nuevo usuario
-    * @param registrarDTO El DTO con los datos del usuario a registrar
-    * @return El usuario registrado
-    */
+     * Registra un nuevo usuario
+     * @param registrarDTO El DTO con los datos del usuario a registrar
+     * @return El usuario registrado
+     */
     @PostMapping("/registrar")
-    public ResponseEntity<UsuarioResponseDTO> registrarCliente(@Valid @RequestBody RegistrarDTO registrarDTO) {
+    public ResponseEntity<UsuarioResponseDTO> registrarCliente(
+        @Valid @RequestBody RegistrarDTO registrarDTO
+    ) {
         Usuario usuario = usuarioMapper.toEntity(registrarDTO);
-        Usuario nuevoUsuario = usuarioService.registrar(usuario, registrarDTO.password(), registrarDTO.verificationPassword());
+        Usuario nuevoUsuario = usuarioService.registrar(
+            usuario,
+            registrarDTO.password(),
+            registrarDTO.verificationPassword()
+        );
         UsuarioResponseDTO nuevoUsuarioDTO = usuarioMapper.toDTO(nuevoUsuario);
         return ResponseEntity.ok(nuevoUsuarioDTO);
     }
 
     /**
-    * Modifica los datos del usuario autenticado
-    * @param usuarioUpdateDTO Los nuevos datos del usuario a modificar
-    * @return El usuario con los datos actualizados
-    */
+     * Modifica los datos del usuario autenticado
+     * @param usuarioUpdateDTO Los nuevos datos del usuario a modificar
+     * @return El usuario con los datos actualizados
+     */
     @PutMapping("/modificar")
-    public ResponseEntity<UsuarioResponseDTO> modificarUsuario(@Valid @RequestBody UsuarioUpdateDTO usuarioUpdateDTO) {
+    public ResponseEntity<UsuarioResponseDTO> modificarUsuario(
+        @Valid @RequestBody UsuarioUpdateDTO usuarioUpdateDTO
+    ) {
         UserDetails usuarioAutenticado = usuarioService.getUserDetailsActual();
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
 
@@ -83,16 +88,21 @@ public class UsuarioController {
     }
 
     /**
-    * Modifica el rol de un usuario
-    * @param usuarioRolUpdateDTO El DTO con el username y los roles
-    * @return El usuario con el rol modificado
-    */
+     * Modifica el rol de un usuario
+     * @param usuarioRolUpdateDTO El DTO con el username y los roles
+     * @return El usuario con el rol modificado
+     */
     @PutMapping("/modificar/rol")
-    public ResponseEntity<UsuarioResponseDTO> modificarRolUsuario(@Valid @RequestBody UsuarioRolUpdateDTO usuarioRolUpdateDTO) {
+    public ResponseEntity<UsuarioResponseDTO> modificarRolUsuario(
+        @Valid @RequestBody UsuarioRolUpdateDTO usuarioRolUpdateDTO
+    ) {
         if (usuarioRolUpdateDTO.getUsername() == null || usuarioRolUpdateDTO.getRoles() == null) {
             return ResponseEntity.badRequest().build();
         }
-        Usuario usuarioActualizado = usuarioService.modificarRolUsuario(usuarioRolUpdateDTO.getUsername(), usuarioRolUpdateDTO.getRoles());
+        Usuario usuarioActualizado = usuarioService.modificarRolUsuario(
+            usuarioRolUpdateDTO.getUsername(),
+            usuarioRolUpdateDTO.getRoles()
+        );
         return ResponseEntity.ok(usuarioMapper.toDTO(usuarioActualizado));
     }
 }

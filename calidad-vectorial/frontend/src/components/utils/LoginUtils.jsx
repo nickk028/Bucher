@@ -1,22 +1,20 @@
-import { postData } from "./FetchUtils";
+import { postData } from './FetchUtils';
 
 export async function loginRequest({ username, password }, signal) {
     try {
-        const response = await postData("auth/login", { username, password }, signal);
+        const response = await postData('auth/login', { username, password }, signal);
         return response;
-
     } catch (error) {
-        return { ok: false, message: "Error de conexión" };
+        return { ok: false, message: 'Error de conexión' };
     }
 }
 
 export async function googleLoginRequest(idToken, signal) {
     try {
-        const response = await postData("auth/google", { idToken }, signal);
+        const response = await postData('auth/google', { idToken }, signal);
         return response;
-
     } catch (error) {
-        return { ok: false, message: "Error de conexión" };
+        return { ok: false, message: 'Error de conexión' };
     }
 }
 
@@ -41,4 +39,4 @@ export function validarSeguridadPassword(password) {
         puntosSeguridad = puntosSeguridad + 1;
     }
     return puntosSeguridad;
-};
+}

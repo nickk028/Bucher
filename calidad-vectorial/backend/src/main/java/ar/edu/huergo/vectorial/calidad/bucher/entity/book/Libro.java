@@ -1,10 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import ar.edu.huergo.vectorial.calidad.bucher.entity.payment.PrecioHistorico;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import jakarta.persistence.CollectionTable;
@@ -28,6 +23,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,7 +37,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "libros")
-@EqualsAndHashCode(exclude = {"publicaciones","autor","editorial", "preciosHistoricos"}) 
+@EqualsAndHashCode(exclude = { "publicaciones", "autor", "editorial", "preciosHistoricos" })
 // Excluye las relaciones de la comparación de igualdad y hashCode para evitar problemas de recursión infinita
 public class Libro {
 

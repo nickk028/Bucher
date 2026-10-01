@@ -32,14 +32,16 @@
     border: var(--brand-primary) solid 2px;
     border-radius: 8px 0px 0px 8px;
 
-    font-family: "Hind Siliguri", Arial, Helvetica, sans-serif;
+    font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
     font-size: 1.2rem;
     outline: none;
 
     z-index: 1;
 }
 
-.buscador__input select:focus, .buscador__input select:focus-visible, .buscador__input select:active {
+.buscador__input select:focus,
+.buscador__input select:focus-visible,
+.buscador__input select:active {
     border: var(--brand-primary) solid 2px;
     border-radius: 8px 0px 0px 0px;
 }

@@ -1,4 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
+
 // Enum para los estados de lectura de los bookusers
 
 import com.fasterxml.jackson.annotation.JsonCreator;

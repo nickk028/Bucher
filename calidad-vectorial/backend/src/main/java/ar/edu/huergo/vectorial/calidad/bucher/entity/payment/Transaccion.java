@@ -1,9 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.payment;
 
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CurrentTimestamp;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,9 +12,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CurrentTimestamp;
 
 @Entity // Marca la clase como una entidad de JPA
 @Inheritance(strategy = InheritanceType.JOINED) // Cada subclase concreta tendrá su propia tabla enlazada por Id

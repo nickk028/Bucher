@@ -1,25 +1,25 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.security;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
-
 @DisplayName("Tests de Validación - Entidad Usuario")
 class UsuarioValidationTest {
+
     private Validator validator;
     private Rol rolEjemplo;
 
@@ -47,8 +47,10 @@ class UsuarioValidationTest {
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
 
         // Then
-        assertTrue(violaciones.isEmpty(),
-            "No debería haber violaciones de validación para un usuario válido");
+        assertTrue(
+            violaciones.isEmpty(),
+            "No debería haber violaciones de validación para un usuario válido"
+        );
     }
 
     // -------username-------
@@ -67,9 +69,10 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("username")));
-        assertTrue(violaciones.stream().anyMatch(v -> v.getMessage().contains("obligatorio")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("username"))
+        );
+        assertTrue(violaciones.stream().anyMatch((v) -> v.getMessage().contains("obligatorio")));
     }
 
     @Test
@@ -86,8 +89,9 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-            .anyMatch(v -> v.getPropertyPath().toString().equals("username")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("username"))
+        );
     }
 
     @Test
@@ -104,12 +108,13 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("username")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("username"))
+        );
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"A"})
+    @ValueSource(strings = { "A" })
     @DisplayName("Debería fallar validación con nombres muy cortos")
     void deberiaFallarValidacionConNombresMuyCortos(String nombreCorto) {
         // Given
@@ -123,10 +128,16 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("username")));
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getMessage().contains("El username debe tener entre 2 y 100 digitos.")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("username"))
+        );
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) ->
+                    v.getMessage().contains("El username debe tener entre 2 y 100 digitos.")
+                )
+        );
     }
 
     @Test
@@ -144,10 +155,16 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("username")));
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getMessage().contains("El username debe tener entre 2 y 100 digitos.")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("username"))
+        );
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) ->
+                    v.getMessage().contains("El username debe tener entre 2 y 100 digitos.")
+                )
+        );
     }
 
     @Test
@@ -165,10 +182,16 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("username")));
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getMessage().contains("El nombre debe ser un mail con un formato válido.")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("username"))
+        );
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) ->
+                    v.getMessage().contains("El nombre debe ser un mail con un formato válido.")
+                )
+        );
     }
 
     @Test
@@ -216,10 +239,16 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("password")));
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getMessage().contains("La contraseña debe tener entre 16 y 60 digitos.")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("password"))
+        );
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) ->
+                    v.getMessage().contains("La contraseña debe tener entre 16 y 60 digitos.")
+                )
+        );
     }
 
     @Test
@@ -237,14 +266,22 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("password")));
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getMessage().contains("La contraseña debe tener entre 16 y 60 digitos.")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("password"))
+        );
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) ->
+                    v.getMessage().contains("La contraseña debe tener entre 16 y 60 digitos.")
+                )
+        );
     }
 
     @Test
-    @DisplayName("Debería fallar validación con contraseña sin caracteres especiales, números o mayúsculas")
+    @DisplayName(
+        "Debería fallar validación con contraseña sin caracteres especiales, números o mayúsculas"
+    )
     void deberiaFallarValidacionPorNoCumplirPatternPassword() {
         // Given
         String passwordInvalida = "a".repeat(16);
@@ -258,10 +295,20 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("password")));
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getMessage().contains("La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial.")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("password"))
+        );
+        assertTrue(
+            violaciones
+                .stream()
+                .anyMatch((v) ->
+                    v
+                        .getMessage()
+                        .contains(
+                            "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial."
+                        )
+                )
+        );
     }
 
     @Test
@@ -303,9 +350,10 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("roles")));
-        assertTrue(violaciones.stream().anyMatch(v -> v.getMessage().contains("obligatorios")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("roles"))
+        );
+        assertTrue(violaciones.stream().anyMatch((v) -> v.getMessage().contains("obligatorios")));
     }
 
     @Test
@@ -322,9 +370,10 @@ class UsuarioValidationTest {
 
         // Then
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.stream()
-                .anyMatch(v -> v.getPropertyPath().toString().equals("roles")));
-        assertTrue(violaciones.stream().anyMatch(v -> v.getMessage().contains("obligatorios")));
+        assertTrue(
+            violaciones.stream().anyMatch((v) -> v.getPropertyPath().toString().equals("roles"))
+        );
+        assertTrue(violaciones.stream().anyMatch((v) -> v.getMessage().contains("obligatorios")));
     }
 
     // -------múltiples errores-------
@@ -344,8 +393,10 @@ class UsuarioValidationTest {
         assertFalse(violaciones.isEmpty());
         assertTrue(violaciones.size() >= 3); // Al menos 3 errores
 
-        List<String> propiedadesConError =
-                violaciones.stream().map(v -> v.getPropertyPath().toString()).toList();
+        List<String> propiedadesConError = violaciones
+            .stream()
+            .map((v) -> v.getPropertyPath().toString())
+            .toList();
 
         assertTrue(propiedadesConError.contains("username"));
         assertTrue(propiedadesConError.contains("roles"));

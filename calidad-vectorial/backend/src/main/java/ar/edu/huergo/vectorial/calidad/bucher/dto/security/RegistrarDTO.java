@@ -9,7 +9,6 @@ import jakarta.validation.constraints.Size;
 
 // DTO para la solicitud de registro de un nuevo usuario
 public record RegistrarDTO(
-
     // Nombre de usuario
     @NotBlank(message = "El username es obligatorio")
     @Email(message = "El nombre debe ser un mail con un formato valido")
@@ -20,7 +19,8 @@ public record RegistrarDTO(
     @Size(min = 16, max = 60, message = "La contraseña debe tener entre 16 y 60 digitos")
     @Pattern(
         regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*]).*$",
-        message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial")
+        message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial"
+    )
     String password,
 
     // Verificación de la contraseña del usuario
@@ -28,7 +28,8 @@ public record RegistrarDTO(
     @Size(min = 16, max = 60, message = "La contraseña debe tener entre 16 y 60 digitos")
     @Pattern(
         regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).*$",
-        message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial")
+        message = "La contraseña debe contener al menos una mayuscula, una minuscula, un numero y un caracter especial"
+    )
     String verificationPassword,
 
     // Nick name de la cuenta del usuario
@@ -51,5 +52,5 @@ public record RegistrarDTO(
     //Codigo Postal
     @Column(nullable = true)
     @Size(max = 255, message = "El código postal debe tener como máximo 255 dígitos")
-    String codigoPostal) {
-}
+    String codigoPostal
+) {}

@@ -13,6 +13,7 @@ import lombok.Data;
 
 @Data
 public class PublicacionBasicDTO {
+
     // Id
     @Id
     private Long id;
@@ -30,7 +31,11 @@ public class PublicacionBasicDTO {
 
     // Estado de la publicación (Ej: "Disponible", "Prestado", etc.)
     @NotBlank(message = "El estado de la publicación es obligatorio.")
-    @Size(min = 2, max = 50, message = "El estado de la publicación debe tener entre 2 y 50 caracteres.")
+    @Size(
+        min = 2,
+        max = 50,
+        message = "El estado de la publicación debe tener entre 2 y 50 caracteres."
+    )
     @Enumerated(EnumType.STRING)
     private Estado estadoPublicacion;
 

@@ -1,22 +1,9 @@
 package ar.edu.huergo.vectorial.calidad.bucher.repository.publication;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
@@ -28,6 +15,16 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestam
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @DataJpaTest
 @DisplayName("Tests de Integración - RegistroPrestamoRepository")
@@ -72,7 +69,10 @@ public class RegistroPrestamoRepositoryTest {
         Autor autor = new Autor("Autor de ejemplo", "https://es.wikipedia.org/wiki/autor_ejemplo");
         entityManager.persist(autor);
 
-        Editorial editorial = new Editorial("Editorial de ejemplo", "https://es.wikipedia.org/wiki/editorial_ejemplo");
+        Editorial editorial = new Editorial(
+            "Editorial de ejemplo",
+            "https://es.wikipedia.org/wiki/editorial_ejemplo"
+        );
         entityManager.persist(editorial);
 
         // Crear libros
@@ -178,18 +178,23 @@ public class RegistroPrestamoRepositoryTest {
     @DisplayName("Debería encontrar todos los préstamos por usuario")
     void deberiaEncontrarPrestamosPorUsuario() {
         // When - Buscar préstamos del usuario 1
-        List<RegistroPrestamo> prestamosUsuario1 =
-                registroPrestamoRepository.findAllByUsuario(usuarioEjemplo1);
+        List<RegistroPrestamo> prestamosUsuario1 = registroPrestamoRepository.findAllByUsuario(
+            usuarioEjemplo1
+        );
 
         // Then
         assertNotNull(prestamosUsuario1);
         assertEquals(2, prestamosUsuario1.size());
-        assertTrue(prestamosUsuario1.stream()
-                .allMatch(p -> p.getUsuario().getId().equals(usuarioEjemplo1.getId())));
+        assertTrue(
+            prestamosUsuario1
+                .stream()
+                .allMatch((p) -> p.getUsuario().getId().equals(usuarioEjemplo1.getId()))
+        );
 
         // When - Buscar préstamos del usuario 2
-        List<RegistroPrestamo> prestamosUsuario2 =
-                registroPrestamoRepository.findAllByUsuario(usuarioEjemplo2);
+        List<RegistroPrestamo> prestamosUsuario2 = registroPrestamoRepository.findAllByUsuario(
+            usuarioEjemplo2
+        );
 
         // Then
         assertNotNull(prestamosUsuario2);
@@ -202,7 +207,9 @@ public class RegistroPrestamoRepositoryTest {
     void deberiaEncontrarPrestamoActivoPorPublicacion() {
         // When - Buscar préstamo activo de publicación 1
         Optional<RegistroPrestamo> prestamoActivo1 =
-                registroPrestamoRepository.findByPublicacionAndFechaDevolucionIsNull(publicacionEjemplo1);
+            registroPrestamoRepository.findByPublicacionAndFechaDevolucionIsNull(
+                publicacionEjemplo1
+            );
 
         // Then
         assertTrue(prestamoActivo1.isPresent());
@@ -211,14 +218,18 @@ public class RegistroPrestamoRepositoryTest {
 
         // When - Buscar préstamo activo de publicación 2 (no debería existir porque fue devuelto)
         Optional<RegistroPrestamo> prestamoActivo2 =
-                registroPrestamoRepository.findByPublicacionAndFechaDevolucionIsNull(publicacionEjemplo2);
+            registroPrestamoRepository.findByPublicacionAndFechaDevolucionIsNull(
+                publicacionEjemplo2
+            );
 
         // Then
         assertFalse(prestamoActivo2.isPresent());
 
         // When - Buscar préstamo activo de publicación 3
         Optional<RegistroPrestamo> prestamoActivo3 =
-                registroPrestamoRepository.findByPublicacionAndFechaDevolucionIsNull(publicacionEjemplo3);
+            registroPrestamoRepository.findByPublicacionAndFechaDevolucionIsNull(
+                publicacionEjemplo3
+            );
 
         // Then
         assertTrue(prestamoActivo3.isPresent());

@@ -1,7 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.payment;
 
 import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

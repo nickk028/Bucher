@@ -1,25 +1,11 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.bookuser;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
@@ -35,6 +21,17 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.BibliotecaRepo
 import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.LibroUsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
 import jakarta.persistence.EntityNotFoundException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests de Unidad - BibliotecaService")
@@ -74,9 +71,15 @@ public class BibliotecaServiceTest {
         bibliotecaEjemplo.setLibrosUsuario(new ArrayList<>());
 
         // Crear libro
-        Autor autor = new Autor("Gabriel García Márquez", "https://es.wikipedia.org/wiki/Gabriel_García_Márquez");
-        Editorial editorial = new Editorial("Editorial Sudamericana", "https://es.wikipedia.org/wiki/Editorial_Sudamericana");
-        
+        Autor autor = new Autor(
+            "Gabriel García Márquez",
+            "https://es.wikipedia.org/wiki/Gabriel_García_Márquez"
+        );
+        Editorial editorial = new Editorial(
+            "Editorial Sudamericana",
+            "https://es.wikipedia.org/wiki/Editorial_Sudamericana"
+        );
+
         libroEjemplo = new Libro();
         libroEjemplo.setId(1L);
         libroEjemplo.setTitulo("Cien Años de Soledad");
@@ -111,6 +114,7 @@ public class BibliotecaServiceTest {
         bibliotecaEjemplo.getLibrosUsuario().add(libroUsuario1);
         bibliotecaEjemplo.getLibrosUsuario().add(libroUsuario2);
     }
+
     /* 
     @Test
     @DisplayName("Debería obtener biblioteca por id de usuario")
@@ -154,7 +158,10 @@ public class BibliotecaServiceTest {
         int posicion = 1;
 
         // When
-        LibroUsuario resultado = bibliotecaService.obtenerLibroUsuarioPorPosicion(posicion, bibliotecaEjemplo);
+        LibroUsuario resultado = bibliotecaService.obtenerLibroUsuarioPorPosicion(
+            posicion,
+            bibliotecaEjemplo
+        );
 
         // Then
         assertNotNull(resultado);
@@ -180,17 +187,23 @@ public class BibliotecaServiceTest {
         // Given
         EstadoLectura estado = EstadoLectura.Leyendo;
         List<LibroUsuario> librosleyendo = List.of(libroUsuario1);
-        when(libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, estado))
-                .thenReturn(librosleyendo);
+        when(
+            libroUsuarioRepository.findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, estado)
+        ).thenReturn(librosleyendo);
 
         // When
-        List<LibroUsuario> resultado = bibliotecaService.obtenerLibrosPorEstado(bibliotecaEjemplo, estado);
+        List<LibroUsuario> resultado = bibliotecaService.obtenerLibrosPorEstado(
+            bibliotecaEjemplo,
+            estado
+        );
 
         // Then
         assertNotNull(resultado);
         assertEquals(1, resultado.size());
         assertEquals(EstadoLectura.Leyendo, resultado.get(0).getEstadoLectura());
-        verify(libroUsuarioRepository, times(1))
-                .findByBibliotecaAndEstadoLectura(bibliotecaEjemplo, estado);
+        verify(libroUsuarioRepository, times(1)).findByBibliotecaAndEstadoLectura(
+            bibliotecaEjemplo,
+            estado
+        );
     }
 }

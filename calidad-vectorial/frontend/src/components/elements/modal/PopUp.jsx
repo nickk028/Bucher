@@ -1,7 +1,7 @@
-import { Button } from "../buttons/Button";
-import "./PopUp.css";
+import { Button } from '../buttons/Button';
+import './PopUp.css';
 
-export const PopUp = ({ children, onClick, titulo}) => {
+export const PopUp = ({ children, onClick, titulo }) => {
     return (
         <div className="popup" onClick={onClick}>
             <div className="popup__card" onClick={(e) => e.stopPropagation()}>
@@ -9,19 +9,14 @@ export const PopUp = ({ children, onClick, titulo}) => {
                     &times;
                 </div>
                 <div className="popup__card__text">
-                    <div className="popup__card__text__title">
-                        {titulo}
-                    </div>
-                    <div className="popup__card__text__content">
-                        {children}
-                    </div>
+                    <div className="popup__card__text__title">{titulo}</div>
+                    <div className="popup__card__text__content">{children}</div>
                 </div>
                 <div>
                     <Button type="button" variant="default" color="oscuro" onClick={onClick}>
                         Continuar
                     </Button>
                 </div>
-                
             </div>
         </div>
     );

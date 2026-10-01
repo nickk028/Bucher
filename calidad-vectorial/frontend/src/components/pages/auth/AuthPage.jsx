@@ -1,30 +1,30 @@
-import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "./AuthPage.css";
-import { InputLibro } from "../../elements/input/InputLibro";
-import { Button } from "../../elements/buttons/Button";
-import { LibroAnimado } from "../../elements/animatedbook/LibroAnimado";
-import { loginRequest, validarSeguridadPassword } from "../../utils/LoginUtils";
-import { postData } from "../../utils/FetchUtils";
+import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './AuthPage.css';
+import { InputLibro } from '../../elements/input/InputLibro';
+import { Button } from '../../elements/buttons/Button';
+import { LibroAnimado } from '../../elements/animatedbook/LibroAnimado';
+import { loginRequest, validarSeguridadPassword } from '../../utils/LoginUtils';
+import { postData } from '../../utils/FetchUtils';
 
 export const AuthPage = () => {
     const navigate = useNavigate();
-    const [pagina, setPagina] = useState("login");
+    const [pagina, setPagina] = useState('login');
     const [hasAnimated, setHasAnimated] = useState(false);
 
     // Estado del formulario de login
-    const [loginUsername, setLoginUsername] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
+    const [loginUsername, setLoginUsername] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
     const [isLoginDisabled, setIsLoginDisabled] = useState(false);
 
     // Estado del formulario de registro (simplificado: solo email/password)
-    const [registerUsername, setRegisterUsername] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
-    const [registerVerificationPassword, setRegisterVerificationPassword] = useState("");
+    const [registerUsername, setRegisterUsername] = useState('');
+    const [registerPassword, setRegisterPassword] = useState('');
+    const [registerVerificationPassword, setRegisterVerificationPassword] = useState('');
     const [isRegisterDisabled, setIsRegisterDisabled] = useState(false);
 
     // Mensaje / animación de los libros
-    const [mensaje, setMensaje] = useState("");
+    const [mensaje, setMensaje] = useState('');
     const [ojoQueHabla, setOjoQueHabla] = useState(null);
 
     const loginControllerRef = useRef(null);
@@ -41,9 +41,9 @@ export const AuthPage = () => {
     const cambiarPagina = (nuevaPagina) => {
         setHasAnimated(true);
         setPagina(nuevaPagina);
-        setMensaje("");
+        setMensaje('');
         setOjoQueHabla(null);
-        navigate(nuevaPagina === "register" ? "/register" : "/login");
+        navigate(nuevaPagina === 'register' ? '/register' : '/login');
     };
 
     const mostrarError = (texto) => {
@@ -53,13 +53,13 @@ export const AuthPage = () => {
 
     // Extrae un mensaje legible de una respuesta de error del backend
     const extraerMensajeError = async (respond) => {
-        if (respond.message === "Error de conexión") {
-            return "Error de conexión";
+        if (respond.message === 'Error de conexión') {
+            return 'Error de conexión';
         }
         try {
             const jsonResponse = await respond.json();
             if (jsonResponse.errores) {
-                return Object.values(jsonResponse.errores).join(". ");
+                return Object.values(jsonResponse.errores).join('. ');
             } else if (jsonResponse.title) {
                 return jsonResponse.title;
             } else if (jsonResponse.detail) {
@@ -67,7 +67,7 @@ export const AuthPage = () => {
             }
             return JSON.stringify(jsonResponse);
         } catch (err) {
-            return "Error: " + err.message;
+            return 'Error: ' + err.message;
         }
     };
 
@@ -81,26 +81,26 @@ export const AuthPage = () => {
         const controller = new AbortController();
         loginControllerRef.current = controller;
 
-        setMensaje("");
+        setMensaje('');
         setOjoQueHabla(null);
         setIsLoginDisabled(true);
 
         try {
             const respond = await loginRequest(
                 { username: loginUsername, password: loginPassword },
-                controller.signal
+                controller.signal,
             );
 
             if (respond.ok) {
-                navigate("/index");
+                navigate('/index');
                 return;
             }
 
             const texto = await extraerMensajeError(respond);
             mostrarError(texto);
         } catch (err) {
-            if (err.name !== "AbortError") {
-                mostrarError("Error: " + err.message);
+            if (err.name !== 'AbortError') {
+                mostrarError('Error: ' + err.message);
             }
         } finally {
             if (loginControllerRef.current === controller) loginControllerRef.current = null;
@@ -112,12 +112,12 @@ export const AuthPage = () => {
         evento.preventDefault();
 
         if (registerPassword !== registerVerificationPassword) {
-            mostrarError("Las contraseñas deben ser iguales.");
+            mostrarError('Las contraseñas deben ser iguales.');
             return;
         }
 
         if (validarSeguridadPassword(registerPassword) !== 5) {
-            mostrarError("La contraseña no es del todo segura.");
+            mostrarError('La contraseña no es del todo segura.');
             return;
         }
 
@@ -128,33 +128,33 @@ export const AuthPage = () => {
         const controller = new AbortController();
         registerControllerRef.current = controller;
 
-        setMensaje("");
+        setMensaje('');
         setOjoQueHabla(null);
         setIsRegisterDisabled(true);
 
         try {
             const respond = await postData(
-                "usuario/registrar",
+                'usuario/registrar',
                 {
                     username: registerUsername,
                     password: registerPassword,
-                    verificationPassword: registerVerificationPassword
+                    verificationPassword: registerVerificationPassword,
                 },
-                controller.signal
+                controller.signal,
             );
 
             if (respond.ok) {
                 // Login automático tras registrarse
                 await loginRequest({ username: registerUsername, password: registerPassword });
-                navigate("/index");
+                navigate('/index');
                 return;
             }
 
             const texto = await extraerMensajeError(respond);
             mostrarError(texto);
         } catch (err) {
-            if (err.name !== "AbortError") {
-                mostrarError("Error: " + err.message);
+            if (err.name !== 'AbortError') {
+                mostrarError('Error: ' + err.message);
             }
         } finally {
             if (registerControllerRef.current === controller) registerControllerRef.current = null;
@@ -169,11 +169,15 @@ export const AuthPage = () => {
                     <h1>Bücher</h1>
                     <p>Inicia sesión para llevar tu lectura al máximo</p>
                     <div className="auth-page__book__page--izquierda__buchi">
-                        <LibroAnimado variant="büchi" color="verde-claro">)</LibroAnimado>
+                        <LibroAnimado variant="büchi" color="verde-claro">
+                            )
+                        </LibroAnimado>
                     </div>
                 </section>
 
-                <section className={`auth-page__book__page auth-page__book__page--derecha auth-page__book__page--flip flip--${hasAnimated ? `${pagina}` : ""}`}>
+                <section
+                    className={`auth-page__book__page auth-page__book__page--derecha auth-page__book__page--flip flip--${hasAnimated ? `${pagina}` : ''}`}
+                >
                     <section className="auth-page__book__page--flip__front">
                         <h2>Iniciar sesión</h2>
                         <form className="form" onSubmit={handleLogin}>
@@ -195,11 +199,18 @@ export const AuthPage = () => {
                             >
                                 Contraseña:
                             </InputLibro>
-                            <Button type="submit" variant="default" color="oscuro" isDisabled={isLoginDisabled}>
+                            <Button
+                                type="submit"
+                                variant="default"
+                                color="oscuro"
+                                isDisabled={isLoginDisabled}
+                            >
                                 Aceptar
                             </Button>
                         </form>
-                        <p onClick={() => cambiarPagina("register")}>¿No tienes una cuenta? ¡Crea una!</p>
+                        <p onClick={() => cambiarPagina('register')}>
+                            ¿No tienes una cuenta? ¡Crea una!
+                        </p>
                     </section>
                     <section className="auth-page__book__page--flip__back">
                         <h2>Registrarse</h2>
@@ -230,13 +241,25 @@ export const AuthPage = () => {
                             >
                                 Confirmar Contraseña:
                             </InputLibro>
-                            <Button type="submit" variant="default" color="oscuro" isDisabled={isRegisterDisabled}>
+                            <Button
+                                type="submit"
+                                variant="default"
+                                color="oscuro"
+                                isDisabled={isRegisterDisabled}
+                            >
                                 Aceptar
                             </Button>
                         </form>
-                        <p onClick={() => cambiarPagina("login")}>¿Ya tienes una cuenta? ¡Inicia sesión!</p>
+                        <p onClick={() => cambiarPagina('login')}>
+                            ¿Ya tienes una cuenta? ¡Inicia sesión!
+                        </p>
                     </section>
-                    <span className="auth-page__book__page--flip__fold" onClick={() => pagina == "login" ? cambiarPagina("register") : cambiarPagina("login")}>
+                    <span
+                        className="auth-page__book__page--flip__fold"
+                        onClick={() =>
+                            pagina == 'login' ? cambiarPagina('register') : cambiarPagina('login')
+                        }
+                    >
                         <span className="auth-page__book__page--flip__fold-shadow"></span>
                         <span className="auth-page__book__page--flip__fold-paper"></span>
                         <span className="auth-page__book__page--flip__fold-crease"></span>
@@ -249,22 +272,39 @@ export const AuthPage = () => {
                     <h1>Bücher</h1>
                     <p>Crea una cuenta para adentrarte en el mundo de la lectura</p>
                     <div className="auth-page__book__page--derecha__buchi">
-                        <LibroAnimado variant="büchi" color="verde-claro">)</LibroAnimado>
+                        <LibroAnimado variant="büchi" color="verde-claro">
+                            )
+                        </LibroAnimado>
                     </div>
                 </section>
             </main>
 
-            <div className="auth-page__grupo-ojos" style={{ display: mensaje ? "block" : "none" }}>
-                <LibroAnimado variant="grande" color="rojo" mensaje={mensaje} mostrarMensaje={ojoQueHabla === 0}>
+            <div className="auth-page__grupo-ojos" style={{ display: mensaje ? 'block' : 'none' }}>
+                <LibroAnimado
+                    variant="grande"
+                    color="rojo"
+                    mensaje={mensaje}
+                    mostrarMensaje={ojoQueHabla === 0}
+                >
                     Bü
                 </LibroAnimado>
-                <LibroAnimado variant="chico" color="azul" mensaje={mensaje} mostrarMensaje={ojoQueHabla === 1}>
+                <LibroAnimado
+                    variant="chico"
+                    color="azul"
+                    mensaje={mensaje}
+                    mostrarMensaje={ojoQueHabla === 1}
+                >
                     ch
                 </LibroAnimado>
-                <LibroAnimado variant="medio" color="amarillo" mensaje={mensaje} mostrarMensaje={ojoQueHabla === 2}>
+                <LibroAnimado
+                    variant="medio"
+                    color="amarillo"
+                    mensaje={mensaje}
+                    mostrarMensaje={ojoQueHabla === 2}
+                >
                     er
                 </LibroAnimado>
             </div>
         </div>
     );
-}
+};

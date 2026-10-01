@@ -17,7 +17,7 @@
     box-sizing: border-box;
     /*box-shadow: 0px 0px 5px #6C757D;*/
     border-radius: 30px;
-    border: 5px solid #08413C;
+    border: 5px solid #08413c;
     z-index: 0;
 }
 
@@ -33,7 +33,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2.7rem;
     text-align: center;
-    color: #0E675F;
+    color: #0e675f;
     margin-top: 10%;
 }
 
@@ -68,7 +68,7 @@
 
 .auth-box__link-extra {
     width: fit-content;
-    font-family: "Hind Siliguri";
+    font-family: 'Hind Siliguri';
     font-size: 1.4rem;
     text-align: center;
     color: #1a1a1a;
@@ -84,8 +84,8 @@
 }
 
 .auth-box__footer {
-    font-family: "Handelson Three", cursive;
+    font-family: 'Handelson Three', cursive;
     font-size: 4rem;
     font-weight: 500;
-    color: #0E675F;
+    color: #0e675f;
 }

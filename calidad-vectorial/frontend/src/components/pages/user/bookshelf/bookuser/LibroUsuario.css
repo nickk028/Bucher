@@ -31,7 +31,7 @@
 .libro-user__text__title {
     font-size: 2rem;
     font-weight: 600;
-    color: #0E675F;
+    color: #0e675f;
     margin-bottom: 30px;
 }
 
@@ -51,6 +51,6 @@
 }
 
 .libro-user__text__form__label--editando {
-    color: #0E675F;
-    box-shadow: #08413C;
+    color: #0e675f;
+    box-shadow: #08413c;
 }

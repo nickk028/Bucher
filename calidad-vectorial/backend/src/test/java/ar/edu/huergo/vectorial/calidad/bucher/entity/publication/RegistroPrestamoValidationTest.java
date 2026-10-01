@@ -1,12 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
@@ -19,6 +13,11 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import java.time.LocalDate;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 @DisplayName("Tests de Validación - Entidad RegistroPrestamo")
 class RegistroPrestamoValidationTest {
@@ -40,9 +39,15 @@ class RegistroPrestamoValidationTest {
         usuarioEjemplo.setRoles(Set.of(new Rol("LECTOR")));
 
         // Crear libro de ejemplo
-        Autor autor = new Autor("Gabriel García Márquez", "https://es.wikipedia.org/wiki/Gabriel_García_Márquez");
-        Editorial editorial = new Editorial("Editorial Sudamericana", "https://es.wikipedia.org/wiki/Editorial_Sudamericana");
-        
+        Autor autor = new Autor(
+            "Gabriel García Márquez",
+            "https://es.wikipedia.org/wiki/Gabriel_García_Márquez"
+        );
+        Editorial editorial = new Editorial(
+            "Editorial Sudamericana",
+            "https://es.wikipedia.org/wiki/Editorial_Sudamericana"
+        );
+
         Libro libro = new Libro();
         libro.setId(1L);
         libro.setTitulo("Cien Años de Soledad");
@@ -77,7 +82,9 @@ class RegistroPrestamoValidationTest {
     @DisplayName("Debería validar registro préstamo correcto sin errores")
     void deberiaValidarRegistroPrestamoCorrectoSinErrores() {
         RegistroPrestamo registroPrestamo = crearRegistroPrestamoValido();
-        Set<ConstraintViolation<RegistroPrestamo>> violaciones = validator.validate(registroPrestamo);
+        Set<ConstraintViolation<RegistroPrestamo>> violaciones = validator.validate(
+            registroPrestamo
+        );
         assertTrue(violaciones.isEmpty());
     }
 
@@ -87,7 +94,9 @@ class RegistroPrestamoValidationTest {
         RegistroPrestamo registroPrestamo = crearRegistroPrestamoValido();
         registroPrestamo.setFechaDevolucion(null);
 
-        Set<ConstraintViolation<RegistroPrestamo>> violaciones = validator.validate(registroPrestamo);
+        Set<ConstraintViolation<RegistroPrestamo>> violaciones = validator.validate(
+            registroPrestamo
+        );
         assertTrue(violaciones.isEmpty());
     }
 }

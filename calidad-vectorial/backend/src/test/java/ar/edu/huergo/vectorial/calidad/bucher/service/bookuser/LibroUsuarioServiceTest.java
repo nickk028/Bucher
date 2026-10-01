@@ -1,19 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.bookuser;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
@@ -25,6 +13,16 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests de Unidad - LibroUsuarioService")
@@ -54,9 +52,15 @@ public class LibroUsuarioServiceTest {
         bibliotecaEjemplo.setLibrosUsuario(new ArrayList<>());
 
         // Crear libro
-        Autor autor = new Autor("Gabriel García Márquez", "https://es.wikipedia.org/wiki/Gabriel_García_Márquez");
-        Editorial editorial = new Editorial("Editorial Sudamericana", "https://es.wikipedia.org/wiki/Editorial_Sudamericana");
-        
+        Autor autor = new Autor(
+            "Gabriel García Márquez",
+            "https://es.wikipedia.org/wiki/Gabriel_García_Márquez"
+        );
+        Editorial editorial = new Editorial(
+            "Editorial Sudamericana",
+            "https://es.wikipedia.org/wiki/Editorial_Sudamericana"
+        );
+
         libroEjemplo = new Libro();
         libroEjemplo.setId(1L);
         libroEjemplo.setTitulo("Cien Años de Soledad");
@@ -121,7 +125,10 @@ public class LibroUsuarioServiceTest {
         libroUsuarioNuevo.setPuntuacion(90);
 
         // When
-        LibroUsuario resultado = libroUsuarioService.modificarLibroUsuario(libroUsuarioAModificar, libroUsuarioNuevo);
+        LibroUsuario resultado = libroUsuarioService.modificarLibroUsuario(
+            libroUsuarioAModificar,
+            libroUsuarioNuevo
+        );
 
         // Then
         assertNotNull(resultado);

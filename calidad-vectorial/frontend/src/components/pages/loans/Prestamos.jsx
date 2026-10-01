@@ -1,36 +1,43 @@
-import "./Prestamos.css";
-import "../../../global.css";
-import PublicacionCard from "../../elements/publication/PublicacionCard";
-import flechaIzq from "../../../assets/img/icons/utils/flechaIzq.png"
-import flechaDer from "../../../assets/img/icons/utils/flechaDer.png"
-import { Input } from "../../elements/input/Input";
-import { Button } from "../../elements/buttons/Button";
-import { useRef, useState } from "react";
-import { AutoCompletarLibro } from "../../elements/autocomplete/types/AutoCompletarLibro";
-import { Link } from "react-router-dom";
-import { useFetch } from "../../utils/FetchUtils";
+import './Prestamos.css';
+import '../../../global.css';
+import PublicacionCard from '../../elements/publication/PublicacionCard';
+import flechaIzq from '../../../assets/img/icons/utils/flechaIzq.png';
+import flechaDer from '../../../assets/img/icons/utils/flechaDer.png';
+import { Input } from '../../elements/input/Input';
+import { Button } from '../../elements/buttons/Button';
+import { useRef, useState } from 'react';
+import { AutoCompletarLibro } from '../../elements/autocomplete/types/AutoCompletarLibro';
+import { Link } from 'react-router-dom';
+import { useFetch } from '../../utils/FetchUtils';
 
 export const Prestamos = () => {
-    const { data: publicacionesPorCategoria, error, loading } = useFetch("publicacion/ordenadas");
+    const { data: publicacionesPorCategoria, error, loading } = useFetch('publicacion/ordenadas');
     const [mostrarFiltrador, setMostrarFiltrador] = useState(false);
-    const ESTADOS = ["Disponible", "Entrega_pendiente", "Prestado", "Devolucion_pendiente", "No_disponible", "Indefinido"];
+    const ESTADOS = [
+        'Disponible',
+        'Entrega_pendiente',
+        'Prestado',
+        'Devolucion_pendiente',
+        'No_disponible',
+        'Indefinido',
+    ];
     const categoriasList = publicacionesPorCategoria ? Object.keys(publicacionesPorCategoria) : [];
     const [filtros, setFiltros] = useState({
-        usuario: "",
-        estado: "",
-        limiteMin: "",
-        limiteMax: "",
-        libro: "",
-        categoria: "",
+        usuario: '',
+        estado: '',
+        limiteMin: '',
+        limiteMax: '',
+        libro: '',
+        categoria: '',
     });
 
     const [filtrosAplicados, setFiltrosAplicados] = useState({
-        usuario: "",
-        estado: "",
-        limiteMin: "",
-        limiteMax: "",
-        libro: "",
-        categoria: "",
+        usuario: '',
+        estado: '',
+        limiteMin: '',
+        limiteMax: '',
+        libro: '',
+        categoria: '',
     });
 
     const filasRef = useRef({});
@@ -39,7 +46,7 @@ export const Prestamos = () => {
         const fila = filasRef.current[categoria];
         if (!fila) return;
 
-        const primerItem = fila.querySelector("li");
+        const primerItem = fila.querySelector('li');
         if (!primerItem) return;
 
         const segundoItem = primerItem.nextElementSibling;
@@ -49,7 +56,7 @@ export const Prestamos = () => {
 
         fila.scrollBy({
             left: direccion * paso * 5,
-            behavior: "smooth"
+            behavior: 'smooth',
         });
     };
 
@@ -76,7 +83,10 @@ export const Prestamos = () => {
             infantil: 'Infantil',
         };
 
-        return correciones[categoria.toLowerCase()] || (categoria.charAt(0).toUpperCase() + categoria.slice(1));
+        return (
+            correciones[categoria.toLowerCase()] ||
+            categoria.charAt(0).toUpperCase() + categoria.slice(1)
+        );
     };
 
     const publicacionesFiltradas = (() => {
@@ -85,31 +95,35 @@ export const Prestamos = () => {
         const usuarioFiltro = filtrosAplicados.usuario.trim().toLowerCase();
         const estadoFiltro = filtrosAplicados.estado;
         const libroFiltro = filtrosAplicados.libro.trim().toLowerCase();
-        const limiteMin = filtrosAplicados.limiteMin !== "" ? Number(filtrosAplicados.limiteMin) : null;
-        const limiteMax = filtrosAplicados.limiteMax !== "" ? Number(filtrosAplicados.limiteMax) : null;
+        const limiteMin =
+            filtrosAplicados.limiteMin !== '' ? Number(filtrosAplicados.limiteMin) : null;
+        const limiteMax =
+            filtrosAplicados.limiteMax !== '' ? Number(filtrosAplicados.limiteMax) : null;
         const categoriaSeleccionada = filtrosAplicados.categoria;
 
         const resultado = {};
 
-        const categoriasARecorrer = categoriaSeleccionada ? [categoriaSeleccionada] : Object.keys(publicacionesPorCategoria);
+        const categoriasARecorrer = categoriaSeleccionada
+            ? [categoriaSeleccionada]
+            : Object.keys(publicacionesPorCategoria);
 
-        categoriasARecorrer.forEach(categoria => {
+        categoriasARecorrer.forEach((categoria) => {
             const lista = publicacionesPorCategoria[categoria] || [];
-            resultado[categoria] = lista.filter(pub => {
+            resultado[categoria] = lista.filter((pub) => {
                 if (!pub) return false;
 
                 if (usuarioFiltro) {
-                    const nick = (pub.usuarioNickname || "").toString().toLowerCase();
+                    const nick = (pub.usuarioNickname || '').toString().toLowerCase();
                     if (!nick.includes(usuarioFiltro)) return false;
                 }
 
                 if (libroFiltro) {
-                    const titulo = (pub.titulo || "").toString().toLowerCase();
+                    const titulo = (pub.titulo || '').toString().toLowerCase();
                     if (!titulo.includes(libroFiltro)) return false;
                 }
 
                 if (estadoFiltro) {
-                    if ((pub.estadoPublicacion || "") !== estadoFiltro) return false;
+                    if ((pub.estadoPublicacion || '') !== estadoFiltro) return false;
                 }
 
                 if (limiteMin !== null) {
@@ -134,7 +148,14 @@ export const Prestamos = () => {
     };
 
     const limpiarFiltros = () => {
-        const filtroVacio = { usuario: "", estado: "", limiteMin: "", limiteMax: "", libro: "", categoria: "" };
+        const filtroVacio = {
+            usuario: '',
+            estado: '',
+            limiteMin: '',
+            limiteMax: '',
+            libro: '',
+            categoria: '',
+        };
         setFiltros(filtroVacio);
         setFiltrosAplicados(filtroVacio);
     };
@@ -209,38 +230,57 @@ export const Prestamos = () => {
                     <p>Cargando publicaciones...</p>
                 ) : publicacionesFiltradas ? (
                     <div className="categories-container">
-                        {Object.entries(publicacionesFiltradas).map(([categoria, lista]) =>
-                            lista.length > 0 && (
-                                <section key={categoria} className="pub-group">
-                                    <h3 className="pub-group-title"> {formatCategoryName(categoria)} </h3>
+                        {Object.entries(publicacionesFiltradas).map(
+                            ([categoria, lista]) =>
+                                lista.length > 0 && (
+                                    <section key={categoria} className="pub-group">
+                                        <h3 className="pub-group-title">
+                                            {' '}
+                                            {formatCategoryName(categoria)}{' '}
+                                        </h3>
 
-                                    <div className="pub-row-wrapper">
-                                        <img src={flechaIzq} className="pub-row__scroll-btn left" onClick={() => desplazarIzquierda(categoria)} />
+                                        <div className="pub-row-wrapper">
+                                            <img
+                                                src={flechaIzq}
+                                                className="pub-row__scroll-btn left"
+                                                onClick={() => desplazarIzquierda(categoria)}
+                                            />
 
-                                        <ul className="pub-row" ref={el => (filasRef.current[categoria] = el)}>
-                                            {lista.map(pub => (
-                                                <li key={pub.id}>
-                                                    <Link to={`/publicacion/${pub.id}`}>
-                                                        <PublicacionCard
-                                                            urlFoto={pub.urlFoto}
-                                                            titulo={pub.titulo}
-                                                            usuarioNickname={pub.usuarioNickname}
-                                                            estadoPublicacion={pub.estadoPublicacion}
-                                                            limiteDias={pub.limiteDias}
-                                                        />
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                            <ul
+                                                className="pub-row"
+                                                ref={(el) => (filasRef.current[categoria] = el)}
+                                            >
+                                                {lista.map((pub) => (
+                                                    <li key={pub.id}>
+                                                        <Link to={`/publicacion/${pub.id}`}>
+                                                            <PublicacionCard
+                                                                urlFoto={pub.urlFoto}
+                                                                titulo={pub.titulo}
+                                                                usuarioNickname={
+                                                                    pub.usuarioNickname
+                                                                }
+                                                                estadoPublicacion={
+                                                                    pub.estadoPublicacion
+                                                                }
+                                                                limiteDias={pub.limiteDias}
+                                                            />
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
 
-                                        <img src={flechaDer} className="pub-row__scroll-btn right" onClick={() => desplazarDerecha(categoria)} />
-                                    </div>
-                                </section>
-                            )
+                                            <img
+                                                src={flechaDer}
+                                                className="pub-row__scroll-btn right"
+                                                onClick={() => desplazarDerecha(categoria)}
+                                            />
+                                        </div>
+                                    </section>
+                                ),
                         )}
                     </div>
                 ) : (
-                    <p>{error ? "Error cargando publicaciones." : "No hay publicaciones."}</p>
+                    <p>{error ? 'Error cargando publicaciones.' : 'No hay publicaciones.'}</p>
                 )}
             </div>
         </main>

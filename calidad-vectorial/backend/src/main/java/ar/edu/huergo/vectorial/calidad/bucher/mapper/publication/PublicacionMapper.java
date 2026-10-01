@@ -1,14 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.mapper.publication;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Component;
-
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
@@ -16,16 +7,23 @@ import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionUpdateD
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 @Component // Marca la clase como un componente de Spring
 // Mapper de la entidad Publicacion utiizada para pasar de entidad a DTO y de DTO a entidad
 public class PublicacionMapper {
 
     /**
-    * Pasa de PubicacionCreateDTO a entidad Publicacion
-    * @param PubicacionCreateDTO El DTO a transformar en entidad
-    * @return Pubicacion como entidad
-    */
+     * Pasa de PubicacionCreateDTO a entidad Publicacion
+     * @param PubicacionCreateDTO El DTO a transformar en entidad
+     * @return Pubicacion como entidad
+     */
     public Publicacion toEntity(PublicacionCreateDTO publicacionCreateDTO) {
         Publicacion publicacion = new Publicacion();
         publicacion.setDescripcion(publicacionCreateDTO.getDescripcion());
@@ -33,16 +31,19 @@ public class PublicacionMapper {
 
         return publicacion;
     }
-    
+
     /**
-    * Pasa de PubicacionUpdateDTO a entidad Publicacion
-    * @param PubicacionUpdateDTO El DTO a transformar en entidad
-    * @return Pubicacion como entidad
-    */
+     * Pasa de PubicacionUpdateDTO a entidad Publicacion
+     * @param PubicacionUpdateDTO El DTO a transformar en entidad
+     * @return Pubicacion como entidad
+     */
     public Publicacion toEntity(PublicacionUpdateDTO publicacionUpdateDTO) {
         Publicacion publicacion = new Publicacion();
 
-        if (publicacionUpdateDTO.getDescripcion() == null || publicacionUpdateDTO.getDescripcion().isEmpty()) {
+        if (
+            publicacionUpdateDTO.getDescripcion() == null ||
+            publicacionUpdateDTO.getDescripcion().isEmpty()
+        ) {
             publicacion.setDescripcion("nada");
         } else {
             publicacion.setDescripcion(publicacionUpdateDTO.getDescripcion());
@@ -50,7 +51,10 @@ public class PublicacionMapper {
 
         publicacion.setLimiteDias(publicacionUpdateDTO.getLimiteDias());
 
-        if (publicacionUpdateDTO.getDetallesEstadoLibro() == null || publicacionUpdateDTO.getDetallesEstadoLibro().isEmpty()) {
+        if (
+            publicacionUpdateDTO.getDetallesEstadoLibro() == null ||
+            publicacionUpdateDTO.getDetallesEstadoLibro().isEmpty()
+        ) {
             publicacion.setDetallesEstadoLibro("nada");
         } else {
             publicacion.setDetallesEstadoLibro(publicacionUpdateDTO.getDetallesEstadoLibro());
@@ -90,10 +94,10 @@ public class PublicacionMapper {
     }
 
     /**
-    * Pasa de Pubicacion a entidad PublicacionBasicDTO
-    * @param Pubicacion a pasar a DTO
-    * @return Pubicacion como BasicDTO
-    */
+     * Pasa de Pubicacion a entidad PublicacionBasicDTO
+     * @param Pubicacion a pasar a DTO
+     * @return Pubicacion como BasicDTO
+     */
     public PublicacionBasicDTO toBasicDTO(Publicacion publicacion) {
         if (publicacion == null) {
             return null;
@@ -111,41 +115,37 @@ public class PublicacionMapper {
     }
 
     /**
-    * Pasa de una lista de Publicaciones a una lista de PublicacionesResponseDTO
-    * @param PubicacionesResponseDTO La lista de Publicaciones a transformar en ResponseDTO
-    * @return PublicacionesResponseDTO como DTO
-    */
+     * Pasa de una lista de Publicaciones a una lista de PublicacionesResponseDTO
+     * @param PubicacionesResponseDTO La lista de Publicaciones a transformar en ResponseDTO
+     * @return PublicacionesResponseDTO como DTO
+     */
     public List<PublicacionResponseDTO> toDTOList(Set<Publicacion> publicaciones) {
         if (publicaciones == null) {
             return new ArrayList<>();
         }
-        return publicaciones
-            .stream()
-            .map(this::toDTO)
-            .collect(Collectors.toList());
+        return publicaciones.stream().map(this::toDTO).collect(Collectors.toList());
     }
 
     /**
-    * Pasa de una lista de Publicaciones a una lista de PublicacionesBasicDTO
-    * @param PubicacionesBasicDTO La lista de Publicaciones a transformar en BasicDTO
-    * @return PublicacionesBasicDTO como DTO
-    */
+     * Pasa de una lista de Publicaciones a una lista de PublicacionesBasicDTO
+     * @param PubicacionesBasicDTO La lista de Publicaciones a transformar en BasicDTO
+     * @return PublicacionesBasicDTO como DTO
+     */
     public List<PublicacionBasicDTO> toBasicDTOList(Set<Publicacion> publicaciones) {
         if (publicaciones == null) {
             return new ArrayList<>();
         }
-        return publicaciones
-            .stream()
-            .map(this::toBasicDTO)
-            .collect(Collectors.toList());
+        return publicaciones.stream().map(this::toBasicDTO).collect(Collectors.toList());
     }
 
     /**
-    * Convierte un mapa de categorías con sus publicaciones en un mapa de categorías con sus DTOs
-    * @param original El mapa original con categorías y sus conjuntos de publicaciones
-    * @return Mapa con cada categoría y su lista de PublicacionBasicDTO correspondiente
-    */
-    public Map<Categoria, List<PublicacionBasicDTO>> toDTOMap(Map<Categoria, Set<Publicacion>> original) {
+     * Convierte un mapa de categorías con sus publicaciones en un mapa de categorías con sus DTOs
+     * @param original El mapa original con categorías y sus conjuntos de publicaciones
+     * @return Mapa con cada categoría y su lista de PublicacionBasicDTO correspondiente
+     */
+    public Map<Categoria, List<PublicacionBasicDTO>> toDTOMap(
+        Map<Categoria, Set<Publicacion>> original
+    ) {
         Map<Categoria, List<PublicacionBasicDTO>> resultado = new HashMap<>();
         for (Map.Entry<Categoria, Set<Publicacion>> entry : original.entrySet()) {
             Set<Publicacion> publicacionesDeLaCategoria = entry.getValue();
@@ -153,6 +153,6 @@ public class PublicacionMapper {
             Categoria categoria = entry.getKey();
             resultado.put(categoria, dtos);
         }
-        return (resultado);
+        return resultado;
     }
 }

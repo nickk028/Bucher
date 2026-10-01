@@ -8,7 +8,7 @@
 }
 
 .index__text {
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
 }
 
@@ -18,7 +18,6 @@
 }
 
 .index__section__lectura {
-    
 }
 
 .index__section__lectura__container {
@@ -64,7 +63,7 @@
 }
 
 .index__section__lectura__container__data h1 {
-    font-family: "Hind Siliguri", sans-serif;
+    font-family: 'Hind Siliguri', sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -72,8 +71,8 @@
 }
 
 .index__section__lectura__author {
-    font-family: "Hind Siliguri", sans-serif;
-    font-size: .9rem;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 0.9rem;
     color: var(--text-secondary);
     margin-bottom: 10px;
 }
@@ -86,7 +85,7 @@
 }
 
 .index__section__lectura__progress__label {
-    font-family: "Hind Siliguri", sans-serif;
+    font-family: 'Hind Siliguri', sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -110,7 +109,7 @@
 }
 
 .index__section__lectura__progress__page {
-    font-family: "Hind Siliguri", sans-serif;
+    font-family: 'Hind Siliguri', sans-serif;
     font-size: 0.9rem;
     color: var(--text-secondary);
 }
@@ -119,7 +118,6 @@
     display: flex;
     justify-content: flex-end;
 }
-
 
 .index__aside {
     width: 35%;

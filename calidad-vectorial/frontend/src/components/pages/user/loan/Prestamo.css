@@ -11,17 +11,17 @@
 
     display: flex;
     flex-direction: column;
-    gap: 20px; 
+    gap: 20px;
 }
 
 .prestamos-list li {
     display: flex;
-    justify-content:left;
+    justify-content: left;
     margin-left: 10px;
 }
 
 .prestamos-user-body__title {
-    color: #08413C;
+    color: #08413c;
     font-size: 3rem;
     font-weight: 500;
 }

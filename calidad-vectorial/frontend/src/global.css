@@ -8,15 +8,15 @@
 }
 
 :root {
-    --negro: #1A1A1A;
-    --blanco: #FAFAFA;
-    --blanco-puro: #FFFFFF;
-    --gris-claro: #DCDCDC;
+    --negro: #1a1a1a;
+    --blanco: #fafafa;
+    --blanco-puro: #ffffff;
+    --gris-claro: #dcdcdc;
     --gris-oscuro: #565656;
-    --rojo: #F5D6D6;
-    --verde-oscuro: #08413C;
-    --verde: #0E675F;
-    --verde-claro: #F9FFFA;
+    --rojo: #f5d6d6;
+    --verde-oscuro: #08413c;
+    --verde: #0e675f;
+    --verde-claro: #f9fffa;
 
     /* Semánticas */
     /* Textos */
@@ -35,46 +35,47 @@
     /* Marca */
     --brand-primary: var(--verde);
     --brand-dark: var(--verde-oscuro);
-    --brand-red: var(--rojo)
+    --brand-red: var(--rojo);
 }
 
 @font-face {
-    font-family: "Handelson Three";
-    src: url("./assets/fonts/handelson-w00-three/Handelson-W00-Three.woff2") format("woff2"),
-        url("./assets/fonts/handelson-w00-three/Handelson-W00-Three.woff")  format("woff");
+    font-family: 'Handelson Three';
+    src:
+        url('./assets/fonts/handelson-w00-three/Handelson-W00-Three.woff2') format('woff2'),
+        url('./assets/fonts/handelson-w00-three/Handelson-W00-Three.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Klee One";
-    src: url("./assets/fonts/klee-one/KleeOne-Regular.ttf") format('truetype');
+    font-family: 'Klee One';
+    src: url('./assets/fonts/klee-one/KleeOne-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Klee One";
-    src: url("./assets/fonts/klee-one/KleeOne-SemiBold.ttf") format('truetype');
+    font-family: 'Klee One';
+    src: url('./assets/fonts/klee-one/KleeOne-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Hind Siliguri";
-    src: url("./assets/fonts/hind-siliguri/HindSiliguri-Regular.ttf") format('truetype');
+    font-family: 'Hind Siliguri';
+    src: url('./assets/fonts/hind-siliguri/HindSiliguri-Regular.ttf') format('truetype');
     font-style: normal;
     font-display: swap;
 }
 
-input[type="password"]::-ms-reveal,
-input[type="password"]::-ms-clear {
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear {
     display: none;
 }
 
-input[type="password"] {
+input[type='password'] {
     -ms-text-security: none;
 }

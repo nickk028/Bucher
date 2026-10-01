@@ -1,7 +1,7 @@
 export const SECCIONES = [
     {
-        id: "01",
-        titulo: "Definiciones",
+        id: '01',
+        titulo: 'Definiciones',
         contenido: `A los efectos del presente documento, se entenderá por:
         
 "Bücher" o "la Plataforma": el servicio web disponible en este sitio, desarrollado y mantenido por el equipo de Calidad Vectorial.
@@ -17,8 +17,8 @@ export const SECCIONES = [
 "Contenido": todo texto, imagen, reseña, comentario o publicación que un Usuario genere dentro de la Plataforma.`,
     },
     {
-        id: "02",
-        titulo: "Objeto de la Plataforma",
+        id: '02',
+        titulo: 'Objeto de la Plataforma',
         contenido: `Bücher es una plataforma de comunidad lectora que facilita el intercambio cultural a través del préstamo de libros físicos entre sus usuarios. Su propósito es promover la lectura, el acceso democrático a la literatura y la construcción de redes de lectores.
 
 La Plataforma actúa exclusivamente como intermediaria entre quienes desean prestar y quienes desean tomar prestado un libro. Bücher no es parte de ningún acuerdo de préstamo, no garantiza la disponibilidad de los ejemplares publicados y no asume responsabilidad por el estado, entrega o devolución de ningún libro.
@@ -26,8 +26,8 @@ La Plataforma actúa exclusivamente como intermediaria entre quienes desean pres
 El uso de Bücher es gratuito para todos los usuarios registrados. Se le presentarán varias limitaciones a aquellos usuarios que no cuenten con la Suscripcion Paga ofrecida, tales como restricción a la hora de pedir prestamos.`,
     },
     {
-        id: "03",
-        titulo: "Registro y cuenta de usuario",
+        id: '03',
+        titulo: 'Registro y cuenta de usuario',
         contenido: `Para acceder a las funcionalidades de Bücher es necesario crear una cuenta personal. Al registrarse, el Usuario declara que:
 
 — Tiene al menos 18 años de edad.
@@ -40,8 +40,8 @@ Cada persona puede ser titular de una sola cuenta. Está prohibida la creación 
 Bücher se reserva el derecho de suspender o eliminar cuentas que violen estos términos, sin previo aviso y sin obligación de reembolso en caso de que existan servicios contratados.`,
     },
     {
-        id: "04",
-        titulo: "Publicaciones de préstamo",
+        id: '04',
+        titulo: 'Publicaciones de préstamo',
         contenido: `Al crear una Publicación, el Usuario declara ser el legítimo propietario del ejemplar ofrecido o contar con autorización para prestarlo. Queda expresamente prohibido publicar:
 
 — Libros que no estén en posesión física del Usuario al momento de la publicación.
@@ -54,8 +54,8 @@ El Usuario es el único responsable del contenido de sus publicaciones, incluyen
 Las publicaciones podrán ser reportadas por otros Usuarios y eliminadas por Bücher si se determina que incumplen estas condiciones.`,
     },
     {
-        id: "05",
-        titulo: "Préstamos entre usuarios",
+        id: '05',
+        titulo: 'Préstamos entre usuarios',
         contenido: `Los préstamos concertados a través de Bücher son acuerdos privados entre los Usuarios involucrados. La Plataforma facilita el contacto pero no interviene en la ejecución del préstamo, ni garantiza su cumplimiento.
 
 El Usuario que solicita un préstamo se compromete a:
@@ -70,8 +70,8 @@ El Usuario que ofrece el préstamo se compromete a:
 Bücher no mediará en disputas entre usuarios, ni asumirá responsabilidad por daños, pérdidas o incumplimientos derivados de los préstamos.`,
     },
     {
-        id: "06",
-        titulo: "Conducta del usuario y contenido",
+        id: '06',
+        titulo: 'Conducta del usuario y contenido',
         contenido: `Los Usuarios se comprometen a utilizar Bücher de manera responsable y a no realizar ninguna de las siguientes acciones:
 
 — Publicar contenido ofensivo, discriminatorio, difamatorio o que vulnere derechos de terceros.
@@ -84,8 +84,8 @@ Bücher no mediará en disputas entre usuarios, ni asumirá responsabilidad por 
 El incumplimiento de estas normas podrá derivar en la suspensión temporal o definitiva de la cuenta, sin perjuicio de las acciones legales que correspondan.`,
     },
     {
-        id: "07",
-        titulo: "Privacidad y datos personales",
+        id: '07',
+        titulo: 'Privacidad y datos personales',
         contenido: `Bücher recopila y procesa datos personales de los Usuarios con el exclusivo fin de prestar los servicios de la Plataforma. Los datos almacenados incluyen información de registro (nombre de usuario, correo electrónico, dirección), datos de uso de la Plataforma y el contenido generado por el Usuario.
 
 Bücher no vende, alquila ni transfiere datos personales a terceros con fines comerciales. La información podrá compartirse únicamente cuando sea requerida por autoridades competentes en el marco de la legislación vigente.
@@ -95,8 +95,8 @@ Los Usuarios tienen derecho a acceder, rectificar, actualizar y eliminar sus dat
 Los datos de dirección física son necesarios para coordinar préstamos y se muestran únicamente a Usuarios con los que se haya iniciado un proceso de préstamo.`,
     },
     {
-        id: "08",
-        titulo: "Propiedad intelectual",
+        id: '08',
+        titulo: 'Propiedad intelectual',
         contenido: `El contenido de la Plataforma —incluyendo su diseño, logotipos, código fuente, interfaz y textos propios de Bücher— es propiedad exclusiva del equipo de Calidad Vectorial y está protegido por la legislación de propiedad intelectual aplicable.
 
 Los Usuarios conservan la titularidad del contenido que generan (reseñas, descripciones, fotografías). Al publicarlo en Bücher, otorgan a la Plataforma una licencia no exclusiva, gratuita y mundial para mostrar, reproducir y distribuir dicho contenido dentro del contexto de los servicios ofrecidos.
@@ -104,8 +104,8 @@ Los Usuarios conservan la titularidad del contenido que generan (reseñas, descr
 Bücher no reclama propiedad sobre los libros ni sobre las obras literarias referenciadas en la Plataforma. Las portadas, títulos y autores mencionados pertenecen a sus respectivos titulares.`,
     },
     {
-        id: "09",
-        titulo: "Limitación de responsabilidad",
+        id: '09',
+        titulo: 'Limitación de responsabilidad',
         contenido: `La Plataforma se provee "tal como está" y "según disponibilidad". Bücher no garantiza que el servicio sea ininterrumpido, libre de errores o completamente seguro.
 
 En ningún caso Bücher será responsable por:
@@ -118,8 +118,8 @@ En ningún caso Bücher será responsable por:
 La responsabilidad máxima de Bücher, en cualquier caso, estará limitada al valor de los servicios pagados por el Usuario durante los doce meses previos al hecho que origina el reclamo.`,
     },
     {
-        id: "10",
-        titulo: "Modificaciones y vigencia",
+        id: '10',
+        titulo: 'Modificaciones y vigencia',
         contenido: `Bücher se reserva el derecho de modificar estos Términos y Servicios en cualquier momento. Los cambios serán comunicados a los Usuarios mediante un aviso visible en la Plataforma con al menos 10 días de anticipación a su entrada en vigor.
 
 El uso continuado de la Plataforma tras la publicación de modificaciones implica la aceptación de los nuevos términos. En caso de desacuerdo, el Usuario puede solicitar la eliminación de su cuenta.

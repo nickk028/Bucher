@@ -10,10 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 public class LibroUsuarioResponseDTO {
+
     // Id
     @Id
     private Long id;
-    
+
     // Título del libro
     private String titulo;
 

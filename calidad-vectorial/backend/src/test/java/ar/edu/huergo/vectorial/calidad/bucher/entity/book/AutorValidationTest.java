@@ -1,18 +1,17 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 
-import java.util.List;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import java.util.List;
+import java.util.Set;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 @DisplayName("Tests de Validación - Entidad Autor")
 class AutorValidationTest {
@@ -95,9 +94,10 @@ class AutorValidationTest {
         assertFalse(violaciones.isEmpty());
         assertTrue(violaciones.size() >= 2);
 
-        List<String> propiedadesConError = violaciones.stream()
-                .map(v -> v.getPropertyPath().toString())
-                .toList();
+        List<String> propiedadesConError = violaciones
+            .stream()
+            .map((v) -> v.getPropertyPath().toString())
+            .toList();
 
         assertTrue(propiedadesConError.contains("nombre"));
         assertTrue(propiedadesConError.contains("descripcion"));

@@ -1,7 +1,7 @@
-import PublicacionCard from "../../elements/publication/PublicacionCard";
+import PublicacionCard from '../../elements/publication/PublicacionCard';
 
-import cenicienta from "../../../../public/assets/img/avatares/cenicienta.png";
-import "./Usuario.css";
+import cenicienta from '../../../../public/assets/img/avatares/cenicienta.png';
+import './Usuario.css';
 
 export const Usuario = () => {
     return (
@@ -35,20 +35,24 @@ export const Usuario = () => {
                         <p>Descripción lorem</p>
                     </div>
                 </div>
-                <div className="usuario__section__puntos">
-                    Coming Soon
-                </div>
+                <div className="usuario__section__puntos">Coming Soon</div>
             </section>
 
             <section className="usuario__content">
                 <ul className="usuario__content__clasificacion">
-                    <li className={`usuario__content__clasificacion__item usuario__content__clasificacion__item--selected`}>
+                    <li
+                        className={`usuario__content__clasificacion__item usuario__content__clasificacion__item--selected`}
+                    >
                         Publicaciones de préstamos
                     </li>
-                    <li className={`usuario__content__clasificacion__item usuario__content__clasificacion__item--`}>
+                    <li
+                        className={`usuario__content__clasificacion__item usuario__content__clasificacion__item--`}
+                    >
                         Posteos sociales
                     </li>
-                    <li className={`usuario__content__clasificacion__item usuario__content__clasificacion__item--`}>
+                    <li
+                        className={`usuario__content__clasificacion__item usuario__content__clasificacion__item--`}
+                    >
                         Biblioteca
                     </li>
                 </ul>
@@ -92,5 +96,5 @@ export const Usuario = () => {
                 </section>
             </section>
         </main>
-    )
-}
+    );
+};

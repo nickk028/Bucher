@@ -10,14 +10,14 @@
 }
 
 .input-group__label--libro {
-    font-family: "Hind Siliguri";
+    font-family: 'Hind Siliguri';
     font-size: 18px;
     font-weight: 500;
 }
 
 .input-group__input--libro {
     /*font-family: "Handelson Three";*/
-    font-family: "Hind Siliguri";
+    font-family: 'Hind Siliguri';
     font-weight: 500;
     font-size: 18px; /* 18px 1.7rem*/
 

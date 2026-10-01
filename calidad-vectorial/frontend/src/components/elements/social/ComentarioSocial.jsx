@@ -1,6 +1,6 @@
-import "./ComentarioSocial.css";
+import './ComentarioSocial.css';
 
-export const ComentarioSocial = ({children, nickname, urlFoto, tiempoPublicacion}) => {
+export const ComentarioSocial = ({ children, nickname, urlFoto, tiempoPublicacion }) => {
     return (
         <article className="com-social">
             <div className="com-social__img">
@@ -12,5 +12,5 @@ export const ComentarioSocial = ({children, nickname, urlFoto, tiempoPublicacion
                 <p className="com-social__content__tiempo">Hace {tiempoPublicacion} horas</p>
             </div>
         </article>
-    )
-}
+    );
+};

@@ -4,13 +4,13 @@
 }
 
 .biblioteca-body__title {
-    color: #08413C;
+    color: #08413c;
     font-size: 3rem;
     font-weight: 500;
 }
 
 .biblioteca-body__title--margen {
-    color: #08413C;
+    color: #08413c;
     font-size: 3rem;
     font-weight: 500;
     margin-top: 20px;
@@ -37,7 +37,7 @@
     display: flex;
     flex-direction: column;
     width: 500px;
-    gap: 15px
+    gap: 15px;
 }
 
 .biblioteca-agregar__corto {
@@ -56,6 +56,5 @@
     display: flex;
     justify-content: center;
     margin: 15px 0;
-    width: 925px;    
+    width: 925px;
 }
-

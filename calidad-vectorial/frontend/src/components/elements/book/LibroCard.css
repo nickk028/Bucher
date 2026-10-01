@@ -19,7 +19,7 @@
     height: 100%;
     display: block;
     object-fit: cover;
-    box-shadow: 0px 0px 2px #D9D9D9;
+    box-shadow: 0px 0px 2px #d9d9d9;
 }
 
 .libro-card__portada-libro__triangulo {
@@ -31,10 +31,18 @@
     clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 }
 
-.libro-card__portada-libro__triangulo--leidos {background-color: #D8F0D2;}
-.libro-card__portada-libro__triangulo--leyendo {background-color: #D8EAF8;}
-.libro-card__portada-libro__triangulo--quiero-leer {background-color: #FFF1C9;}
-.libro-card__portada-libro__triangulo--abandonados {background-color: #F5D6D6;}
+.libro-card__portada-libro__triangulo--leidos {
+    background-color: #d8f0d2;
+}
+.libro-card__portada-libro__triangulo--leyendo {
+    background-color: #d8eaf8;
+}
+.libro-card__portada-libro__triangulo--quiero-leer {
+    background-color: #fff1c9;
+}
+.libro-card__portada-libro__triangulo--abandonados {
+    background-color: #f5d6d6;
+}
 
 .libro-card__titulo {
     font-size: 1rem;
@@ -49,7 +57,7 @@
 }
 
 .libro-card__titulo__autor {
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
     margin-top: -5px;
 

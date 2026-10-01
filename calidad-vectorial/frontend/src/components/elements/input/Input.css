@@ -1,5 +1,5 @@
 .input-group {
-    font-family: "Hind Siliguri" ,Arial, Helvetica, sans-serif;
+    font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
     width: 100%;
     position: relative;
 }
@@ -51,7 +51,7 @@
 }
 
 .input-group__input--checkbox:hover {
-    box-shadow: 0px 0px 3px #08413C;
+    box-shadow: 0px 0px 3px #08413c;
 }
 
 .input-group__input--checkbox::after {
@@ -69,12 +69,12 @@
 
     background: #f5f5f5;
 
-    transition: all ease-in-out 200ms
+    transition: all ease-in-out 200ms;
 }
 
 .input-group__input--checkbox:checked {
-    background: #0E675F;
-    border-color: #0E675F;
+    background: #0e675f;
+    border-color: #0e675f;
 }
 
 .input-group__input--checkbox:checked::after {
@@ -102,7 +102,7 @@
 }
 
 .input-group__label {
-    color: #6C757D;
+    color: #6c757d;
     position: absolute;
     pointer-events: none;
     top: 2px;
@@ -112,17 +112,17 @@
 }
 
 .input-group__input:valid {
-    border-color: #08413C;
+    border-color: #08413c;
 }
 
-.input-group__input:valid~.input-group__label {
+.input-group__input:valid ~ .input-group__label {
     top: 0;
     transform: translateY(-100%);
     font-size: 1.3rem;
-    color: #6C757D;
+    color: #6c757d;
 }
 
-.input-group__input:focus~.input-group__label {
+.input-group__input:focus ~ .input-group__label {
     top: 0;
     transform: translateY(-100%);
     font-size: 1.3rem;

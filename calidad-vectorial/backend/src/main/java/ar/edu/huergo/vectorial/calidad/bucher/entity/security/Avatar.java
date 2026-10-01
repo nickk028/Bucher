@@ -26,5 +26,4 @@ public enum Avatar {
     public String getUrl() {
         return url;
     }
-
 }

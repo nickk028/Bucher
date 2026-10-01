@@ -4,7 +4,7 @@
 }
 
 .config-content__title {
-    color: #08413C;
+    color: #08413c;
     font-size: 3rem;
     font-weight: 500;
 }
@@ -29,8 +29,8 @@
 }
 
 .config-content__form__label--editando {
-    color: #0E675F;
-    box-shadow: #08413C;
+    color: #0e675f;
+    box-shadow: #08413c;
 }
 
 .config-content__input-group {
