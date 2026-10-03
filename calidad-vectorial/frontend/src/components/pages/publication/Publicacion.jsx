@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetch, usePost } from '../../utils/FetchUtils';
-import { UsuarioDetalles } from '../../elements/user/UsuarioDetalles';
+import { UsuarioDetalles } from '../../elements/user/detail/UsuarioDetalles';
 import { Button } from '../../elements/buttons/Button';
 import { PopUp } from '../../elements/modal/PopUp';
 import './Publicacion.css';

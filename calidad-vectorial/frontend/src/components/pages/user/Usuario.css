@@ -4,7 +4,7 @@
 
     display: flex;
     flex-flow: column nowrap;
-    gap: 40px;
+    gap: 20px;
 
     box-sizing: border-box;
     padding-top: 20px;
@@ -14,11 +14,10 @@
 
 .usuario__section {
     width: 100%;
-    height: max(140px, 22vh);
+    height: max(140px, 20vh);
 
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
     gap: 3%;
 }
 
@@ -34,9 +33,10 @@
 
 .usuario__section__content {
     height: 100%;
-    width: max(200px, 50%);
+    width: 1;
+    max-width: 65%;
 
-    flex: 1 1 max(200px, 50%);
+    flex: 1 1 0;
 
     display: flex;
     flex-flow: column nowrap;
@@ -122,7 +122,7 @@
 
     box-sizing: border-box;
     border-right: var(--border-primary) solid 2px;
-    padding: 15px;
+    padding: 20px;
 }
 
 .usuario__content__clasificacion__item {
@@ -135,7 +135,7 @@
     border: var(--border-primary) solid 2px;
     border-radius: 8px;
 
-    padding: 5px;
+    padding: 10px;
 
     cursor: pointer;
 }

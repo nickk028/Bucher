@@ -31,13 +31,16 @@
     clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 }
 
-.libro-card__portada-libro__triangulo--leidos {
+.libro-card__portada-libro__triangulo--leidos,
+.libro-card__portada-libro__triangulo--activos {
     background-color: #d8f0d2;
 }
-.libro-card__portada-libro__triangulo--leyendo {
+.libro-card__portada-libro__triangulo--leyendo,
+.libro-card__portada-libro__triangulo--pasados {
     background-color: #d8eaf8;
 }
-.libro-card__portada-libro__triangulo--quiero-leer {
+.libro-card__portada-libro__triangulo--quiero-leer,
+.libro-card__portada-libro__triangulo--pendientes {
     background-color: #fff1c9;
 }
 .libro-card__portada-libro__triangulo--abandonados {
