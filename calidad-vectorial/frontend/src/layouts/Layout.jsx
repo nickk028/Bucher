@@ -1,5 +1,6 @@
 import { Outlet, useLocation, Link } from 'react-router-dom';
 import { useBook } from '../context/LibroContexto';
+import { useFetch } from '../components/utils/FetchUtils';
 import Header from '../components/elements/header/Header';
 import { LibroAnimado } from '../components/elements/animatedbook/LibroAnimado';
 import { SideBar } from '../components/elements/sidebar/SideBar';
@@ -8,12 +9,12 @@ import './Layout.css';
 import { getConfig } from '../components/utils/ConfigUtils';
 import { useEffect, useState } from 'react';
 import { Buscador } from '../components/elements/search/Buscador';
-import cenicienta from '../assets/img/avatares/cenicienta.png';
 import Ajustes from '../assets/img/icons/configuracion/ajustes.svg?react';
 import Soporte from '../assets/img/icons/configuracion/soporte.svg?react';
 import CrearLibro from '../assets/img/icons/crear/crearLibro.svg?react';
 import CrearPosteo from '../assets/img/icons/crear/crearPosteo.svg?react';
 import CrearPrestamo from '../assets/img/icons/crear/crearPrestamo.svg?react';
+
 
 export const Layout = () => {
     const { libroMensaje } = useBook();
@@ -22,6 +23,12 @@ export const Layout = () => {
     const location = useLocation();
 
     const mostrarConfig = location.pathname.startsWith('/configuracion');
+
+    const {
+        data: respuestaUsuario,
+        loading: loadingUsuario,
+        error: errorUsuario,
+    } = useFetch('usuario/propio');
 
     // Actualiza la configuración al cambiar de ruta
     useEffect(() => {
@@ -103,7 +110,7 @@ export const Layout = () => {
                 <div className="body-layout__content__barra">
                     <Buscador />
                     <Link to="/usuario" className="body-layout__content__barra__img">
-                        <img src={cenicienta} alt="Foto de usuario" />
+                        <img src={`/assets/img/avatares/${respuestaUsuario.avatar}`} alt="Foto de usuario" />
                     </Link>
                 </div>
                 <Outlet />

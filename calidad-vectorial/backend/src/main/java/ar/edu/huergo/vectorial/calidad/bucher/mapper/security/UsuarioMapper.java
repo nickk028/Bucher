@@ -3,6 +3,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.mapper.security;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.RegistrarDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioUpdateDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +27,7 @@ public class UsuarioMapper {
         UsuarioResponseDTO usuarioDTO = new UsuarioResponseDTO();
         usuarioDTO.setUsername(usuario.getUsername());
         usuarioDTO.setNickname(usuario.getNickname());
-        usuarioDTO.setAvatar(usuario.getAvatar());
+        usuarioDTO.setAvatar(usuario.getAvatar().getUrl());
         usuarioDTO.setPronombres(usuario.getPronombres());
         usuarioDTO.setDescripcion(usuario.getDescripcion());
         usuarioDTO.setDireccion(usuario.getDireccion());

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class UsuarioResponseDTO extends UsuarioDTO {
 
     String nickname;
-    Avatar avatar;
+    String avatar;
 
     String pronombres;
     String descripcion;
