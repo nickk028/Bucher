@@ -1,0 +1,7 @@
+<svg
+    className="suscripcion-content__plan__marcador"
+    viewBox="0 0 28 40"
+    aria-hidden="true"
+>
+    <path d="M0 0h28v40l-14-10L0 40z" fill="currentColor" />
+</svg>

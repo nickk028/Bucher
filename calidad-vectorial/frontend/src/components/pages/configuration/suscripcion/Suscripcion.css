@@ -1,0 +1,239 @@
+.suscripcion-content {
+    padding-left: 40px;
+    padding-right: 180px;
+    padding-bottom: 60px;
+}
+
+.suscripcion-content__title {
+    color: var(--brand-dark);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.suscripcion-content__seccion {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+
+    margin-top: 20px;
+}
+
+.suscripcion-content__label {
+    font-size: 0.8rem;
+
+    color: var(--text-secondary);
+}
+
+.suscripcion-content__planes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.suscripcion-content__plan {
+    position: relative;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+
+    background: var(--bg-surface);
+    border: var(--border-primary) solid 2px;
+    border-radius: 8px;
+
+    padding: 10px 14px;
+    min-height: 200px;
+}
+
+.suscripcion-content__plan h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+
+    color: var(--brand-dark);
+}
+
+.suscripcion-content__plan__p {
+    font-size: 1rem;
+}
+
+.suscripcion-content__plan--plus {
+    background: var(--bg-accent);
+    border-color: var(--brand-primary);
+}
+
+.suscripcion-content__plan__marcador {
+    position: absolute;
+    top: -2px;
+    right: 20px;
+
+    width: 36px;
+    height: 50px;
+
+    color: var(--brand-primary);
+}
+
+.suscripcion-content__plan__precio {
+    align-self: flex-end;
+
+    font-size: 1.8rem;
+    font-weight: 600;
+
+    color: var(--brand-dark);
+}
+
+.suscripcion-content__plan__periodo {
+    font-size: 0.7rem;
+    font-weight: 400;
+
+    color: var(--text-secondary);
+}
+
+.suscripcion-content__plan__accion {
+    display: flex;
+    justify-content: center;
+
+    margin-top: auto;
+}
+
+.suscripcion-content__beneficios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.suscripcion-content__beneficio {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    background: var(--bg-surface);
+    border: var(--border-primary) solid 1px;
+    border-radius: 8px;
+
+    padding: 12px;
+}
+
+.suscripcion-content__beneficio h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    color: var(--text-primary);
+}
+
+.suscripcion-content__beneficio p {
+    font-size: 0.75rem;
+
+    color: var(--text-secondary);
+}
+
+.suscripcion-content__icono {
+    flex-shrink: 0;
+
+    width: 45px;
+    height: 45px;
+
+    color: var(--brand-dark);
+}
+
+.suscripcion-content__columnas {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.suscripcion-content__columna {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+
+.suscripcion-content__card {
+    background: var(--bg-surface);
+    border: var(--border-primary) solid 1px;
+    border-radius: 8px;
+
+    padding: 12px;
+}
+
+.suscripcion-content__card p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.suscripcion-content__tabla {
+    width: 100%;
+
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.suscripcion-content__tabla th {
+    padding-bottom: 6px;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    color: var(--text-secondary);
+    border-bottom: var(--border-primary) solid 1px;
+}
+
+.suscripcion-content__tabla td {
+    padding: 4px 0;
+
+    font-size: 0.9rem;
+
+    border-bottom: var(--border-primary) solid 1px;
+}
+
+.suscripcion-content__tabla td:first-child {
+    text-align: left;
+    width: 50%;
+}
+
+.suscripcion-content__tabla__icono {
+    width: 20px;
+    height: 20px;
+
+    vertical-align: middle;
+
+    color: var(--text-primary);
+}
+
+.suscripcion-content__info {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 8px;
+}
+
+.suscripcion-content__info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: var(--text-primary);
+}
+
+.suscripcion-content__info__pasos {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 4px;
+
+    padding-left: 12px;
+}
+
+.suscripcion-content__info__pasos li {
+    list-style-type: decimal;
+    list-style-position: inside;
+
+    font-size: 0.75rem;
+
+    color: var(--text-secondary);
+}
+
+.suscripcion-content__link {
+    color: var(--brand-primary);
+}
+
+.suscripcion-content__link:hover {
+    text-decoration: underline;
+}

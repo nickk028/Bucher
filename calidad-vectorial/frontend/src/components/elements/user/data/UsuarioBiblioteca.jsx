@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { useFetch } from '../../../utils/FetchUtils';
 import { LibroCard } from '../../book/LibroCard';
 import './UsuarioData.css';
+import { Link } from 'react-router-dom';
 
 const ESTADO_A_CLASIFICACION = {
     leyendo: 'leyendo',

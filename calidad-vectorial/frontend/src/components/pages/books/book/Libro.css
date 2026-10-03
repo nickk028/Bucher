@@ -2,11 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    margin-top: 30px;
 }
 
 .body-pub__libro {
     display: flex;
-    height: 90vh;
     max-width: calc(100vw - 140px);
     box-sizing: border-box;
     padding-left: 60px;
@@ -63,7 +63,6 @@
 
 .body-pub__libro__text__parrafo {
     height: auto;
-    flex-grow: 1;
     background: var(--bg-surface);
     border: 1px solid var(--border-primary);
     border-radius: 10px;

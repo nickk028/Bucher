@@ -55,8 +55,9 @@
 }
 
 .btn--default--claro {
-    background-color: #c9dacd;
+    background-color: #fafafa;
     color: #0e675f;
+    border: 1px solid #0e675f;
 }
 
 .btn--default--oscuro {

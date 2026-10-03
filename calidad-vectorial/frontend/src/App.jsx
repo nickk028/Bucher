@@ -19,6 +19,7 @@ import { CrearPrestamo } from './components/pages/create/prestamo/CrearPrestamo'
 import { CrearLibro } from './components/pages/create/libro/CrearLibro';
 import { EditarPerfil } from './components/pages/configuration/editarperfil/EditarPerfil';
 import { Apariencia } from './components/pages/configuration/apariencia/Apariencia';
+import { Suscripcion } from './components/pages/configuration/suscripcion/Suscripcion';
 import { ComingSoon } from './components/pages/errors/comingsoon/ComingSoon';
 import { Libros } from './components/pages/books/Libros';
 import { Libro } from './components/pages/books/book/Libro';
@@ -48,6 +49,7 @@ export const App = () => {
                         <Route path="/tendencias" element={<Tendencias />} />
                         <Route path="/configuracion/editar-perfil" element={<EditarPerfil />} />
                         <Route path="/configuracion/apariencia" element={<Apariencia />} />
+                        <Route path="/configuracion/suscripcion" element={<Suscripcion />} />
                         <Route path="/configuracion/ToS" element={<ToS />} />
                         <Route path="/libros" element={<Libros />} />
                         <Route path="/libros/:id" element={<Libro />} />
