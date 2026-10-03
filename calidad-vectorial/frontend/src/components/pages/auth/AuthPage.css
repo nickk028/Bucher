@@ -91,14 +91,6 @@
     transform: translateX(-50%);
 }
 
-.auth-page__book__page--izquierda__buchi p {
-    rotate: 75deg;
-}
-
-.auth-page__book__page--derecha__buchi p {
-    rotate: 255deg;
-}
-
 .form {
     width: 30vw;
     display: flex;

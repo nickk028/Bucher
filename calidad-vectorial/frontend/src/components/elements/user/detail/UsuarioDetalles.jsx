@@ -1,4 +1,4 @@
-import logoUsuario from '../../../assets/img/logos/logoUsuario.png';
+import logoUsuario from '../../../../assets/img/logos/logoUsuario.png';
 import './UsuarioDetalles.css';
 
 export const UsuarioDetalles = ({ children, nombre, foto }) => {

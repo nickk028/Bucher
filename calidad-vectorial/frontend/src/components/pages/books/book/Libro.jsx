@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useFetch, usePost } from '../../../utils/FetchUtils';
 import './Libro.css';
 import { Button } from '../../../elements/buttons/Button';
-import { UsuarioDetalles } from '../../../elements/user/UsuarioDetalles';
+import { UsuarioDetalles } from '../../../elements/user/detail/UsuarioDetalles';
 import { PopUp } from '../../../elements/modal/PopUp';
 import Estrella from '../../../../assets/img/icons/utils/estrellaGrande.svg?react';
 
