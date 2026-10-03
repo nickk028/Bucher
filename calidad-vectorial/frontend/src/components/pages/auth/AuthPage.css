@@ -91,6 +91,10 @@
     transform: translateX(-50%);
 }
 
+.auth-page__google {
+    margin-top: 20px;
+}
+
 .form {
     width: 30vw;
     display: flex;

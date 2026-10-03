@@ -91,7 +91,7 @@ export const Layout = () => {
                         opciones={[
                             { to: '/configuracion/editar-perfil', text: 'Editar perfil' },
                             { to: '/configuracion/apariencia', text: 'Apariencia' },
-                            { to: '/coming-soon', text: 'Suscripción' },
+                            { to: '/configuracion/suscripcion', text: 'Suscripción' },
                             { to: '/coming-soon', text: 'Notificaciones' },
                         ]}
                         img={<Ajustes />}

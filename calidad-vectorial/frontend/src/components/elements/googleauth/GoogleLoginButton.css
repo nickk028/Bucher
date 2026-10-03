@@ -1,0 +1,42 @@
+/* GoogleLoginButton.css */
+.google-login {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.google-login__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #8d8465;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #f8eed0 60%, #8d8465 210%);
+    background-size: 150% 150%;
+    background-position: bottom;
+    color: #3c4043;
+
+    font-family: 'Hind Siliguri';
+    font-size: 18px;
+    font-weight: 500;
+
+    transition: background-position 500ms ease;
+
+    cursor: pointer;
+}
+
+.google-login:hover .google-login__btn {
+    background-position: top;
+}
+
+.google-login__overlay {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0;
+    cursor: pointer;
+}

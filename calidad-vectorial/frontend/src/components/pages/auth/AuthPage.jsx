@@ -4,6 +4,7 @@ import './AuthPage.css';
 import { InputLibro } from '../../elements/input/InputLibro';
 import { Button } from '../../elements/buttons/Button';
 import { LibroAnimado } from '../../elements/animatedbook/LibroAnimado';
+import { GoogleLoginButton } from '../../elements/googleauth/GoogleLoginButton';
 import { loginRequest, validarSeguridadPassword } from '../../utils/LoginUtils';
 import { postData } from '../../utils/FetchUtils';
 
@@ -208,6 +209,13 @@ export const AuthPage = () => {
                                 Aceptar
                             </Button>
                         </form>
+
+                        <div className='auth-page__google'>
+                            <GoogleLoginButton
+                                onSuccess={() => navigate('/index')}
+                            />
+                        </div>
+
                         <p onClick={() => cambiarPagina('register')}>
                             ¿No tienes una cuenta? ¡Crea una!
                         </p>

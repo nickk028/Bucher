@@ -13,6 +13,7 @@
     flex-direction: column;
     font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
     color: var(--text-primary);
+    overflow: hidden;
 }
 
 .body-layout__content__barra {
