@@ -1,5 +1,5 @@
 import './ToS.css';
-import { SECCIONES } from '../../../assets/text/ToSText';
+import { secciones } from '../../../data/toSText';
 
 export const ToS = () => {
     return (
@@ -12,7 +12,7 @@ export const ToS = () => {
             </div>
 
             <div className="tos-content__body">
-                {SECCIONES.map((seccion) => (
+                {secciones.map((seccion) => (
                     <section key={seccion.id} className="tos-section">
                         <div className="tos-section__heading">
                             <span className="tos-section__number">{seccion.id}</span>

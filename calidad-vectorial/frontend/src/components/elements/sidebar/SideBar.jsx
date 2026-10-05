@@ -21,7 +21,9 @@ export const SideBar = ({ children, titulo }) => {
         <nav className="sidebar">
             <div className="sidebar__content">
                 <div>
-                    <h1>{titulo}</h1>
+                    {titulo && (
+                        <h1>{titulo}</h1>
+                    )}
                     <div className="sidebar__cards">
                         {children}
                         {titulo === 'Configuración' && (

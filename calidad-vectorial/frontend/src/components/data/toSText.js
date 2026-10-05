@@ -1,4 +1,4 @@
-export const SECCIONES = [
+export const secciones = [
     {
         id: '01',
         titulo: 'Definiciones',

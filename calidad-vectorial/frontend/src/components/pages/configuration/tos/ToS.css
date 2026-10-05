@@ -71,7 +71,7 @@
 
 .tos-section__text {
     font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
-    font-size: 0.95rem;
+    font-size: 15px;
     color: var(--text-primary);
     line-height: 1.75;
     white-space: pre-line;

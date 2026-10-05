@@ -57,6 +57,7 @@ export const Layout = () => {
             {mostrarCrear ? (
                 <SideBar>
                     <SideBarCard
+                        variant='button'
                         titulo="Préstamo"
                         opciones={[
                             {
@@ -67,6 +68,7 @@ export const Layout = () => {
                         img={<CrearPrestamo />}
                     />
                     <SideBarCard
+                        variant='button'
                         titulo="Posteo"
                         opciones={[
                             {
@@ -77,6 +79,7 @@ export const Layout = () => {
                         img={<CrearPosteo />}
                     />
                     <SideBarCard
+                        variant='button'
                         titulo="Libro"
                         opciones={[
                             { to: '/crear-libro', text: 'Mostra tus obras a nuevos lectores.' },
@@ -99,7 +102,7 @@ export const Layout = () => {
                     <SideBarCard
                         titulo="Soporte"
                         opciones={[
-                            { to: '/coming-soon', text: 'Preguntas Frecuentes' },
+                            { to: '/configuracion/preguntas-frecuentes', text: 'Preguntas Frecuentes' },
                             { to: '/configuracion/ToS', text: 'Términos y condiciones' },
                         ]}
                         img={<Soporte />}
