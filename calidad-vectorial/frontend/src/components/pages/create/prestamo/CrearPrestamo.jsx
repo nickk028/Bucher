@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './CrearPrestamo.css';
 import { Button } from '../../../elements/buttons/Button';
-import SubirImagenPosteo from '../../../../assets/img/icons/crear/subirImagenPosteo.svg?react';
+import SubirImagenLibro from '../../../../assets/img/icons/crear/subirImagenLibro.svg?react';
 import TildeVistaPrevia from '../../../../assets/img/icons/crear/tildeVistaPrevia.svg?react';
 import RelojVistaPrevia from '../../../../assets/img/icons/crear/relojVistaPrevia.svg?react';
 
@@ -144,7 +144,7 @@ export const CrearPrestamo = () => {
                         {photos.length === 0 ? (
                             <div className="clp-upload-placeholder">
                                 <div className="clp-upload-placeholder-img">
-                                    <SubirImagenPosteo />
+                                    <SubirImagenLibro />
                                 </div>
                                 <span>Sube tus propias imágenes del ejemplar</span>
                             </div>

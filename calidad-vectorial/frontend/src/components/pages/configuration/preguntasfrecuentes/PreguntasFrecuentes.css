@@ -1,0 +1,119 @@
+.preguntas-content {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+
+    padding-left: 40px;
+    padding-right: 180px;
+    padding-bottom: 60px;
+}
+
+.preguntas-content__title {
+    color: var(--brand-dark);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.preguntas-content__categoria {
+    background: var(--bg-surface);
+    border: var(--brand-primary) solid 1px;
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+.preguntas-content__categoria__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 4px 10px;
+
+    border-bottom: var(--brand-primary) solid 1px;
+}
+
+.preguntas-content__categoria__header h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    color: var(--brand-dark);
+}
+
+.preguntas-content__icono {
+    flex-shrink: 0;
+
+    width: 24px;
+    height: 24px;
+
+    color: var(--brand-primary);
+}
+
+.preguntas-content__lista {
+    display: flex;
+    flex-flow: column nowrap;
+
+    padding: 6px 10px 10px 10px;
+}
+
+.preguntas-content__pregunta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+
+    padding: 6px 0;
+
+    border: none;
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 15px;
+    text-align: left;
+
+    color: var(--text-primary);
+    transition: color 200ms ease-in-out;
+}
+
+.preguntas-content__pregunta:hover {
+    color: var(--brand-primary);
+}
+
+.preguntas-content__flecha {
+    flex-shrink: 0;
+
+    width: 16px;
+    height: 16px;
+
+    transition: transform 200ms ease-in-out;
+}
+
+.preguntas-content__flecha--abierto {
+    transform: rotate(180deg);
+}
+
+.preguntas-content__respuesta {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    transition: grid-template-rows 200ms ease-in-out;
+}
+
+.preguntas-content__respuesta--abierta {
+    grid-template-rows: 1fr;
+}
+
+.preguntas-content__respuesta__contenido {
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+.preguntas-content__respuesta__contenido p {
+    padding: 2px 0 8px 0;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    color: var(--text-secondary);
+}
