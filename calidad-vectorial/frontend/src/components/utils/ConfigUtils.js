@@ -30,11 +30,11 @@ export const getConfig = () => {
 };
 
 /**
- * setConfig: guarda estado de configuración.
- * - Acepta objeto parcial: { clave: valor }
- * - O una función (vieja) => nueva
- * Retorna el estado final escrito.
- */
+* setConfig: guarda estado de configuración.
+* - Acepta objeto parcial: { clave: valor }
+* - O una función (vieja) => nueva
+* Retorna el estado final escrito.
+*/
 export const setConfig = (partialOrUpdater) => {
     const vieja = getConfig();
     const nueva =

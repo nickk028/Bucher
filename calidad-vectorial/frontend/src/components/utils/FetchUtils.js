@@ -2,12 +2,12 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useBook } from '../../context/LibroContexto';
 
 /** Hook para realizar peticiones GET
- *   @param {string} url - endpoint al que se envía el GET
- *   @returns { data, loading, error }
- *        data: datos de respuesta (JSON o texto)
- *        loading: booleano para mostrar spinner
- *        error: mensaje de error (string)
- **/
+*   @param {string} url - endpoint al que se envía el GET
+*   @returns { data, loading, error }
+*        data: datos de respuesta (JSON o texto)
+*        loading: booleano para mostrar spinner
+*        error: mensaje de error (string)
+**/
 export const useFetch = (url) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -91,13 +91,13 @@ export const useFetch = (url) => {
 };
 
 /** Hook para realizar peticiones POST
- *   @param {string} url - endpoint al que se envía el POST
- *   @returns { data, loading, error, execute }
- *       data: datos de respuesta (JSON o texto)
- *       loading: booleano para mostrar spinner
- *       error: mensaje de error (string)
- *       execute: función para ejecutar el POST
- **/
+*   @param {string} url - endpoint al que se envía el POST
+*   @returns { data, loading, error, execute }
+*       data: datos de respuesta (JSON o texto)
+*       loading: booleano para mostrar spinner
+*       error: mensaje de error (string)
+*       execute: función para ejecutar el POST
+**/
 export function usePost(url, method = 'POST') {
     // Estado: datos de respuesta, “cargando” y error
     const [data, setData] = useState('');
