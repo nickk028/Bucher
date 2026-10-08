@@ -90,14 +90,14 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/registro")
                     .hasAnyRole("ADMIN", "LECTOR")
 
-                    // Biblioteca
-                    .requestMatchers(HttpMethod.GET, "/biblioteca/**")
+                    // LibroUsuario
+                    .requestMatchers(HttpMethod.GET, "/libro-usuario/**")
                     .hasAnyRole("ADMIN", "LECTOR")
-                    .requestMatchers(HttpMethod.POST, "/biblioteca/**")
+                    .requestMatchers(HttpMethod.POST, "/libro-usuario/**")
                     .hasAnyRole("ADMIN", "LECTOR")
-                    .requestMatchers(HttpMethod.PUT, "/biblioteca/**")
+                    .requestMatchers(HttpMethod.PUT, "/libro-usuario/**")
                     .hasAnyRole("ADMIN", "LECTOR")
-                    .requestMatchers(HttpMethod.DELETE, "/biblioteca/**")
+                    .requestMatchers(HttpMethod.DELETE, "/libro-usuario/**")
                     .hasAnyRole("ADMIN", "LECTOR")
 
                     // Libro

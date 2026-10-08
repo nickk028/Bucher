@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.security;
 
-import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioResponseDTO;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,4 +21,6 @@ public class UsuarioResponseDTO extends UsuarioDTO {
     String direccion;
     String piso;
     String codigoPostal;
+
+    List<LibroUsuarioResponseDTO> librosUsuario;
 }
