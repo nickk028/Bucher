@@ -6,7 +6,7 @@
 
 .suscripcion-content__title {
     color: var(--brand-dark);
-    font-size: 2rem;
+    font-size: var(--font-size-xl);
     font-weight: 800;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .suscripcion-content__label {
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
 
     color: var(--text-secondary);
 }
@@ -46,14 +46,14 @@
 }
 
 .suscripcion-content__plan h2 {
-    font-size: 1.8rem;
+    font-size: var(--font-size-lg);
     font-weight: 600;
 
     color: var(--brand-dark);
 }
 
 .suscripcion-content__plan__p {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
 }
 
 .suscripcion-content__plan--plus {
@@ -75,14 +75,14 @@
 .suscripcion-content__plan__precio {
     align-self: flex-end;
 
-    font-size: 1.8rem;
+    font-size: var(--font-size-lg);
     font-weight: 600;
 
     color: var(--brand-dark);
 }
 
 .suscripcion-content__plan__periodo {
-    font-size: 0.7rem;
+    font-size: var(--font-size-base);
     font-weight: 400;
 
     color: var(--text-secondary);
@@ -114,14 +114,14 @@
 }
 
 .suscripcion-content__beneficio h3 {
-    font-size: 0.95rem;
+    font-size: var(--font-size-base);
     font-weight: 600;
 
     color: var(--text-primary);
 }
 
 .suscripcion-content__beneficio p {
-    font-size: 0.75rem;
+    font-size: var(--font-size-base);
 
     color: var(--text-secondary);
 }
@@ -157,7 +157,7 @@
 }
 
 .suscripcion-content__card p {
-    font-size: 0.8rem;
+    font-size: var(--font-size-base);
     line-height: 1.5;
 }
 
@@ -171,7 +171,7 @@
 .suscripcion-content__tabla th {
     padding-bottom: 6px;
 
-    font-size: 0.85rem;
+    font-size: var(--font-size-base);
     font-weight: 600;
 
     color: var(--text-secondary);
@@ -181,7 +181,7 @@
 .suscripcion-content__tabla td {
     padding: 4px 0;
 
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
 
     border-bottom: var(--border-primary) solid 1px;
 }
@@ -207,7 +207,7 @@
 }
 
 .suscripcion-content__info h3 {
-    font-size: 1rem;
+    font-size: var(--font-size-md);
     font-weight: 600;
 
     color: var(--text-primary);
@@ -225,7 +225,7 @@
     list-style-type: decimal;
     list-style-position: inside;
 
-    font-size: 0.75rem;
+    font-size: var(--font-size-base);
 
     color: var(--text-secondary);
 }

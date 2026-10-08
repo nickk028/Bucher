@@ -27,6 +27,7 @@ import { Libros } from './components/pages/books/Libros';
 import { Libro } from './components/pages/books/book/Libro';
 import { Usuario } from './components/pages/user/Usuario';
 import { NotFound } from './components/pages/errors/notfound/NotFound';
+import { Layout } from './layouts/Layout';
 
 export const App = () => {
     return (
@@ -36,7 +37,7 @@ export const App = () => {
                     <Route path="/" element={<SobreNosotros />} />
                     <Route path="*" element={<NotFound />} />
 
-                    <Route element={<ProtectedRoute />}>
+                    <Route element={<Layout />}>
                         <Route path="/coming-soon" element={<ComingSoon />} />
                         <Route path="/login" element={<AuthPage />} />
                         <Route path="/register" element={<AuthPage />} />

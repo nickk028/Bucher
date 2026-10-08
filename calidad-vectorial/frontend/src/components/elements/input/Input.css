@@ -82,7 +82,7 @@
 }
 
 .input-group--checkbox__text {
-    font-size: 1.1rem;
+    font-size: var(--font-size-lg);
 
     color: #929292;
     text-shadow: 1px 1px 2px #d1d1d1;
@@ -95,7 +95,7 @@
 }
 
 .input-group__input--medio {
-    font-size: 1.1rem;
+    font-size: var(--font-size-lg);
     resize: none;
     height: 100px;
     padding-top: 5px;

@@ -14,10 +14,12 @@
     display: flex;
     align-items: center;
 
-    color: var(--brand-dark);
-    font-size: 0.9rem;
-
     gap: 10px;
+}
+
+.sidebar-card__encabezado h2 {
+    color: var(--brand-dark);
+    font-size: var(--font-size-md);
 }
 
 .sidebar-card__encabezado__img {
@@ -39,6 +41,7 @@
     gap: 5px;
 
     margin-top: 5px;
+    font-size: var(--font-size-base);
 }
 
 .sidebar-card__options__option--selected {

@@ -10,7 +10,7 @@
 
 .preguntas-content__title {
     color: var(--brand-dark);
-    font-size: 2rem;
+    font-size: var(--font-size-xl);
     font-weight: 800;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .preguntas-content__categoria__header h2 {
-    font-size: 1.4rem;
+    font-size: var(--font-size-lg);
     font-weight: 600;
 
     color: var(--brand-dark);
@@ -68,7 +68,7 @@
     cursor: pointer;
 
     font-family: inherit;
-    font-size: 15px;
+    font-size: var(--font-size-base);
     text-align: left;
 
     color: var(--text-primary);
@@ -112,7 +112,7 @@
 .preguntas-content__respuesta__contenido p {
     padding: 2px 0 8px 0;
 
-    font-size: 15px;
+    font-size: var(--font-size-base);
     line-height: 1.5;
 
     color: var(--text-secondary);
