@@ -10,14 +10,14 @@
 
 .apariencia__header h1 {
     font-family: 'Hind Siliguri', sans-serif;
-    font-size: 2rem;
+    font-size: var(--font-size-xl);
     color: var(--brand-dark);
 }
 
 .apariencia__header p {
     font-family: 'Hind Siliguri', sans-serif;
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: var(--font-size-base);
 }
 
 /* ---- Card / form ---- */
@@ -39,7 +39,7 @@
 
 .apariencia__form h2 {
     font-family: 'Hind Siliguri', sans-serif;
-    font-size: 1.8rem;
+    font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--brand-dark);
     margin: 0 0 4px;
@@ -54,7 +54,7 @@
 
 .apariencia__form__label {
     font-family: 'Hind Siliguri', sans-serif;
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
     color: var(--text-secondary);
 }
 
@@ -81,7 +81,7 @@
     align-items: center;
     gap: 10px;
     font-family: 'Hind Siliguri', sans-serif;
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
     color: var(--text-primary);
     cursor: pointer;
     user-select: none;

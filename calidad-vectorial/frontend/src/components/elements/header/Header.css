@@ -6,7 +6,6 @@
 .header__nav {
     width: 73px;
     height: 100vh;
-    min-height: 640px;
     background: #f9fffa;
 
     box-shadow: 0px 0px 10px #c9dacd;
@@ -26,8 +25,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
     transform: scale(0.58);
 }
 

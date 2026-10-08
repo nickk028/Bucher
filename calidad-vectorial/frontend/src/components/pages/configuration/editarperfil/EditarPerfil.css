@@ -6,7 +6,7 @@
 
 .config-content__title {
     color: #08413c;
-    font-size: 2rem;
+    font-size: var(--font-size-xl);
     font-weight: 800;
 }
 
@@ -24,14 +24,14 @@
 }
 
 .config-content__form h2 {
-    font-size: 1.8rem;
+    font-size: var(--font-size-lg);
     font-weight: 600;
 
     color: var(--brand-dark);
 }
 
 .config-content__form__label {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
 
     color: var(--text-secondary);
     transition: all 200ms ease-in-out;

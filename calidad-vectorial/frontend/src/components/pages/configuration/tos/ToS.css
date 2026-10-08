@@ -8,13 +8,13 @@
 
 .tos-content__title {
     color: var(--brand-dark);
-    font-size: 2rem;
+    font-size: var(--font-size-xl);
     font-weight: 800;
 }
 
 .tos-content__subtitle {
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     font-weight: 400;
 }
 
@@ -55,7 +55,7 @@
 
 .tos-section__title {
     font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
-    font-size: 1.15rem;
+    font-size: var(--font-size-lg);
     font-weight: 700;
     color: var(--brand-dark);
 }
@@ -71,7 +71,7 @@
 
 .tos-section__text {
     font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: var(--font-size-base);
     color: var(--text-primary);
     line-height: 1.75;
     white-space: pre-line;
@@ -96,7 +96,7 @@
 
 .tos-footer__notice {
     font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
-    font-size: 0.95rem;
+    font-size: var(--font-size-base);
     color: var(--brand-dark);
     line-height: 1.65;
     margin: auto 0;

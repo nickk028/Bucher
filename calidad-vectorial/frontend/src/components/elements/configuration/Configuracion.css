@@ -5,7 +5,7 @@
 
 .config-content__title {
     color: #08413c;
-    font-size: 3rem;
+    font-size: var(--font-size-xl);
     font-weight: 500;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .config-content__form__label {
-    font-size: 1.1rem;
+    font-size: var(--font-size-base);
 
     color: #929292;
     text-shadow: 1px 1px 2px #d1d1d1;
