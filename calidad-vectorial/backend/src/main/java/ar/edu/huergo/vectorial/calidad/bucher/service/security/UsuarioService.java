@@ -1,6 +1,5 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.security;
 
-import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.Biblioteca;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
@@ -86,7 +85,7 @@ public class UsuarioService {
     }
 
     /**
-     * Asigna el rol LECTOR, la biblioteca y el avatar por defecto a un usuario nuevo, y lo guarda.
+     * Asigna el rol LECTOR y el avatar por defecto a un usuario nuevo, y lo guarda.
      * @param usuario El usuario a completar y guardar
      * @return El usuario guardado
      * @throws IllegalArgumentException Si no existe el rol LECTOR
@@ -95,11 +94,7 @@ public class UsuarioService {
         Rol rolCliente = rolRepository
             .findByNombre("LECTOR")
             .orElseThrow(() -> new IllegalArgumentException("Rol 'LECTOR' no encontrado"));
-        Biblioteca biblioteca = new Biblioteca();
         usuario.setRoles(Set.of(rolCliente));
-        usuario.setBiblioteca(biblioteca);
-        biblioteca.setUsuario(usuario);
-        biblioteca.setNombre("Biblioteca");
         usuario.setAvatar(getAvatarRandom());
         return usuarioRepository.save(usuario);
     }

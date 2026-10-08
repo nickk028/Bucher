@@ -3,7 +3,8 @@ package ar.edu.huergo.vectorial.calidad.bucher.mapper.security;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.RegistrarDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioUpdateDTO;
-import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Avatar;
+import ar.edu.huergo.vectorial.calidad.bucher.mapper.bookuser.LibroUsuarioMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Component;
 @Component // Marca la clase como un componente de Spring
 // Mapper de la entidad Usuario utiizada para pasar de entidad a DTO y de DTO a entidad
 public class UsuarioMapper {
+
+    @Autowired
+    LibroUsuarioMapper libroUsuarioMapper;
 
     /**
      * Convierte una entidad Usuario a un DTO UsuarioResponseDTO
@@ -34,6 +38,7 @@ public class UsuarioMapper {
         usuarioDTO.setPiso(usuario.getPiso());
         usuarioDTO.setCodigoPostal(usuario.getCodigoPostal());
         usuarioDTO.setRoles(new HashSet<>(usuario.getRoles()));
+        usuarioDTO.setLibrosUsuario(libroUsuarioMapper.toDTOList(usuario.getLibrosUsuario()));
         return usuarioDTO;
     }
 

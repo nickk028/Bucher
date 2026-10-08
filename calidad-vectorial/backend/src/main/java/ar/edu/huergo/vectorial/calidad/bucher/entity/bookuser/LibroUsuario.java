@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,6 +19,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity // Marca la clase como una entidad de JPA
 @Data // Genera getters, setters, toString, equals y hashCode
@@ -52,8 +54,9 @@ public class LibroUsuario {
     @JoinColumn(name = "libro_id")
     private Libro libro;
 
-    // Relación muchos a uno con Biblioteca
+    // Relación muchos a uno con Usuario
     @ManyToOne
-    @JoinColumn(name = "biblioteca_id", nullable = false)
-    private Biblioteca biblioteca;
+    @JoinColumn(name = "usuario_id", nullable = false)
+    @ToString.Exclude // Evita la recursión infinita en toString con Usuario
+    private Usuario usuario;
 }
