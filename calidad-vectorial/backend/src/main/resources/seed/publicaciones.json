@@ -1,0 +1,111 @@
+[
+  {
+    "usuario": "lector@gmail.com",
+    "libro": "Harry Potter y la piedra filosofal",
+    "descripcion": "Ejemplar de Harry Potter y la piedra filosofal disponible para préstamo, libro en excelente estado.",
+    "limiteDias": 21
+  },
+  {
+    "usuario": "lector2@gmail.com",
+    "libro": "It",
+    "descripcion": "It, un libro de Stephen King, en buenas condiciones, señalado con post-its.",
+    "limiteDias": 14
+  },
+  {
+    "usuario": "paulamartinez@gmail.com",
+    "libro": "Orgullo y prejuicio",
+    "descripcion": "Novela clásica de Jane Austen, Orgullo y prejuicio. Libro en muy buenas condiciones, con anotaciones al margen de las hojas.",
+    "limiteDias": 21
+  },
+  {
+    "usuario": "jlopez@gmail.com",
+    "libro": "Cien años de soledad",
+    "descripcion": "Cien años de soledad, libro leído una sola vez. Sin marcas o señalizaciones, como nuevo.",
+    "limiteDias": 28
+  },
+  {
+    "usuario": "lector@gmail.com",
+    "libro": "Asesinato en el Orient Express",
+    "descripcion": "Ejemplar de Asesinato en el Orient Express disponible para préstamo, en excelentes condiciones (sin marcar).",
+    "limiteDias": 21
+  },
+  {
+    "usuario": "lector2@gmail.com",
+    "libro": "El código Da Vinci",
+    "descripcion": "El código Da Vinci, libro en muy buen estado.",
+    "limiteDias": 21
+  },
+  {
+    "usuario": "lector2@gmail.com",
+    "libro": "Dune",
+    "descripcion": "Ejemplar de Dune, primer libro de la saga; disponible para préstamo, excelente estado.",
+    "limiteDias": 14
+  },
+  {
+    "usuario": "lector2@gmail.com",
+    "libro": "El último héroe del Olimpo",
+    "descripcion": "Libro en excelente estado, sin marcas ni hojas dobladas. La tapa y el lomo están intactos, con muy poco desgaste por uso. Ideal para disfrutar de una buena lectura como nuevo.",
+    "limiteDias": 21
+  },
+  {
+    "usuario": "jlopez@gmail.com",
+    "libro": "La magia de ser Sofía",
+    "descripcion": "El libro está en buen estado general, con algún que otro detalle por el uso (como una esquina doblada o una marca leve en la tapa).",
+    "limiteDias": 21
+  },
+  {
+    "usuario": "paulamartinez@gmail.com",
+    "libro": "Bellas durmientes",
+    "descripcion": "El libro está en buen estado. Todas las páginas están completas y se puede leer sin problema, a pesar de algunas anotaciones en los márgenes.",
+    "limiteDias": 21
+  },
+  {
+    "usuario": "lector@gmail.com",
+    "libro": "De amor y de sombra",
+    "descripcion": "El libro tiene algunas marquitas del uso, pero nada grave. Está completo y en buen estado para leerlo sin problema.",
+    "limiteDias": 28
+  },
+  {
+    "usuario": "lector2@gmail.com",
+    "libro": "Sinsajo",
+    "descripcion": "Ejemplar en buen estado general, con leves signos de uso propios del paso del tiempo. Conserva todas sus páginas íntegras y es totalmente legible.",
+    "limiteDias": 28
+  },
+  {
+    "usuario": "lector@gmail.com",
+    "libro": "El Hobbit",
+    "descripcion": "Libro en buen estado, lectura recomendable!",
+    "limiteDias": 28,
+    "estadoPublicacion": "Prestado"
+  },
+  {
+    "usuario": "jrolando@gmail.com",
+    "libro": "Blackwater: La casa",
+    "descripcion": "El libro es excelente y está en muy buen estado.",
+    "limiteDias": 28
+  },
+  {
+    "usuario": "jrolando@gmail.com",
+    "libro": "Blackwater: Lluvia",
+    "descripcion": "Libro en muy buenas condiciones a pesar de las veces que fue leído, no presenta anotaciones pero sí hay algunas hojas con puntas dobladas.",
+    "limiteDias": 28
+  },
+  {
+    "usuario": "jrolando@gmail.com",
+    "libro": "Heartless",
+    "descripcion": "Ejemplar en excelente estado. Conserva todas sus páginas íntegras y es totalmente legible, señalado con post-its.",
+    "limiteDias": 21
+  },
+  {
+    "usuario": "jrolando@gmail.com",
+    "libro": "El chico que dibujaba constelaciones",
+    "descripcion": "Copia de El chico que dibujaba constelaciones, en perfecto estado. Señalizado con post-its, los cuales están categorizados por color.",
+    "limiteDias": 21
+  },
+  {
+    "usuario": "jrolando@gmail.com",
+    "libro": "De amor y de sombra",
+    "descripcion": "Ejemplar relativamente en buen estado. Una parte de las primeras hojas están algo arrugadas debido a que tuve un incidente con agua.",
+    "limiteDias": 21
+  }
+]

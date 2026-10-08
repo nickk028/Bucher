@@ -1,0 +1,41 @@
+[
+  {
+    "titulo": "Orgullo y prejuicio",
+    "descripcion": "La familia Bennet vive en una sociedad inglesa del siglo XIX donde las mujeres jóvenes tienen pocas opciones que el matrimonio. Cuando llega el señor Charles Bingley, joven soltero y acomodado, su presencia sacude la tranquila vida de las cinco hermanas Bennet. Elizabeth, la segunda hija, destaca por su ingenio, honestidad y espíritu independiente. Su relación con el reservado señor Darcy comienza marcada por malentendidos, críticas sociales y diferencias de clase. A través del orgullo, los prejuicios y las expectativas familiares, ambos deberán superar sus propias creencias para hallar la verdad del amor, la comprensión y la autenticidad personal.",
+    "paginas": 432,
+    "edicion": "Primera edición",
+    "calificacion": 94,
+    "fechaPublicacion": "1813-01-28",
+    "urlFoto": "https://www.penguinlibros.com/co/288462/orgullo-y-prejuicio.jpg",
+    "precio": 22.99,
+    "categorias": ["romance"],
+    "editorial": "Thomas Egerton",
+    "autor": "Jane Austen"
+  },
+  {
+    "titulo": "Emma",
+    "descripcion": "Emma Woodhouse es uno de los personajes más cautivadores y vívidos de Austen. Bella, consentida, vanidosa e ingeniosa, Emma organiza la vida de los habitantes de su tranquilo pueblecito y hace de casamentera con consecuencias devastadoras.",
+    "paginas": 512,
+    "edicion": "Primera edición",
+    "calificacion": 96,
+    "fechaPublicacion": "1815-12-23",
+    "urlFoto": "https://images.cdn1.buscalibre.com/fit-in/360x360/c5/9f/c59fa2cfcda0ceb5d1a64e0a199d2973.jpg",
+    "precio": 28.5,
+    "categorias": ["romance", "historico"],
+    "editorial": "Penguin Random House Grupo Editorial",
+    "autor": "Jane Austen"
+  },
+  {
+    "titulo": "Persuasión",
+    "descripcion": "Jane Austen es heredera de los logros de la novela inglesa del siglo XVIII, pero al mismo tiempo crea un estilo nuevo de novela más breve, concentrada e intensa, y exhibe en sus dos últimas obras un dominio de recursos narrativos en la expresión de la interioridad que se adelanta a su época. El realismo económico de Jane Austen, la implicación de sus primeras obras en los debates de la última década del siglo XVIII sobre la naturaleza humana, la familia, las instituciones sociales o la educación de las mujeres, y el reflejo en sus novelas de madurez de las innovaciones y escándalos de la Inglaterra de la Regencia, demuestra que la inteligencia creadora, alimentada por las lecturas y la observación, es capaz de interpretar el mundo desde la mesa de un cuarto de estar. Persuasión es la novela de Jane Austen de la que se puede decir que es básicamente una historia de amor. Todas sus obras cuentan siempre el enamoramiento de una o dos parejas y acaban con la boda de los protagonistas, pero Persuasión es la única en la que el interés narrativo se centra en los sentimientos y en la interioridad de la protagonista.",
+    "paginas": 304,
+    "edicion": "Primera edición",
+    "calificacion": 95,
+    "fechaPublicacion": "1818-12-20",
+    "urlFoto": "https://images.cdn3.buscalibre.com/fit-in/360x360/5a/35/5a3561284bd697820313e8b63517efde.jpg",
+    "precio": 23.99,
+    "categorias": ["romance", "historico"],
+    "editorial": "Penguin Random House Grupo Editorial",
+    "autor": "Jane Austen"
+  }
+]

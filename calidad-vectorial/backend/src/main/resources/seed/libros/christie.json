@@ -1,0 +1,41 @@
+[
+  {
+    "titulo": "Asesinato en el Orient Express",
+    "descripcion": "Durante un gélido invierno en Estambul, el detective Hércules Poirot aborda el lujoso tren Orient Express, que suele viajar casi vacío en esa temporada. Sin embargo, en esta ocasión el tren está sorprendentemente lleno, y sólo logra conseguir un lugar gracias a una amiga. A la mañana siguiente, una tormenta de nieve detiene el convoy y se descubre que un pasajero estadounidense, llamado Ratchett, ha sido asesinado brutalmente dentro de su compartimento. Nadie ha entrado ni salido durante la noche, por lo que el asesino debe estar entre los viajeros: una princesa rusa, una institutriz inglesa y otros sospechosos tan enigmáticos como el crimen mismo.",
+    "paginas": 256,
+    "edicion": "Primera edición",
+    "calificacion": 92,
+    "fechaPublicacion": "1934-01-01",
+    "urlFoto": "https://upload.wikimedia.org/wikipedia/en/c/c0/Murder_on_the_Orient_Express_First_Edition_Cover_1934.jpg",
+    "precio": 19.99,
+    "categorias": ["policial"],
+    "editorial": "Editorial Planeta",
+    "autor": "Agatha Christie"
+  },
+  {
+    "titulo": "El asesinato de Roger Ackroyd",
+    "descripcion": "La señora Ferrari ha muerto víctima de una sobredosis de somníferos. Hace un año, su marido murió al parecer de una gastritis aguda. Carolina Sheppard, la hermana del médico del pueblo, sospecha que fue envenenada. Poco después, Roger Ackroyd, el terrateniente de la villa, aparece muerto con una daga tunecina clavada en la espalda. ¿Estarán las tres muertes relacionadas?",
+    "paginas": 320,
+    "edicion": "Primera edición",
+    "calificacion": 95,
+    "fechaPublicacion": "1926-01-01",
+    "urlFoto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Z1zl9Tbe9s6W4czrJXOfs0r2nAOBh9dHCg&s",
+    "precio": 28.99,
+    "categorias": ["policial", "suspenso"],
+    "editorial": "Editorial Planeta",
+    "autor": "Agatha Christie"
+  },
+  {
+    "titulo": "Testigo de cargo",
+    "descripcion": "Desde el impactante relato que da título al libro, adaptado al teatro y posteriormente convertido en el clásico thriller cinematográfico de Billy Wilder, estas historias de crímenes desconcertantes y brillantes deducciones muestran a Christie en su máximo esplendor. Sin mencionar que Hercule Poirot se enfrenta a su mayor desafío cuando la víctima solicita sus servicios.",
+    "paginas": 224,
+    "edicion": "Primera edición",
+    "calificacion": 91,
+    "fechaPublicacion": "1953-01-01",
+    "urlFoto": "https://images.cdn1.buscalibre.com/fit-in/360x360/5d/32/5d323f46674a3f55d9a581b5ac774979.jpg",
+    "precio": 25.99,
+    "categorias": ["policial", "suspenso"],
+    "editorial": "Editorial Planeta",
+    "autor": "Agatha Christie"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "solicitante": "lector2@gmail.com",
+    "publicador": "lector@gmail.com",
+    "libro": "El Hobbit",
+    "diasDesdePrestamo": 3
+  },
+  {
+    "solicitante": "lector2@gmail.com",
+    "publicador": "jlopez@gmail.com",
+    "libro": "La magia de ser Sofía",
+    "diasDesdePrestamo": 19,
+    "diasDesdeDevolucion": 2
+  },
+  {
+    "solicitante": "jrolando@gmail.com",
+    "publicador": "lector2@gmail.com",
+    "libro": "Sinsajo",
+    "diasDesdePrestamo": 40,
+    "diasDesdeDevolucion": 13
+  },
+  {
+    "solicitante": "lector2@gmail.com",
+    "publicador": "lector@gmail.com",
+    "libro": "De amor y de sombra",
+    "diasDesdePrestamo": 40,
+    "diasDesdeDevolucion": 20
+  },
+  {
+    "solicitante": "lector@gmail.com",
+    "publicador": "jrolando@gmail.com",
+    "libro": "El chico que dibujaba constelaciones",
+    "diasDesdePrestamo": 30,
+    "diasDesdeDevolucion": 10
+  }
+]

@@ -1,0 +1,158 @@
+[
+  {
+    "nombre": "Anónimo",
+    "descripcion": "Autor sin identidad conocida o atribuida, utilizado en obras cuyo creador permanece desconocido o decide no revelar su nombre.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Obra_an%C3%B3nima",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/8/84/Anonymous_emblem.svg"
+  },
+  {
+    "nombre": "J.K. Rowling",
+    "descripcion": "Autora británica conocida por la saga de Harry Potter, una de las más exitosas de la historia.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/J._K._Rowling",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/5/5d/J._K._Rowling_2010.jpg"
+  },
+  {
+    "nombre": "Frank Herbert",
+    "descripcion": "Escritor estadounidense de ciencia ficción, célebre por su obra maestra 'Dune'.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Frank_Herbert",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Frank_Herbert_1984_%28square%29.jpg"
+  },
+  {
+    "nombre": "Dan Brown",
+    "descripcion": "Novelista estadounidense, conocido por 'El código Da Vinci' y otros thrillers de misterio.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Dan_Brown",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Dan_Brown_bookjacket_cropped.jpg"
+  },
+  {
+    "nombre": "Agatha Christie",
+    "descripcion": "Famosa escritora británica de novelas policíacas, creadora de Hércules Poirot y Miss Marple.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Agatha_Christie",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Agatha_Christie.png"
+  },
+  {
+    "nombre": "Gabriel García Márquez",
+    "descripcion": "Escritor colombiano, exponente del realismo mágico y autor de 'Cien años de soledad'.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Gabriel_Garc%C3%ADa_M%C3%A1rquez",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Gabriel_Garcia_Marquez.jpg"
+  },
+  {
+    "nombre": "Jane Austen",
+    "descripcion": "Novelista británica reconocida por sus retratos irónicos de la sociedad inglesa del siglo XIX.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Jane_Austen",
+    "urlFotoAutor": "https://cdn.britannica.com/12/172012-050-DAA7CE6B/Jane-Austen-Cassandra-engraving-portrait-1810.jpg"
+  },
+  {
+    "nombre": "Stephen King",
+    "descripcion": "Autor estadounidense, maestro del terror y el suspense, con más de 60 novelas publicadas.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Stephen_King",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/2/24/Stephen_King_at_the_2024_Toronto_International_Film_Festival_2_%28cropped%29.jpg"
+  },
+  {
+    "nombre": "Gabriel Rolon",
+    "descripcion": "Psicólogo y escritor argentino reconocido por sus libros que exploran el mundo emocional y los conflictos humanos desde una mirada clínica y sensible.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Gabriel_Rol%C3%B3n",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Gabriel_Rol%C3%B3n_-_distinci%C3%B3n_Amigo_de_las_Bibliotecas_Populares_2025_%28cropped%29.jpg"
+  },
+  {
+    "nombre": "Viviana Rivero",
+    "descripcion": "Escritora argentina destacada por sus novelas históricas y románticas, donde combina rigor documental con relatos apasionados.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Viviana_Rivero",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Viviana_Rivero.jpg/330px-Viviana_Rivero.jpg"
+  },
+  {
+    "nombre": "Isabel Allende",
+    "descripcion": "Escritora chilena reconocida internacionalmente por sus novelas que combinan realismo mágico, historia y memorias personales con una voz profundamente emotiva.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Isabel_Allende",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Isabel_Allende_Frankfurter_Buchmesse_2015_%28cropped%29.JPG/330px-Isabel_Allende_Frankfurter_Buchmesse_2015_%28cropped%29.JPG"
+  },
+  {
+    "nombre": "Samanta Schweblin",
+    "descripcion": "Escritora argentina reconocida por su narrativa inquietante y minimalista, donde combina el suspenso psicológico con lo fantástico y lo perturbador.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Samanta_Schweblin",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Samanta_Schweblin_en_el_FILBA_Montevideo_2018.jpg/330px-Samanta_Schweblin_en_el_FILBA_Montevideo_2018.jpg"
+  },
+  {
+    "nombre": "Alice Kellen",
+    "descripcion": "Escritora española de literatura romántica juvenil y adulta. Comenzó su carrera como escritora en 2013 con Llévame a cualquier lugar.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Alice_Kellen",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Alicekellenimagen.jpg/330px-Alicekellenimagen.jpg"
+  },
+  {
+    "nombre": "Marissa Meyer",
+    "descripcion": "Escritora estadounidense nacida en Tacoma, sus obras más conocidas son las novelas Cinder y Winter, primer y penúltimo libro de la saga literaria futurista Crónicas Lunares.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Marissa_Meyer",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Marissa_Meyer_%282018%29.jpg/330px-Marissa_Meyer_%282018%29.jpg"
+  },
+  {
+    "nombre": "John Green",
+    "descripcion": "Escritor estadounidense de literatura juvenil, videoblogger en YouTube y productor ejecutivo. Es reconocido mayormente por su libro Bajo la misma estrella y Ciudades de papel.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/John_Green",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Let%27s_Talk_about_Money_-_Vlogbrothers_YouTube_at_0009_%28cropped%29.png/330px-Let%27s_Talk_about_Money_-_Vlogbrothers_YouTube_at_0009_%28cropped%29.png"
+  },
+  {
+    "nombre": "Jojo Moyes",
+    "descripcion": "Periodista y novelista romántica británica. Es una de las pocas autoras que ha ganado dos veces el Premio de Novela Romántica del Año por la Romantic Novelists' Association.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Jojo_Moyes",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Paris_-_Salon_du_livre_de_Paris_2017_-_Jojo_Moyes_-_001_%28cropped%29.jpg/330px-Paris_-_Salon_du_livre_de_Paris_2017_-_Jojo_Moyes_-_001_%28cropped%29.jpg"
+  },
+  {
+    "nombre": "Veronica Roth",
+    "descripcion": "Escritora estadounidense conocida por su novela superventas Divergente, y su secuela Insurgente.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Veronica_Roth",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Veronica_Roth_March_18%2C_2014_%28cropped%29.jpg/330px-Veronica_Roth_March_18%2C_2014_%28cropped%29.jpg"
+  },
+  {
+    "nombre": "Suzanne Collins",
+    "descripcion": "Escritora y guionista estadounidense, creadora de la famosa serie de Los juegos del hambre.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Suzanne_Collins",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Suzanne_Collins_David_Shankbone_2010.jpg/330px-Suzanne_Collins_David_Shankbone_2010.jpg"
+  },
+  {
+    "nombre": "Elísabet Benavent",
+    "descripcion": "Escritora española de novelas de comedia romántica. Es la autora de varias novelas en los que destaca la saga En los zapatos de Valeria.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/El%C3%ADsabet_Benavent",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/7/71/Elisabet_Benavent_%2821620654366%29.jpg"
+  },
+  {
+    "nombre": "Michael McDowell",
+    "descripcion": "Fue un escritor y guionista estadounidense. Autor de novelas de terror góticas sureñas, fue llamado «el escritor más refinado de los Estados Unidos» por Stephen King.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Michael_McDowell",
+    "urlFotoAutor": "https://imagessl.casadellibro.com/img/autores/w/123009.webp"
+  },
+  {
+    "nombre": "Colleen Hoover",
+    "descripcion": "Escritora estadounidense de gran éxito comercial, que ha vendido más de veinte millones de libros, centrados en los géneros de la novela romántica y la literatura juvenil.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Colleen_Hoover",
+    "urlFotoAutor": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDOBFYj9IgYy5PFeMJywQHzG3v6WR_m4OpVg&s"
+  },
+  {
+    "nombre": "Elisabetta Dami",
+    "descripcion": "Escritora de literatura infantil italiana, famosa por la creación del personaje Geronimo y Tea Stilton.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Elisabetta_Dami",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/6/67/Elisabettadami-2019_%28cropped%29.jpg"
+  },
+  {
+    "nombre": "Blue Jeans",
+    "descripcion": "Pseudónimo de Francisco de Paula Fernández González, es un escritor español de literatura romántica y policíaca para adolescentes.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Blue_Jeans_(escritor)",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Blue_Jeans_escritor.jpg/330px-Blue_Jeans_escritor.jpg"
+  },
+  {
+    "nombre": "Luis Pescetti",
+    "descripcion": "Luis María Pescetti es un escritor, músico y cantante argentino. Ha publicado obras para niños y adultos.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Luis_Pescetti",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Luis_Mar%C3%ADa_Pescetti.jpg/500px-Luis_Mar%C3%ADa_Pescetti.jpg"
+  },
+  {
+    "nombre": "J.R.R. Tolkien",
+    "descripcion": "Escritor, poeta, filólogo, lingüista y profesor universitario británico, nacido en el Estado Libre de Orange. Conocido principalmente por ser el autor de El hobbit y El Señor de los Anillos.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/J._R._R._Tolkien",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/J._R._R._Tolkien%2C_ca._1925.jpg/330px-J._R._R._Tolkien%2C_ca._1925.jpg"
+  },
+  {
+    "nombre": "Rick Riordan",
+    "descripcion": "Richard Russell \"Rick\" Riordan es un escritor estadounidense. Es conocido por ser el autor de la saga Percy Jackson y los dioses del Olimpo y Los Héroes del Olimpo.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Rick_Riordan",
+    "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Rick_riordan_2007.jpg/500px-Rick_riordan_2007.jpg"
+  }
+]

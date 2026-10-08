@@ -28,7 +28,9 @@ public class AutorMapper {
         autorResponseDTO.setUrlWikipedia(autor.getUrlWikipedia());
         autorResponseDTO.setUrlFotoAutor(autor.getUrlFotoAutor());
         autorResponseDTO.setLibros(new ArrayList<>(autor.getLibros()));
-        autorResponseDTO.setUsername(autor.getUsuario().getUsername());
+        if (autor.getUsuario() != null) {
+            autorResponseDTO.setUsername(autor.getUsuario().getUsername());
+        }
 
         return autorResponseDTO;
     }

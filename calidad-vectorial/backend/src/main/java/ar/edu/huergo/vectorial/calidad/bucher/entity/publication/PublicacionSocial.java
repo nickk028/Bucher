@@ -23,7 +23,7 @@ import org.hibernate.annotations.CurrentTimestamp;
 @Data // Genera getters, setters, toString, equals y hashCode
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
-@Table(name = "publicaciones")
+@Table(name = "publicaciones_sociales")
 public class PublicacionSocial {
 
     @Id // Id principal de la entidad
@@ -43,7 +43,7 @@ public class PublicacionSocial {
     private LocalDate fechaCreacion;
 
     // Descripción de la publicación
-    @Column(nullable = false, length = 128)
+    @Column(nullable = true, length = 128)
     @Size(min = 5, max = 128, message = "La descripción debe tener entre 5 y 128 caracteres.")
     private String descripcion;
 

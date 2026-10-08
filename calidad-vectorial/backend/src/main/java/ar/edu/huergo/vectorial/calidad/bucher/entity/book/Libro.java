@@ -52,7 +52,7 @@ public class Libro {
     private String titulo;
 
     // Descripción del libro
-    @Column(nullable = false, length = 100)
+        @Column(nullable = false, length = 1500)
     @NotBlank(message = "La descripción es obligatorio.")
     @Size(min = 2, max = 1500, message = "La libro debe tener entre 2 y 1500 digitos.")
     private String descripcion;

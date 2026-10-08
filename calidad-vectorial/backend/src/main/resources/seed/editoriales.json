@@ -1,0 +1,15 @@
+[
+  { "nombre": "Bloomsbury", "urlWikipedia": "https://es.wikipedia.org/wiki/Bloomsbury_Publishing" },
+  { "nombre": "Doubleday", "urlWikipedia": "https://en.wikipedia.org/wiki/Doubleday_(publisher)" },
+  { "nombre": "Editorial Planeta", "urlWikipedia": "https://es.wikipedia.org/wiki/Grupo_Planeta" },
+  { "nombre": "Thomas Egerton", "urlWikipedia": "https://es.wikipedia.org/wiki/Thomas_Egerton_(editor)" },
+  { "nombre": "Viking Press", "urlWikipedia": "https://en.wikipedia.org/wiki/Viking_Press" },
+  { "nombre": "Salamandra", "urlWikipedia": "https://es.wikipedia.org/wiki/Ediciones_Salamandra" },
+  { "nombre": "VR editoras", "urlWikipedia": "https://vreditoras.com.ar" },
+  { "nombre": "Editorial Sudamericana", "urlWikipedia": "https://es.wikipedia.org/wiki/Editorial_Sudamericana" },
+  { "nombre": "Penguin Random House Grupo Editorial", "urlWikipedia": "https://es.wikipedia.org/wiki/Penguin_Random_House_Grupo_Editorial" },
+  { "nombre": "Plaza & Janés", "urlWikipedia": "https://es.wikipedia.org/wiki/Plaza_%26_Jan%C3%A9s" },
+  { "nombre": "Titania", "urlWikipedia": "https://www.titania.org/" },
+  { "nombre": "Nube de tinta", "urlWikipedia": "https://www.penguinrandomhousegrupoeditorial.com/sello/nube-de-tinta/" },
+  { "nombre": "Editorial Molino", "urlWikipedia": "https://es.wikipedia.org/wiki/Editorial_Molino" }
+]

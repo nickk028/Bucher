@@ -1,0 +1,40 @@
+[
+  {
+    "usuario": "lector@gmail.com",
+    "libro": "Harry Potter y la piedra filosofal",
+    "descripcion": "Actualizó su progreso en “Harry Potter y la piedra filosofal” de J.K. Rowling - 68% leído.",
+    "textoPublicacion": "Llegué al capítulo 4 y cada vez me engancha más. Hogwarts se siente cada vez más real."
+  },
+  {
+    "usuario": "lector2@gmail.com",
+    "libro": "It",
+    "descripcion": "Actualizó su progreso en “IT(Eso)” de Stephen King - 68% leído.",
+    "textoPublicacion": "Una novela extensa pero atrapante. Stephen King logra mantener la tensión durante toda la historia."
+  },
+  {
+    "usuario": "jlopez@gmail.com",
+    "libro": "Cien años de soledad",
+    "descripcion": "Actualizó su progreso en “Cien años de soledad” de Gabriel García Márquez - 68% leído.",
+    "textoPublicacion": "Cien años de soledad es una obra única. La historia de la familia Buendía me sorprendió mucho."
+  },
+  {
+    "usuario": "paulamartinez@gmail.com",
+    "libro": "Orgullo y prejuicio",
+    "descripcion": "Terminó de leer “Orgullo y prejuicio” de Jane Austen.",
+    "textoPublicacion": "Una historia increíble sobre el orgullo, los prejuicios y las apariencias. El final me dejó pensando durante horas. Sin dudas una de mis lecturas favoritas, libro de cinco estrellas e incluso más!"
+  },
+  {
+    "usuario": "jrolando@gmail.com",
+    "libro": "Dune",
+    "descripcion": "Terminó de leer “Dune” de Frank Herbert.",
+    "textoPublicacion": "Dune tiene un universo increíblemente detallado. Muy recomendable para los fanáticos del género."
+  },
+  {
+    "usuario": "lector@gmail.com",
+    "textoPublicacion": "Terminé una maratón de lectura este fin de semana. ¿Qué libro recomendarían para seguir?"
+  },
+  {
+    "usuario": "jlopez@gmail.com",
+    "textoPublicacion": "Estoy buscando novelas de misterio para leer durante las vacaciones. Se aceptan sugerencias."
+  }
+]

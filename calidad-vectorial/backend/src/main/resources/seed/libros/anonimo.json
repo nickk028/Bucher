@@ -1,0 +1,15 @@
+[
+  {
+    "titulo": "Beowulf",
+    "descripcion": "Beowulf es uno de los poemas épicos más importantes de la literatura medieval y una de las obras fundamentales de la tradición anglosajona. La historia narra las hazañas del héroe Beowulf, quien viaja para ayudar al rey Hrothgar a liberar su reino del monstruoso Grendel, una criatura sanguinaria que aterroriza a sus guerreros. Tras vencerlo, Beowulf deberá enfrentarse también a la temible madre de Grendel y, años más tarde, a un dragón que amenaza la paz de su pueblo. Un relato cargado de heroísmo, honor, gloria y tragedia, donde el destino y la lucha entre el bien y el mal marcan el camino de los hombres.",
+    "paginas": 256,
+    "edicion": "Primera edición",
+    "calificacion": 90,
+    "fechaPublicacion": "2000-05-10",
+    "urlFoto": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Beowulf_Cotton_MS_Vitellius_A_XV_f._132r.jpg",
+    "precio": 29.99,
+    "categorias": ["fantastico"],
+    "editorial": "Editorial Planeta",
+    "autor": "Anónimo"
+  }
+]

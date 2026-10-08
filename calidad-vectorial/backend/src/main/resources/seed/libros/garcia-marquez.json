@@ -1,0 +1,15 @@
+[
+  {
+    "titulo": "Cien años de soledad",
+    "descripcion": "Durante siete generaciones, la familia Buendía vive y sufre en el mítico pueblo de Macondo, fundado por José Arcadio Buendía y Úrsula Iguarán. En ese universo mágico donde lo real y lo fantástico coexisten, la soledad es fuerza y condena: amores imposibles, obsesiones, guerras, muertes, nacimientos… hechos extraordinarios conviven con lo cotidiano. Crece una ciudad aparte del mundo, se tejen mitos, llegan gitanos con inventos, resurgen fantasmas, y el destino parece marcar cada vida. Y a lo largo de cien años, el paso del tiempo revela la fragilidad de las memorias, la repetición de los errores y, sobre todo, la belleza y el dolor de lo humano.",
+    "paginas": 471,
+    "edicion": "Primera edición",
+    "calificacion": 98,
+    "fechaPublicacion": "1967-05-30",
+    "urlFoto": "https://cdn.livriz.com/media/mediaspace/F9AFB48D-741D-4834-B760-F59344EEFF34/45/b3735ff2-ec78-49a6-8371-83c0afc30ff8/9788466379717_ac1359a8-df49-431d-a6b2-e0e6d8786cd7.webp",
+    "precio": 34.99,
+    "categorias": ["realismomagico"],
+    "editorial": "Editorial Planeta",
+    "autor": "Gabriel García Márquez"
+  }
+]

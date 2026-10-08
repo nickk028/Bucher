@@ -1,0 +1,15 @@
+[
+  {
+    "titulo": "El código Da Vinci",
+    "descripcion": "El conservador del Louvre, Jacques Saunière, aparece asesinado en circunstancias misteriosas, acompañado de un rastro de símbolos y pistas cifradas. Robert Langdon, profesor de simbología, y Sophie Neveu, criptóloga e hija adoptiva de Saunière, se embarcan en una investigación que los llevará por monumentos, obras de arte y antiguos secretos religiosos. Descubrirán que existe una sociedad secreta, el Priorato de Sión, que ha protegido durante siglos un secreto capaz de cambiar la interpretación de la historia cristiana y sacudir creencias fundamentales. Mientras desentrañan enigmas y códigos, se enfrentan también a quienes harían cualquier cosa para que esas verdades permanezcan ocultas.",
+    "paginas": 489,
+    "edicion": "Primera edición",
+    "calificacion": 85,
+    "fechaPublicacion": "2003-03-18",
+    "urlFoto": "https://upload.wikimedia.org/wikipedia/en/6/6b/DaVinciCode.jpg",
+    "precio": 25.99,
+    "categorias": ["suspenso"],
+    "editorial": "Doubleday",
+    "autor": "Dan Brown"
+  }
+]
