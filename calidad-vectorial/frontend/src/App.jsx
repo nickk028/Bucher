@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { GlobalProvider } from './context/GlobalProvider';
 
-import { Login } from './components/pages/login/Login';
 import { AuthPage } from './components/pages/auth/AuthPage';
 import { SobreNosotros } from './components/pages/aboutus/SobreNosotros';
 import { Index } from './components/pages/index/Index';
@@ -11,7 +10,6 @@ import { ComentariosSocial } from './components/pages/socialcoments/ComentariosS
 import { Publicacion } from './components/pages/publication/Publicacion';
 import { LibroUsuario } from './components/pages/user/bookshelf/bookuser/LibroUsuario';
 import { PublicacionUsuario } from './components/pages/user/userpublication/PublicacionUsuario';
-import { Register } from './components/pages/register/Register';
 import { ProtectedRoute } from './components/utils/TokenUtils';
 import { Tendencias } from './components/pages/tendences/Tendencias';
 import { Biblioteca } from './components/pages/bookshelf/Biblioteca';
@@ -27,7 +25,6 @@ import { Libros } from './components/pages/books/Libros';
 import { Libro } from './components/pages/books/book/Libro';
 import { Usuario } from './components/pages/user/Usuario';
 import { NotFound } from './components/pages/errors/notfound/NotFound';
-import { Layout } from './layouts/Layout';
 
 export const App = () => {
     return (
@@ -36,11 +33,11 @@ export const App = () => {
                 <Routes>
                     <Route path="/" element={<SobreNosotros />} />
                     <Route path="*" element={<NotFound />} />
-
-                    <Route element={<Layout />}>
-                        <Route path="/coming-soon" element={<ComingSoon />} />
+                    
+                    <Route element={<ProtectedRoute />}>
                         <Route path="/login" element={<AuthPage />} />
                         <Route path="/register" element={<AuthPage />} />
+                        <Route path="/coming-soon" element={<ComingSoon />} />
                         <Route path="/index" element={<Index />} />
                         <Route path="/prestamos" element={<Prestamos />} />
                         <Route path="/comentarios-social" element={<ComentariosSocial />} />
