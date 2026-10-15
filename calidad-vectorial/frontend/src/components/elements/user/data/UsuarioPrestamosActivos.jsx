@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { useFetch } from '../../../utils/FetchUtils';
 import { LibroCard } from '../../book/LibroCard';
 import './UsuarioData.css';
+import { Link } from 'react-router-dom';
 
 const CLASIFICACIONES = [
     { key: 'todos', label: 'Todos' },
@@ -94,14 +95,16 @@ export const UsuarioPrestamosActivos = () => {
                     <p>No hay préstamos en esta clasificación.</p>
                 ) : (
                     prestamosFiltrados.map((prestamo) => (
-                        <LibroCard
-                            key={prestamo.publicacion?.id}
-                            titulo={prestamo.titulo}
-                            autor={prestamo.autor}
-                            urlFoto={prestamo.urlFoto}
-                            clasificacion={prestamo.clasificacion}
-                            estrllas={false}
-                        />
+                        <Link to={`/prestamo-activo/${prestamo.id}`}>
+                            <LibroCard
+                                key={prestamo.publicacion?.id}
+                                titulo={prestamo.titulo}
+                                autor={prestamo.autor}
+                                urlFoto={prestamo.urlFoto}
+                                clasificacion={prestamo.clasificacion}
+                                estrllas={false}
+                            />
+                        </Link>
                     ))
                 )}
             </section>

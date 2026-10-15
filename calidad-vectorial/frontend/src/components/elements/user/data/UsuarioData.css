@@ -122,7 +122,8 @@
     padding: 40px;
 }
 
-.biblioteca__contenedor__libros article {
+.biblioteca__contenedor__libros article,
+.biblioteca__contenedor__libros a {
     min-width: 120px;
     width: calc(20% - (12px * 5));
 

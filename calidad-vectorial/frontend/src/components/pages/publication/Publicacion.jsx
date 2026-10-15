@@ -6,6 +6,13 @@ import { Button } from '../../elements/buttons/Button';
 import { PopUp } from '../../elements/modal/PopUp';
 import './Publicacion.css';
 
+import iconoCheck from '../../../assets/img/icons/crear/tildeVistaPrevia.svg';
+import iconoReloj from '../../../assets/img/icons/crear/relojVistaPrevia.svg';
+
+const ESTADO_EJEMPLAR = 'Muy bueno';
+const DETALLES_EJEMPLAR = ['Subrayado', 'Con anotaciones'];
+const CANTIDAD_IMAGENES = 3;
+
 export const Publicacion = () => {
     const { id } = useParams();
     const {
@@ -20,7 +27,7 @@ export const Publicacion = () => {
         loading: loadingPost,
         execute,
     } = usePost('publicacion/prestamo/' + id);
-    const disponible = publicacion.estadoPublicacion === 'Disponible';
+    const disponible = publicacion?.estadoPublicacion === 'Disponible';
 
     const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
@@ -52,7 +59,7 @@ export const Publicacion = () => {
                 {loadingError ? (
                     <p>Cargando...</p>
                 ) : (
-                    publicacion.titulo && (
+                    publicacion?.titulo && (
                         <article className="body-pub__publicacion">
                             <div className="body-pub__publicacion__aside">
                                 <img
@@ -66,7 +73,7 @@ export const Publicacion = () => {
                                     isDisabled={!disponible}
                                     onClick={handlePedirLibro}
                                 >
-                                    {disponible ? 'Pedir libro' : 'Libro no disponible'}{' '}
+                                    {disponible ? 'Pedir libro' : 'Libro no disponible'}
                                 </Button>
                             </div>
 
@@ -78,48 +85,72 @@ export const Publicacion = () => {
                                     {publicacion.nombre}
                                 </p>
 
-                                <div className="body-pub__publicacion__text__item">
-                                    <span className="body-pub__publicacion__text__item__subtitle">
-                                        Estado de la publicación:{' '}
-                                    </span>
-                                    {publicacion.estadoPublicacion}
+                                <div className="body-pub__publicacion__text__duracion">
+                                    <img
+                                        className="body-pub__publicacion__text__icono"
+                                        src={iconoReloj}
+                                        alt=""
+                                    />
+                                    Duración del préstamo: {publicacion.limiteDias}
                                 </div>
-                                <div className="body-pub__publicacion__text__item">
-                                    <span className="body-pub__publicacion__text__item__subtitle">
-                                        Duración del préstamo:{' '}
-                                    </span>
-                                    {publicacion.limiteDias}
-                                </div>
-                                <div className="body-pub__publicacion__text__item">
-                                    <span className="body-pub__publicacion__text__item__subtitle">
-                                        Descripción del libro
-                                    </span>
-                                    <p className="body-pub__publicacion__text__item__parrafo">
+
+                                <section className="body-pub__publicacion__text__card">
+                                    <h2 className="body-pub__publicacion__text__card__title">
+                                        Información del ejemplar
+                                    </h2>
+
+                                    <div className="body-pub__publicacion__text__fila">
+                                        <img
+                                            className="body-pub__publicacion__text__icono"
+                                            src={iconoCheck}
+                                            alt=""
+                                        />
+                                        Estado del ejemplar: {ESTADO_EJEMPLAR}
+                                    </div>
+
+                                    <div className="body-pub__publicacion__text__fila">
+                                        <img
+                                            className="body-pub__publicacion__text__icono"
+                                            src={iconoCheck}
+                                            alt=""
+                                        />
+                                        Detalles:
+                                        {DETALLES_EJEMPLAR.map((detalle) => (
+                                            <span
+                                                key={detalle}
+                                                className="body-pub__publicacion__text__chip"
+                                            >
+                                                {detalle}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <h3 className="body-pub__publicacion__text__card__subtitle">
+                                        Comentarios adicionales
+                                    </h3>
+                                    <p className="body-pub__publicacion__text__card__parrafo">
                                         {publicacion.descripcion}
                                     </p>
-                                </div>
-                                <div>
-                                    <span className="body-pub__publicacion__text__item__subtitle">
-                                        Estado:{' '}
-                                    </span>
-                                    {publicacion.estadoPublicacion}
-                                </div>
+                                </section>
 
-                                <div>
-                                    <span className="body-pub__publicacion__text__item__subtitle">
-                                        Sobre su dueño
-                                    </span>
-                                    <UsuarioDetalles nombre={publicacion.usuarioCreador}>
-                                        {publicacion.descripcionUsuario}
-                                    </UsuarioDetalles>
-                                </div>
+                                <section className="body-pub__publicacion__text__card">
+                                    <h2 className="body-pub__publicacion__text__card__title">
+                                        Imágenes del ejemplar
+                                    </h2>
+                                    <div className="body-pub__publicacion__text__galeria">
+                                        {Array.from({ length: CANTIDAD_IMAGENES }, (_, index) => (
+                                            <div
+                                                key={index}
+                                                className="body-pub__publicacion__text__galeria__img"
+                                            />
+                                        ))}
+                                    </div>
+                                </section>
 
-                                <div>
-                                    <span className="body-pub__publicacion__text__item__subtitle">
-                                        Fehca de creación:{' '}
-                                    </span>
-                                    {publicacion.fechaCreacion}
-                                </div>
+                                <UsuarioDetalles nombre={publicacion.usuarioCreador}>
+                                    {publicacion.descripcionUsuario}
+                                </UsuarioDetalles>
+
                             </div>
                         </article>
                     )

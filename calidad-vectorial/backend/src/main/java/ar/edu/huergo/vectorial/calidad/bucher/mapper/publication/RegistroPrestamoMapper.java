@@ -30,6 +30,7 @@ public class RegistroPrestamoMapper {
             registroPrestamo.getPublicacion()
         );
 
+        registroPrestamoResponseDTO.setId(registroPrestamo.getId());
         registroPrestamoResponseDTO.setPublicacion(publicacionResponseDTO);
         registroPrestamoResponseDTO.setFechaPrestamo(registroPrestamo.getFechaPrestamo());
         registroPrestamoResponseDTO.setFechaDevolucion(registroPrestamo.getFechaDevolucion());

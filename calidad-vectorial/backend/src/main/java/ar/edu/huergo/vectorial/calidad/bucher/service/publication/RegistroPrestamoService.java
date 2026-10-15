@@ -69,6 +69,20 @@ public class RegistroPrestamoService {
     }
 
     /**
+     * Obtiene la List de registros de prestamo de un usuario
+     * @param usuario El usuario de los registros de préstamo
+     * @return La List de los registros de préstamo
+     */
+    public RegistroPrestamo obtenerRegistroPrestamoPorId(Long id, Usuario usuario) {
+        return registroPrestamoRepository.findByIdAndUsuario(id, usuario)
+            .orElseThrow(() ->
+                new IllegalArgumentException(
+                    "No existe un registro de préstamo activo para este id y usuario"
+                )
+            );
+    }
+
+    /**
      * Obtiene una lista de los registros de prestamos de la ultima semana
      * @return La lista de los registros de prestamo
      */

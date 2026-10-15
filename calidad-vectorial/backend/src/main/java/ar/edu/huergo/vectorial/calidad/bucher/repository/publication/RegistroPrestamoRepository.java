@@ -19,4 +19,8 @@ public interface RegistroPrestamoRepository extends JpaRepository<RegistroPresta
         Publicacion publicacion,
         Usuario usuario
     );
+    Optional<RegistroPrestamo> findByIdAndUsuario(
+        Long id,
+        Usuario usuario
+    );
 }

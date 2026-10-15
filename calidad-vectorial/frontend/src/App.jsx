@@ -24,6 +24,7 @@ import { ComingSoon } from './components/pages/errors/comingsoon/ComingSoon';
 import { Libros } from './components/pages/books/Libros';
 import { Libro } from './components/pages/books/book/Libro';
 import { Usuario } from './components/pages/user/Usuario';
+import { PrestamoActivo } from './components/pages/loan/PrestamoActivo';
 import { NotFound } from './components/pages/errors/notfound/NotFound';
 
 export const App = () => {
@@ -53,6 +54,7 @@ export const App = () => {
                         <Route path="/configuracion/ToS" element={<ToS />} />
                         <Route path="/libros" element={<Libros />} />
                         <Route path="/libros/:id" element={<Libro />} />
+                        <Route path="/prestamo-activo/:id" element={<PrestamoActivo />} />
                         <Route path="/usuario" element={<Usuario />} />
                     </Route>
                 </Routes>

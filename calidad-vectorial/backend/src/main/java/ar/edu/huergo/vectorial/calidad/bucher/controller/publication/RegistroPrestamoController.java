@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +39,23 @@ public class RegistroPrestamoController {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
         return registroPrestamoMapper.toDTOList(
             registroPrestamoService.obtenerRegistrosPrestamoPorUsuario(usuario)
+        );
+    }
+
+    /**
+     * Obtiene los registros de préstamo de un usuario específico
+     * @param id El id del prestamo deseado
+     * @param usuario El usuario del registro que se desean obtener
+     * @return El registro prestamo del usuario
+     */
+    @GetMapping("/{id}")
+    public RegistroPrestamoResponseDTO obtenerRegistroUsuario(
+        @AuthenticationPrincipal UserDetails usuarioAutenticado,
+        @PathVariable("id") Long id
+    ) {
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+        return registroPrestamoMapper.toDTO(
+            registroPrestamoService.obtenerRegistroPrestamoPorId(id, usuario)
         );
     }
 }

@@ -1,0 +1,208 @@
+.body-prest {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+}
+
+.body-prest__prestamo {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 30px;
+    width: 100%;
+    align-items: start;
+}
+
+.body-prest__prestamo__aside {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.body-prest__prestamo__aside__img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.body-prest__prestamo__aside__botones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.body-prest__prestamo__aside__botones .btn {
+    width: 100%;
+}
+
+.body-prest__prestamo__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.body-prest__prestamo__text__title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.body-prest__prestamo__text__author {
+    margin-top: -12px;
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+}
+
+.body-prest__prestamo__text__card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 18px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-primary);
+    border-radius: 10px;
+}
+
+.body-prest__prestamo__text__card__title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+}
+
+.body-prest__prestamo__text__card__subtitle {
+    margin-top: 6px;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+}
+
+.body-prest__prestamo__text__card__parrafo {
+    padding: 0 12px;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.body-prest__prestamo__text__stepper {
+    --alto-stepper: 70px;
+    --tamano-marcador: 14px;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: var(--alto-stepper);
+    margin: 0 4px;
+}
+
+.body-prest__prestamo__text__stepper::before,
+.body-prest__prestamo__text__stepper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    height: 1px;
+    transform: translateY(-50%);
+}
+
+.body-prest__prestamo__text__stepper::before {
+    width: 80%;
+    background: var(--border-primary);
+}
+
+.body-prest__prestamo__text__stepper::after {
+    width: calc(80% * var(--progreso, 0));
+    background: var(--brand-primary);
+}
+
+.body-prest__prestamo__text__stepper__paso {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.body-prest__prestamo__text__stepper__marcador {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--tamano-marcador);
+    height: var(--tamano-marcador);
+    transform: translate(-50%, -50%);
+    background: var(--bg-surface);
+}
+
+.body-prest__prestamo__text__stepper__label {
+    position: absolute;
+    padding: 2px 12px;
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border-radius: 20px;
+}
+
+.body-prest__prestamo__text__stepper__paso--arriba .body-prest__prestamo__text__stepper__label {
+    top: 0;
+}
+
+.body-prest__prestamo__text__stepper__paso--abajo .body-prest__prestamo__text__stepper__label {
+    bottom: 0;
+}
+
+.body-prest__prestamo__text__eventos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 12px;
+}
+
+.body-prest__prestamo__text__eventos__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.body-prest__prestamo__text__eventos__fecha {
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+.body-prest__prestamo__text__icono {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.body-prest__prestamo__text__duracion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 6px;
+    font-size: var(--font-size-sm);
+}
+
+.body-prest__prestamo__text__fila {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 12px;
+}
+
+.body-prest__prestamo__text__chip {
+    padding: 2px 14px;
+    font-size: var(--font-size-sm);
+    color: var(--brand-primary);
+    background: var(--bg-primary);
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .body-prest__prestamo {
+        grid-template-columns: 1fr;
+    }
+
+    .body-prest__prestamo__aside {
+        max-width: 240px;
+        margin: 0 auto;
+    }
+}

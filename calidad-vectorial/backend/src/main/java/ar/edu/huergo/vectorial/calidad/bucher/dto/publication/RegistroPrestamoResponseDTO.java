@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 public class RegistroPrestamoResponseDTO {
 
+    // Id del regisro de préstamo
+    private Long id;
+
     // Fecha del registro de préstamo
     private LocalDate fechaPrestamo;
 

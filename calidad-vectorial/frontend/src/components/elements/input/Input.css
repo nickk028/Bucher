@@ -95,7 +95,7 @@
 }
 
 .input-group__input--medio {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     resize: none;
     height: 100px;
     padding-top: 5px;
