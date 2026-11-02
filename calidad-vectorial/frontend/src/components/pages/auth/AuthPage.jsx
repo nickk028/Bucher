@@ -210,6 +210,8 @@ export const AuthPage = () => {
                             </Button>
                         </form>
 
+                        <div className='auth-page__o'>o</div>
+
                         <div className='auth-page__google'>
                             <GoogleLoginButton
                                 onSuccess={() => navigate('/index')}

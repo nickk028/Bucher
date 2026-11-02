@@ -51,7 +51,7 @@
 .body-sobre-nosotros__hero__image {
     width: 60%;
     height: 100%;
-    background-image: url('../../../assets/img/estanteria.jpg');
+    background-image: url('../../../assets/img/fondos/estanteria.jpg');
     background-size: cover;
     background-position: center;
     clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);

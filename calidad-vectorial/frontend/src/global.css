@@ -27,6 +27,7 @@
     --bg-primary: var(--blanco);
     --bg-surface: var(--blanco-puro);
     --bg-accent: var(--verde-claro);
+    --bg-book: #f3ecd7;
 
     /* Bordes */
     --border-primary: var(--gris-claro);

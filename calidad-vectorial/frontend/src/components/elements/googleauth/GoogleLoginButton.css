@@ -15,7 +15,7 @@
     padding: 10px;
     border: 2px solid #8d8465;
     border-radius: 5px;
-    background: linear-gradient(to bottom, #f8eed0 60%, #8d8465 210%);
+    background: linear-gradient(to bottom, var(--bg-book) 60%, #8d8465 210%);
     background-size: 150% 150%;
     background-position: bottom;
     color: #3c4043;
