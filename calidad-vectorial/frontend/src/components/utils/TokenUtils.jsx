@@ -2,6 +2,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { Layout } from '../../layouts/Layout';
 import { AdminLayout } from '../../layouts/AdminLayout';
+import { NotFound } from '../pages/errors/notfound/NotFound';
 
 const AuthContext = createContext({ roles: [], username: null });
 export const useAuth = () => useContext(AuthContext);
