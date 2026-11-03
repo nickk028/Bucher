@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { GlobalProvider } from './context/GlobalProvider';
 
+import { ProtectedRoute } from './components/utils/TokenUtils';
+import { AdminRoute } from './components/utils/TokenUtils';
 import { AuthPage } from './components/pages/auth/AuthPage';
 import { SobreNosotros } from './components/pages/aboutus/SobreNosotros';
 import { Index } from './components/pages/index/Index';
@@ -10,7 +12,6 @@ import { ComentariosSocial } from './components/pages/socialcoments/ComentariosS
 import { Publicacion } from './components/pages/publication/Publicacion';
 import { LibroUsuario } from './components/pages/user/bookshelf/bookuser/LibroUsuario';
 import { PublicacionUsuario } from './components/pages/user/userpublication/PublicacionUsuario';
-import { ProtectedRoute } from './components/utils/TokenUtils';
 import { Tendencias } from './components/pages/tendences/Tendencias';
 import { Biblioteca } from './components/pages/bookshelf/Biblioteca';
 import { CrearPrestamo } from './components/pages/create/prestamo/CrearPrestamo';
@@ -56,6 +57,10 @@ export const App = () => {
                         <Route path="/libros/:id" element={<Libro />} />
                         <Route path="/prestamo-activo/:id" element={<PrestamoActivo />} />
                         <Route path="/usuario" element={<Usuario />} />
+
+                        <Route element={<AdminRoute />}>
+                            <Route path="/admin" />
+                        </Route>
                     </Route>
                 </Routes>
             </Router>

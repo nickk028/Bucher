@@ -12,6 +12,8 @@ import jakarta.validation.Valid;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -133,7 +135,7 @@ public class AuthController {
      * @return 200 si el token es válido, 401 si no.
      */
     @GetMapping("/validar-token")
-    public ResponseEntity<String> validateToken(HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> validateToken(HttpServletRequest request) {
         String token = null;
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
@@ -147,19 +149,28 @@ public class AuthController {
         if (token == null) {
             return ResponseEntity.status(401)
                 .header("Cache-Control", "no-store")
-                .body("Token inválido");
+                .body(Map.of("message", "Token inválido"));
         }
         try {
-            if (jwtTokenService.esTokenValido(token, usuarioService.getUserDetailsActual())) {
-                return ResponseEntity.ok().header("Cache-Control", "no-store").body("Token válido");
+            UserDetails userDetails = usuarioService.getUserDetailsActual();
+            if (userDetails != null && jwtTokenService.esTokenValido(token, userDetails)) {
+                Set<String> roles = userDetails
+                    .getAuthorities()
+                    .stream()
+                    .map((a) -> a.getAuthority().replace("ROLE_", ""))
+                    .collect(Collectors.toSet());
+
+                return ResponseEntity.ok()
+                    .header("Cache-Control", "no-store")
+                    .body(Map.of("username", userDetails.getUsername(), "roles", roles));
             }
             return ResponseEntity.status(401)
                 .header("Cache-Control", "no-store")
-                .body("Token inválido");
+                .body(Map.of("message", "Token inválido"));
         } catch (Exception e) {
             return ResponseEntity.status(401)
                 .header("Cache-Control", "no-store")
-                .body("Token inválido");
+                .body(Map.of("message", "Token inválido"));
         }
     }
 

@@ -31,23 +31,21 @@
     transform: scale(0.58);
 }
 
-.header__nav__item__bucher {
+.header__nav__item div {
     position: relative;
     width: 100%;
     height: 100%;
-    background-image: url('../../../assets/img/logos/logoBucher.png');
     background-size: contain;
     z-index: 1;
     transition: all 200ms ease-in-out;
 }
 
+.header__nav__item__bucher {
+    background-image: url('../../../assets/img/logos/logoBucher.png');
+}
+
 .header__nav__item__prestamos {
-    position: relative;
-    width: 100%;
-    height: 100%;
     background-image: url('../../../assets/img/logos/logoPrestamosClaro.png');
-    background-size: contain;
-    transition: all 200ms ease-in-out;
 }
 
 .header__nav__item__prestamos--selected,
@@ -56,13 +54,7 @@
 }
 
 .header__nav__item__comentario-social {
-    position: relative;
-    width: 100%;
-    height: 100%;
     background-image: url('../../../assets/img/logos/logoComentarioSocialClaro.png');
-    background-size: contain;
-    z-index: 1;
-    transition: all 200ms ease-in-out;
 }
 
 .header__nav__item__comentario-social--selected,
@@ -71,13 +63,7 @@
 }
 
 .header__nav__item__biblioteca {
-    position: relative;
-    width: 100%;
-    height: 100%;
     background-image: url('../../../assets/img/logos/logoBibliotecaClaro.png');
-    background-size: contain;
-    z-index: 1;
-    transition: all 200ms ease-in-out;
 }
 
 .header__nav__item__biblioteca--selected,
@@ -86,13 +72,7 @@
 }
 
 .header__nav__item__crear {
-    position: relative;
-    width: 100%;
-    height: 100%;
     background-image: url('../../../assets/img/logos/logoCrearClaro.png');
-    background-size: contain;
-    z-index: 1;
-    transition: all 200ms ease-in-out;
 }
 
 .header__nav__item__crear--selected,
@@ -101,13 +81,7 @@
 }
 
 .header__nav__item__tendencias {
-    position: relative;
-    width: 100%;
-    height: 100%;
     background-image: url('../../../assets/img/logos/logoTendenciasClaro.png');
-    background-size: contain;
-    z-index: 1;
-    transition: all 200ms ease-in-out;
 }
 
 .header__nav__item__tendencias--selected,
@@ -116,16 +90,22 @@
 }
 
 .header__nav__item__configuracion {
-    position: relative;
-    width: 100%;
-    height: 100%;
     background-image: url('../../../assets/img/logos/logoConfiguracionClaro.png');
-    background-size: contain;
-    z-index: 1;
-    transition: all 200ms ease-in-out;
 }
 
 .header__nav__item__configuracion--selected,
 .header__nav__item__configuracion:hover {
     background-image: url('../../../assets/img/logos/logoConfiguracionPintado.png');
+}
+
+.header__nav__item__grafico {
+    background-image: url('../../../assets/img/logos/logoGrafico.png');
+}
+
+.header__nav__item__usuarios {
+    background-image: url('../../../assets/img/logos/logoUsuarios.png');
+}
+
+.header__nav__item__carrito {
+    background-image: url('../../../assets/img/logos/logoCarrito.png');
 }
