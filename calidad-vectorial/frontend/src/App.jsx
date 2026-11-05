@@ -24,6 +24,7 @@ import { Libros } from './components/pages/books/Libros';
 import { Libro } from './components/pages/books/book/Libro';
 import { Usuario } from './components/pages/user/Usuario';
 import { PrestamoActivo } from './components/pages/loan/PrestamoActivo';
+import { PrestamosAdmin } from './components/pages/admin/prestamos/PrestamosAdmin';
 import { NotFound } from './components/pages/errors/notfound/NotFound';
 
 export const App = () => {
@@ -58,6 +59,7 @@ export const App = () => {
 
                         <Route element={<AdminRoute />}>
                             <Route path="/admin" />
+                            <Route path="/admin/prestamos" element={<PrestamosAdmin />} />
                         </Route>
                     </Route>
                 </Routes>

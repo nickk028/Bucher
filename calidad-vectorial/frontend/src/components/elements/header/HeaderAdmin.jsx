@@ -35,7 +35,7 @@ export const HeaderAdmin = () => {
                     />
                 </Link>
 
-                <Link className="header__nav__item" to="#">
+                <Link className="header__nav__item" to="/admin/prestamos">
                     <div
                         alt="Logo de Biblioteca"
                         className={`header__nav__item__biblioteca header__nav__item__biblioteca--${click == '/#' ? 'selected' : ''}`}
