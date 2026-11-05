@@ -10,8 +10,6 @@ import { Index } from './components/pages/index/Index';
 import { Prestamos } from './components/pages/loans/Prestamos';
 import { ComentariosSocial } from './components/pages/socialcoments/ComentariosSocial';
 import { Publicacion } from './components/pages/publication/Publicacion';
-import { LibroUsuario } from './components/pages/user/bookshelf/bookuser/LibroUsuario';
-import { PublicacionUsuario } from './components/pages/user/userpublication/PublicacionUsuario';
 import { Tendencias } from './components/pages/tendences/Tendencias';
 import { Biblioteca } from './components/pages/bookshelf/Biblioteca';
 import { CrearPrestamo } from './components/pages/create/prestamo/CrearPrestamo';
