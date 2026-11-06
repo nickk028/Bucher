@@ -29,6 +29,7 @@ public class UsuarioMapper {
         }
 
         UsuarioResponseDTO usuarioDTO = new UsuarioResponseDTO();
+        usuarioDTO.setId(usuario.getId());
         usuarioDTO.setUsername(usuario.getUsername());
         usuarioDTO.setNickname(usuario.getNickname());
         usuarioDTO.setAvatar(usuario.getAvatar().getUrl());

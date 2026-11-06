@@ -1,0 +1,92 @@
+.body-usuarios-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 20px 40px 40px 40px;
+
+    font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+}
+
+.body-usuarios-admin__encabezado__titulo {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--brand-dark);
+}
+
+.body-usuarios-admin__encabezado__subtitulo {
+    font-size: var(--font-size-base);
+}
+
+.body-usuarios-admin__tabla {
+    overflow-x: auto;
+
+    background: var(--bg-surface);
+    border: var(--border-primary) solid 1px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.body-usuarios-admin__tabla__elemento {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.body-usuarios-admin__tabla__elemento th,
+.body-usuarios-admin__tabla__elemento td {
+    padding: 10px 15px;
+    white-space: nowrap;
+}
+
+.body-usuarios-admin__tabla__elemento__cabecera th {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+}
+
+.body-usuarios-admin__tabla__elemento__fila {
+    border-top: var(--border-primary) solid 1px;
+    font-size: var(--font-size-base);
+}
+
+.body-usuarios-admin__tabla__elemento__fila td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.body-usuarios-admin__tabla__elemento__fila__denuncias {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.body-usuarios-admin__tabla__elemento__fila__denuncias__punto {
+    width: 12px;
+    height: 12px;
+
+    border: solid 1px;
+    border-radius: 50%;
+}
+
+.body-usuarios-admin__tabla__elemento__fila__denuncias__punto--verde {
+    background: #d8f0d2;
+    border-color: #9bcf8f;
+}
+
+.body-usuarios-admin__tabla__elemento__fila__denuncias__punto--amarillo {
+    background: #fff1c9;
+    border-color: #e7c96d;
+}
+
+.body-usuarios-admin__tabla__elemento__fila__denuncias__punto--rojo {
+    background: var(--brand-red);
+    border-color: #d89a9a;
+}
+
+@media (max-width: 768px) {
+    .body-usuarios-admin {
+        padding: 20px;
+    }
+}

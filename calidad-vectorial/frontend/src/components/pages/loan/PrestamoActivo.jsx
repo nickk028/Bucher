@@ -38,7 +38,7 @@ export const PrestamoActivo = () => {
 
     const progreso = (PASOS_COMPLETADOS - 1) / (PASOS.length - 1);
 
-    return (        
+    return (
         <main className="body-prest">
             {dataRegistro && (
                 <article className="body-prest__prestamo">

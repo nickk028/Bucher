@@ -3,7 +3,7 @@ import ver from '../../../assets/img/icons/utils/ver.png';
 import esconder from '../../../assets/img/icons/utils/esconder.png';
 import './InputLibro.css';
 
-export const InputLibro = ({ children, variant, type, onBlur, ...props }) => {
+export const InputLibro = ({ children, variant, type, onBlur, onFocus, ...props }) => {
     const [showPassword, setShowPassword] = useState(false);
     const inputRef = useRef(null);
 

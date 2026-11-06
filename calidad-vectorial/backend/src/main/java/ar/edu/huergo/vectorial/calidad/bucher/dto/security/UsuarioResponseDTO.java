@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true) // Genera equals y hashCode incluyendo los campos de la clase padre
 public class UsuarioResponseDTO extends UsuarioDTO {
 
+    Long id;
     String nickname;
     String avatar;
 

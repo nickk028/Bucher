@@ -44,15 +44,15 @@ export const PrestamosAdmin = () => {
     };
 
     return (
-        <main className="body-usuarios">
-            <nav className="body-usuarios__filtros" aria-label="Filtrar préstamos por estado">
-                <span className="body-usuarios__filtros__titulo">Filtrar por:</span>
-                <ul className="body-usuarios__filtros__lista">
+        <main className="body-prestamos-admin">
+            <nav className="body-prestamos-admin__filtros" aria-label="Filtrar préstamos por estado">
+                <span className="body-prestamos-admin__filtros__titulo">Filtrar por:</span>
+                <ul className="body-prestamos-admin__filtros__lista">
                     {ESTADOS.map((estado) => (
-                        <li key={estado} className="body-usuarios__filtros__item">
+                        <li key={estado} className="body-prestamos-admin__filtros__item">
                             <button
                                 type="button"
-                                className={`body-usuarios__filtros__chip${estadoActivo === estado ? ' body-usuarios__filtros__chip--activo' : ''}`}
+                                className={`body-prestamos-admin__filtros__chip${estadoActivo === estado ? ' body-prestamos-admin__filtros__chip--activo' : ''}`}
                                 aria-pressed={estadoActivo === estado}
                                 onClick={() => alternarEstado(estado)}
                             >
@@ -60,10 +60,10 @@ export const PrestamosAdmin = () => {
                             </button>
                         </li>
                     ))}
-                    <li className="body-usuarios__filtros__item">
+                    <li className="body-prestamos-admin__filtros__item">
                         <button
                             type="button"
-                            className="body-usuarios__filtros__chip body-usuarios__filtros__chip--mas"
+                            className="body-prestamos-admin__filtros__chip body-prestamos-admin__filtros__chip--mas"
                             aria-label="Más filtros"
                         >
                             +
@@ -72,27 +72,27 @@ export const PrestamosAdmin = () => {
                 </ul>
             </nav>
 
-            <section className="body-usuarios__contenido">
-                <header className="body-usuarios__contenido__encabezado">
-                    <div className="body-usuarios__contenido__encabezado__texto">
-                        <h1 className="body-usuarios__contenido__encabezado__titulo">
+            <section className="body-prestamos-admin__contenido">
+                <header className="body-prestamos-admin__contenido__encabezado">
+                    <div className="body-prestamos-admin__contenido__encabezado__texto">
+                        <h1 className="body-prestamos-admin__contenido__encabezado__titulo">
                             Préstamos vigentes
                         </h1>
-                        <p className="body-usuarios__contenido__encabezado__subtitulo">
+                        <p className="body-prestamos-admin__contenido__encabezado__subtitulo">
                             Gestiona los préstamos activos.
                         </p>
                     </div>
 
-                    <div className="body-usuarios__contenido__encabezado__orden">
+                    <div className="body-prestamos-admin__contenido__encabezado__orden">
                         <label
-                            className="body-usuarios__contenido__encabezado__orden__etiqueta"
+                            className="body-prestamos-admin__contenido__encabezado__orden__etiqueta"
                             htmlFor="orden-prestamos"
                         >
                             Ordenar por
                         </label>
                         <select
                             id="orden-prestamos"
-                            className="body-usuarios__contenido__encabezado__orden__select"
+                            className="body-prestamos-admin__contenido__encabezado__orden__select"
                             value={orden}
                             onChange={(e) => setOrden(e.target.value)}
                         >
@@ -105,9 +105,9 @@ export const PrestamosAdmin = () => {
                     </div>
                 </header>
 
-                <div className="body-usuarios__contenido__tabla">
-                    <table className="body-usuarios__contenido__tabla__elemento">
-                        <thead className="body-usuarios__contenido__tabla__elemento__cabecera">
+                <div className="body-prestamos-admin__contenido__tabla">
+                    <table className="body-prestamos-admin__contenido__tabla__elemento">
+                        <thead className="body-prestamos-admin__contenido__tabla__elemento__cabecera">
                             <tr>
                                 <th>ID del préstamo</th>
                                 <th>Usuario</th>
@@ -121,7 +121,7 @@ export const PrestamosAdmin = () => {
                             {prestamosVisibles.map((prestamo) => (
                                 <tr
                                     key={prestamo.id}
-                                    className="body-usuarios__contenido__tabla__elemento__fila"
+                                    className="body-prestamos-admin__contenido__tabla__elemento__fila"
                                 >
                                     <td>
                                         N° {prestamo.id}
@@ -129,10 +129,10 @@ export const PrestamosAdmin = () => {
                                     <td>@{prestamo.usuarioNickname}</td>
                                     <td>{prestamo.titulo}</td>
                                     <td>
-                                        <span className="body-usuarios__contenido__tabla__elemento__fila__estado">
+                                        <span className="body-prestamos-admin__contenido__tabla__elemento__fila__estado">
                                             {prestamo.estadoPublicacion}
                                             <span
-                                                className={`body-usuarios__contenido__tabla__elemento__fila__estado__punto body-usuarios__contenido__tabla__elemento__fila__estado__punto--${COLOR_ESTADO[prestamo.estadoPublicacion] ?? 'verde'}`}
+                                                className={`body-prestamos-admin__contenido__tabla__elemento__fila__estado__punto body-prestamos-admin__contenido__tabla__elemento__fila__estado__punto--${COLOR_ESTADO[prestamo.estadoPublicacion] ?? 'verde'}`}
                                                 aria-hidden="true"
                                             />
                                         </span>
@@ -149,7 +149,7 @@ export const PrestamosAdmin = () => {
                     </table>
 
                     {prestamosVisibles.length === 0 && (
-                        <p className="body-usuarios__contenido__tabla__vacio">
+                        <p className="body-prestamos-admin__contenido__tabla__vacio">
                             No hay préstamos con el estado seleccionado.
                         </p>
                     )}
