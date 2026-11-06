@@ -40,8 +40,8 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
-	// MySQL driver
-	runtimeOnly 'com.mysql:mysql-connector-j'
+	// PostgreSQL driver
+	runtimeOnly 'org.postgresql:postgresql'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
