@@ -26,6 +26,7 @@ import { Usuario } from './components/pages/user/Usuario';
 import { PrestamoActivo } from './components/pages/loan/PrestamoActivo';
 import { PrestamosAdmin } from './components/pages/admin/prestamos/PrestamosAdmin';
 import { UsuariosAdmin } from './components/pages/admin/usuarios/UsuariosAdmin';
+import { PosteosAdmin } from './components/pages/admin/posteos/PosteosAdmin';
 import { NotFound } from './components/pages/errors/notfound/NotFound';
 
 export const App = () => {
@@ -62,6 +63,7 @@ export const App = () => {
                             <Route path="/admin" />
                             <Route path="/admin/prestamos" element={<PrestamosAdmin />} />
                             <Route path="/admin/usuarios" element={<UsuariosAdmin />} />
+                            <Route path="/admin/posteos" element={<PosteosAdmin />} />
                         </Route>
                     </Route>
                 </Routes>

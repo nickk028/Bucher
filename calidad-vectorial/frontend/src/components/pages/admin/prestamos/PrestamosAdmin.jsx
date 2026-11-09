@@ -23,23 +23,18 @@ const COLOR_ESTADO = {
     'Indefinido': 'rojo',
 };
 
-
 const COLUMNAS = [
     {
         clave: 'id',
         titulo: 'ID del préstamo',
-        render: (prestamo) => (
-            <>
-                N° <strong>{prestamo.id}</strong>
-            </>
-        ),
+        render: (prestamo) => `N° ${prestamo.id}`,
     },
     {
         clave: 'usuarioNickname',
         titulo: 'Usuario',
         render: (prestamo) => `@${prestamo.usuarioNickname}`,
     },
-    { clave: 'titulo', titulo: 'Libro' },
+    { clave: 'titulo', titulo: 'Libro', width: 30 },
     {
         clave: 'estadoPublicacion',
         titulo: 'Estado',
@@ -52,12 +47,10 @@ const COLUMNAS = [
     {
         clave: 'fechaEntrega',
         titulo: 'Fecha de entrega',
-        render: () => '2026-08-26',
     },
     {
         clave: 'fechaDevolucion',
         titulo: 'Fecha de devolución',
-        render: () => '2026-08-25',
     },
 ];
 

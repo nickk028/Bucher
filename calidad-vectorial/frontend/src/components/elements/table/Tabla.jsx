@@ -7,7 +7,12 @@ export const Tabla = ({ columnas, items, claveItem = 'id', mensajeVacio = 'No ha
                 <thead className="tabla__elemento__cabecera">
                     <tr>
                         {columnas.map((columna) => (
-                            <th key={columna.clave}>{columna.titulo}</th>
+                            <th
+                                key={columna.clave}
+                                style={{ width: `${columna.width ? columna.width + '%' : 'auto'}` }}
+                            >
+                                {columna.titulo}
+                            </th>
                         ))}
                     </tr>
                 </thead>
@@ -17,7 +22,6 @@ export const Tabla = ({ columnas, items, claveItem = 'id', mensajeVacio = 'No ha
                             {columnas.map((columna) => (
                                 <td
                                     key={columna.clave}
-                                    className={columna.negrita ? 'tabla__elemento__fila__celda--negrita' : ''}
                                 >
                                     {columna.render ? columna.render(item) : item[columna.clave]}
                                 </td>

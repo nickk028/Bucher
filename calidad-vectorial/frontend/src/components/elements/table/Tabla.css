@@ -11,6 +11,7 @@
     width: 100%;
     border-collapse: collapse;
     text-align: left;
+    table-layout: fixed;
 }
 
 .tabla__elemento th,
@@ -32,10 +33,9 @@
 .tabla__elemento__fila td {
     padding-top: 12px;
     padding-bottom: 12px;
-}
-
-.tabla__elemento__fila__celda--negrita {
-    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .tabla__vacio {

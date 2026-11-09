@@ -28,24 +28,24 @@ export const HeaderAdmin = () => {
                     />
                 </Link>
 
-                <Link className="header__nav__item" to="#">
+                <Link className="header__nav__item" to="/admin/posteos">
                     <div
                         alt="Logo de Comentario Social"
-                        className={`header__nav__item__comentario-social header__nav__item__comentario-social--${click == '/#' ? 'selected' : ''}`}
+                        className={`header__nav__item__comentario-social header__nav__item__comentario-social--${click == '/admin/posteos' ? 'selected' : ''}`}
                     />
                 </Link>
 
                 <Link className="header__nav__item" to="/admin/prestamos">
                     <div
                         alt="Logo de Biblioteca"
-                        className={`header__nav__item__biblioteca header__nav__item__biblioteca--${click == '/#' ? 'selected' : ''}`}
+                        className={`header__nav__item__biblioteca header__nav__item__biblioteca--${click == '/admin/prestamos' ? 'selected' : ''}`}
                     />
                 </Link>
 
                 <Link className="header__nav__item" to="/admin/usuarios">
                     <div
                         alt="Logo de Usuarios"
-                        className={`header__nav__item__usuarios header__nav__item__usuarios--${click == '/#' ? 'selected' : ''}`}
+                        className={`header__nav__item__usuarios header__nav__item__usuarios--${click == '/admin/usuarios' ? 'selected' : ''}`}
                     />
                 </Link>
 

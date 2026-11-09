@@ -1,11 +1,9 @@
 import './Indicador.css';
 
-export const Indicador = ({ children, color = 'verde', negrita = false }) => {
+export const Indicador = ({ children, color = 'verde'}) => {
     return (
         <span className="indicador">
-            <span className={`indicador__valor${negrita ? ' indicador__valor--negrita' : ''}`}>
-                {children}
-            </span>
+            {children}
             <span className={`indicador__punto indicador__punto--${color}`} aria-hidden="true" />
         </span>
     );

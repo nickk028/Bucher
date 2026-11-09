@@ -16,25 +16,21 @@ const COLUMNAS = [
     {
         clave: 'id',
         titulo: 'ID del usuario',
-        render: (usuario) => (
-            <>
-                N° <strong>{usuario.id}</strong>
-            </>
-        ),
+        render: (usuario) => `N° ${usuario.id}`,
     },
     {
         clave: 'nickname',
         titulo: 'Usuario',
         render: (usuario) => `@${usuario.nickname}`,
     },
-    { clave: 'username', titulo: 'Correo' },
-    { clave: 'publicaciones', titulo: 'Publicaciones', negrita: true },
-    { clave: 'posteos', titulo: 'Posteos', negrita: true },
+    { clave: 'username', titulo: 'Correo', width: 25 },
+    { clave: 'publicaciones', titulo: 'Publicaciones'},
+    { clave: 'posteos', titulo: 'Posteos'},
     {
         clave: 'denuncias',
         titulo: 'Denuncias',
         render: (usuario) => (
-            <Indicador color={obtenerColorDenuncias(usuario.denuncias)} negrita>
+            <Indicador color={obtenerColorDenuncias(usuario.denuncias)}>
                 {usuario.denuncias}
             </Indicador>
         ),
