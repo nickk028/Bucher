@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react';
+import { Tabla } from '../../../elements/table/Tabla';
+import { Indicador } from '../../../elements/table/Indicador';
 import { useFetch } from '../../../utils/FetchUtils';
 import './PrestamosAdmin.css';
 
@@ -20,6 +22,44 @@ const COLOR_ESTADO = {
     'Devolucion_pendiente': 'amarillo',
     'Indefinido': 'rojo',
 };
+
+
+const COLUMNAS = [
+    {
+        clave: 'id',
+        titulo: 'ID del préstamo',
+        render: (prestamo) => (
+            <>
+                N° <strong>{prestamo.id}</strong>
+            </>
+        ),
+    },
+    {
+        clave: 'usuarioNickname',
+        titulo: 'Usuario',
+        render: (prestamo) => `@${prestamo.usuarioNickname}`,
+    },
+    { clave: 'titulo', titulo: 'Libro' },
+    {
+        clave: 'estadoPublicacion',
+        titulo: 'Estado',
+        render: (prestamo) => (
+            <Indicador color={COLOR_ESTADO[prestamo.estadoPublicacion] ?? 'verde'}>
+                {prestamo.estadoPublicacion}
+            </Indicador>
+        ),
+    },
+    {
+        clave: 'fechaEntrega',
+        titulo: 'Fecha de entrega',
+        render: () => '2026-08-26',
+    },
+    {
+        clave: 'fechaDevolucion',
+        titulo: 'Fecha de devolución',
+        render: () => '2026-08-25',
+    },
+];
 
 export const PrestamosAdmin = () => {
     const [estadoActivo, setEstadoActivo] = useState(null);
@@ -106,53 +146,11 @@ export const PrestamosAdmin = () => {
                 </header>
 
                 <div className="body-prestamos-admin__contenido__tabla">
-                    <table className="body-prestamos-admin__contenido__tabla__elemento">
-                        <thead className="body-prestamos-admin__contenido__tabla__elemento__cabecera">
-                            <tr>
-                                <th>ID del préstamo</th>
-                                <th>Usuario</th>
-                                <th>Libro</th>
-                                <th>Estado</th>
-                                <th>Fecha de entrega</th>
-                                <th>Fecha de devolución</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {prestamosVisibles.map((prestamo) => (
-                                <tr
-                                    key={prestamo.id}
-                                    className="body-prestamos-admin__contenido__tabla__elemento__fila"
-                                >
-                                    <td>
-                                        N° {prestamo.id}
-                                    </td>
-                                    <td>@{prestamo.usuarioNickname}</td>
-                                    <td>{prestamo.titulo}</td>
-                                    <td>
-                                        <span className="body-prestamos-admin__contenido__tabla__elemento__fila__estado">
-                                            {prestamo.estadoPublicacion}
-                                            <span
-                                                className={`body-prestamos-admin__contenido__tabla__elemento__fila__estado__punto body-prestamos-admin__contenido__tabla__elemento__fila__estado__punto--${COLOR_ESTADO[prestamo.estadoPublicacion] ?? 'verde'}`}
-                                                aria-hidden="true"
-                                            />
-                                        </span>
-                                    </td>
-                                    <td>
-                                        {'2026-08-26'}
-                                    </td>
-                                    <td>
-                                        {'2026-08-25'}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-
-                    {prestamosVisibles.length === 0 && (
-                        <p className="body-prestamos-admin__contenido__tabla__vacio">
-                            No hay préstamos con el estado seleccionado.
-                        </p>
-                    )}
+                    <Tabla
+                        columnas={COLUMNAS}
+                        items={prestamosVisibles}
+                        mensajeVacio="No hay préstamos con el estado seleccionado."
+                    />
                 </div>
             </section>
         </main>

@@ -1,0 +1,45 @@
+.tabla {
+    overflow-x: auto;
+
+    background: var(--bg-surface);
+    border: var(--border-primary) solid 1px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.tabla__elemento {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabla__elemento th,
+.tabla__elemento td {
+    padding: 10px 15px;
+    white-space: nowrap;
+}
+
+.tabla__elemento__cabecera th {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+}
+
+.tabla__elemento__fila {
+    border-top: var(--border-primary) solid 1px;
+    font-size: var(--font-size-base);
+}
+
+.tabla__elemento__fila td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.tabla__elemento__fila__celda--negrita {
+    font-weight: 600;
+}
+
+.tabla__vacio {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+}

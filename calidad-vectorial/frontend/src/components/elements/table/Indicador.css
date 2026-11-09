@@ -1,0 +1,32 @@
+.indicador {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.indicador__valor--negrita {
+    font-weight: 600;
+}
+
+.indicador__punto {
+    width: 12px;
+    height: 12px;
+
+    border: solid 1px;
+    border-radius: 50%;
+}
+
+.indicador__punto--verde {
+    background: #d8f0d2;
+    border-color: #9bcf8f;
+}
+
+.indicador__punto--amarillo {
+    background: #fff1c9;
+    border-color: #e7c96d;
+}
+
+.indicador__punto--rojo {
+    background: var(--brand-red);
+    border-color: #d89a9a;
+}
