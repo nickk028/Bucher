@@ -36,7 +36,7 @@ public record RegistrarDTO(
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El nickname es obligatorio.")
     @NotNull(message = "El nickname es obligatorio.")
-    @Size(min = 3, max = 100, message = "El nickname debe tener entre 2 y 100 digitos.")
+    @Size(min = 3, max = 32, message = "El nickname debe tener entre 3 y 32 digitos.")
     String nickname,
 
     //Direccion
