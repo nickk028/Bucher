@@ -1,5 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.payment;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class PrecioHistoricoLibroResponseDTO {
 
     // Precio registrado
-    private double precio;
+    private BigDecimal precio;
 
     // Fecha en la que se modificó el precio
     private LocalDate fechaModificacion;

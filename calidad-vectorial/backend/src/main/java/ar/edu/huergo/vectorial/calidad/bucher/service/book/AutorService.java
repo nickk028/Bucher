@@ -54,7 +54,7 @@ public class AutorService {
             .findByUsuario(usuario)
             .orElseGet(() -> {
                 Autor autor = new Autor(
-                    usuario.getNickname(),
+                    generarNombreUnico(usuario.getNickname()),
                     usuario.getDescripcion(),
                     null,
                     usuario.getAvatar().getUrl()
@@ -62,5 +62,19 @@ public class AutorService {
                 autor.setUsuario(usuario);
                 return autorRepository.save(autor);
             });
+    }
+
+    /**
+     * Genera un nombre de autor único a partir de un nombre base, agregando un sufijo numérico de dos dígitos si ya existe.
+     * @param nombreBase El nombre sugerido para el autor
+     * @return Un nombre de autor disponible en la base de datos
+     */
+    private String generarNombreUnico(String nombreBase) {
+        String nombre = nombreBase;
+        int contador = 1;
+        while (autorRepository.existsByNombreIgnoringCase(nombre)) {
+            nombre = nombreBase + String.format("%02d", contador++);
+        }
+        return nombre;
     }
 }

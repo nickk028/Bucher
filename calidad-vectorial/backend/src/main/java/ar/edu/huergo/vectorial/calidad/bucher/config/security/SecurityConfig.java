@@ -65,7 +65,7 @@ public class SecurityConfig {
                     .hasAnyRole("ADMIN", "LECTOR")
                     .requestMatchers(HttpMethod.PUT, "/usuario/modificar")
                     .hasAnyRole("ADMIN", "LECTOR")
-                    .requestMatchers(HttpMethod.GET, "/usuario/modificar/rol")
+                    .requestMatchers(HttpMethod.PUT, "/usuario/modificar/rol")
                     .hasRole("ADMIN")
 
                     // Publicacion
@@ -113,9 +113,9 @@ public class SecurityConfig {
                     .hasAnyRole("ADMIN", "LECTOR")
 
                     // MedioPago
-                    .requestMatchers(HttpMethod.GET, "/medioPago/**")
+                    .requestMatchers(HttpMethod.GET, "/medio-pago/**")
                     .hasAnyRole("ADMIN", "LECTOR")
-                    .requestMatchers(HttpMethod.POST, "/medioPago/**")
+                    .requestMatchers(HttpMethod.POST, "/medio-pago/**")
                     .hasRole("ADMIN")
 
                     .anyRequest()
