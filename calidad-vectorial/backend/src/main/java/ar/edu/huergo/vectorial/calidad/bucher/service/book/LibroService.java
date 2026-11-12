@@ -2,11 +2,15 @@ package ar.edu.huergo.vectorial.calidad.bucher.service.book;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.payment.PrecioHistoricoLibro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
-import ar.edu.huergo.vectorial.calidad.bucher.service.payment.PrecioHistoricoService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.payment.PrecioHistoricoLibroService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 import jakarta.persistence.EntityNotFoundException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 //Clase que maneja la lógica de Libro
 @Service
@@ -30,7 +35,16 @@ public class LibroService {
     RegistroPrestamoService registroPrestamoService;
 
     @Autowired
-    PrecioHistoricoService precioHistoricoService;
+    PrecioHistoricoLibroService precioHistoricoLibroService;
+
+    @Autowired
+    UsuarioService usuarioService;
+
+    @Autowired
+    AutorService autorService;
+
+    @Autowired
+    EditorialService editorialService;
 
     /**
      * Obtiene todos los libros disponibles
@@ -124,31 +138,51 @@ public class LibroService {
     }
 
     /**
-     * Guarda un nuevo libro creado por un escritor
+     * Guarda un nuevo libro creado por un usuario, asociándolo al autor del usuario y a la editorial propia
+     * @param libro El libro a crear
+     * @param precioBase El precio inicial del libro
+     * @param username El username del usuario que crea el libro
      * @return El libro guardado en el repository
+     * @throws EntityNotFoundException No encuentra el Usuario
      */
-    public Libro crearLibro(Libro libro) {
+    @Transactional
+    public Libro crearLibro(Libro libro, BigDecimal precioBase, String username)
+        throws EntityNotFoundException {
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(username);
+
+        libro.setAutor(autorService.obtenerOCrearAutorDeUsuario(usuario));
+        libro.setEditorial(editorialService.obtenerEditorialPropia());
         libro.setFechaPublicacion(LocalDate.now());
+        libro.setCalificacion(0);
+
         Libro libroCreado = libroRepository.save(libro);
-        precioHistoricoService.crearPrecioHistorico(libroCreado, libroCreado.getPrecio());
+        precioHistoricoLibroService.crearPrecioHistorico(libroCreado, precioBase);
 
         return libroCreado;
     }
 
     /**
-     * Modifica el precio de un libro y genera un nuevo registro en su historial de precios
+     * Modifica el precio de un libro generando un nuevo registro en su historial de precios
      * @param id El ID del libro a modificar
      * @param nuevoPrecio El nuevo precio del libro
-     * @return El libro con el precio actualizado
+     * @return El nuevo registro de precio histórico
      * @throws EntityNotFoundException Si no existe un libro con el ID indicado
+     * @throws IllegalArgumentException Si el precio es igual al actual, o si es 0 en un libro que no es propio de los usuarios
      */
-    public Libro modificarPrecioLibro(Long id, double nuevoPrecio) throws EntityNotFoundException {
+    public PrecioHistoricoLibro modificarPrecioLibro(Long id, BigDecimal nuevoPrecio)
+        throws EntityNotFoundException {
         Libro libro = obtenerLibroPorId(id);
-        libro.setPrecio(nuevoPrecio);
+        BigDecimal precioActual = precioHistoricoLibroService.obtenerPrecioActual(libro);
 
-        Libro libroActualizado = libroRepository.save(libro);
-        precioHistoricoService.crearPrecioHistorico(libroActualizado, nuevoPrecio);
+        if (precioActual != null && precioActual.compareTo(nuevoPrecio) == 0) {
+            throw new IllegalArgumentException("El nuevo precio no puede ser igual al precio actual");
+        }
+        if (nuevoPrecio.signum() == 0 && !editorialService.esEditorialPropia(libro.getEditorial())) {
+            throw new IllegalArgumentException(
+                "Solo los libros propios de los usuarios pueden tener precio 0"
+            );
+        }
 
-        return libroActualizado;
+        return precioHistoricoLibroService.crearPrecioHistorico(libro, nuevoPrecio);
     }
 }

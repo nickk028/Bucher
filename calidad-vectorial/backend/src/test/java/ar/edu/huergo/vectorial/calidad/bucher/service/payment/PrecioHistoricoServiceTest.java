@@ -17,7 +17,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.payment.PrecioHistorico;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
-import ar.edu.huergo.vectorial.calidad.bucher.repository.payment.PrecioHistoricoRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.payment.PrecioHistoricoLibroRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,10 +38,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class PrecioHistoricoServiceTest {
 
     @Mock
-    private PrecioHistoricoRepository precioHistoricoRepository;
+    private PrecioHistoricoLibroRepository precioHistoricoRepository;
 
     @InjectMocks
-    private PrecioHistoricoService precioHistoricoService;
+    private PrecioHistoricoLibroService precioHistoricoService;
 
     private Autor autorEjemplo;
     private Editorial editorialEjemplo;

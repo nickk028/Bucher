@@ -7,7 +7,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.AutorRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.EditorialRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
-import ar.edu.huergo.vectorial.calidad.bucher.service.payment.PrecioHistoricoService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.payment.PrecioHistoricoLibroService;
 import java.util.HashSet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
@@ -24,7 +24,7 @@ public class LibroSeeder implements Seeder {
     private final LibroRepository libroRepository;
     private final AutorRepository autorRepository;
     private final EditorialRepository editorialRepository;
-    private final PrecioHistoricoService precioHistoricoService;
+    private final PrecioHistoricoLibroService precioHistoricoLibroService;
 
     @Override
     public void ejecutar() {
@@ -48,13 +48,12 @@ public class LibroSeeder implements Seeder {
         libro.setCalificacion(seed.calificacion());
         libro.setFechaPublicacion(seed.fechaPublicacion());
         libro.setUrlFoto(seed.urlFoto());
-        libro.setPrecio(seed.precio());
         libro.setCategoria(new HashSet<>(seed.categorias()));
         libro.setEditorial(buscarEditorial(seed.editorial()));
         libro.setAutor(buscarAutor(seed.autor()));
 
         Libro libroGuardado = libroRepository.save(libro);
-        precioHistoricoService.crearPrecioHistorico(libroGuardado, libroGuardado.getPrecio());
+        precioHistoricoLibroService.crearPrecioHistorico(libroGuardado, seed.precio());
     }
 
     private Autor buscarAutor(String nombre) {

@@ -1,6 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.entity.book;
 
-import ar.edu.huergo.vectorial.calidad.bucher.entity.payment.PrecioHistorico;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.payment.PrecioHistoricoLibro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -22,6 +22,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity // Marca la clase como una entidad de JPA
 @Data // Genera getters, setters, toString, equals y hashCode
@@ -70,7 +72,7 @@ public class Libro {
 
     // Calificación del libro
     @Column(nullable = false)
-    @Positive(message = "La calificación debe ser mayor a 0.")
+    @PositiveOrZero(message = "La calificación debe ser 0 o mayor.")
     @Min(0)
     @Max(100)
     private int calificacion;
@@ -83,11 +85,6 @@ public class Libro {
     // URL de la foto del libro
     @Column(nullable = true)
     private String urlFoto;
-
-    // Precio del libro
-    @Column(nullable = false)
-    @Positive(message = "El precio debe ser mayor a 0.")
-    private double precio;
 
     // Categoría del libro
     @NotNull(message = "La categoria es obligatoria.")
@@ -102,19 +99,23 @@ public class Libro {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "editorial_id", nullable = false)
     @NotNull(message = "La editorial es obligatoria.")
+    @ToString.Exclude // Evita la recursión infinita en toString con Editorial
     private Editorial editorial;
 
     // Autor del libro
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "autor_id", nullable = false)
     @NotNull(message = "El autor es obligatoria.")
+    @ToString.Exclude // Evita la recursión infinita en toString con Autor
     private Autor autor;
 
     //Reacion 1 a muchos con Pubicaciones
     @OneToMany(mappedBy = "libro")
+    @ToString.Exclude // Evita la recursión infinita en toString con Publicacion
     private List<Publicacion> publicaciones = new ArrayList<>();
 
-    // Relación 1 a muchos con PrecioHistorico
+    // Relación 1 a muchos con PrecioHistoricoLibro
     @OneToMany(mappedBy = "libro")
-    private List<PrecioHistorico> preciosHistoricos = new ArrayList<>();
+    @ToString.Exclude // Evita la recursión infinita en toString con PrecioHistoricoLibro
+    private List<PrecioHistoricoLibro> preciosHistoricos = new ArrayList<>();
 }

@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.book;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Autor;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.AutorRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
@@ -41,5 +42,25 @@ public class AutorService {
      */
     public Autor crearAutor(Autor autor) {
         return autorRepository.save(autor);
+    }
+
+    /**
+     * Obtiene el autor asociado a un usuario, creándolo con los datos del usuario si no existe
+     * @param usuario El usuario del cual obtener el autor
+     * @return El autor asociado al usuario
+     */
+    public Autor obtenerOCrearAutorDeUsuario(Usuario usuario) {
+        return autorRepository
+            .findByUsuario(usuario)
+            .orElseGet(() -> {
+                Autor autor = new Autor(
+                    usuario.getNickname(),
+                    usuario.getDescripcion(),
+                    null,
+                    usuario.getAvatar().getUrl()
+                );
+                autor.setUsuario(usuario);
+                return autorRepository.save(autor);
+            });
     }
 }
