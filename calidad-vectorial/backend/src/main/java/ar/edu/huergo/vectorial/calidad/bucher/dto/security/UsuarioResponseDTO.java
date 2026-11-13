@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.security;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.bookuser.LibroUsuarioResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.subscription.SuscripcionActivaResponseDTO;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,4 +25,6 @@ public class UsuarioResponseDTO extends UsuarioDTO {
     String codigoPostal;
 
     List<LibroUsuarioResponseDTO> librosUsuario;
+
+    SuscripcionActivaResponseDTO suscripcionActiva;
 }

@@ -2,6 +2,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.service.book;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Editorial;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.book.EditorialRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,20 +10,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class EditorialService {
 
-    // Nombre de la editorial propia de los libros creados por los usuarios
-    public static final String NOMBRE_EDITORIAL_PROPIA = "Bücher";
+    // Id de la editorial propia de los libros creados por los usuarios, cargada por seed
+    public static final Long ID_EDITORIAL_PROPIA = 1L;
 
     @Autowired
     private EditorialRepository editorialRepository;
 
     /**
-     * Obtiene la editorial propia de los libros creados por los usuarios, creándola si no existe
+     * Obtiene la editorial propia de los libros creados por los usuarios
      * @return La editorial propia
+     * @throws EntityNotFoundException Si no se encuentra la editorial propia
      */
-    public Editorial obtenerEditorialPropia() {
+    public Editorial obtenerEditorialPropia() throws EntityNotFoundException {
         return editorialRepository
-            .findByNombreIgnoringCase(NOMBRE_EDITORIAL_PROPIA)
-            .orElseGet(() -> editorialRepository.save(new Editorial(NOMBRE_EDITORIAL_PROPIA, null)));
+            .findById(ID_EDITORIAL_PROPIA)
+            .orElseThrow(() -> new EntityNotFoundException("Editorial propia no encontrada"));
     }
 
     /**
@@ -31,6 +33,6 @@ public class EditorialService {
      * @return true si es la editorial propia, false en caso contrario
      */
     public boolean esEditorialPropia(Editorial editorial) {
-        return editorial != null && NOMBRE_EDITORIAL_PROPIA.equalsIgnoreCase(editorial.getNombre());
+        return editorial != null && ID_EDITORIAL_PROPIA.equals(editorial.getId());
     }
 }

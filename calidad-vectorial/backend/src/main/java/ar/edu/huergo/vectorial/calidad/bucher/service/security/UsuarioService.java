@@ -5,6 +5,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.service.subscription.RegistroSuscripcionService;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +29,8 @@ public class UsuarioService {
     private final PasswordEncoder passwordEncoder;
     // Repositorio de Rol
     private final RolRepository rolRepository;
+    // Servicio de registros de suscripción
+    private final RegistroSuscripcionService registroSuscripcionService;
 
     /**
      * Método para obtener todos los usuarios
@@ -56,6 +60,7 @@ public class UsuarioService {
      * @return El usuario registrado
      * @throws IllegalArgumentException Si no existe el rol LECTOR al momento de asignarselo al usuario
      */
+    @Transactional
     public Usuario registrar(Usuario usuario, String password, String verificacionPassword) {
         if (!password.equals(verificacionPassword)) {
             throw new IllegalArgumentException("Las contraseñas no coinciden");
@@ -73,6 +78,7 @@ public class UsuarioService {
      * @param email El email verificado por Google, utilizado como username
      * @param nombreSugerido El nombre entregado por Google para sugerir el nickname
      */
+    @Transactional
     public void registrarUsuarioGoogle(String email, String nombreSugerido) {
         if (usuarioRepository.existsByUsername(email)) {
             return;
@@ -85,7 +91,7 @@ public class UsuarioService {
     }
 
     /**
-     * Asigna el rol LECTOR y el avatar por defecto a un usuario nuevo, y lo guarda.
+     * Asigna el rol LECTOR, el avatar por defecto y la suscripción gratuita a un usuario nuevo, y lo guarda.
      * @param usuario El usuario a completar y guardar
      * @return El usuario guardado
      * @throws IllegalArgumentException Si no existe el rol LECTOR
@@ -96,7 +102,10 @@ public class UsuarioService {
             .orElseThrow(() -> new IllegalArgumentException("Rol 'LECTOR' no encontrado"));
         usuario.setRoles(Set.of(rolCliente));
         usuario.setAvatar(getAvatarRandom());
-        return usuarioRepository.save(usuario);
+
+        Usuario usuarioGuardado = usuarioRepository.save(usuario);
+        registroSuscripcionService.asignarSuscripcionGratuita(usuarioGuardado);
+        return usuarioGuardado;
     }
 
     /**

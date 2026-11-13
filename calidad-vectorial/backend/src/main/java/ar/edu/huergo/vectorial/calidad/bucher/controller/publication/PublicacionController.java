@@ -13,6 +13,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.PublicacionMapp
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.subscription.RegistroSuscripcionService;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,9 @@ public class PublicacionController {
 
     @Autowired
     private RegistroPrestamoService registroPrestamoService;
+
+    @Autowired
+    private RegistroSuscripcionService registroSuscripcionService;
 
     /**
      * Obtiene todas las publicaciones
@@ -213,6 +217,11 @@ public class PublicacionController {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
         Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);
 
+        if (!registroSuscripcionService.puedePedirPrestado(usuario)) {
+            return ResponseEntity.unprocessableEntity().body(
+                "Tu suscripción no permite pedir más libros prestados"
+            );
+        }
         if (publicacion.getUsuario().equals(usuario)) {
             return ResponseEntity.unprocessableEntity().body(
                 "No se puede pedir un préstamo de una publicación propia"

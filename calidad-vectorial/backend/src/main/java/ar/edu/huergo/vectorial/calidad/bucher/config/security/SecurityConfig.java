@@ -118,6 +118,22 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.POST, "/medio-pago/**")
                     .hasRole("ADMIN")
 
+                    // Suscripcion
+                    .requestMatchers(HttpMethod.GET, "/suscripcion")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.POST, "/suscripcion/crear")
+                    .hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/suscripcion/**")
+                    .hasRole("ADMIN")
+
+                    // RegistroSuscripcion
+                    .requestMatchers(HttpMethod.GET, "/registro-suscripcion")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.GET, "/registro-suscripcion/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.POST, "/registro-suscripcion/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+
                     .anyRequest()
                     .authenticated()
             )

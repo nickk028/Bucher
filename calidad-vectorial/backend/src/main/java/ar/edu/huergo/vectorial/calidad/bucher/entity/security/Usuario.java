@@ -3,6 +3,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.security;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.subscription.RegistroSuscripcion;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,7 +39,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "usuarios")
-@EqualsAndHashCode(exclude = { "publicaciones", "prestamos", "librosUsuario" })
+@EqualsAndHashCode(exclude = { "publicaciones", "prestamos", "librosUsuario", "registrosSuscripcion" })
 public class Usuario {
 
     @Id //Id principal de la entidad
@@ -122,6 +123,10 @@ public class Usuario {
     // Relación 1 a muchos con LibroUsuario
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LibroUsuario> librosUsuario = new ArrayList<>();
+
+    // Relación 1 a muchos con RegistroSuscripcion
+    @OneToMany(mappedBy = "usuario")
+    private List<RegistroSuscripcion> registrosSuscripcion = new ArrayList<>();
 
     // Constructor
     public Usuario(String username, String password) {

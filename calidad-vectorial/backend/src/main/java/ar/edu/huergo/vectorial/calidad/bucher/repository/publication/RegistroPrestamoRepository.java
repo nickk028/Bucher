@@ -23,4 +23,9 @@ public interface RegistroPrestamoRepository extends JpaRepository<RegistroPresta
         Long id,
         Usuario usuario
     );
+    long countByUsuarioAndFechaPrestamoGreaterThanEqualAndFechaPrestamoLessThan(
+        Usuario usuario,
+        LocalDate fechaDesde,
+        LocalDate fechaHasta
+    );
 }
