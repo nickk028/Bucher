@@ -12,5 +12,6 @@
   { "nombre": "Plaza & Janés", "urlWikipedia": "https://es.wikipedia.org/wiki/Plaza_%26_Jan%C3%A9s" },
   { "nombre": "Titania", "urlWikipedia": "https://www.titania.org/" },
   { "nombre": "Nube de tinta", "urlWikipedia": "https://www.penguinrandomhousegrupoeditorial.com/sello/nube-de-tinta/" },
-  { "nombre": "Editorial Molino", "urlWikipedia": "https://es.wikipedia.org/wiki/Editorial_Molino" }
+  { "nombre": "Editorial Molino", "urlWikipedia": "https://es.wikipedia.org/wiki/Editorial_Molino" },
+    { "nombre": "George Allen & Unwin", "urlWikipedia": "https://en.wikipedia.org/wiki/Allen_%26_Unwin" }
 ]

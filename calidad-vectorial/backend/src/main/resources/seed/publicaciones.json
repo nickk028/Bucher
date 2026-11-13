@@ -48,12 +48,6 @@
     "limiteDias": 21
   },
   {
-    "usuario": "jlopez@gmail.com",
-    "libro": "La magia de ser Sofía",
-    "descripcion": "El libro está en buen estado general, con algún que otro detalle por el uso (como una esquina doblada o una marca leve en la tapa).",
-    "limiteDias": 21
-  },
-  {
     "usuario": "paulamartinez@gmail.com",
     "libro": "Bellas durmientes",
     "descripcion": "El libro está en buen estado. Todas las páginas están completas y se puede leer sin problema, a pesar de algunas anotaciones en los márgenes.",
@@ -77,18 +71,6 @@
     "descripcion": "Libro en buen estado, lectura recomendable!",
     "limiteDias": 28,
     "estadoPublicacion": "Prestado"
-  },
-  {
-    "usuario": "jrolando@gmail.com",
-    "libro": "Blackwater: La casa",
-    "descripcion": "El libro es excelente y está en muy buen estado.",
-    "limiteDias": 28
-  },
-  {
-    "usuario": "jrolando@gmail.com",
-    "libro": "Blackwater: Lluvia",
-    "descripcion": "Libro en muy buenas condiciones a pesar de las veces que fue leído, no presenta anotaciones pero sí hay algunas hojas con puntas dobladas.",
-    "limiteDias": 28
   },
   {
     "usuario": "jrolando@gmail.com",
