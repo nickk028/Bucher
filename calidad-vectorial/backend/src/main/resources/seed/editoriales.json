@@ -1,4 +1,5 @@
 [
+  { "nombre": "Bücher", "urlWikipedia": null },
   { "nombre": "Bloomsbury", "urlWikipedia": "https://es.wikipedia.org/wiki/Bloomsbury_Publishing" },
   { "nombre": "Doubleday", "urlWikipedia": "https://en.wikipedia.org/wiki/Doubleday_(publisher)" },
   { "nombre": "Editorial Planeta", "urlWikipedia": "https://es.wikipedia.org/wiki/Grupo_Planeta" },

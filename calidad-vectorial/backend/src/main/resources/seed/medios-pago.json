@@ -1,0 +1,4 @@
+[
+    { "nombre": "Sin pago", "porcentajeComision": 0 },
+    { "nombre": "Visa", "porcentajeComision": 3 }
+]

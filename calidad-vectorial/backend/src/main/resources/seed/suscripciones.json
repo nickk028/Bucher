@@ -1,0 +1,14 @@
+[
+  {
+    "nombre": "Plan Gratis",
+    "porcentajeCobertura": 0,
+    "limiteLibros": 0,
+    "precio": 0
+  },
+  {
+    "nombre": "Bücher+",
+    "porcentajeCobertura": 50,
+    "limiteLibros": 5,
+    "precio": 4999.00
+  }
+]
