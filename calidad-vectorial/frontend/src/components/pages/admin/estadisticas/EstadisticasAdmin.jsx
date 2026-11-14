@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { EstadisticasUsuarios } from '../../../elements/stadistics/EstadisticasUsuarios';
+import { EstadisticasPosteos } from '../../../elements/stadistics/EstadisticasPosteos';
+import { EstadisticasPrestamos } from '../../../elements/stadistics/EstadisticasPrestamos';
+import { EstadisticasLibros } from '../../../elements/stadistics/EstadisticasLibros';
+import { EstadisticasCanjes } from '../../../elements/stadistics/EstadisticasCanjes';
 
 import IconoUsuario from '../../../../assets/img/icons/estadisticas/IconoUsuario.svg?react';
 import IconoPosteo from '../../../../assets/img/icons/estadisticas/IconoPosteo.svg?react';
@@ -42,6 +46,14 @@ export const EstadisticasAdmin = () => {
                 </nav>
                 {pagina === 'Usuarios' ? (
                     <EstadisticasUsuarios />
+                ) : pagina === 'Posteos' ? (
+                    <EstadisticasPosteos />
+                ) : pagina === 'Préstamos' ? (
+                    <EstadisticasPrestamos />
+                ) : pagina === 'Libros' ? (
+                    <EstadisticasLibros />
+                ) : pagina === 'Canjes' ? (
+                    <EstadisticasCanjes />
                 ) : (
                     <div>Selecciona una pestaña para ver las estadísticas</div>
                 )}

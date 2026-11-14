@@ -12,7 +12,7 @@ export const GraficoCircular = ({ data, titulo }) => {
             <ResponsiveContainer width="100%" height="100%">
                 <RadialBarChart
                     data={[{ valor: porcentaje }]}
-                    innerRadius="56%"
+                    innerRadius="58%"
                     outerRadius="100%"
                     startAngle={90}
                     endAngle={-270}
