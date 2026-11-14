@@ -9,7 +9,7 @@ export const UsuarioPosteos = () => {
     } = useFetch('publicacionSocial');
 
     return (
-        <section className="usuario__content__libros">
+        <section className="biblioteca__contenedor__libros">
             {dataPosteos.map((posteo) => (
                 <ComentarioSocial
                     

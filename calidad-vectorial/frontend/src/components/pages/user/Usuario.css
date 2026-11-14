@@ -137,7 +137,7 @@
     border: var(--border-primary) solid 2px;
     border-radius: 8px;
 
-    padding: 10px;
+    padding: 5px;
 
     cursor: pointer;
 }
