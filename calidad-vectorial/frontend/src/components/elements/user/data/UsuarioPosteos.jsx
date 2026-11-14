@@ -1,5 +1,5 @@
-import { useFetch } from '../../../../utils/FetchUtils';
-import { ComentarioSocial } from '../../../social/ComentarioSocial';
+import { useFetch } from '../../../utils/FetchUtils';
+import { ComentarioSocial } from '../../social/ComentarioSocial';
 
 export const UsuarioPosteos = () => {
     const {

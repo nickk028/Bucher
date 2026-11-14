@@ -1,5 +1,5 @@
-import { useFetch } from '../../../../utils/FetchUtils';
-import PublicacionCard from '../../../publication/PublicacionCard';
+import { useFetch } from '../../../utils/FetchUtils';
+import PublicacionCard from '../../publication/PublicacionCard';
 
 export const UsuarioPrestamos = () => {
     const {

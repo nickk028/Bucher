@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { GraficoBarras } from '../../../elements/user/data/admin/GraficoBarras';
-import { GraficoTorta } from '../../../elements/user/data/admin/GraficoTorta';
-import { GraficoCircular } from '../../../elements/user/data/admin/GraficoCircular';
+import { GraficoBarras } from '../../../elements/charts/GraficoBarras';
+import { GraficoTorta } from '../../../elements/charts/GraficoTorta';
+import { GraficoCircular } from '../../../elements/charts/GraficoCircular';
 
 import IconoUsuario from '../../../../assets/img/icons/estadisticas/IconoUsuario.svg?react';
 import IconoPosteo from '../../../../assets/img/icons/estadisticas/IconoPosteo.svg?react';
