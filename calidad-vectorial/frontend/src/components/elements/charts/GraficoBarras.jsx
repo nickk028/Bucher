@@ -14,11 +14,12 @@ const COLORES_BARRAS = [
 
 const RADIO_PUNTAS = [8, 8, 0, 0];
 
-export const GraficoBarras = ({ data, claveEtiqueta = 'nombre', claveValor = 'valor' }) => {
+export const GraficoBarras = ({ data, claveEtiqueta = 'nombre', claveValor = 'valor', titulo }) => {
     return (
         <div className="grafico-barras">
             <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={data} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
+                <h3 className='grafico-barras__titulo'>{titulo}</h3>
+                <BarChart data={data} margin={{ top: 20, right: 10, bottom: -10, left: 0 }}>
                     <XAxis
                         dataKey={claveEtiqueta}
                         tickLine={false}

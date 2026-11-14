@@ -31,11 +31,12 @@ const EtiquetaPorcion = ({ cx, cy, midAngle, outerRadius, percent, name }) => {
     );
 };
 
-export const GraficoTorta = ({ data, claveEtiqueta = 'nombre', claveValor = 'valor' }) => {
+export const GraficoTorta = ({ data, claveEtiqueta = 'nombre', claveValor = 'valor', titulo }) => {
     return (
         <div className="grafico-torta">
+            <h3 className='grafico-torta__titulo'>{titulo}</h3>
             <ResponsiveContainer width="100%" height="100%">
-                <PieChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                <PieChart margin={{ top: 40, right: 20, bottom: 10, left: 20 }}>
                     <Pie
                         data={data}
                         dataKey={claveValor}

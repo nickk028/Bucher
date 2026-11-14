@@ -1,0 +1,73 @@
+.estadisticas-section {
+    padding: 15px;
+    border: var(--border-primary) 2px solid;
+    border-radius: 15px;
+    background-color: var(--bg-surface);
+}
+
+.estadisticas-section__titulo {
+    font-family: 'Hind Siliguri' , Arial, Helvetica, sans-serif;
+    font-size: var(--font-size-lg);
+    color: var(--brand-dark);
+}
+
+.estadisticas__fila {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.estadisticas__fila__contenedor {
+    border-radius: 15px;
+    border: var(--border-primary) 2px solid;
+    padding: 15px;
+    font-size: var(--font-size-base);
+}
+
+.estadisticas__fila__contenedor--bloque {
+    width: 180px;
+    height: 70px;
+}
+
+.estadisticas__fila__contenedor--barra {
+    width: 400px;
+    height: 240px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.estadisticas__fila__contenedor--torta {
+    width: 330px;
+    height: 240px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.estadisticas__fila__contenedor--circular {
+    width: 250px;
+    height: 180px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.estadisticas__fila__contenedor__titulo {
+    align-self: start;
+    font-size: var(--font-size-base);
+    font-weight: 400;
+}
+
+.estadisticas__fila__contenedor--bloque__contenido {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    justify-self: center;
+}

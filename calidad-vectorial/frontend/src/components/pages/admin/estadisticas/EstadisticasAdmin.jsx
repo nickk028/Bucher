@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { GraficoBarras } from '../../../elements/charts/GraficoBarras';
-import { GraficoTorta } from '../../../elements/charts/GraficoTorta';
-import { GraficoCircular } from '../../../elements/charts/GraficoCircular';
+import { EstadisticasUsuarios } from '../../../elements/stadistics/EstadisticasUsuarios';
 
 import IconoUsuario from '../../../../assets/img/icons/estadisticas/IconoUsuario.svg?react';
 import IconoPosteo from '../../../../assets/img/icons/estadisticas/IconoPosteo.svg?react';
@@ -63,9 +61,11 @@ export const EstadisticasAdmin = () => {
                         ))}
                     </ul>
                 </nav>
-                <div>
-                    
-                </div>
+                {pagina === 'Usuarios' ? (
+                    <EstadisticasUsuarios />
+                ) : (
+                    <div>Selecciona una pestaña para ver las estadísticas</div>
+                )}
             </main>
         );
 };

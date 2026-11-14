@@ -3,11 +3,12 @@ import './Grafico.css';
 
 const COLOR_PROGRESO = '#0E675F';
 
-export const GraficoCircular = ({ data }) => {
+export const GraficoCircular = ({ data, titulo }) => {
     const porcentaje = Math.min(Math.max(Number(data) || 0, 0), 100);
 
     return (
         <div className="grafico-circular">
+            <h3 className='grafico-circular__titulo'>{titulo}</h3>
             <ResponsiveContainer width="100%" height="100%">
                 <RadialBarChart
                     data={[{ valor: porcentaje }]}
