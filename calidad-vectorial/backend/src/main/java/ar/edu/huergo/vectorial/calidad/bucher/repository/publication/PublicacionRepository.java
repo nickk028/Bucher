@@ -27,4 +27,5 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Long> 
         LocalDate fechaCreacion
     );
     Optional<Publicacion> findByLibroTituloIgnoreCase(String libro);
+    long countByUsuarioId(long id);
 }

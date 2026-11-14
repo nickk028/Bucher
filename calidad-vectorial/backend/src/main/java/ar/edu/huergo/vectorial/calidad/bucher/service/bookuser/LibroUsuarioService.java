@@ -66,6 +66,12 @@ public class LibroUsuarioService {
         return libroUsuarioRepository.findByUsuarioIdAndEstadoLectura(usuario.getId(), estado);
     }
 
+    public long obtenerCantidadLibrosUsuarioPorUsuario(String username)
+        throws EntityNotFoundException {
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(username);
+        return libroUsuarioRepository.countByUsuarioId(usuario.getId());
+    }
+
     /**
      * Sube un nuevo LibroUsuario a la lista del Usuario
      * @param username El username del Usuario

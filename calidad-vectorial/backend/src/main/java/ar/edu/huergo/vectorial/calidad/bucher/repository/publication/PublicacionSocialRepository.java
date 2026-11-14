@@ -19,4 +19,5 @@ public interface PublicacionSocialRepository extends JpaRepository<PublicacionSo
         Usuario usuario,
         LocalDate fechaCreacion
     );
+    long countByUsuarioId(long id);
 }
