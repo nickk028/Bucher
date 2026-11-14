@@ -17,27 +17,6 @@ const SECCIONES = [
     {texto: 'Canjes', icono: IconoCanjes},
 ]
 
-// const data = [
-//     { nombre: 'Enero', valor: 72 },
-//     { nombre: 'Febrero', valor: 80 },
-//     { nombre: 'Marzo', valor: 59 },
-//     { nombre: 'Abril', valor: 59 },
-//     { nombre: 'Mayo', valor: 59 },
-//     { nombre: 'Junio', valor: 59 },
-//     { nombre: 'Julio', valor: 59 },
-//     { nombre: 'Agosto', valor: 59 },
-//     { nombre: 'Septiembre', valor: 59 },
-// ];
-
-// const data2 = [
-//     { nombre: 'Solicitados', valor: 14.7 },
-//     { nombre: 'Retirados', valor: 9 },
-//     { nombre: 'En revisión', valor: 31 },
-//     { nombre: 'A entregar', valor: 16 },
-//     { nombre: 'Entregado', valor: 7.5 },
-//     { nombre: 'A devolver', valor: 21.7 },
-// ];
-
 export const EstadisticasAdmin = () => {
     const [pagina, setPagina] = useState('Usuarios');
 
