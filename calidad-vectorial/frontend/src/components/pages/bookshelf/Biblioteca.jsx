@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import { LibroCard } from '../../elements/book/LibroCard';
 import { useFetch } from '../../utils/FetchUtils';
-import { UsuarioBiblioteca } from '../../elements/user/data/UsuarioBiblioteca';
+import { UsuarioBiblioteca } from '../../elements/user/data/usuario/UsuarioBiblioteca';
 import './Biblioteca.css';
 
 export const Biblioteca = () => {

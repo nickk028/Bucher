@@ -28,10 +28,12 @@
     --bg-surface: var(--blanco-puro);
     --bg-accent: var(--verde-claro);
     --bg-book: #f3ecd7;
+    --bg-secondary: #EAEAEA;
 
     /* Bordes */
     --border-primary: var(--gris-claro);
     --border-secondary: var(--gris-oscuro);
+    --border-tertiary: #CFCFCF;
 
     /* Marca */
     --brand-primary: var(--verde);

@@ -1,10 +1,10 @@
 import { useFetch } from '../../utils/FetchUtils';
 import { useState } from 'react';
 import PublicacionCard from '../../elements/publication/PublicacionCard';
-import { UsuarioBiblioteca } from '../../elements/user/data/UsuarioBiblioteca';
-import { UsuarioPosteos } from '../../elements/user/data/UsuarioPosteos';
-import { UsuarioPrestamos } from '../../elements/user/data/UsuarioPrestamos';
-import { UsuarioPrestamosActivos } from '../../elements/user/data/UsuarioPrestamosActivos';
+import { UsuarioBiblioteca } from '../../elements/user/data/usuario/UsuarioBiblioteca';
+import { UsuarioPosteos } from '../../elements/user/data/usuario/UsuarioPosteos';
+import { UsuarioPrestamos } from '../../elements/user/data/usuario/UsuarioPrestamos';
+import { UsuarioPrestamosActivos } from '../../elements/user/data/usuario/UsuarioPrestamosActivos';
 import './Usuario.css';
 
 export const Usuario = () => {
