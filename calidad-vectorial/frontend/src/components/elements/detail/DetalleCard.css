@@ -1,0 +1,108 @@
+.detalle-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 18px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-primary);
+    border-radius: 10px;
+}
+
+.detalle-card__titulo {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+}
+
+.detalle-card__stepper {
+    --alto-stepper: 70px;
+    --tamano-marcador: 14px;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--total-pasos, 5), 1fr);
+    height: var(--alto-stepper);
+    margin: 0 4px;
+}
+
+.detalle-card__stepper::before,
+.detalle-card__stepper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: calc(50% / var(--total-pasos, 5));
+    height: 1px;
+    transform: translateY(-50%);
+}
+
+.detalle-card__stepper::before {
+    width: calc(100% - 100% / var(--total-pasos, 5));
+    background: var(--border-primary);
+}
+
+.detalle-card__stepper::after {
+    width: calc((100% - 100% / var(--total-pasos, 5)) * var(--progreso, 0));
+    background: var(--brand-primary);
+}
+
+.detalle-card__paso {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.detalle-card__marcador {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--tamano-marcador);
+    height: var(--tamano-marcador);
+    transform: translate(-50%, -50%);
+    background: var(--bg-surface);
+}
+
+.detalle-card__label {
+    position: absolute;
+    padding: 2px 12px;
+    font-size: var(--font-size-base);
+    white-space: nowrap;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border-radius: 20px;
+}
+
+.detalle-card__paso--arriba .detalle-card__label {
+    top: 0;
+}
+
+.detalle-card__paso--abajo .detalle-card__label {
+    bottom: 0;
+}
+
+.detalle-card__label--completado {
+    background: var(--bg-accent);
+    color: var(--brand-primary);
+}
+
+.detalle-card__eventos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 12px;
+}
+
+.detalle-card__evento {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detalle-card__icono {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.detalle-card__fecha {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
