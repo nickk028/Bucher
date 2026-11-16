@@ -25,6 +25,7 @@ import { Libro } from './components/pages/books/book/Libro';
 import { Usuario } from './components/pages/user/Usuario';
 import { PrestamoActivo } from './components/pages/loan/PrestamoActivo';
 import { PrestamosAdmin } from './components/pages/admin/prestamos/PrestamosAdmin';
+import { DetallesPrestamo } from './components/pages/admin/detallesprestamos/DetallesPrestamo';
 import { UsuariosAdmin } from './components/pages/admin/usuarios/UsuariosAdmin';
 import { PosteosAdmin } from './components/pages/admin/posteos/PosteosAdmin';
 import { EstadisticasAdmin } from './components/pages/admin/estadisticas/EstadisticasAdmin';
@@ -62,6 +63,7 @@ export const App = () => {
 
                         <Route element={<AdminRoute />} path='/admin'>
                             <Route path="/admin/prestamos" element={<PrestamosAdmin />} />
+                            <Route path="/admin/prestamos/:id" element={<DetallesPrestamo />} />
                             <Route path="/admin/usuarios" element={<UsuariosAdmin />} />
                             <Route path="/admin/posteos" element={<PosteosAdmin />} />
                             <Route path="/admin/estadisticas" element={<EstadisticasAdmin />} />

@@ -28,6 +28,7 @@
 .tabla__elemento__fila {
     border-top: var(--border-primary) solid 1px;
     font-size: var(--font-size-base);
+    cursor: pointer;
 }
 
 .tabla__elemento__fila td {
