@@ -21,7 +21,7 @@ export const HeaderAdmin = () => {
                     />
                 </Link>
 
-                <Link className="header__nav__item" to="#">
+                <Link className="header__nav__item" to="/admin/estadisticas">
                     <div
                         alt="Logo de Estadísticas"
                         className={`header__nav__item__estadisticas header__nav__item__estadisticas--${click == '/#' ? 'selected' : ''}`}

@@ -25,6 +25,8 @@
     width: 100%;
     height: auto;
     display: block;
+    object-fit: cover;
+    aspect-ratio: 2 / 3;
 }
 
 .body-prest__prestamo__aside__botones {
@@ -51,7 +53,7 @@
 
 .body-prest__prestamo__text__author {
     margin-top: -12px;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     color: var(--text-primary);
 }
 
@@ -78,7 +80,7 @@
 
 .body-prest__prestamo__text__card__parrafo {
     padding: 0 12px;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     line-height: 1.6;
     color: var(--text-secondary);
 }
@@ -133,7 +135,7 @@
 .body-prest__prestamo__text__stepper__label {
     position: absolute;
     padding: 2px 12px;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     white-space: nowrap;
     color: var(--text-secondary);
     background: var(--bg-primary);
@@ -146,6 +148,11 @@
 
 .body-prest__prestamo__text__stepper__paso--abajo .body-prest__prestamo__text__stepper__label {
     bottom: 0;
+}
+
+.body-prest__prestamo__text__stepper__label--completado {
+    background: var(--bg-accent);
+    color: var(--brand-primary);
 }
 
 .body-prest__prestamo__text__eventos {
@@ -177,7 +184,7 @@
     align-items: center;
     gap: 8px;
     padding: 0 6px;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
 }
 
 .body-prest__prestamo__text__fila {
@@ -190,7 +197,7 @@
 
 .body-prest__prestamo__text__chip {
     padding: 2px 14px;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     color: var(--brand-primary);
     background: var(--bg-primary);
     border-radius: 20px;

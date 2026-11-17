@@ -95,9 +95,8 @@ export const UsuarioPrestamosActivos = () => {
                     <p>No hay préstamos en esta clasificación.</p>
                 ) : (
                     prestamosFiltrados.map((prestamo) => (
-                        <Link to={`/prestamo-activo/${prestamo.id}`}>
+                        <Link to={`/prestamo-activo/${prestamo.id}`} key={prestamo.publicacion?.id}>
                             <LibroCard
-                                key={prestamo.publicacion?.id}
                                 titulo={prestamo.titulo}
                                 autor={prestamo.autor}
                                 urlFoto={prestamo.urlFoto}

@@ -15,4 +15,5 @@ public interface LibroUsuarioRepository extends JpaRepository<LibroUsuario, Long
 
     boolean existsByUsuarioIdAndLibro(Long usuarioId, Libro libro);
     Optional<LibroUsuario> findByUsuarioIdAndLibro(Long usuarioId, Libro libro);
+    long countByUsuarioId(Long usuarioId);
 }

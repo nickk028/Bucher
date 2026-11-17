@@ -1,0 +1,12 @@
+.detalles-prestamo {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    padding: 20px 40px;
+}
+
+.detalles-prestamo__seccion {
+    display: flex;
+    height: 230px;
+    gap: 20px;
+}
