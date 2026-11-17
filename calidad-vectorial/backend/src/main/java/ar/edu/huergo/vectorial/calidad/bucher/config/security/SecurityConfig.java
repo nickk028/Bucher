@@ -63,6 +63,8 @@ public class SecurityConfig {
                     .hasRole("ADMIN")
                     .requestMatchers(HttpMethod.GET, "/usuario/propio")
                     .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.GET, "/usuario/datos-cantidades")
+                    .hasAnyRole("ADMIN", "LECTOR")
                     .requestMatchers(HttpMethod.PUT, "/usuario/modificar")
                     .hasAnyRole("ADMIN", "LECTOR")
                     .requestMatchers(HttpMethod.PUT, "/usuario/modificar/rol")
@@ -84,6 +86,12 @@ public class SecurityConfig {
 
                     //PublicacionSocial
                     .requestMatchers(HttpMethod.GET, "/publicacionSocial")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.GET, "/publicacionSocial/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.POST, "/publicacionSocial/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.DELETE, "/publicacionSocial/**")
                     .hasAnyRole("ADMIN", "LECTOR")
 
                     // Registro

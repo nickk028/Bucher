@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 // Repositorio JPA para la entidad Usuario
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByUsername(String username);
+    Optional<Usuario> findByNickname(String nickname);
     boolean existsByUsername(String username);
     boolean existsByNickname(String nickname);
 }
