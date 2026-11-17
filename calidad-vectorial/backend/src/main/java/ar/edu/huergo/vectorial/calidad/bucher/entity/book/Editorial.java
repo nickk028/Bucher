@@ -28,8 +28,8 @@ public class Editorial {
 
     // Nombre de la editorial
     @Column(nullable = false, unique = true, length = 100)
-    @NotBlank(message = "El libro es obligatorio.")
-    @Size(min = 2, max = 100, message = "El libro debe tener entre 2 y 100 digitos")
+    @NotBlank(message = "El nombre es obligatorio.")
+    @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 digitos")
     private String nombre;
 
     // URL de la pagina de Wikipedia de la editorial

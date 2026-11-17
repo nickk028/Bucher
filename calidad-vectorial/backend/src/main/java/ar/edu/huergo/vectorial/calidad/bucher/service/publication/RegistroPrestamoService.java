@@ -89,7 +89,6 @@ public class RegistroPrestamoService {
     public List<RegistroPrestamo> obtenerRegistrosPrestamosDeLaSemana() {
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaInicioSemana = LocalDate.now().minusDays(7);
-        System.err.println("Las fechas son" + fechaActual + "-" + fechaInicioSemana);
         return registroPrestamoRepository.findByFechaPrestamoBetween(
             fechaInicioSemana,
             fechaActual

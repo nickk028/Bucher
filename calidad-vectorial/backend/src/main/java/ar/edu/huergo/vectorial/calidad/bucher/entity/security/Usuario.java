@@ -50,7 +50,7 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El username es obligatorio.")
     @NotNull(message = "El username es obligatorio.")
-    @Size(min = 3, max = 100, message = "El username debe tener entre 2 y 100 digitos.")
+    @Size(min = 3, max = 100, message = "El username debe tener entre 3 y 100 digitos.")
     @Email(message = "El nombre debe ser un mail con un formato válido.")
     private String username;
 

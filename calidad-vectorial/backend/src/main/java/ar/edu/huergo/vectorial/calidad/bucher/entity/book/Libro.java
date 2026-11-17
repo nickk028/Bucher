@@ -56,7 +56,7 @@ public class Libro {
     // Descripción del libro
         @Column(nullable = false, length = 1500)
     @NotBlank(message = "La descripción es obligatorio.")
-    @Size(min = 2, max = 1500, message = "La libro debe tener entre 2 y 1500 digitos.")
+    @Size(min = 2, max = 1500, message = "La descripción debe tener entre 2 y 1500 digitos.")
     private String descripcion;
 
     // Cantidad de páginas del libro
@@ -109,7 +109,7 @@ public class Libro {
     @ToString.Exclude // Evita la recursión infinita en toString con Autor
     private Autor autor;
 
-    //Reacion 1 a muchos con Pubicaciones
+    //Relación 1 a muchos con Publicaciones
     @OneToMany(mappedBy = "libro")
     @ToString.Exclude // Evita la recursión infinita en toString con Publicacion
     private List<Publicacion> publicaciones = new ArrayList<>();

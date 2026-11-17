@@ -55,10 +55,10 @@ public class Publicacion {
 
     // Límite de días para la devolucion del préstamo
     @Column(nullable = false)
-    @NotNull(message = "El mímite de días es obligatorio.")
+    @NotNull(message = "El límite de días es obligatorio.")
     @Positive(message = "El límite de días debe ser mayor a 0.")
     @Min(1)
-    @Max(65)
+    @Max(365)
     private int limiteDias;
 
     // Detalles del estado del libro (Ej: "Nuevo", "Usado - Buen estado", "Dañado", etc.)
