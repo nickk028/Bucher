@@ -5,7 +5,9 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,4 +30,14 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Long> 
     );
     Optional<Publicacion> findByLibroTituloIgnoreCase(String libro);
     long countByUsuarioId(long id);
+
+    @Query(
+        "SELECT p.usuario.id AS usuarioId, COUNT(p) AS cantidad " +
+        "FROM Publicacion p " +
+        "WHERE p.usuario.id IN :ids " +
+        "GROUP BY p.usuario.id"
+    )
+    List<UsuarioRepository.ConteoUsuario> contarPublicacionesPorUsuario(
+        @Param("ids") Collection<Long> ids
+    );
 }

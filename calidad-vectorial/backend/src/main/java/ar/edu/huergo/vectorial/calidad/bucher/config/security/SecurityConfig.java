@@ -142,6 +142,10 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.POST, "/registro-suscripcion/**")
                     .hasAnyRole("ADMIN", "LECTOR")
 
+                    // Admin
+                    .requestMatchers("/admin/**")
+                    .hasRole("ADMIN")
+
                     .anyRequest()
                     .authenticated()
             )

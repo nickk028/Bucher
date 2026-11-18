@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.repository.publication;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.PublicacionSocial;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.data.domain.Page;
@@ -34,6 +35,9 @@ public interface PublicacionSocialRepository extends JpaRepository<PublicacionSo
     );
     long countByUsuarioIdAndRegistroEliminacionIsNull(Long usuarioId);
 
+    @Query("SELECT COUNT(DISTINCT p.libro.id) FROM PublicacionSocial p")
+    long contarLibrosNombrados();
+
     @Query(
         "SELECT p.publicacionReferenciada.id AS publicacionId, COUNT(p) AS cantidad " +
         "FROM PublicacionSocial p " +
@@ -41,6 +45,26 @@ public interface PublicacionSocialRepository extends JpaRepository<PublicacionSo
         "GROUP BY p.publicacionReferenciada.id"
     )
     List<ConteoRespuestas> contarRespuestasPorPublicacion(@Param("ids") Collection<Long> ids);
+
+    @Query(
+        "SELECT p.usuario.id AS usuarioId, COUNT(p) AS cantidad " +
+        "FROM PublicacionSocial p " +
+        "WHERE p.usuario.id IN :ids " +
+        "GROUP BY p.usuario.id"
+    )
+    List<UsuarioRepository.ConteoUsuario> contarPosteosPorUsuario(
+        @Param("ids") Collection<Long> ids
+    );
+
+    @Query(
+        "SELECT p.usuario.id AS usuarioId, SUM(p.reportes) AS cantidad " +
+        "FROM PublicacionSocial p " +
+        "WHERE p.usuario.id IN :ids " +
+        "GROUP BY p.usuario.id"
+    )
+    List<UsuarioRepository.ConteoUsuario> contarDenunciasPorUsuario(
+        @Param("ids") Collection<Long> ids
+    );
 
     @Modifying(flushAutomatically = true, clearAutomatically = true)
     @Query(
