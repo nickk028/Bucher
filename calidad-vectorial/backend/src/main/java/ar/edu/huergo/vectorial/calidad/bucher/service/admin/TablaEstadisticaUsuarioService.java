@@ -5,6 +5,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionSocialRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.util.PaginacionUtil;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -12,17 +13,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 //Clase que maneja la lógica de la tabla de usuarios del panel de administración
 @Service
 public class TablaEstadisticaUsuarioService {
-
-    // Tamaño máximo de página permitido en el listado
-    private static final int TAMANIO_MAXIMO_PAGINA = 50;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -43,10 +39,10 @@ public class TablaEstadisticaUsuarioService {
     public Page<Usuario> obtenerUsuarios(String orden, int pagina, int tamanio) {
         return switch (OrdenTablaUsuario.from(orden)) {
             case ID -> usuarioRepository.findAll(
-                crearPageable(pagina, tamanio, Sort.by(Sort.Direction.DESC, "id"))
+                PaginacionUtil.crearPageable(pagina, tamanio, Sort.by(Sort.Direction.DESC, "id"))
             );
             case DENUNCIAS -> usuarioRepository.findAllOrdenadosPorDenuncias(
-                crearPageable(pagina, tamanio, Sort.unsorted())
+                PaginacionUtil.crearPageable(pagina, tamanio, Sort.unsorted())
             );
         };
     }
@@ -101,20 +97,5 @@ public class TablaEstadisticaUsuarioService {
                     UsuarioRepository.ConteoUsuario::getCantidad
                 )
             );
-    }
-
-    /**
-     * Crea el Pageable limitando el tamaño de página
-     * @param pagina El número de página (desde 0)
-     * @param tamanio La cantidad de elementos por página
-     * @param sort El criterio de ordenamiento
-     * @return El Pageable correspondiente
-     */
-    private Pageable crearPageable(int pagina, int tamanio, Sort sort) {
-        return PageRequest.of(
-            Math.max(pagina, 0),
-            Math.min(Math.max(tamanio, 1), TAMANIO_MAXIMO_PAGINA),
-            sort
-        );
     }
 }

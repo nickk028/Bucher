@@ -9,6 +9,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.Publicacion
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+import ar.edu.huergo.vectorial.calidad.bucher.util.PaginacionUtil;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,7 +21,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -33,8 +33,6 @@ public class PublicacionSocialService {
     // Razón de eliminación cuando el propio autor elimina su publicación
     private static final String RAZON_ELIMINACION_USUARIO = "Eliminada por usuario";
 
-    // Tamaño máximo de página permitido en los listados
-    private static final int TAMANIO_MAXIMO_PAGINA = 50;
 
     @Autowired
     private PublicacionSocialRepository publicacionSocialRepository;
@@ -63,7 +61,7 @@ public class PublicacionSocialService {
         int tamanio,
         boolean esAdmin
     ) {
-        Pageable pageable = crearPageable(pagina, tamanio, obtenerSort(OrdenPublicacionSocial.from(orden)));
+        Pageable pageable = PaginacionUtil.crearPageable(pagina, tamanio, obtenerSort(OrdenPublicacionSocial.from(orden)));
         if (esAdmin) {
             return publicacionSocialRepository.findAllByPublicacionReferenciadaIsNull(pageable);
         }
@@ -96,7 +94,7 @@ public class PublicacionSocialService {
     public Page<PublicacionSocial> obtenerRespuestas(Long id, int pagina, int tamanio)
         throws EntityNotFoundException {
         obtenerPublicacionSocialPorId(id);
-        Pageable pageable = crearPageable(pagina, tamanio, obtenerSort(OrdenPublicacionSocial.RECIENTES));
+        Pageable pageable = PaginacionUtil.crearPageable(pagina, tamanio, obtenerSort(OrdenPublicacionSocial.RECIENTES));
         return publicacionSocialRepository.findAllByPublicacionReferenciadaId(id, pageable);
     }
 
@@ -119,7 +117,7 @@ public class PublicacionSocialService {
         if (!usuarioRepository.existsById(usuarioId)) {
             throw new EntityNotFoundException("Usuario no encontrado");
         }
-        Pageable pageable = crearPageable(pagina, tamanio, obtenerSort(OrdenPublicacionSocial.RECIENTES));
+        Pageable pageable = PaginacionUtil.crearPageable(pagina, tamanio, obtenerSort(OrdenPublicacionSocial.RECIENTES));
         if (esAdmin) {
             return publicacionSocialRepository.findAllByUsuarioId(usuarioId, pageable);
         }
@@ -146,7 +144,7 @@ public class PublicacionSocialService {
         boolean esAdmin
     ) throws EntityNotFoundException {
         libroService.obtenerLibroPorId(libroId);
-        Pageable pageable = crearPageable(pagina, tamanio, obtenerSort(OrdenPublicacionSocial.RECIENTES));
+        Pageable pageable = PaginacionUtil.crearPageable(pagina, tamanio, obtenerSort(OrdenPublicacionSocial.RECIENTES));
         if (esAdmin) {
             return publicacionSocialRepository.findAllByLibroIdAndPublicacionReferenciadaIsNull(
                 libroId,
@@ -328,20 +326,5 @@ public class PublicacionSocialService {
             case ANTIGUAS -> Sort.by(Sort.Direction.ASC, "fechaCreacion", "id");
             case POPULARES -> Sort.by(Sort.Direction.DESC, "votosPositivos", "fechaCreacion", "id");
         };
-    }
-
-    /**
-     * Crea el Pageable limitando el tamaño de página
-     * @param pagina El número de página (desde 0)
-     * @param tamanio La cantidad de elementos por página
-     * @param sort El criterio de ordenamiento
-     * @return El Pageable correspondiente
-     */
-    private Pageable crearPageable(int pagina, int tamanio, Sort sort) {
-        return PageRequest.of(
-            Math.max(pagina, 0),
-            Math.min(Math.max(tamanio, 1), TAMANIO_MAXIMO_PAGINA),
-            sort
-        );
     }
 }

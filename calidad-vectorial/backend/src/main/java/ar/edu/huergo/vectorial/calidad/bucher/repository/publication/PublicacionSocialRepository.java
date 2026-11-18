@@ -33,6 +33,7 @@ public interface PublicacionSocialRepository extends JpaRepository<PublicacionSo
         Long publicacionReferenciadaId,
         Pageable pageable
     );
+    Page<PublicacionSocial> findAllByRegistroEliminacionIsNotNull(Pageable pageable);
     long countByUsuarioIdAndRegistroEliminacionIsNull(Long usuarioId);
 
     @Query("SELECT COUNT(DISTINCT p.libro.id) FROM PublicacionSocial p")
