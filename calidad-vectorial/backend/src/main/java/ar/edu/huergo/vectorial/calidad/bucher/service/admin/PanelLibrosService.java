@@ -6,7 +6,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.book.LibroRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.LibroUsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionSocialRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.EditorialService;
-import ar.edu.huergo.vectorial.calidad.bucher.util.PorcentajeUtil;
+import ar.edu.huergo.vectorial.calidad.bucher.util.EstadisticasUtil;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
@@ -20,12 +20,6 @@ import org.springframework.stereotype.Service;
 //Clase que maneja la lógica de las estadísticas de libros del panel de administración
 @Service
 public class PanelLibrosService {
-
-    // Cantidad de elementos que se muestran en los rankings
-    private static final int CANTIDAD_DESTACADOS = 5;
-
-    // Nombre del grupo que reúne las categorías que no están entre las destacadas
-    private static final String NOMBRE_OTRAS = "Otras";
 
     @Autowired
     private LibroRepository libroRepository;
@@ -78,27 +72,8 @@ public class PanelLibrosService {
         for (Categoria categoria : Categoria.values()) {
             cantidades.put(categoria, libroUsuarioRepository.contarPorCategoria(categoria));
         }
-        long total = cantidades.values().stream().mapToLong(Long::longValue).sum();
 
-        List<Map.Entry<Categoria, Long>> destacadas = cantidades
-            .entrySet()
-            .stream()
-            .sorted(Map.Entry.<Categoria, Long>comparingByValue().reversed())
-            .limit(CANTIDAD_DESTACADOS)
-            .toList();
-
-        Map<String, Double> porcentajes = new LinkedHashMap<>();
-        long sumaDestacadas = 0;
-        for (Map.Entry<Categoria, Long> destacada : destacadas) {
-            porcentajes.put(
-                destacada.getKey().getNombre(),
-                PorcentajeUtil.calcular(destacada.getValue(), total)
-            );
-            sumaDestacadas += destacada.getValue();
-        }
-        porcentajes.put(NOMBRE_OTRAS, PorcentajeUtil.calcular(total - sumaDestacadas, total));
-
-        return porcentajes;
+        return EstadisticasUtil.calcularCategoriasDestacadas(cantidades);
     }
 
     /**
@@ -107,7 +82,9 @@ public class PanelLibrosService {
      */
     public Map<Libro, Long> obtenerLibrosMasGuardados() {
         List<LibroUsuarioRepository.ConteoLibro> conteos =
-            libroUsuarioRepository.contarLibrosMasGuardados(PageRequest.of(0, CANTIDAD_DESTACADOS));
+            libroUsuarioRepository.contarLibrosMasGuardados(
+                PageRequest.of(0, EstadisticasUtil.CANTIDAD_DESTACADOS)
+            );
 
         Map<Long, Libro> libros = libroRepository
             .findAllById(conteos.stream().map(LibroUsuarioRepository.ConteoLibro::getLibroId).toList())
@@ -126,7 +103,7 @@ public class PanelLibrosService {
      * @return El porcentaje sobre el total de libros (0 a 1)
      */
     public double obtenerPorcentajeLibrosGuardados() {
-        return PorcentajeUtil.calcular(
+        return EstadisticasUtil.calcularPorcentaje(
             libroUsuarioRepository.contarLibrosGuardados(),
             libroRepository.count()
         );
@@ -137,7 +114,7 @@ public class PanelLibrosService {
      * @return El porcentaje sobre el total de libros (0 a 1)
      */
     public double obtenerPorcentajeLibrosNombradosEnPosteos() {
-        return PorcentajeUtil.calcular(
+        return EstadisticasUtil.calcularPorcentaje(
             publicacionSocialRepository.contarLibrosNombrados(),
             libroRepository.count()
         );
@@ -148,7 +125,7 @@ public class PanelLibrosService {
      * @return El porcentaje sobre el total de libros (0 a 1)
      */
     public double obtenerPorcentajeLibrosConPublicaciones() {
-        return PorcentajeUtil.calcular(
+        return EstadisticasUtil.calcularPorcentaje(
             libroRepository.countByPublicacionesIsNotEmpty(),
             libroRepository.count()
         );

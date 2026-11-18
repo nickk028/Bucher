@@ -1,6 +1,8 @@
 package ar.edu.huergo.vectorial.calidad.bucher.repository.publication;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.PublicacionSocial;
+import ar.edu.huergo.vectorial.calidad.bucher.repository.bookuser.LibroUsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 import java.util.Collection;
 import java.util.List;
@@ -35,9 +37,36 @@ public interface PublicacionSocialRepository extends JpaRepository<PublicacionSo
     );
     Page<PublicacionSocial> findAllByRegistroEliminacionIsNotNull(Pageable pageable);
     long countByUsuarioIdAndRegistroEliminacionIsNull(Long usuarioId);
+    long countByPublicacionReferenciadaIsNotNull();
+    long countByLibroIsNotNull();
+    long countByRegistroEliminacionIsNotNull();
+    long countByReportesGreaterThanAndRegistroEliminacionIsNull(int reportes);
 
     @Query("SELECT COUNT(DISTINCT p.libro.id) FROM PublicacionSocial p")
     long contarLibrosNombrados();
+
+    @Query(
+        "SELECT COUNT(p) FROM PublicacionSocial p " +
+        "WHERE p.publicacionReferenciada IS NULL AND :categoria MEMBER OF p.libro.categoria"
+    )
+    long contarPosteosRaizPorCategoria(@Param("categoria") Categoria categoria);
+
+    @Query(
+        "SELECT p.libro.id AS libroId, COUNT(p) AS cantidad " +
+        "FROM PublicacionSocial p " +
+        "WHERE p.publicacionReferenciada IS NULL " +
+        "GROUP BY p.libro.id " +
+        "ORDER BY COUNT(p) DESC, p.libro.id ASC"
+    )
+    List<LibroUsuarioRepository.ConteoLibro> contarLibrosMasMencionados(Pageable pageable);
+
+    @Query(
+        "SELECT MONTH(p.fechaCreacion) AS mes, COUNT(p) AS cantidad " +
+        "FROM PublicacionSocial p " +
+        "WHERE YEAR(p.fechaCreacion) = :anio " +
+        "GROUP BY MONTH(p.fechaCreacion)"
+    )
+    List<ConteoMes> contarPosteosPorMes(@Param("anio") int anio);
 
     @Query(
         "SELECT p.publicacionReferenciada.id AS publicacionId, COUNT(p) AS cantidad " +
@@ -85,6 +114,11 @@ public interface PublicacionSocialRepository extends JpaRepository<PublicacionSo
 
     interface ConteoRespuestas {
         Long getPublicacionId();
+        Long getCantidad();
+    }
+
+    interface ConteoMes {
+        Integer getMes();
         Long getCantidad();
     }
 }
