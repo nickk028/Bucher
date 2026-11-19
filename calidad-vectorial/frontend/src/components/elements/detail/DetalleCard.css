@@ -4,8 +4,10 @@
     gap: 12px;
     padding: 14px 18px;
     background: var(--bg-surface);
-    border: 1px solid var(--border-primary);
+    border: 2px solid var(--border-primary);
     border-radius: 10px;
+    width: 760px;
+    height: 228px;
 }
 
 .detalle-card__titulo {

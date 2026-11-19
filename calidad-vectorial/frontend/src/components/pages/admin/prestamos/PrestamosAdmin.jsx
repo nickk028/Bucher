@@ -143,6 +143,7 @@ export const PrestamosAdmin = () => {
                         columnas={COLUMNAS}
                         items={prestamosVisibles}
                         mensajeVacio="No hay préstamos con el estado seleccionado."
+                        link={true}
                     />
                 </div>
             </section>

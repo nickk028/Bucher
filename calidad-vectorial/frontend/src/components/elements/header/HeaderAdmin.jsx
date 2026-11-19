@@ -14,7 +14,7 @@ export const HeaderAdmin = () => {
     return (
         <header className="header">
             <nav className="header__nav">
-                <Link className="header__nav__item" to="/admin">
+                <Link className="header__nav__item" to="/#">
                     <div
                         alt="Logo de Bücher"
                         className={`header__nav__item__bucher header__nav__item__bucher--${click == '/admin' ? 'selected' : ''}`}
@@ -24,21 +24,21 @@ export const HeaderAdmin = () => {
                 <Link className="header__nav__item" to="/admin/estadisticas">
                     <div
                         alt="Logo de Estadísticas"
-                        className={`header__nav__item__estadisticas header__nav__item__estadisticas--${click == '/#' ? 'selected' : ''}`}
+                        className={`header__nav__item__estadisticas header__nav__item__estadisticas--${click == '/admin/estadisticas' ? 'selected' : ''}`}
                     />
                 </Link>
 
                 <Link className="header__nav__item" to="/admin/posteos">
                     <div
                         alt="Logo de Comentario Social"
-                        className={`header__nav__item__comentario-social header__nav__item__comentario-social--${click == '/admin/posteos' ? 'selected' : ''}`}
+                        className={`header__nav__item__comentario-social header__nav__item__comentario-social--${click.includes('/admin/posteos') ? 'selected' : ''}`}
                     />
                 </Link>
 
                 <Link className="header__nav__item" to="/admin/prestamos">
                     <div
                         alt="Logo de Biblioteca"
-                        className={`header__nav__item__biblioteca header__nav__item__biblioteca--${click == '/admin/prestamos' ? 'selected' : ''}`}
+                        className={`header__nav__item__biblioteca header__nav__item__biblioteca--${click.includes('/admin/prestamos') ? 'selected' : ''}`}
                     />
                 </Link>
 

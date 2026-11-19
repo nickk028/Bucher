@@ -16,7 +16,7 @@
 
 .usuario-detalle-card__titulo {
     font-size: var(--font-size-lg);
-    color: var(--brand-primary);
+    color: var(--brand-dark);
 }
 
 .usuario-detalle-card__content {

@@ -50,17 +50,6 @@ const COLUMNAS = [
     },
 ];
 
-const dataPosteos = [
-    {
-        'id': 1,
-        'nickname': 'Usuario de ejemplo',
-        'comentario': 'Comentario de ejemplo',
-        'denuncias': 1,
-        'fechaEntrega': '2026-09-01',
-        'fechaDevolucion': '2026-10-01'
-    },
-]
-
 export const PosteosAdmin = () => {
     const { data: dataPosteos, loading: loadingPosteos, error: errorPosteos } = useFetch('admin/publicacionSocial');
 
@@ -72,7 +61,7 @@ export const PosteosAdmin = () => {
             </header>
 
             <div className="body-posteos__admin__tabla">
-                <Tabla columnas={COLUMNAS} items={dataPosteos.content} />
+                <Tabla columnas={COLUMNAS} items={dataPosteos.content} link={true}/>
             </div>
         </main>
     )

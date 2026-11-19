@@ -1,3 +1,4 @@
+
 .libro-detalle {
     display: flex;
     padding: 20px;
@@ -11,16 +12,28 @@
 }
 
 .libro-detalle__img {
-    height: 100%;
+    width: auto;
     height: auto;
     display: block;
     object-fit: cover;
     aspect-ratio: 2 / 3;
+    flex-shrink: 0;
+}
+
+.libro-detalle__img--vacia {
+    background: #d3d3d3;
+    border-radius: 4px;
 }
 
 .libro-detalle__text {
     border-right: var(--brand-primary) 1px solid;
     padding: 0px 20px;
+    flex: 1 1 0;
+}
+
+.libro-detalle__sin-referencia {
+    color: var(--text-secondary);
+    font-style: italic;
 }
 
 .libro-detalle__caracteristicas {
@@ -50,4 +63,3 @@
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
 }
-
