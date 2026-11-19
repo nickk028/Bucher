@@ -12,6 +12,16 @@ const obtenerColorDenuncias = (denuncias) => {
     return 'verde';
 };
 
+function formatearFecha(fecha) {
+    const date = new Date(fecha);
+
+    const dia = String(date.getDate()).padStart(2, '0');
+    const mes = String(date.getMonth() + 1).padStart(2, '0');
+    const anio = date.getFullYear();
+
+    return `${dia}/${mes}/${anio}`;
+}
+
 const COLUMNAS = [
     {
         clave: 'id',
@@ -23,23 +33,20 @@ const COLUMNAS = [
         titulo: 'Usuario',
         render: (posteo) => `@${posteo.nickname}`,
     },
-    { clave: 'comentario', titulo: 'Comentario', width: 35 },
+    { clave: 'textoPublicacion', titulo: 'Comentario', width: 35 },
     {
-        clave: 'denuncias',
+        clave: 'cantDenuncias',
         titulo: 'Denuncias',
-        render: (usuario) => (
-            <Indicador color={obtenerColorDenuncias(usuario.denuncias)}>
-                {usuario.denuncias}
+        render: (posteo) => (
+            <Indicador color={obtenerColorDenuncias(posteo.cantDenuncias)}>
+                {posteo.cantDenuncias}
             </Indicador>
         ),
     },
     {
-        clave: 'fechaEntrega',
-        titulo: 'Fecha de entrega',
-    },
-    {
-        clave: 'fechaDevolucion',
-        titulo: 'Fecha de devolución',
+        clave: 'fechaCreacion',
+        titulo: 'Fecha de publicación',
+        render: (posteo) => `${formatearFecha(posteo.fechaCreacion)}`,
     },
 ];
 
@@ -55,6 +62,8 @@ const dataPosteos = [
 ]
 
 export const PosteosAdmin = () => {
+    const { data: dataPosteos, loading: loadingPosteos, error: errorPosteos } = useFetch('admin/publicacionSocial');
+
     return (
         <main className="body-posteos__admin">
             <header className="body-posteos__admin__encabezado">
@@ -63,7 +72,7 @@ export const PosteosAdmin = () => {
             </header>
 
             <div className="body-posteos__admin__tabla">
-                <Tabla columnas={COLUMNAS} items={dataPosteos} />
+                <Tabla columnas={COLUMNAS} items={dataPosteos.content} />
             </div>
         </main>
     )

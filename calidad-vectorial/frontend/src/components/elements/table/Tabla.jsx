@@ -19,7 +19,7 @@ export const Tabla = ({ columnas, items, claveItem = 'id', mensajeVacio = 'No ha
                     </tr>
                 </thead>
                 <tbody>
-                    {items.map((item) => (
+                    {items && items.map((item) => (
                         <tr key={item[claveItem]} className="tabla__elemento__fila" onClick={() => navigate(`${item[claveItem]}`)}>
                             {columnas.map((columna) => (
                                 <td
@@ -33,7 +33,7 @@ export const Tabla = ({ columnas, items, claveItem = 'id', mensajeVacio = 'No ha
                 </tbody>
             </table>
 
-            {items.length === 0 && <p className="tabla__vacio">{mensajeVacio}</p>}
+            {items && items.length === 0 && <p className="tabla__vacio">{mensajeVacio}</p>}
         </div>
     );
 };
