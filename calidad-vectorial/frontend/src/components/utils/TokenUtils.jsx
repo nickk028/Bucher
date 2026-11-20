@@ -55,7 +55,7 @@ export const ProtectedRoute = () => {
     }
 
     if (estaEnAuth) {
-        return <Navigate to={esAdmin(valid.roles) ? '/admin/estadisticas' : '/index'} replace />;
+        return <Navigate to={esAdmin(valid.roles) ? '/admin/estadisticas' : '/prestamos'} replace />;
     }
 
     return (

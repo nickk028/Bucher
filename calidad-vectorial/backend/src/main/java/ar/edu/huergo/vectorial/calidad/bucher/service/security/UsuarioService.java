@@ -200,6 +200,9 @@ public class UsuarioService {
         if (usuarioNuevo.getCodigoPostal() != null) {
             usuarioAModificar.setCodigoPostal(usuarioNuevo.getCodigoPostal());
         }
+        if (usuarioNuevo.getAvatar() != null) {
+            usuarioAModificar.setAvatar(usuarioNuevo.getAvatar());
+        }
 
         return usuarioRepository.save(usuarioAModificar);
     }

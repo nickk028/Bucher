@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { usePost } from '../../../utils/FetchUtils';
 import './CrearPrestamo.css';
 import { Button } from '../../../elements/buttons/Button';
+import { AutoCompletarLibro } from '../../../elements/autocomplete/types/AutoCompletarLibro';
 import SubirImagenLibro from '../../../../assets/img/icons/crear/subirImagenLibro.svg?react';
 import TildeVistaPrevia from '../../../../assets/img/icons/crear/tildeVistaPrevia.svg?react';
 import RelojVistaPrevia from '../../../../assets/img/icons/crear/relojVistaPrevia.svg?react';
@@ -18,16 +20,34 @@ const LOAN_DURATIONS = [
     { value: 1, label: '1 semana' },
     { value: 2, label: '2 semanas' },
     { value: 3, label: '3 semanas' },
-    { value: 4, label: '1 mes' },
+    { value: 4, label: '4 semanas' },
+    { value: 5, label: '5 semanas' },
+    { value: 6, label: '6 semanas' },
+    { value: 7, label: '7 semanas' },
+    { value: 8, label: '8 semanas' },
 ];
 
 export const CrearPrestamo = () => {
     const [bookSearch, setBookSearch] = useState('');
+    const [selectedBook, setSelectedBook] = useState(null);
     const [condition, setCondition] = useState('Muy bueno');
     const [details, setDetails] = useState({ subrayado: true });
     const [comments, setComments] = useState('');
     const [photos, setPhotos] = useState([]);
     const [loanDuration, setLoanDuration] = useState(1);
+
+    const { data: dataPrestamo, loading: loadingPrestamo, error: errorPrestamo, execute: executePrestamo } = usePost('publicacion/crear')
+
+    // Acepta tanto un evento como un valor directo
+    const handleBookChange = (e) => {
+        setBookSearch(e?.target ? e.target.value : (e ?? ''));
+        setSelectedBook(null);
+    };
+
+    const handleBookSelect = (book) => {
+        setSelectedBook(book);
+        setBookSearch(book?.titulo ?? book?.title ?? '');
+    };
 
     const toggleDetail = (id) => {
         setDetails((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -39,6 +59,16 @@ export const CrearPrestamo = () => {
         setPhotos((prev) => [...prev, ...previews]);
     };
 
+    function handleLoanSubmit(e) {
+        e?.preventDefault?.();
+
+        executePrestamo({
+            titulo: selectedBook?.titulo ?? selectedBook?.title ?? bookSearch.trim(),
+            descripcion: comments,
+            limiteDias: loanDuration * 7,
+        });
+    }
+
     const selectedDetails = ADDITIONAL_DETAILS.filter((d) => details[d.id]);
 
     const sliderPercent = ((loanDuration - 1) / (LOAN_DURATIONS.length - 1)) * 100;
@@ -47,7 +77,7 @@ export const CrearPrestamo = () => {
         LOAN_DURATIONS.find((d) => d.value === loanDuration)?.label ?? '1 semana';
 
     return (
-        <div className="clp-page">
+        <form className="clp-page">
             <div className="clp-form-col">
                 <div className="clp-header">
                     <h1 className="clp-title">Crea una publicación de préstamo</h1>
@@ -57,32 +87,12 @@ export const CrearPrestamo = () => {
                 {/* Seleccionar libro */}
                 <section className="clp-card">
                     <h2 className="clp-card-title">Seleccionar libro</h2>
-                    <div className="clp-search-wrapper">
-                        <span className="clp-search-icon">
-                            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                                <circle
-                                    cx="8.5"
-                                    cy="8.5"
-                                    r="5.5"
-                                    stroke="currentColor"
-                                    strokeWidth="1.8"
-                                />
-                                <path
-                                    d="M13.5 13.5L17 17"
-                                    stroke="currentColor"
-                                    strokeWidth="1.8"
-                                    strokeLinecap="round"
-                                />
-                            </svg>
-                        </span>
-                        <input
-                            className="clp-search-input"
-                            type="text"
-                            placeholder="Busca por título, autor o editorial..."
-                            value={bookSearch}
-                            onChange={(e) => setBookSearch(e.target.value)}
-                        />
-                    </div>
+                    <AutoCompletarLibro
+                        placeholder="Busca por título, autor o editorial..."
+                        value={bookSearch}
+                        onChange={handleBookChange}
+                        onSelect={handleBookSelect}
+                    />
                 </section>
 
                 {/* Estado del ejemplar */}
@@ -171,7 +181,7 @@ export const CrearPrestamo = () => {
                         <input
                             type="range"
                             min={1}
-                            max={4}
+                            max={8}
                             step={1}
                             value={loanDuration}
                             onChange={(e) => setLoanDuration(Number(e.target.value))}
@@ -193,7 +203,9 @@ export const CrearPrestamo = () => {
                             <p className="clp-preview-book-title">
                                 {bookSearch.trim() || 'Título del libro'}
                             </p>
-                            <p className="clp-preview-author">Autor/es</p>
+                            <p className="clp-preview-author">
+                                {selectedBook?.autor ?? 'Autor/es'}
+                            </p>
                             <div className="clp-preview-meta">
                                 <span className="clp-preview-meta-item clp-preview-meta-item--check">
                                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -271,11 +283,11 @@ export const CrearPrestamo = () => {
                 </div>
 
                 <div className="clp-publish-btn">
-                    <Button variant="default" color="oscuro">
+                    <Button variant="default" color="oscuro" onClick={handleLoanSubmit}>
                         Publicar
                     </Button>
                 </div>
             </aside>
-        </div>
+        </form>
     );
 };

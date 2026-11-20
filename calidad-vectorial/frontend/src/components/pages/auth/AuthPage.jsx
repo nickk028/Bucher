@@ -93,7 +93,7 @@ export const AuthPage = () => {
             );
 
             if (respond.ok) {
-                navigate('/index');
+                navigate('/prestamos');
                 return;
             }
 
@@ -138,6 +138,7 @@ export const AuthPage = () => {
                 'usuario/registrar',
                 {
                     username: registerUsername,
+                    nickname: registerUsername,
                     password: registerPassword,
                     verificationPassword: registerVerificationPassword,
                 },
@@ -147,7 +148,7 @@ export const AuthPage = () => {
             if (respond.ok) {
                 // Login automático tras registrarse
                 await loginRequest({ username: registerUsername, password: registerPassword });
-                navigate('/index');
+                navigate('/prestamos');
                 return;
             }
 
@@ -214,7 +215,7 @@ export const AuthPage = () => {
 
                         <div className='auth-page__google'>
                             <GoogleLoginButton
-                                onSuccess={() => navigate('/index')}
+                                onSuccess={() => navigate('/prestamos')}
                             />
                         </div>
 
@@ -288,33 +289,6 @@ export const AuthPage = () => {
                     </div>
                 </section>
             </main>
-
-            <div className="auth-page__grupo-ojos" style={{ display: mensaje ? 'block' : 'none' }}>
-                <LibroAnimado
-                    variant="grande"
-                    color="rojo"
-                    mensaje={mensaje}
-                    mostrarMensaje={ojoQueHabla === 0}
-                >
-                    Bü
-                </LibroAnimado>
-                <LibroAnimado
-                    variant="chico"
-                    color="azul"
-                    mensaje={mensaje}
-                    mostrarMensaje={ojoQueHabla === 1}
-                >
-                    ch
-                </LibroAnimado>
-                <LibroAnimado
-                    variant="medio"
-                    color="amarillo"
-                    mensaje={mensaje}
-                    mostrarMensaje={ojoQueHabla === 2}
-                >
-                    er
-                </LibroAnimado>
-            </div>
         </div>
     );
 };

@@ -1,3 +1,4 @@
+import { useFetch } from '../../utils/FetchUtils';
 import { LibroCard } from '../../elements/book/LibroCard';
 import { ComentarioSocial } from '../../elements/social/ComentarioSocial';
 import { Button } from '../../elements/buttons/Button';
@@ -15,12 +16,15 @@ import TacharPosteo from '../../../assets/img/icons/posteo/tacharPosteo.svg?reac
 import './ComentariosSocial.css';
 
 export const ComentariosSocial = () => {
+    const { data: dataUsuario } = useFetch('usuario/propio');
+    const { data: dataPosteos, loading: loadingPosteos, error: errorPosteos } = useFetch('publicacionSocial');
+
     return (
         <main className="body-comsocial">
             <form className="body-comsocial__form">
                 <div className="body-comsocial__form__content">
-                    <div>
-                        <img src={cenicienta} alt="Foto de perfil" />
+                    <div className='body-comsocial__form__content__img'>
+                        <img src={`/assets/img/avatares/${dataUsuario?.avatar}`} alt="Foto de perfil" />
                     </div>
                     <textarea
                         className="body-comsocial__form__content__text"
@@ -64,25 +68,18 @@ export const ComentariosSocial = () => {
                 </div>
             </form>
             <section>
-                <ComentarioSocial
-                    nickname="Gimena"
-                    urlFoto="/assets/img/avatares/reinadecorazones.png"
-                    tiempoPublicacion="3"
-                >
-                    Estuve semanas con bloqueo lector 😩, ningún libro me atrapaba. Pero arranqué
-                    Juliette y las canciones perdidas y me sacó de ese pozo.
-                    <br />
-                    Tip personal 👉 elegir algo juvenil, ágil y con personajes intensos... a mí
-                    siempre me rescata.
-                </ComentarioSocial>
-                <ComentarioSocial
-                    nickname="Wendy's"
-                    urlFoto="/assets/img/avatares/dorothy.png"
-                    tiempoPublicacion="5"
-                >
-                    Volví a leer El Principito ✨. Qué increíble cómo cada vez revela algo nuevo:
-                    hoy me recordó que lo esencial sigue estando en lo pequeño.
-                </ComentarioSocial>
+                {dataPosteos.content && (
+                    dataPosteos.content.map((posteo) => (
+                        <ComentarioSocial
+                            key={posteo.id}
+                            nickname={posteo.usuario?.nickname}
+                            urlFoto={`/assets/img/avatares/${posteo.usuario?.avatar}`}
+                            tiempoPublicacion={posteo.tiempoTranscurrido}
+                        >
+                            {posteo.textoPublicacion}
+                    </ComentarioSocial>
+                    ))
+                )}
             </section>
         </main>
     );
