@@ -117,3 +117,14 @@
 
     color: var(--text-secondary);
 }
+
+.preguntas-content__respuesta__contenido__enlace {
+    color: var(--brand-primary);
+    font-weight: 500;
+    transition: all 200ms ease-in-out;
+}
+
+.preguntas-content__respuesta__contenido__enlace:hover {
+    color: var(--brand-dark);
+    text-decoration: underline;
+}

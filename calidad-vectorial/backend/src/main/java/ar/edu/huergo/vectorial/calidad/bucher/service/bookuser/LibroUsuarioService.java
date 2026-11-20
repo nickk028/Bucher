@@ -40,17 +40,16 @@ public class LibroUsuarioService {
     }
 
     /**
-     * Obtiene el LibroUsuario según su posición en la lista del Usuario
+     * Obtiene el LibroUsuario según su id
      * @param username El username del Usuario
-     * @param posicion La posición del LibroUsuario
+     * @param id El id del LibroUsuario
      * @return El LibroUsuario encontrado
      * @throws EntityNotFoundException No encuentra el LibroUsuario
      */
-    public LibroUsuario obtenerLibroUsuarioPorPosicion(String username, int posicion)
+    public LibroUsuario obtenerLibroUsuarioPorId(String username, Long id)
         throws EntityNotFoundException {
         List<LibroUsuario> librosUsuario = obtenerLibrosUsuario(username);
-        validarPosicion(posicion, librosUsuario);
-        return librosUsuario.get(posicion - 1);
+        return validarLibroUsuario(id, librosUsuario);
     }
 
     /**
@@ -103,22 +102,21 @@ public class LibroUsuarioService {
     }
 
     /**
-     * Modifica los atributos del LibroUsuario ubicado en una posición de la lista del Usuario
+     * Modifica los atributos del LibroUsuario con ese id y de ese usuario
      * @param username El username del Usuario
-     * @param posicion La posición del LibroUsuario a modificar
+     * @param id El id del LibroUsuario a modificar
      * @param libroUsuarioNuevo El LibroUsuario con los nuevos datos
      * @return El LibroUsuario modificado
      * @throws EntityNotFoundException No encuentra el LibroUsuario
      */
     public LibroUsuario modificarLibroUsuario(
         String username,
-        int posicion,
+        Long id,
         LibroUsuario libroUsuarioNuevo
     ) throws EntityNotFoundException {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(username);
         List<LibroUsuario> librosUsuario = usuario.getLibrosUsuario();
-        validarPosicion(posicion, librosUsuario);
-        LibroUsuario libroUsuarioAModificar = librosUsuario.get(posicion - 1);
+        LibroUsuario libroUsuarioAModificar = validarLibroUsuario(id, librosUsuario);
 
         if (libroUsuarioNuevo.getEstadoLectura() != EstadoLectura.Indefinido) {
             libroUsuarioAModificar.setEstadoLectura(libroUsuarioNuevo.getEstadoLectura());
@@ -130,34 +128,32 @@ public class LibroUsuarioService {
             libroUsuarioAModificar.setPuntuacion(libroUsuarioNuevo.getPuntuacion());
         }
 
-        return usuarioRepository.save(usuario).getLibrosUsuario().get(posicion - 1);
+        return libroUsuarioRepository.save(libroUsuarioAModificar);
     }
 
     /**
-     * Elimina el LibroUsuario ubicado en una posición de la lista del Usuario
+     * Elimina el LibroUsuario con ese id
      * @param username El username del Usuario
-     * @param posicion La posición del LibroUsuario a eliminar
+     * @param id El id del LibroUsuario a eliminar
      * @throws EntityNotFoundException No encuentra el LibroUsuario
      */
-    public void eliminarLibroUsuario(String username, int posicion)
+    public void eliminarLibroUsuario(String username, Long id)
         throws EntityNotFoundException {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(username);
-        validarPosicion(posicion, usuario.getLibrosUsuario());
-
-        usuario.getLibrosUsuario().remove(posicion - 1);
-        usuarioRepository.save(usuario);
+        LibroUsuario libroUsuario = validarLibroUsuario(id, usuario.getLibrosUsuario());
+        libroUsuarioRepository.delete(libroUsuario);
     }
 
     /**
-     * Valida que la posición exista dentro de la lista de LibroUsuario
-     * @param posicion La posición a validar
+     * Valida que el id exista dentro de la lista de LibroUsuario
+     * @param id El id a validar
      * @param librosUsuario La lista de LibroUsuario
-     * @throws EntityNotFoundException Si la posición no existe en la lista
+     * @throws EntityNotFoundException Si el id no pertenece a la lista
      */
-    private void validarPosicion(int posicion, List<LibroUsuario> librosUsuario)
+    private LibroUsuario validarLibroUsuario(Long id, List<LibroUsuario> librosUsuario)
         throws EntityNotFoundException {
-        if (posicion <= 0 || posicion > librosUsuario.size()) {
-            throw new EntityNotFoundException("Libro usuario no encontrado");
-        }
+            return librosUsuario.stream().filter(n -> n.getId() == id).findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("Libro usuario no encontrada"));
+        
     }
 }

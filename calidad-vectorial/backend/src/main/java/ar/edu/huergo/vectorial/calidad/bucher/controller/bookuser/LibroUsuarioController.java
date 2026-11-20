@@ -48,21 +48,21 @@ public class LibroUsuarioController {
     }
 
     /**
-     * Obtiene un libroUsuario del usuario autenticado por su posición
-     * @param posicion La posición del libroUsuario en la lista del usuario
+     * Obtiene un libroUsuario del usuario autenticado
+     * @param id El id del libroUsuario
      * @param usuarioAutenticado El usuario autenticado
-     * @return El libroUsuario en la posición indicada
+     * @return El libroUsuario con ese id
      */
-    @GetMapping("/{posicion}")
+    @GetMapping("/{id}")
     public ResponseEntity<LibroUsuarioResponseDTO> obtenerLibroUsuario(
-        @PathVariable("posicion") int posicion,
+        @PathVariable("id") Long id,
         @AuthenticationPrincipal UserDetails usuarioAutenticado
     ) {
         return ResponseEntity.ok(
             libroUsuarioMapper.toDTO(
-                libroUsuarioService.obtenerLibroUsuarioPorPosicion(
+                libroUsuarioService.obtenerLibroUsuarioPorId(
                     usuarioAutenticado.getUsername(),
-                    posicion
+                    id
                 )
             )
         );
@@ -112,15 +112,15 @@ public class LibroUsuarioController {
     }
 
     /**
-     * Modifica un libroUsuario del usuario autenticado por su posición
-     * @param posicion La posición del libroUsuario en la lista del usuario
+     * Modifica un libroUsuario del usuario autenticado
+     * @param id El id del libroUsuario
      * @param libroUsuarioUpdateDTO El libroUsuario con los datos a modificar
      * @param usuarioAutenticado El usuario autenticado
      * @return El libroUsuario modificado
      */
-    @PutMapping("/{posicion}")
+    @PutMapping("/{id}")
     public ResponseEntity<LibroUsuarioResponseDTO> modificarLibroUsuario(
-        @PathVariable("posicion") int posicion,
+        @PathVariable("id") Long id,
         @Valid @RequestBody LibroUsuarioUpdateDTO libroUsuarioUpdateDTO,
         @AuthenticationPrincipal UserDetails usuarioAutenticado
     ) {
@@ -128,7 +128,7 @@ public class LibroUsuarioController {
             libroUsuarioMapper.toDTO(
                 libroUsuarioService.modificarLibroUsuario(
                     usuarioAutenticado.getUsername(),
-                    posicion,
+                    id,
                     libroUsuarioMapper.toEntity(libroUsuarioUpdateDTO)
                 )
             )
@@ -136,17 +136,17 @@ public class LibroUsuarioController {
     }
 
     /**
-     * Elimina un libroUsuario del usuario autenticado por su posición
-     * @param posicion La posición del libroUsuario en la lista del usuario
+     * Elimina un libroUsuario del usuario autenticado
+     * @param id El id del libroUsuario
      * @param usuarioAutenticado El usuario autenticado
      * @return OK (200)
      */
-    @DeleteMapping("/{posicion}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarLibroUsuario(
-        @PathVariable("posicion") int posicion,
+        @PathVariable("id") Long id,
         @AuthenticationPrincipal UserDetails usuarioAutenticado
     ) {
-        libroUsuarioService.eliminarLibroUsuario(usuarioAutenticado.getUsername(), posicion);
+        libroUsuarioService.eliminarLibroUsuario(usuarioAutenticado.getUsername(), id);
 
         return ResponseEntity.ok().body("Eliminado correctamente");
     }
