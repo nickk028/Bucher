@@ -85,8 +85,53 @@
     width: min-content;
 }
 
-.body-comsocial__form__options__buttons__checkbox {
-    width: 50px;
-    height: 50px;
+.body-comsocial__form__options__buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.body-comsocial__form__options__buttons__label {
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    user-select: none;
+}
+
+.body-comsocial__form__options__buttons__checkbox {
+    display: none;
+}
+
+.body-comsocial__form__options__buttons__checkbox-custom {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border: 3.6px solid var(--border-primary);
+    border-radius: 8px;
+    background: var(--bg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+    position: relative;
+}
+
+.body-comsocial__form__options__buttons__checkbox:checked
+    + .body-comsocial__form__options__buttons__checkbox-custom {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+}
+
+.body-comsocial__form__options__buttons__checkbox:checked
+    + .body-comsocial__form__options__buttons__checkbox-custom::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 18px;
+    border: 4px solid var(--blanco-puro);
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg) translate(-1px, -1px);
 }

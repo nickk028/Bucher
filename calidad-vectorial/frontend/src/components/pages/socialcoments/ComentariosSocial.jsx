@@ -54,12 +54,15 @@ export const ComentariosSocial = () => {
                         </div>
                         <div className="body-comsocial__form__options__buttons">
                             <p>Contiene spoilers</p>
-                            <input
-                                id="spoiler"
-                                name="spoiler"
-                                className="body-comsocial__form__options__buttons__checkbox"
-                                type="checkbox"
-                            ></input>
+                            <label className="body-comsocial__form__options__buttons__label">
+                                <input
+                                    id="spoiler"
+                                    name="spoiler"
+                                    className="body-comsocial__form__options__buttons__checkbox"
+                                    type="checkbox"
+                                />
+                                <span className="body-comsocial__form__options__buttons__checkbox-custom" />
+                            </label>
                         </div>
                     </div>
                     <Button type="submit" variant="default" color="oscuro">
