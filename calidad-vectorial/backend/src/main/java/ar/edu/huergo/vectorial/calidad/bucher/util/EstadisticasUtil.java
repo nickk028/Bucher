@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * Clase utilitaria para las estadísticas del panel de administración.
- * Provee métodos para calcular porcentajes y para armar los rankings de categorías.
+ * Provee métodos para calcular porcentajes, armar los rankings de categorías y completar las cantidades por mes.
  */
 public class EstadisticasUtil {
 
@@ -17,13 +17,29 @@ public class EstadisticasUtil {
     // Nombre del grupo que reúne las categorías que no están entre las destacadas
     private static final String NOMBRE_OTRAS = "Otras";
 
+    // Nombres de los meses del año
+    private static final List<String> MESES = List.of(
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre"
+    );
+
     /**
      * Calcula el porcentaje de una parte sobre un total como valor entre 0 y 1, con 3 decimales.
      * @param parte la cantidad que se quiere medir
      * @param total la cantidad total
      * @return un valor pasado a long de tres decimales
      */
-    public static double calcularPorcentaje(long parte, long total) {
+    public static double calcular(long parte, long total) {
         if (total == 0) {
             return 0.0;
         }
@@ -53,12 +69,27 @@ public class EstadisticasUtil {
         for (Map.Entry<Categoria, Long> destacada : destacadas) {
             porcentajes.put(
                 destacada.getKey().getNombre(),
-                calcularPorcentaje(destacada.getValue(), total)
+                calcular(destacada.getValue(), total)
             );
             sumaDestacadas += destacada.getValue();
         }
-        porcentajes.put(NOMBRE_OTRAS, calcularPorcentaje(total - sumaDestacadas, total));
+        porcentajes.put(NOMBRE_OTRAS, calcular(total - sumaDestacadas, total));
 
         return porcentajes;
+    }
+
+    /**
+     * Completa la cantidad de cada mes del año, de enero a diciembre, con 0 en los meses sin datos.
+     * @param cantidadesPorMes El mapa con el número del mes (1 a 12) y su cantidad
+     * @return Mapa ordenado con el nombre del mes y su cantidad
+     */
+    public static Map<String, Long> completarCantidadesPorMes(
+        Map<Integer, Long> cantidadesPorMes
+    ) {
+        Map<String, Long> cantidadesCompletas = new LinkedHashMap<>();
+        for (int i = 0; i < MESES.size(); i++) {
+            cantidadesCompletas.put(MESES.get(i), cantidadesPorMes.getOrDefault(i + 1, 0L));
+        }
+        return cantidadesCompletas;
     }
 }

@@ -12,6 +12,6 @@ public class CantidadMesDTO {
     // Nombre del mes
     private String mes;
 
-    // Cantidad de posteos del mes
-    private long cantPosteos;
+    // Cantidad del mes
+    private long cant;
 }

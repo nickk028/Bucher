@@ -20,22 +20,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class PanelPosteosService {
 
-    // Nombres de los meses del año
-    private static final List<String> MESES = List.of(
-        "Enero",
-        "Febrero",
-        "Marzo",
-        "Abril",
-        "Mayo",
-        "Junio",
-        "Julio",
-        "Agosto",
-        "Septiembre",
-        "Octubre",
-        "Noviembre",
-        "Diciembre"
-    );
-
     @Autowired
     private PublicacionSocialRepository publicacionSocialRepository;
 
@@ -71,7 +55,7 @@ public class PanelPosteosService {
      * @return El porcentaje sobre el total de posteos (0 a 1)
      */
     public double obtenerPorcentajePosteosDenunciados() {
-        return EstadisticasUtil.calcularPorcentaje(obtenerPosteosDenunciados(), obtenerPosteosPublicados());
+        return EstadisticasUtil.calcular(obtenerPosteosDenunciados(), obtenerPosteosPublicados());
     }
 
     /**
@@ -87,7 +71,7 @@ public class PanelPosteosService {
      * @return El porcentaje sobre el total de posteos (0 a 1)
      */
     public double obtenerPorcentajePosteosEliminados() {
-        return EstadisticasUtil.calcularPorcentaje(obtenerPosteosEliminados(), obtenerPosteosPublicados());
+        return EstadisticasUtil.calcular(obtenerPosteosEliminados(), obtenerPosteosPublicados());
     }
 
     /**
@@ -95,7 +79,7 @@ public class PanelPosteosService {
      * @return El porcentaje sobre el total de posteos (0 a 1)
      */
     public double obtenerPorcentajePosteosConMenciones() {
-        return EstadisticasUtil.calcularPorcentaje(
+        return EstadisticasUtil.calcular(
             publicacionSocialRepository.countByLibroIsNotNull(),
             obtenerPosteosPublicados()
         );
@@ -116,11 +100,7 @@ public class PanelPosteosService {
                 )
             );
 
-        Map<String, Long> posteosPorMes = new LinkedHashMap<>();
-        for (int i = 0; i < MESES.size(); i++) {
-            posteosPorMes.put(MESES.get(i), cantidadesPorMes.getOrDefault(i + 1, 0L));
-        }
-        return posteosPorMes;
+        return EstadisticasUtil.completarCantidadesPorMes(cantidadesPorMes);
     }
 
     /**
