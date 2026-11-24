@@ -13,7 +13,7 @@ const PASOS_COMPLETADOS = 2;
 
 export const DetallesPrestamo = () => {
     const { id } = useParams();
-    const {data: dataPrestamo, loading: loadingPrestamo, error: errorPrestamo} = useFetch(`publicacion/${id}`);
+    const { data: dataPrestamo, loading: loadingPrestamo, error: errorPrestamo } = useFetch(`registro/publicacion/${id}`);
 
     return (
         <main className='detalles-prestamo'>
@@ -22,30 +22,37 @@ export const DetallesPrestamo = () => {
                 subtitulo='Controla y actualiza los datos del préstamo'
             />
             <section className='detalles-prestamo__seccion'>
-                <LibroDetalle
-                    urlFoto='https://images.cdn1.buscalibre.com/fit-in/360x360/c5/9f/c59fa2cfcda0ceb5d1a64e0a199d2973.jpg'
-                    titulo='Emma'
-                    autor='Jane Austen'
-                    editorial='Algo'
-                    caracteristicas={['Estado del ejemplar: Muy bueno', 'El libro se encuentra en condiciones']}
-                    detalles={[
-                        {label: 'Número de préstamo', texto: 'N°01258'},
-                        {label: 'Inicio del préstamo', texto: '12/08/2026'},
-                        {label: 'Fin del préstamo', texto: '30/09/2026'},
-                    ]}
-                />
-                <UsuarioDetalleCard
-                    titulo='Usuario prestamista'
-                    foto='/assets/img/avatares/alicia.png'
-                    nickname='usuario'
-                    username='usuario@gmail.com'
-                />
-                <UsuarioDetalleCard
-                    titulo='Usuario lector'
-                    foto='/assets/img/avatares/reinadecorazones.png'
-                    nickname='usuario'
-                    username='usuario@gmail.com'
-                />
+                {loadingPrestamo ? (
+                    <p>Cargando</p>
+                ) : dataPrestamo.length !== 0 && (<>
+                    <LibroDetalle
+                        urlFoto='https://images.cdn1.buscalibre.com/fit-in/360x360/c5/9f/c59fa2cfcda0ceb5d1a64e0a199d2973.jpg'
+                        titulo='Emma'
+                        autor='Jane Austen'
+                        editorial='Algo'
+                        caracteristicas={['Estado del ejemplar: Muy bueno', 'El libro se encuentra en condiciones']}
+                        detalles={[
+                            {label: 'Número de préstamo', texto: `N° ${dataPrestamo.publicacion.id}`},
+                            {label: 'Inicio del préstamo', texto: `${dataPrestamo.fechaPrestamo}`},
+                            {label: 'Fin del préstamo', texto: `${dataPrestamo.fechaDevolucion}`},
+                        ]}
+                    />
+                    <UsuarioDetalleCard
+                        titulo='Usuario prestamista'
+                        foto='/assets/img/avatares/alicia.png'
+                        nickname='usuario'
+                        username='usuario@gmail.com'
+                    />
+                    <UsuarioDetalleCard
+                        titulo='Usuario lector'
+                        foto='/assets/img/avatares/reinadecorazones.png'
+                        nickname='usuario'
+                        username='usuario@gmail.com'
+                    />
+                </>)}
+                {errorPrestamo && (
+                    <p>Error al cargar los datos del préstamo</p>
+                )}
             </section>
             <section className='detalles-prestamo__seccion'>
                     <div className='seccion__acciones'>

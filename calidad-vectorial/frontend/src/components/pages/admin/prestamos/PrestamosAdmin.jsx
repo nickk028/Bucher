@@ -5,12 +5,12 @@ import { useFetch } from '../../../utils/FetchUtils';
 import './PrestamosAdmin.css';
 
 const ESTADOS = [
-    'Disponible',
-    'Entrega_pendiente',
-    'Prestado',
-    'Devolucion_pendiente',
-    'No_disponible',
-    'Indefinido',
+    'Entregado',
+    'A devolver',
+    'Retirado',
+    'En revisión',
+    'A entregar',
+    'Demorado'
 ];
 
 const OPCIONES_ORDEN = [
@@ -19,8 +19,8 @@ const OPCIONES_ORDEN = [
 ];
 
 const COLOR_ESTADO = {
-    'Devolucion_pendiente': 'amarillo',
-    'Indefinido': 'rojo',
+    'Deemorado': 'amarillo',
+    'A devolver': 'rojo',
 };
 
 const COLUMNAS = [
@@ -30,17 +30,17 @@ const COLUMNAS = [
         render: (prestamo) => `N° ${prestamo.id}`,
     },
     {
-        clave: 'usuarioNickname',
+        clave: 'nickname',
         titulo: 'Usuario',
-        render: (prestamo) => `@${prestamo.usuarioNickname}`,
+        render: (prestamo) => `@${prestamo.nickname}`,
     },
-    { clave: 'titulo', titulo: 'Libro', width: 30 },
+    { clave: 'tituloLibro', titulo: 'Libro', width: 30 },
     {
-        clave: 'estadoPublicacion',
+        clave: 'estado',
         titulo: 'Estado',
         render: (prestamo) => (
-            <Indicador color={COLOR_ESTADO[prestamo.estadoPublicacion] ?? 'verde'}>
-                {prestamo.estadoPublicacion}
+            <Indicador color={COLOR_ESTADO[prestamo.estado] ?? 'verde'}>
+                {prestamo.estado}
             </Indicador>
         ),
     },
@@ -58,19 +58,19 @@ export const PrestamosAdmin = () => {
     const [estadoActivo, setEstadoActivo] = useState(null);
     const [orden, setOrden] = useState('nuevos');
 
-    const { data: dataPrestamos, loading: loadingPrestamos, error: errorPrestamos } = useFetch('publicacion');
+    const { data: dataPrestamos, loading: loadingPrestamos, error: errorPrestamos } = useFetch('admin/prestamos');
 
     const prestamosVisibles = useMemo(() => {
         const filtrados = estadoActivo
-            ? dataPrestamos.filter((prestamo) => prestamo.estadoPublicacion === estadoActivo)
-            : dataPrestamos;
+            ? dataPrestamos.content.filter((prestamo) => prestamo.estado === estadoActivo)
+            : dataPrestamos.content ?? [];
 
         return [...filtrados].sort((a, b) =>
             orden === 'nuevos'
                 ? '2026-08-26'.localeCompare('2026-08-25')
                 : '2026-08-25'.localeCompare('2026-08-26'),
         );
-    }, [dataPrestamos, estadoActivo, orden]);
+    }, [dataPrestamos, dataPrestamos.content, estadoActivo, orden]);
 
     const alternarEstado = (estado) => {
         setEstadoActivo((actual) => (actual === estado ? null : estado));
@@ -93,15 +93,6 @@ export const PrestamosAdmin = () => {
                             </button>
                         </li>
                     ))}
-                    <li className="body-prestamos-admin__filtros__item">
-                        <button
-                            type="button"
-                            className="body-prestamos-admin__filtros__chip body-prestamos-admin__filtros__chip--mas"
-                            aria-label="Más filtros"
-                        >
-                            +
-                        </button>
-                    </li>
                 </ul>
             </nav>
 
