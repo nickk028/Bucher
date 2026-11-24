@@ -103,7 +103,7 @@ public class PanelLibrosService {
      * @return El porcentaje sobre el total de libros (0 a 1)
      */
     public double obtenerPorcentajeLibrosGuardados() {
-        return EstadisticasUtil.calcularPorcentaje(
+        return EstadisticasUtil.calcular(
             libroUsuarioRepository.contarLibrosGuardados(),
             libroRepository.count()
         );
@@ -114,7 +114,7 @@ public class PanelLibrosService {
      * @return El porcentaje sobre el total de libros (0 a 1)
      */
     public double obtenerPorcentajeLibrosNombradosEnPosteos() {
-        return EstadisticasUtil.calcularPorcentaje(
+        return EstadisticasUtil.calcular(
             publicacionSocialRepository.contarLibrosNombrados(),
             libroRepository.count()
         );
@@ -125,7 +125,7 @@ public class PanelLibrosService {
      * @return El porcentaje sobre el total de libros (0 a 1)
      */
     public double obtenerPorcentajeLibrosConPublicaciones() {
-        return EstadisticasUtil.calcularPorcentaje(
+        return EstadisticasUtil.calcular(
             libroRepository.countByPublicacionesIsNotEmpty(),
             libroRepository.count()
         );

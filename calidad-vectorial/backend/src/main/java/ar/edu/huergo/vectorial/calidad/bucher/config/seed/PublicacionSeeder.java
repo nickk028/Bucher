@@ -48,7 +48,7 @@ public class PublicacionSeeder implements Seeder {
         publicacion.setLimiteDias(seed.limiteDias());
         publicacion.setDetallesEstadoLibro(DETALLES_ESTADO_LIBRO);
         publicacion.setEstadoPublicacion(
-            seed.estadoPublicacion() != null ? seed.estadoPublicacion() : Estado.Disponible
+            seed.estadoPublicacion() != null ? seed.estadoPublicacion() : Estado.disponible
         );
         publicacionRepository.save(publicacion);
     }

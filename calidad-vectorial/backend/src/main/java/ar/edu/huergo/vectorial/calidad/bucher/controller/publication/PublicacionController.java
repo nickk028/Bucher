@@ -227,11 +227,11 @@ public class PublicacionController {
                 "No se puede pedir un préstamo de una publicación propia"
             );
         }
-        if (!publicacion.getEstadoPublicacion().equals(Estado.Disponible)) {
+        if (!publicacion.getEstadoPublicacion().equals(Estado.disponible)) {
             return ResponseEntity.unprocessableEntity().body("La publicación no esta disponible");
         }
 
-        publicacionService.modificarEstadoPublicacion(publicacion, Estado.Entrega_pendiente);
+        publicacionService.modificarEstadoPublicacion(publicacion, Estado.enrevision);
         registroPrestamoService.crearRegistroUsuario(usuario, publicacion);
         return ResponseEntity.ok().body("Préstamo creado");
     }
@@ -245,11 +245,11 @@ public class PublicacionController {
     public ResponseEntity<String> devolverPublicacion(@PathVariable("id") Long id) {
         Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);
 
-        if (publicacion.getEstadoPublicacion() != Estado.Prestado) {
+        if (publicacion.getEstadoPublicacion() == Estado.disponible) {
             return ResponseEntity.unprocessableEntity().body("La publicación no está prestada");
         }
         RegistroPrestamo registro = registroPrestamoService.obtenerRegistroPrestamo(publicacion);
-        publicacionService.modificarEstadoPublicacion(publicacion, Estado.Disponible);
+        publicacionService.modificarEstadoPublicacion(publicacion, Estado.disponible);
         registroPrestamoService.marcarRegistroDevolucion(registro);
         return ResponseEntity.ok().body("Devolución realizada");
     }

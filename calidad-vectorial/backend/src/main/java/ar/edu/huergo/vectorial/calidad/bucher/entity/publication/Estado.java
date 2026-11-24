@@ -5,23 +5,35 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum Estado {
-    Disponible,
-    Entrega_pendiente,
-    Prestado,
-    Devolucion_pendiente,
-    No_disponible,
-    Indefinido;
+    disponible("Entregado"),
+    adevolver("A devolver"),
+    entregado("Entregado"),
+    retirado("Retirado"),
+    demorado("Demorado"),
+    enrevision("En revisión"),
+    antregar("A entregar"),
+    indefinido("Indefinido");
+
+    private final String nombre;
+
+    Estado(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 
     @JsonCreator
     public static Estado from(String value) {
         if (value == null || value.trim().isEmpty()) {
-            return Indefinido;
+            return indefinido;
         }
 
         try {
             return Estado.valueOf(value.trim());
         } catch (IllegalArgumentException e) {
-            return Indefinido;
+            return indefinido;
         }
     }
 }

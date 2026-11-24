@@ -32,7 +32,7 @@ public class PanelPrestamosService {
      * @return La cantidad de préstamos activos
      */
     public long obtenerPrestamosActivos() {
-        return registroPrestamoRepository.countByPublicacionEstadoPublicacion(Estado.Prestado);
+        return registroPrestamoRepository.countByPublicacionEstadoPublicacion(Estado.enrevision);
     }
 
     /**
