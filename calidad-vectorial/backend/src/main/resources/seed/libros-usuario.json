@@ -1,29 +1,6 @@
 [
-  { "usuario": "jrolando@gmail.com", "libro": "El chico que dibujaba constelaciones", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Heartless", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Llévame a cualquier lugar", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Volver a empezar", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Nosotros en la luna", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Donde todo brilla", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Cress", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Winter", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Scarlet", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Cujo", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "El resplandor", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Insurgente", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-<<<<<<< HEAD
-  { "usuario": "jrolando@gmail.com", "libro": "Leal", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Cuatro", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Después de ti", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-=======
-  { "usuario": "jrolando@gmail.com", "libro": "El cuaderno de Maya", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Testigo de cargo", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
->>>>>>> 285a39a45953e66bcd9e8d77f2cd7fa7d3d1e2f3
   { "usuario": "jrolando@gmail.com", "libro": "Yo antes de ti", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
   { "usuario": "jrolando@gmail.com", "libro": "Sigo siendo yo", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-<<<<<<< HEAD
-  { "usuario": "jrolando@gmail.com", "libro": "Emma", "paginaActual": 175, "estadoLectura": "Leyendo", "puntuacion": 0 }
-=======
   { "usuario": "jrolando@gmail.com", "libro": "Emma", "paginaActual": 175, "estadoLectura": "Leyendo", "puntuacion": 0 },
   { "usuario": "jrolando@gmail.com", "libro": "Distancia de rescate", "paginaActual": 175, "estadoLectura": "Leyendo", "puntuacion": 0 },
   { "usuario": "marcosdiaz@gmail.com", "libro": "Asesinato en el Orient Express", "paginaActual": 120, "estadoLectura": "Leyendo", "puntuacion": 0 },
@@ -57,5 +34,4 @@
   { "usuario": "paulamartinez@gmail.com", "libro": "Persuasión", "paginaActual": 100, "estadoLectura": "Leyendo", "puntuacion": 0 },
   { "usuario": "paulamartinez@gmail.com", "libro": "Emma", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
   { "usuario": "paulamartinez@gmail.com", "libro": "El poder de los introvertidos", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 }
->>>>>>> 285a39a45953e66bcd9e8d77f2cd7fa7d3d1e2f3
 ]

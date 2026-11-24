@@ -14,9 +14,7 @@
   { "nombre": "Titania", "urlWikipedia": "https://www.titania.org/" },
   { "nombre": "Nube de tinta", "urlWikipedia": "https://www.penguinrandomhousegrupoeditorial.com/sello/nube-de-tinta/" },
   { "nombre": "Editorial Molino", "urlWikipedia": "https://es.wikipedia.org/wiki/Editorial_Molino" },
-<<<<<<< HEAD
-  { "nombre": "RBA", "urlWikipedia": "https://es.wikipedia.org/wiki/RBA"}
-=======
+  { "nombre": "RBA", "urlWikipedia": "https://es.wikipedia.org/wiki/RBA"},
   { "nombre": "George Allen & Unwin", "urlWikipedia": "https://en.wikipedia.org/wiki/Allen_%26_Unwin" },
   { "nombre": "Alfred A. Knopf", "urlWikipedia": "https://en.wikipedia.org/wiki/Alfred_A._Knopf" },
   { "nombre": "Bantam Books", "urlWikipedia": "https://en.wikipedia.org/wiki/Bantam_Books" },
@@ -29,5 +27,4 @@
   { "nombre": "Summit Books", "urlWikipedia": null },
   { "nombre": "Verlag für Jugend und Volk", "urlWikipedia": null },
   { "nombre": "World Publishing Company", "urlWikipedia": "https://en.wikipedia.org/wiki/World_Publishing_Company" }
->>>>>>> 285a39a45953e66bcd9e8d77f2cd7fa7d3d1e2f3
 ]

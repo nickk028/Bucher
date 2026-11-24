@@ -12,17 +12,6 @@
     "diasDesdePrestamo": 30
   },
   {
-    "solicitante": "lector@gmail.com",
-    "publicador": "jrolando@gmail.com",
-<<<<<<< HEAD
-    "libro": "Cress",
-    "diasDesdePrestamo": 30
-=======
-    "libro": "El chico que dibujaba constelaciones",
-    "diasDesdePrestamo": 30,
-    "diasDesdeDevolucion": 10
-  },
-  {
     "solicitante": "jrolando@gmail.com",
     "publicador": "nicolasbenitez@gmail.com",
     "libro": "El hombre en busca de sentido",
@@ -73,6 +62,5 @@
     "libro": "Inteligencia emocional",
     "diasDesdePrestamo": 33,
     "diasDesdeDevolucion": 12
->>>>>>> 285a39a45953e66bcd9e8d77f2cd7fa7d3d1e2f3
   }
 ]

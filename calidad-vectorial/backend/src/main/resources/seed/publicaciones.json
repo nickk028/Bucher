@@ -48,18 +48,6 @@
     "limiteDias": 14
   },
   {
-<<<<<<< HEAD
-    "usuario": "jrolando@gmail.com",
-    "libro": "Blackwater: La casa",
-    "descripcion": "El libro es excelente y está en muy buen estado.",
-    "limiteDias": 28
-  },
-  {
-    "usuario": "jrolando@gmail.com",
-    "libro": "Blackwater: Lluvia",
-    "descripcion": "Libro en muy buenas condiciones a pesar de las veces que fue leído, no presenta anotaciones pero sí hay algunas hojas con puntas dobladas.",
-    "limiteDias": 28
-=======
     "usuario": "lector2@gmail.com",
     "libro": "El último héroe del Olimpo",
     "descripcion": "Libro en excelente estado, sin marcas ni hojas dobladas. La tapa y el lomo están intactos, con muy poco desgaste por uso. Ideal para disfrutar de una buena lectura como nuevo.",
@@ -89,7 +77,6 @@
     "descripcion": "Libro en buen estado, lectura recomendable!",
     "limiteDias": 28,
     "estadoPublicacion": "adevolver"
->>>>>>> 285a39a45953e66bcd9e8d77f2cd7fa7d3d1e2f3
   },
   {
     "usuario": "jrolando@gmail.com",
@@ -110,18 +97,6 @@
     "limiteDias": 21
   },
   {
-<<<<<<< HEAD
-    "usuario": "jrolando@gmail.com",
-    "libro": "Cress",
-    "descripcion": "Ejemplar en buen estado. Una parte de las primeras hojas están algo arrugadas debido a que tuve un incidente con agua.",
-    "limiteDias": 21
-  },
-  {
-    "usuario": "jrolando@gmail.com",
-    "libro": "Yo antes de ti",
-    "descripcion": "Ejemplar en buen estado.",
-    "limiteDias": 21
-=======
     "usuario": "marcosdiaz@gmail.com",
     "libro": "El asesinato de Roger Ackroyd",
     "descripcion": "Novela policial de Agatha Christie en muy buen estado, sin subrayados. Ideal para quienes disfrutan de los giros inesperados.",
@@ -204,6 +179,5 @@
     "descripcion": "Libro en perfecto estado, leído con cuidado y sin subrayados. Muy recomendable.",
     "limiteDias": 21,
     "estadoPublicacion": "disponible"
->>>>>>> 285a39a45953e66bcd9e8d77f2cd7fa7d3d1e2f3
   }
 ]
