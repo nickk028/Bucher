@@ -59,13 +59,13 @@ export const EstadisticasCanjes = () => {
 
             <section className='estadisticas__fila'>
                 <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--circular'>
-                    <GraficoCircular titulo='Usuarios con canjes en proceso' data={37}/>
+                    <GraficoCircular titulo='Usuarios con canjes en proceso' data={.37}/>
                 </div>
                 <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--circular'>
-                    <GraficoCircular titulo='Usuarios con puntos' data={61}/>
+                    <GraficoCircular titulo='Usuarios con puntos' data={.61}/>
                 </div>
                 <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--circular'>
-                    <GraficoCircular titulo='Usuarios con canjes hechos' data={72}/>
+                    <GraficoCircular titulo='Usuarios con canjes hechos' data={.72}/>
                 </div>
             </section>
         </section>

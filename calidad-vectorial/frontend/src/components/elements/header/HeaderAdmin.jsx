@@ -14,12 +14,12 @@ export const HeaderAdmin = () => {
     return (
         <header className="header">
             <nav className="header__nav">
-                <Link className="header__nav__item" to="/#">
+                <div className="header__nav__item">
                     <div
                         alt="Logo de Bücher"
                         className={`header__nav__item__bucher header__nav__item__bucher--${click == '/admin' ? 'selected' : ''}`}
                     />
-                </Link>
+                </div>
 
                 <Link className="header__nav__item" to="/admin/estadisticas">
                     <div

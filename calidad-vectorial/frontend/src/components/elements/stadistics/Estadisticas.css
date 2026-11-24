@@ -40,6 +40,10 @@
     align-items: center;
 }
 
+.estadisticas__fila__contenedor--grande {
+    width: 1000px;
+}
+
 .estadisticas__fila__contenedor--torta {
     width: 330px;
     height: 240px;
