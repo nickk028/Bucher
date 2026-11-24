@@ -25,5 +25,57 @@
     "libro": "El chico que dibujaba constelaciones",
     "diasDesdePrestamo": 30,
     "diasDesdeDevolucion": 10
+  },
+  {
+    "solicitante": "jrolando@gmail.com",
+    "publicador": "nicolasbenitez@gmail.com",
+    "libro": "El hombre en busca de sentido",
+    "diasDesdePrestamo": 5
+  },
+  {
+    "solicitante": "lector@gmail.com",
+    "publicador": "mljueguen@gmail.com",
+    "libro": "Matilda",
+    "diasDesdePrestamo": 9
+  },
+  {
+    "solicitante": "tomasherrera@gmail.com",
+    "publicador": "paulamartinez@gmail.com",
+    "libro": "Mi nombre es Emilia del Valle",
+    "diasDesdePrestamo": 12
+  },
+  {
+    "solicitante": "camilaprieto@gmail.com",
+    "publicador": "sisoywendys@gmail.com",
+    "libro": "Charlie y la fábrica de chocolate",
+    "diasDesdePrestamo": 2
+  },
+  {
+    "solicitante": "sisoywendys@gmail.com",
+    "publicador": "tomasherrera@gmail.com",
+    "libro": "El resplandor",
+    "diasDesdePrestamo": 35,
+    "diasDesdeDevolucion": 14
+  },
+  {
+    "solicitante": "marcosdiaz@gmail.com",
+    "publicador": "jlopez@gmail.com",
+    "libro": "Pensar rápido, pensar despacio",
+    "diasDesdePrestamo": 45,
+    "diasDesdeDevolucion": 20
+  },
+  {
+    "solicitante": "nicolasbenitez@gmail.com",
+    "publicador": "camilaprieto@gmail.com",
+    "libro": "Yo antes de ti",
+    "diasDesdePrestamo": 28,
+    "diasDesdeDevolucion": 7
+  },
+  {
+    "solicitante": "lector2@gmail.com",
+    "publicador": "camilaprieto@gmail.com",
+    "libro": "Inteligencia emocional",
+    "diasDesdePrestamo": 33,
+    "diasDesdeDevolucion": 12
   }
 ]
