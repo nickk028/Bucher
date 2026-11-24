@@ -43,6 +43,7 @@ public interface RegistroPrestamoRepository extends JpaRepository<RegistroPresta
     );
     long countByFechaDevolucionIsNull();
     long countByPublicacionEstadoPublicacion(Estado estado);
+    long countByPublicacionEstadoPublicacionIn(List<Estado> estados);
 
     @Query(
         "SELECT COUNT(r) FROM RegistroPrestamo r " +

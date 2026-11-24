@@ -7,6 +7,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.RegistroPre
 import ar.edu.huergo.vectorial.calidad.bucher.util.EstadisticasUtil;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,13 @@ public class PanelPrestamosService {
     }
 
     /**
-     * Obtiene la cantidad de préstamos activos (los que tienen la publicación en estado Prestado)
+     * Obtiene la cantidad de préstamos activos
      * @return La cantidad de préstamos activos
      */
     public long obtenerPrestamosActivos() {
-        return registroPrestamoRepository.countByPublicacionEstadoPublicacion(Estado.enrevision);
+        return registroPrestamoRepository.countByPublicacionEstadoPublicacionIn(
+            List.of(Estado.antregar, Estado.entregado, Estado.adevolver, Estado.demorado, Estado.enrevision, Estado.retirado)
+        );
     }
 
     /**
@@ -49,6 +52,10 @@ public class PanelPrestamosService {
      */
     public double obtenerPorcentajePrestamosActivos() {
         return EstadisticasUtil.calcular(obtenerPrestamosActivos(), obtenerPrestamosTotales());
+    }
+
+    public long obtenerPrestamosDemorados() {
+        return registroPrestamoRepository.countByPublicacionEstadoPublicacion(Estado.demorado);
     }
 
     /**

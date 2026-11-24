@@ -5,13 +5,14 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.publication;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum Estado {
-    disponible("Entregado"),
+    disponible("Disponible"),
     adevolver("A devolver"),
     entregado("Entregado"),
     retirado("Retirado"),
     demorado("Demorado"),
     enrevision("En revisión"),
     antregar("A entregar"),
+    solicitado("Solicitado"),
     indefinido("Indefinido");
 
     private final String nombre;

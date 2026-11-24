@@ -2,6 +2,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.controller.publication;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.RegistroPrestamoResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.RegistroPrestamoMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionService;
@@ -70,9 +71,9 @@ public class RegistroPrestamoController {
         @PathVariable("id") Long id
     ) {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
-        Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);
+        RegistroPrestamo registroPrestamo = registroPrestamoService.obtenerRegistroPrestamoPorId(id, usuario);
         return registroPrestamoMapper.toDTO(
-            registroPrestamoService.obtenerRegistroUsuarioPorPublicacion(usuario, publicacion)
+            registroPrestamoService.obtenerRegistroUsuarioPorPublicacion(usuario, registroPrestamo.getPublicacion())
         );
     }
 }

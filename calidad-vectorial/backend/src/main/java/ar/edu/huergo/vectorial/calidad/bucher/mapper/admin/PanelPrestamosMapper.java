@@ -27,6 +27,9 @@ public class PanelPrestamosMapper {
         panelPrestamosDTO.setPrestamosIncompletos(
             panelPrestamosService.obtenerPrestamosIncompletos()
         );
+        panelPrestamosDTO.setPrestamosDemorados(
+            panelPrestamosService.obtenerPrestamosDemorados()
+        );
         panelPrestamosDTO.setPorcentajePrestamosActivos(
             panelPrestamosService.obtenerPorcentajePrestamosActivos()
         );

@@ -20,6 +20,8 @@ public class PanelPrestamosDTO {
     // Cantidad de préstamos incompletos (todavía sin devolución)
     private long prestamosIncompletos;
 
+    private long prestamosDemorados;
+
     // Porcentaje de préstamos activos sobre el total de préstamos (0 a 1)
     private double porcentajePrestamosActivos;
 

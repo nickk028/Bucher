@@ -231,7 +231,7 @@ public class PublicacionController {
             return ResponseEntity.unprocessableEntity().body("La publicación no esta disponible");
         }
 
-        publicacionService.modificarEstadoPublicacion(publicacion, Estado.enrevision);
+        publicacionService.modificarEstadoPublicacion(publicacion, Estado.solicitado);
         registroPrestamoService.crearRegistroUsuario(usuario, publicacion);
         return ResponseEntity.ok().body("Préstamo creado");
     }
