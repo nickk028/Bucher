@@ -38,7 +38,7 @@ public class Autor {
 
     // Descripción del autor
     @Column(nullable = true)
-    @Size(max = 255, message = "La descripcion debe tener como máximo 100 digitos")
+    @Size(max = 255, message = "La descripcion debe tener como máximo 255 digitos")
     private String descripcion;
 
     // URL de la pagina de Wikipedia del autor

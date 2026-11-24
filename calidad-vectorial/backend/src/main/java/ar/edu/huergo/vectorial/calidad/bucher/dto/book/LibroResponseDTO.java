@@ -3,6 +3,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.dto.book;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import java.math.BigDecimal;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,8 +26,8 @@ public class LibroResponseDTO {
     // Descripción del libro
     private String descripcion;
 
-    // Precio actual del libro (último precio histórico)
-    private double precio;
+    // Precio actual del libro (último precio histórico, null si no tiene)
+    private BigDecimal precio;
 
     // Categoría del libro
     @Enumerated(EnumType.STRING)

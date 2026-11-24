@@ -13,12 +13,12 @@ const Header = ({ onToggleCrear, mostrarCrear, mostrarConfig }) => {
     return (
         <header className="header">
             <nav className="header__nav">
-                <Link className="header__nav__item" to="/index">
+                <div className="header__nav__item">
                     <div
                         alt="Logo de Bücher"
-                        className={`header__nav__item__bucher header__nav__item__bucher--${click == '/index' ? 'selected' : ''}`}
+                        className={`header__nav__item__bucher`}
                     />
-                </Link>
+                </div>
 
                 <Link className="header__nav__item" to="/prestamos">
                     <div

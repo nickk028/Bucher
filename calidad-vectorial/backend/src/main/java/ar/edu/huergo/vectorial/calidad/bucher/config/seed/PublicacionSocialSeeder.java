@@ -4,9 +4,9 @@ import ar.edu.huergo.vectorial.calidad.bucher.config.seed.dto.PublicacionSocialS
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.PublicacionSocial;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionSocialRepository;
-import java.time.LocalDate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,7 +29,7 @@ public class PublicacionSocialSeeder implements Seeder {
         Usuario usuario = references.usuario(seed.usuario());
 
         boolean yaExiste = publicacionSocialRepository
-            .findAllByUsuario(usuario)
+            .findAllByUsuarioId(usuario.getId(), Pageable.unpaged())
             .stream()
             .anyMatch((publicacion) ->
                 publicacion.getTextoPublicacion().equals(seed.textoPublicacion())
@@ -40,8 +40,6 @@ public class PublicacionSocialSeeder implements Seeder {
 
         PublicacionSocial publicacion = new PublicacionSocial();
         publicacion.setUsuario(usuario);
-        publicacion.setFechaCreacion(LocalDate.now());
-        publicacion.setDescripcion(seed.descripcion());
         publicacion.setTextoPublicacion(seed.textoPublicacion());
         if (seed.libro() != null) {
             publicacion.setLibro(references.libro(seed.libro()));

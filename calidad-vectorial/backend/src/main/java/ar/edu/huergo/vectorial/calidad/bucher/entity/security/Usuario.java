@@ -3,6 +3,7 @@ package ar.edu.huergo.vectorial.calidad.bucher.entity.security;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.bookuser.LibroUsuario;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.subscription.RegistroSuscripcion;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,7 +39,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 @Table(name = "usuarios")
-@EqualsAndHashCode(exclude = { "publicaciones", "prestamos", "librosUsuario" })
+@EqualsAndHashCode(exclude = { "publicaciones", "prestamos", "librosUsuario", "registrosSuscripcion" })
 public class Usuario {
 
     @Id //Id principal de la entidad
@@ -49,7 +50,7 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El username es obligatorio.")
     @NotNull(message = "El username es obligatorio.")
-    @Size(min = 3, max = 100, message = "El username debe tener entre 2 y 100 digitos.")
+    @Size(min = 3, max = 100, message = "El username debe tener entre 3 y 100 digitos.")
     @Email(message = "El nombre debe ser un mail con un formato válido.")
     private String username;
 
@@ -57,7 +58,7 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "El nickname es obligatorio.")
     @NotNull(message = "El nickname es obligatorio.")
-    @Size(min = 3, max = 100, message = "El nickname debe tener entre 2 y 100 digitos.")
+    @Size(min = 3, max = 32, message = "El nickname debe tener entre 3 y 32 digitos.")
     private String nickname;
 
     // Contraseña del usuario
@@ -122,6 +123,10 @@ public class Usuario {
     // Relación 1 a muchos con LibroUsuario
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LibroUsuario> librosUsuario = new ArrayList<>();
+
+    // Relación 1 a muchos con RegistroSuscripcion
+    @OneToMany(mappedBy = "usuario")
+    private List<RegistroSuscripcion> registrosSuscripcion = new ArrayList<>();
 
     // Constructor
     public Usuario(String username, String password) {

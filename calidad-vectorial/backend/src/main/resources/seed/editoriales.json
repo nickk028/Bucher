@@ -1,4 +1,5 @@
 [
+  { "nombre": "Bücher", "urlWikipedia": null },
   { "nombre": "Bloomsbury", "urlWikipedia": "https://es.wikipedia.org/wiki/Bloomsbury_Publishing" },
   { "nombre": "Doubleday", "urlWikipedia": "https://en.wikipedia.org/wiki/Doubleday_(publisher)" },
   { "nombre": "Editorial Planeta", "urlWikipedia": "https://es.wikipedia.org/wiki/Grupo_Planeta" },
@@ -13,5 +14,20 @@
   { "nombre": "Titania", "urlWikipedia": "https://www.titania.org/" },
   { "nombre": "Nube de tinta", "urlWikipedia": "https://www.penguinrandomhousegrupoeditorial.com/sello/nube-de-tinta/" },
   { "nombre": "Editorial Molino", "urlWikipedia": "https://es.wikipedia.org/wiki/Editorial_Molino" },
+<<<<<<< HEAD
   { "nombre": "RBA", "urlWikipedia": "https://es.wikipedia.org/wiki/RBA"}
+=======
+  { "nombre": "George Allen & Unwin", "urlWikipedia": "https://en.wikipedia.org/wiki/Allen_%26_Unwin" },
+  { "nombre": "Alfred A. Knopf", "urlWikipedia": "https://en.wikipedia.org/wiki/Alfred_A._Knopf" },
+  { "nombre": "Bantam Books", "urlWikipedia": "https://en.wikipedia.org/wiki/Bantam_Books" },
+  { "nombre": "Crown Publishing Group", "urlWikipedia": "https://en.wikipedia.org/wiki/Crown_Publishing_Group" },
+  { "nombre": "Farrar, Straus and Giroux", "urlWikipedia": "https://en.wikipedia.org/wiki/Farrar,_Straus_and_Giroux" },
+  { "nombre": "Harper & Brothers", "urlWikipedia": "https://en.wikipedia.org/wiki/Harper_(publisher)" },
+  { "nombre": "Harper & Row", "urlWikipedia": "https://en.wikipedia.org/wiki/Harper_%26_Row" },
+  { "nombre": "Jonathan Cape", "urlWikipedia": "https://en.wikipedia.org/wiki/Jonathan_Cape" },
+  { "nombre": "Reynal & Hitchcock", "urlWikipedia": "https://en.wikipedia.org/wiki/Reynal_%26_Hitchcock" },
+  { "nombre": "Summit Books", "urlWikipedia": null },
+  { "nombre": "Verlag für Jugend und Volk", "urlWikipedia": null },
+  { "nombre": "World Publishing Company", "urlWikipedia": "https://en.wikipedia.org/wiki/World_Publishing_Company" }
+>>>>>>> 285a39a45953e66bcd9e8d77f2cd7fa7d3d1e2f3
 ]

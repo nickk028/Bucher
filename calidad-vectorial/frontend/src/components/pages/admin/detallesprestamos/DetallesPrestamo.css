@@ -1,0 +1,36 @@
+.detalles-prestamo {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    padding: 20px 40px;
+}
+
+.detalles-prestamo__seccion {
+    display: flex;
+    height: 230px;
+    gap: 20px;
+}
+
+.seccion__acciones {
+    background: var(--bg-surface);
+    border-radius: 8px;
+    border: var(--border-primary) 2px solid;
+
+    width: 320px;
+    height: 240px;
+    padding: 8px;
+
+    display: flex;
+    flex-flow: column;
+    gap: 14px;
+}
+
+.seccion__acciones h2 {
+    font-size: var(--font-size-lg);
+    color: var(--brand-dark)
+}
+
+.seccion__acciones p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}

@@ -154,5 +154,65 @@
     "descripcion": "Richard Russell \"Rick\" Riordan es un escritor estadounidense. Es conocido por ser el autor de la saga Percy Jackson y los dioses del Olimpo y Los Héroes del Olimpo.",
     "urlWikipedia": "https://es.wikipedia.org/wiki/Rick_Riordan",
     "urlFotoAutor": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Rick_riordan_2007.jpg/500px-Rick_riordan_2007.jpg"
+  },
+  {
+    "nombre": "Antoine de Saint-Exupéry",
+    "descripcion": "Escritor y aviador francés, autor de El principito, una de las obras más traducidas y leídas de la literatura universal.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Antoine_de_Saint-Exup%C3%A9ry",
+    "urlFotoAutor": "https://commons.wikimedia.org/wiki/Special:FilePath/Antoine_de_Saint-Exup%C3%A9ry.jpg"
+  },
+  {
+    "nombre": "Roald Dahl",
+    "descripcion": "Escritor británico de origen noruego, famoso por sus libros infantiles como Matilda y Charlie y la fábrica de chocolate, además de sus cuentos de humor negro para adultos.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Roald_Dahl",
+    "urlFotoAutor": "https://commons.wikimedia.org/wiki/Special:FilePath/Roald_Dahl.jpg"
+  },
+  {
+    "nombre": "Maurice Sendak",
+    "descripcion": "Ilustrador y escritor estadounidense de libros infantiles, reconocido sobre todo por Donde viven los monstruos, un clásico del álbum ilustrado.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Maurice_Sendak",
+    "urlFotoAutor": "https://commons.wikimedia.org/wiki/Special:FilePath/Roland_Richard_and_Maurice_Sendak.jpg"
+  },
+  {
+    "nombre": "Eric Carle",
+    "descripcion": "Autor e ilustrador estadounidense de libros infantiles, conocido por sus collages de colores vivos y por La oruga muy hambrienta.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Eric_Carle",
+    "urlFotoAutor": "https://commons.wikimedia.org/wiki/Special:FilePath/Eric_Carle_(cropped).jpg"
+  },
+  {
+    "nombre": "Viktor E. Frankl",
+    "descripcion": "Psiquiatra y neurólogo austríaco, fundador de la logoterapia y autor de El hombre en busca de sentido, basado en su experiencia en los campos de concentración nazis.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Viktor_Frankl",
+    "urlFotoAutor": "https://commons.wikimedia.org/wiki/Special:FilePath/Viktor_Frankl_BnW.png"
+  },
+  {
+    "nombre": "Daniel Kahneman",
+    "descripcion": "Psicólogo israelí-estadounidense, premio Nobel de Economía en 2002 por sus estudios sobre el juicio y la toma de decisiones. Autor de Pensar rápido, pensar despacio.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Daniel_Kahneman",
+    "urlFotoAutor": "https://commons.wikimedia.org/wiki/Special:FilePath/Daniel_Kahneman_(3283955327)_(cropped).jpg"
+  },
+  {
+    "nombre": "Daniel Goleman",
+    "descripcion": "Psicólogo y periodista estadounidense, conocido por popularizar el concepto de inteligencia emocional con el libro del mismo nombre.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Daniel_Goleman",
+    "urlFotoAutor": "https://commons.wikimedia.org/wiki/Special:FilePath/Daniel_Goleman.jpg"
+  },
+  {
+    "nombre": "Erich Fromm",
+    "descripcion": "Psicoanalista y filósofo alemán, uno de los referentes de la psicología humanista. Autor de El arte de amar y Miedo a la libertad.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Erich_Fromm",
+    "urlFotoAutor": "https://commons.wikimedia.org/wiki/Special:FilePath/Erich_Fromm.jpg"
+  },
+  {
+    "nombre": "Oliver Sacks",
+    "descripcion": "Neurólogo y escritor británico, célebre por sus relatos clínicos divulgativos, entre ellos El hombre que confundió a su mujer con un sombrero.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Oliver_Sacks",
+    "urlFotoAutor": "https://commons.wikimedia.org/wiki/Special:FilePath/Oliver_Sacks.jpg"
+  },
+  {
+    "nombre": "Susan Cain",
+    "descripcion": "Escritora y conferencista estadounidense, autora de El poder de los introvertidos, un libro sobre el valor de la introversión en una sociedad que premia la extroversión.",
+    "urlWikipedia": "https://es.wikipedia.org/wiki/Susan_Cain",
+    "urlFotoAutor": "https://commons.wikimedia.org/wiki/Special:FilePath/SusanCainPortrait_250px_20120305.jpg"
   }
 ]

@@ -61,7 +61,7 @@ public class PublicacionMapper {
         }
 
         if (publicacionUpdateDTO.getEstadoPublicacion() == null) {
-            publicacion.setEstadoPublicacion(Estado.Indefinido);
+            publicacion.setEstadoPublicacion(Estado.indefinido);
         } else {
             publicacion.setEstadoPublicacion(publicacionUpdateDTO.getEstadoPublicacion());
         }
@@ -85,6 +85,7 @@ public class PublicacionMapper {
         publicacionResponseDTO.setDescripcion(publicacion.getDescripcion());
         publicacionResponseDTO.setLimiteDias(publicacion.getLimiteDias());
         publicacionResponseDTO.setUsuarioCreador(publicacion.getUsuario().getUsername());
+        publicacionResponseDTO.setAvatarUsuarioCreador(publicacion.getUsuario().getAvatar().getUrl());
         publicacionResponseDTO.setFechaCreacion(publicacion.getFechaCreacion());
         publicacionResponseDTO.setEstadoPublicacion(publicacion.getEstadoPublicacion());
         publicacionResponseDTO.setNombre(publicacion.getLibro().getAutor().getNombre());

@@ -1,6 +1,9 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.book;
 
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +14,8 @@ import lombok.NoArgsConstructor;
 public class LibroPrecioUpdateDTO {
 
     // Nuevo precio del libro
-    @Positive(message = "El precio debe ser mayor a 0.")
-    private double precio;
+    @NotNull(message = "El precio es obligatorio.")
+    @PositiveOrZero(message = "El precio no puede ser negativo.")
+    @Digits(integer = 10, fraction = 2, message = "El precio debe tener hasta 10 enteros y 2 decimales.")
+    private BigDecimal precio;
 }

@@ -1,0 +1,69 @@
+.body-estadisticas__admin {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 20px 40px 40px 40px;
+
+    font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+}
+
+.body-estadisticas__admin__encabezado__titulo {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--brand-dark);
+}
+
+.body-estadisticas__admin__encabezado__subtitulo {
+    font-size: var(--font-size-base);
+}
+
+.body-estadisticas__admin__nav {
+    width: 100%;
+}
+
+.body-estadisticas__admin__nav__items {
+    display: flex;
+    gap: 20px;
+}
+
+.body-estadisticas__admin__nav__items__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 130px;
+
+    padding: 0px 10px;
+
+    background: var(--bg-secondary);
+    border: var(--border-tertiary) 2px solid;
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.body-estadisticas__admin__nav__items__item--selected {
+    color: var(--bg-primary);
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    transition: all 300ms ease-in-out;
+}
+
+.body-estadisticas__admin__nav__items__item__icono {
+    aspect-ratio: 1 / 1;
+    width: 30px;
+    color: var(--brand-dark);
+}
+
+.body-estadisticas__admin__nav__items__item--selected .body-estadisticas__admin__nav__items__item__icono {
+    color: var(--bg-primary);
+    color: var(--bg-primary);
+}
+
+@media (max-width: 768px) {
+    .body-estadisticas__admin {
+        padding: 20px;
+    }
+}

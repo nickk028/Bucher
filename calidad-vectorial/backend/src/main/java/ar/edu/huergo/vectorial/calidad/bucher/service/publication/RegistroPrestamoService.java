@@ -4,6 +4,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.RegistroPrestamoRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class RegistroPrestamoService {
 
     @Autowired
     private RegistroPrestamoRepository registroPrestamoRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     /**
      * Crea un nuevo registro de préstamo
@@ -74,6 +79,14 @@ public class RegistroPrestamoService {
      * @return La List de los registros de préstamo
      */
     public RegistroPrestamo obtenerRegistroPrestamoPorId(Long id, Usuario usuario) {
+        if (UsuarioService.hasRol(usuario, "ADMIN")) {
+            return registroPrestamoRepository.findById(id)
+                .orElseThrow(() ->
+                new IllegalArgumentException(
+                    "No existe un registro de préstamo activo para este id"
+                )
+            );
+        }
         return registroPrestamoRepository.findByIdAndUsuario(id, usuario)
             .orElseThrow(() ->
                 new IllegalArgumentException(
@@ -82,6 +95,24 @@ public class RegistroPrestamoService {
             );
     }
 
+    public RegistroPrestamo obtenerRegistroUsuarioPorPublicacion(Usuario usuario, Publicacion publicacion) {
+        if (UsuarioService.hasRol(usuario, "ADMIN")) {
+            return registroPrestamoRepository.findByPublicacion(publicacion)
+                .orElseThrow(() ->
+                new IllegalArgumentException(
+                    "No existe un registro de préstamo activo para este id de publicación"
+                )
+            );
+        }
+        return registroPrestamoRepository.findByPublicacionAndUsuario(publicacion, usuario)
+            .orElseThrow(() ->
+                new IllegalArgumentException(
+                    "No existe un registro de préstamo activo para este id de publicación y usuario"
+                )
+            );
+    }
+
+
     /**
      * Obtiene una lista de los registros de prestamos de la ultima semana
      * @return La lista de los registros de prestamo
@@ -89,7 +120,6 @@ public class RegistroPrestamoService {
     public List<RegistroPrestamo> obtenerRegistrosPrestamosDeLaSemana() {
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaInicioSemana = LocalDate.now().minusDays(7);
-        System.err.println("Las fechas son" + fechaActual + "-" + fechaInicioSemana);
         return registroPrestamoRepository.findByFechaPrestamoBetween(
             fechaInicioSemana,
             fechaActual

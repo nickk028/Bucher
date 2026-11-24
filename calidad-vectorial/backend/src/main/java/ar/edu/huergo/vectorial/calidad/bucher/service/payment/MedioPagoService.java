@@ -11,6 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class MedioPagoService {
 
+    // Id del medio de pago utilizado en las suscripciones gratuitas, cargado por seed
+    public static final Long ID_MEDIO_PAGO_SIN_PAGO = 1L;
+
+    // Id del medio de pago Visa, cargado por seed
+    public static final Long ID_MEDIO_PAGO_VISA = 2L;
+
     @Autowired
     private MedioPagoRepository medioPagoRepository;
 
@@ -44,6 +50,24 @@ public class MedioPagoService {
         return medioPagoRepository
             .findByNombreIgnoreCase(nombre)
             .orElseThrow(() -> new EntityNotFoundException("Medio de pago no encontrado"));
+    }
+
+    /**
+     * Obtiene el medio de pago utilizado en las suscripciones gratuitas
+     * @return El medio de pago sin pago
+     * @throws EntityNotFoundException Si no se encuentra el medio de pago
+     */
+    public MedioPago obtenerMedioPagoSinPago() throws EntityNotFoundException {
+        return obtenerMedioPagoPorId(ID_MEDIO_PAGO_SIN_PAGO);
+    }
+
+    /**
+     * Verifica si un medio de pago es Visa
+     * @param medioPago El medio de pago a verificar
+     * @return true si es Visa, false en caso contrario
+     */
+    public boolean esMedioPagoVisa(MedioPago medioPago) {
+        return medioPago != null && ID_MEDIO_PAGO_VISA.equals(medioPago.getId());
     }
 
     /**

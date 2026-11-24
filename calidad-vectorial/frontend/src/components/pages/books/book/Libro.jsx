@@ -9,19 +9,38 @@ import Estrella from '../../../../assets/img/icons/utils/estrellaGrande.svg?reac
 
 export const Libro = () => {
     const { id } = useParams();
+    const { data: dataUsuario, refetch: refetchUsuario } = useFetch('usuario/propio');
     const { data: libro, error: errorFetch, loading: loadingError } = useFetch('libro/' + id);
     const {
         data: dataPost,
         loading: loadingPost,
         error: errorPost,
-        execute,
-    } = usePost('biblioteca');
+        execute: executePost,
+    } = usePost('libro-usuario');
 
     const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
+    const esLibroUsuario = dataUsuario && dataUsuario.librosUsuario ? dataUsuario.librosUsuario.find(item => item.titulo === libro?.titulo) : undefined;
+    const libroUsuarioId = esLibroUsuario?.id;
+
+    const {
+        loading: loadingModificarLibro,
+        execute: executeModificarLibro,
+    } = usePost('libro-usuario/' + libroUsuarioId, 'PUT');
+
     const handleAgregarLibroUsuario = async (e) => {
         e.preventDefault();
-        await execute({ titulo: libro.titulo });
+
+        await executePost({ titulo: libro.titulo });
+        await refetchUsuario();
+    };
+
+    const handleModificarLibroUsuario = async (e, estadoLectura) => {
+        e.preventDefault();
+
+        await executeModificarLibro({ estadoLectura });
+
+        await refetchUsuario();
     };
 
     useEffect(() => {
@@ -48,14 +67,48 @@ export const Libro = () => {
                                 src={libro.urlFoto}
                                 alt="Foto del libro"
                             />
-                            <Button
-                                onClick={handleAgregarLibroUsuario}
-                                disabled={loadingPost}
-                                variant="default"
-                                color="oscuro"
-                            >
-                                Agregar a la biblioteca
-                            </Button>
+                            {!esLibroUsuario ? (
+                                <Button
+                                    onClick={handleAgregarLibroUsuario}
+                                    disabled={loadingPost}
+                                    variant="default"
+                                    color="oscuro"
+                                >
+                                    Agregar a la biblioteca
+                                </Button>
+                            ) : esLibroUsuario.estadoLectura === 'Pendiente' ||
+                                esLibroUsuario.estadoLectura === 'Leido' ||
+                                esLibroUsuario.estadoLectura === 'Abandonado' ? (
+                                <Button
+                                    onClick={(e) => handleModificarLibroUsuario(e, 'Leyendo')}
+                                    disabled={loadingModificarLibro}
+                                    variant="default"
+                                    color="oscuro"
+                                >
+                                    Comenzar a leer
+                                </Button>
+                            ) : (
+                                <>
+                                    <Button
+                                        onClick={(e) => handleModificarLibroUsuario(e, 'Leido')}
+                                        disabled={loadingModificarLibro}
+                                        variant="default"
+                                        color="oscuro"
+                                    >
+                                        Lo terminé de leer
+                                    </Button>
+
+                                    <Button
+                                        onClick={(e) => handleModificarLibroUsuario(e, 'Abandonado')}
+                                        disabled={loadingModificarLibro}
+                                        variant="default"
+                                        color="oscuro"
+                                    >
+                                        Abandoné el libro
+                                    </Button>
+                                </>
+                            )}
+                            
                         </div>
                         <div className="body-pub__libro__text">
                             <div>

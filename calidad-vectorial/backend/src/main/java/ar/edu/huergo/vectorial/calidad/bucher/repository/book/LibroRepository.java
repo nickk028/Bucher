@@ -21,4 +21,7 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     Optional<Libro> findByTituloIgnoreCaseAndEdicion(String titulo, String edicion);
     List<Libro> findAllByCategoriaContaining(Categoria categoria);
     List<Libro> findAllByTituloContainingIgnoreCase(String titulo, Pageable pageable);
+    long countByEditorial(Editorial editorial);
+    long countByCategoriaContaining(Categoria categoria);
+    long countByPublicacionesIsNotEmpty();
 }

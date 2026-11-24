@@ -4,6 +4,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.dto.security.RegistrarDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.bookuser.LibroUsuarioMapper;
+import ar.edu.huergo.vectorial.calidad.bucher.mapper.subscription.RegistroSuscripcionMapper;
+import ar.edu.huergo.vectorial.calidad.bucher.service.subscription.RegistroSuscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import java.util.HashSet;
@@ -17,6 +19,12 @@ public class UsuarioMapper {
 
     @Autowired
     LibroUsuarioMapper libroUsuarioMapper;
+
+    @Autowired
+    RegistroSuscripcionMapper registroSuscripcionMapper;
+
+    @Autowired
+    RegistroSuscripcionService registroSuscripcionService;
 
     /**
      * Convierte una entidad Usuario a un DTO UsuarioResponseDTO
@@ -40,6 +48,11 @@ public class UsuarioMapper {
         usuarioDTO.setCodigoPostal(usuario.getCodigoPostal());
         usuarioDTO.setRoles(new HashSet<>(usuario.getRoles()));
         usuarioDTO.setLibrosUsuario(libroUsuarioMapper.toDTOList(usuario.getLibrosUsuario()));
+        usuarioDTO.setSuscripcionActiva(
+            registroSuscripcionMapper.toActivaDTO(
+                registroSuscripcionService.obtenerRegistroActivo(usuario)
+            )
+        );
         return usuarioDTO;
     }
 

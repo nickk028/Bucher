@@ -5,17 +5,22 @@ import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
+import ar.edu.huergo.vectorial.calidad.bucher.service.payment.PrecioHistoricoLibroService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component // Marca la clase como un componente de Spring
 // Mapper de la entidad Libro utiizada para pasar de entidad a DTO y de DTO a entidad
 public class LibroMapper {
+
+    @Autowired
+    private PrecioHistoricoLibroService precioHistoricoLibroService;
 
     /**
      * Pasa de Libro a entidad LibroResponseDTO
@@ -32,7 +37,7 @@ public class LibroMapper {
         libroResponseDTO.setTitulo(libro.getTitulo());
         libroResponseDTO.setUrlFoto(libro.getUrlFoto());
         libroResponseDTO.setDescripcion(libro.getDescripcion());
-        libroResponseDTO.setPrecio(libro.getPrecio());
+        libroResponseDTO.setPrecio(precioHistoricoLibroService.obtenerPrecioActual(libro));
         libroResponseDTO.setCategorias(libro.getCategoria());
         libroResponseDTO.setNombreAutor(libro.getAutor().getNombre());
         libroResponseDTO.setDescripcionAutor(libro.getAutor().getDescripcion());
@@ -106,13 +111,11 @@ public class LibroMapper {
         }
         Libro libro = new Libro();
 
-        libro.setId(libroCreateDTO.getId());
         libro.setTitulo(libroCreateDTO.getTitulo());
         libro.setDescripcion(libroCreateDTO.getDescripcion());
         libro.setCategoria(libroCreateDTO.getCategorias());
         libro.setPaginas(libroCreateDTO.getPaginas());
         libro.setEdicion(libroCreateDTO.getEdicion());
-        libro.setFechaPublicacion(libroCreateDTO.getFechaPublicacion());
         return libro;
     }
 }

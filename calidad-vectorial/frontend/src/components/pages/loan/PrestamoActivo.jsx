@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../../utils/FetchUtils';
 import { Button } from '../../elements/buttons/Button';
+import { DetalleCard } from '../../elements/detail/DetalleCard';
 import './PrestamoActivo.css';
 
 import iconoCheck from '../../../assets/img/icons/crear/tildeVistaPrevia.svg';
@@ -62,55 +63,12 @@ export const PrestamoActivo = () => {
                         <h1 className="body-prest__prestamo__text__title">{prestamo.titulo}</h1>
                         <p className="body-prest__prestamo__text__author">{prestamo.autor}</p>
 
-                        <section className="body-prest__prestamo__text__card">
-                            <h2 className="body-prest__prestamo__text__card__title">
-                                Detalle del préstamo
-                            </h2>
-
-                            <ol
-                                className="body-prest__prestamo__text__stepper"
-                                style={{ '--progreso': progreso }}
-                            >
-                                {PASOS.map((paso, index) => {
-                                    const completado = index < PASOS_COMPLETADOS;
-                                    const posicion = index % 2 === 0 ? 'arriba' : 'abajo';
-                                    return (
-                                        <li
-                                            key={paso}
-                                            className={`body-prest__prestamo__text__stepper__paso body-prest__prestamo__text__stepper__paso--${posicion}`}
-                                        >
-                                            <span className="body-prest__prestamo__text__stepper__label">
-                                                {paso}
-                                            </span>
-                                            <img
-                                                className="body-prest__prestamo__text__stepper__marcador"
-                                                src={completado ? pasoCompletado : pasoPendiente}
-                                                alt=""
-                                            />
-                                        </li>
-                                    );
-                                })}
-                            </ol>
-
-                            <ul className="body-prest__prestamo__text__eventos">
-                                {prestamo.eventos.map((evento) => (
-                                    <li
-                                        key={evento.texto}
-                                        className="body-prest__prestamo__text__eventos__item"
-                                    >
-                                        <img
-                                            className="body-prest__prestamo__text__icono"
-                                            src={iconoCheck}
-                                            alt=""
-                                        />
-                                        <span>{evento.texto}</span>
-                                        <span className="body-prest__prestamo__text__eventos__fecha">
-                                            {evento.fecha}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </section>
+                        <DetalleCard
+                            titulo={prestamo.titulo}
+                            pasos={PASOS}
+                            pasosCompletados={PASOS_COMPLETADOS}
+                            eventos={prestamo.eventos}
+                        />
 
                         <div className="body-prest__prestamo__text__duracion">
                             <img

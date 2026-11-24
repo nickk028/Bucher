@@ -24,21 +24,21 @@ const COLUMNAS = [
         render: (usuario) => `@${usuario.nickname}`,
     },
     { clave: 'username', titulo: 'Correo', width: 25 },
-    { clave: 'publicaciones', titulo: 'Publicaciones'},
-    { clave: 'posteos', titulo: 'Posteos'},
+    { clave: 'cantPublicaciones', titulo: 'Publicaciones'},
+    { clave: 'cantPosteos', titulo: 'Posteos'},
     {
-        clave: 'denuncias',
+        clave: 'cantDenuncias',
         titulo: 'Denuncias',
         render: (usuario) => (
-            <Indicador color={obtenerColorDenuncias(usuario.denuncias)}>
-                {usuario.denuncias}
+            <Indicador color={obtenerColorDenuncias(usuario.cantDenuncias)}>
+                {usuario.cantDenuncias}
             </Indicador>
         ),
     },
 ];
 
 export const UsuariosAdmin = () => {
-    const { data: dataUsuarios, loading: loadingUsuarios, error: errorUsuarios } = useFetch('usuario');
+    const { data: dataUsuarios, loading: loadingUsuarios, error: errorUsuarios } = useFetch('admin/usuarios');
 
     return (
         <main className="body-usuarios__admin">
@@ -48,7 +48,7 @@ export const UsuariosAdmin = () => {
             </header>
 
             <div className="body-usuarios__admin__tabla">
-                <Tabla columnas={COLUMNAS} items={dataUsuarios} />
+                <Tabla columnas={COLUMNAS} items={dataUsuarios?.content} />
             </div>
         </main>
     );

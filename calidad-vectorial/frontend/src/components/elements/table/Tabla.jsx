@@ -1,6 +1,8 @@
+import { Link, useNavigate } from 'react-router-dom';
 import './Tabla.css';
 
-export const Tabla = ({ columnas, items, claveItem = 'id', mensajeVacio = 'No hay datos para mostrar.' }) => {
+export const Tabla = ({ columnas, items, claveItem = 'id', mensajeVacio = 'No hay datos para mostrar.', link=false }) => {
+    const navigate = useNavigate();
     return (
         <div className="tabla">
             <table className="tabla__elemento">
@@ -17,8 +19,8 @@ export const Tabla = ({ columnas, items, claveItem = 'id', mensajeVacio = 'No ha
                     </tr>
                 </thead>
                 <tbody>
-                    {items.map((item) => (
-                        <tr key={item[claveItem]} className="tabla__elemento__fila">
+                    {items && items.map((item) => (
+                        <tr key={item[claveItem]} className="tabla__elemento__fila" onClick={() => navigate(`${link ? item[claveItem] : '#'}`)}>
                             {columnas.map((columna) => (
                                 <td
                                     key={columna.clave}
@@ -31,7 +33,7 @@ export const Tabla = ({ columnas, items, claveItem = 'id', mensajeVacio = 'No ha
                 </tbody>
             </table>
 
-            {items.length === 0 && <p className="tabla__vacio">{mensajeVacio}</p>}
+            {!items || items.length === 0 && <p className="tabla__vacio">{mensajeVacio}</p>}
         </div>
     );
 };

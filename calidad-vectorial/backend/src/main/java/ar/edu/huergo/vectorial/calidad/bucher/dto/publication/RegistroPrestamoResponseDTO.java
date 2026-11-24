@@ -21,4 +21,8 @@ public class RegistroPrestamoResponseDTO {
 
     // Detalles de la publicación asociada al registro de préstamo
     private PublicacionResponseDTO publicacion;
+
+    private String usuarioPrestamista;
+
+    private String avatarUsuarioPrestamista;
 }

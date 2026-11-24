@@ -4,18 +4,20 @@ import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroBasicDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroCreateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroPrecioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.book.LibroResponseDTO;
-import ar.edu.huergo.vectorial.calidad.bucher.dto.payment.PrecioHistoricoResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.dto.payment.PrecioHistoricoLibroResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.book.LibroMapper;
-import ar.edu.huergo.vectorial.calidad.bucher.mapper.payment.PrecioHistoricoMapper;
+import ar.edu.huergo.vectorial.calidad.bucher.mapper.payment.PrecioHistoricoLibroMapper;
 import ar.edu.huergo.vectorial.calidad.bucher.service.book.LibroService;
-import ar.edu.huergo.vectorial.calidad.bucher.service.payment.PrecioHistoricoService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.payment.PrecioHistoricoLibroService;
 import jakarta.validation.Valid;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,10 +37,10 @@ public class LibroController {
     private LibroMapper libroMapper;
 
     @Autowired
-    private PrecioHistoricoService precioHistoricoService;
+    private PrecioHistoricoLibroService precioHistoricoLibroService;
 
     @Autowired
-    private PrecioHistoricoMapper precioHistoricoMapper;
+    private PrecioHistoricoLibroMapper precioHistoricoLibroMapper;
 
     /**
      * Obtiene todos los libros disponibles
@@ -112,13 +114,25 @@ public class LibroController {
     }
 
     /**
-     * Guarda un nuevo libro creado por un escritor
+     * Guarda un nuevo libro creado por el usuario autenticado, con precio base 0
+     * @param libroCreateDTO El DTO con los datos del libro a crear
+     * @param usuarioAutenticado El usuario autenticado
      * @return El libro creado
      */
     @PostMapping("/crear")
-    public ResponseEntity<LibroResponseDTO> crearLibro(LibroCreateDTO libroCreateDTO) {
-        Libro libroNuevo = libroMapper.toEntity(libroCreateDTO);
-        return ResponseEntity.ok(libroMapper.toDTO(libroNuevo));
+    public ResponseEntity<LibroResponseDTO> crearLibro(
+        @Valid @RequestBody LibroCreateDTO libroCreateDTO,
+        @AuthenticationPrincipal UserDetails usuarioAutenticado
+    ) {
+        return ResponseEntity.ok(
+            libroMapper.toDTO(
+                libroService.crearLibro(
+                    libroMapper.toEntity(libroCreateDTO),
+                    BigDecimal.ZERO,
+                    usuarioAutenticado.getUsername()
+                )
+            )
+        );
     }
 
     /**
@@ -139,15 +153,15 @@ public class LibroController {
      * Modifica el precio de un libro (solo admin) y genera un nuevo registro en su historial de precios
      * @param id El ID del libro a modificar
      * @param libroPrecioUpdateDTO El DTO con el nuevo precio del libro
-     * @return El libro con el precio actualizado
+     * @return El nuevo registro de precio histórico del libro
      */
     @PutMapping("/{id}/precio")
-    public ResponseEntity<LibroResponseDTO> modificarPrecioLibro(
+    public ResponseEntity<PrecioHistoricoLibroResponseDTO> modificarPrecioLibro(
         @PathVariable("id") Long id,
         @Valid @RequestBody LibroPrecioUpdateDTO libroPrecioUpdateDTO
     ) {
         return ResponseEntity.ok(
-            libroMapper.toDTO(
+            precioHistoricoLibroMapper.toDTO(
                 libroService.modificarPrecioLibro(id, libroPrecioUpdateDTO.getPrecio())
             )
         );
@@ -159,12 +173,14 @@ public class LibroController {
      * @return La lista de precios históricos del libro
      */
     @GetMapping("/{id}/precio/historico")
-    public ResponseEntity<List<PrecioHistoricoResponseDTO>> obtenerHistorialPrecios(
+    public ResponseEntity<List<PrecioHistoricoLibroResponseDTO>> obtenerHistorialPrecios(
         @PathVariable("id") Long id
     ) {
         return ResponseEntity.ok(
-            precioHistoricoMapper.toDTOList(
-                precioHistoricoService.obtenerHistorialPrecios(libroService.obtenerLibroPorId(id))
+            precioHistoricoLibroMapper.toDTOList(
+                precioHistoricoLibroService.obtenerHistorialPrecios(
+                    libroService.obtenerLibroPorId(id)
+                )
             )
         );
     }

@@ -69,6 +69,12 @@ public class PublicacionService {
         return new HashSet<>(publicacionRepository.findAllByUsuario(usuario));
     }
 
+    public long obtenerCantidadPublicacionesPorUsuario(String username)
+        throws EntityNotFoundException {
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(username);
+        return publicacionRepository.countByUsuarioId(usuario.getId());
+    }
+
     /**
      * Crea una nueva publicación
      * @param publicacion La publicación a crear
@@ -81,7 +87,7 @@ public class PublicacionService {
         Libro libroIngresado = libroService.obtenerLibroPorTitulo(titulo);
 
         publicacion.setUsuario(usuarioIngresado);
-        publicacion.setEstadoPublicacion(Estado.Disponible);
+        publicacion.setEstadoPublicacion(Estado.disponible);
         publicacion.setDetallesEstadoLibro("Desconocido");
         publicacion.setLibro(libroIngresado);
 
@@ -116,7 +122,7 @@ public class PublicacionService {
             publicacionExistente.setLimiteDias(publicacion.getLimiteDias());
         }
 
-        if (publicacion.getEstadoPublicacion() != Estado.Indefinido) {
+        if (publicacion.getEstadoPublicacion() != Estado.indefinido) {
             publicacionExistente.setEstadoPublicacion(publicacion.getEstadoPublicacion());
         }
 

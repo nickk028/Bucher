@@ -23,6 +23,8 @@ public class PublicacionResponseDTO extends PublicacionDTO {
     // Nombre del usuario
     private String usuarioCreador;
 
+    private String avatarUsuarioCreador;
+
     // Fecha de creación de la publicación
     private LocalDate fechaCreacion;
 

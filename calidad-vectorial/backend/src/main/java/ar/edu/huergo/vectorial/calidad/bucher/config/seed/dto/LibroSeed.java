@@ -1,6 +1,7 @@
 package ar.edu.huergo.vectorial.calidad.bucher.config.seed.dto;
 
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Categoria;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ public record LibroSeed(
     int calificacion,
     LocalDate fechaPublicacion,
     String urlFoto,
-    double precio,
+    BigDecimal precio,
     Set<Categoria> categorias,
     String editorial,
     String autor
