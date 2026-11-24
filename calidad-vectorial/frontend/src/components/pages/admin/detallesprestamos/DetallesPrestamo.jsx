@@ -11,6 +11,11 @@ import './DetallesPrestamo.css';
 const PASOS = ['Solicitado', 'Retirado', 'En revisión', 'A entregar', 'Entregado']
 const PASOS_COMPLETADOS = 2;
 
+function formatearFecha(fecha) {
+    const [anio, mes, dia] = fecha.split("-");
+    return `${dia}/${mes}/${anio}`;
+}
+
 export const DetallesPrestamo = () => {
     const { id } = useParams();
     const { data: dataPrestamo, loading: loadingPrestamo, error: errorPrestamo } = useFetch(`registro/publicacion/${id}`);
@@ -32,9 +37,9 @@ export const DetallesPrestamo = () => {
                         editorial='Algo'
                         caracteristicas={['Estado del ejemplar: Muy bueno', 'El libro se encuentra en condiciones']}
                         detalles={[
-                            {label: 'Número de préstamo', texto: `N° ${dataPrestamo.publicacion.id}`},
-                            {label: 'Inicio del préstamo', texto: `${dataPrestamo.fechaPrestamo}`},
-                            {label: 'Fin del préstamo', texto: `${dataPrestamo.fechaDevolucion}`},
+                            {label: 'Número de préstamo', texto: `N° ${dataPrestamo.id}`},
+                            {label: 'Inicio del préstamo', texto: `${formatearFecha(dataPrestamo.fechaPrestamo)}`},
+                            {label: 'Fin del préstamo', texto: `${dataPrestamo.fechaDevolucion ? formatearFecha(dataPrestamo.fechaDevolucion) : 'indefinido'}`},
                         ]}
                     />
                     <UsuarioDetalleCard
@@ -57,7 +62,7 @@ export const DetallesPrestamo = () => {
             <section className='detalles-prestamo__seccion'>
                     <div className='seccion__acciones'>
                         <h2>Acciones</h2>
-                        <Button variant='default' color='oscuro'>Realizar revisión del ejemplar</Button>
+                        <Button variant='default' color='oscuro' to='control'>Realizar revisión del ejemplar</Button>
                         <Button variant='default' color='oscuro'>Revisión completada</Button>
                         <p>Completa el formulario de revisión y una vez listo marca la revisión como completada.</p>
                     </div>

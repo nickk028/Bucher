@@ -1,4 +1,3 @@
-
 import iconoCheck from '../../../assets/img/icons/crear/tildeVistaPrevia.svg';
 import './LibroDetalle.css';
 
@@ -8,12 +7,20 @@ export const LibroDetalle = ({
     autor,
     editorial,
     caracteristicas = [],
-    detalles = []
+    detalles = [],
+    detallesEjemplar
 }) => {
     const tieneReferencia = urlFoto && titulo && editorial;
 
+    const mostrarDetallesEjemplar = Array.isArray(detallesEjemplar);
+
     return (
-        <article className='libro-detalle'>
+        <article
+            className={
+                'libro-detalle' +
+                (mostrarDetallesEjemplar ? ' libro-detalle--ejemplar' : '')
+            }
+        >
             {tieneReferencia ? (
                 <img
                     className='libro-detalle__img'
@@ -52,6 +59,31 @@ export const LibroDetalle = ({
                             </li>
                         ))}
                     </ul>
+                )}
+
+                {mostrarDetallesEjemplar && (
+                    <div className='libro-detalle__ejemplar'>
+                        <span className='libro-detalle__ejemplar__label'>
+                            Detalles del ejemplar:
+                        </span>
+
+                        {detallesEjemplar.length !== 0 ? (
+                            <ul className='libro-detalle__ejemplar__chips'>
+                                {detallesEjemplar.map((detalle) => (
+                                    <li
+                                        key={detalle}
+                                        className='libro-detalle__ejemplar__chip'
+                                    >
+                                        {detalle}
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className='libro-detalle__sin-referencia'>
+                                Sin detalles adicionales
+                            </p>
+                        )}
+                    </div>
                 )}
             </div>
 

@@ -41,12 +41,12 @@ export const EstadisticasPrestamos = () => {
                     <p className='estadisticas__fila__contenedor--bloque__contenido'>{dataPrestamos.prestamosActivos}</p>
                 </div>
                 <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--bloque'>
-                    <h3 className='estadisticas__fila__contenedor__titulo'>Préstamos incompletos</h3>
-                    <p className='estadisticas__fila__contenedor--bloque__contenido'>{dataPrestamos.prestamosIncompletos}</p>
+                    <h3 className='estadisticas__fila__contenedor__titulo'>Préstamos demorados</h3>
+                    <p className='estadisticas__fila__contenedor--bloque__contenido'>{dataPrestamos.prestamosDemorados}</p>
                 </div>
                 <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--bloque'>
                     <h3 className='estadisticas__fila__contenedor__titulo'>Préstamos incompletos</h3>
-                    <p className='estadisticas__fila__contenedor--bloque__contenido'>{dataPrestamos.PrestamosPublicados}</p>
+                    <p className='estadisticas__fila__contenedor--bloque__contenido'>{dataPrestamos.prestamosIncompletos}</p>
                 </div>
             </section>
 

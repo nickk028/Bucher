@@ -19,7 +19,7 @@ const OPCIONES_ORDEN = [
 ];
 
 const COLOR_ESTADO = {
-    'Deemorado': 'amarillo',
+    'Demorado': 'amarillo',
     'A devolver': 'rojo',
 };
 

@@ -27,6 +27,7 @@ import { PrestamoActivo } from './components/pages/loan/PrestamoActivo';
 import { PrestamosAdmin } from './components/pages/admin/prestamos/PrestamosAdmin';
 import { DetallesPrestamo } from './components/pages/admin/detallesprestamos/DetallesPrestamo';
 import { DetallesPosteos } from './components/pages/admin/detallesposteos/DetallesPosteos';
+import { ControlEjemplar } from './components/pages/admin/controlejemplar/ControlEjemplar';
 import { UsuariosAdmin } from './components/pages/admin/usuarios/UsuariosAdmin';
 import { PosteosAdmin } from './components/pages/admin/posteos/PosteosAdmin';
 import { EstadisticasAdmin } from './components/pages/admin/estadisticas/EstadisticasAdmin';
@@ -65,6 +66,7 @@ export const App = () => {
                             <Route path="/admin/prestamos" element={<PrestamosAdmin />} />
                             <Route path="/admin/prestamos/:id" element={<DetallesPrestamo />} />
                             <Route path="/admin/posteos/:id" element={<DetallesPosteos />} />
+                            <Route path="/admin/prestamos/:id/control" element={<ControlEjemplar />} />
                             <Route path="/admin/usuarios" element={<UsuariosAdmin />} />
                             <Route path="/admin/posteos" element={<PosteosAdmin />} />
                             <Route path="/admin/estadisticas" element={<EstadisticasAdmin />} />
