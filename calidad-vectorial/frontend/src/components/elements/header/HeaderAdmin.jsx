@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import './Header.css';
 
-export const HeaderAdmin = () => {
+export const HeaderAdmin = ({ onToggleCrear, mostrarConfig }) => {
     const location = useLocation();
     const [click, setClick] = useState(location.pathname);
 
@@ -56,10 +56,10 @@ export const HeaderAdmin = () => {
                     />
                 </Link>
 
-                <Link className="header__nav__item" to="#">
+                <Link className="header__nav__item" to={click.includes('/configuracion') ? click : '/configuracion/editar-perfil'}>
                     <div
                         alt="Logo de Configuración"
-                        className={`header__nav__item__configuracion header__nav__item__configuracion--${click == '/#' ? 'selected' : ''}`}
+                        className={`header__nav__item__configuracion header__nav__item__configuracion--${click.includes('/configuracion') ? 'selected' : ''}`}
                     />
                 </Link>
             </nav>

@@ -102,10 +102,25 @@
     background-image: url('../../../assets/img/logos/logoestadisticas.png');
 }
 
+.header__nav__item__estadisticas--selected,
+.header__nav__item__estadisticas:hover {
+    background-image: url('../../../assets/img/logos/logoEstadisticasPintado.png');
+}
+
 .header__nav__item__usuarios {
     background-image: url('../../../assets/img/logos/logoUsuarios.png');
 }
 
+.header__nav__item__usuarios--selected,
+.header__nav__item__usuarios:hover {
+    background-image: url('../../../assets/img/logos/logoUsuariosPintado.png');
+}
+
 .header__nav__item__carrito {
     background-image: url('../../../assets/img/logos/logoCarrito.png');
+}
+
+.header__nav__item__carrito--selected,
+.header__nav__item__carrito:hover {
+    background-image: url('../../../assets/img/logos/LogoCarritoPintado.png');
 }

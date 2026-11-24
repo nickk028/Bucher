@@ -6,7 +6,9 @@ const COLORES_BUCHY = [
     { id: 'dorado', dark: '#B8860B', light: '#FFCC33' },
     { id: 'azul', dark: '#3C49A6', light: '#5B6DF6' },
     { id: 'rojo', dark: '#A40F0F', light: '#DB1515' },
+    { id: 'verde-claro', dark: '#0e675f', light: '#349569' },
     { id: 'amarillo', dark: '#9F9F2E', light: '#F3F346' },
+    { id: 'verde-oscuro', dark: '#08413c', light: '#117c4c' },
 ];
 
 export const Apariencia = () => {

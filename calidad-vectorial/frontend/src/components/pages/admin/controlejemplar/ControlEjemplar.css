@@ -1,0 +1,226 @@
+.control-ejemplar {
+    padding: 20px 40px;
+}
+
+.control-ejemplar__title {
+    color: var(--brand-dark);
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+}
+
+.control-ejemplar__layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 20px;
+    align-items: start;
+
+    margin-top: 10px;
+}
+
+.control-ejemplar__form {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 16px;
+}
+
+.control-ejemplar__seccion {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+
+    background: var(--bg-surface);
+    border: var(--border-primary) solid 1px;
+    border-radius: 8px;
+
+    padding: 10px 30px 20px 10px;
+}
+
+.control-ejemplar__seccion h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+
+    color: var(--brand-dark);
+}
+
+.control-ejemplar__campo {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2px;
+}
+
+.control-ejemplar__label {
+    font-size: var(--font-size-sm);
+
+    color: var(--text-secondary);
+}
+
+.control-ejemplar__confirmar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.control-ejemplar__confirmar__input {
+    flex: 1;
+    min-width: 0;
+}
+
+.control-ejemplar__confirmar__input--medio {
+    max-width: 64%;
+}
+
+/* Checkboxes */
+
+.control-ejemplar__checkbox {
+    flex-shrink: 0;
+
+    width: 20px;
+    height: 20px;
+    margin: 0;
+
+    accent-color: var(--brand-primary);
+    cursor: pointer;
+}
+
+.control-ejemplar__checkbox--chico {
+    width: 18px;
+    height: 18px;
+}
+
+.control-ejemplar__checkbox:disabled {
+    cursor: default;
+    opacity: 0.6;
+}
+
+/* Botones de opción (estado general / condiciones) */
+
+.control-ejemplar__opciones {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+}
+
+.control-ejemplar__opcion {
+    flex: 1 1 0;
+    min-width: 90px;
+    padding: 4px 10px;
+
+    background: var(--gris-claro);
+    border: var(--border-primary) solid 1px;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: var(--font-size-base);
+
+    color: var(--text-secondary);
+    transition: all 200ms ease-in-out;
+}
+
+.control-ejemplar__opcion--ancha {
+    flex: 0 1 auto;
+    padding: 4px 16px;
+}
+
+.control-ejemplar__opcion:hover {
+    border-color: var(--brand-primary);
+}
+
+.control-ejemplar__opcion--activa {
+    background: var(--bg-surface);
+    border-color: var(--brand-primary);
+
+    color: var(--brand-primary);
+}
+
+/* Detalles adicionales */
+
+.control-ejemplar__detalles {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+}
+
+.control-ejemplar__detalles__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.control-ejemplar__detalles__lista {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 8px;
+}
+
+.control-ejemplar__detalles__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.control-ejemplar__detalles__usuario {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: var(--font-size-base);
+
+    color: var(--text-primary);
+}
+
+.control-ejemplar__textarea {
+    width: 100%;
+    min-height: 64px;
+
+    box-sizing: border-box;
+    padding: 8px 10px;
+
+    border: var(--border-primary) solid 1px;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: var(--font-size-base);
+
+    color: var(--text-primary);
+    resize: vertical;
+}
+
+.control-ejemplar__textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+.control-ejemplar__textarea:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+}
+
+.control-ejemplar__textarea:disabled {
+    background: var(--gris-claro);
+    cursor: not-allowed;
+}
+
+.control-ejemplar__textarea--lectura {
+    background: var(--gris-claro);
+    resize: none;
+}
+
+.control-ejemplar__lateral {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 12px;
+}
+
+.control-ejemplar__error {
+    font-size: var(--font-size-base);
+
+    color: var(--text-secondary);
+}
+
+.control-ejemplar__accion {
+    display: flex;
+    justify-content: flex-end;
+}
