@@ -9,7 +9,7 @@ export const ComentarioSocial = ({ children, nickname, urlFoto, tiempoPublicacio
             <div className="com-social__content">
                 <h1>{nickname}</h1>
                 <p>{children}</p>
-                <p className="com-social__content__tiempo">Hace {tiempoPublicacion}</p>
+                <p className="com-social__content__tiempo">{tiempoPublicacion === 'Ahora' ? tiempoPublicacion : 'Hace ' + tiempoPublicacion}</p>
             </div>
         </article>
     );

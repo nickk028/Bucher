@@ -33,14 +33,18 @@ export const EstadisticasPosteos = () => {
             </section>
 
             <section className='estadisticas__fila'>
-                <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--barra'>
+                <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--barra estadisticas__fila__contenedor--grande'>
                     <GraficoBarras titulo='Cantidad posteos' data={dataPosteos.posteosPorMes} claveEtiqueta='mes' claveValor='cant' />
+                </div>
+                
+            </section>
+
+            <section className='estadisticas__fila'>
+                <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--barra'>
+                    <GraficoBarras titulo='Libros más mencionadso' data={dataPosteos.librosMasMencionados} claveEtiqueta='titulo' claveValor='cantidad' />
                 </div>
                 <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--torta'>
                     <GraficoTorta titulo='Categorías más mencionadas' data={dataPosteos.categoriasMasMencionadas} claveEtiqueta='categoria' claveValor='porcentaje' />
-                </div>
-                <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--barra'>
-                    <GraficoBarras titulo='Libros más mencionadso' data={dataPosteos.librosMasMencionados} claveEtiqueta='titulo' claveValor='cantidad' />
                 </div>
             </section>
 

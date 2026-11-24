@@ -20,7 +20,7 @@ export const Tabla = ({ columnas, items, claveItem = 'id', mensajeVacio = 'No ha
                 </thead>
                 <tbody>
                     {items && items.map((item) => (
-                        <tr key={item[claveItem]} className="tabla__elemento__fila" onClick={() => navigate(`${link ? item[claveItem] : '#'}`)}>
+                        <tr key={item[claveItem]} className={`tabla__elemento__fila tabla__elemento__fila--${link ? 'link' : ''}`} onClick={() => navigate(`${link ? item[claveItem] : '#'}`)}>
                             {columnas.map((columna) => (
                                 <td
                                     key={columna.clave}
