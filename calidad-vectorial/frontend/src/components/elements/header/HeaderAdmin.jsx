@@ -49,7 +49,7 @@ export const HeaderAdmin = ({ onToggleCrear, mostrarConfig }) => {
                     />
                 </Link>
 
-                <Link className="header__nav__item" to="#">
+                <Link className="header__nav__item" to="/coming-soon">
                     <div
                         alt="Logo de Carrito"
                         className={`header__nav__item__carrito header__nav__item__carrito--${click == '/#' ? 'selected' : ''}`}
