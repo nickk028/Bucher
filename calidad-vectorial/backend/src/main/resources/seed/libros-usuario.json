@@ -18,12 +18,9 @@
   { "usuario": "jrolando@gmail.com", "libro": "Insurgente", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
   { "usuario": "jrolando@gmail.com", "libro": "Leal", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
   { "usuario": "jrolando@gmail.com", "libro": "Cuatro", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "El cuaderno de Maya", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Testigo de cargo", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
   { "usuario": "jrolando@gmail.com", "libro": "Después de ti", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
   { "usuario": "jrolando@gmail.com", "libro": "Yo antes de ti", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
   { "usuario": "jrolando@gmail.com", "libro": "Sigue lloviendo", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
   { "usuario": "jrolando@gmail.com", "libro": "Sigo siendo yo", "paginaActual": 0, "estadoLectura": "Pendiente", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Emma", "paginaActual": 175, "estadoLectura": "Leyendo", "puntuacion": 0 },
-  { "usuario": "jrolando@gmail.com", "libro": "Distancia de rescate", "paginaActual": 175, "estadoLectura": "Leyendo", "puntuacion": 0 }
+  { "usuario": "jrolando@gmail.com", "libro": "Emma", "paginaActual": 175, "estadoLectura": "Leyendo", "puntuacion": 0 }
 ]
