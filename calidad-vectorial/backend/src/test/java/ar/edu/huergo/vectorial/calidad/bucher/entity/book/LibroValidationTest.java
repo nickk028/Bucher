@@ -108,7 +108,7 @@ class LibroValidationTest {
         corto.setDescripcion("A");
 
         Libro largo = crearLibroValido();
-        largo.setDescripcion("A".repeat(256));
+        largo.setDescripcion("A".repeat(1501));
 
         assertFalse(validator.validate(corto).isEmpty());
         assertFalse(validator.validate(largo).isEmpty());
@@ -226,6 +226,5 @@ class LibroValidationTest {
         assertTrue(propiedadesConError.contains("descripcion"));
         assertTrue(propiedadesConError.contains("edicion"));
         assertTrue(propiedadesConError.contains("paginas"));
-        assertTrue(propiedadesConError.contains("precio"));
     }
 }

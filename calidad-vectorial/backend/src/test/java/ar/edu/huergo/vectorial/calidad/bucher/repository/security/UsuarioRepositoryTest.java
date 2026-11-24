@@ -126,7 +126,7 @@ class UsuarioRepositoryTest {
     void deberiaGuardarUsuarioConMultiplesRolesYPronombres() {
         Usuario usuario = crearUsuarioBase();
         usuario.setRoles(Set.of(rolAdmin, rolLector));
-        usuario.setPronombres("elle/le");
+        usuario.setPronombres("ella/la");
 
         Usuario guardado = usuarioRepository.saveAndFlush(usuario);
 

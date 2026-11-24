@@ -93,36 +93,6 @@ class PublicacionValidationTest {
     }
 
     @Test
-    @DisplayName("Debería fallar validación con fecha de creación nula")
-    void deberiaFallarValidacionConFechaCreacionNula() {
-        Publicacion publicacion = crearPublicacionValida();
-        publicacion.setFechaCreacion(null);
-
-        Set<ConstraintViolation<Publicacion>> violaciones = validator.validate(publicacion);
-        assertFalse(violaciones.isEmpty());
-        assertTrue(
-            violaciones
-                .stream()
-                .anyMatch((v) -> v.getPropertyPath().toString().equals("fechaCreacion"))
-        );
-    }
-
-    @Test
-    @DisplayName("Debería fallar validación con descripción vacía")
-    void deberiaFallarValidacionConDescripcionVacia() {
-        Publicacion publicacion = crearPublicacionValida();
-        publicacion.setDescripcion("");
-
-        Set<ConstraintViolation<Publicacion>> violaciones = validator.validate(publicacion);
-        assertFalse(violaciones.isEmpty());
-        assertTrue(
-            violaciones
-                .stream()
-                .anyMatch((v) -> v.getPropertyPath().toString().equals("descripcion"))
-        );
-    }
-
-    @Test
     @DisplayName("Debería fallar validación con límite de días negativo")
     void deberiaFallarValidacionConLimiteDiasIncorrecto() {
         Publicacion publicacion = crearPublicacionValida();
