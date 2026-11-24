@@ -4,7 +4,7 @@ import './Grafico.css';
 const COLOR_PROGRESO = '#0E675F';
 
 export const GraficoCircular = ({ data, titulo }) => {
-    const porcentaje = Math.min(Math.max(Number(data) || 0, 0), 100);
+    const porcentaje = data * 100;
 
     return (
         <div className="grafico-circular">
