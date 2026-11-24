@@ -12,19 +12,21 @@
     display: flex;
     flex-direction: column;
 
-    background: #ffffff;
-    border: 2px solid #dcdcdc;
+    background: var(--bg-surface);
+    border: 2px solid var(--border-primary);
     border-radius: 20px;
 }
 
 .body-comsocial__form__content {
     display: flex;
     flex-grow: 1;
+    gap: 10px;
 }
 
 .body-comsocial__form__content__img {
     width: 80px;
     height: 80px;
+    flex-shrink: 0;
 }
 
 .body-comsocial__form__content__img img {
@@ -35,18 +37,62 @@
 .body-comsocial__form__content__text {
     width: 50%;
     height: 100%;
+    flex-grow: 1;
     font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
-
     font-size: var(--font-size-md);
+    color: var(--text-primary);
 
     padding: 2%;
-    flex-grow: 1;
 
     box-sizing: border-box;
     border: none;
     outline: none;
     resize: none;
     overflow-y: auto;
+}
+
+.body-comsocial__form__content__libro {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.body-comsocial__form__content__libro__buscador {
+    width: 100%;
+}
+
+.body-comsocial__form__content__libro__seleccionado {
+    position: relative;
+}
+
+.body-comsocial__form__content__libro__seleccionado__quitar {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 24px;
+    height: 24px;
+
+    background: var(--bg-surface);
+    border: 1px solid var(--border-primary);
+    border-radius: 50%;
+
+    font-size: var(--font-size-md);
+    line-height: 1;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.body-comsocial__form__content__libro__seleccionado__quitar:hover {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
 }
 
 .body-comsocial__form__options {
@@ -65,15 +111,16 @@
 .body-comsocial__form__options__buttons {
     display: flex;
     align-items: center;
+    gap: 10px;
     margin-right: -20px;
 
     max-width: 220px;
     padding: 10px 20px 10px 20px;
 
-    border: 2px solid #dcdcdc;
+    border: 2px solid var(--border-primary);
     border-radius: 30px;
 
-    font-size: 1.5rem;
+    font-size: var(--font-size-lg);
     line-height: 1;
 }
 
@@ -85,10 +132,14 @@
     width: min-content;
 }
 
-.body-comsocial__form__options__buttons {
+.body-comsocial__form__options__buttons__boton {
     display: flex;
     align-items: center;
-    gap: 10px;
+
+    padding: 0;
+    border: none;
+
+    cursor: pointer;
 }
 
 .body-comsocial__form__options__buttons__label {
@@ -130,7 +181,7 @@
     display: block;
     width: 10px;
     height: 18px;
-    border: 4px solid var(--blanco-puro);
+    border: 4px solid var(--bg-surface);
     border-top: none;
     border-left: none;
     transform: rotate(45deg) translate(-1px, -1px);

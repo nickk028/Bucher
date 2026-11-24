@@ -131,14 +131,24 @@ public class PanelPosteosService {
             );
 
         Map<Long, Libro> libros = libroRepository
-            .findAllById(conteos.stream().map(LibroUsuarioRepository.ConteoLibro::getLibroId).toList())
+            .findAllById(
+                conteos.stream()
+                    .map(LibroUsuarioRepository.ConteoLibro::getLibroId)
+                    .toList()
+            )
             .stream()
-            .collect(Collectors.toMap(Libro::getId, (libro) -> libro));
+            .collect(Collectors.toMap(Libro::getId, libro -> libro));
 
         Map<Libro, Long> ranking = new LinkedHashMap<>();
+
         for (LibroUsuarioRepository.ConteoLibro conteo : conteos) {
-            ranking.put(libros.get(conteo.getLibroId()), conteo.getCantidad());
+            Libro libro = libros.get(conteo.getLibroId());
+
+            if (libro != null) {
+                ranking.put(libro, conteo.getCantidad());
+            }
         }
+
         return ranking;
     }
 }

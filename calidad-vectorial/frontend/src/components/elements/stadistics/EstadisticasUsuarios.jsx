@@ -13,6 +13,10 @@ const data = [
     { nombre: 'Junio', valor: 65 },
     { nombre: 'Julio', valor: 38 },
     { nombre: 'Agosto', valor: 20 },
+    { nombre: 'Septiembre', valor: 50 },
+    { nombre: 'Octubre', valor: 30 },
+    { nombre: 'Noviembre', valor: 72 },
+    { nombre: 'Diciembre', valor: 65 },
 ];
 
 const data2 = [
@@ -46,9 +50,12 @@ export const EstadisticasUsuarios = () => {
             </section>
 
             <section className='estadisticas__fila'>
-                <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--barra'>
+                <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--barra estadisticas__fila__contenedor--grande'>
                     <GraficoBarras titulo='Nuevos usuarios' data={data}/>
                 </div>
+            </section>
+
+            <section className='estadisticas__fila'>
                 <div className='estadisticas__fila__contenedor estadisticas__fila__contenedor--torta'>
                     <GraficoTorta titulo='Estado de los usuarios' data={data2} />
                 </div>

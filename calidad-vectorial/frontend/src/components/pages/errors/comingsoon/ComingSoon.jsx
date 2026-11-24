@@ -10,7 +10,7 @@ export const ComingSoon = () => {
             <div className="coming-soon__box">
                 <h1 className="coming-soon__title">Próximamente</h1>
                 <p className="coming-soon__subtitle">Este capítulo aún se esta escribiendo.</p>
-                <Button variant="default" color="oscuro" onClick={() => navigate('/index')}>
+                <Button variant="default" color="oscuro" onClick={() => navigate('/')}>
                     Volver al inicio
                 </Button>
             </div>
