@@ -57,7 +57,6 @@ class RegistroPrestamoValidationTest {
         libro.setCalificacion(90);
         libro.setFechaPublicacion(LocalDate.of(1967, 5, 30));
         libro.setUrlFoto("http://imagen.com/portada.jpg");
-        libro.setPrecio(1500.00);
         libro.setCategoria(Set.of(Categoria.realismomagico));
         libro.setAutor(autor);
         libro.setEditorial(editorial);

@@ -97,7 +97,6 @@ public class PublicacionRepositoryTest {
         libro1.setCalificacion(90);
         libro1.setFechaPublicacion(LocalDate.of(1967, 5, 30));
         libro1.setUrlFoto("http://imagen.com/portada.jpg");
-        libro1.setPrecio(1500.00);
         Set<Categoria> categorias1 = new HashSet<>();
         categorias1.add(Categoria.realismomagico);
         libro1.setCategoria(categorias1);
@@ -114,7 +113,6 @@ public class PublicacionRepositoryTest {
         libro2.setCalificacion(95);
         libro2.setFechaPublicacion(LocalDate.of(2007, 3, 27));
         libro2.setUrlFoto("http://imagen.com/nombre_viento.jpg");
-        libro2.setPrecio(1800.00);
         Set<Categoria> categorias2 = new HashSet<>();
         categorias2.add(Categoria.fantastico);
         libro2.setCategoria(categorias2);
@@ -131,7 +129,6 @@ public class PublicacionRepositoryTest {
         libro3.setCalificacion(88);
         libro3.setFechaPublicacion(LocalDate.of(1949, 6, 8));
         libro3.setUrlFoto("http://imagen.com/1984.jpg");
-        libro3.setPrecio(1200.00);
         Set<Categoria> categorias3 = new HashSet<>();
         categorias3.add(Categoria.cienciaficcion);
         libro3.setCategoria(categorias3);
@@ -146,7 +143,7 @@ public class PublicacionRepositoryTest {
         publicacion1.setDescripcion("Libro en excelente estado, listo para prestar");
         publicacion1.setLimiteDias(14);
         publicacion1.setDetallesEstadoLibro("Nuevo - Sin uso");
-        publicacion1.setEstadoPublicacion(Estado.Disponible);
+        publicacion1.setEstadoPublicacion(Estado.disponible);
         publicacion1.setLibro(libro1);
         publicacion1 = entityManager.persistAndFlush(publicacion1);
 
@@ -155,7 +152,7 @@ public class PublicacionRepositoryTest {
         publicacion2.setDescripcion("Libro de fantasía épica disponible para préstamo");
         publicacion2.setLimiteDias(21);
         publicacion2.setDetallesEstadoLibro("Usado - Buen estado");
-        publicacion2.setEstadoPublicacion(Estado.Prestado);
+        publicacion2.setEstadoPublicacion(Estado.solicitado);
         publicacion2.setLibro(libro2);
         publicacion2 = entityManager.persistAndFlush(publicacion2);
 
@@ -164,7 +161,7 @@ public class PublicacionRepositoryTest {
         publicacion3.setDescripcion("Clásico de la literatura distópica");
         publicacion3.setLimiteDias(30);
         publicacion3.setDetallesEstadoLibro("Usado - Estado aceptable");
-        publicacion3.setEstadoPublicacion(Estado.Disponible);
+        publicacion3.setEstadoPublicacion(Estado.disponible);
         publicacion3.setLibro(libro3);
         publicacion3 = entityManager.persistAndFlush(publicacion3);
 
@@ -220,7 +217,7 @@ public class PublicacionRepositoryTest {
     void deberiaEncontrarPublicacionesPorEstado() {
         // When - Buscar publicaciones disponibles
         List<Publicacion> publicacionesDisponibles =
-            publicacionRepository.findAllByEstadoPublicacion(Estado.Disponible);
+            publicacionRepository.findAllByEstadoPublicacion(Estado.disponible);
 
         // Then
         assertNotNull(publicacionesDisponibles);
@@ -228,7 +225,7 @@ public class PublicacionRepositoryTest {
 
         // When - Buscar publicaciones prestadas
         List<Publicacion> publicacionesPrestadas = publicacionRepository.findAllByEstadoPublicacion(
-            Estado.Prestado
+            Estado.solicitado
         );
 
         // Then
@@ -247,7 +244,7 @@ public class PublicacionRepositoryTest {
         nuevaPublicacion.setDescripcion("Trilogía completa en excelente estado");
         nuevaPublicacion.setLimiteDias(45);
         nuevaPublicacion.setDetallesEstadoLibro("Nuevo - Sin uso");
-        nuevaPublicacion.setEstadoPublicacion(Estado.Disponible);
+        nuevaPublicacion.setEstadoPublicacion(Estado.disponible);
         nuevaPublicacion.setLibro(libroExistente);
 
         // When
@@ -304,7 +301,7 @@ public class PublicacionRepositoryTest {
         nuevaPublicacion.setDescripcion(""); // No cumple @NotBlank
         nuevaPublicacion.setLimiteDias(14);
         nuevaPublicacion.setDetallesEstadoLibro("Nuevo");
-        nuevaPublicacion.setEstadoPublicacion(Estado.Disponible);
+        nuevaPublicacion.setEstadoPublicacion(Estado.disponible);
         nuevaPublicacion.setLibro(publicacion1.getLibro());
 
         // When & Then

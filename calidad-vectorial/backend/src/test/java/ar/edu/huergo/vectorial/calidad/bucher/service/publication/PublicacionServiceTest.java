@@ -82,7 +82,6 @@ public class PublicacionServiceTest {
         libroEjemplo.setCalificacion(90);
         libroEjemplo.setFechaPublicacion(LocalDate.of(1967, 5, 30));
         libroEjemplo.setUrlFoto("http://imagen.com/portada.jpg");
-        libroEjemplo.setPrecio(1500.00);
         libroEjemplo.setCategoria(Set.of(Categoria.realismomagico));
         libroEjemplo.setAutor(autor);
         libroEjemplo.setEditorial(editorial);
@@ -95,7 +94,7 @@ public class PublicacionServiceTest {
         publicacionEjemplo.setDescripcion("Libro en excelente estado, listo para prestar");
         publicacionEjemplo.setLimiteDias(14);
         publicacionEjemplo.setDetallesEstadoLibro("Nuevo - Sin uso");
-        publicacionEjemplo.setEstadoPublicacion(Estado.Disponible);
+        publicacionEjemplo.setEstadoPublicacion(Estado.disponible);
         publicacionEjemplo.setLibro(libroEjemplo);
     }
 
@@ -176,7 +175,7 @@ public class PublicacionServiceTest {
         // Then
         assertNotNull(resultado);
         assertEquals(usuarioEjemplo, nuevaPublicacion.getUsuario());
-        assertEquals(Estado.Disponible, nuevaPublicacion.getEstadoPublicacion());
+        assertEquals(Estado.disponible, nuevaPublicacion.getEstadoPublicacion());
         assertEquals(libroEjemplo, nuevaPublicacion.getLibro());
         verify(usuarioService, times(1)).obtenerUsuarioPorNombre(username);
         verify(libroService, times(1)).obtenerLibroPorTitulo(titulo);
@@ -187,7 +186,7 @@ public class PublicacionServiceTest {
     @DisplayName("Debería modificar estado de publicación")
     void deberiaModificarEstadoPublicacion() {
         // Given
-        Estado nuevoEstado = Estado.Prestado;
+        Estado nuevoEstado = Estado.solicitado;
         when(publicacionRepository.save(any(Publicacion.class))).thenReturn(publicacionEjemplo);
 
         // When
@@ -198,7 +197,7 @@ public class PublicacionServiceTest {
 
         // Then
         assertNotNull(resultado);
-        assertEquals(Estado.Prestado, publicacionEjemplo.getEstadoPublicacion());
+        assertEquals(Estado.solicitado, publicacionEjemplo.getEstadoPublicacion());
         verify(publicacionRepository, times(1)).save(publicacionEjemplo);
     }
 

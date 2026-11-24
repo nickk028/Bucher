@@ -46,7 +46,6 @@ class LibroValidationTest {
         libro.setCalificacion(90);
         libro.setFechaPublicacion(LocalDate.of(1967, 5, 30));
         libro.setUrlFoto("http://imagen.com/portada.jpg");
-        libro.setPrecio(1500.00);
         libro.setCategoria(Set.of(Categoria.realismomagico));
         libro.setAutor(autorEjemplo);
         libro.setEditorial(editorialEjemplo);
@@ -183,17 +182,6 @@ class LibroValidationTest {
         assertFalse(validator.validate(libro).isEmpty());
     }
 
-    // -------precio-------
-
-    @Test
-    @DisplayName("Debería fallar validación con precio <= 0")
-    void deberiaFallarPrecioMenorOIgualACero() {
-        Libro libro = crearLibroValido();
-        libro.setPrecio(0);
-
-        assertFalse(validator.validate(libro).isEmpty());
-    }
-
     // -------categoría-------
 
     @Test
@@ -223,12 +211,11 @@ class LibroValidationTest {
         libro.setCalificacion(-10);
         libro.setFechaPublicacion(null);
         libro.setUrlFoto("http://imagen.com/portada.jpg");
-        libro.setPrecio(0);
 
         Set<ConstraintViolation<Libro>> violaciones = validator.validate(libro);
 
         assertFalse(violaciones.isEmpty());
-        assertTrue(violaciones.size() >= 6);
+        assertTrue(violaciones.size() >= 5);
 
         List<String> propiedadesConError = violaciones
             .stream()

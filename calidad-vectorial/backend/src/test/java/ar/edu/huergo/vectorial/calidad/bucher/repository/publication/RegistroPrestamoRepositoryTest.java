@@ -84,7 +84,6 @@ public class RegistroPrestamoRepositoryTest {
         libro1.setCalificacion(90);
         libro1.setFechaPublicacion(LocalDate.of(1967, 5, 30));
         libro1.setUrlFoto("http://imagen.com/portada.jpg");
-        libro1.setPrecio(1500.00);
         libro1.setCategoria(Set.of(Categoria.realismomagico));
         libro1.setAutor(autor);
         libro1.setEditorial(editorial);
@@ -98,7 +97,6 @@ public class RegistroPrestamoRepositoryTest {
         libro2.setCalificacion(95);
         libro2.setFechaPublicacion(LocalDate.of(2007, 3, 27));
         libro2.setUrlFoto("http://imagen.com/nombre_viento.jpg");
-        libro2.setPrecio(1800.00);
         libro2.setCategoria(Set.of(Categoria.fantastico));
         libro2.setAutor(autor);
         libro2.setEditorial(editorial);
@@ -112,7 +110,6 @@ public class RegistroPrestamoRepositoryTest {
         libro3.setCalificacion(88);
         libro3.setFechaPublicacion(LocalDate.of(1949, 6, 8));
         libro3.setUrlFoto("http://imagen.com/1984.jpg");
-        libro3.setPrecio(1200.00);
         libro3.setCategoria(Set.of(Categoria.cienciaficcion));
         libro3.setAutor(autor);
         libro3.setEditorial(editorial);
@@ -125,7 +122,7 @@ public class RegistroPrestamoRepositoryTest {
         publicacionEjemplo1.setDescripcion("Libro en excelente estado");
         publicacionEjemplo1.setLimiteDias(14);
         publicacionEjemplo1.setDetallesEstadoLibro("Nuevo");
-        publicacionEjemplo1.setEstadoPublicacion(Estado.Prestado);
+        publicacionEjemplo1.setEstadoPublicacion(Estado.solicitado);
         publicacionEjemplo1.setLibro(libro1);
         entityManager.persist(publicacionEjemplo1);
 
@@ -135,7 +132,7 @@ public class RegistroPrestamoRepositoryTest {
         publicacionEjemplo2.setDescripcion("Libro de fantasía disponible");
         publicacionEjemplo2.setLimiteDias(21);
         publicacionEjemplo2.setDetallesEstadoLibro("Usado - Buen estado");
-        publicacionEjemplo2.setEstadoPublicacion(Estado.Disponible);
+        publicacionEjemplo2.setEstadoPublicacion(Estado.disponible);
         publicacionEjemplo2.setLibro(libro2);
         entityManager.persist(publicacionEjemplo2);
 
@@ -145,7 +142,7 @@ public class RegistroPrestamoRepositoryTest {
         publicacionEjemplo3.setDescripcion("Clásico distópico");
         publicacionEjemplo3.setLimiteDias(30);
         publicacionEjemplo3.setDetallesEstadoLibro("Usado");
-        publicacionEjemplo3.setEstadoPublicacion(Estado.Prestado);
+        publicacionEjemplo3.setEstadoPublicacion(Estado.solicitado);
         publicacionEjemplo3.setLibro(libro3);
         entityManager.persist(publicacionEjemplo3);
 

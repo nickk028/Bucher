@@ -62,7 +62,6 @@ class PublicacionValidationTest {
         libroEjemplo.setCalificacion(90);
         libroEjemplo.setFechaPublicacion(LocalDate.of(1967, 5, 30));
         libroEjemplo.setUrlFoto("http://imagen.com/portada.jpg");
-        libroEjemplo.setPrecio(1500.00);
         libroEjemplo.setCategoria(Set.of(Categoria.realismomagico));
         libroEjemplo.setAutor(autorEjemplo);
         libroEjemplo.setEditorial(editorialEjemplo);
@@ -74,7 +73,7 @@ class PublicacionValidationTest {
         publicacion.setDescripcion("Publicación válida");
         publicacion.setLimiteDias(30);
         publicacion.setDetallesEstadoLibro("Nuevo");
-        publicacion.setEstadoPublicacion(Estado.Disponible);
+        publicacion.setEstadoPublicacion(Estado.disponible);
         publicacion.setUsuario(usuarioEjemplo);
         publicacion.setLibro(libroEjemplo);
 
