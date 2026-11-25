@@ -1,5 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.integration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -21,7 +22,10 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.service.payment.MedioPagoService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -82,6 +86,33 @@ class ApiIntegrationTest {
         mockMvc.perform(conToken(get("/admin/estadisticas/libros"), lector)).andExpect(status().isForbidden());
         mockMvc.perform(get("/admin/estadisticas/libros")).andExpect(status().isUnauthorized());
         mockMvc.perform(conToken(get("/admin/estadisticas/libros"), admin)).andExpect(status().isOk());
+    }
+    
+    @Test
+    @DisplayName("contratar plan -> pedir préstamo -> admin devuelve")
+    void flujoCompletoPrestamo() throws Exception {
+        Publicacion pub = publicacionRepository.findByLibroTituloIgnoreCase("Orgullo y prejuicio").orElseThrow();
+        String lector = token("lector2@gmail.com", "LectorSuperSegura@123");
+        String admin = token("admin@gmail.com", "AdminSuperSegura@123");
+
+        String contratar = om.writeValueAsString(Map.of(
+            "suscripcionId", 2, "medioPagoId", MedioPagoService.ID_MEDIO_PAGO_VISA,
+            "numeroTarjeta", "4111111111111111", "vencimiento", "12/30",
+            "cvv", "123", "titular", "TITULAR DE PRUEBA"));
+        mockMvc.perform(
+            post("/registro-suscripcion/contratar")
+                .header("Authorization", "Bearer " + lector)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(contratar)
+        ).andExpect(status().isOk());
+
+        mockMvc.perform(conToken(post("/publicacion/prestamo/" + pub.getId()), lector))
+            .andExpect(status().isOk());
+        assertEquals(Estado.solicitado, pub.getEstadoPublicacion());
+
+        mockMvc.perform(conToken(post("/publicacion/devolucion/" + pub.getId()), admin))
+            .andExpect(status().isOk());
+        assertEquals(Estado.disponible, pub.getEstadoPublicacion());
     }
 
     @Test 
