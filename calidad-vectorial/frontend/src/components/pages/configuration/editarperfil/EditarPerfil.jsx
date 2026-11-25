@@ -5,7 +5,7 @@ import { useFetch, usePost } from '../../../utils/FetchUtils';
 import flecha from '../../../../assets/img/icons/utils/flechaGris.png';
 import alicia from '../../../../../public/assets/img/avatares/alicia.png';
 import bruja from '../../../../../public/assets/img/avatares/bruja.png';
-import caperucitaRoja from '../../../../../public/assets/img/avatares/caperucitaRoja.png';
+import caperucitaRoja from '../../../../../public/assets/img/avatares/caperucitaroja.png';
 import cenicienta from '../../../../../public/assets/img/avatares/cenicienta.png';
 import detective from '../../../../../public/assets/img/avatares/detective.png';
 import dorothy from '../../../../../public/assets/img/avatares/dorothy.png';
@@ -13,11 +13,11 @@ import dracula from '../../../../../public/assets/img/avatares/dracula.png';
 import frankenstein from '../../../../../public/assets/img/avatares/frankenstein.png';
 import gandalf from '../../../../../public/assets/img/avatares/gandalf.png';
 import harryPotter from '../../../../../public/assets/img/avatares/harryPotter.png';
-import hombreDeHojalata from '../../../../../public/assets/img/avatares/hombreDeHojalata.png';
+import hombreDeHojalata from '../../../../../public/assets/img/avatares/hombredehojalata.png';
 import katniss from '../../../../../public/assets/img/avatares/katniss.png';
 import pinocho from '../../../../../public/assets/img/avatares/pinocho.png';
 import rapunzel from '../../../../../public/assets/img/avatares/rapunzel.png';
-import reinaDeCorazones from '../../../../../public/assets/img/avatares/reinaDeCorazones.png';
+import reinaDeCorazones from '../../../../../public/assets/img/avatares/reinadecorazones.png';
 
 import './EditarPerfil.css';
 
