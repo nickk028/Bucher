@@ -3,8 +3,9 @@
    ============================================= */
 
 .clp-page {
-    display: flex;
-    gap: 32px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 20px;
     align-items: flex-start;
     padding: 32px 40px;
     min-height: 100vh;
@@ -35,20 +36,10 @@
 
 /* ---- Layout columns ---- */
 .clp-form-col {
-    flex: 1 1 0;
     min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 16px;
-}
-
-.clp-preview-col {
-    flex: 0 0 320px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    position: sticky;
-    top: 32px;
 }
 
 /* ---- Cards ---- */
@@ -343,10 +334,14 @@
    Preview column
    ============================================= */
 
-.clp-preview-heading {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    margin: 0;
+.clp-preview-col {
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: sticky;
+    top: 32px;
 }
 
 .clp-preview-card {
@@ -460,24 +455,23 @@
     background: var(--gris-claro);
 }
 
-/* ---- Publish button ---- */
 .clp-publish-btn {
     display: flex;
     justify-content: flex-end;
 }
+
 
 /* =============================================
    Responsive
    ============================================= */
 @media (max-width: 860px) {
     .clp-page {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         padding: 24px 16px;
     }
 
     .clp-preview-col {
         position: static;
-        flex: none;
         width: 100%;
     }
 }
