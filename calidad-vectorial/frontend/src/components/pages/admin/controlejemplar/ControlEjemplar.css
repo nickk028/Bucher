@@ -181,6 +181,14 @@
     color: var(--brand-primary);
 }
 
+.control-ejemplar__opcion:hover:not(:disabled) {
+    border-color: var(--brand-primary);
+}
+
+.control-ejemplar__opcion:disabled {
+    cursor: default;
+}
+
 /* Detalles adicionales */
 
 .control-ejemplar__detalles {
