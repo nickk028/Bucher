@@ -135,7 +135,7 @@ export const Publicacion = () => {
 
                                 <UsuarioDetalles
                                     nombre={publicacion.usuarioCreador}
-                                    foto={publicacion.urlFoto}
+                                    foto=`/assets/img/avatares/${publicacion.avatarUsuarioCreador}`
                                 >
                                     {publicacion.descripcionUsuario}
                                 </UsuarioDetalles>
