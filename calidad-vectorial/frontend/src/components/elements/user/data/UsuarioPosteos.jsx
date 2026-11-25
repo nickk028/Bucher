@@ -16,8 +16,6 @@ export const UsuarioPosteos = () => {
                 dataPosteos.content.map((posteo) => (
                     <ComentarioSocial
                         key={posteo.id}
-                        nickname={posteo.usuario.nickname}
-                        urlFoto={`/assets/img/avatares/${posteo.usuario?.avatar}`}
                         tiempoPublicacion={posteo.tiempoTranscurrido}
                     >
                         {posteo.textoPublicacion}
