@@ -27,7 +27,7 @@ export const Publicacion = () => {
         loading: loadingPost,
         execute,
     } = usePost('publicacion/prestamo/' + id);
-    const disponible = publicacion?.estadoPublicacion === 'Disponible';
+    const disponible = publicacion?.estadoPublicacion === 'disponible';
 
     const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
