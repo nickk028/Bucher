@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.time.Duration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 
 @RestController // Marca la clase como un controlador REST
 @RequestMapping("/auth") // Mapea las solicitudes a /auth
@@ -38,7 +42,11 @@ public class AuthController {
     private final UserDetailsService userDetailsService;
     private final UsuarioService usuarioService;
     private final GoogleTokenService googleTokenService;
+    @Value("${COOKIE_SECURE:false}")
+    private boolean cookieSecure;
 
+    @Value("${COOKIE_SAME_SITE:Lax}")
+    private String cookieSameSite;
     /**
      * Procesa el form de login y autentica al usuario
      * @param username El nombre de usuario enviado desde el HTML
@@ -77,13 +85,15 @@ public class AuthController {
         String token = jwtTokenService.generarToken(userDetails, roles);
 
         // 4) Crear cookie HTTP-only para el token JWT
-        Cookie jwtCookie = new Cookie("JWT_TOKEN", token);
-        jwtCookie.setHttpOnly(true); // Previene acceso desde JavaScript (XSS)
-        jwtCookie.setSecure(false); // Para http y no https
-        jwtCookie.setPath("/"); // La cookie estará disponible en todo el sitio
-        jwtCookie.setMaxAge(3600); // Duración de la cookie de 3600 segundos (lo que dura el token)
+        ResponseCookie cookie = ResponseCookie.from("JWT_TOKEN", token)
+            .httpOnly(true)
+            .secure(cookieSecure)
+            .sameSite(cookieSameSite)
+            .path("/")
+            .maxAge(Duration.ofSeconds(3600))
+            .build();
 
-        response.addCookie(jwtCookie);
+        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
         // 5) Redirigir a la página principal después del login exitoso
         return ResponseEntity.ok(Map.of("token", token));
@@ -118,13 +128,15 @@ public class AuthController {
 
         String token = jwtTokenService.generarToken(userDetails, roles);
 
-        Cookie jwtCookie = new Cookie("JWT_TOKEN", token);
-        jwtCookie.setHttpOnly(true);
-        jwtCookie.setSecure(false);
-        jwtCookie.setPath("/");
-        jwtCookie.setMaxAge(3600);
+        ResponseCookie cookie = ResponseCookie.from("JWT_TOKEN", token)
+            .httpOnly(true)
+            .secure(cookieSecure)
+            .sameSite(cookieSameSite)
+            .path("/")
+            .maxAge(Duration.ofSeconds(3600))
+            .build();
 
-        response.addCookie(jwtCookie);
+        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
         return ResponseEntity.ok(Map.of("token", token));
     }
@@ -182,13 +194,15 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         // Eliminar la cookie JWT
-        Cookie jwtCookie = new Cookie("JWT_TOKEN", "");
-        jwtCookie.setHttpOnly(true);
-        jwtCookie.setSecure(false);
-        jwtCookie.setPath("/");
-        jwtCookie.setMaxAge(0); // Expira inmediatamente
+        ResponseCookie cookie = ResponseCookie.from("JWT_TOKEN", "")
+            .httpOnly(true)
+            .secure(cookieSecure)
+            .sameSite(cookieSameSite)
+            .path("/")
+            .maxAge(Duration.ZERO)
+            .build();
 
-        response.addCookie(jwtCookie);
+        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
         return ResponseEntity.ok("Logout exitoso");
     }

@@ -5,7 +5,10 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### Variables de entorno ###
+# Variables de entorno
+**/.env
+**/.env.*
+!**/.env.example
 .env
 
 ### STS ###
