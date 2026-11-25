@@ -5,6 +5,9 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,6 +28,8 @@ public class PublicacionResponseDTO extends PublicacionDTO {
 
     private String avatarUsuarioCreador;
 
+    private String nicknameUsuarioCreador;
+
     // Fecha de creación de la publicación
     private LocalDate fechaCreacion;
 
@@ -37,6 +42,10 @@ public class PublicacionResponseDTO extends PublicacionDTO {
 
     // Desripción del usuario
     private String descripcionUsuario;
+
+    private List<String> detallesAdicionales = new ArrayList<>();
+
+    private String detallesEstadoLibro;
 
     //Nombre del autor
     private String nombre;

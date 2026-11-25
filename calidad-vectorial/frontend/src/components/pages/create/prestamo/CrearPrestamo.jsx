@@ -10,10 +10,10 @@ import RelojVistaPrevia from '../../../../assets/img/icons/crear/relojVistaPrevi
 const CONDITIONS = ['Excelente', 'Muy bueno', 'Bueno', 'Desgastado'];
 
 const ADDITIONAL_DETAILS = [
-    { id: 'subrayado', label: 'Ejemplar subrayado.' },
-    { id: 'anotaciones', label: 'Ejemplar con anotaciones.' },
-    { id: 'manchas', label: 'Ejemplar con manchas.' },
-    { id: 'paginas_dobladas', label: 'Ejemplar con páginas dobladas.' },
+    { id: 'subrayado', label: 'Ejemplar subrayado.', valor: 'subrayado' },
+    { id: 'anotaciones', label: 'Ejemplar con anotaciones.', valor: 'con anotaciones' },
+    { id: 'manchas', label: 'Ejemplar con manchas.', valor: 'con manchas' },
+    { id: 'paginas_dobladas', label: 'Ejemplar con páginas dobladas.', valor: 'con páginas dobladas' },
 ];
 
 const LOAN_DURATIONS = [
@@ -66,6 +66,8 @@ export const CrearPrestamo = () => {
             titulo: selectedBook?.titulo ?? selectedBook?.title ?? bookSearch.trim(),
             descripcion: comments,
             limiteDias: loanDuration * 7,
+            detallesEstadoLibro: condition,
+            detallesAdicionales: selectedDetails.map((d) => d.valor),
         });
     }
 
@@ -256,7 +258,7 @@ export const CrearPrestamo = () => {
                             <div className="clp-preview-tags">
                                 {selectedDetails.map((d) => (
                                     <span key={d.id} className="clp-preview-tag">
-                                        {d.label.replace('Ejemplar ', '').replace('.', '')}
+                                        {d.valor}
                                     </span>
                                 ))}
                             </div>

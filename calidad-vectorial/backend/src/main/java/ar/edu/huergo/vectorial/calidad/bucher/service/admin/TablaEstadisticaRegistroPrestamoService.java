@@ -17,7 +17,7 @@ public class TablaEstadisticaRegistroPrestamoService {
 
     // Estados de la publicación en los que el préstamo se considera activo
     private static final List<Estado> ESTADOS_PRESTAMO_ACTIVO = List.of(
-        Estado.antregar,
+        Estado.aentregar,
         Estado.entregado,
         Estado.adevolver,
         Estado.demorado,
