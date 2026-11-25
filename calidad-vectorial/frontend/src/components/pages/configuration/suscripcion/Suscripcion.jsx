@@ -113,8 +113,8 @@ export const Suscripcion = () => {
                                     isDisabled={loadingSuscribir}
                                     onClick={() =>
                                         executeSuscribir({
-                                            suscripcionId: 1,
-                                            medioPagoId: 1,
+                                            suscripcionId: 2,
+                                            medioPagoId: 2,
                                             numeroTarjeta: '4111111111111111',
                                             vencimiento: '12/30',
                                             cvv: '123',
