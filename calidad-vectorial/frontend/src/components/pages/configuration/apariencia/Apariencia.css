@@ -1,9 +1,7 @@
 .apariencia {
     display: flex;
     flex-flow: column nowrap;
-    gap: 16px;
 
-    padding-top: 20px;
     padding-left: 40px;
     padding-right: 160px;
 }
@@ -20,7 +18,6 @@
     font-size: var(--font-size-base);
 }
 
-/* ---- Card / form ---- */
 .apariencia__form {
     width: 100%;
     height: fit-content;
@@ -45,7 +42,6 @@
     margin: 0 0 4px;
 }
 
-/* ---- Group (label + container) ---- */
 .apariencia__form__group {
     display: flex;
     flex-direction: column;
@@ -54,7 +50,7 @@
 
 .apariencia__form__label {
     font-family: 'Hind Siliguri', sans-serif;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     color: var(--text-secondary);
 }
 
@@ -75,13 +71,12 @@
     flex-wrap: wrap;
 }
 
-/* ---- Checkboxes / radios custom ---- */
 .apariencia__checkbox-label {
     display: flex;
     align-items: center;
     gap: 10px;
     font-family: 'Hind Siliguri', sans-serif;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     color: var(--text-primary);
     cursor: pointer;
     user-select: none;
@@ -123,7 +118,6 @@
     transform: rotate(45deg) translate(-1px, -1px);
 }
 
-/* ---- Color picker de Büchy ---- */
 .apariencia__color-btn {
     position: relative;
     width: 56px;
@@ -176,7 +170,6 @@
     transition: all 200ms ease;
 }
 
-/* Two overlapping circles: light behind, dark in front */
 .apariencia__color-circle {
     position: absolute;
     width: 38px;

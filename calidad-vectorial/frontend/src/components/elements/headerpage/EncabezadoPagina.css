@@ -1,0 +1,9 @@
+.encabezado-pagina__titulo {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--brand-dark);
+}
+
+.encabezado-pagina__subtitulo {
+    font-size: var(--font-size-base);
+}

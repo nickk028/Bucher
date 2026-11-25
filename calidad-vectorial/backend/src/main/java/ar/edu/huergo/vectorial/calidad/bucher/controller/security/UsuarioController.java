@@ -1,11 +1,15 @@
 package ar.edu.huergo.vectorial.calidad.bucher.controller.security;
 
+import ar.edu.huergo.vectorial.calidad.bucher.dto.security.DataCantidadesResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.RegistrarDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioRolUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.security.UsuarioUpdateDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.security.UsuarioMapper;
+import ar.edu.huergo.vectorial.calidad.bucher.service.bookuser.LibroUsuarioService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionSocialService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -26,6 +30,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final LibroUsuarioService libroUsuarioService;
+    private final PublicacionService publicacionService;
+    private final PublicacionSocialService publicacionSocialService;
     private final UsuarioMapper usuarioMapper;
 
     /**
@@ -45,6 +52,18 @@ public class UsuarioController {
         }
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
         return ResponseEntity.ok(usuarioMapper.toDTO(usuario));
+    }
+
+    @GetMapping("/datos-cantidades")
+    public ResponseEntity<DataCantidadesResponseDTO> obtenerDatosCantidades() {
+        UserDetails usuarioAutenticado = usuarioService.getUserDetailsActual();
+        if (usuarioAutenticado == null) {
+            return ResponseEntity.notFound().build();
+        }
+        long cantLibros = libroUsuarioService.obtenerCantidadLibrosUsuarioPorUsuario(usuarioAutenticado.getUsername());
+        long cantPrestamos = publicacionService.obtenerCantidadPublicacionesPorUsuario(usuarioAutenticado.getUsername());
+        long cantPublicacionesSociales = publicacionSocialService.obtenerCantidadPublicacionesSocialesPorUsuario(usuarioAutenticado.getUsername());
+        return ResponseEntity.ok(new DataCantidadesResponseDTO(cantLibros, cantPrestamos, cantPublicacionesSociales));
     }
 
     /**

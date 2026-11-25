@@ -1,5 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.mapper.publication;
 
+import ar.edu.huergo.vectorial.calidad.bucher.dto.admin.PrestamoControlDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.PublicacionResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.RegistroPrestamoResponseDTO;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
@@ -25,7 +26,9 @@ public class RegistroPrestamoMapper {
         if (registroPrestamo == null) {
             return null;
         }
+
         RegistroPrestamoResponseDTO registroPrestamoResponseDTO = new RegistroPrestamoResponseDTO();
+
         PublicacionResponseDTO publicacionResponseDTO = publicacionMapper.toDTO(
             registroPrestamo.getPublicacion()
         );
@@ -34,6 +37,19 @@ public class RegistroPrestamoMapper {
         registroPrestamoResponseDTO.setPublicacion(publicacionResponseDTO);
         registroPrestamoResponseDTO.setFechaPrestamo(registroPrestamo.getFechaPrestamo());
         registroPrestamoResponseDTO.setFechaDevolucion(registroPrestamo.getFechaDevolucion());
+        registroPrestamoResponseDTO.setAvatarUsuarioPrestamista(registroPrestamo.getUsuario().getAvatar().getUrl());
+        registroPrestamoResponseDTO.setUsuarioPrestamista(registroPrestamo.getUsuario().getUsername());
+        registroPrestamoResponseDTO.setNickanmeUsuarioPrestamista(registroPrestamo.getUsuario().getNickname());
+
+        registroPrestamoResponseDTO.setConfirmacionTitulo(registroPrestamo.getConfirmacionTitulo());
+        registroPrestamoResponseDTO.setConfirmacionAutor(registroPrestamo.getConfirmacionAutor());
+        registroPrestamoResponseDTO.setConfirmacionDetallesEstado(registroPrestamo.getConfirmacionDetallesEstado());
+        registroPrestamoResponseDTO.setConfirmacionDetallesEstadoLibro(
+            registroPrestamo.getConfirmacionDetallesEstadoLibro()
+        );
+        registroPrestamoResponseDTO.setComentariosAdicionales(registroPrestamo.getComentariosAdicionales());
+        registroPrestamoResponseDTO.setEstaEnCondiciones(registroPrestamo.getEstaEnCondiciones());
+        registroPrestamoResponseDTO.setMotivoNoEnCondiciones(registroPrestamo.getMotivoNoEnCondiciones());
 
         return registroPrestamoResponseDTO;
     }
@@ -48,5 +64,26 @@ public class RegistroPrestamoMapper {
             return new ArrayList<>();
         }
         return registrosPrestamo.stream().map(this::toDTO).collect(Collectors.toList());
+    }
+
+    public RegistroPrestamo toEntity(PrestamoControlDTO prestamoControlDTO) {
+        if (prestamoControlDTO == null) {
+            return null;
+        }
+
+        RegistroPrestamo registroPrestamo = new RegistroPrestamo();
+
+        registroPrestamo.setId(prestamoControlDTO.getId());
+        registroPrestamo.setConfirmacionTitulo(prestamoControlDTO.getConfirmacionTitulo());
+        registroPrestamo.setConfirmacionAutor(prestamoControlDTO.getConfirmacionAutor());
+        registroPrestamo.setConfirmacionDetallesEstado(prestamoControlDTO.getConfirmacionDetallesEstado());
+        registroPrestamo.setConfirmacionDetallesEstadoLibro(
+            prestamoControlDTO.getConfirmacionDetallesEstadoLibro()
+        );
+        registroPrestamo.setComentariosAdicionales(prestamoControlDTO.getComentariosAdicionales());
+        registroPrestamo.setEstaEnCondiciones(prestamoControlDTO.getEstaEnCondiciones());
+        registroPrestamo.setMotivoNoEnCondiciones(prestamoControlDTO.getMotivoNoEnCondiciones());
+
+        return registroPrestamo;
     }
 }

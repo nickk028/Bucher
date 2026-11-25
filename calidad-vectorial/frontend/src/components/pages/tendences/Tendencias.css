@@ -50,7 +50,7 @@
 }
 
 /* primer libro */
-.tend-body__podio .portada-libro:nth-child(1) {
+.tend-body__podio .libro-card:nth-child(1) {
     position: absolute;
     bottom: 118px; /* más arriba = más ganador */
     left: 50%;
@@ -58,7 +58,7 @@
 }
 
 /* segundo libro */
-.tend-body__podio .portada-libro:nth-child(2) {
+.tend-body__podio .libro-card:nth-child(2) {
     position: absolute;
     bottom: 185px;
     left: 26%;
@@ -66,7 +66,7 @@
 }
 
 /* tercer libro */
-.tend-body__podio .portada-libro:nth-child(3) {
+.tend-body__podio .libro-card:nth-child(3) {
     position: absolute;
     bottom: 212px;
     left: 74%;

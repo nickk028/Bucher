@@ -67,9 +67,11 @@ public class SecurityConfig {
                     .hasRole("ADMIN")
                     .requestMatchers(HttpMethod.GET, "/usuario/propio")
                     .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.GET, "/usuario/datos-cantidades")
+                    .hasAnyRole("ADMIN", "LECTOR")
                     .requestMatchers(HttpMethod.PUT, "/usuario/modificar")
                     .hasAnyRole("ADMIN", "LECTOR")
-                    .requestMatchers(HttpMethod.GET, "/usuario/modificar/rol")
+                    .requestMatchers(HttpMethod.PUT, "/usuario/modificar/rol")
                     .hasRole("ADMIN")
 
                     // Publicacion
@@ -79,8 +81,6 @@ public class SecurityConfig {
                     .hasRole("ADMIN")
                     .requestMatchers(HttpMethod.POST, "/publicacion/**")
                     .hasAnyRole("ADMIN", "LECTOR")
-                    .requestMatchers(HttpMethod.POST, "/publicacion/devolucion/**")
-                    .hasRole("ADMIN")
                     .requestMatchers(HttpMethod.PUT, "/publicacion/**")
                     .hasAnyRole("ADMIN", "LECTOR")
                     .requestMatchers(HttpMethod.DELETE, "/publicacion/**")
@@ -88,6 +88,12 @@ public class SecurityConfig {
 
                     //PublicacionSocial
                     .requestMatchers(HttpMethod.GET, "/publicacionSocial")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.GET, "/publicacionSocial/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.POST, "/publicacionSocial/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.DELETE, "/publicacionSocial/**")
                     .hasAnyRole("ADMIN", "LECTOR")
 
                     // Registro
@@ -117,9 +123,29 @@ public class SecurityConfig {
                     .hasAnyRole("ADMIN", "LECTOR")
 
                     // MedioPago
-                    .requestMatchers(HttpMethod.GET, "/medioPago/**")
+                    .requestMatchers(HttpMethod.GET, "/medio-pago/**")
                     .hasAnyRole("ADMIN", "LECTOR")
-                    .requestMatchers(HttpMethod.POST, "/medioPago/**")
+                    .requestMatchers(HttpMethod.POST, "/medio-pago/**")
+                    .hasRole("ADMIN")
+
+                    // Suscripcion
+                    .requestMatchers(HttpMethod.GET, "/suscripcion")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.POST, "/suscripcion/crear")
+                    .hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/suscripcion/**")
+                    .hasRole("ADMIN")
+
+                    // RegistroSuscripcion
+                    .requestMatchers(HttpMethod.GET, "/registro-suscripcion")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.GET, "/registro-suscripcion/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+                    .requestMatchers(HttpMethod.POST, "/registro-suscripcion/**")
+                    .hasAnyRole("ADMIN", "LECTOR")
+
+                    // Admin
+                    .requestMatchers("/admin/**")
                     .hasRole("ADMIN")
 
                     .anyRequest()

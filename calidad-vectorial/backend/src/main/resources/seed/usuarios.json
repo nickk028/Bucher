@@ -52,5 +52,40 @@
     "direccion": "Av. Independencia 1562",
     "piso": "9 A",
     "codigoPostal": "1100"
+  },
+  {
+    "username": "marcosdiaz@gmail.com",
+    "password": "LectorSuperSegura@123",
+    "nickname": "Marcos_D",
+    "avatar": "DETECTIVE",
+    "roles": ["LECTOR", "ESCRITOR"]
+  },
+  {
+    "username": "sisoywendys@gmail.com",
+    "password": "LectorSuperSegura@123",
+    "nickname": "Wendy's",
+    "avatar": "DOROTHY",
+    "roles": ["LECTOR"]
+  },
+  {
+    "username": "tomasherrera@gmail.com",
+    "password": "LectorSuperSegura@123",
+    "nickname": "TomiHerrera",
+    "avatar": "DRACULA",
+    "roles": ["LECTOR", "ESCRITOR"]
+  },
+  {
+    "username": "camilaprieto@gmail.com",
+    "password": "LectorSuperSegura@123",
+    "nickname": "Cami_Libros",
+    "avatar": "KATNISS",
+    "roles": ["LECTOR"]
+  },
+  {
+    "username": "nicolasbenitez@gmail.com",
+    "password": "LectorSuperSegura@123",
+    "nickname": "Nico_Benitez",
+    "avatar": "FRANKENSTEIN",
+    "roles": ["LECTOR", "ESCRITOR"]
   }
 ]

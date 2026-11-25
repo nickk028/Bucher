@@ -77,7 +77,6 @@ public class RegistroPrestamoServiceTest {
         libroEjemplo.setCalificacion(90);
         libroEjemplo.setFechaPublicacion(LocalDate.of(1967, 5, 30));
         libroEjemplo.setUrlFoto("http://imagen.com/portada.jpg");
-        libroEjemplo.setPrecio(1500.00);
         libroEjemplo.setCategoria(Set.of(Categoria.realismomagico));
         libroEjemplo.setAutor(autor);
         libroEjemplo.setEditorial(editorial);
@@ -90,7 +89,7 @@ public class RegistroPrestamoServiceTest {
         publicacionEjemplo.setDescripcion("Libro en excelente estado");
         publicacionEjemplo.setLimiteDias(14);
         publicacionEjemplo.setDetallesEstadoLibro("Nuevo");
-        publicacionEjemplo.setEstadoPublicacion(Estado.Disponible);
+        publicacionEjemplo.setEstadoPublicacion(Estado.disponible);
         publicacionEjemplo.setLibro(libroEjemplo);
 
         // Crear registro préstamo

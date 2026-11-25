@@ -13,6 +13,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.PublicacionMapp
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
+import ar.edu.huergo.vectorial.calidad.bucher.service.subscription.RegistroSuscripcionService;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,9 @@ public class PublicacionController {
 
     @Autowired
     private RegistroPrestamoService registroPrestamoService;
+
+    @Autowired
+    private RegistroSuscripcionService registroSuscripcionService;
 
     /**
      * Obtiene todas las publicaciones
@@ -213,16 +217,21 @@ public class PublicacionController {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
         Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);
 
+        if (!registroSuscripcionService.puedePedirPrestado(usuario)) {
+            return ResponseEntity.unprocessableEntity().body(
+                "Tu suscripción no permite pedir más libros prestados"
+            );
+        }
         if (publicacion.getUsuario().equals(usuario)) {
             return ResponseEntity.unprocessableEntity().body(
                 "No se puede pedir un préstamo de una publicación propia"
             );
         }
-        if (!publicacion.getEstadoPublicacion().equals(Estado.Disponible)) {
+        if (!publicacion.getEstadoPublicacion().equals(Estado.disponible)) {
             return ResponseEntity.unprocessableEntity().body("La publicación no esta disponible");
         }
 
-        publicacionService.modificarEstadoPublicacion(publicacion, Estado.Entrega_pendiente);
+        publicacionService.modificarEstadoPublicacion(publicacion, Estado.solicitado);
         registroPrestamoService.crearRegistroUsuario(usuario, publicacion);
         return ResponseEntity.ok().body("Préstamo creado");
     }
@@ -236,11 +245,11 @@ public class PublicacionController {
     public ResponseEntity<String> devolverPublicacion(@PathVariable("id") Long id) {
         Publicacion publicacion = publicacionService.obtenerPublicacionPorId(id);
 
-        if (publicacion.getEstadoPublicacion() != Estado.Prestado) {
+        if (publicacion.getEstadoPublicacion() == Estado.disponible) {
             return ResponseEntity.unprocessableEntity().body("La publicación no está prestada");
         }
         RegistroPrestamo registro = registroPrestamoService.obtenerRegistroPrestamo(publicacion);
-        publicacionService.modificarEstadoPublicacion(publicacion, Estado.Disponible);
+        publicacionService.modificarEstadoPublicacion(publicacion, Estado.disponible);
         registroPrestamoService.marcarRegistroDevolucion(registro);
         return ResponseEntity.ok().body("Devolución realizada");
     }

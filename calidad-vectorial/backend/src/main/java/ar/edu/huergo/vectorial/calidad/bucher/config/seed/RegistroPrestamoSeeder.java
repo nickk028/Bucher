@@ -7,6 +7,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.RegistroPrestamoRepository;
 import java.time.LocalDate;
+import java.util.ArrayList;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -44,6 +46,17 @@ public class RegistroPrestamoSeeder implements Seeder {
         prestamo.setPublicacion(publicacion);
         prestamo.setUsuario(solicitante);
         prestamo.setFechaPrestamo(LocalDate.now().minusDays(seed.diasDesdePrestamo()));
+        prestamo.setConfirmacionTitulo(seed.confirmacionTitulo());
+        prestamo.setConfirmacionAutor(seed.confirmacionAutor());
+        prestamo.setConfirmacionDetallesEstado(seed.confirmacionDetallesEstado());
+        prestamo.setConfirmacionDetallesEstadoLibro(
+            seed.confirmacionDetallesEstadoLibro() != null
+                ? new ArrayList<>(seed.confirmacionDetallesEstadoLibro())
+                : new ArrayList<>()
+        );
+        prestamo.setComentariosAdicionales(seed.comentariosAdicionales());
+        prestamo.setEstaEnCondiciones(seed.estaEnCondiciones());
+        prestamo.setMotivoNoEnCondiciones(seed.motivoNoEnCondiciones());
         if (seed.diasDesdeDevolucion() != null) {
             prestamo.setFechaDevolucion(LocalDate.now().minusDays(seed.diasDesdeDevolucion()));
         }

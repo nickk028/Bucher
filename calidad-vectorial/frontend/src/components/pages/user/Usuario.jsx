@@ -14,6 +14,12 @@ export const Usuario = () => {
         error: errorUsuario,
     } = useFetch("usuario/propio");
 
+    const {
+        data: respuestaDataUsuario,
+        loading: loadingDataUsuario,
+        error: errorDataUsuario,
+    } = useFetch("usuario/datos-cantidades");
+
     const [pagina, setPagina] = useState('prestamos');
 
     return (
@@ -30,15 +36,15 @@ export const Usuario = () => {
                         </div>
                         <ul className="usuario__section__content__datos__lista">
                             <li>
-                                <p>12</p>
+                                <p>{respuestaDataUsuario.cantLibros}</p>
                                 <p>Libros</p>
                             </li>
                             <li>
-                                <p>5</p>
+                                <p>{respuestaDataUsuario.cantPrestamos}</p>
                                 <p>Publicaciones</p>
                             </li>
                             <li>
-                                <p>13</p>
+                                <p>{respuestaDataUsuario.cantPublicacionesSociales}</p>
                                 <p>Posteos</p>
                             </li>
                         </ul>
@@ -73,7 +79,7 @@ export const Usuario = () => {
                         className={`usuario__content__clasificacion__item usuario__content__clasificacion__item--${pagina === 'prestamos activos' ? 'selected' : ''}`}
                         onClick={() => setPagina('prestamos activos')}
                     >
-                        Prestamos activos
+                        Préstamos activos
                     </li>
                 </ul>
 

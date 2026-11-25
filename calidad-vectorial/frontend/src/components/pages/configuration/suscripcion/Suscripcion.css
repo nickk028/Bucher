@@ -232,8 +232,11 @@
 
 .suscripcion-content__link {
     color: var(--brand-primary);
+    font-weight: 500;
+    transition: all 200ms ease-in-out;
 }
 
 .suscripcion-content__link:hover {
+    color: var(--brand-dark);
     text-decoration: underline;
 }

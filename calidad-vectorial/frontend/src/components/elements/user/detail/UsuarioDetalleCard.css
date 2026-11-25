@@ -1,0 +1,71 @@
+.usuario-detalle-card {
+    display: flex;
+    flex-flow: column nowrap;
+
+    padding: 8px;
+    border: 2px var(--border-primary) solid;
+    border-radius: 8px;
+    background: var(--bg-surface);
+
+    width: 250px;
+    height: 100%;
+    gap: 10px;
+
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.usuario-detalle-card__titulo {
+    font-size: var(--font-size-lg);
+    color: var(--brand-dark);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.usuario-detalle-card__content {
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.usuario-detalle-card__content__aside {
+    width: 50px;
+    height: 100%;
+}
+
+.usuario-detalle-card__content__aside__img {
+    aspect-ratio: 1 / 1;
+    width: 50px;
+}
+
+.usuario-detalle-card__content__text {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 15px;
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.usuario-detalle-card__content__text__nickname {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.usuario-detalle-card__content__text__data {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.usuario-detalle-card__content__text__data__label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.usuario-detalle-card__content__text__data__p {
+    margin-top: -8px;
+}

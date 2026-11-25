@@ -18,7 +18,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.FetchType;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,16 +61,24 @@ public class Publicacion {
 
     // Límite de días para la devolucion del préstamo
     @Column(nullable = false)
-    @NotNull(message = "El mímite de días es obligatorio.")
+    @NotNull(message = "El límite de días es obligatorio.")
     @Positive(message = "El límite de días debe ser mayor a 0.")
     @Min(1)
-    @Max(65)
+    @Max(365)
     private int limiteDias;
 
     // Detalles del estado del libro (Ej: "Nuevo", "Usado - Buen estado", "Dañado", etc.)
     @Column(nullable = false, length = 100)
     @Size(min = 2, max = 100, message = "Los detalles deben tener entre 2 y 100 caracteres.")
     private String detallesEstadoLibro;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+        name = "publicacion_detalles_adicionales",
+        joinColumns = @JoinColumn(name = "publicacion_id")
+    )
+    @Column(name = "detalle", length = 50)
+    private List<String> detallesAdicionales = new ArrayList<>();
 
     // Estado de la publicación (Ej: "Disponible", "Prestado", etc.)
     @Column(nullable = false, length = 50)

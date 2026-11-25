@@ -6,31 +6,102 @@
     "diasDesdePrestamo": 3
   },
   {
-    "solicitante": "lector2@gmail.com",
-    "publicador": "jlopez@gmail.com",
-    "libro": "La magia de ser Sofía",
-    "diasDesdePrestamo": 19,
-    "diasDesdeDevolucion": 2
+    "solicitante": "jrolando@gmail.com",
+    "publicador": "lector@gmail.com",
+    "libro": "El chico que dibujaba constelaciones",
+    "diasDesdePrestamo": 30
   },
   {
     "solicitante": "jrolando@gmail.com",
-    "publicador": "lector2@gmail.com",
-    "libro": "Sinsajo",
-    "diasDesdePrestamo": 40,
-    "diasDesdeDevolucion": 13
-  },
-  {
-    "solicitante": "lector2@gmail.com",
-    "publicador": "lector@gmail.com",
-    "libro": "De amor y de sombra",
-    "diasDesdePrestamo": 40,
-    "diasDesdeDevolucion": 20
+    "publicador": "nicolasbenitez@gmail.com",
+    "libro": "El hombre en busca de sentido",
+    "diasDesdePrestamo": 5,
+    "confirmacionTitulo": "El hombre en busca de sentido",
+    "confirmacionAutor": "Viktor Frankl",
+    "confirmacionDetallesEstado": "Bueno",
+    "confirmacionDetallesEstadoLibro": ["subrayado"],
+    "comentariosAdicionales": "Las frases subrayadas a lápiz coinciden con lo publicado.",
+    "estaEnCondiciones": "si"
   },
   {
     "solicitante": "lector@gmail.com",
-    "publicador": "jrolando@gmail.com",
-    "libro": "El chico que dibujaba constelaciones",
-    "diasDesdePrestamo": 30,
-    "diasDesdeDevolucion": 10
+    "publicador": "mljueguen@gmail.com",
+    "libro": "Matilda",
+    "diasDesdePrestamo": 9,
+    "confirmacionTitulo": "Matilda",
+    "confirmacionAutor": "Roald Dahl",
+    "confirmacionDetallesEstado": "Muy bueno",
+    "confirmacionDetallesEstadoLibro": [],
+    "comentariosAdicionales": "Libro tal cual la descripción, con las ilustraciones intactas.",
+    "estaEnCondiciones": "si"
+  },
+  {
+    "solicitante": "tomasherrera@gmail.com",
+    "publicador": "paulamartinez@gmail.com",
+    "libro": "Mi nombre es Emilia del Valle",
+    "diasDesdePrestamo": 12,
+    "confirmacionTitulo": "Mi nombre es Emilia del Valle",
+    "confirmacionAutor": "Isabel Allende",
+    "confirmacionDetallesEstado": "Excelente",
+    "confirmacionDetallesEstadoLibro": [],
+    "estaEnCondiciones": "si"
+  },
+  {
+    "solicitante": "camilaprieto@gmail.com",
+    "publicador": "sisoywendys@gmail.com",
+    "libro": "Charlie y la fábrica de chocolate",
+    "diasDesdePrestamo": 2
+  },
+  {
+    "solicitante": "sisoywendys@gmail.com",
+    "publicador": "tomasherrera@gmail.com",
+    "libro": "El resplandor",
+    "diasDesdePrestamo": 35,
+    "diasDesdeDevolucion": 14,
+    "confirmacionTitulo": "El resplandor",
+    "confirmacionAutor": "Stephen King",
+    "confirmacionDetallesEstado": "Desgastado",
+    "confirmacionDetallesEstadoLibro": ["con manchas"],
+    "comentariosAdicionales": "Al recibirlo noté manchas en varias páginas.",
+    "estaEnCondiciones": "no",
+    "motivoNoEnCondiciones": "El libro presenta manchas que no figuraban en la publicación."
+  },
+  {
+    "solicitante": "marcosdiaz@gmail.com",
+    "publicador": "jlopez@gmail.com",
+    "libro": "Pensar rápido, pensar despacio",
+    "diasDesdePrestamo": 45,
+    "diasDesdeDevolucion": 20,
+    "confirmacionTitulo": "Pensar rápido, pensar despacio",
+    "confirmacionAutor": "Daniel Kahneman",
+    "confirmacionDetallesEstado": "Bueno",
+    "confirmacionDetallesEstadoLibro": ["con anotaciones"],
+    "comentariosAdicionales": "Las notas al margen están solo en los primeros capítulos.",
+    "estaEnCondiciones": "si"
+  },
+  {
+    "solicitante": "nicolasbenitez@gmail.com",
+    "publicador": "camilaprieto@gmail.com",
+    "libro": "Yo antes de ti",
+    "diasDesdePrestamo": 28,
+    "diasDesdeDevolucion": 7,
+    "confirmacionTitulo": "Yo antes de ti",
+    "confirmacionAutor": "Jojo Moyes",
+    "confirmacionDetallesEstado": "Muy bueno",
+    "confirmacionDetallesEstadoLibro": [],
+    "estaEnCondiciones": "si"
+  },
+  {
+    "solicitante": "lector2@gmail.com",
+    "publicador": "camilaprieto@gmail.com",
+    "libro": "Inteligencia emocional",
+    "diasDesdePrestamo": 33,
+    "diasDesdeDevolucion": 12,
+    "confirmacionTitulo": "Inteligencia emocional",
+    "confirmacionAutor": "Daniel Goleman",
+    "confirmacionDetallesEstado": "Bueno",
+    "confirmacionDetallesEstadoLibro": [],
+    "comentariosAdicionales": "Todas las páginas completas, tal como se describió.",
+    "estaEnCondiciones": "si"
   }
 ]

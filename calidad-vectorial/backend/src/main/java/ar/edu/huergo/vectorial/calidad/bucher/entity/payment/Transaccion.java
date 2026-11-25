@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,9 +39,10 @@ public abstract class Transaccion {
     private MedioPago medioPago;
 
     // Monto acreditado de la transacción
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 12, scale = 2)
+    @NotNull(message = "El monto acreditado es obligatorio.")
     @PositiveOrZero(message = "El monto acreditado debe ser 0 o mayor.")
-    private double montoAcreditado;
+    private BigDecimal montoAcreditado;
 
     // Fecha y hora de la transacción
     @Column(nullable = false)

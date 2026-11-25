@@ -28,6 +28,8 @@ public class PublicacionMapper {
         Publicacion publicacion = new Publicacion();
         publicacion.setDescripcion(publicacionCreateDTO.getDescripcion());
         publicacion.setLimiteDias(publicacionCreateDTO.getLimiteDias());
+        publicacion.setDetallesAdicionales(publicacionCreateDTO.getDetallesAdicionales());
+        publicacion.setDetallesEstadoLibro(publicacionCreateDTO.getDetallesEstadoLibro());
 
         return publicacion;
     }
@@ -61,7 +63,7 @@ public class PublicacionMapper {
         }
 
         if (publicacionUpdateDTO.getEstadoPublicacion() == null) {
-            publicacion.setEstadoPublicacion(Estado.Indefinido);
+            publicacion.setEstadoPublicacion(Estado.indefinido);
         } else {
             publicacion.setEstadoPublicacion(publicacionUpdateDTO.getEstadoPublicacion());
         }
@@ -85,10 +87,15 @@ public class PublicacionMapper {
         publicacionResponseDTO.setDescripcion(publicacion.getDescripcion());
         publicacionResponseDTO.setLimiteDias(publicacion.getLimiteDias());
         publicacionResponseDTO.setUsuarioCreador(publicacion.getUsuario().getUsername());
+        publicacionResponseDTO.setAvatarUsuarioCreador(publicacion.getUsuario().getAvatar().getUrl());
+        publicacionResponseDTO.setNicknameUsuarioCreador(publicacion.getUsuario().getNickname());
         publicacionResponseDTO.setFechaCreacion(publicacion.getFechaCreacion());
         publicacionResponseDTO.setEstadoPublicacion(publicacion.getEstadoPublicacion());
+        publicacionResponseDTO.setDetallesAdicionales(publicacion.getDetallesAdicionales());
+        publicacionResponseDTO.setDetallesEstadoLibro(publicacion.getDetallesEstadoLibro());
         publicacionResponseDTO.setNombre(publicacion.getLibro().getAutor().getNombre());
         publicacionResponseDTO.setUrlFoto(publicacion.getLibro().getUrlFoto());
+        publicacionResponseDTO.setDescripcionUsuario(publicacion.getUsuario().getDescripcion());
 
         return publicacionResponseDTO;
     }

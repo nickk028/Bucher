@@ -1,0 +1,27 @@
+.body-posteos__admin {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 20px 40px 40px 40px;
+
+    font-family: 'Hind Siliguri', Arial, Helvetica, sans-serif;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+}
+
+.body-posteos__admin__encabezado__titulo {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--brand-dark);
+}
+
+.body-posteos__admin__encabezado__subtitulo {
+    font-size: var(--font-size-base);
+}
+
+@media (max-width: 768px) {
+    .body-posteos__admin {
+        padding: 20px;
+    }
+}

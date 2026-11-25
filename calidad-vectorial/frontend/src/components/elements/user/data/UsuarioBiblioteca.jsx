@@ -28,14 +28,11 @@ const OPCIONES_ORDEN = [
 ];
 
 export const UsuarioBiblioteca = () => {
-    const { data: dataBibliotecas } = useFetch('biblioteca');
-    const idBiblioteca = dataBibliotecas?.[0]?.id;
-
     const {
         data: dataBiblioteca,
         error: errorBiblioteca,
         loading: loadingBiblioteca,
-    } = useFetch(idBiblioteca ? `biblioteca/${idBiblioteca}` : null);
+    } = useFetch('libro-usuario');
 
     const [filtroActivo, setFiltroActivo] = useState('todos');
     const [ordenActivo, setOrdenActivo] = useState(null);

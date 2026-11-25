@@ -14,6 +14,8 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Rol;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
+import ar.edu.huergo.vectorial.calidad.bucher.service.subscription.RegistroSuscripcionService;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,6 +42,8 @@ public class UsuarioServiceTest {
 
     @Mock
     private RolRepository rolRepository;
+
+    @Mock private RegistroSuscripcionService registroSuscripcionService;
 
     @InjectMocks
     private UsuarioService usuarioService;

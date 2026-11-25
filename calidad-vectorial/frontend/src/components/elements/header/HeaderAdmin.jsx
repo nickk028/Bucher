@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import './Header.css';
 
-export const HeaderAdmin = () => {
+export const HeaderAdmin = ({ onToggleCrear, mostrarConfig }) => {
     const location = useLocation();
     const [click, setClick] = useState(location.pathname);
 
@@ -14,52 +14,52 @@ export const HeaderAdmin = () => {
     return (
         <header className="header">
             <nav className="header__nav">
-                <Link className="header__nav__item" to="/admin">
+                <div className="header__nav__item">
                     <div
                         alt="Logo de Bücher"
                         className={`header__nav__item__bucher header__nav__item__bucher--${click == '/admin' ? 'selected' : ''}`}
                     />
-                </Link>
+                </div>
 
-                <Link className="header__nav__item" to="#">
+                <Link className="header__nav__item" to="/admin/estadisticas">
                     <div
                         alt="Logo de Estadísticas"
-                        className={`header__nav__item__estadisticas header__nav__item__estadisticas--${click == '/#' ? 'selected' : ''}`}
+                        className={`header__nav__item__estadisticas header__nav__item__estadisticas--${click == '/admin/estadisticas' ? 'selected' : ''}`}
                     />
                 </Link>
 
-                <Link className="header__nav__item" to="#">
+                <Link className="header__nav__item" to="/admin/posteos">
                     <div
                         alt="Logo de Comentario Social"
-                        className={`header__nav__item__comentario-social header__nav__item__comentario-social--${click == '/#' ? 'selected' : ''}`}
+                        className={`header__nav__item__comentario-social header__nav__item__comentario-social--${click.includes('/admin/posteos') ? 'selected' : ''}`}
                     />
                 </Link>
 
                 <Link className="header__nav__item" to="/admin/prestamos">
                     <div
                         alt="Logo de Biblioteca"
-                        className={`header__nav__item__biblioteca header__nav__item__biblioteca--${click == '/#' ? 'selected' : ''}`}
+                        className={`header__nav__item__biblioteca header__nav__item__biblioteca--${click.includes('/admin/prestamos') ? 'selected' : ''}`}
                     />
                 </Link>
 
                 <Link className="header__nav__item" to="/admin/usuarios">
                     <div
                         alt="Logo de Usuarios"
-                        className={`header__nav__item__usuarios header__nav__item__usuarios--${click == '/#' ? 'selected' : ''}`}
+                        className={`header__nav__item__usuarios header__nav__item__usuarios--${click == '/admin/usuarios' ? 'selected' : ''}`}
                     />
                 </Link>
 
-                <Link className="header__nav__item" to="#">
+                <Link className="header__nav__item" to="/coming-soon">
                     <div
                         alt="Logo de Carrito"
                         className={`header__nav__item__carrito header__nav__item__carrito--${click == '/#' ? 'selected' : ''}`}
                     />
                 </Link>
 
-                <Link className="header__nav__item" to="#">
+                <Link className="header__nav__item" to={click.includes('/configuracion') ? click : '/configuracion/editar-perfil'}>
                     <div
                         alt="Logo de Configuración"
-                        className={`header__nav__item__configuracion header__nav__item__configuracion--${click == '/#' ? 'selected' : ''}`}
+                        className={`header__nav__item__configuracion header__nav__item__configuracion--${click.includes('/configuracion') ? 'selected' : ''}`}
                     />
                 </Link>
             </nav>

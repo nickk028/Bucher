@@ -42,6 +42,7 @@ class UsuarioValidationTest {
         usuario.setNickname("usuario");
         usuario.setPassword("Contraseña@Segura123456");
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -63,6 +64,7 @@ class UsuarioValidationTest {
         usuario.setUsername(null);
         usuario.setPassword("Contraseña@Segura123456");
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -83,6 +85,7 @@ class UsuarioValidationTest {
         usuario.setUsername("");
         usuario.setPassword("Contraseña@Segura123456");
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -102,6 +105,7 @@ class UsuarioValidationTest {
         usuario.setUsername("   ");
         usuario.setPassword("Contraseña@Segura123456");
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -122,6 +126,7 @@ class UsuarioValidationTest {
         usuario.setUsername(nombreCorto);
         usuario.setPassword("Contraseña@Segura123456");
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -135,7 +140,7 @@ class UsuarioValidationTest {
             violaciones
                 .stream()
                 .anyMatch((v) ->
-                    v.getMessage().contains("El username debe tener entre 2 y 100 digitos.")
+                    v.getMessage().contains("El username debe tener entre 3 y 100 digitos.")
                 )
         );
     }
@@ -149,6 +154,7 @@ class UsuarioValidationTest {
         usuario.setUsername(nombreLargo);
         usuario.setPassword("Contraseña@Segura123456");
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -162,7 +168,7 @@ class UsuarioValidationTest {
             violaciones
                 .stream()
                 .anyMatch((v) ->
-                    v.getMessage().contains("El username debe tener entre 2 y 100 digitos.")
+                    v.getMessage().contains("El username debe tener entre 3 y 100 digitos.")
                 )
         );
     }
@@ -176,6 +182,7 @@ class UsuarioValidationTest {
         usuario.setUsername(nombreSinArroba);
         usuario.setPassword("Contraseña@Segura123456");
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -200,18 +207,22 @@ class UsuarioValidationTest {
         // Given - Nombres de exactamente 3 y 100 caracteres
         String nombreMinimo = "A@B"; // 3 caracteres
         String nombreMaximo = "A".repeat(49) + "@" + "A".repeat(50); // 100 caracteres totales
+        String nicknameMinimo = "AAA";// 3 caracteres
+        String nicknameMaximo = "A".repeat(32); // 32 caracteres
 
         Usuario usuarioMin = new Usuario();
         usuarioMin.setUsername(nombreMinimo);
-        usuarioMin.setNickname(nombreMinimo);
+        usuarioMin.setNickname(nicknameMinimo);
         usuarioMin.setPassword("Contraseña@Segura123456");
         usuarioMin.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuarioMin.setAvatar(Avatar.ALICIA);
 
         Usuario usuarioMax = new Usuario();
         usuarioMax.setUsername(nombreMaximo);
-        usuarioMax.setNickname(nombreMaximo);
+        usuarioMax.setNickname(nicknameMaximo);
         usuarioMax.setPassword("Contraseña@Segura123456");
         usuarioMax.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuarioMax.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones1 = validator.validate(usuarioMin);
@@ -233,6 +244,7 @@ class UsuarioValidationTest {
         usuario.setUsername("usuario@gmail.com");
         usuario.setPassword(passwordLarga);
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -260,6 +272,7 @@ class UsuarioValidationTest {
         usuario.setUsername("usuario@gmail.com");
         usuario.setPassword(passwordCorta);
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -289,6 +302,7 @@ class UsuarioValidationTest {
         usuario.setUsername("usuario@gmail.com");
         usuario.setPassword(passwordInvalida);
         usuario.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -319,11 +333,13 @@ class UsuarioValidationTest {
         usuario1.setUsername("usuario@gmail.com");
         usuario1.setPassword(null);
         usuario1.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario1.setAvatar(Avatar.ALICIA);
 
         Usuario usuario2 = new Usuario();
         usuario2.setUsername("usuario@gmail.com");
         usuario2.setPassword("");
         usuario2.setRoles(new HashSet<>(Arrays.asList(rolEjemplo)));
+        usuario2.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones1 = validator.validate(usuario1);
@@ -344,6 +360,7 @@ class UsuarioValidationTest {
         usuario.setUsername("usuario@gmail.com");
         usuario.setPassword("Contraseña@Segura123456");
         usuario.setRoles(null);
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);
@@ -364,6 +381,7 @@ class UsuarioValidationTest {
         usuario.setUsername("usuario@gmail.com");
         usuario.setPassword("Contraseña@Segura123456");
         usuario.setRoles(new HashSet<>(Arrays.asList()));
+        usuario.setAvatar(Avatar.ALICIA);
 
         // When
         Set<ConstraintViolation<Usuario>> violaciones = validator.validate(usuario);

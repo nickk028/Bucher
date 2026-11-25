@@ -33,6 +33,7 @@
 .com-social__content {
     max-height: 250px;
     width: fit-content;
+    width: 100%;
 }
 
 .com-social__content h1 {
@@ -40,6 +41,7 @@
 }
 
 .com-social__content__tiempo {
+    width: 100%;
     margin-top: 20px;
     margin-right: 40px;
 

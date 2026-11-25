@@ -57,7 +57,6 @@ public class LibroRepositoryTest {
         libro1.setCalificacion(90);
         libro1.setFechaPublicacion(LocalDate.of(1967, 5, 30));
         libro1.setUrlFoto("http://imagen.com/portada.jpg");
-        libro1.setPrecio(1500.00);
         libro1.setCategoria(Set.of(Categoria.realismomagico));
         libro1.setAutor(autorEjemplo);
         libro1.setEditorial(editorialEjemplo);
@@ -71,7 +70,6 @@ public class LibroRepositoryTest {
         libro2.setCalificacion(85);
         libro2.setFechaPublicacion(LocalDate.of(1995, 2, 14));
         libro2.setUrlFoto("http://imagen.com/cien_poemas.jpg");
-        libro2.setPrecio(980.00);
         libro2.setCategoria(Set.of(Categoria.romance));
         libro2.setAutor(autorEjemplo);
         libro2.setEditorial(editorialEjemplo);
@@ -85,7 +83,6 @@ public class LibroRepositoryTest {
         libro3.setCalificacion(95);
         libro3.setFechaPublicacion(LocalDate.of(2007, 3, 27));
         libro3.setUrlFoto("http://imagen.com/nombre_viento.jpg");
-        libro3.setPrecio(1800.00);
         libro3.setCategoria(Set.of(Categoria.fantastico));
         libro3.setAutor(autorEjemplo);
         libro3.setEditorial(editorialEjemplo);
@@ -130,7 +127,6 @@ public class LibroRepositoryTest {
         nuevoLibro.setCalificacion(85);
         nuevoLibro.setFechaPublicacion(LocalDate.of(2002, 2, 2));
         nuevoLibro.setUrlFoto("http://imagen.com/nuevo_libro.jpg");
-        nuevoLibro.setPrecio(100.00);
         nuevoLibro.setCategoria(Set.of(Categoria.terror));
         nuevoLibro.setAutor(autorEjemplo);
         nuevoLibro.setEditorial(editorialEjemplo);
@@ -184,7 +180,6 @@ public class LibroRepositoryTest {
         nuevoLibro.setCalificacion(85);
         nuevoLibro.setFechaPublicacion(LocalDate.of(2002, 2, 2));
         nuevoLibro.setUrlFoto("http://imagen.com/nuevo_libro.jpg");
-        nuevoLibro.setPrecio(100.00);
         nuevoLibro.setCategoria(Set.of(Categoria.terror));
         nuevoLibro.setAutor(autorEjemplo);
         nuevoLibro.setEditorial(editorialEjemplo);
@@ -206,7 +201,6 @@ public class LibroRepositoryTest {
         nuevoLibro.setCalificacion(85);
         nuevoLibro.setFechaPublicacion(LocalDate.of(2002, 2, 2));
         nuevoLibro.setUrlFoto("http://imagen.com/nuevo_libro.jpg");
-        nuevoLibro.setPrecio(100.00);
         nuevoLibro.setCategoria(Set.of(Categoria.terror));
         nuevoLibro.setAutor(autorEjemplo);
         nuevoLibro.setEditorial(editorialEjemplo);

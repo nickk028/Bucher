@@ -1,6 +1,9 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.publication;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +24,24 @@ public class RegistroPrestamoResponseDTO {
 
     // Detalles de la publicación asociada al registro de préstamo
     private PublicacionResponseDTO publicacion;
+
+    private String usuarioPrestamista;
+
+    private String avatarUsuarioPrestamista;
+
+    private String nickanmeUsuarioPrestamista;
+
+    private String confirmacionTitulo;
+
+    private String confirmacionAutor;
+
+    private String confirmacionDetallesEstado;
+
+    private List<String> confirmacionDetallesEstadoLibro = new ArrayList<>();
+
+    private String comentariosAdicionales;
+
+    private String estaEnCondiciones;
+
+    private String motivoNoEnCondiciones;
 }

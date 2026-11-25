@@ -1,8 +1,10 @@
 package ar.edu.huergo.vectorial.calidad.bucher.controller.publication;
 
 import ar.edu.huergo.vectorial.calidad.bucher.dto.publication.RegistroPrestamoResponseDTO;
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.mapper.publication.RegistroPrestamoMapper;
+import ar.edu.huergo.vectorial.calidad.bucher.service.publication.PublicacionService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.publication.RegistroPrestamoService;
 import ar.edu.huergo.vectorial.calidad.bucher.service.security.UsuarioService;
 import java.util.List;
@@ -26,6 +28,9 @@ public class RegistroPrestamoController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private PublicacionService publicacionService;
 
     /**
      * Obtiene los registros de préstamo de un usuario específico
@@ -56,6 +61,18 @@ public class RegistroPrestamoController {
         Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
         return registroPrestamoMapper.toDTO(
             registroPrestamoService.obtenerRegistroPrestamoPorId(id, usuario)
+        );
+    }
+
+    @GetMapping("/publicacion/{id}")
+    public RegistroPrestamoResponseDTO obtenerRegistroUsuarioPorPublicacion(
+        @AuthenticationPrincipal UserDetails usuarioAutenticado,
+        @PathVariable("id") Long id
+    ) {
+        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(usuarioAutenticado.getUsername());
+        RegistroPrestamo registroPrestamo = registroPrestamoService.obtenerRegistroPrestamoPorId(id, usuario);
+        return registroPrestamoMapper.toDTO(
+            registroPrestamoService.obtenerRegistroUsuarioPorPublicacion(usuario, registroPrestamo.getPublicacion())
         );
     }
 }

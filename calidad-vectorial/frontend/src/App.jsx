@@ -25,7 +25,12 @@ import { Libro } from './components/pages/books/book/Libro';
 import { Usuario } from './components/pages/user/Usuario';
 import { PrestamoActivo } from './components/pages/loan/PrestamoActivo';
 import { PrestamosAdmin } from './components/pages/admin/prestamos/PrestamosAdmin';
+import { DetallesPrestamo } from './components/pages/admin/detallesprestamos/DetallesPrestamo';
+import { DetallesPosteos } from './components/pages/admin/detallesposteos/DetallesPosteos';
+import { ControlEjemplar } from './components/pages/admin/controlejemplar/ControlEjemplar';
 import { UsuariosAdmin } from './components/pages/admin/usuarios/UsuariosAdmin';
+import { PosteosAdmin } from './components/pages/admin/posteos/PosteosAdmin';
+import { EstadisticasAdmin } from './components/pages/admin/estadisticas/EstadisticasAdmin';
 import { NotFound } from './components/pages/errors/notfound/NotFound';
 
 export const App = () => {
@@ -35,12 +40,11 @@ export const App = () => {
                 <Routes>
                     <Route path="/" element={<SobreNosotros />} />
                     <Route path="*" element={<NotFound />} />
-                    
+
                     <Route element={<ProtectedRoute />}>
                         <Route path="/login" element={<AuthPage />} />
                         <Route path="/register" element={<AuthPage />} />
                         <Route path="/coming-soon" element={<ComingSoon />} />
-                        <Route path="/index" element={<Index />} />
                         <Route path="/prestamos" element={<Prestamos />} />
                         <Route path="/comentarios-social" element={<ComentariosSocial />} />
                         <Route path="/publicacion/:id" element={<Publicacion />} />
@@ -59,9 +63,13 @@ export const App = () => {
                         <Route path="/usuario" element={<Usuario />} />
 
                         <Route element={<AdminRoute />}>
-                            <Route path="/admin" />
                             <Route path="/admin/prestamos" element={<PrestamosAdmin />} />
+                            <Route path="/admin/prestamos/:id" element={<DetallesPrestamo />} />
+                            <Route path="/admin/posteos/:id" element={<DetallesPosteos />} />
+                            <Route path="/admin/prestamos/:id/control" element={<ControlEjemplar />} />
                             <Route path="/admin/usuarios" element={<UsuariosAdmin />} />
+                            <Route path="/admin/posteos" element={<PosteosAdmin />} />
+                            <Route path="/admin/estadisticas" element={<EstadisticasAdmin />} />
                         </Route>
                     </Route>
                 </Routes>

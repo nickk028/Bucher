@@ -1,11 +1,9 @@
 package ar.edu.huergo.vectorial.calidad.bucher.dto.publication;
 
-import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
-import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import java.time.LocalDate;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,19 +13,28 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 public class PublicacionSocialCreateDTO {
 
-    @Id // Id principal de la entidad
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el Id automáticamente
-    private Long id;
-
-    // Usuario que creó la publicación
-    private Usuario usuario;
-
-    // Fecha de creación de la publicación
-    private LocalDate fechaCreacion;
-
     // Texto de la publicación
+    @NotBlank(message = "El texto de la publicación es obligatorio.")
+    @Size(
+        min = 1,
+        max = 500,
+        message = "El texto de la publicación debe tener entre 1 y 500 caracteres."
+    )
     private String textoPublicacion;
 
-    // Relación muchos a 1 con Libro
-    private Libro libro;
+    // Indica si la publicación contiene spoilers (si no se envía se asume false)
+    private boolean contieneSpoilers;
+
+    // Id del libro referenciado (opcional, no se permite en respuestas)
+    private Long libroId;
+
+    // Id de la publicación a la que responde (opcional)
+    private Long publicacionReferenciadaId;
+
+    // Nicknames de los usuarios etiquetados
+    @Size(max = 10, message = "Se pueden etiquetar como máximo 10 usuarios.")
+    private List<
+        @NotBlank(message = "El nickname de la etiqueta es obligatorio.")
+        @Size(max = 32, message = "El nickname debe tener como máximo 32 caracteres.") String
+    > etiquetas = new ArrayList<>();
 }

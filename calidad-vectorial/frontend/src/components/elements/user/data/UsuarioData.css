@@ -1,3 +1,8 @@
+.usuario-posteos {
+    width: 80%;
+    box-sizing: border-box;
+}
+
 .biblioteca__contenedor__aside {
     width: 200px;
     display: flex;

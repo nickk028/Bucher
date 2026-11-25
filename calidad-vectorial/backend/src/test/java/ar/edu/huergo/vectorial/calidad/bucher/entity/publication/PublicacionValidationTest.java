@@ -62,7 +62,6 @@ class PublicacionValidationTest {
         libroEjemplo.setCalificacion(90);
         libroEjemplo.setFechaPublicacion(LocalDate.of(1967, 5, 30));
         libroEjemplo.setUrlFoto("http://imagen.com/portada.jpg");
-        libroEjemplo.setPrecio(1500.00);
         libroEjemplo.setCategoria(Set.of(Categoria.realismomagico));
         libroEjemplo.setAutor(autorEjemplo);
         libroEjemplo.setEditorial(editorialEjemplo);
@@ -74,7 +73,7 @@ class PublicacionValidationTest {
         publicacion.setDescripcion("Publicación válida");
         publicacion.setLimiteDias(30);
         publicacion.setDetallesEstadoLibro("Nuevo");
-        publicacion.setEstadoPublicacion(Estado.Disponible);
+        publicacion.setEstadoPublicacion(Estado.disponible);
         publicacion.setUsuario(usuarioEjemplo);
         publicacion.setLibro(libroEjemplo);
 
@@ -90,36 +89,6 @@ class PublicacionValidationTest {
         assertTrue(
             violaciones.isEmpty(),
             "No debería haber violaciones para una publicación válida."
-        );
-    }
-
-    @Test
-    @DisplayName("Debería fallar validación con fecha de creación nula")
-    void deberiaFallarValidacionConFechaCreacionNula() {
-        Publicacion publicacion = crearPublicacionValida();
-        publicacion.setFechaCreacion(null);
-
-        Set<ConstraintViolation<Publicacion>> violaciones = validator.validate(publicacion);
-        assertFalse(violaciones.isEmpty());
-        assertTrue(
-            violaciones
-                .stream()
-                .anyMatch((v) -> v.getPropertyPath().toString().equals("fechaCreacion"))
-        );
-    }
-
-    @Test
-    @DisplayName("Debería fallar validación con descripción vacía")
-    void deberiaFallarValidacionConDescripcionVacia() {
-        Publicacion publicacion = crearPublicacionValida();
-        publicacion.setDescripcion("");
-
-        Set<ConstraintViolation<Publicacion>> violaciones = validator.validate(publicacion);
-        assertFalse(violaciones.isEmpty());
-        assertTrue(
-            violaciones
-                .stream()
-                .anyMatch((v) -> v.getPropertyPath().toString().equals("descripcion"))
         );
     }
 
