@@ -10,6 +10,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,4 +47,25 @@ public class RegistroPrestamo {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @Column(nullable = true)
+    private String confirmacionTitulo;
+
+    @Column(nullable = true)
+    private String confirmacionAutor;
+
+    @Column(nullable = true)
+    private String confirmacionDetallesEstado;
+
+    @Column(nullable = true)
+    private List<String> confirmacionDetallesEstadoLibro = new ArrayList<>();
+
+    @Column(nullable = true)
+    private String comentariosAdicionales;
+
+    @Column(nullable = true)
+    private String estaEnCondiciones;
+
+    @Column(nullable = true)
+    private String motivoNoEnCondiciones;
 }

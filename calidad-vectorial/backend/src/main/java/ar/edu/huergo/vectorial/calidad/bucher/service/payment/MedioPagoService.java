@@ -76,6 +76,9 @@ public class MedioPagoService {
      * @return El medio de pago creado
      */
     public MedioPago crearMedioPago(MedioPago medioPago) {
+        if (medioPagoRepository.findByNombreIgnoreCase(medioPago.getNombre()).isPresent()) {
+            throw new IllegalArgumentException("Ya existe un medio de pago con ese nombre");
+        }
         return medioPagoRepository.save(medioPago);
     }
 }

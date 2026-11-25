@@ -11,7 +11,7 @@ public enum Estado {
     retirado("Retirado"),
     demorado("Demorado"),
     enrevision("En revisión"),
-    antregar("A entregar"),
+    aentregar("A entregar"),
     solicitado("Solicitado"),
     indefinido("Indefinido");
 

@@ -18,6 +18,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity // Marca la clase como una entidad de JPA
 @Data // Genera getters, setters, toString, equals y hashCode
@@ -51,11 +52,13 @@ public class Autor {
 
     // Relacion 1 a Muchos con Libros
     @OneToMany(mappedBy = "autor")
+    @JsonIgnore
     private List<Libro> libros = new ArrayList<>();
 
     // Relacion 1 a 1 con Usuario
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
+    @JsonIgnore 
     private Usuario usuario;
 
     // Constructor

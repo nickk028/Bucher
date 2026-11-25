@@ -1,5 +1,6 @@
 package ar.edu.huergo.vectorial.calidad.bucher.service.publication;
 
+import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Estado;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.RegistroPrestamo;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
@@ -124,5 +125,41 @@ public class RegistroPrestamoService {
             fechaInicioSemana,
             fechaActual
         );
+    }
+
+    public RegistroPrestamo realizarControlRegistroPrestamos(RegistroPrestamo registroNuevo, RegistroPrestamo registro) {
+        if (registroNuevo.getConfirmacionTitulo() != null) {
+            registro.setConfirmacionTitulo(registroNuevo.getConfirmacionTitulo());
+        }
+        if (registroNuevo.getConfirmacionAutor() != null) {
+            registro.setConfirmacionAutor(registroNuevo.getConfirmacionAutor());
+        }
+        if (registroNuevo.getConfirmacionDetallesEstado() != null) {
+            registro.setConfirmacionDetallesEstado(registroNuevo.getConfirmacionDetallesEstado());
+        }
+        if (registroNuevo.getConfirmacionDetallesEstadoLibro() != null) {
+            registro.setConfirmacionDetallesEstadoLibro(registroNuevo.getConfirmacionDetallesEstadoLibro());
+        }
+        if (registroNuevo.getComentariosAdicionales() != null) {
+            registro.setComentariosAdicionales(registroNuevo.getComentariosAdicionales());
+        }
+        if (registroNuevo.getEstaEnCondiciones() != null) {
+            registro.setEstaEnCondiciones(registroNuevo.getEstaEnCondiciones());
+        }
+        if (registroNuevo.getMotivoNoEnCondiciones() != null) {
+            registro.setMotivoNoEnCondiciones(registroNuevo.getMotivoNoEnCondiciones());
+        }
+        Publicacion publicacion = registro.getPublicacion();
+        publicacion.setEstadoPublicacion(Estado.enrevision);
+        registro.setPublicacion(publicacion);
+
+        return registroPrestamoRepository.save(registro);
+    }
+
+    public RegistroPrestamo marcarRevisionCompletada(RegistroPrestamo registro) {
+        Publicacion publicacion = registro.getPublicacion();
+        publicacion.setEstadoPublicacion(Estado.aentregar);
+
+        return registroPrestamoRepository.save(registro);
     }
 }

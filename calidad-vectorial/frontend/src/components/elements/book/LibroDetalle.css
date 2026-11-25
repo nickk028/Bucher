@@ -16,7 +16,6 @@
     display: block;
     object-fit: cover;
     aspect-ratio: 2 / 3;
-    flex-shrink: 0;
 }
 
 .libro-detalle__img--vacia {
@@ -68,7 +67,7 @@
 }
 
 .libro-detalle--ejemplar .libro-detalle__img {
-    width: 100px;
+    width: 150px;
 }
 
 .libro-detalle--ejemplar .libro-detalle__text {

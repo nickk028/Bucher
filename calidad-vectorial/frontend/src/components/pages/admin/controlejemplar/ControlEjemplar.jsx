@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { usePost } from '../../../utils/FetchUtils';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useFetch, usePost } from '../../../utils/FetchUtils';
 import { Input } from '../../../elements/input/Input';
 import { Button } from '../../../elements/buttons/Button';
 import { PopUp } from '../../../elements/modal/PopUp';
@@ -15,26 +16,22 @@ const estadosDisponibles = [
 
 const detallesDisponibles = [
     { valor: 'subrayado', label: 'Ejemplar subrayado.', chip: 'Subrayado' },
-    { valor: 'anotaciones', label: 'Ejemplar con anotaciones.', chip: 'Con anotaciones' },
-    { valor: 'manchas', label: 'Ejemplar con manchas.', chip: 'Con manchas' },
-    { valor: 'paginasdobladas', label: 'Ejemplar con páginas dobladas.', chip: 'Con páginas dobladas' },
+    { valor: 'con anotaciones', label: 'Ejemplar con anotaciones.', chip: 'Con anotaciones' },
+    { valor: 'con manchas', label: 'Ejemplar con manchas.', chip: 'Con manchas' },
+    { valor: 'con páginas dobladas', label: 'Ejemplar con páginas dobladas.', chip: 'Con páginas dobladas' },
 ];
 
-const ejemplar = {
-    id: 1,
-    titulo: 'Mi nombre es Emilia del Valle',
-    autor: 'Isabel Allende',
-    editorial: 'Sudamericana',
-    urlFoto: '',
-    detallesUsuario: ['subrayado'],
-    comentarioUsuario: '',
-};
+const buscarEstado = (nombre) =>
+    estadosDisponibles.find((actual) => actual.nombre.toLowerCase() === nombre?.toLowerCase());
 
 export const ControlEjemplar = () => {
-    const { data: dataControl, loading: loadingControl, error: errorControl, execute: executeControl } = usePost('ejemplar/controlar');
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const { data: dataControl, loading: loadingControl, error: errorControl, execute: executeControl } = usePost(`admin/prestamos/control/${id}`, 'PUT');
+    const { data: dataPrestamo, loading: loadingPrestamo, error: errorPrestamo } = useFetch(`registro/publicacion/${id}`);
 
-    const [titulo, setTitulo] = useState(ejemplar.titulo);
-    const [autor, setAutor] = useState(ejemplar.autor);
+    const [titulo, setTitulo] = useState('');
+    const [autor, setAutor] = useState('');
     const [tituloConfirmado, setTituloConfirmado] = useState(false);
     const [autorConfirmado, setAutorConfirmado] = useState(false);
 
@@ -47,6 +44,34 @@ export const ControlEjemplar = () => {
 
     const [mensaje, setMensaje] = useState('');
     const [mostrarPopUp, setMostrarPopUp] = useState(false);
+
+    const publicacion = dataPrestamo.publicacion;
+
+    const detallesUsuario = (publicacion?.detallesAdicionales ?? []).map((detalle) =>
+        detalle.toLowerCase(),
+    );
+
+    useEffect(() => {
+        if (!publicacion) return;
+
+        if (dataPrestamo.estaEnCondiciones) {
+            setTitulo(dataPrestamo.confirmacionTitulo ?? '');
+            setAutor(dataPrestamo.confirmacionAutor ?? '');
+            setTituloConfirmado(true);
+            setAutorConfirmado(true);
+            setEstado(buscarEstado(dataPrestamo.confirmacionDetallesEstado)?.valor ?? '');
+            setDetallesRevisados(dataPrestamo.confirmacionDetallesEstadoLibro ?? []);
+            setComentarios(dataPrestamo.comentariosAdicionales ?? '');
+            setEnCondiciones(dataPrestamo.estaEnCondiciones === 'si');
+            setMotivos(dataPrestamo.motivoNoEnCondiciones ?? '');
+            return;
+        }
+
+        setTitulo(publicacion.titulo ?? '');
+        setAutor(publicacion.nombre ?? '');
+        setEstado(buscarEstado(publicacion.detallesEstadoLibro)?.valor ?? '');
+        setDetallesRevisados(detallesUsuario);
+    }, [dataPrestamo]);
 
     useEffect(() => {
         if (dataControl && !errorControl) {
@@ -87,14 +112,14 @@ export const ControlEjemplar = () => {
         setMensaje('');
 
         const datos = {
-            idEjemplar: ejemplar.id,
-            titulo: titulo.trim(),
-            autor: autor.trim(),
-            estado,
-            detalles: detallesRevisados,
-            comentarios: comentarios.trim(),
-            enCondiciones,
-            motivos: enCondiciones ? '' : motivos.trim(),
+            id: dataPrestamo.id,
+            confirmacionTitulo: titulo.trim(),
+            confirmacionAutor: autor.trim(),
+            confirmacionDetallesEstado: estadoSeleccionado.nombre,
+            confirmacionDetallesEstadoLibro: detallesRevisados,
+            comentariosAdicionales: comentarios.trim(),
+            estaEnCondiciones: enCondiciones ? 'si' : 'no',
+            motivoNoEnCondiciones: enCondiciones ? '' : motivos.trim(),
         };
 
         try {
@@ -103,6 +128,10 @@ export const ControlEjemplar = () => {
             setMensaje('No se pudo registrar el control. Intentá nuevamente.');
         }
     };
+
+    if (loadingPrestamo || !publicacion) {
+        return <p>Cargando...</p>;
+    }
 
     const caracteristicas = [
         ...(estadoSeleccionado ? [`Estado del ejemplar: ${estadoSeleccionado.nombre}`] : []),
@@ -119,6 +148,7 @@ export const ControlEjemplar = () => {
                 <PopUp
                     onClick={() => {
                         setMostrarPopUp(false);
+                        navigate('/admin/prestamos/'+id)
                     }}
                     titulo="✔️ Control registrado ✔️"
                 >
@@ -153,13 +183,15 @@ export const ControlEjemplar = () => {
                                             required={true}
                                         />
                                     </div>
-                                    <input
-                                        className="control-ejemplar__checkbox"
-                                        type="checkbox"
-                                        checked={tituloConfirmado}
-                                        onChange={(e) => setTituloConfirmado(e.target.checked)}
-                                        aria-label="Confirmar título"
-                                    />
+                                    <label className="control-ejemplar__checkbox-label" aria-label="Confirmar título">
+                                        <input
+                                            className="control-ejemplar__checkbox"
+                                            type="checkbox"
+                                            checked={tituloConfirmado}
+                                            onChange={(e) => setTituloConfirmado(e.target.checked)}
+                                        />
+                                        <span className="control-ejemplar__checkbox-custom" />
+                                    </label>
                                 </div>
                             </div>
 
@@ -177,13 +209,15 @@ export const ControlEjemplar = () => {
                                             onChange={(e) => setAutor(e.target.value)}
                                         />
                                     </div>
-                                    <input
-                                        className="control-ejemplar__checkbox"
-                                        type="checkbox"
-                                        checked={autorConfirmado}
-                                        onChange={(e) => setAutorConfirmado(e.target.checked)}
-                                        aria-label="Confirmar autor"
-                                    />
+                                    <label className="control-ejemplar__checkbox-label" aria-label="Confirmar autor">
+                                        <input
+                                            className="control-ejemplar__checkbox"
+                                            type="checkbox"
+                                            checked={autorConfirmado}
+                                            onChange={(e) => setAutorConfirmado(e.target.checked)}
+                                        />
+                                        <span className="control-ejemplar__checkbox-custom" />
+                                    </label>
                                 </div>
                             </div>
                         </section>
@@ -236,19 +270,22 @@ export const ControlEjemplar = () => {
                                                 <input
                                                     className="control-ejemplar__checkbox control-ejemplar__checkbox--chico"
                                                     type="checkbox"
-                                                    checked={ejemplar.detallesUsuario.includes(detalle.valor)}
+                                                    checked={detallesUsuario.includes(detalle.valor)}
                                                     disabled
                                                     readOnly
                                                 />
+                                                <span className="control-ejemplar__checkbox-custom control-ejemplar__checkbox-custom--chico" />
                                                 <span>{detalle.label}</span>
                                             </label>
-                                            <input
-                                                className="control-ejemplar__checkbox"
-                                                type="checkbox"
-                                                checked={detallesRevisados.includes(detalle.valor)}
-                                                onChange={() => handleToggleDetalle(detalle.valor)}
-                                                aria-label={detalle.label}
-                                            />
+                                            <label className="control-ejemplar__checkbox-label" aria-label={`Confirmar ${detalle.label}`}>
+                                                <input
+                                                    className="control-ejemplar__checkbox"
+                                                    type="checkbox"
+                                                    checked={detallesRevisados.includes(detalle.valor)}
+                                                    onChange={() => handleToggleDetalle(detalle.valor)}
+                                                />
+                                                <span className="control-ejemplar__checkbox-custom" />
+                                            </label>
                                         </li>
                                     ))}
                                 </ul>
@@ -261,7 +298,7 @@ export const ControlEjemplar = () => {
                                 <textarea
                                     id="comentario-usuario"
                                     className="control-ejemplar__textarea control-ejemplar__textarea--lectura"
-                                    value={ejemplar.comentarioUsuario}
+                                    value={publicacion.descripcion ?? ''}
                                     placeholder="Comentario escrito por el dueño del ejemplar, sobre el mismo."
                                     readOnly
                                 />
@@ -340,10 +377,9 @@ export const ControlEjemplar = () => {
 
                     <div className="control-ejemplar__lateral">
                         <LibroDetalle
-                            urlFoto={ejemplar.urlFoto}
-                            titulo={titulo}
-                            autor={autor}
-                            editorial={ejemplar.editorial}
+                            urlFoto={publicacion.urlFoto}
+                            titulo={publicacion.titulo}
+                            autor={publicacion.nombre}
                             caracteristicas={caracteristicas}
                             detallesEjemplar={detallesEjemplar}
                         />

@@ -7,7 +7,6 @@ import { useFetch } from '../../utils/FetchUtils';
 
 export const EstadisticasLibros = () => {
     const { data: dataLibros, loading: loadingLibros, error: errorLibros } = useFetch('admin/estadisticas/libros');
-    console.log(dataLibros)
     return (
         <section className='estadisticas-section'>
             <h2 className='estadisticas-section__titulo'>Libros</h2>

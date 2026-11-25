@@ -7,6 +7,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.entity.publication.Publicacion;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.security.Usuario;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionRepository;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class PublicacionSeeder implements Seeder {
 
     private static final String ARCHIVO = "seed/publicaciones.json";
-    private static final String DETALLES_ESTADO_LIBRO = "Nada";
+    private static final String DETALLES_ESTADO_LIBRO_DEFECTO = "Muy bueno";
 
     private final SeedDataReader reader;
     private final SeedReferences references;
@@ -46,7 +47,16 @@ public class PublicacionSeeder implements Seeder {
         publicacion.setFechaCreacion(LocalDate.now());
         publicacion.setDescripcion(seed.descripcion());
         publicacion.setLimiteDias(seed.limiteDias());
-        publicacion.setDetallesEstadoLibro(DETALLES_ESTADO_LIBRO);
+        publicacion.setDetallesEstadoLibro(
+            seed.detallesEstadoLibro() != null
+                ? seed.detallesEstadoLibro()
+                : DETALLES_ESTADO_LIBRO_DEFECTO
+        );
+        publicacion.setDetallesAdicionales(
+            seed.detallesAdicionales() != null
+                ? new ArrayList<>(seed.detallesAdicionales())
+                : new ArrayList<>()
+        );
         publicacion.setEstadoPublicacion(
             seed.estadoPublicacion() != null ? seed.estadoPublicacion() : Estado.disponible
         );

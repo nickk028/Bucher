@@ -88,7 +88,6 @@ public class PublicacionService {
 
         publicacion.setUsuario(usuarioIngresado);
         publicacion.setEstadoPublicacion(Estado.disponible);
-        publicacion.setDetallesEstadoLibro("Desconocido");
         publicacion.setLibro(libroIngresado);
 
         return publicacionRepository.save(publicacion);

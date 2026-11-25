@@ -34,7 +34,7 @@ public class PanelPrestamosService {
      */
     public long obtenerPrestamosActivos() {
         return registroPrestamoRepository.countByPublicacionEstadoPublicacionIn(
-            List.of(Estado.antregar, Estado.entregado, Estado.adevolver, Estado.demorado, Estado.enrevision, Estado.retirado)
+            List.of(Estado.aentregar, Estado.entregado, Estado.adevolver, Estado.demorado, Estado.enrevision, Estado.retirado)
         );
     }
 

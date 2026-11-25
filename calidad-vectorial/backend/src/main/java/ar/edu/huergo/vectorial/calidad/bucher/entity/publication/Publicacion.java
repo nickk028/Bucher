@@ -18,7 +18,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.FetchType;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -65,6 +71,14 @@ public class Publicacion {
     @Column(nullable = false, length = 100)
     @Size(min = 2, max = 100, message = "Los detalles deben tener entre 2 y 100 caracteres.")
     private String detallesEstadoLibro;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+        name = "publicacion_detalles_adicionales",
+        joinColumns = @JoinColumn(name = "publicacion_id")
+    )
+    @Column(name = "detalle", length = 50)
+    private List<String> detallesAdicionales = new ArrayList<>();
 
     // Estado de la publicación (Ej: "Disponible", "Prestado", etc.)
     @Column(nullable = false, length = 50)

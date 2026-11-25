@@ -10,7 +10,7 @@ export const LibroDetalle = ({
     detalles = [],
     detallesEjemplar
 }) => {
-    const tieneReferencia = urlFoto && titulo && editorial;
+    const tieneReferencia = urlFoto && titulo;
 
     const mostrarDetallesEjemplar = Array.isArray(detallesEjemplar);
 
