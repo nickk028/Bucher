@@ -66,8 +66,7 @@ export const categorias = [
                         <Enlace to="/usuario">Tu préstamo</Enlace> →{' '}
                         <Enlace to="/usuario">Devolver ejemplar</Enlace>. Se activará un canal
                         privado de comunicación con el prestador para acordar lugar y hora de
-                        devolución. Si vuelve en iguales condiciones a las que lo recibiste, ganas
-                        puntos.
+                        devolución.
                     </>
                 ),
             },
@@ -134,29 +133,6 @@ export const categorias = [
             {
                 id: 'baja-suscripcion',
                 pregunta: '¿Cómo doy de baja la suscripción?',
-                respuesta: 'Respuesta pendiente.',
-            },
-        ],
-    },
-    {
-        id: 'puntos',
-        titulo: 'Puntos y recompensas',
-        icono: IconoPuntos,
-        preguntas: [
-            {
-                id: 'para-que-puntos',
-                pregunta: '¿Para qué sirven los puntos?',
-                respuesta: 'Los puntos sirven para canjear recompensas de dicha sección.',
-            },
-            {
-                id: 'ganar-puntos',
-                pregunta: '¿Cómo gano puntos?',
-                respuesta:
-                    'Ganas puntos cuando devuelves los libros prestados en iguales condiciones a las que los recibiste.',
-            },
-            {
-                id: 'canjear-puntos',
-                pregunta: '¿Dónde puedo canjearlos?',
                 respuesta: 'Respuesta pendiente.',
             },
         ],
