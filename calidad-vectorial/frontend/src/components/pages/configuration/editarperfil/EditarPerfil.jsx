@@ -12,7 +12,7 @@ import dorothy from '../../../../../public/assets/img/avatares/dorothy.png';
 import dracula from '../../../../../public/assets/img/avatares/dracula.png';
 import frankenstein from '../../../../../public/assets/img/avatares/frankenstein.png';
 import gandalf from '../../../../../public/assets/img/avatares/gandalf.png';
-import harryPotter from '../../../../../public/assets/img/avatares/harryPotter.png';
+import harryPotter from '../../../../../public/assets/img/avatares/harrypotter.png';
 import hombreDeHojalata from '../../../../../public/assets/img/avatares/hombredehojalata.png';
 import katniss from '../../../../../public/assets/img/avatares/katniss.png';
 import pinocho from '../../../../../public/assets/img/avatares/pinocho.png';
