@@ -35,8 +35,6 @@ export const DetallesPrestamo = () => {
         paso => paso.estado === dataPrestamo?.publicacion?.estadoPublicacion
     ) + 1;
 
-    console.log(PASOS_COMPLETADOS)
-
     useEffect(() => {
         if (dataCompletar && !errorCompletar) {
             setMostrarPopUp(true);
