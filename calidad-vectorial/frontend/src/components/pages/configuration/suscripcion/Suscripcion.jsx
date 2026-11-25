@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { usePost } from '../../../utils/FetchUtils';
 import { Button } from '../../../elements/buttons/Button';
 import LibroAbierto from '../../../../assets/img/icons/crear/crearPrestamo.svg?react';
 import Camion from '../../../../assets/img/icons/suscripcion/camion.svg?react';
@@ -58,7 +60,28 @@ const pasos = [
 ];
 
 export const Suscripcion = () => {
+    const { data: dataSuscribir, loading: loadingSuscribir, error: errorSuscribir, execute: executeSuscribir } = usePost('registro-suscripcion/contratar');
+    const [mostrarPopUp, setMostrarPopUp] = useState(false);
+
+    useEffect(() => {
+        if (dataControl && !errorSuscribir) {
+            setMostrarPopUp(true);
+        }
+    }, [dataSuscribir, errorSuscribir]);
+
     return (
+        <>
+        {mostrarPopUp && (
+            <PopUp
+                onClick={() => {
+                    setMostrarPopUp(false);
+                    navigate('/admin/prestamos/'+id)
+                }}
+                titulo="✔️ Suscripcion contratada ✔️"
+            >
+                ¡Gracias! Ya puedes pedir libros.
+            </PopUp>
+        )}
         <div className="suscripcion-content">
             <div>
                 <h1 className="suscripcion-content__title">Mi suscripción</h1>
@@ -87,7 +110,16 @@ export const Suscripcion = () => {
                             <span className="suscripcion-content__plan__periodo"> /mes</span>
                         </p>
                         <div className="suscripcion-content__plan__accion">
-                            <Button type="button" variant="default" color="oscuro">
+                            <Button type="button" variant="default" color="oscuro"
+                                onClick={() => executeSuscribir({
+                                    suscripcionId: 1,
+                                    medioPagoId: 1,
+                                    numeroTarjeta: '4111111111111111',
+                                    vencimiento: '12/30',
+                                    cvv: '123',
+                                    titular: 'TITULAR DE PRUEBA',
+                                })}
+                            >
                                 Suscribirme
                             </Button>
                         </div>
@@ -188,5 +220,6 @@ export const Suscripcion = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };

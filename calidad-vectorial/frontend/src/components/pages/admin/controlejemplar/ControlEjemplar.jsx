@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useFetch, usePost } from '../../../utils/FetchUtils';
 import { Input } from '../../../elements/input/Input';
 import { Button } from '../../../elements/buttons/Button';
 import { PopUp } from '../../../elements/modal/PopUp';
 import { LibroDetalle } from '../../../elements/book/LibroDetalle';
 import './ControlEjemplar.css';
+
+const ESTADO_REVISION = 'enrevision';
 
 const estadosDisponibles = [
     { valor: 'excelente', nombre: 'Excelente' },
@@ -27,8 +29,9 @@ const buscarEstado = (nombre) =>
 export const ControlEjemplar = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
     const { data: dataControl, loading: loadingControl, error: errorControl, execute: executeControl } = usePost(`admin/prestamos/control/${id}`, 'PUT');
-    const { data: dataPrestamo, loading: loadingPrestamo, error: errorPrestamo } = useFetch(`registro/publicacion/${id}`);
+    const { data: dataPrestamo, loading: loadingPrestamo } = useFetch(`registro/publicacion/${id}`);
 
     const [titulo, setTitulo] = useState('');
     const [autor, setAutor] = useState('');
@@ -46,6 +49,9 @@ export const ControlEjemplar = () => {
     const [mostrarPopUp, setMostrarPopUp] = useState(false);
 
     const publicacion = dataPrestamo.publicacion;
+
+    const estadoPrestamo = location.state?.estado ?? publicacion?.estadoPublicacion;
+    const editable = estadoPrestamo === ESTADO_REVISION;
 
     const detallesUsuario = (publicacion?.detallesAdicionales ?? []).map((detalle) =>
         detalle.toLowerCase(),
@@ -90,6 +96,10 @@ export const ControlEjemplar = () => {
         estado !== '' &&
         (enCondiciones || motivos.trim() !== '');
 
+    const volverAlPrestamo = () => {
+        navigate('/admin/prestamos/' + id, { state: { estado: estadoPrestamo } });
+    };
+
     const handleToggleDetalle = (valor) => {
         setDetallesRevisados(prev =>
             prev.includes(valor)
@@ -107,7 +117,7 @@ export const ControlEjemplar = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!formularioValido || loadingControl) return;
+        if (!editable || !formularioValido || loadingControl) return;
 
         setMensaje('');
 
@@ -148,7 +158,7 @@ export const ControlEjemplar = () => {
                 <PopUp
                     onClick={() => {
                         setMostrarPopUp(false);
-                        navigate('/admin/prestamos/'+id)
+                        volverAlPrestamo();
                     }}
                     titulo="✔️ Control registrado ✔️"
                 >
@@ -181,6 +191,7 @@ export const ControlEjemplar = () => {
                                             value={titulo}
                                             onChange={(e) => setTitulo(e.target.value)}
                                             required={true}
+                                            disabled={!editable}
                                         />
                                     </div>
                                     <label className="control-ejemplar__checkbox-label" aria-label="Confirmar título">
@@ -189,6 +200,7 @@ export const ControlEjemplar = () => {
                                             type="checkbox"
                                             checked={tituloConfirmado}
                                             onChange={(e) => setTituloConfirmado(e.target.checked)}
+                                            disabled={!editable}
                                         />
                                         <span className="control-ejemplar__checkbox-custom" />
                                     </label>
@@ -207,6 +219,7 @@ export const ControlEjemplar = () => {
                                             name="autor"
                                             value={autor}
                                             onChange={(e) => setAutor(e.target.value)}
+                                            disabled={!editable}
                                         />
                                     </div>
                                     <label className="control-ejemplar__checkbox-label" aria-label="Confirmar autor">
@@ -215,6 +228,7 @@ export const ControlEjemplar = () => {
                                             type="checkbox"
                                             checked={autorConfirmado}
                                             onChange={(e) => setAutorConfirmado(e.target.checked)}
+                                            disabled={!editable}
                                         />
                                         <span className="control-ejemplar__checkbox-custom" />
                                     </label>
@@ -222,7 +236,6 @@ export const ControlEjemplar = () => {
                             </div>
                         </section>
 
-                        {/* Estado del ejemplar */}
                         <section className="control-ejemplar__seccion">
                             <h2>Estado del ejemplar</h2>
 
@@ -241,6 +254,7 @@ export const ControlEjemplar = () => {
                                             type="button"
                                             role="radio"
                                             aria-checked={estado === actual.valor}
+                                            disabled={!editable}
                                             className={
                                                 'control-ejemplar__opcion' +
                                                 (estado === actual.valor ? ' control-ejemplar__opcion--activa' : '')
@@ -283,6 +297,7 @@ export const ControlEjemplar = () => {
                                                     type="checkbox"
                                                     checked={detallesRevisados.includes(detalle.valor)}
                                                     onChange={() => handleToggleDetalle(detalle.valor)}
+                                                    disabled={!editable}
                                                 />
                                                 <span className="control-ejemplar__checkbox-custom" />
                                             </label>
@@ -314,11 +329,11 @@ export const ControlEjemplar = () => {
                                     value={comentarios}
                                     onChange={(e) => setComentarios(e.target.value)}
                                     placeholder="Describe cualquier detalle sobre el ejemplar que no se haya mencionado."
+                                    disabled={!editable}
                                 />
                             </div>
                         </section>
 
-                        {/* Condiciones del ejemplar */}
                         <section className="control-ejemplar__seccion">
                             <h2>Condiciones del ejemplar</h2>
 
@@ -335,6 +350,7 @@ export const ControlEjemplar = () => {
                                         type="button"
                                         role="radio"
                                         aria-checked={enCondiciones}
+                                        disabled={!editable}
                                         className={
                                             'control-ejemplar__opcion control-ejemplar__opcion--ancha' +
                                             (enCondiciones ? ' control-ejemplar__opcion--activa' : '')
@@ -347,6 +363,7 @@ export const ControlEjemplar = () => {
                                         type="button"
                                         role="radio"
                                         aria-checked={!enCondiciones}
+                                        disabled={!editable}
                                         className={
                                             'control-ejemplar__opcion control-ejemplar__opcion--ancha' +
                                             (!enCondiciones ? ' control-ejemplar__opcion--activa' : '')
@@ -368,8 +385,8 @@ export const ControlEjemplar = () => {
                                     value={motivos}
                                     onChange={(e) => setMotivos(e.target.value)}
                                     placeholder="Comenta por qué el ejemplar no esta en condiciones de ser prestado..."
-                                    disabled={enCondiciones}
-                                    required={!enCondiciones}
+                                    disabled={!editable || enCondiciones}
+                                    required={editable && !enCondiciones}
                                 />
                             </div>
                         </section>
@@ -391,14 +408,25 @@ export const ControlEjemplar = () => {
                         )}
 
                         <div className="control-ejemplar__accion">
-                            <Button
-                                type="submit"
-                                variant="default"
-                                color="oscuro"
-                                isDisabled={!formularioValido || loadingControl}
-                            >
-                                {loadingControl ? 'Guardando...' : 'Aceptar'}
-                            </Button>
+                            {editable ? (
+                                <Button
+                                    type="submit"
+                                    variant="default"
+                                    color="oscuro"
+                                    isDisabled={!formularioValido || loadingControl}
+                                >
+                                    {loadingControl ? 'Guardando...' : 'Aceptar'}
+                                </Button>
+                            ) : (
+                                <Button
+                                    type="button"
+                                    variant="default"
+                                    color="oscuro"
+                                    onClick={volverAlPrestamo}
+                                >
+                                    Volver
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </form>

@@ -133,21 +133,10 @@ export const Publicacion = () => {
                                     </p>
                                 </section>
 
-                                <section className="body-pub__publicacion__text__card">
-                                    <h2 className="body-pub__publicacion__text__card__title">
-                                        Imágenes del ejemplar
-                                    </h2>
-                                    <div className="body-pub__publicacion__text__galeria">
-                                        {Array.from({ length: CANTIDAD_IMAGENES }, (_, index) => (
-                                            <div
-                                                key={index}
-                                                className="body-pub__publicacion__text__galeria__img"
-                                            />
-                                        ))}
-                                    </div>
-                                </section>
-
-                                <UsuarioDetalles nombre={publicacion.usuarioCreador}>
+                                <UsuarioDetalles
+                                    nombre={publicacion.usuarioCreador}
+                                    foto={publicacion.urlFoto}
+                                >
                                     {publicacion.descripcionUsuario}
                                 </UsuarioDetalles>
 
