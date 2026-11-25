@@ -105,7 +105,7 @@ class ApiIntegrationTest {
     }
 
     @Test 
-    @DisplayName("TC-012 LECTOR no puede devolver préstamos (solo admin): 403")
+    @DisplayName("LECTOR no puede devolver préstamos (solo admin): 403")
     void lectorNoPuedeDevolver() throws Exception {
         String t = token("lector@gmail.com", "LectorSuperSegura@123");
         mockMvc.perform(conToken(post("/publicacion/devolucion/1"), t)).andExpect(status().isForbidden());
