@@ -24,8 +24,31 @@ const ACCIONES_POR_ESTADO = {
     aentregar: { texto: 'Marcar como entregado', siguienteEstado: 'entregado' },
 };
 
+// Si el backend devuelve estados con otro nombre, mapealos acá a uno de los
+// pasos de PASOS (las claves van ya normalizadas: minúsculas, sin tildes,
+// sin espacios ni guiones bajos). Ajustá según lo que realmente devuelva tu API.
+const ALIAS_ESTADOS = {
+    entregapendiente: 'solicitado',
+    prestado: 'retirado',
+    devolucionpendiente: 'aentregar',
+};
+
+// Deja el estado en minúsculas, sin tildes, espacios ni guiones bajos,
+// y resuelve alias del backend hacia los pasos del componente.
+const normalizarEstado = (estado) => {
+    const limpio = (estado ?? '')
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[\s_-]/g, '');
+
+    return ALIAS_ESTADOS[limpio] ?? limpio;
+};
+
 function formatearFecha(fecha) {
-    const [anio, mes, dia] = fecha.split('-');
+    if (!fecha) return 'indefinido';
+    const [anio, mes, dia] = String(fecha).split('T')[0].split('-');
     return `${dia}/${mes}/${anio}`;
 }
 
@@ -39,9 +62,16 @@ export const DetallesPrestamo = () => {
         error: errorPrestamo,
     } = useFetch(`registro/publicacion/${id}`);
 
-    const [estadoModificado, setEstadoModificado] = useState(location.state?.estado ?? null);
+    const [estadoModificado, setEstadoModificado] = useState(
+        location.state?.estado ? normalizarEstado(location.state.estado) : null,
+    );
 
-    const estadoActual = estadoModificado ?? dataPrestamo?.publicacion?.estadoPublicacion;
+    // useFetch arranca con data = [], por eso se valida que exista publicacion
+    const prestamoCargado = Boolean(dataPrestamo?.publicacion);
+
+    const estadoActual = normalizarEstado(
+        estadoModificado ?? dataPrestamo?.publicacion?.estadoPublicacion,
+    );
     const accionActual = ACCIONES_POR_ESTADO[estadoActual];
     const revisionEditable = estadoActual === 'enrevision';
 
@@ -52,6 +82,7 @@ export const DetallesPrestamo = () => {
     };
 
     const handleCambiarEstado = () => {
+        if (!accionActual) return;
         setEstadoModificado(accionActual.siguienteEstado);
     };
 
@@ -65,7 +96,7 @@ export const DetallesPrestamo = () => {
                 {loadingPrestamo ? (
                     <p>Cargando</p>
                 ) : (
-                    dataPrestamo.length !== 0 && (
+                    prestamoCargado && (
                         <>
                             <LibroDetalle
                                 urlFoto={dataPrestamo.publicacion.urlFoto}
@@ -87,9 +118,7 @@ export const DetallesPrestamo = () => {
                                     },
                                     {
                                         label: 'Fin del préstamo',
-                                        texto: dataPrestamo.fechaDevolucion
-                                            ? formatearFecha(dataPrestamo.fechaDevolucion)
-                                            : 'indefinido',
+                                        texto: formatearFecha(dataPrestamo.fechaDevolucion),
                                     },
                                 ]}
                             />
@@ -104,7 +133,9 @@ export const DetallesPrestamo = () => {
                             />
                             <UsuarioDetalleCard
                                 titulo="Usuario lector"
-                                foto={'/assets/img/avatares/' + dataPrestamo.avatarUsuarioPrestamista}
+                                foto={
+                                    '/assets/img/avatares/' + dataPrestamo.avatarUsuarioPrestamista
+                                }
                                 nickname={dataPrestamo.nickanmeUsuarioPrestamista}
                                 username={dataPrestamo.usuarioPrestamista}
                             />
@@ -116,7 +147,12 @@ export const DetallesPrestamo = () => {
             <section className="detalles-prestamo__seccion">
                 <div className="seccion__acciones">
                     <h2>Acciones</h2>
-                    <Button variant="default" color="oscuro" onClick={handleVerRevision}>
+                    <Button
+                        variant="default"
+                        color="oscuro"
+                        isDisabled={!prestamoCargado}
+                        onClick={handleVerRevision}
+                    >
                         {revisionEditable
                             ? 'Realizar revisión del ejemplar'
                             : 'Ver revisión del ejemplar'}
@@ -127,7 +163,9 @@ export const DetallesPrestamo = () => {
                         </Button>
                     ) : (
                         <Button variant="default" color="oscuro" isDisabled={true}>
-                            Préstamo entregado
+                            {estadoActual === 'entregado'
+                                ? 'Préstamo entregado'
+                                : 'Sin acciones disponibles'}
                         </Button>
                     )}
                     {revisionEditable && (
