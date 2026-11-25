@@ -63,6 +63,8 @@ public class AuthController {
             new UsernamePasswordAuthenticationToken(request.username(), request.password())
         );
 
+        usuarioService.registrarAcceso(request.username());
+
         // 2) Cargar UserDetails y derivar roles/authorities
         UserDetails userDetails = userDetailsService.loadUserByUsername(request.username());
         Set<String> roles = new HashSet<>(
@@ -106,6 +108,7 @@ public class AuthController {
         String nombre = (String) payload.get("name");
 
         usuarioService.registrarUsuarioGoogle(email, nombre);
+        usuarioService.registrarAcceso(email);
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
         Set<String> roles = new HashSet<>(

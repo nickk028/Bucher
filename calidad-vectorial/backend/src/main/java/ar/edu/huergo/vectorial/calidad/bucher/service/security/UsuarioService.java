@@ -7,6 +7,7 @@ import ar.edu.huergo.vectorial.calidad.bucher.repository.security.RolRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.repository.security.UsuarioRepository;
 import ar.edu.huergo.vectorial.calidad.bucher.service.subscription.RegistroSuscripcionService;
 import jakarta.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -140,6 +141,18 @@ public class UsuarioService {
         return usuarioRepository
             .findByUsername(username)
             .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
+    }
+
+    /**
+     * Registra el ingreso de un usuario guardando la fecha y hora actual como su último acceso.
+     * @param username El nombre de usuario del usuario que ingresó
+     * @throws EntityNotFoundException si no se encuentra el usuario
+     */
+    @Transactional
+    public void registrarAcceso(String username) throws EntityNotFoundException {
+        Usuario usuario = obtenerUsuarioPorNombre(username);
+        usuario.setUltimoAcceso(LocalDateTime.now());
+        usuarioRepository.save(usuario);
     }
 
     /**

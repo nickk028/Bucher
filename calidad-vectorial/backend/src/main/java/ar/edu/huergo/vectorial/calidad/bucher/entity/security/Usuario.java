@@ -18,6 +18,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -25,6 +26,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -100,6 +102,14 @@ public class Usuario {
     @Size(max = 255, message = "El código postal debe tener como máximo 255 dígitos")
     private String codigoPostal;
 
+    // Fecha y hora de creación del usuario
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime fechaCreacion;
+
+    // Fecha y hora del último ingreso del usuario (al crearse es igual a la fecha de creación)
+    @Column(nullable = false)
+    private LocalDateTime ultimoAcceso;
+
     // Set de roles del usuario
     // Relacion Muchos a Muchos con Roles
     @NotNull(message = "Los roles son obligatorios")
@@ -133,5 +143,13 @@ public class Usuario {
         this.username = username;
         this.password = password;
         this.roles = new HashSet<>();
+    }
+
+    // Asigna la fecha de creacion y de acceso al registrarse
+    @PrePersist
+    private void asignarFechas() {
+        LocalDateTime ahora = LocalDateTime.now();
+        this.fechaCreacion = ahora;
+        this.ultimoAcceso = ahora;
     }
 }

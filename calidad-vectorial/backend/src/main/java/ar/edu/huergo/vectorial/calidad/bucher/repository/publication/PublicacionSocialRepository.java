@@ -45,6 +45,9 @@ public interface PublicacionSocialRepository extends JpaRepository<PublicacionSo
     @Query("SELECT COUNT(DISTINCT p.libro.id) FROM PublicacionSocial p")
     long contarLibrosNombrados();
 
+    @Query("SELECT COUNT(DISTINCT p.usuario.id) FROM PublicacionSocial p")
+    long contarUsuariosConPosteos();
+
     @Query(
         "SELECT COUNT(p) FROM PublicacionSocial p " +
         "WHERE p.publicacionReferenciada IS NULL AND :categoria MEMBER OF p.libro.categoria"

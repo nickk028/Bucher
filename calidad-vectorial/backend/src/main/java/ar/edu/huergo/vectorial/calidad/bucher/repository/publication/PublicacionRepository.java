@@ -31,6 +31,15 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Long> 
     Optional<Publicacion> findByLibroTituloIgnoreCase(String libro);
     long countByUsuarioId(long id);
 
+    @Query("SELECT COUNT(DISTINCT p.usuario.id) FROM Publicacion p")
+    long contarUsuariosConPublicaciones();
+
+    @Query(
+        "SELECT COUNT(DISTINCT p.usuario.id) FROM Publicacion p " +
+        "WHERE p.estadoPublicacion IN :estados"
+    )
+    long contarUsuariosConPublicacionesEnEstados(@Param("estados") Collection<Estado> estados);
+
     @Query(
         "SELECT p.usuario.id AS usuarioId, COUNT(p) AS cantidad " +
         "FROM Publicacion p " +
