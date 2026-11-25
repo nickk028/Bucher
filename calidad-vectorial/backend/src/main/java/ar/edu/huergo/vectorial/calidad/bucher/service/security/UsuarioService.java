@@ -101,7 +101,7 @@ public class UsuarioService {
         Rol rolCliente = rolRepository
             .findByNombre("LECTOR")
             .orElseThrow(() -> new IllegalArgumentException("Rol 'LECTOR' no encontrado"));
-        usuario.setRoles(Set.of(rolCliente));
+        usuario.setRoles(new HashSet<>(Set.of(rolCliente)));
         usuario.setAvatar(getAvatarRandom());
 
         Usuario usuarioGuardado = usuarioRepository.save(usuario);

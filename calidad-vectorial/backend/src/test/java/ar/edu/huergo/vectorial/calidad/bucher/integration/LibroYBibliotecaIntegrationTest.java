@@ -1,10 +1,11 @@
 package ar.edu.huergo.vectorial.calidad.bucher.integration;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.util.Map;
 
 @SpringBootTest 
 @AutoConfigureMockMvc 
@@ -82,5 +83,58 @@ class LibroYBibliotecaIntegrationTest extends BaseApiTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"titulo\":\"Dune\",\"paginaActual\":1,\"puntuacion\":500}"))
             .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("POST /libro-usuario: sin estado y página 0 queda Pendiente")
+    void crearPendiente() throws Exception {
+        mockMvc.perform(conJson(post("/libro-usuario"), tokenDe("lector2@gmail.com"),
+                Map.of("titulo", "Dune", "paginaActual", 0, "puntuacion", 0)))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].titulo").value("Dune"))
+            .andExpect(jsonPath("$[0].estadoLectura").value("Pendiente"));
+    }
+
+    @Test
+    @DisplayName("POST /libro-usuario: sin estado y página > 0 queda Leyendo")
+    void crearLeyendo() throws Exception {
+        mockMvc.perform(conJson(post("/libro-usuario"), tokenDe("lector2@gmail.com"),
+                Map.of("titulo", "Dune", "paginaActual", 10, "puntuacion", 0)))
+            .andExpect(jsonPath("$[0].estadoLectura").value("Leyendo"));
+    }
+
+    @Test
+    @DisplayName("POST /libro-usuario con libro inexistente: 404")
+    void crearLibroInexistente() throws Exception {
+        mockMvc.perform(conJson(post("/libro-usuario"), tokenDe("lector2@gmail.com"),
+                Map.of("titulo", "Libro que no existe", "paginaActual", 0, "puntuacion", 0)))
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @DisplayName("GET /libro-usuario/estado/{e}: filtra por estado de lectura")
+    void porEstado() throws Exception {
+        String t = tokenDe("jrolando@gmail.com");     // seed: 2 Leyendo y 2 Pendiente
+        mockMvc.perform(conToken(get("/libro-usuario/estado/Leyendo"), t)).andExpect(jsonPath("$.length()").value(2));
+        mockMvc.perform(conToken(get("/libro-usuario/estado/Pendiente"), t)).andExpect(jsonPath("$.length()").value(2));
+        mockMvc.perform(conToken(get("/libro-usuario/estado/Abandonado"), t)).andExpect(jsonPath("$.length()").value(0));
+    }
+
+    @Test
+    @DisplayName("PUT /libro-usuario/{id}: actualiza página y puntuación; fuera de rango 400; ajeno 404")
+    void modificarLibroUsuario() throws Exception {
+        String dueno = tokenDe("jrolando@gmail.com");
+        String lista = mockMvc.perform(conToken(get("/libro-usuario"), dueno)).andReturn().getResponse().getContentAsString();
+        long id = om.readTree(lista).get(0).get("id").asLong();
+
+        mockMvc.perform(conJson(put("/libro-usuario/" + id), dueno,
+                Map.of("paginaActual", 200, "estadoLectura", "Leyendo", "puntuacion", 80)))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.paginaActual").value(200))
+            .andExpect(jsonPath("$.puntuacion").value(80));
+        mockMvc.perform(conJson(put("/libro-usuario/" + id), dueno, Map.of("puntuacion", 500)))
+            .andExpect(status().isBadRequest());
+        mockMvc.perform(conJson(put("/libro-usuario/" + id), tokenDe("lector2@gmail.com"), Map.of("puntuacion", 50)))
+            .andExpect(status().isNotFound());
     }
 }

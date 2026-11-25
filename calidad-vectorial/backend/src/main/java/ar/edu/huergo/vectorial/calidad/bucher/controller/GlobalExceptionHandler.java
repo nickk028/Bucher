@@ -15,6 +15,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
@@ -133,4 +134,15 @@ public class GlobalExceptionHandler {
         log.error("Error no controlado", ex);
         return problem;
     }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class) // Detección de parámetros con formato o tipo inválido (ej. enum inexistente en la URL)
+    public ProblemDetail handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+        problem.setTitle("Parámetro inválido");
+        problem.setDetail("El valor '" + ex.getValue() + "' no es válido para el parámetro '" + ex.getName() + "'");
+        problem.setType(URI.create("https://http.dev"));
+        log.warn("Error de conversión de parámetro: {} = {}", ex.getName(), ex.getValue());
+        return problem;
+    }
+
 }

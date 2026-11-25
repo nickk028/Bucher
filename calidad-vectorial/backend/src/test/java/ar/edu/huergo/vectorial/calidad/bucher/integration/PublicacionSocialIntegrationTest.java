@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.huergo.vectorial.calidad.bucher.repository.publication.PublicacionSocialRepository;
+
 
 @SpringBootTest 
 @AutoConfigureMockMvc 
@@ -110,5 +112,26 @@ class PublicacionSocialIntegrationTest extends BaseApiTest {
         mockMvc.perform(conToken(get("/publicacionSocial/" + id), lector))
             .andExpect(jsonPath("$.eliminada").value(true))
             .andExpect(jsonPath("$.textoPublicacion").doesNotExist());
+    }
+
+    @Test 
+    @DisplayName("DELETE /publicacionSocial/voto/{id}: quita el voto y baja el contador")
+    void quitarVoto() throws Exception {
+        Long id = idDe("lector@gmail.com");
+        String t = tokenDe("lector2@gmail.com");
+        mockMvc.perform(conJson(post("/publicacionSocial/voto/" + id), t, Map.of("tipo", "POSITIVO")))
+            .andExpect(jsonPath("$.votosPositivos").value(1));
+        mockMvc.perform(conToken(delete("/publicacionSocial/voto/" + id), t))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.votosPositivos").value(0))
+            .andExpect(jsonPath("$.votoUsuario").doesNotExist());
+    }
+
+    @Test 
+    @DisplayName("DELETE /publicacionSocial/voto/{id} sin haber votado: 404")
+    void quitarVotoInexistente() throws Exception {
+        Long id = idDe("lector@gmail.com");
+        mockMvc.perform(conToken(delete("/publicacionSocial/voto/" + id), tokenDe("lector2@gmail.com")))
+            .andExpect(status().isNotFound());
     }
 }

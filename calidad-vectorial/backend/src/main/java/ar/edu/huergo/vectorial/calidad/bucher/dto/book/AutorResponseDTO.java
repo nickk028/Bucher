@@ -3,6 +3,9 @@ package ar.edu.huergo.vectorial.calidad.bucher.dto.book;
 import ar.edu.huergo.vectorial.calidad.bucher.entity.book.Libro;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +31,7 @@ public class AutorResponseDTO {
     private String urlFotoAutor;
 
     // Lista de libros del autor
+    @JsonIgnoreProperties({ "autor", "editorial", "publicaciones", "preciosHistoricos" })
     private List<Libro> libros = new ArrayList<>();
 
     // Nombre del usuario

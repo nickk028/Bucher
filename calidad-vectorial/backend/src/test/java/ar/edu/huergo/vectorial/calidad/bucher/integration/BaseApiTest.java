@@ -30,4 +30,24 @@ public abstract class BaseApiTest {
     protected MockHttpServletRequestBuilder conToken(MockHttpServletRequestBuilder b, String t) {
         return b.header("Authorization", "Bearer " + t);
     }
+
+        protected String tokenAdmin() throws Exception {
+        return token("admin@gmail.com", "AdminSuperSegura@123");
+    }
+
+    protected String tokenLector() throws Exception {
+        return token("lector@gmail.com", "LectorSuperSegura@123");
+    }
+
+    // Cualquier lector
+    protected String tokenDe(String user) throws Exception {
+        return token(user, "LectorSuperSegura@123");
+    }
+
+    protected MockHttpServletRequestBuilder conJson(MockHttpServletRequestBuilder b, String token, Object body)
+            throws Exception {
+        String json = body instanceof String s ? s : om.writeValueAsString(body);
+        return b.header("Authorization", "Bearer " + token)
+                .contentType(MediaType.APPLICATION_JSON).content(json);
+    }
 }
