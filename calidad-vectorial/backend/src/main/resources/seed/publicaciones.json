@@ -12,6 +12,7 @@
     "libro": "El Hobbit",
     "descripcion": "El ejemplar se encuentra en exelente estado",
     "limiteDias": 30,
+    "estadoPublicacion": "solicitado",
     "detallesEstadoLibro": "Excelente",
     "detallesAdicionales": []
   },
@@ -117,6 +118,7 @@
     "libro": "El chico que dibujaba constelaciones",
     "descripcion": "Copia de El chico que dibujaba constelaciones, en perfecto estado. Señalizado con post-its, los cuales están categorizados por color.",
     "limiteDias": 21,
+    "estadoPublicacion": "retirado",
     "detallesEstadoLibro": "Excelente",
     "detallesAdicionales": ["con anotaciones"]
   },
@@ -151,7 +153,7 @@
     "libro": "El resplandor",
     "descripcion": "Ejemplar de El resplandor con la tapa algo gastada, pero con todas las páginas completas y sin marcas en el interior.",
     "limiteDias": 21,
-    "estadoPublicacion": "disponible",
+    "estadoPublicacion": "entregado",
     "detallesEstadoLibro": "Desgastado",
     "detallesAdicionales": []
   },
@@ -160,7 +162,7 @@
     "libro": "Yo antes de ti",
     "descripcion": "Libro en muy buen estado, leído una sola vez. Sin marcas ni hojas dobladas.",
     "limiteDias": 28,
-    "estadoPublicacion": "disponible",
+    "estadoPublicacion": "entregado",
     "detallesEstadoLibro": "Muy bueno",
     "detallesAdicionales": []
   },
@@ -178,7 +180,7 @@
     "libro": "Pensar rápido, pensar despacio",
     "descripcion": "Libro de psicología en buenas condiciones, con algunas notas al margen en los primeros capítulos.",
     "limiteDias": 28,
-    "estadoPublicacion": "disponible",
+    "estadoPublicacion": "entregado",
     "detallesEstadoLibro": "Bueno",
     "detallesAdicionales": ["con anotaciones"]
   },
@@ -187,7 +189,7 @@
     "libro": "Matilda",
     "descripcion": "Ejemplar de Matilda muy bien conservado, con las ilustraciones de Quentin Blake. Ideal para lectores jóvenes.",
     "limiteDias": 14,
-    "estadoPublicacion": "entregado",
+    "estadoPublicacion": "aentregar",
     "detallesEstadoLibro": "Muy bueno",
     "detallesAdicionales": []
   },
@@ -205,7 +207,7 @@
     "libro": "Inteligencia emocional",
     "descripcion": "Edición en buen estado general, con pequeñas marcas de uso en la tapa. Todas las páginas están completas.",
     "limiteDias": 21,
-    "estadoPublicacion": "disponible",
+    "estadoPublicacion": "entregado",
     "detallesEstadoLibro": "Bueno",
     "detallesAdicionales": []
   },
@@ -214,7 +216,7 @@
     "libro": "Charlie y la fábrica de chocolate",
     "descripcion": "Libro infantil en excelente estado, con las páginas completas y sin roturas. Disponible para préstamo corto.",
     "limiteDias": 14,
-    "estadoPublicacion": "entregado",
+    "estadoPublicacion": "enrevision",
     "detallesEstadoLibro": "Excelente",
     "detallesAdicionales": []
   },

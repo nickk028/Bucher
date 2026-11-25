@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useFetch } from '../../utils/FetchUtils';
+import { useFetch, usePost } from '../../utils/FetchUtils';
 import { Button } from '../../elements/buttons/Button';
 import { DetalleCard } from '../../elements/detail/DetalleCard';
 import './PrestamoActivo.css';
@@ -9,39 +9,37 @@ import iconoReloj from '../../../assets/img/icons/crear/relojVistaPrevia.svg';
 import pasoCompletado from '../../../assets/img/icons/prestamo/pasoCompletado.svg';
 import pasoPendiente from '../../../assets/img/icons/prestamo/pasoPendiente.svg';
 
-const PASOS = ['Solicitado', 'Retirado', 'En revisión', 'A entregar', 'Entregado'];
-const PASOS_COMPLETADOS = 2;
-
-const prestamo = {
-    titulo: 'Érase una vez un corazón roto',
-    autor: 'Stephanie Garber',
-    duracion: '1 semana',
-    estadoEjemplar: 'Muy bueno',
-    detalles: ['Subrayado', 'Con anotaciones'],
-    comentarios:
-        'El libro se encuentra en muy buen estado, las anotaciones son en lápiz y no molestan ni interrumpen en ningún momento la lectura (todas ellas se encuentran en los márgenes, de forma prolija).',
-    eventos: [
-        { texto: 'El ejemplar fue retirado del domicilio.', fecha: 'Vie, 23:02 hs.' },
-        { texto: 'El pedido del préstamo fue procesado exitosamente.', fecha: 'Vie, 10:26 hs.' },
-    ],
-};
+const PASOS = [
+    { estado: 'solicitado', texto: 'Solicitado' },
+    { estado: 'retirado', texto: 'Retirado' },
+    { estado: 'enrevisión', texto: 'En revisión' },
+    { estado: 'aentregar', texto: 'A entregar' },
+    { estado: 'entregado', texto: 'Entregado' }
+];
 
 export const PrestamoActivo = () => {
     const { id } = useParams();
 
-    const {data: dataRegistro, loading: loadingRegistro, error: errorRegistro} = useFetch('registro/' + id);
+    const {data: dataRegistro, loading: loadingRegistro, error: errorRegistro} = useFetch(`registro/${id}`);
+    const prestamo = dataRegistro ? dataRegistro.publicacion : undefined;
+    const {data: dataDevolver, loading: loadingDevolver, error: errorDevolver, execute: executeDevolver} = usePost(`publicacion/devolucion/${prestamo?.id}`);
 
     const handleCancelarPrestamo = () => {
     };
 
     const handleDevolverEjemplar = () => {
+        executeDevolver();
     };
+
+    const PASOS_COMPLETADOS = PASOS.findIndex(
+        paso => paso.estado === dataRegistro?.publicacion?.estadoPublicacion
+    ) + 1;
 
     const progreso = (PASOS_COMPLETADOS - 1) / (PASOS.length - 1);
 
     return (
         <main className="body-prest">
-            {dataRegistro && (
+            {dataRegistro.length !== 0 && (
                 <article className="body-prest__prestamo">
                     <div className="body-prest__prestamo__aside">
                         <img
@@ -61,11 +59,11 @@ export const PrestamoActivo = () => {
 
                     <div className="body-prest__prestamo__text">
                         <h1 className="body-prest__prestamo__text__title">{prestamo.titulo}</h1>
-                        <p className="body-prest__prestamo__text__author">{prestamo.autor}</p>
+                        <p className="body-prest__prestamo__text__author">{prestamo.nombre}</p>
 
                         <DetalleCard
                             titulo={prestamo.titulo}
-                            pasos={PASOS}
+                            pasos={PASOS.map(paso => paso.texto)}
                             pasosCompletados={PASOS_COMPLETADOS}
                             eventos={prestamo.eventos}
                         />
@@ -90,7 +88,7 @@ export const PrestamoActivo = () => {
                                     src={iconoCheck}
                                     alt=""
                                 />
-                                Estado del ejemplar: {prestamo.estadoEjemplar}
+                                Estado del ejemplar: {prestamo.detallesEstadoLibro}
                             </div>
 
                             <div className="body-prest__prestamo__text__fila">
@@ -100,7 +98,7 @@ export const PrestamoActivo = () => {
                                     alt=""
                                 />
                                 Detalles:
-                                {prestamo.detalles.map((detalle) => (
+                                {prestamo.detallesAdicionales.map((detalle) => (
                                     <span key={detalle} className="body-prest__prestamo__text__chip">
                                         {detalle}
                                     </span>
@@ -111,7 +109,7 @@ export const PrestamoActivo = () => {
                                 Comentarios adicionales
                             </h3>
                             <p className="body-prest__prestamo__text__card__parrafo">
-                                {prestamo.comentarios}
+                                {prestamo.descripcion}
                             </p>
                         </section>
                     </div>

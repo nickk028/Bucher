@@ -13,7 +13,7 @@ import './DetallesPrestamo.css';
 const PASOS = [
     { estado: 'solicitado', texto: 'Solicitado' },
     { estado: 'retirado', texto: 'Retirado' },
-    { estado: 'enrevisión', texto: 'En revisión' },
+    { estado: 'enrevision', texto: 'En revisión' },
     { estado: 'aentregar', texto: 'A entregar' },
     { estado: 'entregado', texto: 'Entregado' }
 ];
@@ -29,11 +29,13 @@ export const DetallesPrestamo = () => {
     const { data: dataPrestamo, loading: loadingPrestamo, error: errorPrestamo } = useFetch(`registro/publicacion/${id}`);
     const { data: dataCompletar, loading: loadingCompletar, error: errorCompletar, execute: executeCompletar } = usePost(`admin/prestamos/control/completar/${id}`);
 
-    const completado = dataPrestamo?.publicacion?.estadoPublicacion !== 'retirado' && dataPrestamo?.publicacion?.estadoPublicacion !== 'enrevision' ? true : false;
+    const completado = dataPrestamo?.publicacion?.estadoPublicacion == 'solicitado' || dataPrestamo?.publicacion?.estadoPublicacion == 'retirado' ? true : false;
 
     const PASOS_COMPLETADOS = PASOS.findIndex(
         paso => paso.estado === dataPrestamo?.publicacion?.estadoPublicacion
     ) + 1;
+
+    console.log(dataPrestamo?.publicacion?.estadoPublicacion)
 
     useEffect(() => {
         if (dataCompletar && !errorCompletar) {
@@ -95,7 +97,7 @@ export const DetallesPrestamo = () => {
                 <section className='detalles-prestamo__seccion'>
                         <div className='seccion__acciones'>
                             <h2>Acciones</h2>
-                            <Button variant='default' color='oscuro' to='control' isDisabled={completado} >Realizar revisión del ejemplar</Button>
+                            <Button variant='default' color='oscuro' to='control' >Realizar revisión del ejemplar</Button>
                             <Button variant='default' color='oscuro' onClick={() => executeCompletar()} isDisabled={completado}>Revisión completada</Button>
                             <p>Completa el formulario de revisión y una vez listo marca la revisión como completada.</p>
                         </div>
