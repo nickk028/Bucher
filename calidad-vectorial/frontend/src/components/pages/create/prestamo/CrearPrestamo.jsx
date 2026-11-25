@@ -3,17 +3,15 @@ import { usePost } from '../../../utils/FetchUtils';
 import './CrearPrestamo.css';
 import { Button } from '../../../elements/buttons/Button';
 import { AutoCompletarLibro } from '../../../elements/autocomplete/types/AutoCompletarLibro';
-import SubirImagenLibro from '../../../../assets/img/icons/crear/subirImagenLibro.svg?react';
-import TildeVistaPrevia from '../../../../assets/img/icons/crear/tildeVistaPrevia.svg?react';
-import RelojVistaPrevia from '../../../../assets/img/icons/crear/relojVistaPrevia.svg?react';
+import { LibroDetalle } from '../../../elements/book/LibroDetalle';
 
 const CONDITIONS = ['Excelente', 'Muy bueno', 'Bueno', 'Desgastado'];
 
 const ADDITIONAL_DETAILS = [
-    { id: 'subrayado', label: 'Ejemplar subrayado.', valor: 'subrayado' },
-    { id: 'anotaciones', label: 'Ejemplar con anotaciones.', valor: 'con anotaciones' },
-    { id: 'manchas', label: 'Ejemplar con manchas.', valor: 'con manchas' },
-    { id: 'paginas_dobladas', label: 'Ejemplar con páginas dobladas.', valor: 'con páginas dobladas' },
+    { id: 'subrayado', label: 'Ejemplar subrayado.', valor: 'subrayado', chip: 'Subrayado' },
+    { id: 'anotaciones', label: 'Ejemplar con anotaciones.', valor: 'con anotaciones', chip: 'Con anotaciones' },
+    { id: 'manchas', label: 'Ejemplar con manchas.', valor: 'con manchas', chip: 'Con manchas' },
+    { id: 'paginas_dobladas', label: 'Ejemplar con páginas dobladas.', valor: 'con páginas dobladas', chip: 'Con páginas dobladas' },
 ];
 
 const LOAN_DURATIONS = [
@@ -77,6 +75,13 @@ export const CrearPrestamo = () => {
 
     const currentDurationLabel =
         LOAN_DURATIONS.find((d) => d.value === loanDuration)?.label ?? '1 semana';
+
+    const caracteristicas = [
+        `Estado del ejemplar: ${condition}`,
+        `Duración del préstamo: ${currentDurationLabel}`,
+    ];
+
+    const detallesEjemplar = selectedDetails.map((detalle) => detalle.chip);
 
     return (
         <form className="clp-page">
@@ -142,7 +147,7 @@ export const CrearPrestamo = () => {
                 </section>
 
                 {/* Fotos del libro */}
-                <section className="clp-card">
+                {/* <section className="clp-card">
                     <h2 className="clp-card-title">Fotos del libro</h2>
                     <label className="clp-upload-area">
                         <input
@@ -174,7 +179,7 @@ export const CrearPrestamo = () => {
                             </div>
                         )}
                     </label>
-                </section>
+                </section> */}
 
                 {/* Duración del préstamo */}
                 <section className="clp-card">
@@ -198,91 +203,14 @@ export const CrearPrestamo = () => {
             {/* Vista previa */}
             <aside className="clp-preview-col">
                 <p className="clp-preview-heading">Vista previa</p>
-                <div className="clp-preview-card">
-                    <div className="clp-preview-book">
-                        <div className="clp-preview-cover" />
-                        <div className="clp-preview-info">
-                            <p className="clp-preview-book-title">
-                                {bookSearch.trim() || 'Título del libro'}
-                            </p>
-                            <p className="clp-preview-author">
-                                {selectedBook?.autor ?? 'Autor/es'}
-                            </p>
-                            <div className="clp-preview-meta">
-                                <span className="clp-preview-meta-item clp-preview-meta-item--check">
-                                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                                        <circle
-                                            cx="8"
-                                            cy="8"
-                                            r="7"
-                                            stroke="var(--brand-primary)"
-                                            strokeWidth="1.5"
-                                        />
-                                        <path
-                                            d="M5 8l2 2 4-4"
-                                            stroke="var(--brand-primary)"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                    Estado del ejemplar: {condition}
-                                </span>
-                                <span className="clp-preview-meta-item clp-preview-meta-item--clock">
-                                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                                        <circle
-                                            cx="8"
-                                            cy="8"
-                                            r="7"
-                                            stroke="var(--gris-oscuro)"
-                                            strokeWidth="1.5"
-                                        />
-                                        <path
-                                            d="M8 5v3.5l2 1.5"
-                                            stroke="var(--gris-oscuro)"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                        />
-                                    </svg>
-                                    Duración del préstamo: {currentDurationLabel}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <hr className="clp-preview-divider" />
-
-                    {selectedDetails.length > 0 && (
-                        <>
-                            <p className="clp-preview-section-label">Detalles del ejemplar:</p>
-                            <div className="clp-preview-tags">
-                                {selectedDetails.map((d) => (
-                                    <span key={d.id} className="clp-preview-tag">
-                                        {d.valor}
-                                    </span>
-                                ))}
-                            </div>
-                        </>
-                    )}
-
-                    {photos.length > 0 && (
-                        <>
-                            <p className="clp-preview-section-label">Imágenes subidas:</p>
-                            <div className="clp-preview-images">
-                                {photos.slice(0, 4).map((src, i) => (
-                                    <img key={i} src={src} alt="" className="clp-preview-img" />
-                                ))}
-                            </div>
-                        </>
-                    )}
-
-                    {photos.length === 0 && selectedDetails.length === 0 && (
-                        <div className="clp-preview-images">
-                            <div className="clp-preview-img clp-preview-img--placeholder" />
-                            <div className="clp-preview-img clp-preview-img--placeholder" />
-                        </div>
-                    )}
-                </div>
+                <LibroDetalle
+                    urlFoto={selectedBook?.urlFoto}
+                    titulo={selectedBook?.titulo ?? selectedBook?.title ?? bookSearch.trim()}
+                    autor={selectedBook?.autor}
+                    caracteristicas={caracteristicas}
+                    detallesEjemplar={detallesEjemplar}
+                />
 
                 <div className="clp-publish-btn">
                     <Button variant="default" color="oscuro" onClick={handleLoanSubmit}>

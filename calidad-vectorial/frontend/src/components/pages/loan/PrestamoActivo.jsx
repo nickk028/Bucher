@@ -74,7 +74,7 @@ export const PrestamoActivo = () => {
                                 src={iconoReloj}
                                 alt=""
                             />
-                            Duración del préstamo: {prestamo.duracion}
+                            Duración del préstamo: {prestamo.limiteDias} días
                         </div>
 
                         <section className="body-prest__prestamo__text__card">

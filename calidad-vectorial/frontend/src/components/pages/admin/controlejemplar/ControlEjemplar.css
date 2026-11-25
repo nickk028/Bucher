@@ -71,25 +71,72 @@
 
 /* Checkboxes */
 
-.control-ejemplar__checkbox {
+.control-ejemplar__checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-
-    width: 20px;
-    height: 20px;
-    margin: 0;
-
-    accent-color: var(--brand-primary);
+    position: relative;
     cursor: pointer;
 }
 
-.control-ejemplar__checkbox--chico {
-    width: 18px;
-    height: 18px;
+.control-ejemplar__checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    margin: 0;
 }
 
-.control-ejemplar__checkbox:disabled {
+.control-ejemplar__checkbox-custom {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+
+    border: 1.8px solid var(--border-primary);
+    border-radius: 4px;
+    background: var(--bg-surface);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+}
+
+.control-ejemplar__checkbox:checked + .control-ejemplar__checkbox-custom {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+}
+
+.control-ejemplar__checkbox:checked + .control-ejemplar__checkbox-custom::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 9px;
+
+    border: 2px solid var(--blanco-puro);
+    border-top: none;
+    border-left: none;
+
+    transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.control-ejemplar__checkbox:focus-visible + .control-ejemplar__checkbox-custom {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+}
+
+.control-ejemplar__checkbox-label:has(.control-ejemplar__checkbox:disabled) {
     cursor: default;
     opacity: 0.6;
+}
+
+.control-ejemplar__checkbox-custom--chico {
+    width: 18px;
+    height: 18px;
 }
 
 /* Botones de opción (estado general / condiciones) */

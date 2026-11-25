@@ -183,13 +183,15 @@ export const ControlEjemplar = () => {
                                             required={true}
                                         />
                                     </div>
-                                    <input
-                                        className="control-ejemplar__checkbox"
-                                        type="checkbox"
-                                        checked={tituloConfirmado}
-                                        onChange={(e) => setTituloConfirmado(e.target.checked)}
-                                        aria-label="Confirmar título"
-                                    />
+                                    <label className="control-ejemplar__checkbox-label" aria-label="Confirmar título">
+                                        <input
+                                            className="control-ejemplar__checkbox"
+                                            type="checkbox"
+                                            checked={tituloConfirmado}
+                                            onChange={(e) => setTituloConfirmado(e.target.checked)}
+                                        />
+                                        <span className="control-ejemplar__checkbox-custom" />
+                                    </label>
                                 </div>
                             </div>
 
@@ -207,13 +209,15 @@ export const ControlEjemplar = () => {
                                             onChange={(e) => setAutor(e.target.value)}
                                         />
                                     </div>
-                                    <input
-                                        className="control-ejemplar__checkbox"
-                                        type="checkbox"
-                                        checked={autorConfirmado}
-                                        onChange={(e) => setAutorConfirmado(e.target.checked)}
-                                        aria-label="Confirmar autor"
-                                    />
+                                    <label className="control-ejemplar__checkbox-label" aria-label="Confirmar autor">
+                                        <input
+                                            className="control-ejemplar__checkbox"
+                                            type="checkbox"
+                                            checked={autorConfirmado}
+                                            onChange={(e) => setAutorConfirmado(e.target.checked)}
+                                        />
+                                        <span className="control-ejemplar__checkbox-custom" />
+                                    </label>
                                 </div>
                             </div>
                         </section>
@@ -270,15 +274,18 @@ export const ControlEjemplar = () => {
                                                     disabled
                                                     readOnly
                                                 />
+                                                <span className="control-ejemplar__checkbox-custom control-ejemplar__checkbox-custom--chico" />
                                                 <span>{detalle.label}</span>
                                             </label>
-                                            <input
-                                                className="control-ejemplar__checkbox"
-                                                type="checkbox"
-                                                checked={detallesRevisados.includes(detalle.valor)}
-                                                onChange={() => handleToggleDetalle(detalle.valor)}
-                                                aria-label={detalle.label}
-                                            />
+                                            <label className="control-ejemplar__checkbox-label" aria-label={`Confirmar ${detalle.label}`}>
+                                                <input
+                                                    className="control-ejemplar__checkbox"
+                                                    type="checkbox"
+                                                    checked={detallesRevisados.includes(detalle.valor)}
+                                                    onChange={() => handleToggleDetalle(detalle.valor)}
+                                                />
+                                                <span className="control-ejemplar__checkbox-custom" />
+                                            </label>
                                         </li>
                                     ))}
                                 </ul>

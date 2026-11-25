@@ -105,10 +105,6 @@ export const DetallesPrestamo = () => {
                             titulo='Estado del préstamo'
                             pasos={PASOS.map(paso => paso.texto)}
                             pasosCompletados={PASOS_COMPLETADOS}
-                            eventos={[
-                                { texto: 'El ejemplar fue retirado del domicilio.', fecha: 'Vie, 23:02 hs.' },
-                                { texto: 'El pedido del préstamo fue procesado exitosamente.', fecha: 'Vie, 10:26 hs.' },
-                            ]}
                         />
                 </section>
             </main>
