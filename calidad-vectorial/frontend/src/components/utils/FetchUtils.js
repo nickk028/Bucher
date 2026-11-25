@@ -195,7 +195,7 @@ export function usePost(url, method = 'POST') {
 }
 
 export const postData = async (url, data, signal, method = 'POST') => {
-    const respond = await fetch('http://localhost:8080/' + url, {
+    const respond = await fetch('/api/' + url, {
         method: method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -206,7 +206,7 @@ export const postData = async (url, data, signal, method = 'POST') => {
 };
 
 export const getData = async (url, signal) => {
-    const respond = await fetch('http://localhost:8080/' + url, {
+    const respond = await fetch('/api/' + url, {
         method: 'GET',
         credentials: 'include',
         signal: signal,

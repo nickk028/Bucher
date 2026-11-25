@@ -9,7 +9,7 @@ export const useAuth = () => useContext(AuthContext);
 
 const isTokenValid = async () => {
     try {
-        const respond = await fetch('http://localhost:8080/auth/validar-token', {
+        const respond = await fetch('/api/auth/validar-token', {
             method: 'GET',
             credentials: 'include',
             cache: 'no-store',
